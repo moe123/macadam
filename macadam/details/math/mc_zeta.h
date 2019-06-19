@@ -11,7 +11,7 @@
 #ifndef MC_ZETA_H
 #define MC_ZETA_H
 
-#pragma mark - mc_zetaf -
+#pragma mark - mc_zeta -
 
 static MC_TARGET_INLINE float mc_zetaf(float x)
 {

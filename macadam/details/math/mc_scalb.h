@@ -26,7 +26,7 @@ static MC_TARGET_INLINE double mc_scalb(double x, double y)
 static MC_TARGET_INLINE long double mc_scalbl(long double x, long double y)
 { return mc_cast(long double, ::_scalb(mc_cast(double, x), mc_cast(long, y))); }
 
-#	elif defined(__APPLE__)
+#	elif defined(__APPLE__) && defined(__MACH__)
 static MC_TARGET_INLINE float mc_scalbf(float x, float y)
 {
 #	if MC_TARGET_CPP98

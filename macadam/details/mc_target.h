@@ -10,8 +10,8 @@
 #define MC_TARGET_H
 
 #	if    (defined(__INTEL_COMPILER) && defined(_WIN32))         \
-		|| (defined(__ICC) && defined(_WIN32))                    \
-		|| (defined(__ICL) && defined(_WIN32))                    \
+		|| (defined(__ICC)    && defined(_WIN32))                 \
+		|| (defined(__ICL)    && defined(_WIN32))                 \
 		|| (defined(_MSC_VER) && (defined(__STDC__) && __STDC__)) \
 		|| (defined(_MSC_VER) && _MSC_VER < 1916)
 #		error "C99 compiler and Posix 1-2001 CRT required."
@@ -23,14 +23,14 @@
 #		endif
 #	endif
 
-#	if    defined (__unix__)  \
-		|| defined (__linux__) \
-		|| defined (__bsdi__) \
-		|| (defined (__APPLE__) && defined (__MACH__))
+#	if    defined(__unix__)  \
+		|| defined(__linux__) \
+		|| defined(__bsdi__) \
+		|| (defined(__APPLE__) && defined(__MACH__))
 #		include <unistd.h>
 #	endif
 
-#	if defined(__APPLE__)
+#	if defined(__APPLE__) && defined(__MACH__)
 #		ifndef __MATH_LONG_DOUBLE_CONSTANTS
 #			define __MATH_LONG_DOUBLE_CONSTANTS
 #		endif
@@ -290,7 +290,7 @@
 #	if 0
 #	if !defined(_MSC_VER)
 #	if !__STDC_IEC_559__ || !__STDC_IEC_559_COMPLEX__
-#		error "C99 compiler and Posix 1-2001 CRT required."
+#		error "IEC_559 required."
 #	endif
 #	endif
 #	endif

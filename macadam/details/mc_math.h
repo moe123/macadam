@@ -37,6 +37,7 @@
 #	include <macadam/details/math/mc_gcd.h>
 #	include <macadam/details/math/mc_hypotc.h>
 #	include <macadam/details/math/mc_hypotq.h>
+#	include <macadam/details/math/mc_hzeta.h>
 #	include <macadam/details/math/mc_ibeta.h>
 #	include <macadam/details/math/mc_igammac.h>
 #	include <macadam/details/math/mc_igammad.h>
