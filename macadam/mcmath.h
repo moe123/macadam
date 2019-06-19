@@ -226,6 +226,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_acos              (const 
 template <>        MC_TARGET_INLINE float       mcmath_acos<float>       (const float& x)       { return ::acosf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_acos<double>      (const double& x)      { return ::acos(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_acos<long double> (const long double& x) { return ::acosl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_acos (float x)       { return acosf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_acos (double x)      { return acos(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_acos (long double x) { return acosl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_acos(x) _Generic(x \
 	, float       : acosf \
@@ -264,6 +268,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_asin              (const 
 template <>        MC_TARGET_INLINE float       mcmath_asin<float>       (const float& x)       { return ::asinf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_asin<double>      (const double& x)      { return ::asin(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_asin<long double> (const long double& x) { return ::asinl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_asin (float x)       { return asinf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_asin (double x)      { return asin(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_asin (long double x) { return asinl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_asin(x) _Generic(x \
 	, float       : asinf \
@@ -289,6 +297,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_atan              (const 
 template <>        MC_TARGET_INLINE float       mcmath_atan<float>       (const float& x)       { return ::atanf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_atan<double>      (const double& x)      { return ::atan(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_atan<long double> (const long double& x) { return ::atanl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_atan (float x)       { return atanf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_atan (double x)      { return atan(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_atan (long double x) { return atanl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_atan(x) _Generic(x \
 	, float       : atanf \
@@ -326,6 +338,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_cos              (const T
 template <>        MC_TARGET_INLINE float       mcmath_cos<float>       (const float& x)       { return ::cosf(x);           }
 template <>        MC_TARGET_INLINE double      mcmath_cos<double>      (const double& x)      { return ::cos(x);            }
 template <>        MC_TARGET_INLINE long double mcmath_cos<long double> (const long double& x) { return ::cosl(x);           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_cos (float x)       { return cosf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_cos (double x)      { return cos(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_cos (long double x) { return cosl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_cos(x) _Generic(x \
 	, float       : cosf \
@@ -351,6 +367,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_sin              (const T
 template <>        MC_TARGET_INLINE float       mcmath_sin<float>       (const float& x)       { return ::sinf(x);           }
 template <>        MC_TARGET_INLINE double      mcmath_sin<double>      (const double& x)      { return ::sin(x);            }
 template <>        MC_TARGET_INLINE long double mcmath_sin<long double> (const long double& x) { return ::sinl(x);           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_sin (float x)       { return sinf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_sin (double x)      { return sin(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_sin (long double x) { return sinl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_sin(x) _Generic(x \
 	, float       : sinf \
@@ -376,6 +396,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_tan              (const T
 template <>        MC_TARGET_INLINE float       mcmath_tan<float>       (const float& x)       { return ::tanf(x);           }
 template <>        MC_TARGET_INLINE double      mcmath_tan<double>      (const double& x)      { return ::tan(x);            }
 template <>        MC_TARGET_INLINE long double mcmath_tan<long double> (const long double& x) { return ::tanl(x);           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_tan (float x)       { return tanf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_tan (double x)      { return tan(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_tan (long double x) { return tanl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_tan(x) _Generic(x \
 	, float       : tanf \
@@ -401,6 +425,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_acosh              (const
 template <>        MC_TARGET_INLINE float       mcmath_acosh<float>       (const float& x)       { return ::acoshf(x);         }
 template <>        MC_TARGET_INLINE double      mcmath_acosh<double>      (const double& x)      { return ::acosh(x);          }
 template <>        MC_TARGET_INLINE long double mcmath_acosh<long double> (const long double& x) { return ::acoshl(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_acosh (float x)       { return acoshf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_acosh (double x)      { return acosh(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_acosh (long double x) { return acoshl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_acosh(x) _Generic(x \
 	, float       : acoshf \
@@ -426,6 +454,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_asinh              (const
 template <>        MC_TARGET_INLINE float       mcmath_asinh<float>       (const float& x)       { return ::asinhf(x);         }
 template <>        MC_TARGET_INLINE double      mcmath_asinh<double>      (const double& x)      { return ::asinh(x);          }
 template <>        MC_TARGET_INLINE long double mcmath_asinh<long double> (const long double& x) { return ::asinhl(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_asinh (float x)       { return asinhf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_asinh (double x)      { return asinh(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_asinh (long double x) { return asinhl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_asinh(x) _Generic(x \
 	, float       : asinhf \
@@ -451,6 +483,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_atanh              (const
 template <>        MC_TARGET_INLINE float       mcmath_atanh<float>       (const float& x)       { return ::atanhf(x);         }
 template <>        MC_TARGET_INLINE double      mcmath_atanh<double>      (const double& x)      { return ::atanh(x);          }
 template <>        MC_TARGET_INLINE long double mcmath_atanh<long double> (const long double& x) { return ::atanhl(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_atanh (float x)       { return atanhf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_atanh (double x)      { return atanh(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_atanh (long double x) { return atanhl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_atanh(x) _Generic(x \
 	, float       : atanhf \
@@ -476,6 +512,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_cosh              (const 
 template <>        MC_TARGET_INLINE float       mcmath_cosh<float>       (const float& x)       { return ::coshf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_cosh<double>      (const double& x)      { return ::cosh(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_cosh<long double> (const long double& x) { return ::coshl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_cosh (float x)       { return coshf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_cosh (double x)      { return cosh(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_cosh (long double x) { return coshl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_cosh(x) _Generic(x \
 	, float       : coshf \
@@ -501,6 +541,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_sinh              (const 
 template <>        MC_TARGET_INLINE float       mcmath_sinh<float>       (const float& x)       { return ::sinhf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_sinh<double>      (const double& x)      { return ::sinh(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_sinh<long double> (const long double& x) { return ::sinhl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_sinh (float x)       { return sinhf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_sinh (double x)      { return sinh(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_sinh (long double x) { return sinhl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_sinh(x) _Generic(x \
 	, float       : sinhf \
@@ -526,6 +570,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_tanh              (const 
 template <>        MC_TARGET_INLINE float       mcmath_tanh<float>       (const float& x)       { return ::tanhf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_tanh<double>      (const double& x)      { return ::tanh(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_tanh<long double> (const long double& x) { return ::tanhl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_tanh (float x)       { return tanhf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_tanh (double x)      { return tanh(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_tanh (long double x) { return tanhl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_tanh(x) _Generic(x \
 	, float       : tanhf \
@@ -551,6 +599,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_exp              (const T
 template <>        MC_TARGET_INLINE float       mcmath_exp<float>       (const float& x)       { return ::expf(x);           }
 template <>        MC_TARGET_INLINE double      mcmath_exp<double>      (const double& x)      { return ::exp(x);            }
 template <>        MC_TARGET_INLINE long double mcmath_exp<long double> (const long double& x) { return ::expl(x);           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_exp (float x)       { return expf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_exp (double x)      { return exp(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_exp (long double x) { return expl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp(x) _Generic(x \
 	, float       : expf \
@@ -576,6 +628,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_exp2              (const 
 template <>        MC_TARGET_INLINE float       mcmath_exp2<float>       (const float& x)       { return ::exp2f(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_exp2<double>      (const double& x)      { return ::exp2(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_exp2<long double> (const long double& x) { return ::exp2l(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_exp2 (float x)       { return exp2f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_exp2 (double x)      { return exp2(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_exp2 (long double x) { return exp2l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp2(x) _Generic(x \
 	, float       : exp2f \
@@ -639,6 +695,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_expm1              (const
 template <>        MC_TARGET_INLINE float       mcmath_expm1<float>       (const float& x)       { return ::expm1f(x);         }
 template <>        MC_TARGET_INLINE double      mcmath_expm1<double>      (const double& x)      { return ::expm1(x);          }
 template <>        MC_TARGET_INLINE long double mcmath_expm1<long double> (const long double& x) { return ::expm1l(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_expm1 (float x)       { return expm1f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_expm1 (double x)      { return expm1(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_expm1 (long double x) { return expm1l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_expm1(x) _Generic(x \
 	, float       : expm1f \
@@ -664,6 +724,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_log              (const T
 template <>        MC_TARGET_INLINE float       mcmath_log<float>       (const float& x)       { return ::logf(x);           }
 template <>        MC_TARGET_INLINE double      mcmath_log<double>      (const double& x)      { return ::log(x);            }
 template <>        MC_TARGET_INLINE long double mcmath_log<long double> (const long double& x) { return ::logl(x);           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log (float x)       { return logf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log (double x)      { return log(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log (long double x) { return logl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log(x) _Generic(x \
 	, float       : logf \
@@ -689,6 +753,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_log10              (const
 template <>        MC_TARGET_INLINE float       mcmath_log10<float>       (const float& x)       { return ::log10f(x);         }
 template <>        MC_TARGET_INLINE double      mcmath_log10<double>      (const double& x)      { return ::log10(x);          }
 template <>        MC_TARGET_INLINE long double mcmath_log10<long double> (const long double& x) { return ::log10l(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log10 (float x)       { return log10f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log10 (double x)      { return log10(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log10 (long double x) { return log10l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log10(x) _Generic(x \
 	, float       : log10f \
@@ -714,6 +782,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_log2              (const 
 template <>        MC_TARGET_INLINE float       mcmath_log2<float>       (const float& x)       { return ::log2f(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_log2<double>      (const double& x)      { return ::log2(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_log2<long double> (const long double& x) { return ::log2l(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log2 (float x)       { return log2f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log2 (double x)      { return log2(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log2 (long double x) { return log2l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log2(x) _Generic(x \
 	, float       : log2f \
@@ -739,6 +811,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_log1p              (const
 template <>        MC_TARGET_INLINE float       mcmath_log1p<float>       (const float& x)       { return mc_log1pf(x);        }
 template <>        MC_TARGET_INLINE double      mcmath_log1p<double>      (const double& x)      { return mc_log1p(x);         }
 template <>        MC_TARGET_INLINE long double mcmath_log1p<long double> (const long double& x) { return mc_log1pl(x);        }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log1p (float x)       { return mc_log1pf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log1p (double x)      { return mc_log1p(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log1p (long double x) { return mc_log1pl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1p(x) _Generic(x \
 	, float       : mc_log1pf \
@@ -793,14 +869,15 @@ template <class T> MC_TARGET_INLINE T           mcmath_log1m              (const
 template <>        MC_TARGET_INLINE float       mcmath_log1m<float>       (const float& x)       { return mc_log1mf(x);        }
 template <>        MC_TARGET_INLINE double      mcmath_log1m<double>      (const double& x)      { return mc_log1m(x);         }
 template <>        MC_TARGET_INLINE long double mcmath_log1m<long double> (const long double& x) { return mc_log1ml(x);        }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log1m (float x)       { return mc_log1mf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log1m (double x)      { return mc_log1m(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log1m (long double x) { return mc_log1ml(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1m(x) _Generic(x \
 	, float       : mc_log1mf \
 	, double      : mc_log1m  \
 	, long double : mc_log1ml \
-	, int         : mc_log1mf \
-	, long        : mc_log1m  \
-	, long long   : mc_log1ml \
 ) (x)
 #	else
 #	define mcmath_log1m(x) \
@@ -821,14 +898,15 @@ template <class T> MC_TARGET_INLINE T           mcmath_log1pe              (cons
 template <>        MC_TARGET_INLINE float       mcmath_log1pe<float>       (const float& x)       { return mc_log1pef(x);       }
 template <>        MC_TARGET_INLINE double      mcmath_log1pe<double>      (const double& x)      { return mc_log1pe(x);        }
 template <>        MC_TARGET_INLINE long double mcmath_log1pe<long double> (const long double& x) { return mc_log1pel(x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log1pe (float x)       { return mc_log1pef(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log1pe (double x)      { return mc_log1pe(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log1pe (long double x) { return mc_log1pel(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1pe(x) _Generic(x \
 	, float       : mc_log1pef \
 	, double      : mc_log1pe  \
 	, long double : mc_log1pel \
-	, int         : mc_log1pef \
-	, long        : mc_log1pe  \
-	, long long   : mc_log1pel \
 ) (x)
 #	else
 #	define mcmath_log1pe(x) \
@@ -847,14 +925,15 @@ template <class T> MC_TARGET_INLINE T           mcmath_log1me              (cons
 template <>        MC_TARGET_INLINE float       mcmath_log1me<float>       (const float& x)       { return mc_log1mef(x);       }
 template <>        MC_TARGET_INLINE double      mcmath_log1me<double>      (const double& x)      { return mc_log1me(x);        }
 template <>        MC_TARGET_INLINE long double mcmath_log1me<long double> (const long double& x) { return mc_log1mel(x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_log1me (float x)       { return mc_log1mef(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log1me (double x)      { return mc_log1me(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log1me (long double x) { return mc_log1mel(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1me(x) _Generic(x \
 	, float       : mc_log1mef \
 	, double      : mc_log1me  \
 	, long double : mc_log1mel \
-	, int         : mc_log1mef \
-	, long        : mc_log1me  \
-	, long long   : mc_log1mel \
 ) (x)
 #	else
 #	define mcmath_log1me(x) \
@@ -875,6 +954,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_logb              (const 
 template <>        MC_TARGET_INLINE float       mcmath_logb<float>       (const float& x)       { return ::logbf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_logb<double>      (const double& x)      { return ::logb(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_logb<long double> (const long double& x) { return ::logbl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_logb (float x)       { return logbf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_logb (double x)      { return logb(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_logb (long double x) { return logbl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_logb(x) _Generic(x \
 	, float       : logbf \
@@ -936,6 +1019,10 @@ template <class T> MC_TARGET_INLINE int mcmath_ilogb              (const T& x)  
 template <>        MC_TARGET_INLINE int mcmath_ilogb<float>       (const float& x)       { return ::ilogbf(x);         }
 template <>        MC_TARGET_INLINE int mcmath_ilogb<double>      (const double& x)      { return ::ilogb(x);          }
 template <>        MC_TARGET_INLINE int mcmath_ilogb<long double> (const long double& x) { return ::ilogbl(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_ilogb (float x)       { return ilogbf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_ilogb (double x)      { return ilogb(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_ilogb (long double x) { return ilogbl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_ilogb(x) _Generic(x \
 	, float       : ilogbf \
@@ -993,7 +1080,10 @@ template <>        MC_TARGET_INLINE float       mcmath_fabs<float>       (const 
 template <>        MC_TARGET_INLINE double      mcmath_fabs<double>      (const double& x)      { return ::fabs(x);       }
 template <>        MC_TARGET_INLINE long double mcmath_fabs<long double> (const long double& x) { return ::fabsl(x);      }
 #	endif
-
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_fabs (float x)       { return fabsf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_fabs (double x)      { return fabs(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_fabs (long double x) { return fabsl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_fabs(x) _Generic(x \
 	, float       : fabsf \
@@ -1019,6 +1109,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_cbrt              (const 
 template <>        MC_TARGET_INLINE float       mcmath_cbrt<float>       (const float& x)       { return ::cbrtf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_cbrt<double>      (const double& x)      { return ::cbrt(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_cbrt<long double> (const long double& x) { return ::cbrtl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_cbrt (float x)       { return cbrtf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_cbrt (double x)      { return cbrt(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_cbrt (long double x) { return cbrtl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_cbrt(x) _Generic(x \
 	, float       : cbrtf \
@@ -1248,6 +1342,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_erf              (const T
 template <>        MC_TARGET_INLINE float       mcmath_erf<float>       (const float& x)       { return ::erff(x);           }
 template <>        MC_TARGET_INLINE double      mcmath_erf<double>      (const double& x)      { return ::erf(x);            }
 template <>        MC_TARGET_INLINE long double mcmath_erf<long double> (const long double& x) { return ::erfl(x);           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_erf (float x)       { return erff(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_erf (double x)      { return erf(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_erf (long double x) { return erfl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_erf(x) _Generic(x \
 	, float       : erff \
@@ -1273,6 +1371,10 @@ template <class T> MC_TARGET_INLINE T           mcmath_erfc              (const 
 template <>        MC_TARGET_INLINE float       mcmath_erfc<float>       (const float& x)       { return ::erfcf(x);          }
 template <>        MC_TARGET_INLINE double      mcmath_erfc<double>      (const double& x)      { return ::erfc(x);           }
 template <>        MC_TARGET_INLINE long double mcmath_erfc<long double> (const long double& x) { return ::erfcl(x);          }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_erfc (float x)       { return erfcf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_erfc (double x)      { return erfc(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_erfc (long double x) { return erfcl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_erfc(x) _Generic(x \
 	, float       : erfcf \
