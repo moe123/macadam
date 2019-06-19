@@ -17,7 +17,7 @@
 
 static MC_TARGET_INLINE float mc_log2f(float x)
 {
-	const float y = x * MCK_KF(MCK_1LOG2);
+	const float y = x * MCK_KF(MCK_1_LOG2);
 #	if MC_TARGET_CPP98
 	return ::logf(y);
 #	else
@@ -27,7 +27,7 @@ static MC_TARGET_INLINE float mc_log2f(float x)
 
 static MC_TARGET_INLINE double mc_log2(double x)
 {
-	const double y = x * MCK_K(MCK_1LOG2);
+	const double y = x * MCK_K(MCK_1_LOG2);
 #	if MC_TARGET_CPP98
 	return ::logf(y);
 #	else
@@ -40,7 +40,7 @@ static MC_TARGET_INLINE long double mc_log2l(long double x)
 #	if MC_TARGET_C99 && defined(M_LN2l)
 	const long double y = x / M_LN2l;
 #	else
-	const long double y = x * MCK_KL(MCK_1LOG2);
+	const long double y = x * MCK_KL(MCK_1_LOG2);
 #	endif
 #	if MC_TARGET_CPP98
 	return ::logl(y);
