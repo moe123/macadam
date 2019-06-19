@@ -51,30 +51,54 @@ static MC_TARGET_INLINE long double mc_gammal_approx0(long double x)
 static MC_TARGET_INLINE
 float mc_gammaf(float x)
 {
+#	if MC_TARGET_EMBEDDED
 #	if MC_TARGET_CPP98
-	return(::expf(mc_lgammaf(x)));
+	return ::expf(mc_lgammaf(x));
 #	else
-	return(expf(mc_lgammaf(x)));
+	return expf(mc_lgammaf(x));
+#	endif
+#	else
+#	if MC_TARGET_CPP98
+	return ::tgammaf(x);
+#	else
+	return tgammaf(x);
+#	endif
 #	endif
 }
 
 static MC_TARGET_INLINE
 double mc_gamma(double x)
 {
+#	if MC_TARGET_EMBEDDED
 #	if MC_TARGET_CPP98
-	return(::exp(mc_lgamma(x)));
+	return ::exp(mc_lgamma(x));
 #	else
-	return(exp(mc_lgamma(x)));
+	return exp(mc_lgamma(x));
+#	endif
+#	else
+#	if MC_TARGET_CPP98
+	return ::tgamma(x);
+#	else
+	return tgamma(x);
+#	endif
 #	endif
 }
 
 static MC_TARGET_INLINE
 long double mc_gammal(long double x)
 {
+#	if MC_TARGET_EMBEDDED
 #	if MC_TARGET_CPP98
-	return(::expl(mc_lgammal(x)));
+	return ::expl(mc_lgammal(x));
 #	else
-	return(expl(mc_lgammal(x)));
+	return expl(mc_lgammal(x));
+#	endif
+#	else
+#	if MC_TARGET_CPP98
+	return ::tgammal(x);
+#	else
+	return tgammal(x);
+#	endif
 #	endif
 }
 

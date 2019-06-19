@@ -79,10 +79,6 @@ static MC_TARGET_INLINE long double mc_gamma_pseriesl_approx0(long double a, lon
 	return sum;
 }
 
-static MC_TARGET_INLINE float       mc_igammadf(float a, float x);
-static MC_TARGET_INLINE double      mc_igammad(double a, double x);
-static MC_TARGET_INLINE long double mc_igammadl(long double a, long double x);
-
 #pragma mark - mc_igammac -
 
 static MC_TARGET_INLINE float mc_igammacf(float a, float x)
