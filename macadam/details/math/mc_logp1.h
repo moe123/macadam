@@ -1,0 +1,56 @@
+//
+// # -*- coding: utf-8, tab-width: 3 -*-
+
+// mc_logp1.h
+//
+// Copyright (C) 2019 Moe123. All rights reserved.
+//
+
+#include <macadam/details/mc_target.h>
+#include <macadam/mcconsts.h>
+#include <macadam/mclimits.h>
+
+#ifndef MC_LOGP1_H
+#define MC_LOGP1_H
+
+#pragma mark - mc_logp1 -
+
+static MC_TARGET_INLINE float mc_logp1f(float x)
+{
+	if (x == 0.0f) {
+		return x;
+	}
+#	if MC_TARGET_CPP98
+	return ::log1pf(x);
+#	else
+	return log1pf(x);
+#	endif
+}
+
+static MC_TARGET_INLINE double mc_logp1(double x)
+{
+	if (x == 0.0) {
+		return x;
+	}
+#	if MC_TARGET_CPP98
+	return ::log1p(x);
+#	else
+	return log1p(x);
+#	endif
+}
+
+static MC_TARGET_INLINE long double mc_logp1l(long double x)
+{
+	if (x == 0.0L) {
+		return x;
+	}
+#	if MC_TARGET_CPP98
+	return ::log1pl(x);
+#	else
+	return log1pl(x);
+#	endif
+}
+
+#endif /* !MC_LOGP1_H */
+
+/* EOF */

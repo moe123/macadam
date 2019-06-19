@@ -1,0 +1,197 @@
+//
+// # -*- coding: utf-8, tab-width: 3 -*-
+
+// mc_igammad.h
+//
+// Copyright (C) 2019 Moe123. All rights reserved.
+//
+
+#include <macadam/details/math/mc_gamma.h>
+
+#ifndef MC_IGAMMAD_H
+#define MC_IGAMMAD_H
+
+#pragma mark - mc_gamma_cfrac_approx -
+
+static MC_TARGET_INLINE float mc_gamma_cfracf_approx0(float a, float x)
+{
+	const float e1 = MCLIMITS_EPSILONF;
+	const float e3 = e1 * 3.0f;
+	float k = 1.0f, c0, c1, c2, c3, c4, c5;
+	c1 = x + 1.0f - a;
+	c2 = 1.0f / e3;
+	c3 = 1.0f / c1;
+	c5 = c3;
+#	if MC_TARGET_CPP98
+	do {
+		c0  = k * (a - k);
+		c1 += 2.0f;
+		c3  = c0 * c3 + c1;
+		c3  = ::fabsf(c3) < e3 ? e3 : c3;
+		c2  = c1 + c0 / c2;
+		c2  = ::fabsf(c2) < e3 ? e3 : c2;
+		c3  = 1.0f / c3;
+		c4  = c3 * c2;
+		c5 *= c4;
+		k  += 1.0f;
+	} while (::fabsf(c4 - 1.0f) > e1);
+#	else
+	do {
+		c0  = k * (a - k);
+		c1 += 2.0f;
+		c3  = c0 * c3 + c1;
+		c3  = fabsf(c3) < e3 ? e3 : c3;
+		c2  = c1 + c0 / c2;
+		c2  = fabsf(c2) < e3 ? e3 : c2;
+		c3  = 1.0f / c3;
+		c4  = c3 * c2;
+		c5 *= c4;
+		k  += 1.0f;
+	} while (fabsf(c4 - 1.0f) > e1);
+#	endif
+	return c5;
+}
+
+static MC_TARGET_INLINE double mc_gamma_cfrac_approx0(double a, double x)
+{
+	const double e1 = MCLIMITS_EPSILON;
+	const double e3 = e1 * 3.0;
+	double k = 1.0, c0, c1, c2, c3, c4, c5;
+	c1 = x + 1.0 - a;
+	c2 = 1.0 / e3;
+	c3 = 1.0 / c1;
+	c5 = c3;
+#	if MC_TARGET_CPP98
+	do {
+		c0  = k * (a - k);
+		c1 += 2.0;
+		c3  = c0 * c3 + c1;
+		c3  = ::fabs(c3) < e3 ? e3 : c3;
+		c2  = c1 + c0 / c2;
+		c2  = ::fabs(c2) < e3 ? e3 : c2;
+		c3  = 1.0 / c3;
+		c4  = c3 * c2;
+		c5 *= c4;
+		k  += 1.0;
+	} while (::fabs(c4 - 1.0) > e1);
+#	else
+	do {
+		c0  = k * (a - k);
+		c1 += 2.0;
+		c3  = c0 * c3 + c1;
+		c3  = fabs(c3) < e3 ? e3 : c3;
+		c2  = c1 + c0 / c2;
+		c2  = fabs(c2) < e3 ? e3 : c2;
+		c3  = 1.0 / c3;
+		c4  = c3 * c2;
+		c5 *= c4;
+		k  += 1.0;
+	} while (fabs(c4 - 1.0) > e1);
+#	endif
+	return c5;
+}
+
+static MC_TARGET_INLINE long double mc_gamma_cfracl_approx0(long double a, long double x)
+{
+	const long double e1 = MCLIMITS_EPSILONL;
+	const long double e3 = e1 * 3.0L;
+	double k = 1.0L, c0, c1, c2, c3, c4, c5;
+	c1 = x + 1.0L - a;
+	c2 = 1.0L / e3;
+	c3 = 1.0L / c1;
+	c5 = c3;
+#	if MC_TARGET_CPP98
+	do {
+		c0  = k * (a - k);
+		c1 += 2.0L;
+		c3  = c0 * c3 + c1;
+		c3  = ::fabsl(c3) < e3 ? e3 : c3;
+		c2  = c1 + c0 / c2;
+		c2  = ::fabsl(c2) < e3 ? e3 : c2;
+		c3  = 1.0L / c3;
+		c4  = c3 * c2;
+		c5 *= c4;
+		k  += 1.0L;
+	} while (::fabsl(c4 - 1.0L) > e1);
+#	else
+	do {
+		c0  = k * (a - k);
+		c1 += 2.0L;
+		c3  = c0 * c3 + c1;
+		c3  = fabsl(c3) < e3 ? e3 : c3;
+		c2  = c1 + c0 / c2;
+		c2  = fabsl(c2) < e3 ? e3 : c2;
+		c3  = 1.0L / c3;
+		c4  = c3 * c2;
+		c5 *= c4;
+		k  += 1.0L;
+	} while (fabsl(c4 - 1.0L) > e1);
+#	endif
+	return c5;
+}
+
+#pragma mark - mc_igammad -
+
+static MC_TARGET_INLINE float mc_igammadf(float a, float x)
+{
+	if (a > 0.0f && x > 0.0f) {
+#	if MC_TARGET_CPP98
+		const float y = a * ::logf(x) - x;
+		if (y < -FLT_MAX_10_EXP) {
+			return 0.0f;
+		}
+		return mc_gamma_cfracf_approx0(a, x) * ::expf(y);
+#	else
+		const float y = a * logf(x) - x;
+		if (y < -FLT_MAX_10_EXP) {
+			return 0.0f;
+		}
+		return mc_gamma_cfracf_approx0(a, x) * expf(y);
+#	endif
+	}
+	return MCK_NAN;
+}
+
+static MC_TARGET_INLINE double mc_igammad(double a, double x)
+{
+	if (a > 0.0 && x > 0.0) {
+#	if MC_TARGET_CPP98
+		const double y = a * ::log(x) - x;
+		if (y < -DBL_MAX_10_EXP) {
+			return 0.0;
+		}
+		return mc_gamma_cfrac_approx0(a, x) * ::exp(y);
+#	else
+		const double y = a * log(x) - x;
+		if (y < -DBL_MAX_10_EXP) {
+			return 0.0;
+		}
+		return mc_gamma_cfrac_approx0(a, x) * exp(y);
+#	endif
+	}
+	return MCK_NAN;
+}
+
+static MC_TARGET_INLINE long double mc_igammadl(long double a, long double x)
+{
+	if (a > 0.0L && x > 0.0L) {
+#	if MC_TARGET_CPP98
+		const long double y = a * ::logl(x) - x;
+		if (y < -LDBL_MAX_10_EXP) {
+			return 0.0L;
+		}
+		return mc_gamma_cfracl_approx0(a, x) * ::expl(y);
+#	else
+		const long double y = a * logl(x) - x;
+		if (y < -LDBL_MAX_10_EXP) {
+			return 0.0L;
+		}
+		return mc_gamma_cfracl_approx0(a, x) * expl(y);
+#	endif
+	}
+	return MCK_NAN;
+}
+
+#endif /* !MC_IGAMMAD_H */
+
+/* EOF */
