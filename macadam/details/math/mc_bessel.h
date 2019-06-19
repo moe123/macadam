@@ -14,33 +14,33 @@
 #define MC_BESSEL_H
 
 #	if MC_TARGET_EMBEDDED
-#	define mc_i0f(x)    mc_besseli0f_v1(x)
-#	define mc_i0(x)     mc_besseli0_v1(x)
-#	define mc_i0l(x)    mc_besseli0l_v1(x)
+#	define mc_i0f(x)    mc_besseli0f_approx1(x)
+#	define mc_i0(x)     mc_besseli0_approx1(x)
+#	define mc_i0l(x)    mc_besseli0l_approx1(x)
 #	else
-#	define mc_i0f(x)    mc_besseli0f_v0(x)
-#	define mc_i0(x)     mc_besseli0_v0(x)
-#	define mc_i0l(x)    mc_besseli0l_v0(x)
+#	define mc_i0f(x)    mc_besseli0f_approx0(x)
+#	define mc_i0(x)     mc_besseli0_approx0(x)
+#	define mc_i0l(x)    mc_besseli0l_approx0(x)
 #	endif
 
 #	if MC_TARGET_EMBEDDED
-#	define mc_i1f(x)    mc_besseli1f_v1(x)
-#	define mc_i1(x)     mc_besseli1_v1(x)
-#	define mc_i1l(x)    mc_besseli1l_v1(x)
+#	define mc_i1f(x)    mc_besseli1f_approx1(x)
+#	define mc_i1(x)     mc_besseli1_approx1(x)
+#	define mc_i1l(x)    mc_besseli1l_approx1(x)
 #	else
-#	define mc_i1f(x)    mc_besseli1f_v0(x)
-#	define mc_i1(x)     mc_besseli1_v0(x)
-#	define mc_i1l(x)    mc_besseli1l_v0(x)
+#	define mc_i1f(x)    mc_besseli1f_approx0(x)
+#	define mc_i1(x)     mc_besseli1_approx0(x)
+#	define mc_i1l(x)    mc_besseli1l_approx0(x)
 #	endif
 
 #	if MC_TARGET_EMBEDDED
-#	define mc_inf(n, x) mc_besselinf_v1(n, x)
-#	define mc_in(n, x)  mc_besselin_v1(n, x)
-#	define mc_inl(n, x) mc_besselinl_v1(n, x)
+#	define mc_inf(n, x) mc_besselinf_approx1(n, x)
+#	define mc_in(n, x)  mc_besselin_approx1(n, x)
+#	define mc_inl(n, x) mc_besselinl_approx1(n, x)
 #	else
-#	define mc_inf(n, x) mc_besselinf_v0(n, x)
-#	define mc_in(n, x)  mc_besselin_v0(n, x)
-#	define mc_inl(n, x) mc_besselinl_v0(n, x)
+#	define mc_inf(n, x) mc_besselinf_approx0(n, x)
+#	define mc_in(n, x)  mc_besselin_approx0(n, x)
+#	define mc_inl(n, x) mc_besselinl_approx0(n, x)
 #	endif
 
 #	define mc_j0f(x)    mc_besselj0f(x)
