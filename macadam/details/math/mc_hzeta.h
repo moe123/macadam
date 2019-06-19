@@ -78,9 +78,15 @@ static MC_TARGET_INLINE double mc_hzeta(double s, double q)
 {
 	double r = 0.0, c, term, sign;
 	unsigned int i = 0, j;
+#	if MC_TARGET_CPP98
+	if ((::isnan(s) || ::isinf(s)) || (::isnan(q) || ::isinf(q)) || (s == 1.0 || q <= 0.0)) {
+		return MCK_NAN;
+	}
+#	else
 	if ((isnan(s) || isinf(s)) || (isnan(q) || isinf(q)) || (s == 1.0 || q <= 0.0)) {
 		return MCK_NAN;
 	}
+#	endif
 	if (s == 0.0) {
 		return 0.5 - q;
 	}
@@ -130,9 +136,15 @@ static MC_TARGET_INLINE long double mc_hzetal(long double s, long double q)
 {
 	long double r = 0.0L, c, term, sign;
 	unsigned int i = 0, j;
+#	if MC_TARGET_CPP98
+	if ((::isnan(s) || ::isinf(s)) || (::isnan(q) || ::isinf(q)) || (s == 1.0L || q <= 0.0L)) {
+		return MCK_NAN;
+	}
+#	else
 	if ((isnan(s) || isinf(s)) || (isnan(q) || isinf(q)) || (s == 1.0L || q <= 0.0L)) {
 		return MCK_NAN;
 	}
+#	endif
 	if (s == 0.0L) {
 		return 0.5L - q;
 	}
