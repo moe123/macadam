@@ -72,9 +72,9 @@
 #		define mcmath_log(x)           ::std::log(x)
 #		define mcmath_log10(x)         ::std::log10(x)
 #		define mcmath_log2(x)          ::std::log2(x)
-#		ifndef __APPLE__
+#	ifndef __APPLE__
 #		define mcmath_log1p(x)         ::std::log1p(x)
-#		endif
+#	endif
 #		define mcmath_logb(x)          ::std::logb(x)
 #		define mcmath_ldexp(x, y)      ::std::ldexp(x, y)
 #		define mcmath_frexp(x, y)      ::std::frexp(x, y)
@@ -148,9 +148,9 @@
 #		define mcmath_log(x)           log(x)
 #		define mcmath_log10(x)         log10(x)
 #		define mcmath_log2(x)          log2(x)
-#		ifndef __APPLE__
+#	ifndef __APPLE__
 #		define mcmath_log1p(x)         log1p(x)
-#		endif
+#	endif
 #		define mcmath_logb(x)          logb(x)
 #		define mcmath_ldexp(x, y)      ldexp(x, y)
 #		define mcmath_frexp(x, y)      frexp(x, y)
@@ -1147,6 +1147,66 @@ static MC_TARGET_OVERLOADABLE long double mcmath_cbrt (long double x) { return c
 #	endif
 #	endif
 
+#pragma mark - mcmath_fhrt -
+
+#	ifndef mcmath_fhrt
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_fhrt              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_fhrt<float>       (const float& x)       { return mc_fhrtf(x);         }
+template <>        MC_TARGET_INLINE double      mcmath_fhrt<double>      (const double& x)      { return mc_fhrt(x);          }
+template <>        MC_TARGET_INLINE long double mcmath_fhrt<long double> (const long double& x) { return mc_fhrtl(x);         }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_fhrt (float x)       { return mc_fhrtf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_fhrt (double x)      { return mc_fhrt(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_fhrt (long double x) { return mc_fhrtl(x); }
+#	elif MC_TARGET_C11
+#	define mcmath_fhrt(x) _Generic(x \
+	, float       : mc_fhrtf \
+	, double      : mc_fhrt  \
+	, long double : mc_fhrtl \
+) (x)
+#	else
+#	define mcmath_fhrt(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_fhrtf (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_fhrt  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_fhrtl (mc_cast_exp(long double, x)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_rootn -
+
+#pragma mark - mcmath_rootn -
+
+#	ifndef mcmath_rootn
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_rootn              (const T& x, unsigned int n)           { mc_cast(void, x); mc_cast(void, n); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_rootn<float>       (const float& x, unsigned int n)       { return mc_rootnf(x, n);                       }
+template <>        MC_TARGET_INLINE double      mcmath_rootn<double>      (const double& x, unsigned int n)      { return mc_rootn(x, n);                        }
+template <>        MC_TARGET_INLINE long double mcmath_rootn<long double> (const long double& x, unsigned int n) { return mc_rootnl(x, n);                       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_rootn (float x, unsigned int n)       { return mc_rootnf(x, n); }
+static MC_TARGET_OVERLOADABLE double      mcmath_rootn (double x, unsigned int n)      { return mc_rootn(x, n);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_rootn (long double x, unsigned int n) { return mc_rootnl(x, n); }
+#	elif MC_TARGET_C11
+#	define mcmath_rootn(x, n) _Generic(x \
+	, float       : mc_rootnf \
+	, double      : mc_rootn  \
+	, long double : mc_rootnl \
+) (x, mc_cast_exp(unsigned int, n))
+#	else
+#	define mcmath_rootn(x, n) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_rootnf (mc_cast_exp(float, x), mc_cast_exp(unsigned int, n))       \
+		: sizeof(x) == sizeof(double)      ? mc_rootn  (mc_cast_exp(double, x), mc_cast_exp(unsigned int, n))      \
+		: sizeof(x) == sizeof(long double) ? mc_rootnl (mc_cast_exp(long double, x), mc_cast_exp(unsigned int, n)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
 #pragma mark - mcmath_hypot -
 
 #	ifndef mcmath_hypot
@@ -1500,10 +1560,10 @@ static MC_TARGET_OVERLOADABLE long double mcmath_digamma (long double x) { retur
 
 #	ifndef mcmath_trigamma
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_trigamma              (const T& x)           { mc_cast(void, x); return 0;    }
-template <>        MC_TARGET_INLINE float       mcmath_trigamma<float>       (const float& x)       { return mc_trigammaf(x);  }
-template <>        MC_TARGET_INLINE double      mcmath_trigamma<double>      (const double& x)      { return mc_trigamma(x);   }
-template <>        MC_TARGET_INLINE long double mcmath_trigamma<long double> (const long double& x) { return mc_trigammal(x);  }
+template <class T> MC_TARGET_INLINE T           mcmath_trigamma              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_trigamma<float>       (const float& x)       { return mc_trigammaf(x);     }
+template <>        MC_TARGET_INLINE double      mcmath_trigamma<double>      (const double& x)      { return mc_trigamma(x);      }
+template <>        MC_TARGET_INLINE long double mcmath_trigamma<long double> (const long double& x) { return mc_trigammal(x);     }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
 static MC_TARGET_OVERLOADABLE float       mcmath_trigamma (float x)       { return mc_trigammaf(x); }
 static MC_TARGET_OVERLOADABLE double      mcmath_trigamma (double x)      { return mc_trigamma(x);  }
@@ -1905,6 +1965,10 @@ template <>        MC_TARGET_INLINE long long   mcmath_abs<long long>   (const l
 
 #	if MC_TARGET_HAVE_OVERLOADABLE
 
+static MC_TARGET_OVERLOADABLE float       mcmath_abs (float x)       { return fabsf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_abs (double x)      { return fabs(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_abs (long double x) { return fabsl(x); }
+
 static MC_TARGET_OVERLOADABLE signed char mcmath_abs (signed char x) { return mc_babs(x);  }
 static MC_TARGET_OVERLOADABLE short       mcmath_abs (short x)       { return mc_sabs(x);  }
 static MC_TARGET_OVERLOADABLE int         mcmath_abs (int x)         { return mc_iabs(x);  }
@@ -1916,45 +1980,41 @@ static MC_TARGET_OVERLOADABLE long long   mcmath_abs (long long x)   { return mc
 
 #	endif
 
-static MC_TARGET_OVERLOADABLE float       mcmath_abs (float x)       { return fabsf(x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_abs (double x)      { return fabs(x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_abs (long double x) { return fabsl(x); }
-
 #	elif MC_TARGET_C11
 #	define mcmath_abs(x) _Generic(x \
+	, float               : fabsf    \
+	, double              : fabs     \
+	, long double         : fabsl    \
 	, signed char         : mc_babs  \
 	, short               : mc_sabs  \
 	, int                 : mc_iabs  \
 	, long                : mc_labs  \
 	, long long           : mc_llabs \
-	, float               : fabsf          \
-	, double              : fabs           \
-	, long double         : fabsl          \
 ) (x)
 #	elif MC_TARGET_HAVE_TYPEOF
 #		if MC_TARGET_C99
 #		define mcmath_abs(x) mc_cast(MC_TARGET_TYPEOF(x), \
 		( \
-			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char) ? mc_babs  (mc_cast_exp(signed char, x)) \
+			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? fabsf    (mc_cast_exp(float, x))       \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? fabs     (mc_cast_exp(double, x))      \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? fabsl    (mc_cast_exp(long double, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char) ? mc_babs  (mc_cast_exp(signed char, x)) \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)       ? mc_sabs  (mc_cast_exp(short, x))       \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)         ? mc_iabs  (mc_cast_exp(int,x))          \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)        ? mc_labs  (mc_cast_exp(long, x))        \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)   ? mc_llabs (mc_cast_exp(long, x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? fabsf          (mc_cast_exp(float, x))       \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? fabs           (mc_cast_exp(double, x))      \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? fabsl          (mc_cast_exp(long double, x)) \
 			: 0 \
 		))
 #		else
 #		define mcmath_abs(x) mc_cast(MC_TARGET_TYPEOF(x), \
 		( \
-			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char) ? mc_babs (mc_cast_exp(signed char, x)) \
+			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? fabsf   (mc_cast_exp(float, x))       \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? fabs    (mc_cast_exp(double, x))      \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? fabsl   (mc_cast_exp(long double, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char) ? mc_babs (mc_cast_exp(signed char, x)) \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)       ? mc_sabs (mc_cast_exp(short, x))       \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)         ? mc_iabs (mc_cast_exp(int,x))          \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)        ? mc_labs (mc_cast_exp(long, x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? fabsf         (mc_cast_exp(float, x))       \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? fabs          (mc_cast_exp(double, x))      \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? fabsl         (mc_cast_exp(long double, x)) \
 			: 0 \
 		))
 #		endif
@@ -1985,6 +2045,10 @@ template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const l
 
 #	if MC_TARGET_HAVE_OVERLOADABLE
 
+static MC_TARGET_OVERLOADABLE float       mcmath_min (float x, float y)             { return fminf(x, y);     }
+static MC_TARGET_OVERLOADABLE double      mcmath_min (double x, double y)           { return fmin(x, y);      }
+static MC_TARGET_OVERLOADABLE long double mcmath_min (long double x, long double y) { return fminl(x, y);     }
+
 static MC_TARGET_OVERLOADABLE signed char mcmath_min (signed char x, signed char y)  { return mc_bmin(x, y);  }
 static MC_TARGET_OVERLOADABLE short       mcmath_min (short x, short y)              { return mc_smin(x, y);  }
 static MC_TARGET_OVERLOADABLE int         mcmath_min (int x, int y)                  { return mc_imin(x, y);  }
@@ -1995,10 +2059,6 @@ static MC_TARGET_OVERLOADABLE long        mcmath_min (long x, long y)           
 static MC_TARGET_OVERLOADABLE long long   mcmath_min (long long x, long long y)      { return mc_llmin(x, y); }
 
 #	endif
-
-static MC_TARGET_OVERLOADABLE float       mcmath_min (float x, float y)             { return fminf(x, y); }
-static MC_TARGET_OVERLOADABLE double      mcmath_min (double x, double y)           { return fmin(x, y);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_min (long double x, long double y) { return fminl(x, y); }
 
 #	elif MC_TARGET_C99
 #	if MC_TARGET_HAVE_AUTOTYPE
@@ -2011,7 +2071,7 @@ static MC_TARGET_OVERLOADABLE long double mcmath_min (long double x, long double
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (__mcmath_min_aa, mc_cast(float, __mcmath_min_bb))       \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (__mcmath_min_aa, mc_cast(double, __mcmath_min_bb))      \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (__mcmath_min_aa, mc_cast(long double, __mcmath_min_bb)) \
-		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                             \
+		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                               \
 		)); \
 	})
 #	elif MC_TARGET_HAVE_TYPEOF
@@ -2024,7 +2084,7 @@ static MC_TARGET_OVERLOADABLE long double mcmath_min (long double x, long double
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (__mcmath_min_aa, mc_cast(float, __mcmath_min_bb))       \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (__mcmath_min_aa, mc_cast(double, __mcmath_min_bb))      \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (__mcmath_min_aa, mc_cast(long double, __mcmath_min_bb)) \
-		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                             \
+		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                               \
 		)); \
 	})
 #	else
@@ -2057,6 +2117,10 @@ template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const l
 
 #	if MC_TARGET_HAVE_OVERLOADABLE
 
+static MC_TARGET_OVERLOADABLE float       mcmath_max (float x, float y)             { return fmaxf(x, y);    }
+static MC_TARGET_OVERLOADABLE double      mcmath_max (double x, double y)           { return fmax(x, y);     }
+static MC_TARGET_OVERLOADABLE long double mcmath_max (long double x, long double y) { return fmaxl(x, y);    }
+
 static MC_TARGET_OVERLOADABLE signed char mcmath_max (signed char x, signed char y) { return mc_bmax(x, y);  }
 static MC_TARGET_OVERLOADABLE short       mcmath_max (short x, short y)             { return mc_smax(x, y);  }
 static MC_TARGET_OVERLOADABLE int         mcmath_max (int x, int y)                 { return mc_imax(x, y);  }
@@ -2067,10 +2131,6 @@ static MC_TARGET_OVERLOADABLE long        mcmath_max (long x, long y)           
 static MC_TARGET_OVERLOADABLE long long   mcmath_max (long long x, long long y)     { return mc_llmax(x, y); }
 
 #	endif
-
-static MC_TARGET_OVERLOADABLE float       mcmath_max (float x, float y)             { return fmaxf(x, y); }
-static MC_TARGET_OVERLOADABLE double      mcmath_max (double x, double y)           { return fmax(x, y);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_max (long double x, long double y) { return fmaxl(x, y); }
 
 #	elif MC_TARGET_C99
 #	if MC_TARGET_HAVE_AUTOTYPE
@@ -2083,7 +2143,7 @@ static MC_TARGET_OVERLOADABLE long double mcmath_max (long double x, long double
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), float)       ? fmaxf (__mcmath_max_aa, mc_cast(float, __mcmath_max_bb))       \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), double)      ? fmax  (__mcmath_max_aa, mc_cast(double, __mcmath_max_bb))      \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), long double) ? fmaxl (__mcmath_max_aa, mc_cast(long double, __mcmath_max_bb)) \
-		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                             \
+		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                               \
 		)); \
 	})
 #	elif MC_TARGET_HAVE_TYPEOF
@@ -2096,7 +2156,7 @@ static MC_TARGET_OVERLOADABLE long double mcmath_max (long double x, long double
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), float)       ? fmaxf (__mcmath_max_aa, mc_cast(float, __mcmath_max_bb))       \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), double)      ? fmax  (__mcmath_max_aa, mc_cast(double, __mcmath_max_bb))      \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), long double) ? fmaxl (__mcmath_max_aa, mc_cast(long double, __mcmath_max_bb)) \
-		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                             \
+		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                               \
 		)); \
 	})
 #	else

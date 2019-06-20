@@ -53,7 +53,7 @@ static MC_TARGET_INLINE long double mc_lgammal_approx0(long double x)
 static MC_TARGET_INLINE float mc_lgammaf(float x)
 {
 #	if MC_TARGET_EMBEDDED
-	const float lanczos_g  = 5.0f;
+	const float lanczos_g  = +5.0f;
 	const float lanczos_c0 = +1.00000000019001489270920046692481264472E+00f;
 	const float lanczos_c1 = +7.61800917294714565741742262616753578186E+01f;
 	const float lanczos_c2 = -8.65053203294167758485855301842093467712E+01f;
@@ -134,7 +134,7 @@ static MC_TARGET_INLINE float mc_lgammaf(float x)
 static MC_TARGET_INLINE double mc_lgamma(double x)
 {
 #	if MC_TARGET_EMBEDDED
-	const double lanczos_g  = 5.0;
+	const double lanczos_g  = +5.0;
 	const double lanczos_c0 = +1.0000000001900148927092004669248126447201E+00;
 	const double lanczos_c1 = +7.6180091729471456574174226261675357818604E+01;
 	const double lanczos_c2 = -8.6505320329416775848585530184209346771240E+01;
@@ -216,7 +216,7 @@ static MC_TARGET_INLINE long double mc_lgammal(long double x)
 {
 #	if MC_TARGET_EMBEDDED
 #	if !MC_TARGET_MSVC_CPP
-	const long double lanczos_g  = 5.0L;
+	const long double lanczos_g  = +5.0L;
 	const long double lanczos_c0 =+1.000000000190014892709200466924812644720077514648437500000000000E+00L;
 	const long double lanczos_c1 =+7.618009172947145657417422626167535781860351562500000000000000000E+01L;
 	const long double lanczos_c2 =-8.650532032941677584858553018420934677124023437500000000000000000E+01L;

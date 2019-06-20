@@ -13,9 +13,20 @@
 
 #pragma mark -  mc_xlogp1y -
 
-#	define mc_xlogp1yf(x, y) mc_xlog1pyf(x, y)
-#	define mc_xlogp1y(x, y)  mc_xlog1py(x, y)
-#	define mc_xlogp1yl(x, y) mc_xlog1pyl(x, y)
+static MC_TARGET_INLINE float mc_xlogp1yf(float x, float y)
+{
+	return mc_xlog1pyf(x, y);
+}
+
+static MC_TARGET_INLINE double mc_xlogp1y(double x, double y)
+{
+	return mc_xlog1py(x, y);
+}
+
+static MC_TARGET_INLINE long double mc_xlogp1yl(long double x, long double y)
+{
+	return mc_xlog1pyl(x, y);
+}
 
 #endif /* !MC_XLOGP1Y_H */
 

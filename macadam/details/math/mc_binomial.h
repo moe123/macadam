@@ -11,9 +11,20 @@
 #ifndef MC_BINOMIAL_H
 #define MC_BINOMIAL_H
 
-#	define mc_binomialf(n, k) mc_choosef(n, k)
-#	define mc_binomial(n, k)  mc_choose(n, k)
-#	define mc_binomiall(n, k) mc_choosel(n, k)
+static MC_TARGET_INLINE float mc_binomialf(unsigned int n, unsigned int k)
+{
+	return mc_choosef(n, k);
+}
+
+static MC_TARGET_INLINE double mc_binomial(unsigned int n, unsigned int k)
+{
+	return mc_choose(n, k);
+}
+
+static MC_TARGET_INLINE long double mc_binomiall(unsigned int n, unsigned int k)
+{
+	return mc_choosel(n, k);
+}
 
 #endif /* !MC_BINOMIAL_H */
 

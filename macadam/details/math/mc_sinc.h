@@ -17,7 +17,7 @@
 
 static MC_TARGET_INLINE float mc_sincf(float x)
 {
-	//!# \note: f(0)=1, i.e removable singularity.
+//!# \note: f(0)=1, i.e removable singularity.
 	const float pix = MCK_KF(MCK_PI) * x;
 #	if MC_TARGET_CPP98
 	return x == 0 ? 1.0f : ::sinf(pix) / pix;
@@ -28,7 +28,7 @@ static MC_TARGET_INLINE float mc_sincf(float x)
 
 static MC_TARGET_INLINE double mc_sinc(double x)
 {
-	//!# \note: f(0)=1, i.e removable singularity.
+//!# \note: f(0)=1, i.e removable singularity.
 	const double pix = MCK_K(MCK_PI) * x;
 #	if MC_TARGET_CPP98
 	return x == 0 ? 1.0 : ::sin(pix) / pix;
@@ -39,7 +39,7 @@ static MC_TARGET_INLINE double mc_sinc(double x)
 
 static MC_TARGET_INLINE long double mc_sincl(long double x)
 {
-	//!# \note: f(0)=1, i.e removable singularity.
+//!# \note: f(0)=1, i.e removable singularity.
 #	if MC_TARGET_C99 && defined(M_PIl)
 	const long double pix = M_PIl * x;
 #	else
@@ -56,7 +56,7 @@ static MC_TARGET_INLINE long double mc_sincl(long double x)
 
 static MC_TARGET_INLINE float mc_unnsincf(float x)
 {
-	//!# \note: f(0)=1, i.e removable singularity.
+//!# \note: f(0)=1, i.e removable singularity.
 #	if MC_TARGET_CPP98
 	return x == 0 ? 1.0f : ::sinf(x) / x;
 #	else
@@ -66,7 +66,7 @@ static MC_TARGET_INLINE float mc_unnsincf(float x)
 
 static MC_TARGET_INLINE double mc_unnsinc(double x)
 {
-	//!# \note: f(0)=1, i.e removable singularity.
+//!# \note: f(0)=1, i.e removable singularity.
 #	if MC_TARGET_CPP98
 	return x == 0 ? 1.0 : ::sin(x) / x;
 #	else
@@ -76,7 +76,7 @@ static MC_TARGET_INLINE double mc_unnsinc(double x)
 
 static MC_TARGET_INLINE long double mc_unnsincl(long double x)
 {
-	//!# \note: f(0)=1, i.e removable singularity.
+//!# \note: f(0)=1, i.e removable singularity.
 #	if MC_TARGET_CPP98
 	return x == 0 ? 1.0L : ::sinl(x) / x;
 #	else

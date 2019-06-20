@@ -13,9 +13,20 @@
 
 #pragma mark - mc_invlogit -
 
-#	define mc_invlogitf(x) mc_expitf(x)
-#	define mc_invlogit(x)  mc_expit(x)
-#	define mc_invlogitl(x) mc_expitl(x)
+static MC_TARGET_INLINE float mc_invlogitf(float x)
+{
+	return mc_expitf(x);
+}
+
+static MC_TARGET_INLINE double mc_invlogit(double x)
+{
+	return mc_expit(x);
+}
+
+static MC_TARGET_INLINE long double mc_invlogitl(long double x)
+{
+	return mc_expitl(x);
+}
 
 #endif /* !MC_INVLOGIT_H */
 

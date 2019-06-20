@@ -13,9 +13,20 @@
 
 #pragma mark -  mc_xlogp1x -
 
-#	define mc_xlogp1xf(x) mc_xlog1pxf(x)
-#	define mc_xlogp1x(x)  mc_xlog1px(x)
-#	define mc_xlogp1xl(x) mc_xlog1pxl(x)
+static MC_TARGET_INLINE float mc_xlogp1xf(float x)
+{
+	return mc_xlog1pxf(x);
+}
+
+static MC_TARGET_INLINE double mc_xlogp1x(double x)
+{
+	return mc_xlog1px(x);
+}
+
+static MC_TARGET_INLINE long double mc_xlogp1xl(long double x)
+{
+	return mc_xlog1pxl(x);
+}
 
 #endif /* !MC_XLOGP1X_H */
 

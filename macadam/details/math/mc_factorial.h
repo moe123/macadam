@@ -15,8 +15,8 @@
 
 static MC_TARGET_INLINE float mc_factorialf(unsigned int x)
 {
-	//!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
-	//!# Hence you should consider -1! to be infinity.
+//!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
+//!# Hence you should consider -1! to be infinity.
 	const float factorial_table[] =
 	{
 		  +1.00000000000000000000000000000000000000E+00f
@@ -77,8 +77,8 @@ static MC_TARGET_INLINE float mc_factorialf(unsigned int x)
 
 static MC_TARGET_INLINE double mc_factorial(unsigned int x)
 {
-	//!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
-	//!# Hence you should consider -1! to be infinity.
+//!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
+//!# Hence you should consider -1! to be infinity.
 	const double factorial_table[] =
 	{
 		  +1.0000000000000000000000000000000000000000E+00
@@ -276,8 +276,8 @@ static MC_TARGET_INLINE double mc_factorial(unsigned int x)
 static MC_TARGET_INLINE long double mc_factoriall(unsigned int x)
 {
 #	if !MC_TARGET_MSVC_CPP
-	//!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
-	//!# Hence you should consider -1! to be infinity.
+//!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
+//!# Hence you should consider -1! to be infinity.
 	const long double factorial_table[] =
 	{
 		  +1.000000000000000000000000000000000000000000000000000000000000000E+00L

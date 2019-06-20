@@ -13,12 +13,12 @@
 
 #pragma mark - mc_gamma_cfrac_approx -
 
-static MC_TARGET_INLINE float mc_gamma_cfracf_approx0(float a, float x)
+static MC_TARGET_INLINE float mc_gamma_cfracf_approx0(float a, float z)
 {
 	const float e1 = MCLIMITS_EPSILONF;
 	const float e3 = e1 * 3.0f;
 	float k = 1.0f, c0, c1, c2, c3, c4, c5;
-	c1 = x + 1.0f - a;
+	c1 = z + 1.0f - a;
 	c2 = 1.0f / e3;
 	c3 = 1.0f / c1;
 	c5 = c3;
@@ -52,12 +52,12 @@ static MC_TARGET_INLINE float mc_gamma_cfracf_approx0(float a, float x)
 	return c5;
 }
 
-static MC_TARGET_INLINE double mc_gamma_cfrac_approx0(double a, double x)
+static MC_TARGET_INLINE double mc_gamma_cfrac_approx0(double a, double z)
 {
 	const double e1 = MCLIMITS_EPSILON;
 	const double e3 = e1 * 3.0;
 	double k = 1.0, c0, c1, c2, c3, c4, c5;
-	c1 = x + 1.0 - a;
+	c1 = z + 1.0 - a;
 	c2 = 1.0 / e3;
 	c3 = 1.0 / c1;
 	c5 = c3;
@@ -91,12 +91,12 @@ static MC_TARGET_INLINE double mc_gamma_cfrac_approx0(double a, double x)
 	return c5;
 }
 
-static MC_TARGET_INLINE long double mc_gamma_cfracl_approx0(long double a, long double x)
+static MC_TARGET_INLINE long double mc_gamma_cfracl_approx0(long double a, long double z)
 {
 	const long double e1 = MCLIMITS_EPSILONL;
 	const long double e3 = e1 * 3.0L;
 	double k = 1.0L, c0, c1, c2, c3, c4, c5;
-	c1 = x + 1.0L - a;
+	c1 = z + 1.0L - a;
 	c2 = 1.0L / e3;
 	c3 = 1.0L / c1;
 	c5 = c3;
@@ -132,61 +132,61 @@ static MC_TARGET_INLINE long double mc_gamma_cfracl_approx0(long double a, long 
 
 #pragma mark - mc_igammad -
 
-static MC_TARGET_INLINE float mc_igammadf(float a, float x)
+static MC_TARGET_INLINE float mc_igammadf(float a, float z)
 {
-	if (a > 0.0f && x > 0.0f) {
+	if (a > 0.0f && z > 0.0f) {
 #	if MC_TARGET_CPP98
-		const float y = a * ::logf(x) - x;
-		if (y < -FLT_MAX_10_EXP) {
+		const float w = a * ::logf(z) - z;
+		if (w < -FLT_MAX_10_EXP) {
 			return 0.0f;
 		}
-		return mc_gamma_cfracf_approx0(a, x) * ::expf(y);
+		return mc_gamma_cfracf_approx0(a, z) * ::expf(w);
 #	else
-		const float y = a * logf(x) - x;
-		if (y < -FLT_MAX_10_EXP) {
+		const float w = a * logf(z) - z;
+		if (w < -FLT_MAX_10_EXP) {
 			return 0.0f;
 		}
-		return mc_gamma_cfracf_approx0(a, x) * expf(y);
+		return mc_gamma_cfracf_approx0(a, z) * expf(w);
 #	endif
 	}
 	return MCK_NAN;
 }
 
-static MC_TARGET_INLINE double mc_igammad(double a, double x)
+static MC_TARGET_INLINE double mc_igammad(double a, double z)
 {
-	if (a > 0.0 && x > 0.0) {
+	if (a > 0.0 && z > 0.0) {
 #	if MC_TARGET_CPP98
-		const double y = a * ::log(x) - x;
-		if (y < -DBL_MAX_10_EXP) {
+		const double w = a * ::log(z) - z;
+		if (w < -DBL_MAX_10_EXP) {
 			return 0.0;
 		}
-		return mc_gamma_cfrac_approx0(a, x) * ::exp(y);
+		return mc_gamma_cfrac_approx0(a, z) * ::exp(w);
 #	else
-		const double y = a * log(x) - x;
-		if (y < -DBL_MAX_10_EXP) {
+		const double w = a * log(z) - z;
+		if (w < -DBL_MAX_10_EXP) {
 			return 0.0;
 		}
-		return mc_gamma_cfrac_approx0(a, x) * exp(y);
+		return mc_gamma_cfrac_approx0(a, z) * exp(w);
 #	endif
 	}
 	return MCK_NAN;
 }
 
-static MC_TARGET_INLINE long double mc_igammadl(long double a, long double x)
+static MC_TARGET_INLINE long double mc_igammadl(long double a, long double z)
 {
-	if (a > 0.0L && x > 0.0L) {
+	if (a > 0.0L && z > 0.0L) {
 #	if MC_TARGET_CPP98
-		const long double y = a * ::logl(x) - x;
-		if (y < -LDBL_MAX_10_EXP) {
+		const long double w = a * ::logl(z) - z;
+		if (w < -LDBL_MAX_10_EXP) {
 			return 0.0L;
 		}
-		return mc_gamma_cfracl_approx0(a, x) * ::expl(y);
+		return mc_gamma_cfracl_approx0(a, z) * ::expl(w);
 #	else
-		const long double y = a * logl(x) - x;
-		if (y < -LDBL_MAX_10_EXP) {
+		const long double w = a * logl(z) - z;
+		if (w < -LDBL_MAX_10_EXP) {
 			return 0.0L;
 		}
-		return mc_gamma_cfracl_approx0(a, x) * expl(y);
+		return mc_gamma_cfracl_approx0(a, z) * expl(w);
 #	endif
 	}
 	return MCK_NAN;

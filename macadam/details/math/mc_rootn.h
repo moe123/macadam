@@ -13,9 +13,20 @@
 
 #pragma mark - mc_rootn -
 
-#	define rootnf(x, n) mc_nthrootf(x, n)
-#	define rootn(x, n)  mc_nthroot(x, n)
-#	define rootnl(x, n) mc_nthrootl(x, n)
+static MC_TARGET_INLINE float mc_rootnf(float x, unsigned int n)
+{
+	return mc_nthrootf(x, n);
+}
+
+static MC_TARGET_INLINE double mc_rootn(double x, unsigned int n)
+{
+	return mc_nthroot(x, n);
+}
+
+static MC_TARGET_INLINE long double mc_rootnl(long double x, unsigned int n)
+{
+	return mc_nthrootl(x, n);
+}
 
 #endif /* !MC_ROOTN_H */
 

@@ -17,31 +17,37 @@
 
 static MC_TARGET_INLINE float mc_logoddsf(float x, float lambda)
 {
+
+	const float a = 1.0f / x - 1.0f;
+	const float b = 1.0f / lambda;
 #	if MC_TARGET_CPP98
-	return -::logf(1.0f / x - 1.0f) / lambda;
+	return -::logf(a) * b;
 #	else
-	return -logf(1.0f / x - 1.0f) / lambda;
+	return -logf(a) * b;
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_logodds(double x, double lambda)
 {
+	const double a = 1.0 / x - 1.0;
+	const double b = 1.0 / lambda;
 #	if MC_TARGET_CPP98
-	return -::log(1.0 / x - 1.0) / lambda;
+	return -::log(a) * b;
 #	else
-	return -log(1.0 / x - 1.0) / lambda;
+	return -log(a) * b;
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_logoddsl(long double x, long double lambda)
 {
+	const long double a = 1.0L / x - 1.0L;
+	const long double b = 1.0L / lambda;
 #	if MC_TARGET_CPP98
-	return -::logl(1.0L / x - 1.0L) / lambda;
+	return -::logl(a) * b;
 #	else
-	return -logl(1.0L / x - 1.0L) / lambda;
+	return -logl(a) * b;
 #	endif
 }
-
 #endif /* !MC_LOGODDS_H */
 
 /* EOF */

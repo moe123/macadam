@@ -32,7 +32,7 @@ static MC_TARGET_INLINE float mc_lerpf(float x, float y, float z)
 		return y;
 	}
 	const float w = x + z * (y - x);
-	if (z > 1.0f == y > x) {
+	if (z > 1.0f && y > x) {
 		return y < w ? w : y;
 	}
 	return w < y ? w : y;
@@ -55,7 +55,7 @@ static MC_TARGET_INLINE double mc_lerp(double x, double y, double z)
 		return y;
 	}
 	const float w = x + z * (y - x);
-	if (z > 1.0 == y > x) {
+	if (z > 1.0 && y > x) {
 		return y < w ? w : y;
 	}
 	return w < y ? w : y;
@@ -78,7 +78,7 @@ static MC_TARGET_INLINE long double mc_lerpl(long double x, long double y, long 
 		return y;
 	}
 	const float w = x + z * (y - x);
-	if (z > 1.0L == y > x) {
+	if (z > 1.0L && y > x) {
 		return y < w ? w : y;
 	}
 	return w < y ? w : y;

@@ -21,9 +21,9 @@ static MC_TARGET_INLINE float mc_rzetapf_approx0(float x)
 	if (::isnan(x)) {
 		return MCK_NAN;
 	} else if (::isinf(x)) {
-		return 1;
+		return 1.0f;
 	} else if (x < 0 && ::fmodf(x, 2) == 0) {
-		return 0;
+		return 0.0F;
 	} else if (x == -1) {
 		return -MCK_1_12;
 	} else if (x == 0) {
@@ -39,9 +39,9 @@ static MC_TARGET_INLINE float mc_rzetapf_approx0(float x)
 	if (isnan(x)) {
 		return MCK_NAN;
 	} else if (isinf(x)) {
-		return 1;
+		return 1.0F;
 	} else if (x < 0 && fmodf(x, 2) == 0) {
-		return 0;
+		return 0.0f;
 	} else if (x == -1) {
 		return -MCK_1_12;
 	} else if (x == 0) {
@@ -72,9 +72,9 @@ static MC_TARGET_INLINE double mc_rzetap_approx0(double x)
 	if (::isnan(x)) {
 		return MCK_NAN;
 	} else if (::isinf(x)) {
-		return 1;
+		return 1.0;
 	} else if (x < 0 && ::fmod(x, 2) == 0) {
-		return 0;
+		return 0.0;
 	} else if (x == -1) {
 		return -MCK_1_12;
 	} else if (x == 0) {
@@ -90,9 +90,9 @@ static MC_TARGET_INLINE double mc_rzetap_approx0(double x)
 	if (isnan(x)) {
 		return MCK_NAN;
 	} else if (isinf(x)) {
-		return 1;
+		return 1.0;
 	} else if (x < 0 && fmod(x, 2) == 0) {
-		return 0;
+		return 0.0;
 	} else if (x == -1) {
 		return -MCK_1_12;
 	} else if (x == 0) {
@@ -123,9 +123,9 @@ static MC_TARGET_INLINE long double mc_rzetapl_approx0(long double x)
 	if (::isnan(x)) {
 		return MCK_NAN;
 	} else if (::isinf(x)) {
-		return 1;
+		return 1.0L;
 	} else if (x < 0 && ::fmodl(x, 2) == 0) {
-		return 0;
+		return 0.0L;
 	} else if (x == -1) {
 		return -MCK_1_12;
 	} else if (x == 0) {
@@ -141,9 +141,9 @@ static MC_TARGET_INLINE long double mc_rzetapl_approx0(long double x)
 	if (isnan(x)) {
 		return MCK_NAN;
 	} else if (isinf(x)) {
-		return 1;
+		return 1.0L;
 	} else if (x < 0 && fmodl(x, 2) == 0) {
-		return 0;
+		return 0.0L;
 	} else if (x == -1) {
 		return -MCK_1_12;
 	} else if (x == 0) {

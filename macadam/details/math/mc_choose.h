@@ -96,7 +96,7 @@ static MC_TARGET_INLINE double mc_choose(unsigned int n, unsigned int k)
 	return r;
 }
 
-static MC_TARGET_INLINE double mc_choosel(unsigned int n, unsigned int k)
+static MC_TARGET_INLINE long double mc_choosel(unsigned int n, unsigned int k)
 {
 	long double r = MCLIMITS_MAXL;
 #	if MC_TARGET_MSVC_CPP

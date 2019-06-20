@@ -149,7 +149,7 @@ static MC_TARGET_INLINE long double mc_besselinl_approx0(int n, long double x)
 
 static MC_TARGET_INLINE float mc_besseli0f_approx1(float x)
 {
-	//!# DOI: 10.1109/IEEEGCC.2013.6705802
+//!# DOI: 10.1109/IEEEGCC.2013.6705802
 	float a1 = 0, a2 = 0, a3 = 0, a4 = 0;
 	float b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 	if (x < 11.5f) {
@@ -176,7 +176,7 @@ static MC_TARGET_INLINE float mc_besseli0f_approx1(float x)
 
 static MC_TARGET_INLINE double mc_besseli0_approx1(double x)
 {
-	//!# DOI: 10.1109/IEEEGCC.2013.6705802
+//!# DOI: 10.1109/IEEEGCC.2013.6705802
 	double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
 	double b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 	if (x < 11.5) {
@@ -201,7 +201,7 @@ static MC_TARGET_INLINE double mc_besseli0_approx1(double x)
 
 static MC_TARGET_INLINE long double mc_besseli0l_approx1(long double x)
 {
-	//!# DOI: 10.1109/IEEEGCC.2013.6705802
+//!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
 	long double b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 	if (x < 11.5L) {
@@ -228,7 +228,7 @@ static MC_TARGET_INLINE long double mc_besseli0l_approx1(long double x)
 
 static MC_TARGET_INLINE float mc_besseli1f_approx1(float x)
 {
-	//!# DOI: 10.1109/IEEEGCC.2013.6705802
+//!# DOI: 10.1109/IEEEGCC.2013.6705802
 	float a1 = 0, a2 = 0, a3 = 0, a4 = 0;
 	float b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 	if (x < 11.5f) {
@@ -251,11 +251,9 @@ static MC_TARGET_INLINE float mc_besseli1f_approx1(float x)
 #	endif
 }
 
-#pragma mark - mc_besseli1_approx1 -
-
 static MC_TARGET_INLINE double mc_besseli1_approx1(double x)
 {
-	//!# DOI: 10.1109/IEEEGCC.2013.6705802
+//!# DOI: 10.1109/IEEEGCC.2013.6705802
 	double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
 	double b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 	if (x < 11.5) {
@@ -280,7 +278,7 @@ static MC_TARGET_INLINE double mc_besseli1_approx1(double x)
 
 static MC_TARGET_INLINE long double mc_besseli1l_approx1(long double x)
 {
-	//!# DOI: 10.1109/IEEEGCC.2013.6705802
+//!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
 	long double b1 = 0, b2 = 0, b3 = 0, b4 = 0;
 	if (x < 11.5L) {
@@ -363,6 +361,93 @@ static MC_TARGET_INLINE long double mc_besselinl_approx1(int n, long double x)
 		i1 = in;
 	}
 	return in;
+}
+
+#pragma mark - mc_besseli0 -
+
+static MC_TARGET_INLINE float mc_besseli0f(float x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besseli0f_approx1(x);
+#	else
+	return mc_besseli0f_approx0(x);
+#	endif
+}
+
+static MC_TARGET_INLINE double mc_besseli0(double x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besseli0_approx1(x);
+#	else
+	return mc_besseli0_approx0(x);
+#	endif
+}
+
+static MC_TARGET_INLINE long double mc_besseli0l(long double x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besseli0l_approx1(x);
+#	else
+	return mc_besseli0l_approx0(x);
+#	endif
+}
+
+#pragma mark - mc_besseli1 -
+
+static MC_TARGET_INLINE float mc_besseli1f(float x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besseli1f_approx1(x);
+#	else
+	return mc_besseli1f_approx0(x);
+#	endif
+}
+
+static MC_TARGET_INLINE double mc_besseli1(double x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besseli1_approx1(x);
+#	else
+	return mc_besseli1_approx0(x);
+#	endif
+}
+
+static MC_TARGET_INLINE long double mc_besseli1l(long double x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besseli1l_approx1(x);
+#	else
+	return mc_besseli1l_approx0(x);
+#	endif
+}
+
+#pragma mark - mc_besselin -
+
+static MC_TARGET_INLINE double mc_besselinf(int n, float x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besselinf_approx1(n, x);
+#	else
+	return mc_besselinf_approx0(n, x);
+#	endif
+}
+
+static MC_TARGET_INLINE double mc_besselin(int n, double x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besselin_approx1(n, x);
+#	else
+	return mc_besselin_approx0(n, x);
+#	endif
+}
+
+static MC_TARGET_INLINE long double mc_besselinl(int n, long double x)
+{
+#	if MC_TARGET_EMBEDDED
+	return mc_besselinl_approx1(n, x);
+#	else
+	return mc_besselinl_approx0(n, x);
+#	endif
 }
 
 #endif /* !MC_BESSELI_H */
