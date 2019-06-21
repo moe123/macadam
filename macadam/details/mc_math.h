@@ -51,6 +51,7 @@
 #	include <macadam/details/math/mc_lchoose.h>
 #	include <macadam/details/math/mc_lcm.h>
 #	include <macadam/details/math/mc_legendre_pn.h>
+#	include <macadam/details/math/mc_legendre_qn.h>
 #	include <macadam/details/math/mc_lerp.h>
 #	include <macadam/details/math/mc_lgamma.h>
 #	include <macadam/details/math/mc_log1m.h>

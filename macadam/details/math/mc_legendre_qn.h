@@ -7,8 +7,10 @@
 //
 
 #include <macadam/details/math/mc_trigonometry.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_legendre_pn.h>
+#include <macadam/details/math/mc_rsqr.h>
+#include <macadam/details/math/mc_log1p.h>
+#include <macadam/details/math/mc_log1m.h>
 
 #ifndef MC_LEGENDRE_QN_H
 #define MC_LEGENDRE_QN_H
@@ -53,7 +55,7 @@ static MC_TARGET_INLINE long double mc_legendre_q0l(long double x)
 		return ::atanhl(x);
 	 }
 #	else
-	 if (fabs(x) < 1.0L) {
+	 if (fabsl(x) < 1.0L) {
 		return atanhl(x);
 	 }
 #	endif
@@ -95,7 +97,7 @@ static MC_TARGET_INLINE float mc_legendre_q1f(float x)
 			f *= y;
 			w  = f / k;
 			s  = s + w;
-			k += 2.0f
+			k += 2.0f;
 		} while (w <= s * MCLIMITS_EPSILONF);
 		q1 = (s * y) * MCK_KF(MCK_1_3);
 	}
@@ -135,7 +137,7 @@ static MC_TARGET_INLINE double mc_legendre_q1(double x)
 			f *= y;
 			w  = f / k;
 			s  = s + w;
-			k += 2.0
+			k += 2.0;
 		} while (w <= s * MCLIMITS_EPSILON);
 		q1 = (s * y) * MCK_K(MCK_1_3);
 	}
@@ -175,11 +177,63 @@ static MC_TARGET_INLINE long double mc_legendre_q1l(long double x)
 			f *= y;
 			w  = f / k;
 			s  = s + w;
-			k += 2.0L
+			k += 2.0L;
 		} while (w <= s * MCLIMITS_EPSILONL);
 		q1 = (s * y) * MCK_KL(MCK_1_3);
 	}
 	return q1;
+}
+
+#pragma mark - mc_legendre_q2 -
+
+static MC_TARGET_INLINE float mc_legendre_q2f(float x)
+{
+//!# Legendre functions of the second kind, degree 2.
+	const float p2 = mc_legendre_pnf(x, 2);
+	const float q0 = mc_legendre_q0f(x);
+	return p2 * q0 - (MCK_KF(MCK_3_2) * x);
+}
+
+static MC_TARGET_INLINE double mc_legendre_q2(double x)
+{
+//!# Legendre functions of the second kind, degree 2.
+	const double p2 = mc_legendre_pn(x, 2);
+	const double q0 = mc_legendre_q0(x);
+	return p2 * q0 - (MCK_K(MCK_3_2) * x);
+}
+
+static MC_TARGET_INLINE long double mc_legendre_q2l(long double x)
+{
+//!# Legendre functions of the second kind, degree 2.
+	const long double p2 = mc_legendre_pnl(x, 2);
+	const long double q0 = mc_legendre_q0l(x);
+	return p2 * q0 - (MCK_KL(MCK_3_2) * x);
+}
+
+#pragma mark - mc_legendre_q3 -
+
+static MC_TARGET_INLINE float mc_legendre_q3f(float x)
+{
+//!# Legendre functions of the second kind, degree 3.
+	const float p3 = mc_legendre_pnf(x, 3);
+	const float q0 = mc_legendre_q0f(x);
+	return p3 * q0 - (MCK_KF(MCK_5_2) * mc_sqrf(x)) + MCK_KF(MCK_2_3);
+}
+
+static MC_TARGET_INLINE double mc_legendre_q3(double x)
+{
+//!# Legendre functions of the second kind, degree 3.
+	const double p3 = mc_legendre_pn(x, 3);
+	const double q0 = mc_legendre_q0(x);
+	return p3 * q0 - (MCK_K(MCK_5_2) * mc_sqr(x)) + MCK_K(MCK_2_3);
+}
+
+static MC_TARGET_INLINE long double mc_legendre_q3l(long double x)
+{
+//!# Legendre functions of the second kind, degree 3.
+	const long double p3 = mc_legendre_pnl(x, 3);
+	const long double q0 = mc_legendre_q0l(x);
+	return p3 * q0 - (MCK_KL(MCK_5_2) * mc_sqrl(x)) + MCK_KL(MCK_2_3);
 }
 
 #endif /* !MC_LEGENDRE_QN_H */
