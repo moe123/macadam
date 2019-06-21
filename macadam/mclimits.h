@@ -13,9 +13,25 @@
 
 #pragma mark - numeric limits -
 
-#	define MCLIMITS_EPSILONF FLT_EPSILON
-#	define MCLIMITS_EPSILON  DBL_EPSILON
-#	define MCLIMITS_EPSILONL LDBL_EPSILON
+#	define MCLIMITS_EPSILONF MCK_KF(FLT_EPSILON)
+#	define MCLIMITS_EPSILON  MCK_K(DBL_EPSILON)
+#	define MCLIMITS_EPSILONL MCK_KL(LDBL_EPSILON)
+
+#	if MC_TARGET_CPP98
+#		if MC_TARGET_CPP11
+		static const float  MCLIMITS_LOWF = ::std::sqrt(MCLIMITS_EPSILONF);
+		static const double MCLIMITS_LOW  = ::std::sqrt(MCLIMITS_EPSILON);
+		static const double MCLIMITS_LOWL = ::std::sqrt(MCLIMITS_EPSILONL);
+#	else
+#		define MCLIMITS_LOWF (mc_cast(const float      , ::sqrtf(MCLIMITS_EPSILONF)))
+#		define MCLIMITS_LOW  (mc_cast(const double     , ::sqrt (MCLIMITS_EPSILON)))
+#		define MCLIMITS_LOWL (mc_cast(const long double, ::sqrtl(MCLIMITS_EPSILONL)))
+#	endif
+#	else
+#		define MCLIMITS_LOWF (mc_cast(const float      , sqrtf(MCLIMITS_EPSILONF)))
+#		define MCLIMITS_LOW  (mc_cast(const double     , sqrt (MCLIMITS_EPSILON)))
+#		define MCLIMITS_LOWL (mc_cast(const long double, sqrtl(MCLIMITS_EPSILONL)))
+#	endif
 
 #	define MCLIMITS_MAXF     FLT_MAX
 #	define MCLIMITS_MAX      DBL_MAX

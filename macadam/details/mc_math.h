@@ -35,6 +35,8 @@
 #	include <macadam/details/math/mc_fhrt.h>
 #	include <macadam/details/math/mc_gamma.h>
 #	include <macadam/details/math/mc_gcd.h>
+#	include <macadam/details/math/mc_hermite_hen.h>
+#	include <macadam/details/math/mc_hermite_hn.h>
 #	include <macadam/details/math/mc_hypotc.h>
 #	include <macadam/details/math/mc_hypotq.h>
 #	include <macadam/details/math/mc_hzeta.h>
@@ -48,6 +50,7 @@
 #	include <macadam/details/math/mc_lbeta.h>
 #	include <macadam/details/math/mc_lchoose.h>
 #	include <macadam/details/math/mc_lcm.h>
+#	include <macadam/details/math/mc_legendre_pn.h>
 #	include <macadam/details/math/mc_lerp.h>
 #	include <macadam/details/math/mc_lgamma.h>
 #	include <macadam/details/math/mc_log1m.h>
