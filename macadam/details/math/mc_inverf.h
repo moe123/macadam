@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_sqr.h>
 
 #ifndef MC_INVERF_H
 #define MC_INVERF_H
@@ -27,7 +25,7 @@ static MC_TARGET_INLINE float mc_inverff(float x)
 	}
 #	if MC_TARGET_CPP98
 	if (::fabsf(x) <= 0.7f) {
-		z = x * x;
+		z = mc_sqrf(x);
 		n = ((((-0.140543331f * z + 0.914624893f) * z - 1.645349621f) * z + 0.886226899f));
 		d = (((( 0.012229801f * z - 0.329097515f) * z + 1.442710462f) * z - 2.118377725f) * z + 1.0f);
 		w = (x * n) / d;
@@ -41,7 +39,7 @@ static MC_TARGET_INLINE float mc_inverff(float x)
 	w -= (::erff(w) - x) / (MCK_KF(MCK_2_SQRTPI) * ::expf(-w * w));
 #	else
 	if (fabsf(x) <= 0.7f) {
-		z = x * x;
+		z = mc_sqrf(x);
 		n = ((((-0.140543331f * z + 0.914624893f) * z - 1.645349621f) * z + 0.886226899f));
 		d = (((( 0.012229801f * z - 0.329097515f) * z + 1.442710462f) * z - 2.118377725f) * z + 1.0f);
 		w = (x * n) / d;
@@ -69,7 +67,7 @@ static MC_TARGET_INLINE double mc_inverf(double x)
 	}
 #	if MC_TARGET_CPP98
 	if (::fabs(x) <= 0.7) {
-		z = x * x;
+		z = mc_sqr(x);
 		n = ((((-0.140543331 * z + 0.914624893) * z - 1.645349621) * z + 0.886226899));
 		d = (((( 0.012229801 * z - 0.329097515) * z + 1.442710462) * z - 2.118377725) * z + 1.0);
 		w = (x * n) / d;
@@ -83,7 +81,7 @@ static MC_TARGET_INLINE double mc_inverf(double x)
 	w -= (::erf(w) - x) / (MCK_K(MCK_2_SQRTPI) * ::exp(-w * w));
 #	else
 	if (fabs(x) <= 0.7) {
-		z = x * x;
+		z = mc_sqr(x);
 		n = ((((-0.140543331 * z + 0.914624893) * z - 1.645349621) * z + 0.886226899));
 		d = (((( 0.012229801 * z - 0.329097515) * z + 1.442710462) * z - 2.118377725) * z + 1.0);
 		w = (x * n) / d;
@@ -111,7 +109,7 @@ static MC_TARGET_INLINE long double mc_inverfl(long double x)
 	}
 #	if MC_TARGET_CPP98
 	if (::fabsl(x) <= 0.7L) {
-		z = x * x;
+		z = mc_sqrl(x);
 		n = ((((-0.140543331L * z + 0.914624893L) * z - 1.645349621L) * z + 0.886226899L));
 		d = (((( 0.012229801L * z - 0.329097515L) * z + 1.442710462L) * z - 2.118377725L) * z + 1.0L);
 		w = (x * n) / d;
@@ -125,7 +123,7 @@ static MC_TARGET_INLINE long double mc_inverfl(long double x)
 	w -= (::erfl(w) - x) / (MCK_KL(MCK_2_SQRTPI) * ::expl(-w * w));
 #	else
 	if (fabsl(x) <= 0.7L) {
-		z = x * x;
+		z = mc_sqrl(x);
 		n = ((((-0.140543331L * z + 0.914624893L) * z - 1.645349621L) * z + 0.886226899L));
 		d = (((( 0.012229801L * z - 0.329097515L) * z + 1.442710462L) * z - 2.118377725L) * z + 1.0L);
 		w = (x * n) / d;

@@ -65,6 +65,7 @@
 #	include <macadam/details/math/mc_logodds.h>
 #	include <macadam/details/math/mc_logp1.h>
 #	include <macadam/details/math/mc_logradix.h>
+#	include <macadam/details/math/mc_logsubexp.h>
 #	include <macadam/details/math/mc_maxmag.h>
 #	include <macadam/details/math/mc_minmag.h>
 #	include <macadam/details/math/mc_nchoosek.h>
@@ -81,6 +82,7 @@
 #	include <macadam/details/math/mc_sincos.h>
 #	include <macadam/details/math/mc_sinhcosh.h>
 #	include <macadam/details/math/mc_sinpi.h>
+#	include <macadam/details/math/mc_sqr.h>
 #	include <macadam/details/math/mc_tanpi.h>
 #	include <macadam/details/math/mc_trigamma.h>
 #	include <macadam/details/math/mc_trigonometry.h>

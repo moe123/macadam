@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_sqr.h>
 
 #ifndef MC_BESSELI_H
 #define MC_BESSELI_H
@@ -21,7 +19,7 @@ static MC_TARGET_INLINE float mc_besseli0f_approx0(float x)
 	int   t  = 0;
 	float i0 = 0;
 	do {
-		i0 += r; ++t; r *= (x * x) / (4.0f * t * t);
+		i0 += r; ++t; r *= mc_sqrf(x) / (4.0f * t * t);
 	} while (r > MCLIMITS_EPSILONF * i0);
 	return i0;
 }
@@ -32,7 +30,7 @@ static MC_TARGET_INLINE double mc_besseli0_approx0(double x)
 	int    t  = 0;
 	double i0 = 0;
 	do {
-		i0 += r; ++t; r *= (x * x) / (4.0 * t * t);
+		i0 += r; ++t; r *= mc_sqr(x) / (4.0 * t * t);
 	} while (r > MCLIMITS_EPSILON * i0);
 	return i0;
 }
@@ -43,7 +41,7 @@ static MC_TARGET_INLINE long double mc_besseli0l_approx0(long double x)
 	int         t  = 0;
 	long double i0 = 0;
 	do {
-		i0 += r; ++t; r *= (x * x) / (4.0L * t * t);
+		i0 += r; ++t; r *= mc_sqrl(x) / (4.0L * t * t);
 	} while (r > MCLIMITS_EPSILONL * i0);
 	return i0;
 }
@@ -56,7 +54,7 @@ static MC_TARGET_INLINE float mc_besseli1f_approx0(float x)
 	int   t  = 0;
 	float i1 = 0;
 	do {
-		i1 += r; ++t; r *= (x * x) / (4.0f * t * (t + 1));
+		i1 += r; ++t; r *= mc_sqrf(x) / (4.0f * t * (t + 1));
 	} while (r > MCLIMITS_EPSILONF * i1);
 	return i1;
 }
@@ -67,7 +65,7 @@ static MC_TARGET_INLINE double mc_besseli1_approx0(double x)
 	int    t  = 0;
 	double i1 = 0;
 	do { 
-		i1 += r; ++t; r *= (x * x) / (4.0 * t * (t + 1));
+		i1 += r; ++t; r *= mc_sqr(x) / (4.0 * t * (t + 1));
 	} while (r > MCLIMITS_EPSILON * i1);
 	return i1;
 }
@@ -78,7 +76,7 @@ static MC_TARGET_INLINE long double mc_besseli1l_approx0(long double x)
 	int         t  = 0;
 	long double i1 = 0;
 	do {
-		i1 += r; ++t; r *= (x * x) / (4.0L * t * (t + 1));
+		i1 += r; ++t; r *= mc_sqrl(x) / (4.0L * t * (t + 1));
 	} while (r > MCLIMITS_EPSILONL * i1);
 	return i1;
 }
