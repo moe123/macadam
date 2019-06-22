@@ -39,12 +39,8 @@ static MC_TARGET_INLINE float mc_legendre_pnf(float x, unsigned int n)
 	} else if (n >= 1 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
 			p1 = x;
-		} else if (n == 1) {
-#	if MC_TARGET_CPP98
-			p1 = 1.5f * ::sqrtf(x) - 0.5f;
-#	else
-			p1 = 1.5f * sqrtf(x) - 0.5f;
-#	endif
+		} else if (n == 2) {
+			p1 = 1.5f * mc_sqrf(x) - 0.5f;
 		} else if ((x == 0.0f) && ((n % 2) != 0)) {
 			p1 = 0.0f;
 		} else {
@@ -84,12 +80,8 @@ static MC_TARGET_INLINE double mc_legendre_pn(double x, unsigned int n)
 	} else if (n >= 1 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
 			p1 = x;
-		} else if (n == 1) {
-#	if MC_TARGET_CPP98
-			p1 = 1.5 * ::sqrt(x) - 0.5;
-#	else
-			p1 = 1.5 * sqrt(x) - 0.5;
-#	endif
+		} else if (n == 2) {
+			p1 = 1.5 * mc_sqr(x) - 0.5;
 		} else if ((x == 0.0) && ((n % 2) != 0)) {
 			p1 = 0.0;
 		} else {
@@ -129,12 +121,8 @@ static MC_TARGET_INLINE long double mc_legendre_pnl(long double x, unsigned int 
 	} else if (n >= 1 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
 			p1 = x;
-		} else if (n == 1) {
-#	if MC_TARGET_CPP98
-			p1 = 1.5L * ::sqrtl(x) - 0.5L;
-#	else
-			p1 = 1.5L * sqrtl(x) - 0.5L;
-#	endif
+		} else if (n == 2) {
+			p1 = 1.5L * mc_sqrl(x) - 0.5L;
 		} else if ((x == 0.0L) && ((n % 2) != 0)) {
 			p1 = 0.0L;
 		} else {

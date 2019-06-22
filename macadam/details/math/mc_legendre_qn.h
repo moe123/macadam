@@ -6,11 +6,12 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_trigonometry.h>
+#include <macadam/details/math/mc_cube.h>
 #include <macadam/details/math/mc_legendre_pn.h>
-#include <macadam/details/math/mc_rsqr.h>
 #include <macadam/details/math/mc_log1p.h>
-#include <macadam/details/math/mc_log1m.h>
+#include <macadam/details/math/mc_rsqr.h>
+#include <macadam/details/math/mc_sqr.h>
+#include <macadam/details/math/mc_trigonometry.h>
 
 #ifndef MC_LEGENDRE_QN_H
 #define MC_LEGENDRE_QN_H
@@ -234,6 +235,32 @@ static MC_TARGET_INLINE long double mc_legendre_q3l(long double x)
 	const long double p3 = mc_legendre_pnl(x, 3);
 	const long double q0 = mc_legendre_q0l(x);
 	return p3 * q0 - (MCK_KL(MCK_5_2) * mc_sqrl(x)) + MCK_KL(MCK_2_3);
+}
+
+#pragma mark - mc_legendre_q4 -
+
+static MC_TARGET_INLINE float mc_legendre_q4f(float x)
+{
+//!# Legendre functions of the second kind, degree 4.
+	const float p4 = mc_legendre_pnf(x, 4);
+	const float q0 = mc_legendre_q0f(x);
+	return p4 * q0 - (MCK_KF(MCK_35_8) * mc_cubef(x)) + (MCK_KF(MCK_55_24) * x);
+}
+
+static MC_TARGET_INLINE double mc_legendre_q4(double x)
+{
+//!# Legendre functions of the second kind, degree 4.
+	const double p4 = mc_legendre_pn(x, 4);
+	const double q0 = mc_legendre_q0(x);
+	return p4 * q0 - (MCK_K(MCK_35_8) * mc_cube(x)) + (MCK_K(MCK_55_24) * x);
+}
+
+static MC_TARGET_INLINE long double mc_legendre_q4l(long double x)
+{
+//!# Legendre functions of the second kind, degree 4.
+	const long double p4 = mc_legendre_pnl(x, 4);
+	const long double q0 = mc_legendre_q0l(x);
+	return p4 * q0 - (MCK_KL(MCK_35_8) * mc_cubel(x)) + (MCK_KL(MCK_55_24) * x);
 }
 
 #endif /* !MC_LEGENDRE_QN_H */

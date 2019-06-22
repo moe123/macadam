@@ -25,6 +25,7 @@
 #	include <macadam/details/math/mc_biweight.h>
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cospi.h>
+#	include <macadam/details/math/mc_cube.h>
 #	include <macadam/details/math/mc_digamma.h>
 #	include <macadam/details/math/mc_eta.h>
 #	include <macadam/details/math/mc_exp2m1.h>
