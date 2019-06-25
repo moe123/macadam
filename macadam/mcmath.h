@@ -1994,19 +1994,19 @@ static MC_TARGET_OVERLOADABLE unsigned long long mcmath_abs (unsigned long long 
 
 #	elif MC_TARGET_C11
 #	define mcmath_abs(x) _Generic(x \
-	, float              : fabsf    \
-	, double             : fabs     \
-	, long double        : fabsl    \
-	, signed char        : mc_babs  \
-	, short              : mc_sabs  \
-	, int                : mc_iabs  \
-	, long               : mc_labs  \
-	, long long          : mc_llabs \
-	, unsigned char      : mc_babs  \
-	, unsigned short     : mc_sabs  \
-	, unsigned int       : mc_iabs  \
-	, unsigned long      : mc_labs  \
-	, unsigned long long : mc_llabs \
+	, float              : fabsf     \
+	, double             : fabs      \
+	, long double        : fabsl     \
+	, signed char        : mc_babs   \
+	, short              : mc_sabs   \
+	, int                : mc_iabs   \
+	, long               : mc_labs   \
+	, long long          : mc_llabs  \
+	, unsigned char      : mc_ubabs  \
+	, unsigned short     : mc_usabs  \
+	, unsigned int       : mc_uabs   \
+	, unsigned long      : mc_luabs  \
+	, unsigned long long : mc_lluabs \
 ) (x)
 #	elif MC_TARGET_HAVE_TYPEOF
 #		if MC_TARGET_C99
