@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_lgamma.h>
+#include <macadam/details/math/mc_lbeta.h>
 
 #ifndef MC_BETAINC_H
 #define MC_BETAINC_H
@@ -37,10 +37,10 @@ static MC_TARGET_INLINE float mc_ibetaf(float a, float b, float x)
 	}
 //#! Computing delta-gamma + front integral.
 #	if MC_TARGET_CPP98
-	g = mc_lgammaf(a) + mc_lgammaf(b) - mc_lgammaf(a + b);
+	g = mc_lbetaf(a, b);
 	k = ::expf(::logf(x) * a + ::logf(1.0f - x) * b - g) / a;
 #	else
-	g = mc_lgammaf(a) + mc_lgammaf(b) - mc_lgammaf(a + b);
+	g = mc_lbetaf(a, b);
 	k = expf(logf(x) * a + logf(1.0f - x) * b - g) / a;
 #	endif
 //#! Reducing, converging.
@@ -118,10 +118,10 @@ static MC_TARGET_INLINE double mc_ibeta(double a, double b, double x)
 	}
 //#! Computing delta-gamma + front integral.
 #	if MC_TARGET_CPP98
-	g = mc_lgamma(a) + mc_lgamma(b) - mc_lgamma(a + b);
+	g = mc_lbeta(a, b);
 	k = ::exp(::log(x) * a + ::log(1.0 - x) * b - g) / a;
 #	else
-	g = mc_lgamma(a) + mc_lgamma(b) - mc_lgamma(a + b);
+	g = mc_lbeta(a, b);
 	k = exp(log(x) * a + log(1.0 - x) * b - g) / a;
 #	endif
 //#! Reducing, converging.
@@ -199,10 +199,10 @@ static MC_TARGET_INLINE long double mc_ibetal(long double a, long double b, long
 	}
 //#! Computing delta-gamma + front integral.
 #	if MC_TARGET_CPP98
-	g = mc_lgammal(a) + mc_lgammal(b) - mc_lgammal(a + b);
+	g = mc_lbetal(a, b);
 	k = ::expl(::logl(x) * a + ::logl(1.0L - x) * b - g) / a;
 #	else
-	g = mc_lgammal(a) + mc_lgammal(b) - mc_lgammal(a + b);
+	g = mc_lbeta(a, b);
 	k = expl(logl(x) * a + logl(1.0L - x) * b - g) / a;
 #	endif
 //#! Reducing, converging.

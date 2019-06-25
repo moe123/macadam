@@ -38,6 +38,27 @@ static MC_TARGET_INLINE int mc_iabs(int x)
 #	endif
 }
 
+#pragma mark - mc_ubabs -
+
+static MC_TARGET_INLINE unsigned char mc_ubabs(unsigned char x)
+{
+	return x;
+}
+
+#pragma mark - mc_usabs -
+
+static MC_TARGET_INLINE unsigned short mc_usabs(unsigned short x)
+{
+	return x;
+}
+
+#pragma mark - mc_uabs -
+
+static MC_TARGET_INLINE unsigned int mc_uabs(unsigned int x)
+{
+	return x;
+}
+
 #pragma mark - mc_iabs8 -
 
 static MC_TARGET_INLINE int8_t mc_iabs8(int8_t x)
@@ -82,6 +103,34 @@ static MC_TARGET_INLINE int64_t mc_iabs64(int64_t x)
 #	endif
 }
 
+#pragma mark - mc_uabs8 -
+
+static MC_TARGET_INLINE uint8_t mc_uabs8(uint8_t x)
+{
+	return x;
+}
+
+#pragma mark - mc_uabs16 -
+
+static MC_TARGET_INLINE uint16_t mc_uabs16(uint16_t x)
+{
+	return x;
+}
+
+#pragma mark - mc_uabs32 -
+
+static MC_TARGET_INLINE uint32_t mc_uabs32(uint32_t x)
+{
+	return x;
+}
+
+#pragma mark - mc_uabs64 -
+
+static MC_TARGET_INLINE uint64_t mc_uabs64(uint64_t x)
+{
+	return x;
+}
+
 #pragma mark - mc_labs -
 
 static MC_TARGET_INLINE long mc_labs(long x)
@@ -107,6 +156,24 @@ static MC_TARGET_INLINE long long mc_llabs(long long x)
 }
 #	else
 #	define mc_llabs mc_labs
+#	endif
+
+#pragma mark - mc_luabs -
+
+static MC_TARGET_INLINE unsigned long mc_luabs(unsigned long x)
+{
+	return x;
+}
+
+#pragma mark - mc_lluabs -
+
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+static MC_TARGET_INLINE unsigned long long mc_lluabs(unsigned long long x)
+{
+	return x;
+}
+#	else
+#	define mc_lluabs mc_luabs
 #	endif
 
 #endif /* !MC_ABSMAG_H */

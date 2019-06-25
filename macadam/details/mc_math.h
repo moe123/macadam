@@ -23,9 +23,9 @@
 #	include <macadam/details/math/mc_binomial.h>
 #	include <macadam/details/math/mc_bisquare.h>
 #	include <macadam/details/math/mc_biweight.h>
+#	include <macadam/details/math/mc_cbe.h>
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cospi.h>
-#	include <macadam/details/math/mc_cube.h>
 #	include <macadam/details/math/mc_digamma.h>
 #	include <macadam/details/math/mc_eta.h>
 #	include <macadam/details/math/mc_exp2m1.h>
@@ -75,6 +75,7 @@
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
+#	include <macadam/details/math/mc_qud.h>
 #	include <macadam/details/math/mc_rootn.h>
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>

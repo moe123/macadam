@@ -13,6 +13,23 @@
 #ifndef MC_LEGENDRE_PN_H
 #define MC_LEGENDRE_PN_H
 
+#pragma mark - mc_legendre_p2 -
+
+static MC_TARGET_INLINE float mc_legendre_p2f(float x)
+{
+	return 1.5f * mc_sqrf(x) - 0.5f;
+}
+
+static MC_TARGET_INLINE double mc_legendre_p2(double x)
+{
+	return 1.5 * mc_sqr(x) - 0.5;
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p2l(long double x)
+{
+	return 1.5L * mc_sqrl(x) - 0.5L;
+}
+
 #pragma mark - mc_legendre_pn -
 
 static MC_TARGET_INLINE float mc_legendre_pnf(float x, unsigned int n)
@@ -40,7 +57,7 @@ static MC_TARGET_INLINE float mc_legendre_pnf(float x, unsigned int n)
 		if (n == 1) {
 			p1 = x;
 		} else if (n == 2) {
-			p1 = 1.5f * mc_sqrf(x) - 0.5f;
+			p1 = mc_legendre_p2f(x);
 		} else if ((x == 0.0f) && ((n % 2) != 0)) {
 			p1 = 0.0f;
 		} else {
@@ -81,7 +98,7 @@ static MC_TARGET_INLINE double mc_legendre_pn(double x, unsigned int n)
 		if (n == 1) {
 			p1 = x;
 		} else if (n == 2) {
-			p1 = 1.5 * mc_sqr(x) - 0.5;
+			p1 = mc_legendre_p2(x);
 		} else if ((x == 0.0) && ((n % 2) != 0)) {
 			p1 = 0.0;
 		} else {
@@ -122,7 +139,7 @@ static MC_TARGET_INLINE long double mc_legendre_pnl(long double x, unsigned int 
 		if (n == 1) {
 			p1 = x;
 		} else if (n == 2) {
-			p1 = 1.5L * mc_sqrl(x) - 0.5L;
+			p1 = mc_legendre_p2l(x);
 		} else if ((x == 0.0L) && ((n % 2) != 0)) {
 			p1 = 0.0L;
 		} else {
