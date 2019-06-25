@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_sqr.h>
+#include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_TRIGAMMA_H
 #define MC_TRIGAMMA_H
@@ -32,7 +32,7 @@ static MC_TARGET_INLINE float mc_trigammaf(float x)
 	}
 #	endif
 	if (x <= 1E-5f) {
-		return 1.0f / mc_sqrf(x);
+		return 1.0f / mc_raise2f(x);
 	}
 	z = x;
 	g = 0;
@@ -65,7 +65,7 @@ static MC_TARGET_INLINE double mc_trigamma(double x)
 	}
 #	endif
 	if (x <= 1E-5) {
-		return 1.0 / mc_sqr(x);
+		return 1.0 / mc_raise2(x);
 	}
 	z = x;
 	g = 0;
@@ -98,7 +98,7 @@ static MC_TARGET_INLINE long double mc_trigammal(long double x)
 	}
 #	endif
 	if (x <= 1E-5L) {
-		return 1.0L / mc_sqrl(x);
+		return 1.0L / mc_raise2l(x);
 	}
 	z = x;
 	g = 0;

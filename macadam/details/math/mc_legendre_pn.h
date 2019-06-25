@@ -6,9 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_raise2.h>
+#include <macadam/details/math/mc_raise3.h>
+#include <macadam/details/math/mc_raise4.h>
+#include <macadam/details/math/mc_raise5.h>
 
 #ifndef MC_LEGENDRE_PN_H
 #define MC_LEGENDRE_PN_H
@@ -17,22 +18,73 @@
 
 static MC_TARGET_INLINE float mc_legendre_p2f(float x)
 {
-	return 1.5f * mc_sqrf(x) - 0.5f;
+	return 1.5f * mc_raise2f(x) - 0.5f;
 }
 
 static MC_TARGET_INLINE double mc_legendre_p2(double x)
 {
-	return 1.5 * mc_sqr(x) - 0.5;
+	return 1.5 * mc_raise2(x) - 0.5;
 }
 
 static MC_TARGET_INLINE long double mc_legendre_p2l(long double x)
 {
-	return 1.5L * mc_sqrl(x) - 0.5L;
+	return 1.5L * mc_raise2l(x) - 0.5L;
+}
+
+#pragma mark - mc_legendre_p3 -
+
+static MC_TARGET_INLINE float mc_legendre_p3f(float x)
+{
+	return 0.5f * ((5.0f * mc_raise3f(x)) - (3.0f * x));
+}
+
+static MC_TARGET_INLINE double mc_legendre_p3(double x)
+{
+	return 0.5 * ((5.0 * mc_raise3(x)) - (3.0 * x));
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p3l(long double x)
+{
+	return 0.5L * ((5.0L * mc_raise3l(x)) - (3.0L * x));
+}
+
+#pragma mark - mc_legendre_p4 -
+
+static MC_TARGET_INLINE float mc_legendre_p4f(float x)
+{
+	return 0.125f * (((35.0f * mc_raise4f(x)) - (30.0f * mc_raise2f(x))) + 3.0f);
+}
+
+static MC_TARGET_INLINE double mc_legendre_p4(double x)
+{
+	return 0.125 * (((35.0 * mc_raise4(x)) - (30.0 * mc_raise2(x))) + 3.0);
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p4l(long double x)
+{
+	return 0.125L * (((35.0L * mc_raise4l(x)) - (30.0L * mc_raise2l(x))) + 3.0L);
+}
+
+#pragma mark - mc_legendre_p5 -
+
+static MC_TARGET_INLINE float mc_legendre_p5f(float x)
+{
+	return 0.125f * (((63.0f * mc_raise5f(x)) - (70.0f * mc_raise3f(x))) + (15.0f * x));
+}
+
+static MC_TARGET_INLINE double mc_legendre_p5(double x)
+{
+	return 0.125 * (((63.0 * mc_raise5(x)) - (70.0 * mc_raise3(x))) + (15.0 * x));
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p5l(long double x)
+{
+	return 0.125L * (((63.0L * mc_raise5l(x)) - (70.0L * mc_raise3l(x))) + (15.0L * x));
 }
 
 #pragma mark - mc_legendre_pn -
 
-static MC_TARGET_INLINE float mc_legendre_pnf(float x, unsigned int n)
+static MC_TARGET_INLINE float mc_legendre_pnf(unsigned int n, float x)
 {
 //!# Legendre polynomials or functions.
 	float pi       = 0.0f;
@@ -73,7 +125,7 @@ static MC_TARGET_INLINE float mc_legendre_pnf(float x, unsigned int n)
 	return p1;
 }
 
-static MC_TARGET_INLINE double mc_legendre_pn(double x, unsigned int n)
+static MC_TARGET_INLINE double mc_legendre_pn(unsigned int n, double x)
 {
 //!# Legendre polynomials or functions.
 	double pi      = 0.0;
@@ -114,7 +166,7 @@ static MC_TARGET_INLINE double mc_legendre_pn(double x, unsigned int n)
 	return p1;
 }
 
-static MC_TARGET_INLINE long double mc_legendre_pnl(long double x, unsigned int n)
+static MC_TARGET_INLINE long double mc_legendre_pnl(unsigned int n, long double x)
 {
 //!# Legendre polynomials or functions.
 	long double pi = 0.0L;

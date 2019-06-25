@@ -15,7 +15,7 @@
 
 #pragma mark - mc_hermite_hn -
 
-static MC_TARGET_INLINE float mc_hermite_hnf(float x, unsigned int n)
+static MC_TARGET_INLINE float mc_hermite_hnf(unsigned int n, float x)
 {
 //!# nth physicists' Hermite polynomial.
 	float hi       = 0.0f;
@@ -43,7 +43,7 @@ static MC_TARGET_INLINE float mc_hermite_hnf(float x, unsigned int n)
 	return h1;
 }
 
-static MC_TARGET_INLINE double mc_hermite_hn(double x, unsigned int n)
+static MC_TARGET_INLINE double mc_hermite_hn(unsigned int n, double x)
 {
 //!# nth physicists' Hermite polynomial.
 	double hi      = 0.0;
@@ -71,7 +71,7 @@ static MC_TARGET_INLINE double mc_hermite_hn(double x, unsigned int n)
 	return h1;
 }
 
-static MC_TARGET_INLINE long double mc_hermite_hnl(long double x, unsigned int n)
+static MC_TARGET_INLINE long double mc_hermite_hnl(unsigned int n, long double x)
 {
 //!# nth physicists' Hermite polynomial.
 	long double hi = 0.0L;

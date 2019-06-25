@@ -6,11 +6,12 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_cbe.h>
 #include <macadam/details/math/mc_legendre_pn.h>
 #include <macadam/details/math/mc_log1p.h>
+#include <macadam/details/math/mc_raise2.h>
+#include <macadam/details/math/mc_raise3.h>
+#include <macadam/details/math/mc_raise4.h>
 #include <macadam/details/math/mc_rsqr.h>
-#include <macadam/details/math/mc_sqr.h>
 #include <macadam/details/math/mc_trigonometry.h>
 
 #ifndef MC_LEGENDRE_QN_H
@@ -216,25 +217,25 @@ static MC_TARGET_INLINE long double mc_legendre_q2l(long double x)
 static MC_TARGET_INLINE float mc_legendre_q3f(float x)
 {
 //!# Legendre functions of the second kind, degree 3.
-	const float p3 = mc_legendre_pnf(x, 3);
+	const float p3 = mc_legendre_p3f(x);
 	const float q0 = mc_legendre_q0f(x);
-	return p3 * q0 - (MCK_KF(MCK_5_2) * mc_sqrf(x)) + MCK_KF(MCK_2_3);
+	return p3 * q0 - (MCK_KF(MCK_5_2) * mc_raise2f(x)) + MCK_KF(MCK_2_3);
 }
 
 static MC_TARGET_INLINE double mc_legendre_q3(double x)
 {
 //!# Legendre functions of the second kind, degree 3.
-	const double p3 = mc_legendre_pn(x, 3);
+	const double p3 = mc_legendre_p3(x);
 	const double q0 = mc_legendre_q0(x);
-	return p3 * q0 - (MCK_K(MCK_5_2) * mc_sqr(x)) + MCK_K(MCK_2_3);
+	return p3 * q0 - (MCK_K(MCK_5_2) * mc_raise2(x)) + MCK_K(MCK_2_3);
 }
 
 static MC_TARGET_INLINE long double mc_legendre_q3l(long double x)
 {
 //!# Legendre functions of the second kind, degree 3.
-	const long double p3 = mc_legendre_pnl(x, 3);
+	const long double p3 = mc_legendre_p3l(x);
 	const long double q0 = mc_legendre_q0l(x);
-	return p3 * q0 - (MCK_KL(MCK_5_2) * mc_sqrl(x)) + MCK_KL(MCK_2_3);
+	return p3 * q0 - (MCK_KL(MCK_5_2) * mc_raise2l(x)) + MCK_KL(MCK_2_3);
 }
 
 #pragma mark - mc_legendre_q4 -
@@ -242,25 +243,51 @@ static MC_TARGET_INLINE long double mc_legendre_q3l(long double x)
 static MC_TARGET_INLINE float mc_legendre_q4f(float x)
 {
 //!# Legendre functions of the second kind, degree 4.
-	const float p4 = mc_legendre_pnf(x, 4);
+	const float p4 = mc_legendre_p4f(x);
 	const float q0 = mc_legendre_q0f(x);
-	return p4 * q0 - (MCK_KF(MCK_35_8) * mc_cbef(x)) + (MCK_KF(MCK_55_24) * x);
+	return p4 * q0 - (MCK_KF(MCK_35_8) * mc_raise3f(x)) + (MCK_KF(MCK_55_24) * x);
 }
 
 static MC_TARGET_INLINE double mc_legendre_q4(double x)
 {
 //!# Legendre functions of the second kind, degree 4.
-	const double p4 = mc_legendre_pn(x, 4);
+	const double p4 = mc_legendre_p4(x);
 	const double q0 = mc_legendre_q0(x);
-	return p4 * q0 - (MCK_K(MCK_35_8) * mc_cbe(x)) + (MCK_K(MCK_55_24) * x);
+	return p4 * q0 - (MCK_K(MCK_35_8) * mc_raise3(x)) + (MCK_K(MCK_55_24) * x);
 }
 
 static MC_TARGET_INLINE long double mc_legendre_q4l(long double x)
 {
 //!# Legendre functions of the second kind, degree 4.
-	const long double p4 = mc_legendre_pnl(x, 4);
+	const long double p4 = mc_legendre_p4l(x);
 	const long double q0 = mc_legendre_q0l(x);
-	return p4 * q0 - (MCK_KL(MCK_35_8) * mc_cbel(x)) + (MCK_KL(MCK_55_24) * x);
+	return p4 * q0 - (MCK_KL(MCK_35_8) * mc_raise3l(x)) + (MCK_KL(MCK_55_24) * x);
+}
+
+#pragma mark - mc_legendre_q5 -
+
+static MC_TARGET_INLINE float mc_legendre_q5f(float x)
+{
+//!# Legendre functions of the second kind, degree 5.
+	const float p5 = mc_legendre_p5f(x);
+	const float q0 = mc_legendre_q0f(x);
+	return p5 * q0 - (MCK_KF(MCK_63_8) * mc_raise4f(x)) + (MCK_KF(MCK_49_8) * mc_raise2f(x)) - MCK_KF(MCK_8_15);
+}
+
+static MC_TARGET_INLINE double mc_legendre_q5(double x)
+{
+//!# Legendre functions of the second kind, degree 5.
+	const double p5 = mc_legendre_p5(x);
+	const double q0 = mc_legendre_q0(x);
+	return p5 * q0 - (MCK_K(MCK_63_8) * mc_raise4(x)) + (MCK_K(MCK_49_8) * mc_raise2(x)) - MCK_K(MCK_8_15);
+}
+
+static MC_TARGET_INLINE long double mc_legendre_q5l(long double x)
+{
+//!# Legendre functions of the second kind, degree 5.
+	const long double p5 = mc_legendre_p5l(x);
+	const long double q0 = mc_legendre_q0l(x);
+	return p5 * q0 - (MCK_KL(MCK_63_8) * mc_raise4l(x)) + (MCK_KL(MCK_49_8) * mc_raise2l(x)) - MCK_KL(MCK_8_15);
 }
 
 #endif /* !MC_LEGENDRE_QN_H */

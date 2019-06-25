@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_sqr.h>
+#include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_SIGMOID_H
 #define MC_SIGMOID_H
@@ -26,7 +26,7 @@ static MC_TARGET_INLINE float mc_sigmoidf(float x)
 	}
 	if (x < x1) {
 		x = ::expf(x);
-		return x  - mc_sqrf(x);
+		return x  - mc_raise2f(x);
 	}
 	return 1.0f / (::expf(-x) + 1.0f);
 #	else
@@ -38,7 +38,7 @@ static MC_TARGET_INLINE float mc_sigmoidf(float x)
 	}
 	if (x < x1) {
 		x = expf(x);
-		return x  - mc_sqrf(x);
+		return x  - mc_raise2f(x);
 	}
 	return 1.0f / (expf(-x) + 1.0f);
 #	endif
@@ -57,7 +57,7 @@ static MC_TARGET_INLINE double mc_sigmoid(double x)
 	}
 	if (x < x1) {
 		x = ::exp(x);
-		return x  - mc_sqr(x);
+		return x  - mc_raise2(x);
 	}
 	return 1.0 / (::exp(-x) + 1.0);
 #	else
@@ -69,7 +69,7 @@ static MC_TARGET_INLINE double mc_sigmoid(double x)
 	}
 	if (x < x1) {
 		x = exp(x);
-		return x  - mc_sqr(x);
+		return x  - mc_raise2(x);
 	}
 	return 1.0 / (exp(-x) + 1.0);
 #	endif
@@ -88,7 +88,7 @@ static MC_TARGET_INLINE long double mc_sigmoidl(long double x)
 	}
 	if (x < x1) {
 		x = ::expl(x);
-		return x  - mc_sqrl(x);
+		return x  - mc_raise2l(x);
 	}
 	return 1.0L / (::expl(-x) + 1.0L);
 #	else
@@ -100,7 +100,7 @@ static MC_TARGET_INLINE long double mc_sigmoidl(long double x)
 	}
 	if (x < x1) {
 		x = expl(x);
-		return x  - mc_sqrl(x);
+		return x  - mc_raise2l(x);
 	}
 	return 1.0L / (expl(-x) + 1.0L);
 #	endif
