@@ -1941,106 +1941,106 @@ static MC_TARGET_OVERLOADABLE long double mcmath_trigamma (long double x) { retu
 #	ifndef mcmath_abs
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                    mcmath_abs                      (const T& x)                  { return ::std::abs(x);   }
+template <class T> MC_TARGET_INLINE T                    mcmath_abs                      (const T& x)                  { return ::std::abs(x);       }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE float                mcmath_abs<float>               (const float& x)              { return ::std::fabsf(x); }
-template <>        MC_TARGET_INLINE double               mcmath_abs<double>              (const double& x)             { return ::std::fabs(x);  }
-template <>        MC_TARGET_INLINE long double          mcmath_abs<long double>         (const long double& x)        { return ::std::fabsl(x); }
+template <>        MC_TARGET_INLINE float                mcmath_abs<float>               (const float& x)              { return ::std::fabsf(x);     }
+template <>        MC_TARGET_INLINE double               mcmath_abs<double>              (const double& x)             { return ::std::fabs(x);      }
+template <>        MC_TARGET_INLINE long double          mcmath_abs<long double>         (const long double& x)        { return ::std::fabsl(x);     }
 #	else
-template <>        MC_TARGET_INLINE float                mcmath_abs<float>               (const float& x)              { return ::fabsf(x);      }
-template <>        MC_TARGET_INLINE double               mcmath_abs<double>              (const double& x)             { return ::fabs(x);       }
-template <>        MC_TARGET_INLINE long double          mcmath_abs<long double>         (const long double& x)        { return ::fabsl(x);      }
+template <>        MC_TARGET_INLINE float                mcmath_abs<float>               (const float& x)              { return ::fabsf(x);          }
+template <>        MC_TARGET_INLINE double               mcmath_abs<double>              (const double& x)             { return ::fabs(x);           }
+template <>        MC_TARGET_INLINE long double          mcmath_abs<long double>         (const long double& x)        { return ::fabsl(x);          }
 #	endif
-template <>        MC_TARGET_INLINE signed char          mcmath_abs<signed char>         (const signed char& x)        { return mc_babs(x);      }
-template <>        MC_TARGET_INLINE short                mcmath_abs<short>               (const short& x)              { return mc_sabs(x);      }
-template <>        MC_TARGET_INLINE int                  mcmath_abs<int>                 (const int& x)                { return mc_iabs(x);      }
-template <>        MC_TARGET_INLINE long                 mcmath_abs<long>                (const long& x)               { return mc_labs(x);      }
+template <>        MC_TARGET_INLINE signed char          mcmath_abs<signed char>         (const signed char& x)        { return mc_babs(x);          }
+template <>        MC_TARGET_INLINE short                mcmath_abs<short>               (const short& x)              { return mc_sabs(x);          }
+template <>        MC_TARGET_INLINE int                  mcmath_abs<int>                 (const int& x)                { return mc_iabs(x);          }
+template <>        MC_TARGET_INLINE long                 mcmath_abs<long>                (const long& x)               { return mc_labs(x);          }
 
-template <>        MC_TARGET_INLINE unsigned char        mcmath_abs<unsigned char>       (const unsigned char& x)      { return mc_ubabs(x);     }
-template <>        MC_TARGET_INLINE unsigned short       mcmath_abs<unsigned short>      (const unsigned short& x)     { return mc_usabs(x);     }
-template <>        MC_TARGET_INLINE unsigned int         mcmath_abs<unsigned int>        (const unsigned int& x)       { return mc_uabs(x);      }
-template <>        MC_TARGET_INLINE unsigned long        mcmath_abs<unsigned long>       (const unsigned long& x)      { return mc_luabs(x);     }
+template <>        MC_TARGET_INLINE unsigned char        mcmath_abs<unsigned char>       (const unsigned char& x)      { return mc_uchar_abs(x);     }
+template <>        MC_TARGET_INLINE unsigned short       mcmath_abs<unsigned short>      (const unsigned short& x)     { return mc_ushort_abs(x);    }
+template <>        MC_TARGET_INLINE unsigned int         mcmath_abs<unsigned int>        (const unsigned int& x)       { return mc_uint_abs(x);      }
+template <>        MC_TARGET_INLINE unsigned long        mcmath_abs<unsigned long>       (const unsigned long& x)      { return mc_ulong_abs(x);     }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long            mcmath_abs<long long>           (const long long& x)          { return mc_llabs(x);     }
-template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  long long> (const unsigned long long& x) { return mc_lluabs(x);    }
+template <>        MC_TARGET_INLINE long long            mcmath_abs<long long>           (const long long& x)          { return mc_llabs(x);         }
+template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  long long> (const unsigned long long& x) { return mc_ulonglong_abs(x); }
 #	endif
 
 #	else
 
 #	if MC_TARGET_HAVE_OVERLOADABLE
 
-static MC_TARGET_OVERLOADABLE float              mcmath_abs (float x)              { return fabsf(x);     }
-static MC_TARGET_OVERLOADABLE double             mcmath_abs (double x)             { return fabs(x);      }
-static MC_TARGET_OVERLOADABLE long double        mcmath_abs (long double x)        { return fabsl(x);     }
+static MC_TARGET_OVERLOADABLE float              mcmath_abs (float x)              { return fabsf(x);            }
+static MC_TARGET_OVERLOADABLE double             mcmath_abs (double x)             { return fabs(x);             }
+static MC_TARGET_OVERLOADABLE long double        mcmath_abs (long double x)        { return fabsl(x);            }
 
-static MC_TARGET_OVERLOADABLE signed char        mcmath_abs (signed char x)        { return mc_babs(x);   }
-static MC_TARGET_OVERLOADABLE short              mcmath_abs (short x)              { return mc_sabs(x);   }
-static MC_TARGET_OVERLOADABLE int                mcmath_abs (int x)                { return mc_iabs(x);   }
-static MC_TARGET_OVERLOADABLE long               mcmath_abs (long x)               { return mc_labs(x);   }
+static MC_TARGET_OVERLOADABLE signed char        mcmath_abs (signed char x)        { return mc_babs(x);          }
+static MC_TARGET_OVERLOADABLE short              mcmath_abs (short x)              { return mc_sabs(x);          }
+static MC_TARGET_OVERLOADABLE int                mcmath_abs (int x)                { return mc_iabs(x);          }
+static MC_TARGET_OVERLOADABLE long               mcmath_abs (long x)               { return mc_labs(x);          }
 
-static MC_TARGET_OVERLOADABLE unsigned char      mcmath_abs (unsigned char x)      { return mc_ubabs(x);  }
-static MC_TARGET_OVERLOADABLE unsigned short     mcmath_abs (unsigned short x)     { return mc_usabs(x);  }
-static MC_TARGET_OVERLOADABLE unsigned int       mcmath_abs (unsigned int x)       { return mc_uabs(x);   }
-static MC_TARGET_OVERLOADABLE unsigned long      mcmath_abs (unsigned long x)      { return mc_luabs(x);  }
+static MC_TARGET_OVERLOADABLE unsigned char      mcmath_abs (unsigned char x)      { return mc_uchar_abs(x);     }
+static MC_TARGET_OVERLOADABLE unsigned short     mcmath_abs (unsigned short x)     { return mc_ushort_abs(x);    }
+static MC_TARGET_OVERLOADABLE unsigned int       mcmath_abs (unsigned int x)       { return mc_uint_abs(x);      }
+static MC_TARGET_OVERLOADABLE unsigned long      mcmath_abs (unsigned long x)      { return mc_ulong_abs(x);     }
 
 #	if MC_TARGET_C99
 
-static MC_TARGET_OVERLOADABLE long long          mcmath_abs (long long x)          { return mc_llabs(x);  }
-static MC_TARGET_OVERLOADABLE unsigned long long mcmath_abs (unsigned long long x) { return mc_lluabs(x); }
+static MC_TARGET_OVERLOADABLE long long          mcmath_abs (long long x)          { return mc_llabs(x);         }
+static MC_TARGET_OVERLOADABLE unsigned long long mcmath_abs (unsigned long long x) { return mc_ulonglong_abs(x); }
 
 #	endif
 
 #	elif MC_TARGET_C11
 #	define mcmath_abs(x) _Generic(x \
-	, float              : fabsf     \
-	, double             : fabs      \
-	, long double        : fabsl     \
-	, signed char        : mc_babs   \
-	, short              : mc_sabs   \
-	, int                : mc_iabs   \
-	, long               : mc_labs   \
-	, long long          : mc_llabs  \
-	, unsigned char      : mc_ubabs  \
-	, unsigned short     : mc_usabs  \
-	, unsigned int       : mc_uabs   \
-	, unsigned long      : mc_luabs  \
-	, unsigned long long : mc_lluabs \
+	, float              : fabsf            \
+	, double             : fabs             \
+	, long double        : fabsl            \
+	, signed char        : mc_babs          \
+	, short              : mc_sabs          \
+	, int                : mc_iabs          \
+	, long               : mc_labs          \
+	, long long          : mc_llabs         \
+	, unsigned char      : mc_uchar_abs     \
+	, unsigned short     : mc_ushort_abs    \
+	, unsigned int       : mc_uint_abs      \
+	, unsigned long      : mc_ulong_abs     \
+	, unsigned long long : mc_ulonglong_abs \
 ) (x)
 #	elif MC_TARGET_HAVE_TYPEOF
 #		if MC_TARGET_C99
 #		define mcmath_abs(x) mc_cast(MC_TARGET_TYPEOF(x), \
 		( \
-			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? fabsf     (mc_cast_exp(float, x))              \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? fabs      (mc_cast_exp(double, x))             \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? fabsl     (mc_cast_exp(long double, x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs   (mc_cast_exp(signed char, x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs   (mc_cast_exp(short, x))              \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs   (mc_cast_exp(int,x))                 \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs   (mc_cast_exp(long, x))               \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)          ? mc_llabs  (mc_cast_exp(long long, x))          \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? mc_ubabs  (mc_cast_exp(unsigned char, x))      \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? mc_usabs  (mc_cast_exp(unsigned short, x))     \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? mc_uabs   (mc_cast_exp(unsigned int,x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? mc_luabs  (mc_cast_exp(unsigned long, x))      \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? mc_lluabs (mc_cast_exp(unsigned long long, x)) \
+			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? fabsf           (mc_cast_exp(float, x))               \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? fabs            (mc_cast_exp(double, x))              \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? fabsl           (mc_cast_exp(long double, x))         \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs         (mc_cast_exp(signed char, x))         \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs         (mc_cast_exp(short, x))               \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs         (mc_cast_exp(int,x))                  \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs         (mc_cast_exp(long, x))                \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)          ? mc_llabs         (mc_cast_exp(long long, x))          \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? mc_uchar_abs     (mc_cast_exp(unsigned char, x))      \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? mc_ushort_abs    (mc_cast_exp(unsigned short, x))     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? mc_uint_abs      (mc_cast_exp(unsigned int,x))        \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? mc_ulong_abs     (mc_cast_exp(unsigned long, x))      \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? mc_ulonglong_abs (mc_cast_exp(unsigned long long, x)) \
 			: 0 \
 		))
 #		else
 #		define mcmath_abs(x) mc_cast(MC_TARGET_TYPEOF(x), \
 		( \
-			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? fabsf     (mc_cast_exp(float, x))          \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? fabs      (mc_cast_exp(double, x))         \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? fabsl     (mc_cast_exp(long double, x))    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs   (mc_cast_exp(signed char, x))    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs   (mc_cast_exp(short, x))          \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs   (mc_cast_exp(int,x))             \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs   (mc_cast_exp(long, x))           \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? mc_ubabs  (mc_cast_exp(unsigned char, x))  \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? mc_usabs  (mc_cast_exp(unsigned short, x)) \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? mc_uabs   (mc_cast_exp(unsigned int,x))    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? mc_luabs  (mc_cast_exp(unsigned long, x))  \
+			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? fabsf         (mc_cast_exp(float, x))          \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? fabs          (mc_cast_exp(double, x))         \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? fabsl         (mc_cast_exp(long double, x))    \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs       (mc_cast_exp(signed char, x))    \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs       (mc_cast_exp(short, x))          \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs       (mc_cast_exp(int,x))             \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs       (mc_cast_exp(long, x))           \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? mc_uchar_abs  (mc_cast_exp(unsigned char, x))  \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? mc_ushort_abs (mc_cast_exp(unsigned short, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? mc_uint_abs   (mc_cast_exp(unsigned int,x))    \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? mc_ulong_abs  (mc_cast_exp(unsigned long, x))  \
 			: 0 \
 		))
 #		endif
