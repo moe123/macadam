@@ -461,29 +461,41 @@ static MC_TARGET_INLINE double mc_zetapsc(double s, double sc)
 	}
 	if (s < 1.0) {
 		const double c0 = 1.2433929443359375000000000000000000000000E+00;
-		y               = mc_xpolyevaln(sc, P1, 6) / mc_xpolyevaln(sc, Q1, 7) - c0;
+		const double p1 = mc_xpolyeval6(sc, P1[0], P1[1], P1[2], P1[3], P1[4], P1[5]);
+		const double q1 = mc_xpolyeval7(sc, Q1[0], Q1[1], Q1[2], Q1[3], Q1[4], Q1[5], Q1[6]);
+		y               = p1 / q1 - c0;
 		r               = (y + sc) / sc;
 	} else if (s <= 2.0) {
-		s = -sc;
-		y = mc_xpolyevaln(s, P2, 6) / mc_xpolyevaln(s, Q2, 7);
-		r = y - 1.0 / sc;
+		s               = -sc;
+		const double p2 = mc_xpolyeval6(s, P2[0], P2[1], P2[2], P2[3], P2[4], P2[5]);
+		const double q2 = mc_xpolyeval7(s, Q2[0], Q2[1], Q2[2], Q2[3], Q2[4], Q2[5], Q2[6]);
+		y               = p2 / q2;
+		r               = y - 1.0 / sc;
 	} else if (s <= 4.0) {
 		const double c1 = 6.9865989685058593750000000000000000000000E-01;
+		const double p4 = mc_xpolyeval7(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
+		const double q4 = mc_xpolyeval8(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
 		s               = s - 2.0;
-		y               = mc_xpolyevaln(s, P4, 7) / mc_xpolyevaln(s, Q4, 8) + c1;
+		y               = p4 / q4 + c1;
 		r               = y - 1.0 / sc;
 	} else if (s <= 7.0) {
-		s = s - 4.0;
-		y = mc_xpolyevaln(s, P7, 8) / mc_xpolyevaln(s, Q7, 9);
-		r = 1.0 + ::exp(y);
+		s               = s - 4.0;
+		const double p7 = mc_xpolyeval8(s, P7[0], P7[1], P7[2], P7[3], P7[4], P7[5], P7[6], P7[7]);
+		const double q7 = mc_xpolyeval9(s, Q7[0], Q7[1], Q7[2], Q7[3], Q7[4], Q7[5], Q7[6], Q7[7], Q7[8]);
+		y               = p7 / q7;
+		r               = 1.0 + ::exp(y);
 	} else if (s < 15.0) {
-		s = s - 7.0;
-		y = mc_xpolyevaln(s, P15, 9) / mc_xpolyevaln(s, Q15, 9);
-		r = 1.0 + ::exp(y);
+		s                = s - 7.0;
+		const double p15 = mc_xpolyeval9(s, P15[0], P15[1], P15[2], P15[3], P15[4], P15[5], P15[6], P15[7], P15[8]);
+		const double q15 = mc_xpolyeval9(s, Q15[0], Q15[1], Q15[2], Q15[3], Q15[4], Q15[5], Q15[6], Q15[7], Q15[8]);
+		y                = p15 / q15;
+		r                = 1.0 + ::exp(y);
 	} else if (s < 42.0) {
-		s = s - 15.0;
-		y = mc_xpolyevaln(s, P42, 9) / mc_xpolyevaln(s, Q42, 10);
-		r = 1.0 + ::exp(y);
+		s                = s - 15.0;
+		const double p42 = mc_xpolyeval9(s, P42[0], P42[1], P42[2], P42[3], P42[4], P42[5], P42[6], P42[7], P42[8]);
+		const double q42 = mc_xpolyeval10(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
+		y                = p42 / q42;
+		r                = 1.0 + ::exp(y);
 	} else if (s < 63.0) {
 		r = 1.0 + ::exp2(-s);
 	}
@@ -495,29 +507,41 @@ static MC_TARGET_INLINE double mc_zetapsc(double s, double sc)
 	}
 	if (s < 1.0) {
 		const double c0 = 1.2433929443359375000000000000000000000000E+00;
-		y               = mc_xpolyevaln(sc, P1, 6) / mc_xpolyevaln(sc, Q1, 7) - c0;
+		const double p1 = mc_xpolyeval6(sc, P1[0], P1[1], P1[2], P1[3], P1[4], P1[5]);
+		const double q1 = mc_xpolyeval7(sc, Q1[0], Q1[1], Q1[2], Q1[3], Q1[4], Q1[5], Q1[6]);
+		y               = p1 / q1 - c0;
 		r               = (y + sc) / sc;
 	} else if (s <= 2.0) {
-		s = -sc;
-		y = mc_xpolyevaln(s, P2, 6) / mc_xpolyevaln(s, Q2, 7);
-		r = y - 1.0 / sc;
+		s               = -sc;
+		const double p2 = mc_xpolyeval6(s, P2[0], P2[1], P2[2], P2[3], P2[4], P2[5]);
+		const double q2 = mc_xpolyeval7(s, Q2[0], Q2[1], Q2[2], Q2[3], Q2[4], Q2[5], Q2[6]);
+		y               = p2 / q2;
+		r               = y - 1.0 / sc;
 	} else if (s <= 4.0) {
 		const double c1 = 6.9865989685058593750000000000000000000000E-01;
+		const double p4 = mc_xpolyeval7(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
+		const double q4 = mc_xpolyeval8(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
 		s               = s - 2.0;
-		y               = mc_xpolyevaln(s, P4, 7) / mc_xpolyevaln(s, Q4, 8) + c1;
+		y               = p4 / q4 + c1;
 		r               = y - 1.0 / sc;
 	} else if (s <= 7.0) {
-		s = s - 4.0;
-		y = mc_xpolyevaln(s, P7, 8) / mc_xpolyevaln(s, Q7, 9);
-		r = 1.0 + exp(y);
+		s               = s - 4.0;
+		const double p7 = mc_xpolyeval8(s, P7[0], P7[1], P7[2], P7[3], P7[4], P7[5], P7[6], P7[7]);
+		const double q7 = mc_xpolyeval9(s, Q7[0], Q7[1], Q7[2], Q7[3], Q7[4], Q7[5], Q7[6], Q7[7], Q7[8]);
+		y               = p7 / q7;
+		r               = 1.0 + exp(y);
 	} else if (s < 15.0) {
-		s = s - 7.0;
-		y = mc_xpolyevaln(s, P15, 9) / mc_xpolyevaln(s, Q15, 9);
-		r = 1.0 + exp(y);
+		s                = s - 7.0;
+		const double p15 = mc_xpolyeval9(s, P15[0], P15[1], P15[2], P15[3], P15[4], P15[5], P15[6], P15[7], P15[8]);
+		const double q15 = mc_xpolyeval9(s, Q15[0], Q15[1], Q15[2], Q15[3], Q15[4], Q15[5], Q15[6], Q15[7], Q15[8]);
+		y                = p15 / q15;
+		r                = 1.0 + exp(y);
 	} else if (s < 42.0) {
-		s = s - 15.0;
-		y = mc_xpolyevaln(s, P42, 9) / mc_xpolyevaln(s, Q42, 10);
-		r = 1.0 + exp(y);
+		s                = s - 15.0;
+		const double p42 = mc_xpolyeval9(s, P42[0], P42[1], P42[2], P42[3], P42[4], P42[5], P42[6], P42[7], P42[8]);
+		const double q42 = mc_xpolyeval10(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
+		y                = p42 / q42;
+		r                = 1.0 + exp(y);
 	} else if (s < 63.0) {
 		r = 1.0 + exp2(-s);
 	}
