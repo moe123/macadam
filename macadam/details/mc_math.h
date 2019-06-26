@@ -82,6 +82,7 @@
 #	include <macadam/details/math/mc_raise3.h>
 #	include <macadam/details/math/mc_raise4.h>
 #	include <macadam/details/math/mc_raise5.h>
+#	include <macadam/details/math/mc_raise6.h>
 #	include <macadam/details/math/mc_rootn.h>
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>
