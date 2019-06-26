@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_polyeval.h>
+#include <macadam/details/math/mc_xpolyevaln.h>
 
 #ifndef MC_ZETAP_H
 #define MC_ZETAP_H
@@ -461,28 +461,28 @@ static MC_TARGET_INLINE double mc_zetapsc(double s, double sc)
 	}
 	if (s < 1.0) {
 		const double c0 = 1.2433929443359375000000000000000000000000E+00;
-		y               = mc_polyeval(sc, P1, 6) / mc_polyeval(sc, Q1, 7) - c0;
+		y               = mc_xpolyevaln(sc, P1, 6) / mc_xpolyevaln(sc, Q1, 7) - c0;
 		r               = (y + sc) / sc;
 	} else if (s <= 2.0) {
 		s = -sc;
-		y = mc_polyeval(s, P2, 6) / mc_polyeval(s, Q2, 7);
+		y = mc_xpolyevaln(s, P2, 6) / mc_xpolyevaln(s, Q2, 7);
 		r = y - 1.0 / sc;
 	} else if (s <= 4.0) {
 		const double c1 = 6.9865989685058593750000000000000000000000E-01;
 		s               = s - 2.0;
-		y               = mc_polyeval(s, P4, 7) / mc_polyeval(s, Q4, 8) + c1;
+		y               = mc_xpolyevaln(s, P4, 7) / mc_xpolyevaln(s, Q4, 8) + c1;
 		r               = y - 1.0 / sc;
 	} else if (s <= 7.0) {
 		s = s - 4.0;
-		y = mc_polyeval(s, P7, 8) / mc_polyeval(s, Q7, 9);
+		y = mc_xpolyevaln(s, P7, 8) / mc_xpolyevaln(s, Q7, 9);
 		r = 1.0 + ::exp(y);
 	} else if (s < 15.0) {
 		s = s - 7.0;
-		y = mc_polyeval(s, P15, 9) / mc_polyeval(s, Q15, 9);
+		y = mc_xpolyevaln(s, P15, 9) / mc_xpolyevaln(s, Q15, 9);
 		r = 1.0 + ::exp(y);
 	} else if (s < 42.0) {
 		s = s - 15.0;
-		y = mc_polyeval(s, P42, 9) / mc_polyeval(s, Q42, 10);
+		y = mc_xpolyevaln(s, P42, 9) / mc_xpolyevaln(s, Q42, 10);
 		r = 1.0 + ::exp(y);
 	} else if (s < 63.0) {
 		r = 1.0 + ::exp2(-s);
@@ -495,28 +495,28 @@ static MC_TARGET_INLINE double mc_zetapsc(double s, double sc)
 	}
 	if (s < 1.0) {
 		const double c0 = 1.2433929443359375000000000000000000000000E+00;
-		y               = mc_polyeval(sc, P1, 6) / mc_polyeval(sc, Q1, 7) - c0;
+		y               = mc_xpolyevaln(sc, P1, 6) / mc_xpolyevaln(sc, Q1, 7) - c0;
 		r               = (y + sc) / sc;
 	} else if (s <= 2.0) {
 		s = -sc;
-		y = mc_polyeval(s, P2, 6) / mc_polyeval(s, Q2, 7);
+		y = mc_xpolyevaln(s, P2, 6) / mc_xpolyevaln(s, Q2, 7);
 		r = y - 1.0 / sc;
 	} else if (s <= 4.0) {
 		const double c1 = 6.9865989685058593750000000000000000000000E-01;
 		s               = s - 2.0;
-		y               = mc_polyeval(s, P4, 7) / mc_polyeval(s, Q4, 8) + c1;
+		y               = mc_xpolyevaln(s, P4, 7) / mc_xpolyevaln(s, Q4, 8) + c1;
 		r               = y - 1.0 / sc;
 	} else if (s <= 7.0) {
 		s = s - 4.0;
-		y = mc_polyeval(s, P7, 8) / mc_polyeval(s, Q7, 9);
+		y = mc_xpolyevaln(s, P7, 8) / mc_xpolyevaln(s, Q7, 9);
 		r = 1.0 + exp(y);
 	} else if (s < 15.0) {
 		s = s - 7.0;
-		y = mc_polyeval(s, P15, 9) / mc_polyeval(s, Q15, 9);
+		y = mc_xpolyevaln(s, P15, 9) / mc_xpolyevaln(s, Q15, 9);
 		r = 1.0 + exp(y);
 	} else if (s < 42.0) {
 		s = s - 15.0;
-		y = mc_polyeval(s, P42, 9) / mc_polyeval(s, Q42, 10);
+		y = mc_xpolyevaln(s, P42, 9) / mc_xpolyevaln(s, Q42, 10);
 		r = 1.0 + exp(y);
 	} else if (s < 63.0) {
 		r = 1.0 + exp2(-s);

@@ -17,7 +17,7 @@
 
 static MC_TARGET_INLINE float mc_hermite_henf(unsigned int n, float x)
 {
-//!# nth probabilists' Hermite polynomial.
+//!# NTH probabilists' Hermite polynomial.
 	float hi       = 0.0f;
 	float h0       = 0.0f;
 	float h1       = 0.0f;
@@ -45,7 +45,7 @@ static MC_TARGET_INLINE float mc_hermite_henf(unsigned int n, float x)
 
 static MC_TARGET_INLINE double mc_hermite_hen(unsigned int n, double x)
 {
-//!# nth probabilists' Hermite polynomial.
+//!# NTH probabilists' Hermite polynomial.
 	double hi      = 0.0;
 	double h0      = 0.0;
 	double h1      = 0.0;
@@ -73,7 +73,7 @@ static MC_TARGET_INLINE double mc_hermite_hen(unsigned int n, double x)
 
 static MC_TARGET_INLINE long double mc_hermite_henl(unsigned int n, long double x)
 {
-//!# nth probabilists' Hermite polynomial.
+//!# NTH probabilists' Hermite polynomial.
 	long double hi = 0.0L;
 	long double h0 = 0.0L;
 	long double h1 = 0.0L;

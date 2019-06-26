@@ -74,7 +74,6 @@
 #	include <macadam/details/math/mc_minmag.h>
 #	include <macadam/details/math/mc_nchoosek.h>
 #	include <macadam/details/math/mc_nthroot.h>
-#	include <macadam/details/math/mc_polyeval.h>
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
@@ -102,6 +101,7 @@
 #	include <macadam/details/math/mc_xlogp1y.h>
 #	include <macadam/details/math/mc_xlogx.h>
 #	include <macadam/details/math/mc_xlogy.h>
+#	include <macadam/details/math/mc_xpolyevaln.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
 
