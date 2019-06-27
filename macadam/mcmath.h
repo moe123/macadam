@@ -218,7 +218,6 @@
  *
  * \param x Cosine of x.
  * \result  Arc cosine of x.
- *
  */
 #	ifndef mcmath_acos
 #	if MC_TARGET_CPP98
@@ -260,7 +259,6 @@ static MC_TARGET_OVERLOADABLE long double mcmath_acos (long double x) { return a
  *
  * \param x Sine of x.
  * \result  Arc sine of x.
- *
  */
 #	ifndef mcmath_asin
 #	if MC_TARGET_CPP98
@@ -2566,30 +2564,30 @@ static MC_TARGET_OVERLOADABLE long double mcmath_scalb (long double x, long doub
 #	define mcmath_scalb(x, y) (x)
 #	endif
 
-#pragma mark - mcmath_ibeta -
+#pragma mark - mcmath_rbeta -
 
-#	ifndef mcmath_ibeta
+#	ifndef mcmath_rbeta
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_ibeta              (const T& a, const T& b, const T& x)                               { mc_cast(void, a); mc_cast(void, b); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_ibeta<float>       (const float& a, const float& b, const float& x)                   { return mc_ibetaf(a, b, x);                                      }
-template <>        MC_TARGET_INLINE double      mcmath_ibeta<double>      (const double& a, const double& b, const double& x)                { return mc_ibeta(a, b, x);                                       }
-template <>        MC_TARGET_INLINE long double mcmath_ibeta<long double> (const long double& a, const long double& b, const long double& x) { return mc_ibetal(a, b, x);                                      }
+template <class T> MC_TARGET_INLINE T           mcmath_rbeta              (const T& a, const T& b, const T& x)                               { mc_cast(void, a); mc_cast(void, b); mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_rbeta<float>       (const float& a, const float& b, const float& x)                   { return mc_rbetaf(a, b, x);                                      }
+template <>        MC_TARGET_INLINE double      mcmath_rbeta<double>      (const double& a, const double& b, const double& x)                { return mc_rbeta(a, b, x);                                       }
+template <>        MC_TARGET_INLINE long double mcmath_rbeta<long double> (const long double& a, const long double& b, const long double& x) { return mc_rbetal(a, b, x);                                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_ibeta (float a, float b, float x)                   { return mc_ibetaf(a, b, x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_ibeta (double a, double b, double x)                { return mc_ibeta(a, b, x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_ibeta (long double a, long double b, long double x) { return mc_ibetal(a, b, x); }
+static MC_TARGET_OVERLOADABLE float       mcmath_rbeta (float a, float b, float x)                   { return mc_rbetaf(a, b, x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_rbeta (double a, double b, double x)                { return mc_rbeta(a, b, x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_rbeta (long double a, long double b, long double x) { return mc_rbetal(a, b, x); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
-#	define mcmath_ibeta(a, b, x) _Generic(a \
-	, float       : mc_ibetaf \
-	, double      : mc_ibeta  \
-	, long double : mc_ibetal \
+#	define mcmath_rbeta(a, b, x) _Generic(a \
+	, float       : mc_rbetaf \
+	, double      : mc_rbeta  \
+	, long double : mc_rbetal \
 ) (a, mc_cast_exp(MC_TARGET_TYPEOF(a), b), mc_cast_exp(MC_TARGET_TYPEOF(a), x))
 #	else
-#	define mcmath_ibeta(a, b, x) \
+#	define mcmath_rbeta(a, b, x) \
 	( \
-		  sizeof(a) == sizeof(float)       ? mc_ibetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
-		: sizeof(a) == sizeof(double)      ? mc_ibeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
-		: sizeof(a) == sizeof(long double) ? mc_ibetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
+		  sizeof(a) == sizeof(float)       ? mc_rbetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
+		: sizeof(a) == sizeof(double)      ? mc_rbeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
+		: sizeof(a) == sizeof(long double) ? mc_rbetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2659,7 +2657,7 @@ static MC_TARGET_OVERLOADABLE long double mcmath_beta (long double x, long doubl
 #	endif
 #	endif
 
-#	define mcmath_betainc(a, b, x) mcmath_ibeta(a, b, x)
+#	define mcmath_betainc(a, b, x) mcmath_rbeta(a, b, x)
 #	define mcmath_betaln(x, y)     mcmath_lbeta(x, y)
 
 #pragma mark - mcmath_xlogy -

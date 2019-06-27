@@ -81,6 +81,17 @@ static MC_TARGET_INLINE long double mc_gamma_pseriesl_approx0(long double a, lon
 
 #pragma mark - mc_igammac -
 
+/*! Computes the non-regularized incomplete gamma upper tail function.
+ *
+ * \brief Computing the non-regularized incomplete gamma upper tail function.
+ *
+ * float mc_igammacf(float a, float z);
+ *
+ * \param a.
+ * \param z.
+ * \result  The non-normalised incomplete gamma upper tail function of a and z.
+ *
+ */
 static MC_TARGET_INLINE float mc_igammacf(float a, float z)
 {
 	if (a > 0.0f && z > 0.0f) {
@@ -101,6 +112,16 @@ static MC_TARGET_INLINE float mc_igammacf(float a, float z)
 	return MCK_NAN;
 }
 
+/*! Computes the non-regularized incomplete gamma upper tail function.
+ *
+ * \brief Computing the non-regularized incomplete gamma upper tail function.
+ *
+ * double mc_igammac(double a, double z);
+ *
+ * \param a.
+ * \param z.
+ * \result  The non-normalised incomplete gamma upper tail function of a and z.
+ */
 static MC_TARGET_INLINE double mc_igammac(double a, double z)
 {
 	if (a > 0.0 && z > 0.0) {
@@ -121,6 +142,16 @@ static MC_TARGET_INLINE double mc_igammac(double a, double z)
 	return MCK_NAN;
 }
 
+/*! Computes the non-regularized incomplete gamma upper tail function.
+ *
+ * \brief Computing the non-regularized incomplete gamma upper tail function.
+ *
+ * long double mc_igammacl(long double a, long double z);
+ *
+ * \param a.
+ * \param z.
+ * \result  The non-normalised incomplete gamma upper tail function of a and z.
+ */
 static MC_TARGET_INLINE long double mc_igammacl(long double a, long double z)
 {
 	if (a > 0.0L && z > 0.0L) {

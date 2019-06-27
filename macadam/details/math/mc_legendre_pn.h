@@ -82,6 +82,23 @@ static MC_TARGET_INLINE long double mc_legendre_p5l(long double x)
 	return 0.125L * (((63.0L * mc_raise5l(x)) - (70.0L * mc_raise3l(x))) + (15.0L * x));
 }
 
+#pragma mark - mc_legendre_p6 -
+
+static MC_TARGET_INLINE float mc_legendre_p6f(float x)
+{
+	return 0.0625f * (((231.0f * mc_raise6f(x)) - (315.0f * mc_raise4f(x)) + (105.0f * mc_raise2f(x))) - 5.0f);
+}
+
+static MC_TARGET_INLINE double mc_legendre_p6(double x)
+{
+	return 0.0625 * (((231.0 * mc_raise6(x)) - (315.0 * mc_raise4(x)) + (105.0 * mc_raise2(x))) - 5.0);
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p6l(long double x)
+{
+	return 0.0625L * (((231.0L * mc_raise6l(x)) - (315.0L * mc_raise4l(x)) + (105.0L * mc_raise2l(x))) - 5.0L);
+}
+
 #pragma mark - mc_legendre_pn -
 
 static MC_TARGET_INLINE float mc_legendre_pnf(unsigned int n, float x)
