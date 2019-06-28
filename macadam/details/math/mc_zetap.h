@@ -792,9 +792,9 @@ static MC_TARGET_INLINE long double mc_zetapscl(long double s, long double sc)
 	}
 #	endif
 #	if MC_TARGET_CPP98
-	n = mc_cast(int, ::ceill(-0.5L * ::logl(MCLIMITS_EPSILONL)));
+	n = mc_cast(int, ::floorl(-0.5L * ::logl(MCLIMITS_EPSILONL)));
 #	else
-	n = mc_cast(int, ceill(-0.5L * logl(MCLIMITS_EPSILONL)));
+	n = mc_cast(int, floorl(-0.5L * logl(MCLIMITS_EPSILONL)));
 #	endif
 	if (n < MCLIMITS_IMAX) {
 #	if MC_TARGET_CPP98
@@ -819,7 +819,7 @@ static MC_TARGET_INLINE long double mc_zetapscl(long double s, long double sc)
 #	endif
 			sum  += (sign * (sumk - nn)) * p;
 			sign *= -1.0L;
-			term *= 2 * n - k;
+			term *= 2.0L * mc_cast(long double, n) - mc_cast(long double, k);
 			term /= k - n + 1;
 			sumk += term;
 		}
