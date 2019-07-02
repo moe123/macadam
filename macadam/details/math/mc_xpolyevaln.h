@@ -19,10 +19,10 @@ static MC_TARGET_INLINE float mc_xpolyevalnef(float x, const float * p, unsigned
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
-	int i, m ;
+	int i, m;
 	float z, s = 0.0f, e;
-	if (n > 0 && n < 128) {
-		m = mc_cast(int, n); 
+	if (n > 0 && n < 256) {
+		m = mc_cast(int, n);
 		s = p[m - 1];
 		if (err != NULL) {
 #	if MC_TARGET_CPP98
@@ -57,10 +57,10 @@ static MC_TARGET_INLINE double mc_xpolyevalne(double x, const double * p, unsign
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
-	int i, m ;
+	int i, m;
 	double z, s = 0.0, e;
-	if (n > 0 && n < 128) {
-		m = mc_cast(int, n); 
+	if (n > 0 && n < 256) {
+		m = mc_cast(int, n);
 		s = p[m - 1];
 		if (err != NULL) {
 #	if MC_TARGET_CPP98
@@ -95,10 +95,10 @@ static MC_TARGET_INLINE long double mc_xpolyevalnel(long double x, const long do
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
-	int i, m ;
+	int i, m;
 	long double z, s = 0.0L, e;
-	if (n > 0 && n < 128) {
-		m = mc_cast(int, n); 
+	if (n > 0 && n < 256) {
+		m = mc_cast(int, n);
 		s = p[m - 1];
 		if (err != NULL) {
 #	if MC_TARGET_CPP98

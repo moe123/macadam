@@ -94,6 +94,7 @@
 #	include <macadam/details/math/mc_sinhcosh.h>
 #	include <macadam/details/math/mc_sinpi.h>
 #	include <macadam/details/math/mc_sqr.h>
+#	include <macadam/details/math/mc_sqrt1pm1.h>
 #	include <macadam/details/math/mc_tanpi.h>
 #	include <macadam/details/math/mc_trigamma.h>
 #	include <macadam/details/math/mc_trigonometry.h>
