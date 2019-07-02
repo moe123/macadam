@@ -54,18 +54,18 @@ static MC_TARGET_INLINE int mc_ulog2(unsigned int x)
 	return x != 0 ? (sizeof(x) * MCLIMITS_CBITS - 1) - MC_TARGET_CLZ(x) : 0;
 }
 
-static MC_TARGET_INLINE long mc_lulog2(unsigned long x)
+static MC_TARGET_INLINE long mc_ullog2(unsigned long x)
 {
 	return x != 0 ? (sizeof(x) * MCLIMITS_CBITS - 1) - MC_TARGET_CLZL(x) : 0;
 }
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE long long mc_llulog2(unsigned long x)
+static MC_TARGET_INLINE long long mc_ulllog2(unsigned long x)
 {
 	return x != 0 ? (sizeof(x) * MCLIMITS_CBITS - 1) - MC_TARGET_CLZLL(x) : 0;
 }
 #	else
-#	define mc_llulog2 mc_lulog2
+#	define mc_ulllog2 mc_ullog2
 #	endif
 
 #endif /* !MC_LOG1M_H */

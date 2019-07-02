@@ -52,6 +52,45 @@ static MC_TARGET_INLINE long long mc_llmin(long long a, long long b)
 #	define mc_llmin mc_lmin
 #	endif
 
+#pragma mark - mc_ubmin -
+
+static MC_TARGET_INLINE unsigned char mc_ubmin(unsigned char a, unsigned char b)
+{
+	return a < b ? a : b;
+}
+
+#pragma mark - mc_usmin -
+
+static MC_TARGET_INLINE unsigned short mc_usmin(unsigned short a, unsigned short b)
+{
+	return a < b ? a : b;
+}
+
+#pragma mark - mc_uimin -
+
+static MC_TARGET_INLINE unsigned int mc_uimin(unsigned int a, unsigned int b)
+{
+	return a < b ? a : b;
+}
+
+#pragma mark - mc_ulmin -
+
+static MC_TARGET_INLINE unsigned long mc_ulmin(unsigned long a, unsigned long b)
+{
+	return a < b ? a : b;
+}
+
+#pragma mark - mc_ullmin -
+
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+static MC_TARGET_INLINE unsigned long long mc_ullmin(unsigned long long a, unsigned long long b)
+{
+	return a < b ? a : b;
+}
+#	else
+#	define mc_ullmin mc_ulmin
+#	endif
+
 #endif /* !MC_MINMAG_H */
 
 /* EOF */

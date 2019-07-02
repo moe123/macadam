@@ -109,43 +109,43 @@ static MC_TARGET_INLINE long long mc_llabs(long long x)
 #	define mc_llabs mc_labs
 #	endif
 
-#pragma mark - mc_uchar_abs -
+#pragma mark - mc_ubabs_ext -
 
-static MC_TARGET_INLINE unsigned char mc_uchar_abs(unsigned char x)
+static MC_TARGET_INLINE unsigned char mc_ubabs_ext(unsigned char x)
 {
 	return x;
 }
 
-#pragma mark - mc_ushort_abs -
+#pragma mark - mc_usabs_ext -
 
-static MC_TARGET_INLINE unsigned short mc_ushort_abs(unsigned short x)
+static MC_TARGET_INLINE unsigned short mc_usabs_ext(unsigned short x)
 {
 	return x;
 }
 
-#pragma mark - mc_uint_abs -
+#pragma mark - mc_uiabs_ext -
 
-static MC_TARGET_INLINE unsigned int mc_uint_abs(unsigned int x)
+static MC_TARGET_INLINE unsigned int mc_uiabs_ext(unsigned int x)
 {
 	return x;
 }
 
-#pragma mark - mc_ulong_abs -
+#pragma mark - mc_ulabs_ext -
 
-static MC_TARGET_INLINE unsigned long mc_ulong_abs(unsigned long x)
+static MC_TARGET_INLINE unsigned long mc_ulabs_ext(unsigned long x)
 {
 	return x;
 }
 
-#pragma mark - mc_ulonglong_abs -
+#pragma mark - mc_ullabs_ext -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE unsigned long long mc_ulonglong_abs(unsigned long long x)
+static MC_TARGET_INLINE unsigned long long mc_ullabs_ext(unsigned long long x)
 {
 	return x;
 }
 #	else
-#	define mc_ulonglong_abs mc_ulong_abs
+#	define mc_ullabs_ext mc_ulabs_ext
 #	endif
 
 #endif /* !MC_ABSMAG_H */

@@ -2078,7 +2078,7 @@ static MC_TARGET_INLINE unsigned int mc_ufactorial(unsigned int x)
 	return MCLIMITS_UIMAX;
 }
 
-static MC_TARGET_INLINE unsigned long mc_lufactorial(unsigned int x)
+static MC_TARGET_INLINE unsigned long mc_ulfactorial(unsigned int x)
 {
 	if (sizeof(unsigned int) < sizeof(unsigned long)) {
 		double y = mc_factorial(x);
@@ -2115,7 +2115,7 @@ static MC_TARGET_INLINE unsigned long mc_lufactorial(unsigned int x)
 }
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE unsigned long long mc_llufactorial(unsigned int x)
+static MC_TARGET_INLINE unsigned long long mc_ullfactorial(unsigned int x)
 {
 	long double y = mc_factoriall(x);
 	if (y < MCLIMITS_MAXL) {
@@ -2134,7 +2134,7 @@ static MC_TARGET_INLINE unsigned long long mc_llufactorial(unsigned int x)
 	return MCLIMITS_ULLMAX;
 }
 #	else
-#	define mc_llufactorial mc_lufactorial
+#	define mc_ullfactorial mc_ulfactorial
 #	endif
 
 #endif /* !MC_FACTORIAL_H */

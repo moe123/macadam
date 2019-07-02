@@ -56,22 +56,22 @@ static MC_TARGET_INLINE unsigned int mc_uexp2m1(unsigned int x)
 	return (1 << x) - 1;
 }
 
-#pragma mark - mc_luexp2m1 -
+#pragma mark - mc_ulexp2m1 -
 
-static MC_TARGET_INLINE unsigned long mc_luexp2m1(unsigned long x)
+static MC_TARGET_INLINE unsigned long mc_ulexp2m1(unsigned long x)
 {
 	return (1 << x) - 1;
 }
 
-#pragma mark - mc_lluexp2m1 -
+#pragma mark - mc_ullexp2m1 -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE unsigned long long mc_lluexp2m1(unsigned long long x)
+static MC_TARGET_INLINE unsigned long long mc_ullexp2m1(unsigned long long x)
 {
 	return (1 << x) - 1;
 }
 #	else
-#	define mc_lluexp2m1 mc_luexp2m1
+#	define mc_ullexp2m1 mc_ulexp2m1
 #	endif
 
 #endif /* !MC_EXP2M1_H */
