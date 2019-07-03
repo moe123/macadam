@@ -108,6 +108,6 @@
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
 
-#endif /* !MACADAM_DETAILS_H */
+#endif /* !MC_MATH_H */
 
 /* EOF */

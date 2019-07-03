@@ -369,6 +369,23 @@
 #	define MC_TARGET_CLZL(x)  __builtin_clzl(x)
 #	define MC_TARGET_CLZLL(x) __builtin_clzll(x)
 
+static MC_TARGET_INLINE char               MC_TARGET_CHAR      (char x)               { return x; }
+static MC_TARGET_INLINE short              MC_TARGET_SHORT     (short x)              { return x; }
+static MC_TARGET_INLINE int                MC_TARGET_INT       (int x)                { return x; }
+static MC_TARGET_INLINE long               MC_TARGET_LONG      (long x)               { return x; }
+static MC_TARGET_INLINE unsigned char      MC_TARGET_UCHAR     (unsigned char x)      { return x; }
+static MC_TARGET_INLINE unsigned short     MC_TARGET_USHORT    (unsigned short x)     { return x; }
+static MC_TARGET_INLINE unsigned int       MC_TARGET_UINT      (unsigned int x)       { return x; }
+static MC_TARGET_INLINE unsigned long      MC_TARGET_ULONG     (unsigned long x)      { return x; }
+
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+static MC_TARGET_INLINE long long          MC_TARGET_LONGLONG  (long long x)          { return x; }
+static MC_TARGET_INLINE unsigned long long MC_TARGET_ULONGLONG (unsigned long long x) { return x; }
+#	else
+#	define MC_TARGET_LONGLONG  MC_TARGET_LONG
+#	define MC_TARGET_ULONGLONG MC_TARGET_ULONG
+#	endif
+
 #endif /* !MC_TARGET_H */
 
 /* EOF */

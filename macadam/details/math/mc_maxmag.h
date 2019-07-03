@@ -13,42 +13,25 @@
 #ifndef MC_MAXMAG_H
 #define MC_MAXMAG_H
 
-#pragma mark - mc_bmax -
+#pragma mark - mc_maxmag -
 
-static MC_TARGET_INLINE signed char mc_bmax(signed char a, signed char b)
-{
-	return a > b ? a : b;
-}
-
-#pragma mark - mc_smax -
-
-static MC_TARGET_INLINE short mc_smax(short a, short b)
-{
-	return a > b ? a : b;
-}
-
-#pragma mark - mc_imax -
-
-static MC_TARGET_INLINE int mc_imax(int a, int b)
-{
-	return a > b ? a : b;
-}
-
-#pragma mark - mc_lmax -
-
-static MC_TARGET_INLINE long mc_lmax(long a, long b){
-	return a > b ? a : b;
-}
-
-#pragma mark - mc_llmax -
-
-#	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE long long mc_llmax(long long a, long long b)
-{
-	return a > b ? a : b;
-}
+#	if defined(__clang__)
+#	pragma clang diagnostic push
+#	pragma clang diagnostic ignored "-Wsign-compare"
+#	define mc_maxmag(a, b) (((a) > (b)) ? (a) : (b))
+#	pragma clang diagnostic pop
+#	elif defined(__GNUC__)
+#	pragma GCC diagnostic push
+#	pragma GCC diagnostic ignored "-Wsign-compare"
+#	define mc_maxmag(a, b) (((a) > (b)) ? (a) : (b))
+#	pragma GCC diagnostic pop
+#	elif defined(_MSC_VER)
+#	pragma warning(push)
+#	pragma warning(disable:4018)
+#	define mc_maxmag(a, b) (((a) > (b)) ? (a) : (b))
+#	pragma warning(pop)
 #	else
-#	define mc_llmax mc_lmax
+#	define mc_maxmag(a, b) (((a) > (b)) ? (a) : (b))
 #	endif
 
 #endif /* !MC_MAXMAG_H */

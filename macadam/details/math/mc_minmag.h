@@ -13,82 +13,25 @@
 #ifndef MC_MINMAG_H
 #define MC_MINMAG_H
 
-#pragma mark - mc_bmin -
+#pragma mark - mc_minmag -
 
-static MC_TARGET_INLINE signed char mc_bmin(signed char a, signed char b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_smin -
-
-static MC_TARGET_INLINE short mc_smin(short a, short b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_imin -
-
-static MC_TARGET_INLINE int mc_imin(int a, int b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_lmin -
-
-static MC_TARGET_INLINE long mc_lmin(long a, long b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_llmin -
-
-#	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE long long mc_llmin(long long a, long long b)
-{
-	return a < b ? a : b;
-}
+#	if defined(__clang__)
+#	pragma clang diagnostic push
+#	pragma clang diagnostic ignored "-Wsign-compare"
+#	define mc_minmag(a, b) (((a) < (b)) ? (a) : (b))
+#	pragma clang diagnostic pop
+#	elif defined(__GNUC__)
+#	pragma GCC diagnostic push
+#	pragma GCC diagnostic ignored "-Wsign-compare"
+#	define mc_minmag(a, b) (((a) < (b)) ? (a) : (b))
+#	pragma GCC diagnostic pop
+#	elif defined(_MSC_VER)
+#	pragma warning(push)
+#	pragma warning(disable:4018)
+#	define mc_minmag(a, b) (((a) < (b)) ? (a) : (b))
+#	pragma warning(pop)
 #	else
-#	define mc_llmin mc_lmin
-#	endif
-
-#pragma mark - mc_ubmin -
-
-static MC_TARGET_INLINE unsigned char mc_ubmin(unsigned char a, unsigned char b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_usmin -
-
-static MC_TARGET_INLINE unsigned short mc_usmin(unsigned short a, unsigned short b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_uimin -
-
-static MC_TARGET_INLINE unsigned int mc_uimin(unsigned int a, unsigned int b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_ulmin -
-
-static MC_TARGET_INLINE unsigned long mc_ulmin(unsigned long a, unsigned long b)
-{
-	return a < b ? a : b;
-}
-
-#pragma mark - mc_ullmin -
-
-#	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE unsigned long long mc_ullmin(unsigned long long a, unsigned long long b)
-{
-	return a < b ? a : b;
-}
-#	else
-#	define mc_ullmin mc_ulmin
+#	define mc_minmag(a, b) (((a) < (b)) ? (a) : (b))
 #	endif
 
 #endif /* !MC_MINMAG_H */

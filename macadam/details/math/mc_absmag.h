@@ -109,43 +109,23 @@ static MC_TARGET_INLINE long long mc_llabs(long long x)
 #	define mc_llabs mc_labs
 #	endif
 
-#pragma mark - mc_ubabs_ext -
-
-static MC_TARGET_INLINE unsigned char mc_ubabs_ext(unsigned char x)
-{
-	return x;
-}
-
-#pragma mark - mc_usabs_ext -
-
-static MC_TARGET_INLINE unsigned short mc_usabs_ext(unsigned short x)
-{
-	return x;
-}
-
-#pragma mark - mc_uiabs_ext -
-
-static MC_TARGET_INLINE unsigned int mc_uiabs_ext(unsigned int x)
-{
-	return x;
-}
-
-#pragma mark - mc_ulabs_ext -
-
-static MC_TARGET_INLINE unsigned long mc_ulabs_ext(unsigned long x)
-{
-	return x;
-}
-
-#pragma mark - mc_ullabs_ext -
-
-#	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE unsigned long long mc_ullabs_ext(unsigned long long x)
-{
-	return x;
-}
+#	if defined(__clang__)
+#	pragma clang diagnostic push
+#	pragma clang diagnostic ignored "-Wsign-compare"
+#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	pragma clang diagnostic pop
+#	elif defined(__GNUC__)
+#	pragma GCC diagnostic push
+#	pragma GCC diagnostic ignored "-Wsign-compare"
+#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	pragma GCC diagnostic pop
+#	elif defined(_MSC_VER)
+#	pragma warning(push)
+#	pragma warning(disable:4018)
+#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	pragma warning(pop)
 #	else
-#	define mc_ullabs_ext mc_ulabs_ext
+#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
 #	endif
 
 #endif /* !MC_ABSMAG_H */
