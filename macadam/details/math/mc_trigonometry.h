@@ -192,27 +192,27 @@ static MC_TARGET_INLINE double mc_cothl(double x)
 static MC_TARGET_INLINE float mc_acscf(float x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0f / ::asinf(x);
+	return ::asinf(1.0f / x);
 #	else
-	return 1.0f / asinf(x);
+	return asinf(1.0f / x);
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_acsc(double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0 / ::asin(x);
+	return ::asin(1.0 / x);
 #	else
-	return 1.0 / asin(x);
+	return asin(1.0 / x);
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_acscl(long double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0L / ::asinl(x);
+	return ::asinl(1.0L / x);
 #	else
-	return 1.0L / asinl(x);
+	return asinl(1.0L / x);
 #	endif
 }
 
@@ -221,27 +221,27 @@ static MC_TARGET_INLINE long double mc_acscl(long double x)
 static MC_TARGET_INLINE float mc_asecf(float x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0f / ::acosf(x);
+	return ::acosf(1.0f / x);
 #	else
-	return 1.0f / acosf(x);
+	return acosf(1.0f / x);
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_asec(double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0 / ::acos(x);
+	return ::acos(1.0 / x);
 #	else
-	return 1.0 / acos(x);
+	return acos(1.0 / x);
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_asecl(long double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0L / ::acosl(x);
+	return ::acosl(1.0L / x);
 #	else
-	return 1.0L / acosl(x);
+	return acosl(1.0L / x);
 #	endif
 }
 
@@ -250,27 +250,27 @@ static MC_TARGET_INLINE long double mc_asecl(long double x)
 static MC_TARGET_INLINE float mc_acotf(float x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0f / ::atan(x);
+	return ::atan(1.0f / x);
 #	else
-	return 1.0f / atan(x);
+	return atan(1.0f / x);
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_acot(double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0 / ::atan(x);
+	return ::atan(1.0 / x);
 #	else
-	return 1.0 / atan(x);
+	return atan(1.0 / x);
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_acotl(long double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0L / ::atan(x);
+	return ::atan(1.0L / x);
 #	else
-	return 1.0L / atan(x);
+	return atan(1.0L / x);
 #	endif
 }
 
@@ -279,27 +279,27 @@ static MC_TARGET_INLINE long double mc_acotl(long double x)
 static MC_TARGET_INLINE float mc_asechf(float x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0f / ::acoshf(x);
+	return ::acoshf(1.0f / x);
 #	else
-	return 1.0f / acoshf(x);
+	return acoshf(1.0f / x);
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_asech(double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0 / ::acosh(x);
+	return ::acosh(1.0 / x);
 #	else
-	return 1.0 / acosh(x);
+	return acosh(1.0 / x);
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_asechl(long double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0L / ::acoshl(x);
+	return ::acoshl(1.0L / x);
 #	else
-	return 1.0L / acoshl(x);
+	return acoshl(1.0L / x);
 #	endif
 }
 
@@ -308,27 +308,27 @@ static MC_TARGET_INLINE long double mc_asechl(long double x)
 static MC_TARGET_INLINE float mc_acschf(float x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0f / ::asinhf(x);
+	return ::asinhf(1.0f / x);
 #	else
-	return 1.0f / asinhf(x);
+	return asinhf(1.0f / x);
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_acsch(double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0 / ::asinh(x);
+	return ::asinh(1.0 / x);
 #	else
-	return 1.0 / asinh(x);
+	return asinh(1.0 / x);
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_acschl(long double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0L / ::asinhl(x);
+	return ::asinhl(1.0L / x);
 #	else
-	return 1.0L / asinhl(x);
+	return asinhl(1.0L / x);
 #	endif
 }
 
@@ -337,27 +337,27 @@ static MC_TARGET_INLINE long double mc_acschl(long double x)
 static MC_TARGET_INLINE float mc_acothf(float x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0f / ::atanhf(x);
+	return ::atanhf(1.0f / x);
 #	else
-	return 1.0f / atanhf(x);
+	return atanhf(1.0f / x);
 #	endif
 }
 
 static MC_TARGET_INLINE double mc_acoth(double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0 / ::atanh(x);
+	return ::atanh(1.0 / x);
 #	else
-	return 1.0 / atanh(x);
+	return atanh( 1.0 / x);
 #	endif
 }
 
 static MC_TARGET_INLINE long double mc_acothl(long double x)
 {
 #	if MC_TARGET_CPP98
-	return 1.0L / ::atanhl(x);
+	return ::atanhl(1.0L / x);
 #	else
-	return 1.0L / atanhl(x);
+	return atanhl(1.0L / x);
 #	endif
 }
 
