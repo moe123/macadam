@@ -30,7 +30,7 @@ static MC_TARGET_INLINE float mc_inverff(float x)
 		d = (((( 0.012229801f * z - 0.329097515f) * z + 1.442710462f) * z - 2.118377725f) * z + 1.0f);
 		w = (x * n) / d;
 	} else if ((::fabsf(x) > 0.7f) && (::fabsf(x) < 1.0f) ) {
-		z = ::sqrtf(-::logf((1.0F - ::fabsf(x)) / 2.0f));
+		z = ::sqrtf(-::logf((1.0f - ::fabsf(x)) / 2.0f));
 		n = ((1.641345311f * z + 3.429567803f) * z - 1.624906493f) * z - 1.970840454f;
 		d = ((1.637067800f * z + 3.543889200f) * z + 1.0f);
 		w = (x < 0 ? -n : n) / d;
@@ -44,7 +44,7 @@ static MC_TARGET_INLINE float mc_inverff(float x)
 		d = (((( 0.012229801f * z - 0.329097515f) * z + 1.442710462f) * z - 2.118377725f) * z + 1.0f);
 		w = (x * n) / d;
 	} else if ((fabsf(x) > 0.7f) && (fabsf(x) < 1.0f) ) {
-		z = sqrtf(-logf((1.0F - fabsf(x)) / 2.0));
+		z = sqrtf(-logf((1.0f - fabsf(x)) / 2.0));
 		n = ((1.641345311f * z + 3.429567803f) * z - 1.624906493f) * z - 1.970840454f;
 		d = ((1.637067800f * z + 3.543889200f) * z + 1.0f);
 		w = (x < 0 ? -n : n) / d;

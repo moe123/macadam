@@ -611,25 +611,25 @@ static MC_TARGET_OVERLOADABLE long double mcmath_tanh (long double x) { return t
 #	ifndef mcmath_exp
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_exp              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_exp<float>       (const float& x)       { return ::expf(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_exp<double>      (const double& x)      { return ::exp(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_exp<long double> (const long double& x) { return ::expl(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_exp<float>       (const float& x)       { return mc_expf(x);          }
+template <>        MC_TARGET_INLINE double      mcmath_exp<double>      (const double& x)      { return mc_exp(x);           }
+template <>        MC_TARGET_INLINE long double mcmath_exp<long double> (const long double& x) { return mc_expl(x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_exp (float x)       { return expf(x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_exp (double x)      { return exp(x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_exp (long double x) { return expl(x); }
+static MC_TARGET_OVERLOADABLE float       mcmath_exp (float x)       { return mc_expf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_exp (double x)      { return mc_exp(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_exp (long double x) { return mc_expl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp(x) _Generic(x \
-	, float       : expf \
-	, double      : exp  \
-	, long double : expl \
+	, float       : mc_expf \
+	, double      : mc_exp  \
+	, long double : mc_expl \
 ) (x)
 #	else
 #	define mcmath_exp(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? expf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? exp  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? expl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_expf (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_exp  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_expl (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -640,25 +640,25 @@ static MC_TARGET_OVERLOADABLE long double mcmath_exp (long double x) { return ex
 #	ifndef mcmath_exp2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_exp2              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_exp2<float>       (const float& x)       { return ::exp2f(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_exp2<double>      (const double& x)      { return ::exp2(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_exp2<long double> (const long double& x) { return ::exp2l(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_exp2<float>       (const float& x)       { return mc_exp2f(x);         }
+template <>        MC_TARGET_INLINE double      mcmath_exp2<double>      (const double& x)      { return mc_exp2(x);          }
+template <>        MC_TARGET_INLINE long double mcmath_exp2<long double> (const long double& x) { return mc_exp2l(x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_exp2 (float x)       { return exp2f(x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_exp2 (double x)      { return exp2(x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_exp2 (long double x) { return exp2l(x); }
+static MC_TARGET_OVERLOADABLE float       mcmath_exp2 (float x)       { return mc_exp2f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_exp2 (double x)      { return mc_exp2(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_exp2 (long double x) { return mc_exp2l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp2(x) _Generic(x \
-	, float       : exp2f \
-	, double      : exp2  \
-	, long double : exp2l \
+	, float       : mc_exp2f \
+	, double      : mc_exp2  \
+	, long double : mc_exp2l \
 ) (x)
 #	else
 #	define mcmath_exp2(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? exp2f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? exp2  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? exp2l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_exp2f (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_exp2  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_exp2l (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -736,25 +736,25 @@ static MC_TARGET_OVERLOADABLE long double mcmath_expm1 (long double x) { return 
 #	ifndef mcmath_log
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log<float>       (const float& x)       { return ::logf(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_log<double>      (const double& x)      { return ::log(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_log<long double> (const long double& x) { return ::logl(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_log<float>       (const float& x)       { return mc_logf(x);          }
+template <>        MC_TARGET_INLINE double      mcmath_log<double>      (const double& x)      { return mc_log(x);           }
+template <>        MC_TARGET_INLINE long double mcmath_log<long double> (const long double& x) { return mc_logl(x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_log (float x)       { return logf(x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_log (double x)      { return log(x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_log (long double x) { return logl(x); }
+static MC_TARGET_OVERLOADABLE float       mcmath_log (float x)       { return mc_logf(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log (double x)      { return mc_log(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log (long double x) { return mc_logl(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log(x) _Generic(x \
-	, float       : logf \
-	, double      : log  \
-	, long double : logl \
+	, float       : mc_logf \
+	, double      : mc_log  \
+	, long double : mc_logl \
 ) (x)
 #	else
 #	define mcmath_log(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? logf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? log  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? logl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_logf (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logl (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -765,25 +765,25 @@ static MC_TARGET_OVERLOADABLE long double mcmath_log (long double x) { return lo
 #	ifndef mcmath_log10
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log10              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log10<float>       (const float& x)       { return ::log10f(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_log10<double>      (const double& x)      { return ::log10(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_log10<long double> (const long double& x) { return ::log10l(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_log10<float>       (const float& x)       { return mc_log10f(x);        }
+template <>        MC_TARGET_INLINE double      mcmath_log10<double>      (const double& x)      { return mc_log10(x);         }
+template <>        MC_TARGET_INLINE long double mcmath_log10<long double> (const long double& x) { return mc_log10l(x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_log10 (float x)       { return log10f(x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_log10 (double x)      { return log10(x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_log10 (long double x) { return log10l(x); }
+static MC_TARGET_OVERLOADABLE float       mcmath_log10 (float x)       { return mc_log10f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log10 (double x)      { return mc_log10(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log10 (long double x) { return mc_log10l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log10(x) _Generic(x \
-	, float       : log10f \
-	, double      : log10  \
-	, long double : log10l \
+	, float       : mc_log10f \
+	, double      : mc_log10  \
+	, long double : mc_log10l \
 ) (x)
 #	else
 #	define mcmath_log10(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? log10f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? log10  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? log10l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log10f (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log10  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log10l (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -794,25 +794,25 @@ static MC_TARGET_OVERLOADABLE long double mcmath_log10 (long double x) { return 
 #	ifndef mcmath_log2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log2              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log2<float>       (const float& x)       { return ::log2f(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_log2<double>      (const double& x)      { return ::log2(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_log2<long double> (const long double& x) { return ::log2l(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_log2<float>       (const float& x)       { return mc_log2f(x);         }
+template <>        MC_TARGET_INLINE double      mcmath_log2<double>      (const double& x)      { return mc_log2(x);          }
+template <>        MC_TARGET_INLINE long double mcmath_log2<long double> (const long double& x) { return mc_log2l(x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_log2 (float x)       { return log2f(x); }
-static MC_TARGET_OVERLOADABLE double      mcmath_log2 (double x)      { return log2(x);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_log2 (long double x) { return log2l(x); }
+static MC_TARGET_OVERLOADABLE float       mcmath_log2 (float x)       { return mc_log2f(x); }
+static MC_TARGET_OVERLOADABLE double      mcmath_log2 (double x)      { return mc_log2(x);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_log2 (long double x) { return mc_log2l(x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log2(x) _Generic(x \
-	, float       : log2f \
-	, double      : log2  \
-	, long double : log2l \
+	, float       : mc_log2f \
+	, double      : mc_log2  \
+	, long double : mc_log2l \
 ) (x)
 #	else
 #	define mcmath_log2(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? log2f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? log2  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? log2l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log2f (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log2  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log2l (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif

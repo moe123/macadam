@@ -29,9 +29,9 @@ static MC_TARGET_INLINE double mc_log2(double x)
 {
 	const double y = x * MCK_K(MCK_1_LOG2);
 #	if MC_TARGET_CPP98
-	return ::logf(y);
+	return ::log(y);
 #	else
-	return logf(y);
+	return log(y);
 #	endif
 }
 
