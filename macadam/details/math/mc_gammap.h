@@ -20,33 +20,18 @@ static MC_TARGET_INLINE float mc_gammapf(float a, float z)
 		if (z <=  0.0f) {
 			return 0.0f;
 		}
-#	if MC_TARGET_CPP98
-		const float y = a * ::logf(z) - z;
+		const float y = a * mc_logf(z) - z;
 		if (y >= -FLT_MAX_10_EXP) {
 			if (z < a + 1.0f) {
 				const float w = y - mc_lgammaf(a);
-				p             = mc_gamma_pseriesf_approx0(a, z) * ::expf(w);
+				p             = mc_gamma_pseriesf_approx0(a, z) * mc_expf(w);
 			} else {
 				const float w = y - mc_lgammaf(a);
-				p             = 1.0f - mc_gamma_cfracf_approx0(a, z) * ::expf(w);
+				p             = 1.0f - mc_gamma_cfracf_approx0(a, z) * mc_expf(w);
 			}
 		} else {
 			p = 0.0f;
 		}
-#	else
-		const float y = a * logf(z) - z;
-		if (y >= -FLT_MAX_10_EXP) {
-			if (z < a + 1.0f) {
-				const float w = y - mc_lgammaf(a);
-				p             = mc_gamma_pseriesf_approx0(a, z) * expf(w);
-			} else {
-				const float w = y - mc_lgammaf(a);
-				p             = 1.0f - mc_gamma_cfracf_approx0(a, z) * expf(w);
-			}
-		} else {
-			p = 0.0f;
-		}
-#	endif
 	}
 	return p;
 }
@@ -58,33 +43,18 @@ static MC_TARGET_INLINE double mc_gammap(double a, double z)
 		if (z <=  0.0) {
 			return 0.0;
 		}
-#	if MC_TARGET_CPP98
-		const double y = a * ::log(z) - z;
+		const double y = a * mc_log(z) - z;
 		if (y >= -DBL_MAX_10_EXP) {
 			if (z < a + 1.0) {
 				const double w = y - mc_lgamma(a);
-				p              = mc_gamma_pseries_approx0(a, z) * ::exp(w);
+				p              = mc_gamma_pseries_approx0(a, z) * mc_exp(w);
 			} else {
 				const double w = y - mc_lgamma(a);
-				p              = 1.0 - mc_gamma_cfrac_approx0(a, z) * ::exp(w);
+				p              = 1.0 - mc_gamma_cfrac_approx0(a, z) * mc_exp(w);
 			}
 		} else {
 			p = 0.0;
 		}
-#	else
-		const double y = a * log(z) - z;
-		if (y >= -DBL_MAX_10_EXP) {
-			if (z < a + 1.0) {
-				const double w = y - mc_lgamma(a);
-				p              = mc_gamma_pseries_approx0(a, z) * exp(w);
-			} else {
-				const double w = y - mc_lgamma(a);
-				p              = 1.0 - mc_gamma_cfrac_approx0(a, z) * exp(w);
-			}
-		} else {
-			p = 0.0;
-		}
-#	endif
 	}
 	return p;
 }
@@ -96,33 +66,18 @@ static MC_TARGET_INLINE long double mc_gammapl(long double a, long double z)
 		if (z <=  0.0L) {
 			return 0.0L;
 		}
-#	if MC_TARGET_CPP98
-		const long double y = a * ::logl(z) - z;
+		const long double y = a * mc_logl(z) - z;
 		if (y >= -LDBL_MAX_10_EXP) {
 			if (z < a + 1.0L) {
 				const long double w = y - mc_lgammal(a);
-				p                   = mc_gamma_pseriesl_approx0(a, z) * ::expl(w);
+				p                   = mc_gamma_pseriesl_approx0(a, z) * mc_expl(w);
 			} else {
 				const long double w = y - mc_lgammal(a);
-				p                   = 1.0L - mc_gamma_cfracl_approx0(a, z) * ::expl(w);
+				p                   = 1.0L - mc_gamma_cfracl_approx0(a, z) * mc_expl(w);
 			}
 		} else {
 			p = 0.0L;
 		}
-#	else
-		const long double y = a * logl(z) - z;
-		if (y >= -LDBL_MAX_10_EXP) {
-			if (z < a + 1.0L) {
-				const long double w = y - mc_lgammal(a);
-				p                   = mc_gamma_pseriesl_approx0(a, z) * expl(w);
-			} else {
-				const long double w = y - mc_lgammal(a);
-				p                   = 1.0L - mc_gamma_cfracl_approx0(a, z) * expl(w);
-			}
-		} else {
-			p = 0.0L;
-		}
-#	endif
 	}
 	return p;
 }

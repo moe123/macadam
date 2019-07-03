@@ -6,6 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_lbeta.h>
 
 #ifndef MC_BETA_H
@@ -16,73 +18,40 @@
 static MC_TARGET_INLINE
 float mc_betaf(float x, float y)
 {
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isnan(y)) {
+	if (mc_isnan(x) || mc_isnan(y)) {
 		return MCK_NAN;
 	}
 	const float lb = mc_lbetaf(x, y);
-	if (::isnan(lb)) {
+	if (mc_isnan(lb)) {
 		return MCK_NAN;
 	}
-	return ::expf(lb);
-#	else
-	if (isnan(x) || isnan(y)) {
-		return MCK_NAN;
-	}
-	const float lb = mc_lbetaf(x, y);
-	if (isnan(lb)) {
-		return MCK_NAN;
-	}
-	return expf(lb);
-#	endif
+	return mc_expf(lb);
 }
 
 static MC_TARGET_INLINE
 double mc_beta(double x, double y)
 {
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isnan(y)) {
+	if (mc_isnan(x) || mc_isnan(y)) {
 		return MCK_NAN;
 	}
 	const double lb = mc_lbeta(x, y);
-	if (::isnan(lb)) {
+	if (mc_isnan(lb)) {
 		return MCK_NAN;
 	}
-	return ::exp(lb);
-#	else
-	if (isnan(x) || isnan(y)) {
-		return MCK_NAN;
-	}
-	const double lb = mc_lbeta(x, y);
-	if (isnan(lb)) {
-		return MCK_NAN;
-	}
-	return exp(lb);
-#	endif
+	return mc_exp(lb);
 }
 
 static MC_TARGET_INLINE
 long double mc_betal(long double x, long double y)
 {
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isnan(y)) {
+	if (mc_isnan(x) || mc_isnan(y)) {
 		return MCK_NAN;
 	}
 	const long double lb = mc_lbetal(x, y);
-	if (::isnan(lb)) {
+	if (mc_isnan(lb)) {
 		return MCK_NAN;
 	}
-	return ::expl(lb);
-#	else
-	if (isnan(x) || isnan(y)) {
-		return MCK_NAN;
-	}
-	const long double lb = mc_lbetal(x, y);
-	if (isnan(lb)) {
-		return MCK_NAN;
-	}
-	return expl(lb);
-#	endif
+	return mc_expl(lb);
 }
 
 #endif /* !MC_BETA_H */

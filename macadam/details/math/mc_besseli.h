@@ -6,6 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_BESSELI_H
@@ -163,11 +165,7 @@ static MC_TARGET_INLINE float mc_besseli0f_approx1(float x)
 		a1 = +2.41E-9f;  a2 = +0.06745f; a3 = +0.05471f; a4 = +0.5686f;
 		b1 = +1.144f;    b2 = +0.995f;   b3 = +0.5686f;  b4 = +0.946f;
 	}
-#	if MC_TARGET_CPP98
-	return (a1 * ::expf(x * b1) + a2 * ::expf(x * b2) + a3 * ::expf(x * b3) + a4 * ::expf(x * b4));
-#	else
-	return (a1 * expf(x * b1) + a2 * expf(x * b2) + a3 * expf(x * b3) + a4 * expf(x * b4));
-#	endif
+	return (a1 * mc_expf(x * b1) + a2 * mc_expf(x * b2) + a3 * mc_expf(x * b3) + a4 * mc_expf(x * b4));
 }
 
 #pragma mark - mc_besseli0_approx1 -
@@ -190,11 +188,7 @@ static MC_TARGET_INLINE double mc_besseli0_approx1(double x)
 		a1 = +2.41E-9;  a2 = +0.06745; a3 = +0.05471; a4 = +0.5686;
 		b1 = +1.144;    b2 = +0.995;   b3 = +0.5686;  b4 = +0.946;
 	}
-#	if MC_TARGET_CPP98
-	return (a1 * ::exp(x * b1) + a2 * ::exp(x * b2) + a3 * ::exp(x * b3) + a4 * ::exp(x * b4));
-#	else
-	return (a1 * exp(x * b1) + a2 * exp(x * b2) + a3 * exp(x * b3) + a4 * exp(x * b4));
-#	endif
+	return (a1 * mc_exp(x * b1) + a2 * mc_exp(x * b2) + a3 * mc_exp(x * b3) + a4 * mc_exp(x * b4));
 }
 
 static MC_TARGET_INLINE long double mc_besseli0l_approx1(long double x)
@@ -215,11 +209,7 @@ static MC_TARGET_INLINE long double mc_besseli0l_approx1(long double x)
 		a1 = +2.41E-9L;  a2 = +0.06745L; a3 = +0.05471L; a4 = +0.5686L;
 		b1 = +1.144L;    b2 = +0.995L;   b3 = +0.5686L;  b4 = +0.946L;
 	}
-#	if MC_TARGET_CPP98
-	return (a1 * ::expl(x * b1) + a2 * ::expl(x * b2) + a3 * ::expl(x * b3) + a4 * ::expl(x * b4));
-#	else
-	return (a1 * expl(x * b1) + a2 * expl(x * b2) + a3 * expl(x * b3) + a4 * expl(x * b4));
-#	endif
+	return (a1 * mc_expl(x * b1) + a2 * mc_expl(x * b2) + a3 * mc_expl(x * b3) + a4 * mc_expl(x * b4));
 }
 
 #pragma mark - mc_besseli1_approx1 -
@@ -242,11 +232,7 @@ static MC_TARGET_INLINE float mc_besseli1f_approx1(float x)
 		a1 = +2.41E-9f;  a2 = +0.06745f; a3 = +0.05471f; a4 = +0.5686f;
 		b1 = +1.144f;    b2 = +0.995f;   b3 = +0.5686f;  b4 = +0.946f;
 	}
-#	if MC_TARGET_CPP98
-	return (a1 * b1 * ::expf(x * b1) + a2 * b2 * ::expf(x * b2) + a3 * b3 + ::expf(x * b3) + a4 * b4 * ::expf(x * b4));
-#	else
-	return (a1 * b1 * expf(x * b1) + a2 * b2 * expf(x * b2) + a3 * b3 + expf(x * b3) + a4 * b4 * expf(x * b4));
-#	endif
+	return (a1 * b1 * mc_expf(x * b1) + a2 * b2 * mc_expf(x * b2) + a3 * b3 + mc_expf(x * b3) + a4 * b4 * mc_expf(x * b4));
 }
 
 static MC_TARGET_INLINE double mc_besseli1_approx1(double x)
@@ -267,11 +253,7 @@ static MC_TARGET_INLINE double mc_besseli1_approx1(double x)
 		a1 = +2.41E-9;  a2 = +0.06745; a3 = +0.05471; a4 = +0.5686;
 		b1 = +1.144;    b2 = +0.995;   b3 = +0.5686;  b4 = +0.946;
 	}
-#	if MC_TARGET_CPP98
-	return (a1 * b1 * ::exp(x * b1) + a2 * b2 * ::exp(x * b2) + a3 * b3 + ::exp(x * b3) + a4 * b4 * ::exp(x * b4));
-#	else
-	return (a1 * b1 * exp(x * b1) + a2 * b2 * exp(x * b2) + a3 * b3 + exp(x * b3) + a4 * b4 * exp(x * b4));
-#	endif
+	return (a1 * b1 * mc_exp(x * b1) + a2 * b2 * mc_exp(x * b2) + a3 * b3 + mc_exp(x * b3) + a4 * b4 * mc_exp(x * b4));
 }
 
 static MC_TARGET_INLINE long double mc_besseli1l_approx1(long double x)
@@ -292,11 +274,7 @@ static MC_TARGET_INLINE long double mc_besseli1l_approx1(long double x)
 		a1 = +2.41E-9L;  a2 = +0.06745L; a3 = +0.05471L; a4 = +0.5686L;
 		b1 = +1.144L;    b2 = +0.995L;   b3 = +0.5686L;  b4 = +0.946L;
 	}
-#	if MC_TARGET_CPP98
-	return (a1 * b1 * ::expl(x * b1) + a2 * b2 * ::expl(x * b2) + a3 * b3 + ::expl(x * b3) + a4 * b4 * ::expl(x * b4));
-#	else
-	return (a1 * b1 * expl(x * b1) + a2 * b2 * expl(x * b2) + a3 * b3 + expl(x * b3) + a4 * b4 * expl(x * b4));
-#	endif
+	return (a1 * b1 * mc_expl(x * b1) + a2 * b2 * mc_expl(x * b2) + a3 * b3 + mc_expl(x * b3) + a4 * b4 * mc_expl(x * b4));
 }
 
 #pragma mark - mc_besselin_approx1 -

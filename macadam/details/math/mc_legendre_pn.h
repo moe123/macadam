@@ -6,6 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_raise3.h>
 #include <macadam/details/math/mc_raise4.h>
@@ -108,15 +110,9 @@ static MC_TARGET_INLINE float mc_legendre_pnf(unsigned int n, float x)
 	float p0       = 0.0f;
 	float p1       = 0.0f;
 	unsigned int i = 2;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
 	if (x == 1.0f || x == -1.0f) {
 		p1 = 1.0f;
 		if ((x < 0.0f) && ((n % 2) != 0)) {
@@ -149,15 +145,9 @@ static MC_TARGET_INLINE double mc_legendre_pn(unsigned int n, double x)
 	double p0      = 0.0;
 	double p1      = 0.0;
 	unsigned int i = 2;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
 	if (x == 1.0 || x == -1.0) {
 		p1 = 1.0;
 		if ((x < 0.0) && ((n % 2) != 0)) {
@@ -190,15 +180,9 @@ static MC_TARGET_INLINE long double mc_legendre_pnl(unsigned int n, long double 
 	long double p0 = 0.0L;
 	long double p1 = 0.0L;
 	unsigned int i = 2;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
 	if (x == 1.0L || x == -1.0L) {
 		p1 = 1.0L;
 		if ((x < 0.0L) && ((n % 2) != 0)) {

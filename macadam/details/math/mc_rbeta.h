@@ -6,6 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_isnan.h>
+#include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_lbeta.h>
 
 #ifndef MC_RBETA_H
@@ -29,15 +32,9 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 	unsigned int i = 0, j;
 	float g, k, w, f = 1.0f, c = 1.0f, d = 0.0f;
 //#! NAN input results in NAN output.
-#	if MC_TARGET_CPP98
-	if (::isnan(a) || ::isnan(b) || ::isnan(x)) {
+	if (mc_isnan(a) || mc_isnan(b) || mc_isnan(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(a) || isnan(b) || isnan(x)) {
-		return MCK_NAN;
-	}
-#	endif
 //#! x is out of bounds hence infinity is returned.
 	if (x < 0.0f || x > 1.0f) {
 		return x < 0.0f ? -MCK_INF : MCK_INF;
@@ -47,13 +44,8 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 		return (1.0f - mc_rbetaf(b, a, 1.0f - x));
 	}
 //#! Computing delta-gamma + front integral.
-#	if MC_TARGET_CPP98
 	g = mc_lbetaf(a, b);
-	k = ::expf(::logf(x) * a + ::logf(1.0f - x) * b - g) / a;
-#	else
-	g = mc_lbetaf(a, b);
-	k = expf(logf(x) * a + logf(1.0f - x) * b - g) / a;
-#	endif
+	k = mc_expf(mc_logf(x) * a + mc_logf(1.0f - x) * b - g) / a;
 //#! Reducing, converging.
 	for (; i < 256; ++i) {
 		j = i / 2;
@@ -66,40 +58,20 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 			w = -((a + j) * (a + b + j) * x) / ((a + 2.0f * j) * (a + 2.0f * j + 1));
 		}
 		d = 1.0f + w * d;
-#	if MC_TARGET_CPP98
-		if (::fabsf(d) < 1.0E-15f) {
+		if (mc_fabsf(d) < 1.0E-15f) {
 		//#! Clipping to absolute min.
 			d = 1.0E-15f;
 		}
-#	else
-		if (fabsf(d) < 1.0E-15f) {
-		//#! Clipping to absolute min.
-			d = 1.0E-15f;
-		}
-#	endif
 		d = 1.0f / d;
 		c = 1.0f + w / c;
-#	if MC_TARGET_CPP98
-		if (::fabsf(c) < 1.0E-15f) {
+		if (mc_fabsf(c) < 1.0E-15f) {
 		//#! Clipping to absolute min.
 			c = 1.0E-15f;
 		}
-#	else
-		if (fabsf(c) < 1.0E-15f) {
-		//#! Clipping to absolute min.
-			c = 1.0E-15f;
-		}
-#	endif
 		f *= (c * d);
-#	if MC_TARGET_CPP98
-		if (::fabsf(1.0f - (c * d)) < 1.0E-5f) {
+		if (mc_fabsf(1.0f - (c * d)) < 1.0E-5f) {
 			return k * (f - 1.0f);
 		}
-#	else
-		if (fabsf(1.0f - (c * d)) < 1.0E-5f) {
-			return k * (f - 1.0f);
-		}
-#	endif
 	}
 //#! Unable to reduce, returning towards infinity.
 	return MCK_INF;
@@ -121,15 +93,9 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 	unsigned int i = 0, j;
 	double g, k, w, f = 1.0, c = 1.0, d = 0.0;
 //#! NAN input results in NAN output.
-#	if MC_TARGET_CPP98
-	if (::isnan(a) || ::isnan(b) || ::isnan(x)) {
+	if (mc_isnan(a) || mc_isnan(b) || mc_isnan(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(a) || isnan(b) || isnan(x)) {
-		return MCK_NAN;
-	}
-#	endif
 //#! x is out of bounds hence infinity is returned.
 	if (x < 0.0 || x > 1.0) {
 		return x < 0.0 ? -MCK_INF : MCK_INF;
@@ -139,13 +105,8 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 		return (1.0 - mc_rbeta(b, a, 1.0 - x));
 	}
 //#! Computing delta-gamma + front integral.
-#	if MC_TARGET_CPP98
 	g = mc_lbeta(a, b);
-	k = ::exp(::log(x) * a + ::log(1.0 - x) * b - g) / a;
-#	else
-	g = mc_lbeta(a, b);
-	k = exp(log(x) * a + log(1.0 - x) * b - g) / a;
-#	endif
+	k = mc_exp(mc_log(x) * a + mc_log(1.0 - x) * b - g) / a;
 //#! Reducing, converging.
 	for (; i < 256; ++i) {
 		j = i / 2;
@@ -158,40 +119,20 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 			w = -((a + j) * (a + b + j) * x) / ((a + 2.0 * j) * (a + 2.0 * j + 1));
 		}
 		d = 1.0 + w * d;
-#	if MC_TARGET_CPP98
-		if (::fabs(d) < 1.0E-30) {
+		if (mc_fabs(d) < 1.0E-30) {
 		//#! Clipping to absolute min.
 			d = 1.0E-30;
 		}
-#	else
-		if (fabs(d) < 1.0E-30) {
-		//#! Clipping to absolute min.
-			d = 1.0E-30;
-		}
-#	endif
 		d = 1.0 / d;
 		c = 1.0 + w / c;
-#	if MC_TARGET_CPP98
-		if (::fabs(c) < 1.0E-30) {
+		if (mc_fabs(c) < 1.0E-30) {
 		//#! Clipping to absolute min.
 			c = 1.0E-30;
 		}
-#	else
-		if (fabs(c) < 1.0E-30) {
-		//#! Clipping to absolute min.
-			c = 1.0E-30;
-		}
-#	endif
 		f *= (c * d);
-#	if MC_TARGET_CPP98
-		if (::fabs(1.0 - (c * d)) < 1.0E-8) {
+		if (mc_fabs(1.0 - (c * d)) < 1.0E-8) {
 			return k * (f - 1.0);
 		}
-#	else
-		if (fabs(1.0 - (c * d)) < 1.0E-8) {
-			return k * (f - 1.0);
-		}
-#	endif
 	}
 //#! Unable to reduce, returning towards infinity.
 	return MCK_INF;
@@ -213,15 +154,9 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 	unsigned int i = 0, j;
 	long double g, k, w, f = 1.0L, c = 1.0L, d = 0.0L;
 //#! NAN input results in NAN output.
-#	if MC_TARGET_CPP98
-	if (::isnan(a) || ::isnan(b) || ::isnan(x)) {
+	if (mc_isnan(a) || mc_isnan(b) || mc_isnan(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(a) || isnan(b) || isnan(x)) {
-		return MCK_NAN;
-	}
-#	endif
 //#! x is out of bounds hence infinity is returned.
 	if (x < 0.0L || x > 1.0L) {
 		return x < 0.0L ? -MCK_INF : MCK_INF;
@@ -231,13 +166,8 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 		return (1.0L - mc_rbetal(b, a, 1.0L - x));
 	}
 //#! Computing delta-gamma + front integral.
-#	if MC_TARGET_CPP98
-	g = mc_lbetal(a, b);
-	k = ::expl(::logl(x) * a + ::logl(1.0L - x) * b - g) / a;
-#	else
 	g = mc_lbeta(a, b);
-	k = expl(logl(x) * a + logl(1.0L - x) * b - g) / a;
-#	endif
+	k = mc_expl(mc_logl(x) * a + mc_logl(1.0L - x) * b - g) / a;
 //#! Reducing, converging.
 	for (; i < 256; ++i) {
 		j = i / 2;
@@ -250,40 +180,20 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 			w = -((a + j) * (a + b + j) * x) / ((a + 2.0L * j) * (a + 2.0L * j + 1));
 		}
 		d = 1.0L + w * d;
-#	if MC_TARGET_CPP98
-		if (::fabsl(d) < 1.0E-30L) {
+		if (mc_fabsl(d) < 1.0E-30L) {
 		//#! Clipping to absolute min.
 			d = 1.0E-30L;
 		}
-#	else
-		if (fabsl(d) < 1.0E-30L) {
-		//#! Clipping to absolute min.
-			d = 1.0E-30L;
-		}
-#	endif
 		d = 1.0L / d;
 		c = 1.0L + w / c;
-#	if MC_TARGET_CPP98
-		if (::fabsl(c) < 1.0E-30L) {
+		if (mc_fabsl(c) < 1.0E-30L) {
 		//#! Clipping to absolute min.
 			c = 1.0E-30L;
 		}
-#	else
-		if (fabsl(c) < 1.0E-30L) {
-		//#! Clipping to absolute min.
-			c = 1.0E-30L;
-		}
-#	endif
 		f *= (c * d);
-#	if MC_TARGET_CPP98
-		if (::fabsl(1.0L - (c * d)) < 1.0E-8L) {
+		if (mc_fabsl(1.0L - (c * d)) < 1.0E-8L) {
 			return k * (f - 1.0L);
 		}
-#	else
-		if (fabsl(1.0L - (c * d)) < 1.0E-8L) {
-			return k * (f - 1.0L);
-		}
-#	endif
 	}
 //#! Unable to reduce, returning towards infinity.
 	return MCK_INF;

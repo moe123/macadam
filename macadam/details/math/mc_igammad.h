@@ -6,6 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_gamma.h>
 
 #ifndef MC_IGAMMAD_H
@@ -22,33 +25,18 @@ static MC_TARGET_INLINE float mc_gamma_cfracf_approx0(float a, float z)
 	c2 = 1.0f / e3;
 	c3 = 1.0f / c1;
 	c5 = c3;
-#	if MC_TARGET_CPP98
 	do {
 		c0  = k * (a - k);
 		c1 += 2.0f;
 		c3  = c0 * c3 + c1;
-		c3  = ::fabsf(c3) < e3 ? e3 : c3;
+		c3  = mc_fabsf(c3) < e3 ? e3 : c3;
 		c2  = c1 + c0 / c2;
-		c2  = ::fabsf(c2) < e3 ? e3 : c2;
+		c2  = mc_fabsf(c2) < e3 ? e3 : c2;
 		c3  = 1.0f / c3;
 		c4  = c3 * c2;
 		c5 *= c4;
 		k  += 1.0f;
-	} while (::fabsf(c4 - 1.0f) > e1);
-#	else
-	do {
-		c0  = k * (a - k);
-		c1 += 2.0f;
-		c3  = c0 * c3 + c1;
-		c3  = fabsf(c3) < e3 ? e3 : c3;
-		c2  = c1 + c0 / c2;
-		c2  = fabsf(c2) < e3 ? e3 : c2;
-		c3  = 1.0f / c3;
-		c4  = c3 * c2;
-		c5 *= c4;
-		k  += 1.0f;
-	} while (fabsf(c4 - 1.0f) > e1);
-#	endif
+	} while (mc_fabsf(c4 - 1.0f) > e1);
 	return c5;
 }
 
@@ -61,33 +49,18 @@ static MC_TARGET_INLINE double mc_gamma_cfrac_approx0(double a, double z)
 	c2 = 1.0 / e3;
 	c3 = 1.0 / c1;
 	c5 = c3;
-#	if MC_TARGET_CPP98
 	do {
 		c0  = k * (a - k);
 		c1 += 2.0;
 		c3  = c0 * c3 + c1;
-		c3  = ::fabs(c3) < e3 ? e3 : c3;
+		c3  = mc_fabs(c3) < e3 ? e3 : c3;
 		c2  = c1 + c0 / c2;
-		c2  = ::fabs(c2) < e3 ? e3 : c2;
+		c2  = mc_fabs(c2) < e3 ? e3 : c2;
 		c3  = 1.0 / c3;
 		c4  = c3 * c2;
 		c5 *= c4;
 		k  += 1.0;
-	} while (::fabs(c4 - 1.0) > e1);
-#	else
-	do {
-		c0  = k * (a - k);
-		c1 += 2.0;
-		c3  = c0 * c3 + c1;
-		c3  = fabs(c3) < e3 ? e3 : c3;
-		c2  = c1 + c0 / c2;
-		c2  = fabs(c2) < e3 ? e3 : c2;
-		c3  = 1.0 / c3;
-		c4  = c3 * c2;
-		c5 *= c4;
-		k  += 1.0;
-	} while (fabs(c4 - 1.0) > e1);
-#	endif
+	} while (mc_fabs(c4 - 1.0) > e1);
 	return c5;
 }
 
@@ -100,33 +73,18 @@ static MC_TARGET_INLINE long double mc_gamma_cfracl_approx0(long double a, long 
 	c2 = 1.0L / e3;
 	c3 = 1.0L / c1;
 	c5 = c3;
-#	if MC_TARGET_CPP98
 	do {
 		c0  = k * (a - k);
 		c1 += 2.0L;
 		c3  = c0 * c3 + c1;
-		c3  = ::fabsl(c3) < e3 ? e3 : c3;
+		c3  = mc_fabsl(c3) < e3 ? e3 : c3;
 		c2  = c1 + c0 / c2;
-		c2  = ::fabsl(c2) < e3 ? e3 : c2;
+		c2  = mc_fabsl(c2) < e3 ? e3 : c2;
 		c3  = 1.0L / c3;
 		c4  = c3 * c2;
 		c5 *= c4;
 		k  += 1.0L;
-	} while (::fabsl(c4 - 1.0L) > e1);
-#	else
-	do {
-		c0  = k * (a - k);
-		c1 += 2.0L;
-		c3  = c0 * c3 + c1;
-		c3  = fabsl(c3) < e3 ? e3 : c3;
-		c2  = c1 + c0 / c2;
-		c2  = fabsl(c2) < e3 ? e3 : c2;
-		c3  = 1.0L / c3;
-		c4  = c3 * c2;
-		c5 *= c4;
-		k  += 1.0L;
-	} while (fabsl(c4 - 1.0L) > e1);
-#	endif
+	} while (mc_fabsl(c4 - 1.0L) > e1);
 	return c5;
 }
 
@@ -145,19 +103,11 @@ static MC_TARGET_INLINE long double mc_gamma_cfracl_approx0(long double a, long 
 static MC_TARGET_INLINE float mc_igammadf(float a, float z)
 {
 	if (a > 0.0f && z > 0.0f) {
-#	if MC_TARGET_CPP98
-		const float w = a * ::logf(z) - z;
+		const float w = a * mc_logf(z) - z;
 		if (w < -FLT_MAX_10_EXP) {
 			return 0.0f;
 		}
-		return mc_gamma_cfracf_approx0(a, z) * ::expf(w);
-#	else
-		const float w = a * logf(z) - z;
-		if (w < -FLT_MAX_10_EXP) {
-			return 0.0f;
-		}
-		return mc_gamma_cfracf_approx0(a, z) * expf(w);
-#	endif
+		return mc_gamma_cfracf_approx0(a, z) * mc_expf(w);
 	}
 	return MCK_NAN;
 }
@@ -175,19 +125,11 @@ static MC_TARGET_INLINE float mc_igammadf(float a, float z)
 static MC_TARGET_INLINE double mc_igammad(double a, double z)
 {
 	if (a > 0.0 && z > 0.0) {
-#	if MC_TARGET_CPP98
-		const double w = a * ::log(z) - z;
+		const double w = a * mc_log(z) - z;
 		if (w < -DBL_MAX_10_EXP) {
 			return 0.0;
 		}
-		return mc_gamma_cfrac_approx0(a, z) * ::exp(w);
-#	else
-		const double w = a * log(z) - z;
-		if (w < -DBL_MAX_10_EXP) {
-			return 0.0;
-		}
-		return mc_gamma_cfrac_approx0(a, z) * exp(w);
-#	endif
+		return mc_gamma_cfrac_approx0(a, z) * mc_exp(w);
 	}
 	return MCK_NAN;
 }
@@ -205,19 +147,11 @@ static MC_TARGET_INLINE double mc_igammad(double a, double z)
 static MC_TARGET_INLINE long double mc_igammadl(long double a, long double z)
 {
 	if (a > 0.0L && z > 0.0L) {
-#	if MC_TARGET_CPP98
-		const long double w = a * ::logl(z) - z;
+		const long double w = a * mc_logl(z) - z;
 		if (w < -LDBL_MAX_10_EXP) {
 			return 0.0L;
 		}
-		return mc_gamma_cfracl_approx0(a, z) * ::expl(w);
-#	else
-		const long double w = a * logl(z) - z;
-		if (w < -LDBL_MAX_10_EXP) {
-			return 0.0L;
-		}
-		return mc_gamma_cfracl_approx0(a, z) * expl(w);
-#	endif
+		return mc_gamma_cfracl_approx0(a, z) * mc_expl(w);
 	}
 	return MCK_NAN;
 }

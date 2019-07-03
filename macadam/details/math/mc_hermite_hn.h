@@ -6,6 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_raise3.h>
 #include <macadam/details/math/mc_raise4.h>
@@ -144,15 +146,9 @@ static MC_TARGET_INLINE float mc_hermite_hnf(unsigned int n, float x)
 	float h0       = 0.0f;
 	float h1       = 0.0f;
 	unsigned int i = 2;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
 	if (n >= 1 && n < MCLIMITS_IMAX) {
 		h0 = 1.0f;
 		h1 = 2.0f * x;
@@ -172,15 +168,9 @@ static MC_TARGET_INLINE double mc_hermite_hn(unsigned int n, double x)
 	double h0      = 0.0;
 	double h1      = 0.0;
 	unsigned int i = 2;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
 	if (n >= 1 && n < MCLIMITS_IMAX) {
 		h0 = 1.0;
 		h1 = 2.0 * x;
@@ -200,15 +190,9 @@ static MC_TARGET_INLINE long double mc_hermite_hnl(unsigned int n, long double x
 	long double h0 = 0.0L;
 	long double h1 = 0.0L;
 	unsigned int i = 2;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
 	if (n >= 1 && n < MCLIMITS_IMAX) {
 		h0 = 1.0L;
 		h1 = 2.0L * x;
