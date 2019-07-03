@@ -8,8 +8,8 @@
 
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_gamma.h>
+#include <macadam/details/math/mc_log.h>
 
 #ifndef MC_IGAMMAD_H
 #define MC_IGAMMAD_H

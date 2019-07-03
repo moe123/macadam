@@ -51,7 +51,7 @@ static MC_TARGET_INLINE double mc_hermite_h2(double x)
 	return (4.0 * mc_raise2(x)) - 2.0;
 }
 
-static MC_TARGET_INLINE double mc_hermite_h2l(double x)
+static MC_TARGET_INLINE long double mc_hermite_h2l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 2.
 	return (4.0L * mc_raise2l(x)) - 2.0L;
@@ -71,7 +71,7 @@ static MC_TARGET_INLINE double mc_hermite_h3(double x)
 	return (8.0 * mc_raise3(x)) - (12.0 * x);
 }
 
-static MC_TARGET_INLINE double mc_hermite_h3l(double x)
+static MC_TARGET_INLINE long double mc_hermite_h3l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 3.
 	return (8.0L * mc_raise3l(x)) - (12.0L * x);
@@ -91,7 +91,7 @@ static MC_TARGET_INLINE double mc_hermite_h4(double x)
 	return (16.0 * mc_raise4(x)) - (48.0 * mc_raise2(x)) + 12.0;
 }
 
-static MC_TARGET_INLINE double mc_hermite_h4l(double x)
+static MC_TARGET_INLINE long double mc_hermite_h4l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 4.
 	return (16.0L * mc_raise4l(x)) - (48.0L * mc_raise2l(x)) + 12.0L;
@@ -111,7 +111,7 @@ static MC_TARGET_INLINE double mc_hermite_h5(double x)
 	return (120.0 * x) - (160.0 * mc_raise3(x)) + (32.0 * mc_raise5(x));
 }
 
-static MC_TARGET_INLINE double mc_hermite_h5l(double x)
+static MC_TARGET_INLINE long double mc_hermite_h5l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 5.
 	return (120.0L * x) - (160.0L * mc_raise3l(x)) + (32.0L * mc_raise5l(x));
@@ -131,7 +131,7 @@ static MC_TARGET_INLINE double mc_hermite_h6(double x)
 	return (64.0 * mc_raise6(x)) - (480.0 * mc_raise4(x)) + (720.0 * mc_raise2(x)) - 120.0;
 }
 
-static MC_TARGET_INLINE double mc_hermite_h6l(double x)
+static MC_TARGET_INLINE long double mc_hermite_h6l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 6.
 	return (64.0L * mc_raise6l(x)) - (480.0L * mc_raise4l(x)) + (720.0L * mc_raise2l(x)) - 120.0L;

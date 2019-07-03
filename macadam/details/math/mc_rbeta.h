@@ -8,8 +8,8 @@
 
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_isnan.h>
-#include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_lbeta.h>
+#include <macadam/details/math/mc_log.h>
 
 #ifndef MC_RBETA_H
 #define MC_RBETA_H

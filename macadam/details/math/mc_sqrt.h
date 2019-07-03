@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_sqrt(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_sqrtl(double x)
+static MC_TARGET_INLINE long double mc_sqrtl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrtl(x);

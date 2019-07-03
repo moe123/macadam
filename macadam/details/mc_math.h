@@ -82,6 +82,7 @@
 #	include <macadam/details/math/mc_minmag.h>
 #	include <macadam/details/math/mc_nchoosek.h>
 #	include <macadam/details/math/mc_nthroot.h>
+#	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
@@ -106,6 +107,7 @@
 #	include <macadam/details/math/mc_tanpi.h>
 #	include <macadam/details/math/mc_trigamma.h>
 #	include <macadam/details/math/mc_trigonometry.h>
+#	include <macadam/details/math/mc_trunc.h>
 #	include <macadam/details/math/mc_xlog1px.h>
 #	include <macadam/details/math/mc_xlog1py.h>
 #	include <macadam/details/math/mc_xlogp1x.h>

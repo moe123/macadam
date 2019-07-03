@@ -6,9 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_ABSSQRT_H
 #define MC_ABSSQRT_H
@@ -17,29 +16,17 @@
 
 static MC_TARGET_INLINE float mc_abssqrtf(float x)
 {
-#	if MC_TARGET_CPP98
-	return ::sqrtf(::fabsf(x));
-#	else
-	return sqrtf(fabsf(x));
-#	endif
+	return mc_sqrtf(mc_fabsf(x));
 }
 
 static MC_TARGET_INLINE double mc_abssqrt(double x)
 {
-#	if MC_TARGET_CPP98
-	return ::sqrt(::fabs(x));
-#	else
-	return sqrt(fabs(x));
-#	endif
+	return mc_sqrt(mc_fabs(x));
 }
 
 static MC_TARGET_INLINE long double mc_abssqrtl(long double x)
 {
-#	if MC_TARGET_CPP98
-	return ::sqrtl(::fabsl(x));
-#	else
-	return sqrtl(fabsl(x));
-#	endif
+	return mc_sqrtl(mc_fabsl(x));
 }
 
 #endif /* !MC_ABSRSQRT_H */

@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_sqrt.h>
 #include <macadam/mcconsts.h>
 #include <macadam/mclimits.h>
 
@@ -17,29 +17,17 @@
 
 static MC_TARGET_INLINE float mc_hypotcf(float x, float y, float z)
 {
-#	if MC_TARGET_CPP98
-	return ::sqrtf((x * x) + (y * y) + (z * z));
-# else
-	return sqrtf((x * x) + (y * y) + (z * z));
-#	endif
+	return mc_sqrtf((x * x) + (y * y) + (z * z));
 }
 
 static MC_TARGET_INLINE double mc_hypotc(double x, double y, double z)
 {
-#	if MC_TARGET_CPP98
-	return ::sqrt((x * x) + (y * y) + (z * z));
-# else
-	return sqrt((x * x) + (y * y) + (z * z));
-#	endif
+	return mc_sqrt((x * x) + (y * y) + (z * z));
 }
 
 static MC_TARGET_INLINE double mc_hypotcl(long double x, long double y, long double z)
 {
-#	if MC_TARGET_CPP98
-	return ::sqrtl((x * x) + (y * y) + (z * z));
-# else
-	return sqrtl((x * x) + (y * y) + (z * z));
-#	endif
+	return mc_sqrtl((x * x) + (y * y) + (z * z));
 }
 
 #endif /* !MC_HYPOTC_H */

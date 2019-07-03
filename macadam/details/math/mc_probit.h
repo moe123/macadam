@@ -6,9 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_inverf.h>
 #include <macadam/details/math/mc_isfinite.h>
 #include <macadam/details/math/mc_isnan.h>
-#include <macadam/details/math/mc_inverf.h>
 
 #ifndef MC_PROBIT_H
 #define MC_PROBIT_H

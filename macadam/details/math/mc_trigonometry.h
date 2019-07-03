@@ -178,7 +178,7 @@ static MC_TARGET_INLINE double mc_coth(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_cothl(double x)
+static MC_TARGET_INLINE long double mc_cothl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return 1.0L / ::tanhl(x);

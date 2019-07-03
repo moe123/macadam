@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_pow.h>
 #include <macadam/mcconsts.h>
 #include <macadam/mclimits.h>
 
@@ -17,47 +17,26 @@
 
 static MC_TARGET_INLINE float mc_fhrtf(float x)
 {
-#	if MC_TARGET_CPP98
 	if (x < 0.0f || x == -0.0f) {
-		return -(::powf(-x, 0.25f));
+		return -mc_powf(-x, 0.25f);
 	}
-	return ::powf(x, 0.25f);
-#	else
-	if (x < 0.0f || x == -0.0f) {
-		return -powf(-x, 0.25f);
-	}
-	return powf(x, 0.25f);
-#	endif
+	return mc_powf(x, 0.25f);
 }
 
 static MC_TARGET_INLINE double mc_fhrt(double x)
 {
-#	if MC_TARGET_CPP98
 	if (x < 0.0 || x == -0.0) {
-		return -(::pow(-x, 0.25));
+		return -mc_pow(-x, 0.25);
 	}
-	return ::pow(x, 0.25);
-#	else
-	if (x < 0.0 || x == -0.0) {
-		return -pow(-x, 0.25);
-	}
-	return pow(x, 0.25);
-#	endif
+	return mc_pow(x, 0.25);
 }
 
 static MC_TARGET_INLINE long double mc_fhrtl(long double x)
 {
-#	if MC_TARGET_CPP98
 	if (x < 0.0L || x == -0.0L) {
-		return -(::powl(-x, 0.25L));
+		return -mc_powl(-x, 0.25L);
 	}
-	return ::powl(x, 0.25L);
-#	else
-	if (x < 0.0L || x == -0.0L) {
-		return -powl(-x, 0.25L);
-	}
-	return powl(x, 0.25L);
-#	endif
+	return mc_powl(x, 0.25L);
 }
 
 #endif /* !MC_FHRT_H */

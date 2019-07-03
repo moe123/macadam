@@ -6,7 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_floor.h>
 #include <macadam/details/math/mc_gamma.h>
+#include <macadam/details/math/mc_isfinite.h>
+#include <macadam/details/math/mc_isnan.h>
 
 #ifndef MC_FACTORIAL_H
 #define MC_FACTORIAL_H
@@ -61,15 +64,9 @@ static MC_TARGET_INLINE float mc_factorialf(unsigned int x)
 			return factorial_table[x];
 		}
 		y = mc_gammaf(mc_cast(float, x) + 1.0f);
-#	if MC_TARGET_CPP98
-		if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAXF) {
+		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXF) {
 			return y;
 		}
-#	else
-		if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAXF) {
-			return y;
-		}
-#	endif
 		y = MCLIMITS_MAXF;
 	}
 	return y;
@@ -259,15 +256,9 @@ static MC_TARGET_INLINE double mc_factorial(unsigned int x)
 			return factorial_table[x];
 		}
 		y = mc_gamma(mc_cast(double, x) + 1.0);
-#	if MC_TARGET_CPP98
-		if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAX) {
+		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAX) {
 			return y;
 		}
-#	else
-		if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAX) {
-			return y;
-		}
-#	endif
 		y = MCLIMITS_MAX;
 	}
 	return y;
@@ -2042,15 +2033,9 @@ static MC_TARGET_INLINE long double mc_factoriall(unsigned int x)
 			return factorial_table[x];
 		}
 		y = mc_gammal(mc_cast(long double, x) + 1.0L);
-#	if MC_TARGET_CPP98
-		if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAXL) {
+		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXL) {
 			return y;
 		}
-#	else
-		if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAXL) {
-			return y;
-		}
-#	endif
 		y = MCLIMITS_MAXL;
 	}
 #	else
@@ -2063,17 +2048,10 @@ static MC_TARGET_INLINE unsigned int mc_ufactorial(unsigned int x)
 {
 	float y = mc_factorialf(x);
 	if (y < MCLIMITS_MAXF) {
-#	if MC_TARGET_CPP98
-		y = ::floorf(y + 0.5f);
-		if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAXF) {
+		y = mc_floorf(y + 0.5f);
+		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXF) {
 			return mc_cast(unsigned int, y);
 		}
-#	else
-		y = floorf(y + 0.5f);
-		if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAXF) {
-			return mc_cast(unsigned int, y);
-		}
-#	endif
 	}
 	return MCLIMITS_UIMAX;
 }
@@ -2083,32 +2061,18 @@ static MC_TARGET_INLINE unsigned long mc_ulfactorial(unsigned int x)
 	if (sizeof(unsigned int) < sizeof(unsigned long)) {
 		double y = mc_factorial(x);
 		if (y < MCLIMITS_MAX) {
-#	if MC_TARGET_CPP98
-			y = ::floor(y + 0.5);
-			if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAX) {
+			y = mc_floor(y + 0.5);
+			if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAX) {
 				return mc_cast(unsigned long, y);
 			}
-#	else
-			y = floor(y + 0.5);
-			if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAX) {
-				return mc_cast(unsigned long, y);
-			}
-#	endif
 		}
 	} else {
 		float y = mc_factorialf(x);
 		if (y < MCLIMITS_MAXF) {
-#	if MC_TARGET_CPP98
-			y = ::floorf(y + 0.5f);
-			if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAXF) {
+			y = mc_floorf(y + 0.5f);
+			if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXF) {
 				return mc_cast(unsigned long, y);
 			}
-#	else
-			y = floorf(y + 0.5f);
-			if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAXF) {
-				return mc_cast(unsigned long, y);
-			}
-#	endif
 		}
 	}
 	return MCLIMITS_ULMAX;
@@ -2119,17 +2083,10 @@ static MC_TARGET_INLINE unsigned long long mc_ullfactorial(unsigned int x)
 {
 	long double y = mc_factoriall(x);
 	if (y < MCLIMITS_MAXL) {
-#	if MC_TARGET_CPP98
-		y = ::floorl(y + 0.5L);
-		if (!::isnan(y) && ::isfinite(y) && y < MCLIMITS_MAXL) {
+		y = mc_floorl(y + 0.5L);
+		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXL) {
 			return mc_cast(unsigned long long, y);
 		}
-#	else
-		y = floorl(y + 0.5L);
-		if (!isnan(y) && isfinite(y) && y < MCLIMITS_MAXL) {
-			return mc_cast(unsigned long long, y);
-		}
-#	endif
 	}
 	return MCLIMITS_ULLMAX;
 }
