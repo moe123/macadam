@@ -29,15 +29,16 @@
 #	include <macadam/details/math/mc_digamma.h>
 #	include <macadam/details/math/mc_eta.h>
 #	include <macadam/details/math/mc_exp.h>
-#	include <macadam/details/math/mc_exp2.h>
-#	include <macadam/details/math/mc_exp2m1.h>
 #	include <macadam/details/math/mc_exp10.h>
 #	include <macadam/details/math/mc_exp10m1.h>
+#	include <macadam/details/math/mc_exp2.h>
+#	include <macadam/details/math/mc_exp2m1.h>
 #	include <macadam/details/math/mc_expit.h>
 #	include <macadam/details/math/mc_fabs.h>
 #	include <macadam/details/math/mc_factorial.h>
 #	include <macadam/details/math/mc_fhrt.h>
 #	include <macadam/details/math/mc_floor.h>
+#	include <macadam/details/math/mc_fmod.h>
 #	include <macadam/details/math/mc_gamma.h>
 #	include <macadam/details/math/mc_gammap.h>
 #	include <macadam/details/math/mc_gammaq.h>
@@ -59,6 +60,7 @@
 #	include <macadam/details/math/mc_lbeta.h>
 #	include <macadam/details/math/mc_lchoose.h>
 #	include <macadam/details/math/mc_lcm.h>
+#	include <macadam/details/math/mc_ldexp.h>
 #	include <macadam/details/math/mc_legendre_pn.h>
 #	include <macadam/details/math/mc_legendre_qn.h>
 #	include <macadam/details/math/mc_lerp.h>

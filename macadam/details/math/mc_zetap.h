@@ -6,7 +6,16 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_exp2.h>
+#include <macadam/details/math/mc_floor.h>
+#include <macadam/details/math/mc_fmod.h>
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
+#include <macadam/details/math/mc_ldexp.h>
+#include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_powm1.h>
+#include <macadam/details/math/mc_trunc.h>
 #include <macadam/details/math/mc_xpolyevaln.h>
 
 #ifndef MC_ZETAP_H
@@ -18,12 +27,11 @@ static MC_TARGET_INLINE float mc_rzetapf_approx0(float x)
 {
 	float z = 0, k = 1;
 	unsigned int i = 1;
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return MCK_NAN;
-	} else if (::isinf(x)) {
+	} else if (mc_isinf(x)) {
 		return 1.0f;
-	} else if (x < 0 && ::fmodf(x, 2.0f) == 0) {
+	} else if (x < 0 && mc_fmodf(x, 2.0f) == 0) {
 		return 0.0f;
 	} else if (x == -1) {
 		return -MCK_1_12;
@@ -36,31 +44,8 @@ static MC_TARGET_INLINE float mc_rzetapf_approx0(float x)
 	} else if (x == 4) {
 		return MCK_PI4_90;
 	}
-#	else
-	if (isnan(x)) {
-		return MCK_NAN;
-	} else if (isinf(x)) {
-		return 1.0f;
-	} else if (x < 0 && fmodf(x, 2.0f) == 0) {
-		return 0.0f;
-	} else if (x == -1) {
-		return -MCK_1_12;
-	} else if (x == 0) {
-		return -MCK_1_2;
-	} else if (x == 1) {
-		return MCK_INF;
-	} else if (x == 2) {
-		return MCK_PI2_6;
-	} else if (x == 4) {
-		return MCK_PI4_90;
-	}
-#	endif
 	do {
-#	if MC_TARGET_CPP98
-		k = (1.0f / ::powf(mc_cast(float, i), x)); z += k; i++;
-#	else
-		k = (1.0f / powf(mc_cast(float, i), x)); z += k; i++;
-#	endif
+		k = (1.0f / mc_powf(mc_cast(float, i), x)); z += k; i++;
 	} while (k > 1E-10f);
 	return z;
 }
@@ -69,12 +54,11 @@ static MC_TARGET_INLINE double mc_rzetap_approx0(double x)
 {
 	double z = 0, k = 1;
 	unsigned int i = 1;
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return MCK_NAN;
-	} else if (::isinf(x)) {
+	} else if (mc_isinf(x)) {
 		return 1.0;
-	} else if (x < 0 && ::fmod(x, 2.0) == 0) {
+	} else if (x < 0 && mc_fmod(x, 2.0) == 0) {
 		return 0.0;
 	} else if (x == -1) {
 		return -MCK_1_12;
@@ -87,31 +71,8 @@ static MC_TARGET_INLINE double mc_rzetap_approx0(double x)
 	} else if (x == 4) {
 		return MCK_PI4_90;
 	}
-#	else
-	if (isnan(x)) {
-		return MCK_NAN;
-	} else if (isinf(x)) {
-		return 1.0;
-	} else if (x < 0 && fmod(x, 2.0) == 0) {
-		return 0.0;
-	} else if (x == -1) {
-		return -MCK_1_12;
-	} else if (x == 0) {
-		return -MCK_1_2;
-	} else if (x == 1) {
-		return MCK_INF;
-	} else if (x == 2) {
-		return MCK_PI2_6;
-	} else if (x == 4) {
-		return MCK_PI4_90;
-	}
-#	endif
 	do {
-#	if MC_TARGET_CPP98
-		k = (1.0 / ::pow(mc_cast(double, i), x)); z += k; i++;
-#	else
-		k = (1.0 / pow(mc_cast(double, i), x)); z += k; i++;
-#	endif
+		k = (1.0 / mc_pow(mc_cast(double, i), x)); z += k; i++;
 	} while (k > 1E-10);
 	return z;
 }
@@ -120,12 +81,11 @@ static MC_TARGET_INLINE long double mc_rzetapl_approx0(long double x)
 {
 	long double z = 0, k = 1;
 	unsigned int i = 1;
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return MCK_NAN;
-	} else if (::isinf(x)) {
+	} else if (mc_isinf(x)) {
 		return 1.0L;
-	} else if (x < 0 && ::fmodl(x, 2.0L) == 0) {
+	} else if (x < 0 && mc_fmodl(x, 2.0L) == 0) {
 		return 0.0L;
 	} else if (x == -1) {
 		return -MCK_1_12;
@@ -138,31 +98,8 @@ static MC_TARGET_INLINE long double mc_rzetapl_approx0(long double x)
 	} else if (x == 4) {
 		return MCK_PI4_90;
 	}
-#	else
-	if (isnan(x)) {
-		return MCK_NAN;
-	} else if (isinf(x)) {
-		return 1.0L;
-	} else if (x < 0 && fmodl(x, 2.0L) == 0) {
-		return 0.0L;
-	} else if (x == -1) {
-		return -MCK_1_12;
-	} else if (x == 0) {
-		return -MCK_1_2;
-	} else if (x == 1) {
-		return MCK_INF;
-	} else if (x == 2) {
-		return MCK_PI2_6;
-	} else if (x == 4) {
-		return MCK_PI4_90;
-	}
-#	endif
 	do {
-#	if MC_TARGET_CPP98
-		k = (1.0L / ::powl(mc_cast(long double, i), x)); z += k; i++;
-#	else
-		k = (1.0L / powl(mc_cast(long double, i), x)); z += k; i++;
-#	endif
+		k = (1.0L / mc_powl(mc_cast(long double, i), x)); z += k; i++;
 	} while (k > 1E-10);
 	return z;
 }
@@ -171,12 +108,11 @@ static MC_TARGET_INLINE long double mc_rzetapl_approx0(long double x)
 
 static MC_TARGET_INLINE float mc_rzetapf_approx1(float x)
 {
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return MCK_NAN;
-	} else if (::isinf(x)) {
+	} else if (mc_isinf(x)) {
 		return 1;
-	} else if (x < 0 && ::fmodf(x, 2) == 0) {
+	} else if (x < 0 && mc_fmodf(x, 2) == 0) {
 		return 0;
 	} else if (x == -1) {
 		return -MCK_1_12;
@@ -189,40 +125,16 @@ static MC_TARGET_INLINE float mc_rzetapf_approx1(float x)
 	} else if (x == 4) {
 		return MCK_PI4_90;
 	}
-#	else
-	if (isnan(x)) {
-		return MCK_NAN;
-	} else if (isinf(x)) {
-		return 1;
-	} else if (x < 0 && fmodf(x, 2) == 0) {
-		return 0;
-	} else if (x == -1) {
-		return -MCK_1_12;
-	} else if (x == 0) {
-		return -MCK_1_2;
-	} else if (x == 1) {
-		return MCK_INF;
-	} else if (x == 2) {
-		return MCK_PI2_6;
-	} else if (x == 4) {
-		return MCK_PI4_90;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-		return 1.0f + (((x + 3.0f) / (x - 1.0f)) * (1.0f / ::powf(2.0f, x + 1.0f)));
-#	else
-		return 1.0f + (((x + 3.0f) / (x - 1.0f)) * (1.0f / powf(2.0f, x + 1.0f)));
-#	endif
+	return 1.0f + (((x + 3.0f) / (x - 1.0f)) * (1.0f / mc_powf(2.0f, x + 1.0f)));
 }
 
 static MC_TARGET_INLINE double mc_rzetap_approx1(double x)
 {
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return MCK_NAN;
-	} else if (::isinf(x)) {
+	} else if (mc_isinf(x)) {
 		return 1;
-	} else if (x < 0 && ::fmod(x, 2) == 0) {
+	} else if (x < 0 && mc_fmod(x, 2) == 0) {
 		return 0;
 	} else if (x == -1) {
 		return -MCK_1_12;
@@ -235,40 +147,16 @@ static MC_TARGET_INLINE double mc_rzetap_approx1(double x)
 	} else if (x == 4) {
 		return MCK_PI4_90;
 	}
-#	else
-	if (isnan(x)) {
-		return MCK_NAN;
-	} else if (isinf(x)) {
-		return 1;
-	} else if (x < 0 && fmod(x, 2) == 0) {
-		return 0;
-	} else if (x == -1) {
-		return -MCK_1_12;
-	} else if (x == 0) {
-		return -MCK_1_2;
-	} else if (x == 1) {
-		return MCK_INF;
-	} else if (x == 2) {
-		return MCK_PI2_6;
-	} else if (x == 4) {
-		return MCK_PI4_90;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-	return 1.0 + (((x + 3.0) / (x - 1.0)) * (1.0 / ::pow(2.0, x + 1.0)));
-#	else
-	return 1.0 + (((x + 3.0) / (x - 1.0)) * (1.0 / pow(2.0, x + 1.0)));
-#	endif
+	return 1.0 + (((x + 3.0) / (x - 1.0)) * (1.0 / mc_pow(2.0, x + 1.0)));
 }
 
 static MC_TARGET_INLINE long double mc_rzetapl_approx1(long double x)
 {
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return MCK_NAN;
-	} else if (::isinf(x)) {
+	} else if (mc_isinf(x)) {
 		return 1;
-	} else if (x < 0 && ::fmodl(x, 2) == 0) {
+	} else if (x < 0 && mc_fmodl(x, 2) == 0) {
 		return 0;
 	} else if (x == -1) {
 		return -MCK_1_12;
@@ -281,30 +169,7 @@ static MC_TARGET_INLINE long double mc_rzetapl_approx1(long double x)
 	} else if (x == 4) {
 		return MCK_PI4_90;
 	}
-#	else
-	if (isnan(x)) {
-		return MCK_NAN;
-	} else if (isinf(x)) {
-		return 1;
-	} else if (x < 0 && fmodl(x, 2) == 0) {
-		return 0;
-	} else if (x == -1) {
-		return -MCK_1_12;
-	} else if (x == 0) {
-		return -MCK_1_2;
-	} else if (x == 1) {
-		return MCK_INF;
-	} else if (x == 2) {
-		return MCK_PI2_6;
-	} else if (x == 4) {
-		return MCK_PI4_90;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-	return 1.0L + (((x + 3.0L) / (x - 1.0L)) * (1.0L / ::powl(2.0L, x + 1.0L)));
-#	else
-	return 1.0L + (((x + 3.0L) / (x - 1.0L)) * (1.0L / powl(2.0L, x + 1.0L)));
-#	endif
+	return 1.0L + (((x + 3.0L) / (x - 1.0L)) * (1.0L / mc_powl(2.0L, x + 1.0L)));
 }
 
 #pragma mark - mc_zetapsc -
@@ -443,99 +308,51 @@ static MC_TARGET_INLINE float mc_zetapscf(float s, float sc)
 		, +0.26458401742124508029400000000000000000E-18f
 	};
 
-#	if MC_TARGET_CPP98
-	if (::isnan(s) || ::isnan(sc)) {
+	if (mc_isnan(s) || mc_isnan(sc)) {
 		return MCK_NAN;
-	} else if (::isinf(s) || ::isinf(sc)) {
+	} else if (mc_isinf(s) || mc_isinf(sc)) {
 		return MCK_INF;
 	}
 	if (s < 1.0f) {
 		const float c0 = 1.24339294433593750000000000000000000000E+00f;
 		const float p1 = mc_xpolyeval6f(sc, P1[0], P1[1], P1[2], P1[3], P1[4], P1[5]);
 		const float q1 = mc_xpolyeval7f(sc, Q1[0], Q1[1], Q1[2], Q1[3], Q1[4], Q1[5], Q1[6]);
-		y               = p1 / q1 - c0;
-		r               = (y + sc) / sc;
+		y              = p1 / q1 - c0;
+		r              = (y + sc) / sc;
 	} else if (s <= 2.0f) {
 		s               = -sc;
 		const float p2 = mc_xpolyeval6f(s, P2[0], P2[1], P2[2], P2[3], P2[4], P2[5]);
 		const float q2 = mc_xpolyeval7f(s, Q2[0], Q2[1], Q2[2], Q2[3], Q2[4], Q2[5], Q2[6]);
-		y               = p2 / q2;
-		r               = y - 1.0f / sc;
+		y              = p2 / q2;
+		r              = y - 1.0f / sc;
 	} else if (s <= 4.0f) {
 		const float c1 = 6.98659896850585937500000000000000000000E-01f;
 		const float p4 = mc_xpolyeval7f(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
 		const float q4 = mc_xpolyeval8f(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
-		s               = s - 2.0f;
-		y               = p4 / q4 + c1;
-		r               = y - 1.0f / sc;
+		s              = s - 2.0f;
+		y              = p4 / q4 + c1;
+		r              = y - 1.0f / sc;
 	} else if (s <= 7.0f) {
 		s               = s - 4.0f;
 		const float p7 = mc_xpolyeval8f(s, P7[0], P7[1], P7[2], P7[3], P7[4], P7[5], P7[6], P7[7]);
 		const float q7 = mc_xpolyeval9f(s, Q7[0], Q7[1], Q7[2], Q7[3], Q7[4], Q7[5], Q7[6], Q7[7], Q7[8]);
-		y               = p7 / q7;
-		r               = 1.0f + ::exp(y);
+		y              = p7 / q7;
+		r              = 1.0f + mc_expf(y);
 	} else if (s < 15.0f) {
 		s                = s - 7.0f;
 		const float p15 = mc_xpolyeval9f(s, P15[0], P15[1], P15[2], P15[3], P15[4], P15[5], P15[6], P15[7], P15[8]);
 		const float q15 = mc_xpolyeval9f(s, Q15[0], Q15[1], Q15[2], Q15[3], Q15[4], Q15[5], Q15[6], Q15[7], Q15[8]);
-		y                = p15 / q15;
-		r                = 1.0f + ::exp(y);
+		y               = p15 / q15;
+		r               = 1.0f + mc_expf(y);
 	} else if (s < 42.0f) {
 		s                = s - 15.0f;
 		const float p42 = mc_xpolyeval9f(s, P42[0], P42[1], P42[2], P42[3], P42[4], P42[5], P42[6], P42[7], P42[8]);
 		const float q42 = mc_xpolyeval10f(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
-		y                = p42 / q42;
-		r                = 1.0f + ::exp(y);
+		y               = p42 / q42;
+		r               = 1.0f + mc_expf(y);
 	} else if (s < 63.0f) {
-		r = 1.0f + ::exp2(-s);
+		r = 1.0f + mc_exp2f(-s);
 	}
-#	else
-	if (isnan(s) || isnan(sc)) {
-		return MCK_NAN;
-	} else if (isinf(s) || isinf(sc)) {
-		return MCK_INF;
-	}
-	if (s < 1.0f) {
-		const float c0 = 1.24339294433593750000000000000000000000E+00f;
-		const float p1 = mc_xpolyeval6f(sc, P1[0], P1[1], P1[2], P1[3], P1[4], P1[5]);
-		const float q1 = mc_xpolyeval7f(sc, Q1[0], Q1[1], Q1[2], Q1[3], Q1[4], Q1[5], Q1[6]);
-		y               = p1 / q1 - c0;
-		r               = (y + sc) / sc;
-	} else if (s <= 2.0f) {
-		s               = -sc;
-		const float p2 = mc_xpolyeval6f(s, P2[0], P2[1], P2[2], P2[3], P2[4], P2[5]);
-		const float q2 = mc_xpolyeval7f(s, Q2[0], Q2[1], Q2[2], Q2[3], Q2[4], Q2[5], Q2[6]);
-		y               = p2 / q2;
-		r               = y - 1.0f / sc;
-	} else if (s <= 4.0f) {
-		const float c1 = 6.98659896850585937500000000000000000000E-01f;
-		const float p4 = mc_xpolyeval7f(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
-		const float q4 = mc_xpolyeval8f(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
-		s               = s - 2.0f;
-		y               = p4 / q4 + c1;
-		r               = y - 1.0f / sc;
-	} else if (s <= 7.0f) {
-		s               = s - 4.0f;
-		const float p7 = mc_xpolyeval8f(s, P7[0], P7[1], P7[2], P7[3], P7[4], P7[5], P7[6], P7[7]);
-		const float q7 = mc_xpolyeval9f(s, Q7[0], Q7[1], Q7[2], Q7[3], Q7[4], Q7[5], Q7[6], Q7[7], Q7[8]);
-		y               = p7 / q7;
-		r               = 1.0f + exp(y);
-	} else if (s < 15.0f) {
-		s                = s - 7.0f;
-		const float p15 = mc_xpolyeval9f(s, P15[0], P15[1], P15[2], P15[3], P15[4], P15[5], P15[6], P15[7], P15[8]);
-		const float q15 = mc_xpolyeval9f(s, Q15[0], Q15[1], Q15[2], Q15[3], Q15[4], Q15[5], Q15[6], Q15[7], Q15[8]);
-		y                = p15 / q15;
-		r                = 1.0f + exp(y);
-	} else if (s < 42.0f) {
-		s                = s - 15.0f;
-		const float p42 = mc_xpolyeval9f(s, P42[0], P42[1], P42[2], P42[3], P42[4], P42[5], P42[6], P42[7], P42[8]);
-		const float q42 = mc_xpolyeval10f(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
-		y                = p42 / q42;
-		r                = 1.0f + exp(y);
-	} else if (s < 63.0f) {
-		r = 1.0f + exp2(-s);
-	}
-#	endif
 	return r;
 }
 
@@ -673,10 +490,9 @@ static MC_TARGET_INLINE double mc_zetapsc(double s, double sc)
 		, +0.2645840174212450802940000000000000000000E-18
 	};
 
-#	if MC_TARGET_CPP98
-	if (::isnan(s) || ::isnan(sc)) {
+	if (mc_isnan(s) || mc_isnan(sc)) {
 		return MCK_NAN;
-	} else if (::isinf(s) || ::isinf(sc)) {
+	} else if (mc_isinf(s) || mc_isinf(sc)) {
 		return MCK_INF;
 	}
 	if (s < 1.0) {
@@ -703,69 +519,22 @@ static MC_TARGET_INLINE double mc_zetapsc(double s, double sc)
 		const double p7 = mc_xpolyeval8(s, P7[0], P7[1], P7[2], P7[3], P7[4], P7[5], P7[6], P7[7]);
 		const double q7 = mc_xpolyeval9(s, Q7[0], Q7[1], Q7[2], Q7[3], Q7[4], Q7[5], Q7[6], Q7[7], Q7[8]);
 		y               = p7 / q7;
-		r               = 1.0 + ::exp(y);
+		r               = 1.0 + mc_exp(y);
 	} else if (s < 15.0) {
 		s                = s - 7.0;
 		const double p15 = mc_xpolyeval9(s, P15[0], P15[1], P15[2], P15[3], P15[4], P15[5], P15[6], P15[7], P15[8]);
 		const double q15 = mc_xpolyeval9(s, Q15[0], Q15[1], Q15[2], Q15[3], Q15[4], Q15[5], Q15[6], Q15[7], Q15[8]);
 		y                = p15 / q15;
-		r                = 1.0 + ::exp(y);
+		r                = 1.0 + mc_exp(y);
 	} else if (s < 42.0) {
 		s                = s - 15.0;
 		const double p42 = mc_xpolyeval9(s, P42[0], P42[1], P42[2], P42[3], P42[4], P42[5], P42[6], P42[7], P42[8]);
 		const double q42 = mc_xpolyeval10(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
 		y                = p42 / q42;
-		r                = 1.0 + ::exp(y);
+		r                = 1.0 + mc_exp(y);
 	} else if (s < 63.0) {
-		r = 1.0 + ::exp2(-s);
+		r = 1.0 + mc_exp2(-s);
 	}
-#	else
-	if (isnan(s) || isnan(sc)) {
-		return MCK_NAN;
-	} else if (isinf(s) || isinf(sc)) {
-		return MCK_INF;
-	}
-	if (s < 1.0) {
-		const double c0 = 1.2433929443359375000000000000000000000000E+00;
-		const double p1 = mc_xpolyeval6(sc, P1[0], P1[1], P1[2], P1[3], P1[4], P1[5]);
-		const double q1 = mc_xpolyeval7(sc, Q1[0], Q1[1], Q1[2], Q1[3], Q1[4], Q1[5], Q1[6]);
-		y               = p1 / q1 - c0;
-		r               = (y + sc) / sc;
-	} else if (s <= 2.0) {
-		s               = -sc;
-		const double p2 = mc_xpolyeval6(s, P2[0], P2[1], P2[2], P2[3], P2[4], P2[5]);
-		const double q2 = mc_xpolyeval7(s, Q2[0], Q2[1], Q2[2], Q2[3], Q2[4], Q2[5], Q2[6]);
-		y               = p2 / q2;
-		r               = y - 1.0 / sc;
-	} else if (s <= 4.0) {
-		const double c1 = 6.9865989685058593750000000000000000000000E-01;
-		const double p4 = mc_xpolyeval7(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
-		const double q4 = mc_xpolyeval8(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
-		s               = s - 2.0;
-		y               = p4 / q4 + c1;
-		r               = y - 1.0 / sc;
-	} else if (s <= 7.0) {
-		s               = s - 4.0;
-		const double p7 = mc_xpolyeval8(s, P7[0], P7[1], P7[2], P7[3], P7[4], P7[5], P7[6], P7[7]);
-		const double q7 = mc_xpolyeval9(s, Q7[0], Q7[1], Q7[2], Q7[3], Q7[4], Q7[5], Q7[6], Q7[7], Q7[8]);
-		y               = p7 / q7;
-		r               = 1.0 + exp(y);
-	} else if (s < 15.0) {
-		s                = s - 7.0;
-		const double p15 = mc_xpolyeval9(s, P15[0], P15[1], P15[2], P15[3], P15[4], P15[5], P15[6], P15[7], P15[8]);
-		const double q15 = mc_xpolyeval9(s, Q15[0], Q15[1], Q15[2], Q15[3], Q15[4], Q15[5], Q15[6], Q15[7], Q15[8]);
-		y                = p15 / q15;
-		r                = 1.0 + exp(y);
-	} else if (s < 42.0) {
-		s                = s - 15.0;
-		const double p42 = mc_xpolyeval9(s, P42[0], P42[1], P42[2], P42[3], P42[4], P42[5], P42[6], P42[7], P42[8]);
-		const double q42 = mc_xpolyeval10(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
-		y                = p42 / q42;
-		r                = 1.0 + exp(y);
-	} else if (s < 63.0) {
-		r = 1.0 + exp2(-s);
-	}
-#	endif
 	return r;
 }
 
@@ -778,45 +547,21 @@ static MC_TARGET_INLINE long double mc_zetapscl(long double s, long double sc)
 #	else
 	long double sum = 0.0L, nn, sign = 1.0L, sumk = 1.0L, term = 1.0L, p;
 	int n, k = 0;
-#	if MC_TARGET_CPP98
-	if (::isnan(s) || ::isnan(sc)) {
+	if (mc_isnan(s) || mc_isnan(sc)) {
 		return MCK_NAN;
-	} else if (::isinf(s) || ::isinf(sc)) {
+	} else if (mc_isinf(s) || mc_isinf(sc)) {
 		return MCK_INF;
 	}
-#	else
-	if (isnan(s) || isnan(sc)) {
-		return MCK_NAN;
-	} else if (isinf(s) || isinf(sc)) {
-		return MCK_INF;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-	n = mc_cast(int, ::floorl(-0.5L * ::logl(MCLIMITS_EPSILONL)));
-#	else
-	n = mc_cast(int, floorl(-0.5L * logl(MCLIMITS_EPSILONL)));
-#	endif
+	n = mc_cast(int, mc_floorl(-0.5L * mc_logl(MCLIMITS_EPSILONL)));
 	if (n < MCLIMITS_IMAX) {
-#	if MC_TARGET_CPP98
-		nn = ::ldexpl(1.0L, n);
-#	else
-		nn = ldexpl(1.0L, n);
-#	endif
+		nn = mc_ldexpl(1.0L, n);
 		for(; k < n; k++) {
-#	if MC_TARGET_CPP98
-			p     = 1.0L / ::powl(mc_cast(long double, (k + 1)), s);
-#	else
-			p     = 1.0L / powl(mc_cast(long double, (k + 1)), s);
-#	endif
+			p     = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
 			sum  += (sign * -nn)  * p;
 			sign *= -1.0L; 
 		}
 		for(k = n; k <= 2 * n - 1; k++) {
-#	if MC_TARGET_CPP98
-			p     = 1.0L / ::powl(mc_cast(long double, (k + 1)), s);
-#	else
-			p     = 1.0L / powl(mc_cast(long double, (k + 1)), s);
-#	endif
+			p     = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
 			sum  += (sign * (sumk - nn)) * p;
 			sign *= -1.0L;
 			term *= 2.0L * mc_cast(long double, n) - mc_cast(long double, k);
@@ -1040,25 +785,14 @@ static MC_TARGET_INLINE float mc_zetapf(float s)
 #	if MC_TARGET_EMBEDDED
 	return mc_rzetapf_approx0(s);
 #	else
-#	if MC_TARGET_CPP98
-	if (::isnan(s)) {
+	if (mc_isnan(s)) {
 		return MCK_NAN;
-	} else if (::isinf(s)) {
+	} else if (mc_isinf(s)) {
 		return MCK_INF;
 	}
-	if (::truncf(s) == s && (s >= 0.0f && s < 28.0f)) {
+	if (mc_truncf(s) == s && (s >= 0.0f && s < 28.0f)) {
 		return mc_izetapf(mc_cast(unsigned int, s));
 	}
-#	else
-	if (isnan(s)) {
-		return MCK_NAN;
-	} else if (isinf(s)) {
-		return MCK_INF;
-	}
-	if (truncf(s) == s && (s >= 0.0f && s < 28.0f)) {
-		return mc_izetapf(mc_cast(unsigned int, s));
-	}
-#	endif
 	if (s > 0.0f && s <= 1.6E-10f) {
 		return -0.5f - MCK_KF(MCK_LSQRT2PI) * s;
 	}
@@ -1071,25 +805,14 @@ static MC_TARGET_INLINE double mc_zetap(double s)
 #	if MC_TARGET_EMBEDDED
 	return mc_rzetap_approx0(s);
 #	else
-#	if MC_TARGET_CPP98
-	if (::isnan(s)) {
+	if (mc_isnan(s)) {
 		return MCK_NAN;
-	} else if (::isinf(s)) {
+	} else if (mc_isinf(s)) {
 		return MCK_INF;
 	}
-	if (::trunc(s) == s && (s >= 0.0 && s < 64.0)) {
+	if (mc_trunc(s) == s && (s >= 0.0 && s < 64.0)) {
 		return mc_izetap(mc_cast(unsigned int, s));
 	}
-#	else
-	if (isnan(s)) {
-		return MCK_NAN;
-	} else if (isinf(s)) {
-		return MCK_INF;
-	}
-	if (trunc(s) == s && (s >= 0.0 && s < 64.0)) {
-		return mc_izetap(mc_cast(unsigned int, s));
-	}
-#	endif
 	if (s > 0.0 && s <= 1.6E-10) {
 		return -0.5 - MCK_K(MCK_LSQRT2PI) * s;
 	}
@@ -1102,36 +825,19 @@ static MC_TARGET_INLINE long double mc_zetapl(long double s)
 #	if MC_TARGET_EMBEDDED
 	return mc_rzetapl_approx0(s);
 #	else
-#	if MC_TARGET_CPP98
-	if (::isnan(s)) {
+	if (mc_isnan(s)) {
 		return MCK_NAN;
-	} else if (::isinf(s)) {
+	} else if (mc_isinf(s)) {
 		return MCK_INF;
 	}
 #	if MC_TARGET_MSVC_CPP
-	if (::truncl(s) == s && (s >= 0.0L && s < 75.0L)) {
+	if (mc_truncl(s) == s && (s >= 0.0L && s < 75.0L)) {
 		return mc_izetapl(mc_cast(unsigned int, s));
 	}
 #	else
-	if (::truncl(s) == s && (s >= 0.0L && s < 64.0L)) {
+	if (mc_truncl(s) == s && (s >= 0.0L && s < 64.0L)) {
 		return mc_izetapl(mc_cast(unsigned int, s));
 	}
-#	endif
-#	else
-	if (isnan(s)) {
-		return MCK_NAN;
-	} else if (isinf(s)) {
-		return MCK_INF;
-	}
-#	if MC_TARGET_MSVC_CPP
-	if (truncl(s) == s && (s >= 0.0L && s < 75.0L)) {
-		return mc_izetapl(mc_cast(unsigned int, s));
-	}
-#	else
-	if (truncl(s) == s && (s >= 0.0L && s < 64.0L)) {
-		return mc_izetapl(mc_cast(unsigned int, s));
-	}
-#	endif
 #	endif
 	if (s > 0.0L && s <= 1.6E-10L) {
 		return -0.5L - MCK_KL(MCK_LSQRT2PI) * s;

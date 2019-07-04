@@ -17,26 +17,49 @@
 
 static MC_TARGET_INLINE float mc_log2f(float x)
 {
+#	if MC_TARGET_HAVE_LOG2
+#	if MC_TARGET_CPP98
+	return ::log2f(x);
+#	else
+	return log2f(x);
+#	endif
+#	else
 	const float y = x * MCK_KF(MCK_1_LOG2);
 #	if MC_TARGET_CPP98
 	return ::logf(y);
 #	else
 	return logf(y);
 #	endif
+#	endif
 }
 
 static MC_TARGET_INLINE double mc_log2(double x)
 {
+#	if MC_TARGET_HAVE_LOG2
+#	if MC_TARGET_CPP98
+	return ::log2(x);
+#	else
+	return log2(x);
+#	endif
+#	else
 	const double y = x * MCK_K(MCK_1_LOG2);
 #	if MC_TARGET_CPP98
 	return ::log(y);
 #	else
 	return log(y);
 #	endif
+#	endif
 }
 
 static MC_TARGET_INLINE long double mc_log2l(long double x)
 {
+#	if MC_TARGET_HAVE_LOG2
+#	if MC_TARGET_CPP98
+	return ::log2l(x);
+#	else
+	return log2l(x);
+#	endif
+#	else
 #	if MC_TARGET_C99 && defined(M_LN2l)
 	const long double y = x / M_LN2l;
 #	else
@@ -46,6 +69,7 @@ static MC_TARGET_INLINE long double mc_log2l(long double x)
 	return ::logl(y);
 #	else
 	return logl(y);
+#	endif
 #	endif
 }
 
