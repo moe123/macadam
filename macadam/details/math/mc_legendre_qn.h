@@ -6,6 +6,11 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_acoth.h>
+#include <macadam/details/math/mc_atanh.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_legendre_pn.h>
 #include <macadam/details/math/mc_log1p.h>
 #include <macadam/details/math/mc_raise2.h>
@@ -22,45 +27,27 @@
 static MC_TARGET_INLINE float mc_legendre_q0f(float x)
 {
 //!# Legendre functions of the second kind, degree 0.
-#	if MC_TARGET_CPP98
-	 if (::fabsf(x) < 1.0f) {
-		return ::atanhf(x);
-	 }
-#	else
-	 if (fabsf(x) < 1.0f) {
-		return atanhf(x);
-	 }
-#	endif
+	if (mc_fabsf(x) < 1.0f) {
+		return mc_atanhf(x);
+	}
 	return mc_acothf(x);
 }
 
 static MC_TARGET_INLINE double mc_legendre_q0(double x)
 {
 //!# Legendre functions of the second kind, degree 0.
-#	if MC_TARGET_CPP98
-	 if (::fabs(x) < 1.0) {
-		return ::atanh(x);
-	 }
-#	else
-	 if (fabs(x) < 1.0) {
-		return atanh(x);
-	 }
-#	endif
+	if (mc_fabs(x) < 1.0) {
+		return mc_atanh(x);
+	}
 	return mc_acoth(x);
 }
 
 static MC_TARGET_INLINE long double mc_legendre_q0l(long double x)
 {
 //!# Legendre functions of the second kind, degree 0.
-#	if MC_TARGET_CPP98
-	 if (::fabsl(x) < 1.0L) {
-		return ::atanhl(x);
-	 }
-#	else
-	 if (fabsl(x) < 1.0L) {
-		return atanhl(x);
-	 }
-#	endif
+	if (mc_fabsl(x) < 1.0L) {
+		return mc_atanhl(x);
+	}
 	return mc_acothl(x);
 }
 
@@ -71,26 +58,13 @@ static MC_TARGET_INLINE float mc_legendre_q1f(float x)
 //!# Legendre functions of the second kind, degree 1.
 	float q1 = 0.0f;
 	float w, y, f, s, k;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-	w  = ::fabsf(x);
-#	else
-	w  = fabsf(x);
-#	endif
+	w = mc_fabsf(x);
 	if (w < 1.0f) {
-#	if MC_TARGET_CPP98
-		q1 = ::atanhf(x) * x - 1.0f;
-#	else
-		q1 = atanhf(x) * x - 1.0f;
-#	endif
+		q1 = mc_atanhf(x) * x - 1.0f;
 	} else if (w < 2.0f) {
 		q1 = 0.5f * mc_log1pf(2.0f / (w - 1.0f)) * w - 1.0f;
 	} else {
@@ -111,26 +85,13 @@ static MC_TARGET_INLINE double mc_legendre_q1(double x)
 //!# Legendre functions of the second kind, degree 1.
 	double q1 = 0.0;
 	double w, y, f, s, k;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-	w  = ::fabs(x);
-#	else
-	w  = fabs(x);
-#	endif
+	w = mc_fabs(x);
 	if (w < 1.0) {
-#	if MC_TARGET_CPP98
-		q1 = ::atanh(x) * x - 1.0;
-#	else
-		q1 = atanh(x) * x - 1.0;
-#	endif
+		q1 = mc_atanh(x) * x - 1.0;
 	} else if (w < 2.0) {
 		q1 = 0.5f * mc_log1p(2.0 / (w - 1.0)) * w - 1.0;
 	} else {
@@ -151,26 +112,13 @@ static MC_TARGET_INLINE long double mc_legendre_q1l(long double x)
 //!# Legendre functions of the second kind, degree 1.
 	long double q1 = 0.0L;
 	long double w, y, f, s, k;
-#	if MC_TARGET_CPP98
-	if (::isnan(x) || ::isinf(x)) {
+
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
-#	else
-	if (isnan(x) || isinf(x)) {
-		return MCK_NAN;
-	}
-#	endif
-#	if MC_TARGET_CPP98
-	w  = ::fabsl(x);
-#	else
-	w  = fabsl(x);
-#	endif
+	w = mc_fabsl(x);
 	if (w < 1.0L) {
-#	if MC_TARGET_CPP98
-		q1 = ::atanhl(x) * x - 1.0L;
-#	else
-		q1 = atanhl(x) * x - 1.0L;
-#	endif
+		q1 = mc_atanhl(x) * x - 1.0L;
 	} else if (w < 2.0L) {
 		q1 = 0.5f * mc_log1pl(2.0L / (w - 1.0L)) * w - 1.0L;
 	} else {
