@@ -6,46 +6,30 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_cosh.h>
+#include <macadam/details/math/mc_sinh.h>
 
 #ifndef MC_SINHCOSH_H
 #define MC_SINHCOSH_H
 
 #pragma mark - mc_sinhcosh -
 
-static MC_TARGET_INLINE void mc_sinhcoshf(float x, float * sinhp, float * coshp)
+static MC_TARGET_INLINE void mc_sinhcoshf(float x, float * mc_sinhp, float * mc_coshp)
 {
-#	if MC_TARGET_CPP98
-	*sinhp = ::sinhf(x);
-	*coshp = ::coshf(x);
-#	else
-	*sinhp = sinhf(x);
-	*coshp = coshf(x);
-#	endif
+	*mc_sinhp = mc_sinhf(x);
+	*mc_coshp = mc_coshf(x);
 }
 
-static MC_TARGET_INLINE void mc_sinhcosh(double x, double * sinhp, double * coshp)
+static MC_TARGET_INLINE void mc_sinhcosh(double x, double * mc_sinhp, double * mc_coshp)
 {
-#	if MC_TARGET_CPP98
-	*sinhp = ::sinh(x);
-	*coshp = ::cosh(x);
-#	else
-	*sinhp = sinh(x);
-	*coshp = cosh(x);
-#	endif
+	*mc_sinhp = mc_sinh(x);
+	*mc_coshp = mc_cosh(x);
 }
 
-static MC_TARGET_INLINE void mc_sinhcoshl(long double x, long double * sinhp, long double * coshp)
+static MC_TARGET_INLINE void mc_sinhcoshl(long double x, long double * mc_sinhp, long double * mc_coshp)
 {
-#	if MC_TARGET_CPP98
-	*sinhp = ::sinhl(x);
-	*coshp = ::coshl(x);
-#	else
-	*sinhp = sinhl(x);
-	*coshp = coshl(x);
-#	endif
+	*mc_sinhp = mc_sinhl(x);
+	*mc_coshp = mc_coshl(x);
 }
 
 #endif /* !MC_SINHCOSH_H */

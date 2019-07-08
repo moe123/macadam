@@ -20,7 +20,7 @@ static MC_TARGET_INLINE float mc_acothf(float x)
 
 static MC_TARGET_INLINE double mc_acoth(double x)
 {
-	return mc_atanh( 1.0 / x);
+	return mc_atanh(1.0 / x);
 }
 
 static MC_TARGET_INLINE long double mc_acothl(long double x)

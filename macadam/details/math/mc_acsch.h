@@ -6,7 +6,6 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_atanh.h>
 #include <macadam/details/math/mc_asinh.h>
 
 #ifndef MC_ACSCH_H
