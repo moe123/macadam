@@ -17,7 +17,6 @@
 #include <macadam/details/math/mc_raise3.h>
 #include <macadam/details/math/mc_raise4.h>
 #include <macadam/details/math/mc_rsqr.h>
-#include <macadam/details/math/mc_trigonometry.h>
 
 #ifndef MC_LEGENDRE_QN_H
 #define MC_LEGENDRE_QN_H
