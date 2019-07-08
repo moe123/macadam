@@ -6,8 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_factorial.h>
 #include <macadam/details/math/mc_beta.h>
+#include <macadam/details/math/mc_ceil.h>
+#include <macadam/details/math/mc_factorial.h>
 
 #ifndef MC_CHOOSE_H
 #define MC_CHOOSE_H
@@ -30,11 +31,7 @@ static MC_TARGET_INLINE float mc_choosef(unsigned int n, unsigned int k)
 			r  = mc_factorialf(n);
 			r /= mc_factorialf(n - k);
 			r /= mc_factorialf(k);
-#	if MC_TARGET_CPP98
-			r  = ::ceilf(r - 0.5f);
-#	else
-			r  = ceilf(r - 0.5f);
-#	endif
+			r  = mc_ceilf(r - 0.5f);
 		} else {
 			r = (k < (n - k))
 				? (k - 0) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
@@ -42,11 +39,7 @@ static MC_TARGET_INLINE float mc_choosef(unsigned int n, unsigned int k)
 			;
 			if(r != 0) {
 				r = 1.0f / r;
-#	if MC_TARGET_CPP98
-				r = ::ceilf(r - 0.5f);
-#	else
-				r = ceilf(r - 0.5f);
-#	endif
+				r = mc_ceilf(r - 0.5f);
 			} else {
 				r = MCLIMITS_MAXF;
 			}
@@ -71,11 +64,7 @@ static MC_TARGET_INLINE double mc_choose(unsigned int n, unsigned int k)
 			r  = mc_factorial(n);
 			r /= mc_factorial(n - k);
 			r /= mc_factorial(k);
-#	if MC_TARGET_CPP98
-			r  = ::ceil(r - 0.5);
-#	else
-			r  = ceil(r - 0.5);
-#	endif
+			r  = mc_ceil(r - 0.5);
 		} else {
 			r = (k < (n - k))
 				? (k - 0) * mc_beta(mc_cast(double, (k + 0)), mc_cast(double, (n - k + 1)))
@@ -83,11 +72,7 @@ static MC_TARGET_INLINE double mc_choose(unsigned int n, unsigned int k)
 			;
 			if(r != 0) {
 				r = 1.0f / r;
-#	if MC_TARGET_CPP98
-				r = ::ceil(r - 0.5);
-#	else
-				r = ceil(r - 0.5);
-#	endif
+				r = mc_ceil(r - 0.5);
 			} else {
 				r = MCLIMITS_MAX;
 			}
@@ -116,11 +101,7 @@ static MC_TARGET_INLINE long double mc_choosel(unsigned int n, unsigned int k)
 			r  = mc_cast(long double, mc_factoriall(n));
 			r /= mc_cast(long double, mc_factoriall(n - k));
 			r /= mc_cast(long double, mc_factoriall(k));
-#	if MC_TARGET_CPP98
-			r  = ::ceill(r - 0.5L);
-#	else
-			r  = ceill(r - 0.5L);
-#	endif
+			r  = mc_ceill(r - 0.5L);
 		} else {
 			r = (k < (n - k))
 				? (k - 0) * mc_betal(mc_cast(long double, (k + 0)), mc_cast(long double, (n - k + 1)))
@@ -128,11 +109,7 @@ static MC_TARGET_INLINE long double mc_choosel(unsigned int n, unsigned int k)
 			;
 			if(r != 0) {
 				r = 1.0f / r;
-#	if MC_TARGET_CPP98
-				r = ::ceill(r - 0.5L);
-#	else
-				r = ceill(r - 0.5L);
-#	endif
+				r = mc_ceill(r - 0.5L);
 			} else {
 				r = MCLIMITS_MAXL;
 			}

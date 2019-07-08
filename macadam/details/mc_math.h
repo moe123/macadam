@@ -33,6 +33,7 @@
 #	include <macadam/details/math/mc_binomial.h>
 #	include <macadam/details/math/mc_bisquare.h>
 #	include <macadam/details/math/mc_biweight.h>
+#	include <macadam/details/math/mc_ceil.h>
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cospi.h>
 #	include <macadam/details/math/mc_digamma.h>
