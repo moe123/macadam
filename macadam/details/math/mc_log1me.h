@@ -6,9 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_expm1.h>
+#include <macadam/details/math/mc_log.h>
+#include <macadam/details/math/mc_log1p.h>
 
 #ifndef MC_LOG1ME_H
 #define MC_LOG1ME_H
@@ -17,29 +18,17 @@
 
 static MC_TARGET_INLINE float mc_log1mef(float x)
 {
-#	if MC_TARGET_CPP98
-	return (x < 0.683f) ? ::logf(::expm1f(-x)) : mc_log1pf(-::expf(-x));
-#	else
-	return (x < 0.683f) ? logf(expm1f(-x)) : mc_log1pf(-expf(-x));
-#	endif
+	return (x < 0.683f) ? mc_logf(mc_expm1f(-x)) : mc_log1pf(-mc_expf(-x));
 }
 
 static MC_TARGET_INLINE double mc_log1me(double x)
 {
-#	if MC_TARGET_CPP98
-	return (x < 0.683) ? ::log(::expm1(-x)) : mc_log1p(-::exp(-x));
-#	else
-	return (x < 0.683) ? log(expm1(-x)) : mc_log1p(-exp(-x));
-#	endif
+	return (x < 0.683) ? mc_log(mc_expm1(-x)) : mc_log1p(-mc_exp(-x));
 }
 
 static MC_TARGET_INLINE long double mc_log1mel(long double x)
 {
-#	if MC_TARGET_CPP98
-	return (x < 0.683L) ? ::logl(::expm1l(-x)) : mc_log1pl(-::expl(-x));
-#	else
-	return (x < 0.683L) ? logl(expm1l(-x)) : mc_log1pl(-expl(-x));
-#	endif
+	return (x < 0.683L) ? mc_logl(mc_expm1l(-x)) : mc_log1pl(-mc_expl(-x));
 }
 
 #endif /* !MC_LOG1ME_H */

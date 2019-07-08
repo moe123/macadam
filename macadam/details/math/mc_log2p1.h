@@ -36,7 +36,7 @@ static MC_TARGET_INLINE long double mc_log2p1l(long double x)
 	if (x == 0.0L) {
 		return x;
 	}
-#	if MC_TARGET_C99 && defined(M_LN2l)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 	const long double y = x / M_LN2l;
 #	else
 	const long double y = x * MCK_KL(MCK_1_LOG2);

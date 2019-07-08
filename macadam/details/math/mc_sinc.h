@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_sin.h>
 
 #ifndef MC_SINC_H
 #define MC_SINC_H
@@ -19,69 +17,45 @@ static MC_TARGET_INLINE float mc_sincf(float x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	const float pix = MCK_KF(MCK_PI) * x;
-#	if MC_TARGET_CPP98
-	return x == 0 ? 1.0f : ::sinf(pix) / pix;
-#	else
-	return x == 0 ? 1.0f : sinf(pix) / pix;
-#	endif
+	return x == 0 ? 1.0f : mc_sinf(pix) / pix;
 }
 
 static MC_TARGET_INLINE double mc_sinc(double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	const double pix = MCK_K(MCK_PI) * x;
-#	if MC_TARGET_CPP98
-	return x == 0 ? 1.0 : ::sin(pix) / pix;
-#	else
-	return x == 0 ? 1.0 : sin(pix) / pix;
-#	endif
+	return x == 0 ? 1.0 : mc_sin(pix) / pix;
 }
 
 static MC_TARGET_INLINE long double mc_sincl(long double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
-#	if MC_TARGET_C99 && defined(M_PIl)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
 	const long double pix = M_PIl * x;
 #	else
 	const long double pix = MCK_KL(MCK_PI) * x;
 #	endif
-#	if MC_TARGET_CPP98
-	return x == 0 ? 1.0L : ::sinl(pix) / pix;
-#	else
-	return x == 0 ? 1.0L : sinl(pix) / pix;
-#	endif
+	return x == 0 ? 1.0L : mc_sinl(pix) / pix;
 }
 
-#pragma mark - mc_unnsinc -
+#pragma mark - mc_unnmc_sinc -
 
-static MC_TARGET_INLINE float mc_unnsincf(float x)
+static MC_TARGET_INLINE float mc_unnmc_sincf(float x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
-#	if MC_TARGET_CPP98
-	return x == 0 ? 1.0f : ::sinf(x) / x;
-#	else
-	return x == 0 ? 1.0f : sinf(x) / x;
-#	endif
+	return x == 0 ? 1.0f : mc_sinf(x) / x;
 }
 
-static MC_TARGET_INLINE double mc_unnsinc(double x)
+static MC_TARGET_INLINE double mc_unnmc_sinc(double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
-#	if MC_TARGET_CPP98
-	return x == 0 ? 1.0 : ::sin(x) / x;
-#	else
-	return x == 0 ? 1.0 : sin(x) / x;
-#	endif
+	return x == 0 ? 1.0 : mc_sin(x) / x;
 }
 
-static MC_TARGET_INLINE long double mc_unnsincl(long double x)
+static MC_TARGET_INLINE long double mc_unnmc_sincl(long double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
-#	if MC_TARGET_CPP98
-	return x == 0 ? 1.0L : ::sinl(x) / x;
-#	else
-	return x == 0 ? 1.0L : sinl(x) / x;
-#	endif
+	return x == 0 ? 1.0L : mc_sinl(x) / x;
 }
 
 #endif /* !MC_SINC_H */

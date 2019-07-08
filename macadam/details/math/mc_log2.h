@@ -60,7 +60,7 @@ static MC_TARGET_INLINE long double mc_log2l(long double x)
 	return log2l(x);
 #	endif
 #	else
-#	if MC_TARGET_C99 && defined(M_LN2l)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 	const long double y = x / M_LN2l;
 #	else
 	const long double y = x * MCK_KL(MCK_1_LOG2);

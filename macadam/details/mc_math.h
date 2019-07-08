@@ -27,12 +27,14 @@
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cospi.h>
 #	include <macadam/details/math/mc_digamma.h>
+#	include <macadam/details/math/mc_erf.h>
 #	include <macadam/details/math/mc_eta.h>
 #	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_exp10.h>
 #	include <macadam/details/math/mc_exp10m1.h>
 #	include <macadam/details/math/mc_exp2.h>
 #	include <macadam/details/math/mc_exp2m1.h>
+#	include <macadam/details/math/mc_expm1.h>
 #	include <macadam/details/math/mc_expit.h>
 #	include <macadam/details/math/mc_fabs.h>
 #	include <macadam/details/math/mc_factorial.h>
@@ -101,6 +103,7 @@
 #	include <macadam/details/math/mc_rsqrt.h>
 #	include <macadam/details/math/mc_scalb.h>
 #	include <macadam/details/math/mc_sigmoid.h>
+#	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sinc.h>
 #	include <macadam/details/math/mc_sincos.h>
 #	include <macadam/details/math/mc_sinhcosh.h>

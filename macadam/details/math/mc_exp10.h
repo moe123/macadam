@@ -75,7 +75,7 @@ static MC_TARGET_INLINE long double mc_exp10l(long double x)
 #	elif defined(__linux__) && (defined(__GLIBC__) || defined(_GNU_SOURCE))
 	return exp10l(x);
 #	else
-#	if MC_TARGET_C99 && defined(M_LN10l)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN10l)
 	return expl((M_LN10l * x));
 #	else
 	return expl((MCK_KL(MCK_LOG10) * x));

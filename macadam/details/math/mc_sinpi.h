@@ -148,7 +148,7 @@ static MC_TARGET_INLINE long double mc_sinpil(long double x)
 	if(x == 0.0L) {
 		return 1.0L;
 	}
-#	if MC_TARGET_C99 && defined(M_PIl)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
 	const long double pix = M_PIl * x;
 #	else
 	const long double pix = MCK_KL(MCK_PI) * x;

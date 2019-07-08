@@ -6,6 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_pow.h>
+#include <macadam/details/math/mc_trunc.h>
+#include <macadam/details/math/mc_expm1.h>
+#include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_xlogy.h>
 
 #ifndef MC_POWM1_H
@@ -16,97 +20,52 @@
 float mc_powm1f(float x, float y)
 {
 	float r;
-#	if MC_TARGET_CPP98
-	if (x < 0.0 && ::truncf(y) != y) {
+	if (x < 0.0 && mc_truncf(y) != y) {
 		return MCK_NAN;
 	}
 	if (x > 0.0f) {
-		if ((::fabsf(y * (x - 1.0f)) < 0.5f) || ::fabs(y) < 0.2f) {
+		if ((mc_fabsf(y * (x - 1.0f)) < 0.5f) || mc_fabs(y) < 0.2f) {
 			r = mc_xlogyf(y, x);
-			return r < 0.5f ? (::expm1f(r)) : MCK_INF;
+			return r < 0.5f ? mc_expm1f(r) : MCK_INF;
 		}
-	} else if (::truncf(y / 2.0f) == y / 2.0f) {
+	} else if (mc_truncf(y / 2.0f) == y / 2.0f) {
 		return mc_powm1f(-x, y);
 	}
-	return ::powf(x, y) - 1.0f;
-#	else
-	if (x < 0.0 && truncf(y) != y) {
-		return MCK_NAN;
-	}
-	if (x > 0.0f) {
-		if ((fabsf(y * (x - 1.0f)) < 0.5f) || fabs(y) < 0.2f) {
-			r = mc_xlogyf(y, x);
-			return r < 0.5f ? expm1f(r) : MCK_INF;
-		}
-	} else if (truncf(y / 2.0f) == y / 2.0f) {
-		return mc_powm1f(-x, y);
-	}
-	return powf(x, y) - 1.0f;
-#	endif
+	return mc_powf(x, y) - 1.0f;
 }
 
 double mc_powm1(double x, double y)
 {
 	double r;
-#	if MC_TARGET_CPP98
-	if (x < 0.0 && ::trunc(y) != y) {
+	if (x < 0.0 && mc_trunc(y) != y) {
 		return MCK_NAN;
 	}
 	if (x > 0.0) {
-		if ((::fabs(y * (x - 1.0)) < 0.5) || ::fabs(y) < 0.2) {
+		if ((mc_fabs(y * (x - 1.0)) < 0.5) || mc_fabs(y) < 0.2) {
 			r = mc_xlogy(y, x);
-			return r < 0.5 ? (::expm1(r)) : MCK_INF;
+			return r < 0.5 ? mc_expm1(r) : MCK_INF;
 		}
-	} else if (::trunc(y / 2.0) == y / 2.0) {
+	} else if (mc_trunc(y / 2.0) == y / 2.0) {
 		return mc_powm1(-x, y);
 	}
-	return ::pow(x, y) - 1.0;
-#	else
-	if (x < 0.0 && trunc(y) != y) {
-		return MCK_NAN;
-	}
-	if (x > 0.0) {
-		if ((fabs(y * (x - 1.0)) < 0.5) || fabs(y) < 0.2) {
-			r = mc_xlogy(y, x);
-			return r < 0.5 ? expm1(r) : MCK_INF;
-		}
-	} else if (trunc(y / 2.0) == y / 2.0) {
-		return mc_powm1(-x, y);
-	}
-	return pow(x, y) - 1.0;
-#	endif
+	return mc_pow(x, y) - 1.0;
 }
 
 long double mc_powm1l(long double x, long double y)
 {
 	long double r;
-#	if MC_TARGET_CPP98
-	if (x < 0.0L && ::truncl(y) != y) {
+	if (x < 0.0L && mc_truncl(y) != y) {
 		return MCK_NAN;
 	}
 	if (x > 0.0L) {
-		if ((::fabsl(y * (x - 1.0L)) < 0.5L) || ::fabsl(y) < 0.2L) {
+		if ((mc_fabsl(y * (x - 1.0L)) < 0.5L) || mc_fabsl(y) < 0.2L) {
 			r = mc_xlogyl(y, x);
-			return r < 0.5L ? (::expm1l(r)) : MCK_INF;
+			return r < 0.5L ? mc_expm1l(r) : MCK_INF;
 		}
-	} else if (::truncl(y / 2.0L) == y / 2.0L) {
+	} else if (mc_truncl(y / 2.0L) == y / 2.0L) {
 		return mc_powm1l(-x, y);
 	}
-	return ::powl(x, y) - 1.0L;
-#	else
-	if (x < 0.0L && truncl(y) != y) {
-		return MCK_NAN;
-	}
-	if (x > 0.0L) {
-		if ((fabsl(y * (x - 1.0L)) < 0.5L) || fabsl(y) < 0.2L) {
-			r = mc_xlogyl(y, x);
-			return r < 0.5L ? expm1l(r) : MCK_INF;
-		}
-	} else if (truncl(y / 2.0L) == y / 2.0L) {
-		return mc_powm1l(-x, y);
-	}
-	return powl(x, y) - 1.0L;
-#	endif
+	return mc_powl(x, y) - 1.0L;
 }
 
 #endif /* !MC_POWM1_H */

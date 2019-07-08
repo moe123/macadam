@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_expm1.h>
 
 #ifndef MC_EXP2M1_H
 #define MC_EXP2M1_H
@@ -18,35 +16,23 @@
 static MC_TARGET_INLINE float mc_exp2m1f(float x)
 {
 	const float y = x * MCK_KF(MCK_LOG2);
-#	if MC_TARGET_CPP98
-	return ::expm1f(y);
-#	else
-	return expm1f(y);
-#	endif
+	return mc_expm1f(y);
 }
 
 static MC_TARGET_INLINE double mc_exp2m1(double x)
 {
 	const double y = x * MCK_K(MCK_LOG2);
-#	if MC_TARGET_CPP98
-	return ::expm1(y);
-#	else
-	return expm1(y);
-#	endif
+	return mc_expm1(y);
 }
 
 static MC_TARGET_INLINE long double mc_exp2m1l(long double x)
 {
-#	if MC_TARGET_C99 && defined(M_LN2l)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 	const long double y = x * M_LN2l;
 #	else
 	const long double y = x * MCK_KL(MCK_LOG2);
 #	endif
-#	if MC_TARGET_CPP98
-	return ::expm1l(y);
-#	else
-	return expm1l(y);
-#	endif
+	return mc_expm1l(y);
 }
 
 #pragma mark - mc_uexp2m1 -

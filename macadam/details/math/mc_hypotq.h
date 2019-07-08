@@ -48,7 +48,7 @@ static MC_TARGET_INLINE double mc_hypotql(long double x, long double y)
 {
 	long double a = mc_fabsl(x);
 	long double b = mc_fabsl(y);
-	long double c = 0.0;
+	long double c = 0.0L;
 	if (a > b) {
 		c = b / a;
 		c = a * mc_sqrtl(1.0L + c * c);

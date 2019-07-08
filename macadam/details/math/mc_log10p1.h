@@ -36,7 +36,7 @@ static MC_TARGET_INLINE long double  mc_log10p1l(long double x)
 	if (mc_fabsl(x) > 0.5) {
 		return mc_log10l(1.0 + x);
 	}
-#	if MC_TARGET_C99 && defined(M_LOG10El)
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LOG10El)
 	return M_LOG10El * mc_log1pl(x);
 #	else
 	return MCK_KL(MCK_LOG10E) * mc_log1pl(x);

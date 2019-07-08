@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_log.h>
 
 #ifndef MC_XLOGY_H
 #define MC_XLOGY_H
@@ -17,29 +15,17 @@
 
 static MC_TARGET_INLINE float mc_xlogyf(float x, float y)
 {
-#	if MC_TARGET_CPP98
-	return (x== 0 ? 0 : x * ::logf(y));
-#	else
-	return (x== 0 ? 0 : x * logf(y));
-#	endif
+	return (x== 0 ? 0 : x * mc_logf(y));
 }
 
 static MC_TARGET_INLINE double mc_xlogy(double x, double y)
 {
-#	if MC_TARGET_CPP98
-	return (x== 0 ? 0 : x * ::log(y));
-#	else
-	return (x== 0 ? 0 : x * log(y));
-#	endif
+	return (x== 0 ? 0 : x * mc_log(y));
 }
 
 static MC_TARGET_INLINE long double mc_xlogyl(long double x, long double y)
 {
-#	if MC_TARGET_CPP98
-	return (x== 0 ? 0 : x * ::logl(y));
-#	else
-	return (x== 0 ? 0 : x * logl(y));
-#	endif
+	return (x== 0 ? 0 : x * mc_logl(y));
 }
 
 #endif /* !MC_XLOGY_H */

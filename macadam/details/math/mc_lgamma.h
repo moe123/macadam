@@ -6,9 +6,14 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
+#include <macadam/details/math/mc_log.h>
+#include <macadam/details/math/mc_pow.h>
+#include <macadam/details/math/mc_sin.h>
+#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/math/mc_trunc.h>
 
 #ifndef MC_LGAMMA_H
 #define MC_LGAMMA_H
@@ -19,33 +24,21 @@ static MC_TARGET_INLINE double mc_lgammaf_approx0(float x)
 {
 	const float a = MCK_KF(MCK_2PI) / x;
 	const float b = x / MCK_KF(MCK_E);
-#	if MC_TARGET_CPP98
-	return ::logf(::sqrtf(a) * ::powf(b, x));
-#	else
-	return logf(sqrtf(a) * powf(b, x));
-#	endif
+	return mc_logf(mc_sqrtf(a) * mc_powf(b, x));
 }
 
 static MC_TARGET_INLINE double mc_lgamma_approx0(double x)
 {
 	const double a = MCK_K(MCK_2PI) / x;
 	const double b = x / MCK_K(MCK_E);
-#	if MC_TARGET_CPP98
-	return ::log(::sqrt(a) * ::pow(b, x));
-#	else
-	return log(sqrt(a) * pow(b, x));
-#	endif
+	return mc_log(mc_sqrt(a) * mc_pow(b, x));
 }
 
 static MC_TARGET_INLINE long double mc_lgammal_approx0(long double x)
 {
 	const long double a = MCK_KL(MCK_2PI) / x;
 	const long double b = x / MCK_KL(MCK_E);
-#	if MC_TARGET_CPP98
-	return ::logl(::sqrtl(a) * ::powl(b, x));
-#	else
-	return logl(sqrtl(a) * powl(b, x));
-#	endif
+	return mc_logl(mc_sqrtl(a) * mc_powl(b, x));
 }
 
 #pragma mark - mc_lgamma -
@@ -63,42 +56,22 @@ static MC_TARGET_INLINE float mc_lgammaf(float x)
 	const float lanczos_c6 = -5.395239384953000327544564429516071868E-06f;
 	float s, b, r = MCK_NAN;
 
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return x;
 	}
-	if (::isinf(x)) {
+	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0 && x == ::truncf(x)) {
+	if (x <= 0 && x == mc_truncf(x)) {
 		return MCK_INFP;
 	}
-	const float y = ::fabsf(x);
+	const float y = mc_fabsf(x);
 	if (y <= FLT_MIN) {
-		return -(::logf(y));
+		return -mc_logf(y);
 	}
-	if (y > (FLT_MAX / ::logf(FLT_MAX))) {
+	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
 		return MCK_INFP;
 	}
-#	else
-	if (isnan(x)) {
-		return x;
-	}
-	if (isinf(x)) {
-		return x;
-	}
-	if (x <= 0 && x == truncf(x)) {
-		return MCK_INFP;
-	}
-	const float y = fabsf(x);
-	if (y <= FLT_MIN) {
-		return -logf(y);
-	}
-	if (y > (FLT_MAX / logf(FLT_MAX))) {
-		return MCK_INFP;
-	}
-#	endif
-
 	if (x >= 0.5f) {
 		x  = x - 1.0f;
 		b  = x + lanczos_g + 0.5f;
@@ -109,17 +82,9 @@ static MC_TARGET_INLINE float mc_lgammaf(float x)
 		s += lanczos_c2 / (x + 2.0f);
 		s += lanczos_c1 / (x + 1.0f);
 		s += lanczos_c0;
-#	if MC_TARGET_CPP98
-		r  = ((MCK_KF(MCK_LSQRT2PI) + ::logf(s)) - b) + ::logf(b) * (x + 0.5f);
-#	else
-		r  = ((MCK_KF(MCK_LSQRT2PI) + logf(s)) - b) + logf(b) * (x + 0.5f);
-#	endif
+		r  = ((MCK_KF(MCK_LSQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (x + 0.5f);
 	} else {
-#	if MC_TARGET_CPP98
-		r = ::logf(MCK_KF(MCK_PI) / ::sinf(MCK_KF(MCK_PI) * x)) - mc_lgammaf(1.0f - x);
-#	else
-		r = logf(MCK_KF(MCK_PI) / sinf(MCK_KF(MCK_PI) * x)) - mc_lgammaf(1.0f - x);
-#	endif
+		r = mc_logf(MCK_KF(MCK_PI) / mc_sinf(MCK_KF(MCK_PI) * x)) - mc_lgammaf(1.0f - x);
 	}
 	return r;
 #	else
@@ -144,42 +109,22 @@ static MC_TARGET_INLINE double mc_lgamma(double x)
 	const double lanczos_c6 = -5.3952393849530003275445644295160718684201E-06;
 	double s, b, r = MCK_NAN;
 
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return x;
 	}
-	if (::isinf(x)) {
+	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0 && x == ::trunc(x)) {
+	if (x <= 0 && x == mc_trunc(x)) {
 		return MCK_INFP;
 	}
-	const double y = ::fabs(x);
+	const double y = mc_fabs(x);
 	if (y <= DBL_MIN) {
-		return -(::log(y));
+		return -mc_log(y);
 	}
-	if (y > (DBL_MAX / ::log(DBL_MAX))) {
+	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
 		return MCK_INFP;
 	}
-#	else
-	if (isnan(x)) {
-		return x;
-	}
-	if (isinf(x)) {
-		return x;
-	}
-	if (x <= 0 && x == trunc(x)) {
-		return MCK_INFP;
-	}
-	const double y = fabs(x);
-	if (y <= DBL_MIN) {
-		return -log(y);
-	}
-	if (y > (DBL_MAX / log(DBL_MAX))) {
-		return MCK_INFP;
-	}
-#	endif
-
 	if (x >= 0.5) {
 		x  = x - 1.0;
 		b  = x + lanczos_g + 0.5;
@@ -190,17 +135,9 @@ static MC_TARGET_INLINE double mc_lgamma(double x)
 		s += lanczos_c2 / (x + 2.0);
 		s += lanczos_c1 / (x + 1.0);
 		s += lanczos_c0;
-#	if MC_TARGET_CPP98
-		r  = ((MCK_K(MCK_LSQRT2PI) + ::log(s)) - b) + ::log(b) * (x + 0.5);
-#	else
-		r  = ((MCK_K(MCK_LSQRT2PI) + log(s)) - b) + log(b) * (x + 0.5);
-#	endif
+		r  = ((MCK_K(MCK_LSQRT2PI) + mc_log(s)) - b) + mc_log(b) * (x + 0.5);
 	} else {
-#	if MC_TARGET_CPP98
-		r = ::log(MCK_K(MCK_PI) / ::sin(MCK_K(MCK_PI) * x)) - mc_lgamma(1.0 - x);
-#	else
-		r = log(MCK_K(MCK_PI) / sin(MCK_K(MCK_PI) * x)) - mc_lgamma(1.0 - x);
-#	endif
+		r = mc_log(MCK_K(MCK_PI) / mc_sin(MCK_K(MCK_PI) * x)) - mc_lgamma(1.0 - x);
 	}
 	return r;
 #	else
@@ -226,42 +163,22 @@ static MC_TARGET_INLINE long double mc_lgammal(long double x)
 	const long double lanczos_c6 = -5.395239384953000327544564429516071868420112878084182739257812500E-06L;
 	long double s, b, r = MCK_NAN;
 
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return x;
 	}
-	if (::isinf(x)) {
+	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0 && x == ::truncl(x)) {
+	if (x <= 0 && x == mc_truncl(x)) {
 		return MCK_INFP;
 	}
-	const long double y = ::fabsl(x);
+	const long double y = mc_fabsl(x);
 	if (y <= LDBL_MIN) {
-		return -(::logl(y));
+		return -mc_logl(y);
 	}
-	if (y > (LDBL_MAX / ::logl(LDBL_MAX))) {
+	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {
 		return MCK_INFP;
 	}
-#	else
-	if (isnan(x)) {
-		return x;
-	}
-	if (isinf(x)) {
-		return x;
-	}
-	if (x <= 0 && x == truncl(x)) {
-		return MCK_INFP;
-	}
-	const long double y = fabsl(x);
-	if (y <= LDBL_MIN) {
-		return -logl(y);
-	}
-	if (y > (LDBL_MAX / logl(LDBL_MAX))) {
-		return MCK_INFP;
-	}
-#	endif
-
 	if (x >= 0.5L) {
 		x  = x - 1.0L;
 		b  = x + lanczos_g + 0.5L;
@@ -272,17 +189,9 @@ static MC_TARGET_INLINE long double mc_lgammal(long double x)
 		s += lanczos_c2 / (x + 2.0L);
 		s += lanczos_c1 / (x + 1.0L);
 		s += lanczos_c0;
-#	if MC_TARGET_CPP98
-		r  = ((MCK_KL(MCK_LSQRT2PI) + ::logl(s)) - b) + ::logl(b) * (x + 0.5L);
-#	else
-		r  = ((MCK_KL(MCK_LSQRT2PI) + logl(s)) - b) + logl(b) * (x + 0.5L);
-#	endif
+		r  = ((MCK_KL(MCK_LSQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (x + 0.5L);
 	} else {
-#	if MC_TARGET_CPP98
-		r = ::logl(MCK_KL(MCK_PI) / ::sinl(MCK_KL(MCK_PI) * x)) - mc_lgammal(1.0L - x);
-#	else
-		r = logl(MCK_KL(MCK_PI) / sinl(MCK_KL(MCK_PI) * x)) - mc_lgammal(1.0L - x);
-#	endif
+		r = mc_logl(MCK_KL(MCK_PI) / mc_sinl(MCK_KL(MCK_PI) * x)) - mc_lgammal(1.0L - x);
 	}
 	return r;
 #	else

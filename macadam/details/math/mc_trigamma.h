@@ -6,7 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_floor.h>
 #include <macadam/details/math/mc_raise2.h>
+#include <macadam/details/math/mc_sin.h>
 
 #ifndef MC_TRIGAMMA_H
 #define MC_TRIGAMMA_H
@@ -16,21 +18,12 @@
 static MC_TARGET_INLINE float mc_trigammaf(float x)
 {
 	float g, y, z;
-#	if MC_TARGET_CPP98
-	if ((x <= 0) && (::floorf(x) == x)) {
+	if ((x <= 0) && (mc_floorf(x) == x)) {
 		return MCK_INF;
 	}
-	if ((x <= 0) && (::floorf(x) != x)) {
-		return -mc_trigammaf(-x + 1.0f) + (MCK_KF(MCK_PI) / ::sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / ::sinf(-MCK_KF(MCK_PI) * x));
+	if ((x <= 0) && (mc_floorf(x) != x)) {
+		return -mc_trigammaf(-x + 1.0f) + (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x));
 	}
-#	else
-	if ((x <= 0) && (floorf(x) == x)) {
-		return MCK_INF;
-	}
-	if ((x <= 0) && (floorf(x) != x)) {
-		return -mc_trigammaf(-x + 1.0f) + (MCK_KF(MCK_PI) / sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / sinf(-MCK_KF(MCK_PI) * x));
-	}
-#	endif
 	if (x <= 1E-5f) {
 		return 1.0f / mc_raise2f(x);
 	}
@@ -49,21 +42,12 @@ static MC_TARGET_INLINE float mc_trigammaf(float x)
 static MC_TARGET_INLINE double mc_trigamma(double x)
 {
 	double g, y, z;
-#	if MC_TARGET_CPP98
-	if ((x <= 0) && (::floor(x) == x)) {
+	if ((x <= 0) && (mc_floor(x) == x)) {
 		return MCK_INF;
 	}
-	if ((x <= 0) && (::floor(x) != x)) {
-		return -mc_trigamma(-x + 1.0) + (MCK_K(MCK_PI) / ::sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / ::sin(-MCK_K(MCK_PI) * x));
+	if ((x <= 0) && (mc_floor(x) != x)) {
+		return -mc_trigamma(-x + 1.0) + (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x));
 	}
-#	else
-	if ((x <= 0) && (floor(x) == x)) {
-		return MCK_INF;
-	}
-	if ((x <= 0) && (floor(x) != x)) {
-		return -mc_trigamma(-x + 1.0) + (MCK_K(MCK_PI) / sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / sin(-MCK_K(MCK_PI) * x));
-	}
-#	endif
 	if (x <= 1E-5) {
 		return 1.0 / mc_raise2(x);
 	}
@@ -82,21 +66,12 @@ static MC_TARGET_INLINE double mc_trigamma(double x)
 static MC_TARGET_INLINE long double mc_trigammal(long double x)
 {
 	long double g, y, z;
-#	if MC_TARGET_CPP98
-	if ((x <= 0) && (::floorl(x) == x)) {
+	if ((x <= 0) && (mc_floorl(x) == x)) {
 		return MCK_INF;
 	}
-	if ((x <= 0) && (::floorl(x) != x)) {
-		return -mc_trigammal(-x + 1.0L) + (MCK_KL(MCK_PI) / ::sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / ::sinl(-MCK_KL(MCK_PI) * x));
+	if ((x <= 0) && (mc_floorl(x) != x)) {
+		return -mc_trigammal(-x + 1.0L) + (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x));
 	}
-#	else
-	if ((x <= 0) && (floorl(x) == x)) {
-		return MCK_INF;
-	}
-	if ((x <= 0) && (floorl(x) != x)) {
-		return -mc_trigammal(-x + 1.0L) + (MCK_KL(MCK_PI) / sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / sinl(-MCK_KL(MCK_PI) * x));
-	}
-#	endif
 	if (x <= 1E-5L) {
 		return 1.0L / mc_raise2l(x);
 	}
