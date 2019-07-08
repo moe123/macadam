@@ -23,7 +23,7 @@ float mc_lbetaf(float x, float y)
 		return MCK_NAN;
 	}
 	if (mc_isinf(x) || mc_isinf(y)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	if (mc_fabsf(x) < MCLIMITS_EPSILONF || mc_fabsf(y) < MCLIMITS_EPSILONF) {
 		return 0.0f;
@@ -41,7 +41,7 @@ double mc_lbeta(double x, double y)
 		return MCK_NAN;
 	}
 	if (mc_isinf(x) || mc_isinf(y)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	if (mc_fabs(x) < MCLIMITS_EPSILON || mc_fabs(y) < MCLIMITS_EPSILON) {
 		return 0.0;
@@ -59,7 +59,7 @@ long double mc_lbetal(long double x, long double y)
 		return MCK_NAN;
 	}
 	if (mc_isinf(x) || mc_isinf(y)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	if (mc_fabsl(x) < MCLIMITS_EPSILONL || mc_fabsl(y) < MCLIMITS_EPSILONL) {
 		return 0.0L;

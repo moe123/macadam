@@ -22,7 +22,7 @@ static MC_TARGET_INLINE float mc_pow2f(float x)
 			return 0.0f;
 		}
 		if (x > 1024.0f) {
-			return MCK_INF;
+			return MCK_INFP;
 		}
 		return mc_ipow2f(mc_cast(int, x));
 	}
@@ -36,7 +36,7 @@ static MC_TARGET_INLINE double mc_pow2(double x)
 			return 0.0;
 		}
 		if (x > 1024.0) {
-			return MCK_INF;
+			return MCK_INFP;
 		}
 		return mc_ipow2(mc_cast(int, x));
 	}
@@ -50,7 +50,7 @@ static MC_TARGET_INLINE double mc_pow2l(long double x)
 			return 0.0L;
 		}
 		if (x > 1024.0L) {
-			return MCK_INF;
+			return MCK_INFP;
 		}
 		return mc_ipow2l(mc_cast(int, x));
 	}

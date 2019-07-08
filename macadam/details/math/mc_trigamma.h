@@ -19,7 +19,7 @@ static MC_TARGET_INLINE float mc_trigammaf(float x)
 {
 	float g, y, z;
 	if ((x <= 0) && (mc_floorf(x) == x)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	if ((x <= 0) && (mc_floorf(x) != x)) {
 		return -mc_trigammaf(-x + 1.0f) + (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x));
@@ -43,7 +43,7 @@ static MC_TARGET_INLINE double mc_trigamma(double x)
 {
 	double g, y, z;
 	if ((x <= 0) && (mc_floor(x) == x)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	if ((x <= 0) && (mc_floor(x) != x)) {
 		return -mc_trigamma(-x + 1.0) + (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x));
@@ -67,7 +67,7 @@ static MC_TARGET_INLINE long double mc_trigammal(long double x)
 {
 	long double g, y, z;
 	if ((x <= 0) && (mc_floorl(x) == x)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	if ((x <= 0) && (mc_floorl(x) != x)) {
 		return -mc_trigammal(-x + 1.0L) + (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x));

@@ -37,7 +37,7 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 	}
 //#! x is out of bounds hence infinity is returned.
 	if (x < 0.0f || x > 1.0f) {
-		return x < 0.0f ? -MCK_INF : MCK_INF;
+		return x < 0.0f ? MCK_INFN : MCK_INFP;
 	}
 	if (x > (a + 1.0f) / (a + b + 2.0f)) {
 	//#! The beta inverse is symetric.
@@ -74,7 +74,7 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 		}
 	}
 //#! Unable to reduce, returning towards infinity.
-	return MCK_INF;
+	return MCK_INFP;
 }
 
 /*! Computes the regularized incomplete beta function.
@@ -98,7 +98,7 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 	}
 //#! x is out of bounds hence infinity is returned.
 	if (x < 0.0 || x > 1.0) {
-		return x < 0.0 ? -MCK_INF : MCK_INF;
+		return x < 0.0 ? MCK_INFN : MCK_INFP;
 	}
 	if (x > (a + 1.0) / (a + b + 2.0)) {
 	//#! The beta inverse is symetric.
@@ -135,7 +135,7 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 		}
 	}
 //#! Unable to reduce, returning towards infinity.
-	return MCK_INF;
+	return MCK_INFP;
 }
 
 /*! Computes the regularized incomplete beta function.
@@ -159,7 +159,7 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 	}
 //#! x is out of bounds hence infinity is returned.
 	if (x < 0.0L || x > 1.0L) {
-		return x < 0.0L ? -MCK_INF : MCK_INF;
+		return x < 0.0L ? MCK_INFN : MCK_INFP;
 	}
 	if (x > (a + 1.0L) / (a + b + 2.0L)) {
 	//#! The beta inverse is symetric.
@@ -196,7 +196,7 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 		}
 	}
 //#! Unable to reduce, returning towards infinity.
-	return MCK_INF;
+	return MCK_INFP;
 }
 
 #endif /* !MC_RBETA_H */

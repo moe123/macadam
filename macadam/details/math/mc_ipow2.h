@@ -26,7 +26,7 @@ static MC_TARGET_INLINE float mc_ipow2f(int x)
 	} else if (x == 1) {
 		return 2.0f;
 	} else if (x > 1023) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	return mc_cast(float, (1 << x));
 }
@@ -42,7 +42,7 @@ static MC_TARGET_INLINE double mc_ipow2(int x)
 	} else if (x == 1) {
 		return 2.0;
 	} else if (x > 1023) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	return mc_cast(double, (1 << x));
 }
@@ -58,7 +58,7 @@ static MC_TARGET_INLINE long double mc_ipow2l(int x)
 	} else if (x == 1) {
 		return 2.0L;
 	} else if (x > 1023) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	return mc_cast(long double, (1 << x));
 }

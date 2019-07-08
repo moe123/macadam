@@ -37,14 +37,14 @@ static MC_TARGET_INLINE float mc_etaf(float x)
 		return MCK_NAN;
 	}
 	if (mc_isinf(zeta)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	const float powm1 = mc_powm1f(2.0f, 1.0f - x);
 	if (mc_isnan(powm1)) {
 		return MCK_NAN;
 	}
 	if (mc_isinf(powm1)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	return -powm1 * zeta;
 }
@@ -69,14 +69,14 @@ static MC_TARGET_INLINE double mc_eta(double x)
 		return MCK_NAN;
 	}
 	if (mc_isinf(zeta)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	const double powm1 = mc_powm1(2.0, 1.0 - x);
 	if (mc_isnan(powm1)) {
 		return MCK_NAN;
 	}
 	if (mc_isinf(powm1)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	return -powm1 * zeta;
 }
@@ -101,14 +101,14 @@ static MC_TARGET_INLINE long double mc_etal(long double x)
 		return MCK_NAN;
 	}
 	if (mc_isinf(zeta)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	const long double powm1 = mc_powm1l(2.0L, 1.0L - x);
 	if (mc_isnan(powm1)) {
 		return MCK_NAN;
 	}
 	if (mc_isinf(powm1)) {
-		return MCK_INF;
+		return MCK_INFP;
 	}
 	return -powm1 * zeta;
 }
