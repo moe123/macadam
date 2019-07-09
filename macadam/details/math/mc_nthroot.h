@@ -6,7 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_cbrt.h>
 #include <macadam/details/math/mc_fhrt.h>
+#include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_NTHROOT_H
 #define MC_NTHROOT_H
@@ -20,18 +22,10 @@ static MC_TARGET_INLINE float mc_nthrootf(float x, unsigned int n)
 			return x;
 		}
 		if (n == 2) {
-#	if MC_TARGET_CPP98
-			return ::sqrtf(x);
-#	else
-			return sqrtf(x);
-#	endif
+			return mc_sqrtf(x);
 		}
 		if (n == 3) {
-#	if MC_TARGET_CPP98
-			return ::cbrtf(x);
-#	else
-			return cbrtf(x);
-#	endif
+			return mc_cbrtf(x);
 		}
 		if (n == 4) {
 			return mc_fhrtf(x);
@@ -40,11 +34,7 @@ static MC_TARGET_INLINE float mc_nthrootf(float x, unsigned int n)
 			return MCK_NAN;
 		}
 		const float r = 1.0f / mc_cast(float, n);
-#	if MC_TARGET_CPP98
-		return ::powf(x, r);
-#	else
-		return powf(x, r);
-#	endif
+		return mc_powf(x, r);
 	}
 	return MCK_NAN;
 }
@@ -56,18 +46,10 @@ static MC_TARGET_INLINE double mc_nthroot(double x, unsigned int n)
 			return x;
 		}
 		if (n == 2) {
-#	if MC_TARGET_CPP98
-			return ::sqrt(x);
-#	else
-			return sqrt(x);
-#	endif
+			return mc_sqrt(x);
 		}
 		if (n == 3) {
-#	if MC_TARGET_CPP98
-			return ::cbrt(x);
-#	else
-			return cbrt(x);
-#	endif
+			return mc_cbrt(x);
 		}
 		if (n == 4) {
 			return mc_fhrt(x);
@@ -76,11 +58,7 @@ static MC_TARGET_INLINE double mc_nthroot(double x, unsigned int n)
 			return MCK_NAN;
 		}
 		const double r = 1.0 / mc_cast(double, n);
-#	if MC_TARGET_CPP98
-		return ::pow(x, r);
-#	else
-		return pow(x, r);
-#	endif
+		return mc_pow(x, r);
 	}
 	return MCK_NAN;
 }
@@ -92,18 +70,10 @@ static MC_TARGET_INLINE long double mc_nthrootl(long double x, unsigned int n)
 			return x;
 		}
 		if (n == 2) {
-#	if MC_TARGET_CPP98
-			return ::sqrtl(x);
-#	else
-			return sqrtl(x);
-#	endif
+			return mc_sqrtl(x);
 		}
 		if (n == 3) {
-#	if MC_TARGET_CPP98
-			return ::cbrtl(x);
-#	else
-			return cbrtl(x);
-#	endif
+			return mc_cbrtl(x);
 		}
 		if (n == 4) {
 			return mc_fhrtl(x);
@@ -112,11 +82,7 @@ static MC_TARGET_INLINE long double mc_nthrootl(long double x, unsigned int n)
 			return MCK_NAN;
 		}
 		const long double r = 1.0L / mc_cast(long double, n);
-#	if MC_TARGET_CPP98
-		return ::powl(x, r);
-#	else
-		return powl(x, r);
-#	endif
+		return mc_powl(x, r);
 	}
 	return MCK_NAN;
 }

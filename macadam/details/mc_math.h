@@ -44,8 +44,11 @@
 #	include <macadam/details/math/mc_cospi.h>
 #	include <macadam/details/math/mc_cot.h>
 #	include <macadam/details/math/mc_coth.h>
+#	include <macadam/details/math/mc_csc.h>
+#	include <macadam/details/math/mc_csch.h>
 #	include <macadam/details/math/mc_digamma.h>
 #	include <macadam/details/math/mc_erf.h>
+#	include <macadam/details/math/mc_erfc.h>
 #	include <macadam/details/math/mc_eta.h>
 #	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_exp10.h>
@@ -120,6 +123,8 @@
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>
 #	include <macadam/details/math/mc_scalb.h>
+#	include <macadam/details/math/mc_sec.h>
+#	include <macadam/details/math/mc_sech.h>
 #	include <macadam/details/math/mc_sigmoid.h>
 #	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sinc.h>
@@ -133,8 +138,8 @@
 #	include <macadam/details/math/mc_tan.h>
 #	include <macadam/details/math/mc_tanh.h>
 #	include <macadam/details/math/mc_tanpi.h>
+#	include <macadam/details/math/mc_tgamma.h>
 #	include <macadam/details/math/mc_trigamma.h>
-#	include <macadam/details/math/mc_trigonometry.h>
 #	include <macadam/details/math/mc_trunc.h>
 #	include <macadam/details/math/mc_xchebevaln.h>
 #	include <macadam/details/math/mc_xlog1px.h>

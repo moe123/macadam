@@ -73,25 +73,6 @@ static MC_TARGET_INLINE long double mc_log2l(long double x)
 #	endif
 }
 
-static MC_TARGET_INLINE int mc_ilog2(int x)
-{
-	return x > 0 && x < MCLIMITS_IMAX ? (sizeof(x) * MCLIMITS_CBITS - 1) - MC_TARGET_CLZ(mc_cast(unsigned int, x)) : 0;
-}
-
-static MC_TARGET_INLINE long mc_llog2(long x)
-{
-	return x > 0 && x < MCLIMITS_LMAX ? (sizeof(x) * MCLIMITS_CBITS - 1) - MC_TARGET_CLZL(mc_cast(unsigned long, x)) : 0;
-}
-
-#	if MC_TARGET_C99 || MC_TARGET_CPP11
-static MC_TARGET_INLINE long long mc_lllog2(long x)
-{
-	return x > 0 && x < MCLIMITS_LLMAX ? (sizeof(x) * MCLIMITS_CBITS - 1) - MC_TARGET_CLZLL(mc_cast(unsigned long long, x)) : 0;
-}
-#	else
-#	define mc_lllog2 mc_llog2
-#	endif
-
 #endif /* !MC_LOG1M_H */
 
 /* EOF */

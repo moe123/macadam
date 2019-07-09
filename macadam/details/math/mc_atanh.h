@@ -42,39 +42,3 @@ static MC_TARGET_INLINE long double mc_atanhl(long double x)
 #endif /* !MC_ATANH_H */
 
 /* EOF */
-
-#ifndef MC_ATAN_H
-#define MC_ATAN_H
-
-#pragma mark - mc_atan -
-
-static MC_TARGET_INLINE float mc_atanf(float x)
-{
-#	if MC_TARGET_CPP98
-	return ::atanf(x);
-#	else
-	return atanf(x);
-#	endif
-}
-
-static MC_TARGET_INLINE double mc_atan(double x)
-{
-#	if MC_TARGET_CPP98
-	return ::atan(x);
-#	else
-	return atan(x);
-#	endif
-}
-
-static MC_TARGET_INLINE long double mc_atanl(long double x)
-{
-#	if MC_TARGET_CPP98
-	return ::atanl(x);
-#	else
-	return atanl(x);
-#	endif
-}
-
-#endif /* !MC_ATAN_H */
-
-/* EOF */

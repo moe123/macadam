@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_erfc.h>
 
 #ifndef MC_INVPROBIT_H
 #define MC_INVPROBIT_H
@@ -17,29 +15,17 @@
 
 static MC_TARGET_INLINE float mc_invprobitf(float x)
 {
-#	if MC_TARGET_CPP98
-	return 0.5f * ::erfcf(-x * MCK_KF(MCK_1_SQRT2));
-#	else
-	return 0.5f * erfcf(-x * MCK_KF(MCK_1_SQRT2));
-#	endif
+	return 0.5f * mc_erfcf(-x * MCK_KF(MCK_1_SQRT2));
 }
 
 static MC_TARGET_INLINE double mc_invprobit(double x)
 {
-#	if MC_TARGET_CPP98
-	return 0.5 * ::erfc(-x * MCK_K(MCK_1_SQRT2));
-#	else
-	return 0.5 * erfc(-x * MCK_K(MCK_1_SQRT2));
-#	endif
+	return 0.5 * mc_erfc(-x * MCK_K(MCK_1_SQRT2));
 }
 
 static MC_TARGET_INLINE long double mc_invprobitl(long double x)
 {
-#	if MC_TARGET_CPP98
-	return 0.5L * ::erfcl(-x * MCK_KL(MCK_1_SQRT2));
-#	else
-	return 0.5L * erfcl(-x * MCK_KL(MCK_1_SQRT2));
-#	endif
+	return 0.5L * mc_erfcl(-x * MCK_KL(MCK_1_SQRT2));
 }
 
 #endif /* !MC_INVPROBIT_H */

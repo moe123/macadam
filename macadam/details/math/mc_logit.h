@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_log.h>
 #include <macadam/mcconsts.h>
 #include <macadam/mclimits.h>
 
@@ -17,29 +17,17 @@
 
 static MC_TARGET_INLINE float mc_logitf(float x)
 {
-#	if MC_TARGET_CPP98
-	return -(::logf((1.0f / x) - 1.0f));
-#	else
-	return -(logf((1.0f / x) - 1.0f));
-#	endif
+	return -(mc_logf((1.0f / x) - 1.0f));
 }
 
-static MC_TARGET_INLINE double mc_logit(double x)
+static MC_TARGET_INLINE double mc__it(double x)
 {
-#	if MC_TARGET_CPP98
-	return -(::log((1.0 / x) - 1.0));
-#	else
-	return -(log((1.0 / x) - 1.0));
-#	endif
+	return -(mc_log((1.0 / x) - 1.0));
 }
 
 static MC_TARGET_INLINE long double mc_logitl(long double x)
 {
-#	if MC_TARGET_CPP98
-	return -(::logl((1.0L / x) - 1.0L));
-#	else
-	return -(logl((1.0L / x) - 1.0L));
-#	endif
+	return -(mc_logl((1.0L / x) - 1.0L));
 }
 
 #endif /* !MC_LOGIT_H */
