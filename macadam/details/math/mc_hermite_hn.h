@@ -17,6 +17,29 @@
 #ifndef MC_HERMITE_HN_H
 #define MC_HERMITE_HN_H
 
+#pragma mark - mc_hermite_h0 -
+
+static MC_TARGET_INLINE float mc_hermite_h0f(float x)
+{
+//!# Physicists' Hermite polynomial, degree 0.
+	x = 1.0f;
+	return x;
+}
+
+static MC_TARGET_INLINE double mc_hermite_h0(double x)
+{
+//!# Physicists' Hermite polynomial, degree 0.
+	x = 1.0;
+	return x;
+}
+
+static MC_TARGET_INLINE long  double mc_hermite_h0l(long double x)
+{
+//!# Physicists' Hermite polynomial, degree 0.
+	x = 1.0L;
+	return x;
+}
+
 #pragma mark - mc_hermite_h1 -
 
 static MC_TARGET_INLINE float mc_hermite_h1f(float x)

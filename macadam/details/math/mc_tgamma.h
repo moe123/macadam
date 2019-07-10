@@ -13,23 +13,9 @@
 
 #pragma mark - mc_tgamma -
 
-static MC_TARGET_INLINE
-float mc_tgammaf(float x)
-{
-	return mc_gammaf(x);
-}
-
-static MC_TARGET_INLINE
-double mc_tgamma(double x)
-{
-	return mc_gamma(x);
-}
-
-static MC_TARGET_INLINE
-long double mc_tgammal(long double x)
-{
-	return mc_gammal(x);
-}
+#	define mc_tgammaf(x) mc_gammaf(x)
+#	define mc_tgamma(x)  mc_gamma(x)
+#	define mc_tgammal(x) mc_gammal(x)
 
 #endif /* !MC_TGAMMA_H */
 

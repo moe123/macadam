@@ -68,6 +68,7 @@
 #	include <macadam/details/math/mc_gcd.h>
 #	include <macadam/details/math/mc_hermite_hen.h>
 #	include <macadam/details/math/mc_hermite_hn.h>
+#	include <macadam/details/math/mc_hypot.h>
 #	include <macadam/details/math/mc_hypotc.h>
 #	include <macadam/details/math/mc_hypotq.h>
 #	include <macadam/details/math/mc_hzeta.h>
@@ -85,6 +86,7 @@
 #	include <macadam/details/math/mc_lcm.h>
 #	include <macadam/details/math/mc_ldexp.h>
 #	include <macadam/details/math/mc_legendre_pn.h>
+#	include <macadam/details/math/mc_legendre_pnm.h>
 #	include <macadam/details/math/mc_legendre_qn.h>
 #	include <macadam/details/math/mc_lerp.h>
 #	include <macadam/details/math/mc_lgamma.h>

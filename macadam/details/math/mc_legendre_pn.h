@@ -16,6 +16,43 @@
 #ifndef MC_LEGENDRE_PN_H
 #define MC_LEGENDRE_PN_H
 
+#pragma mark - mc_legendre_p0 -
+
+static MC_TARGET_INLINE float mc_legendre_p0f(float x)
+{
+	x = 1.0f;
+	return x;
+}
+
+static MC_TARGET_INLINE double mc_legendre_p0(double x)
+{
+	x = 1.0;
+	return x;
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p0l(long double x)
+{
+	x = 1.0L;
+	return x;
+}
+
+#pragma mark - mc_legendre_p1 -
+
+static MC_TARGET_INLINE float mc_legendre_p1f(float x)
+{
+	return x;
+}
+
+static MC_TARGET_INLINE double mc_legendre_p1(double x)
+{
+	return x;
+}
+
+static MC_TARGET_INLINE long double mc_legendre_p1l(long double x)
+{
+	return x;
+}
+
 #pragma mark - mc_legendre_p2 -
 
 static MC_TARGET_INLINE float mc_legendre_p2f(float x)

@@ -1005,23 +1005,40 @@ static MC_TARGET_OVERLOADABLE long double mcmath_logb (long double x) { return l
 #pragma mark - mcmath_ldexp -
 
 #	ifndef mcmath_ldexp
-#	define mcmath_ldexp(x, y) \
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_ldexp              (const T& x, int n)           { mc_cast(void, x); mc_cast(void, n); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_ldexp<float>       (const float& x, int n)       { return mc_ldexpf(x, n);                       }
+template <>        MC_TARGET_INLINE double      mcmath_ldexp<double>      (const double& x, int n)      { return mc_ldexp(x, n);                        }
+template <>        MC_TARGET_INLINE long double mcmath_ldexp<long double> (const long double& x, int n) { return mc_ldexpl(x, n);                       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+static MC_TARGET_OVERLOADABLE float       mcmath_ldexp (float x, int n)       { return mc_ldexpf(x, n); }
+static MC_TARGET_OVERLOADABLE double      mcmath_ldexp (double x, int n)      { return mc_ldexp(x, n);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_ldexp (long double x, int n) { return mc_ldexpl(x, n); }
+#	elif MC_TARGET_C11
+#	define mcmath_ldexp(x, n) _Generic(x \
+	, float       : mc_ldexpf \
+	, double      : mc_ldexp  \
+	, long double : mc_ldexpl \
+) (x, mc_cast_exp(int, n))
+#	else
+#	define mcmath_ldexp(x, n) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_ldexpf (mc_cast_exp(float, x), mc_cast_exp(int, y))       \
-		: sizeof(x) == sizeof(double)      ? mc_ldexp  (mc_cast_exp(double, x), mc_cast_exp(int, y))      \
-		: sizeof(x) == sizeof(long double) ? mc_ldexpl (mc_cast_exp(long double, x), mc_cast_exp(int, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_ldexpf (mc_cast_exp(float, x), mc_cast_exp(int, n))       \
+		: sizeof(x) == sizeof(double)      ? mc_ldexp  (mc_cast_exp(double, x), mc_cast_exp(int, n))      \
+		: sizeof(x) == sizeof(long double) ? mc_ldexpl (mc_cast_exp(long double, x), mc_cast_exp(int, n)) \
 		: 0 \
 	)
+#	endif
 #	endif
 
 #pragma mark - mcmath_frexp -
 
 #	ifndef mcmath_frexp
-#	define mcmath_frexp(x, y) \
+#	define mcmath_frexp(x, e) \
 	( \
-		  sizeof(x) == sizeof(float)       ? frexpf (mc_cast_exp(float, x), mc_cast_exp(int *, y))       \
-		: sizeof(x) == sizeof(double)      ? frexp  (mc_cast_exp(double, x), mc_cast_exp(int *, y))      \
-		: sizeof(x) == sizeof(long double) ? frexpl (mc_cast_exp(long double, x), mc_cast_exp(int *, y)) \
+		  sizeof(x) == sizeof(float)       ? frexpf (mc_cast_exp(float, x), mc_cast_exp(int *, e))       \
+		: sizeof(x) == sizeof(double)      ? frexp  (mc_cast_exp(double, x), mc_cast_exp(int *, e))      \
+		: sizeof(x) == sizeof(long double) ? frexpl (mc_cast_exp(long double, x), mc_cast_exp(int *, e)) \
 		: 0 \
 	)
 #	endif
@@ -1201,26 +1218,26 @@ static MC_TARGET_OVERLOADABLE long double mcmath_rootn (long double x, unsigned 
 
 #	ifndef mcmath_hypot
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_hypot              (const T& x, const T& y)                     { return ::hypot(mc_cast(double, x), mc_cast(double, y)); }
-template <>        MC_TARGET_INLINE float       mcmath_hypot<float>       (const float& x, const float& y)             { return ::hypotf(x, y);                                  }
-template <>        MC_TARGET_INLINE double      mcmath_hypot<double>      (const double& x, const double& y)           { return ::hypot(x, y);                                   }
-template <>        MC_TARGET_INLINE long double mcmath_hypot<long double> (const long double& x, const long double& y) { return ::hypotl(x, y);                                  }
+template <class T> MC_TARGET_INLINE T           mcmath_hypot              (const T& x, const T& y)                     { return mc_hypot(mc_cast(double, x), mc_cast(double, y)); }
+template <>        MC_TARGET_INLINE float       mcmath_hypot<float>       (const float& x, const float& y)             { return mc_hypotf(x, y);                                  }
+template <>        MC_TARGET_INLINE double      mcmath_hypot<double>      (const double& x, const double& y)           { return mc_hypot(x, y);                                   }
+template <>        MC_TARGET_INLINE long double mcmath_hypot<long double> (const long double& x, const long double& y) { return mc_hypotl(x, y);                                  }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-static MC_TARGET_OVERLOADABLE float       mcmath_hypot (float x, float y)             { return hypotf(x, y); }
-static MC_TARGET_OVERLOADABLE double      mcmath_hypot (double x, double y)           { return hypot(x, y);  }
-static MC_TARGET_OVERLOADABLE long double mcmath_hypot (long double x, long double y) { return hypotl(x, y); }
+static MC_TARGET_OVERLOADABLE float       mcmath_hypot (float x, float y)             { return mc_hypotf(x, y); }
+static MC_TARGET_OVERLOADABLE double      mcmath_hypot (double x, double y)           { return mc_hypot(x, y);  }
+static MC_TARGET_OVERLOADABLE long double mcmath_hypot (long double x, long double y) { return mc_hypotl(x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_hypot(x, y) _Generic(x \
-	, float       : hypotf \
-	, double      : hypot  \
-	, long double : hypotl \
+	, float       : mc_hypotf \
+	, double      : mc_hypot  \
+	, long double : mc_hypotl \
 ) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
 #	else
 #	define mcmath_hypot(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? hypotf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? hypot  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? hypotl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_hypotf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_hypot  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_hypotl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
 		: 0 \
 	)
 #	endif

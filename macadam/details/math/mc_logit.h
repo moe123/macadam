@@ -20,7 +20,7 @@ static MC_TARGET_INLINE float mc_logitf(float x)
 	return -(mc_logf((1.0f / x) - 1.0f));
 }
 
-static MC_TARGET_INLINE double mc__it(double x)
+static MC_TARGET_INLINE double mc_logit(double x)
 {
 	return -(mc_log((1.0 / x) - 1.0));
 }

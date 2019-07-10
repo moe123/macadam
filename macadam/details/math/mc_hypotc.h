@@ -7,8 +7,6 @@
 //
 
 #include <macadam/details/math/mc_sqrt.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
 
 #ifndef MC_HYPOTC_H
 #define MC_HYPOTC_H

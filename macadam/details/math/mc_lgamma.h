@@ -23,21 +23,21 @@
 static MC_TARGET_INLINE double mc_lgammaf_approx0(float x)
 {
 	const float a = MCK_KF(MCK_2PI) / x;
-	const float b = x / MCK_KF(MCK_E);
+	const float b = x * MCK_KF(MCK_1_E);
 	return mc_logf(mc_sqrtf(a) * mc_powf(b, x));
 }
 
 static MC_TARGET_INLINE double mc_lgamma_approx0(double x)
 {
 	const double a = MCK_K(MCK_2PI) / x;
-	const double b = x / MCK_K(MCK_E);
+	const double b = x * MCK_K(MCK_1_E);
 	return mc_log(mc_sqrt(a) * mc_pow(b, x));
 }
 
 static MC_TARGET_INLINE long double mc_lgammal_approx0(long double x)
 {
 	const long double a = MCK_KL(MCK_2PI) / x;
-	const long double b = x / MCK_KL(MCK_E);
+	const long double b = x * MCK_KL(MCK_1_E);
 	return mc_logl(mc_sqrtl(a) * mc_powl(b, x));
 }
 

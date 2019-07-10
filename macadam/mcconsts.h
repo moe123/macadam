@@ -27,7 +27,7 @@
 #	define MCK_INFP +MCK_INF
 #	define MCK_INFN -MCK_INF
 
-//!# Value of e.
+//!# Value of Euler's number e=exp(1).
 #	ifndef M_E
 #	define M_E           +2.718281828459045235360287471352662497757247093699959574966E+00
 #	endif
@@ -94,8 +94,11 @@
 
 #pragma mark -
 
-//!# Value of Euler's number e.
+//!# Value of Euler's number e=exp(1).
 #	define MCK_E          M_E
+
+//!# Value of 1/e.
+#	define MCK_1_E       +0.367879441171442321595523770161460867445811131031767834507E+00
 
 //!# Value of Euler–Mascheroni's gamma.
 #	define MCK_G         +0.577215664901532860606512090082402431042159335939923598805E+00
