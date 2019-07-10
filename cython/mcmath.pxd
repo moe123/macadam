@@ -6,6 +6,9 @@
 # Copyright (C) 2019 Moe123. All rights reserved.
 #
 
+cdef extern from "<macadam/details/math/mc_modf.h>":
+	double mc_modf(double x, double * y)
+
 cdef extern from "<macadam/details/math/mc_zeta.h>":
 	double mc_zeta(double x)
 

@@ -8,7 +8,13 @@
 
 cimport mcmath
 
+def modf(x):
+	cdef double y = 0.0
+	cdef double r = mcmath.mc_modf(x, &y)
+	return r, y
+
 def zeta(x):
-	return mcmath.mc_zeta(x)
+	cdef double r = mcmath.mc_zeta(x)
+	return r
 
 # EOF
