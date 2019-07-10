@@ -52,6 +52,19 @@
 #	define MC_TARGET_HAVE_TGMATH 1
 #	endif
 
+#	if MC_DISABLE_LOG2
+#	undef  MC_TARGET_HAVE_LOG2
+#	define MC_TARGET_HAVE_LOG2 0
+#	else
+#	undef  MC_TARGET_HAVE_LOG2
+#	define MC_TARGET_HAVE_LOG2 1
+#	endif
+
+#	if MC_DISABLE_INLINE
+#	undef  MC_TARGET_INLINE
+#	define MC_TARGET_INLINE inline
+#	endif
+
 #	if defined(__STDC__)
 #		define MC_TARGET_C89 1
 #		if defined(__STDC_VERSION__)
@@ -97,6 +110,11 @@
 #		ifndef MC_TARGET_CPP14
 #			define MC_TARGET_CPP14 1
 #		endif
+#	endif
+
+#	if MC_TARGET_MSVC_CPP
+#		undef  _USE_MATH_DEFINES
+#		define _USE_MATH_DEFINES 1
 #	endif
 
 #	if MC_TARGET_CPP98 && !MC_TARGET_CPP11

@@ -17,7 +17,7 @@
 
 #pragma mark - mc_powm1 -
 
-float mc_powm1f(float x, float y)
+static MC_TARGET_INLINE float mc_powm1f(float x, float y)
 {
 	float r;
 	if (x < 0.0 && mc_truncf(y) != y) {
@@ -34,7 +34,7 @@ float mc_powm1f(float x, float y)
 	return mc_powf(x, y) - 1.0f;
 }
 
-double mc_powm1(double x, double y)
+static MC_TARGET_INLINE double mc_powm1(double x, double y)
 {
 	double r;
 	if (x < 0.0 && mc_trunc(y) != y) {
@@ -51,7 +51,7 @@ double mc_powm1(double x, double y)
 	return mc_pow(x, y) - 1.0;
 }
 
-long double mc_powm1l(long double x, long double y)
+static MC_TARGET_INLINE long double mc_powm1l(long double x, long double y)
 {
 	long double r;
 	if (x < 0.0L && mc_truncl(y) != y) {

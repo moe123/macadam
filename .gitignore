@@ -119,12 +119,6 @@ xcuserdata
 */.vscode
 */.vscode/*
 
-*/sdk/vendor/curl-7.49.1/lib/curl_config.h
-*/sdk/vendor/curl-7.50.3/lib/curl_config.h
-
-Fangorn/sdk/vendor/curl-7.49.1/lib/curl_config.h
-Fangorn/sdk/vendor/curl-7.50.3/lib/curl_config.h
-
-Fangorn/.gitignore
+cython/mcmath.c
 
 # EOF
