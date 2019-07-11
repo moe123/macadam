@@ -59,12 +59,15 @@
 #	include <macadam/details/math/mc_expm1.h>
 #	include <macadam/details/math/mc_fabs.h>
 #	include <macadam/details/math/mc_factorial.h>
+#	include <macadam/details/math/mc_ffrac.h>
 #	include <macadam/details/math/mc_fhrt.h>
+#	include <macadam/details/math/mc_fisint.h>
 #	include <macadam/details/math/mc_floor.h>
 #	include <macadam/details/math/mc_fmod.h>
 #	include <macadam/details/math/mc_gamma.h>
 #	include <macadam/details/math/mc_gammap.h>
 #	include <macadam/details/math/mc_gammaq.h>
+#	include <macadam/details/math/mc_gammasign.h>
 #	include <macadam/details/math/mc_gcd.h>
 #	include <macadam/details/math/mc_hermite_hen.h>
 #	include <macadam/details/math/mc_hermite_hn.h>

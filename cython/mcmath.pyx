@@ -8,6 +8,14 @@
 
 cimport mcmath
 
+def fisint(x):
+	cdef int r = mcmath.mc_fisint(x)
+	return r
+
+def ffrac(x):
+	cdef double r = mcmath.mc_ffrac(x)
+	return r
+
 def modf(x):
 	cdef double y = 0.0
 	cdef double r = mcmath.mc_modf(x, &y)

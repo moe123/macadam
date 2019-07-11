@@ -8,14 +8,16 @@
 
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_exp2.h>
+#include <macadam/details/math/mc_fisint.h>
 #include <macadam/details/math/mc_floor.h>
 #include <macadam/details/math/mc_fmod.h>
 #include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_ldexp.h>
 #include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_powm1.h>
-#include <macadam/details/math/mc_trunc.h>
 #include <macadam/details/math/mc_xpolyevaln.h>
 
 #ifndef MC_ZETAP_H
@@ -790,7 +792,7 @@ static MC_TARGET_INLINE float mc_zetapf(float s)
 	} else if (mc_isinf(s)) {
 		return MCK_INFP;
 	}
-	if (mc_truncf(s) == s && (s >= 0.0f && s < 28.0f)) {
+	if (mc_fisintf(s) && (s >= 0.0f && s < 28.0f)) {
 		return mc_izetapf(mc_cast(unsigned int, s));
 	}
 	if (s > 0.0f && s <= 1.6E-10f) {
@@ -810,7 +812,7 @@ static MC_TARGET_INLINE double mc_zetap(double s)
 	} else if (mc_isinf(s)) {
 		return MCK_INFP;
 	}
-	if (mc_trunc(s) == s && (s >= 0.0 && s < 64.0)) {
+	if (mc_fisint(s) && (s >= 0.0 && s < 64.0)) {
 		return mc_izetap(mc_cast(unsigned int, s));
 	}
 	if (s > 0.0 && s <= 1.6E-10) {
@@ -831,11 +833,11 @@ static MC_TARGET_INLINE long double mc_zetapl(long double s)
 		return MCK_INFP;
 	}
 #	if MC_TARGET_MSVC_CPP
-	if (mc_truncl(s) == s && (s >= 0.0L && s < 75.0L)) {
+	if (mc_fisintl(s) && (s >= 0.0L && s < 75.0L)) {
 		return mc_izetapl(mc_cast(unsigned int, s));
 	}
 #	else
-	if (mc_truncl(s) == s && (s >= 0.0L && s < 64.0L)) {
+	if (mc_fisintl(s) && (s >= 0.0L && s < 64.0L)) {
 		return mc_izetapl(mc_cast(unsigned int, s));
 	}
 #	endif

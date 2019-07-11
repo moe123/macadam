@@ -6,10 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_pow.h>
-#include <macadam/details/math/mc_trunc.h>
 #include <macadam/details/math/mc_expm1.h>
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fisint.h>
+#include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_xlogy.h>
 
 #ifndef MC_POWM1_H
@@ -20,7 +20,7 @@
 static MC_TARGET_INLINE float mc_powm1f(float x, float y)
 {
 	float r;
-	if (x < 0.0 && mc_truncf(y) != y) {
+	if (x < 0.0 && !mc_fisintf(y)) {
 		return MCK_NAN;
 	}
 	if (x > 0.0f) {
@@ -28,7 +28,7 @@ static MC_TARGET_INLINE float mc_powm1f(float x, float y)
 			r = mc_xlogyf(y, x);
 			return r < 0.5f ? mc_expm1f(r) : MCK_INFP;
 		}
-	} else if (mc_truncf(y / 2.0f) == y / 2.0f) {
+	} else if (mc_fisintf(y / 2.0f)) {
 		return mc_powm1f(-x, y);
 	}
 	return mc_powf(x, y) - 1.0f;
@@ -37,7 +37,7 @@ static MC_TARGET_INLINE float mc_powm1f(float x, float y)
 static MC_TARGET_INLINE double mc_powm1(double x, double y)
 {
 	double r;
-	if (x < 0.0 && mc_trunc(y) != y) {
+	if (x < 0.0 && !mc_fisint(y)) {
 		return MCK_NAN;
 	}
 	if (x > 0.0) {
@@ -45,7 +45,7 @@ static MC_TARGET_INLINE double mc_powm1(double x, double y)
 			r = mc_xlogy(y, x);
 			return r < 0.5 ? mc_expm1(r) : MCK_INFP;
 		}
-	} else if (mc_trunc(y / 2.0) == y / 2.0) {
+	} else if (mc_fisint(y / 2.0)) {
 		return mc_powm1(-x, y);
 	}
 	return mc_pow(x, y) - 1.0;
@@ -54,7 +54,7 @@ static MC_TARGET_INLINE double mc_powm1(double x, double y)
 static MC_TARGET_INLINE long double mc_powm1l(long double x, long double y)
 {
 	long double r;
-	if (x < 0.0L && mc_truncl(y) != y) {
+	if (x < 0.0L && !mc_fisintl(y)) {
 		return MCK_NAN;
 	}
 	if (x > 0.0L) {
@@ -62,7 +62,7 @@ static MC_TARGET_INLINE long double mc_powm1l(long double x, long double y)
 			r = mc_xlogyl(y, x);
 			return r < 0.5L ? mc_expm1l(r) : MCK_INFP;
 		}
-	} else if (mc_truncl(y / 2.0L) == y / 2.0L) {
+	} else if (mc_fisintl(y / 2.0L)) {
 		return mc_powm1l(-x, y);
 	}
 	return mc_powl(x, y) - 1.0L;

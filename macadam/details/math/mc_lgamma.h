@@ -7,13 +7,13 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fisint.h>
 #include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_sin.h>
 #include <macadam/details/math/mc_sqrt.h>
-#include <macadam/details/math/mc_trunc.h>
 
 #ifndef MC_LGAMMA_H
 #define MC_LGAMMA_H
@@ -62,7 +62,7 @@ static MC_TARGET_INLINE float mc_lgammaf(float x)
 	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0 && x == mc_truncf(x)) {
+	if (x <= 0 && mc_fisintf(x)) {
 		return MCK_INFP;
 	}
 	const float y = mc_fabsf(x);
@@ -115,7 +115,7 @@ static MC_TARGET_INLINE double mc_lgamma(double x)
 	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0 && x == mc_trunc(x)) {
+	if (x <= 0 && mc_fisint(x)) {
 		return MCK_INFP;
 	}
 	const double y = mc_fabs(x);
@@ -169,7 +169,7 @@ static MC_TARGET_INLINE long double mc_lgammal(long double x)
 	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0 && x == mc_truncl(x)) {
+	if (x <= 0 && mc_fisintl(x)) {
 		return MCK_INFP;
 	}
 	const long double y = mc_fabsl(x);

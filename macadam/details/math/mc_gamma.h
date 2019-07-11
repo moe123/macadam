@@ -16,7 +16,7 @@
 
 #pragma mark - mc_gamma_approx0 -
 
-static MC_TARGET_INLINE double mc_gammaf_approx0(float x)
+static MC_TARGET_INLINE float mc_gammaf_approx0(float x)
 {
 	const float a = MCK_KF(MCK_2PI) / x;
 	const float b = x * MCK_KF(MCK_1_E);
@@ -42,6 +42,15 @@ static MC_TARGET_INLINE long double mc_gammal_approx0(long double x)
 static MC_TARGET_INLINE
 float mc_gammaf(float x)
 {
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0f) {
+		return MCK_INFP;
+	}
+	if (x == 1.0f) {
+		return 1.0f;
+	}
 #	if MC_TARGET_EMBEDDED
 	return mc_expf(mc_lgammaf(x));
 #	else
@@ -56,6 +65,15 @@ float mc_gammaf(float x)
 static MC_TARGET_INLINE
 double mc_gamma(double x)
 {
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0) {
+		return MCK_INFP;
+	}
+	if (x == 1.0) {
+		return 1.0;
+	}
 #	if MC_TARGET_EMBEDDED
 	return mc_exp(mc_lgamma(x));
 #	else
@@ -70,6 +88,15 @@ double mc_gamma(double x)
 static MC_TARGET_INLINE
 long double mc_gammal(long double x)
 {
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0L) {
+		return MCK_INFP;
+	}
+	if (x == 1.0L) {
+		return 1.0L;
+	}
 #	if MC_TARGET_EMBEDDED
 	return mc_expl(mc_lgammal(x));
 #	else
