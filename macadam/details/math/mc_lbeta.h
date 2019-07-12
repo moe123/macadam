@@ -28,10 +28,15 @@ float mc_lbetaf(float x, float y)
 	if (mc_fabsf(x) < MCLIMITS_EPSILONF || mc_fabsf(y) < MCLIMITS_EPSILONF) {
 		return 0.0f;
 	}
-	const float a   = mc_lgammaf(x);
-	const float b   = mc_lgammaf(y);
-	const float apb = mc_lgammaf(x + y);
-	return a + b - apb;
+	if (x < y) {
+		const float w = x;
+		x             = y;
+		y             = w;
+	}
+	const float a = mc_lgammaf(x);
+	const float b = mc_lgammaf(y);
+	const float c = mc_lgammaf(x + y);
+	return a + b - c;
 }
 
 static MC_TARGET_INLINE
@@ -46,10 +51,15 @@ double mc_lbeta(double x, double y)
 	if (mc_fabs(x) < MCLIMITS_EPSILON || mc_fabs(y) < MCLIMITS_EPSILON) {
 		return 0.0;
 	}
-	const double a   = mc_lgamma(x);
-	const double b   = mc_lgamma(y);
-	const double apb = mc_lgamma(x + y);
-	return a + b - apb;
+	if (x < y) {
+		const double w = x;
+		x              = y;
+		y              = w;
+	}
+	const double a = mc_lgamma(x);
+	const double b = mc_lgamma(y);
+	const double c = mc_lgamma(x + y);
+	return a + b - c;
 }
 
 static MC_TARGET_INLINE
@@ -64,10 +74,15 @@ long double mc_lbetal(long double x, long double y)
 	if (mc_fabsl(x) < MCLIMITS_EPSILONL || mc_fabsl(y) < MCLIMITS_EPSILONL) {
 		return 0.0L;
 	}
-	const long double a   = mc_lgammal(x);
-	const long double b   = mc_lgammal(y);
-	const long double apb = mc_lgammal(x + y);
-	return a + b - apb;
+	if (x < y) {
+		const long double w = x;
+		x                   = y;
+		y                   = w;
+	}
+	const long double a = mc_lgammal(x);
+	const long double b = mc_lgammal(y);
+	const long double c = mc_lgammal(x + y);
+	return a + b - c;
 }
 
 #endif /* !MC_LBETA_H */

@@ -1,16 +1,18 @@
-root = true
+# BOF
+
+root                 = true
 
 [*]
-end_of_line = lf
+end_of_line          = lf
 insert_final_newline = false
-indent_style = tab
-indent_size  = 3
+indent_style         = tab
+indent_size          = 3
 
 [.*]
-end_of_line = lf
+end_of_line          = lf
 insert_final_newline = false
-indent_style = tab
-indent_size  = 3
+indent_style         = tab
+indent_size          = 3
 
 [*.{h, py, pxd, pyx}]
 charset              = utf-8
@@ -18,3 +20,5 @@ end_of_line          = lf
 insert_final_newline = false
 indent_style         = tab
 indent_size          = 3
+
+# EOF
