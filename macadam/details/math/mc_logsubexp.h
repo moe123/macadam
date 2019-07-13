@@ -18,10 +18,15 @@ static MC_TARGET_INLINE float mc_logsubexpf(float x, float y)
 	if (x == y) {
 		return MCK_INFN;
 	}
-	if (x > y) {
-		return mc_logdiffexp(x, y);
+	if (x < y) {
+		const float w = x;
+		x             = y;
+		y             = w;
 	}
-	return MCK_NAN;
+	if (y > MCK_INFN) {
+		return mc_logdiffexpf(x, y);
+	}
+	return x;
 }
 
 static MC_TARGET_INLINE double mc_logsubexp(double x, double y)
@@ -29,10 +34,15 @@ static MC_TARGET_INLINE double mc_logsubexp(double x, double y)
 	if (x == y) {
 		return MCK_INFN;
 	}
-	if (x > y) {
-		return mc_logdiffexpf(x, y);
+	if (x < y) {
+		const double w = x;
+		x              = y;
+		y              = w;
 	}
-	return MCK_NAN;
+	if (y > MCK_INFN) {
+		return mc_logdiffexp(x, y);
+	}
+	return x;
 }
 
 static MC_TARGET_INLINE long double mc_logsubexpl(long double x, long double y)
@@ -40,10 +50,15 @@ static MC_TARGET_INLINE long double mc_logsubexpl(long double x, long double y)
 	if (x == y) {
 		return MCK_INFN;
 	}
-	if (x > y) {
+	if (x < y) {
+		const long double w = x;
+		x                   = y;
+		y                   = w;
+	}
+	if (y > MCK_INFN) {
 		return mc_logdiffexpl(x, y);
 	}
-	return MCK_NAN;
+	return x;
 }
 
 #endif /* !MC_LOGSUBEXP_H */

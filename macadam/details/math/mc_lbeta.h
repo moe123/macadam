@@ -9,6 +9,7 @@
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_isnan.h>
+#include <macadam/details/math/mc_gamma.h>
 #include <macadam/details/math/mc_lgamma.h>
 
 #ifndef MC_LBETA_H
@@ -19,69 +20,111 @@
 static MC_TARGET_INLINE
 float mc_lbetaf(float x, float y)
 {
+	float a, b, c, d;
 	if (mc_isnan(x) || mc_isnan(y)) {
 		return MCK_NAN;
 	}
 	if (mc_isinf(x) || mc_isinf(y)) {
 		return MCK_INFP;
 	}
-	if (mc_fabsf(x) < MCLIMITS_EPSILONF || mc_fabsf(y) < MCLIMITS_EPSILONF) {
-		return 0.0f;
+	if (x <= 0.0f && y <= 0.0f) {
+		return MCK_NAN;
+	}
+	if (x < 0.0f && y < 0.0f) {
+		return MCK_NAN;
+	}
+	if (x == 0.0f || y == 0.0f) {
+		return MCK_INFP;
 	}
 	if (x < y) {
-		const float w = x;
-		x             = y;
-		y             = w;
+		d = x;
+		x = y;
+		y = d;
 	}
-	const float a = mc_lgammaf(x);
-	const float b = mc_lgammaf(y);
-	const float c = mc_lgammaf(x + y);
+	d = x + y;
+	c = mc_gammaf(d);
+	if (!mc_isinf(c) && c < MCLIMITS_MAXF) {
+		a = mc_gammaf(x);
+		b = mc_gammaf(y);
+		return a / (c / b);
+	}
+	a = mc_lgammaf(x);
+	b = mc_lgammaf(y);
+	c = mc_lgammaf(d);
 	return a + b - c;
 }
 
 static MC_TARGET_INLINE
 double mc_lbeta(double x, double y)
 {
+	double a, b, c, d;
 	if (mc_isnan(x) || mc_isnan(y)) {
 		return MCK_NAN;
 	}
 	if (mc_isinf(x) || mc_isinf(y)) {
 		return MCK_INFP;
 	}
-	if (mc_fabs(x) < MCLIMITS_EPSILON || mc_fabs(y) < MCLIMITS_EPSILON) {
-		return 0.0;
+	if (x <= 0.0 && y <= 0.0) {
+		return MCK_NAN;
+	}
+	if (x < 0.0 && y < 0.0) {
+		return MCK_NAN;
+	}
+	if (x == 0.0 || y == 0.0) {
+		return MCK_INFP;
 	}
 	if (x < y) {
-		const double w = x;
-		x              = y;
-		y              = w;
+		d = x;
+		x = y;
+		y = d;
 	}
-	const double a = mc_lgamma(x);
-	const double b = mc_lgamma(y);
-	const double c = mc_lgamma(x + y);
+	d = x + y;
+	c = mc_gamma(d);
+	if (!mc_isinf(c) && c < MCLIMITS_MAX) {
+		a = mc_gamma(x);
+		b = mc_gamma(y);
+		return a / (c / b);
+	}
+	a = mc_lgamma(x);
+	b = mc_lgamma(y);
+	c = mc_lgamma(d);
 	return a + b - c;
 }
 
 static MC_TARGET_INLINE
 long double mc_lbetal(long double x, long double y)
 {
+	long double a, b, c, d;
 	if (mc_isnan(x) || mc_isnan(y)) {
 		return MCK_NAN;
 	}
 	if (mc_isinf(x) || mc_isinf(y)) {
 		return MCK_INFP;
 	}
-	if (mc_fabsl(x) < MCLIMITS_EPSILONL || mc_fabsl(y) < MCLIMITS_EPSILONL) {
-		return 0.0L;
+	if (x <= 0.0L && y <= 0.0L) {
+		return MCK_NAN;
+	}
+	if (x < 0.0L && y < 0.0L) {
+		return MCK_NAN;
+	}
+	if (x == 0.0L || y == 0.0L) {
+		return MCK_INFP;
 	}
 	if (x < y) {
-		const long double w = x;
-		x                   = y;
-		y                   = w;
+		d = x;
+		x = y;
+		y = d;
 	}
-	const long double a = mc_lgammal(x);
-	const long double b = mc_lgammal(y);
-	const long double c = mc_lgammal(x + y);
+	d = x + y;
+	c = mc_gammal(d);
+	if (!mc_isinf(c) && c < MCLIMITS_MAXL) {
+		a = mc_gammal(x);
+		b = mc_gammal(y);
+		return a / (c / b);
+	}
+	a = mc_lgammal(x);
+	b = mc_lgammal(y);
+	c = mc_lgammal(d);
 	return a + b - c;
 }
 
