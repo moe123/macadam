@@ -23,7 +23,7 @@ static MC_TARGET_INLINE float mc_logsubexpf(float x, float y)
 		x             = y;
 		y             = w;
 	}
-	if (y > MCK_INFN) {
+	if (!mc_isinf(y) && y > MCK_INFN) {
 		return mc_logdiffexpf(x, y);
 	}
 	return x;
@@ -39,7 +39,7 @@ static MC_TARGET_INLINE double mc_logsubexp(double x, double y)
 		x              = y;
 		y              = w;
 	}
-	if (y > MCK_INFN) {
+	if (!mc_isinf(y) && y > MCK_INFN) {
 		return mc_logdiffexp(x, y);
 	}
 	return x;
@@ -55,7 +55,7 @@ static MC_TARGET_INLINE long double mc_logsubexpl(long double x, long double y)
 		x                   = y;
 		y                   = w;
 	}
-	if (y > MCK_INFN) {
+	if (!mc_isinf(y) && y > MCK_INFN) {
 		return mc_logdiffexpl(x, y);
 	}
 	return x;
