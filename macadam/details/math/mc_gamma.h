@@ -18,6 +18,16 @@
 
 static MC_TARGET_INLINE float mc_gammaf_approx0(float x)
 {
+//!# Stirling's formula formula for x >= 13.
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0f) {
+		return MCK_INFP;
+	}
+	if (x == 1.0f) {
+		return 1.0f;
+	}
 	const float a = MCK_KF(MCK_2PI) / x;
 	const float b = x * MCK_KF(MCK_1_E);
 	return mc_sqrtf(a) * mc_powf(b, x);
@@ -25,6 +35,16 @@ static MC_TARGET_INLINE float mc_gammaf_approx0(float x)
 
 static MC_TARGET_INLINE double mc_gamma_approx0(double x)
 {
+//!# Stirling's formula formula for x >= 13.
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0) {
+		return MCK_INFP;
+	}
+	if (x == 1.0) {
+		return 1.0;
+	}
 	const double a = MCK_K(MCK_2PI) / x;
 	const double b = x * MCK_K(MCK_1_E);
 	return mc_sqrt(a) * mc_pow(b, x);
@@ -32,9 +52,66 @@ static MC_TARGET_INLINE double mc_gamma_approx0(double x)
 
 static MC_TARGET_INLINE long double mc_gammal_approx0(long double x)
 {
+//!# Stirling's formula formula for x >= 13.
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0L) {
+		return MCK_INFP;
+	}
+	if (x == 1.0L) {
+		return 1.0L;
+	}
 	const long double a = MCK_KL(MCK_2PI) / x;
 	const long double b = x * MCK_KL(MCK_1_E);
 	return mc_sqrtl(a) * mc_powl(b, x);
+}
+
+#pragma mark - mc_gamma_approx1 -
+
+static MC_TARGET_INLINE float mc_gammaf_approx1(float x)
+{
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0f) {
+		return MCK_INFP;
+	}
+	if (x == 1.0f) {
+		return 1.0f;
+	}
+	const float r = mc_lgammaf_approx1(x);
+	return mc_expf(r);
+}
+
+static MC_TARGET_INLINE double mc_gamma_approx1(double x)
+{
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0) {
+		return MCK_INFP;
+	}
+	if (x == 1.0) {
+		return 1.0;
+	}
+	const double r = mc_lgamma_approx1(x);
+	return mc_exp(r);
+}
+
+static MC_TARGET_INLINE long double mc_gammal_approx1(long double x)
+{
+	if (isnan(x) || isinf(x)) {
+		return x;
+	}
+	if (x == 0.0L) {
+		return MCK_INFP;
+	}
+	if (x == 1.0L) {
+		return 1.0L;
+	}
+	const long double r = mc_lgammal_approx1(x);
+	return mc_expl(r);
 }
 
 #pragma mark - mc_gamma -

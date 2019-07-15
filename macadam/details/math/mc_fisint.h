@@ -25,7 +25,7 @@ static MC_TARGET_INLINE int mc_fisintf(float x)
 	return 0;
 }
 
-static MC_TARGET_INLINE double mc_fisint(double x)
+static MC_TARGET_INLINE int mc_fisint(double x)
 {
 	if (x == mc_trunc(x)) {
 		return 1;
@@ -36,12 +36,12 @@ static MC_TARGET_INLINE double mc_fisint(double x)
 	return 0;
 }
 
-static MC_TARGET_INLINE long double mc_fisintl(long double x)
+static MC_TARGET_INLINE int mc_fisintl(long double x)
 {
 	if (x == mc_truncl(x)) {
 		return 1;
 	}
-	if (0.0 == mc_ffracl(x)) {
+	if (0.0L == mc_ffracl(x)) {
 		return 1;
 	}
 	return 0;

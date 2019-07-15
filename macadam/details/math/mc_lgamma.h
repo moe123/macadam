@@ -20,8 +20,9 @@
 
 #pragma mark - mc_lgamma_approx0 -
 
-static MC_TARGET_INLINE double mc_lgammaf_approx0(float x)
+static MC_TARGET_INLINE float mc_lgammaf_approx0(float x)
 {
+//!# Stirling's formula for x >= 13.
 	const float a = MCK_KF(MCK_2PI) / x;
 	const float b = x * MCK_KF(MCK_1_E);
 	return mc_logf(mc_sqrtf(a) * mc_powf(b, x));
@@ -29,6 +30,7 @@ static MC_TARGET_INLINE double mc_lgammaf_approx0(float x)
 
 static MC_TARGET_INLINE double mc_lgamma_approx0(double x)
 {
+//!# Stirling's formula formula for x >= 13.
 	const double a = MCK_K(MCK_2PI) / x;
 	const double b = x * MCK_K(MCK_1_E);
 	return mc_log(mc_sqrt(a) * mc_pow(b, x));
@@ -36,9 +38,53 @@ static MC_TARGET_INLINE double mc_lgamma_approx0(double x)
 
 static MC_TARGET_INLINE long double mc_lgammal_approx0(long double x)
 {
+//!# Stirling's formula formula for x >= 13.
 	const long double a = MCK_KL(MCK_2PI) / x;
 	const long double b = x * MCK_KL(MCK_1_E);
 	return mc_logl(mc_sqrtl(a) * mc_powl(b, x));
+}
+
+#pragma mark - mc_lgamma_approx1 -
+
+static MC_TARGET_INLINE float mc_lgammaf_approx1(float x)
+{
+//!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
+//!# Leading term.
+	const float r = MCK_KF(MCK_LSQRT2PI) - x + (x - 0.5f) * mc_logf(x);
+	float t0, t1, t2;
+	float y = x;
+	float w = x * x;
+	t0 =  MCK_KF(MCK_1_12)   / y; y *= w;
+	t1 = -MCK_KF(MCK_1_360)  / y; y *= w;
+	t2 =  MCK_KF(MCK_1_1260) / y; y *= w;
+	return r + (t0 + t1 + t2);
+}
+
+static MC_TARGET_INLINE double mc_lgamma_approx1(double x)
+{
+//!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
+//!# Leading term.
+	const double r = MCK_K(MCK_LSQRT2PI) - x + (x - 0.5) * mc_log(x);
+	double t0, t1, t2;
+	double y = x;
+	double w = x * x;
+	t0 =  MCK_K(MCK_1_12)   / y; y *= w;
+	t1 = -MCK_K(MCK_1_360)  / y; y *= w;
+	t2 =  MCK_K(MCK_1_1260) / y; y *= w;
+	return r + (t0 + t1 + t2);
+}
+
+static MC_TARGET_INLINE long double mc_lgammal_approx1(long double x)
+{
+//!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
+	const long double r = MCK_K(MCK_LSQRT2PI) - x + (x - 0.5L) * mc_logl(x);
+	long double t0, t1, t2;
+	long double y = x;
+	long double w = x * x;
+	t0 =  MCK_KL(MCK_1_12)   / y; y *= w;
+	t1 = -MCK_KL(MCK_1_360)  / y; y *= w;
+	t2 =  MCK_KL(MCK_1_1260) / y; y *= w;
+	return r + (t0 + t1 + t2);
 }
 
 #pragma mark - mc_lgamma -

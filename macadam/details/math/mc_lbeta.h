@@ -11,6 +11,7 @@
 #include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_gamma.h>
 #include <macadam/details/math/mc_lgamma.h>
+#include <macadam/details/math/mc_log.h>
 
 #ifndef MC_LBETA_H
 #define MC_LBETA_H
@@ -46,7 +47,7 @@ float mc_lbetaf(float x, float y)
 	if (!mc_isinf(c) && c < MCLIMITS_MAXF) {
 		a = mc_gammaf(x);
 		b = mc_gammaf(y);
-		return a / (c / b);
+		return mc_logf(a / (c / b));
 	}
 	a = mc_lgammaf(x);
 	b = mc_lgammaf(y);
@@ -83,7 +84,7 @@ double mc_lbeta(double x, double y)
 	if (!mc_isinf(c) && c < MCLIMITS_MAX) {
 		a = mc_gamma(x);
 		b = mc_gamma(y);
-		return a / (c / b);
+		return mc_log(a / (c / b));
 	}
 	a = mc_lgamma(x);
 	b = mc_lgamma(y);
@@ -120,7 +121,7 @@ long double mc_lbetal(long double x, long double y)
 	if (!mc_isinf(c) && c < MCLIMITS_MAXL) {
 		a = mc_gammal(x);
 		b = mc_gammal(y);
-		return a / (c / b);
+		return  mc_logl(a / (c / b));
 	}
 	a = mc_lgammal(x);
 	b = mc_lgammal(y);
