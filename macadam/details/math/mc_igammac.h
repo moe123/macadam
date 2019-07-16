@@ -60,15 +60,15 @@ static MC_TARGET_INLINE long double mc_gamma_pseriesl_approx0(long double a, lon
 
 #pragma mark - mc_igammac -
 
-/*! Computes the non-regularized incomplete gamma upper tail function.
+/*! Computes the non-regularized incomplete gamma lower tail function.
  *
- * \brief Computing the non-regularized incomplete gamma upper tail function.
+ * \brief Computing the non-regularized incomplete gamma lower tail function.
  *
  * float mc_igammacf(float a, float z);
  *
  * \param a.
  * \param z.
- * \result  The non-normalised incomplete gamma upper tail function of a and z.
+ * \result  The non-normalised incomplete gamma lower tail function of a and z.
  *
  */
 static MC_TARGET_INLINE float mc_igammacf(float a, float z)
@@ -83,15 +83,15 @@ static MC_TARGET_INLINE float mc_igammacf(float a, float z)
 	return MCK_NAN;
 }
 
-/*! Computes the non-regularized incomplete gamma upper tail function.
+/*! Computes the non-regularized incomplete gamma lower tail function.
  *
- * \brief Computing the non-regularized incomplete gamma upper tail function.
+ * \brief Computing the non-regularized incomplete gamma lower tail function.
  *
  * double mc_igammac(double a, double z);
  *
  * \param a.
  * \param z.
- * \result  The non-normalised incomplete gamma upper tail function of a and z.
+ * \result  The non-normalised incomplete gamma lower tail function of a and z.
  */
 static MC_TARGET_INLINE double mc_igammac(double a, double z)
 {
@@ -105,15 +105,15 @@ static MC_TARGET_INLINE double mc_igammac(double a, double z)
 	return MCK_NAN;
 }
 
-/*! Computes the non-regularized incomplete gamma upper tail function.
+/*! Computes the non-regularized incomplete gamma lower tail function.
  *
- * \brief Computing the non-regularized incomplete gamma upper tail function.
+ * \brief Computing the non-regularized incomplete gamma lower tail function.
  *
  * long double mc_igammacl(long double a, long double z);
  *
  * \param a.
  * \param z.
- * \result  The non-normalised incomplete gamma upper tail function of a and z.
+ * \result  The non-normalised incomplete gamma lower tail function of a and z.
  */
 static MC_TARGET_INLINE long double mc_igammacl(long double a, long double z)
 {
