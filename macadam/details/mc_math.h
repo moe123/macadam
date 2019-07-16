@@ -125,6 +125,7 @@
 #	include <macadam/details/math/mc_raise5.h>
 #	include <macadam/details/math/mc_raise6.h>
 #	include <macadam/details/math/mc_rbeta.h>
+#	include <macadam/details/math/mc_rgamma.h>
 #	include <macadam/details/math/mc_rootn.h>
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>
