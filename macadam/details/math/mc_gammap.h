@@ -13,6 +13,8 @@
 #ifndef MC_GAMMAP_H
 #define MC_GAMMAP_H
 
+#pragma mark - mc_gammap -
+
 static MC_TARGET_INLINE float mc_gammapf(float a, float z)
 {
 	float p = MCK_NAN;

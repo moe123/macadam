@@ -844,6 +844,327 @@ static MC_TARGET_INLINE long double mc_xpolyeval12l(long double x
 	return s;
 }
 
+#pragma mark - mc_xpolyeval13 -
+
+static MC_TARGET_INLINE float mc_xpolyeval13f(float x
+	, float p1
+	, float p2
+	, float p3
+	, float p4
+	, float p5
+	, float p6
+	, float p7
+	, float p8
+	, float p9
+	, float p10
+	, float p11
+	, float p12
+	, float p13
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	float s;
+	s = p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+static MC_TARGET_INLINE double mc_xpolyeval13(double x
+	, double p1
+	, double p2
+	, double p3
+	, double p4
+	, double p5
+	, double p6
+	, double p7
+	, double p8
+	, double p9
+	, double p10
+	, double p11
+	, double p12
+	, double p13
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	double s;
+	s = p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+static MC_TARGET_INLINE long double mc_xpolyeval13l(long double x
+	, long double p1
+	, long double p2
+	, long double p3
+	, long double p4
+	, long double p5
+	, long double p6
+	, long double p7
+	, long double p8
+	, long double p9
+	, long double p10
+	, long double p11
+	, long double p12
+	, long double p13
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	long double s;
+	s = p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+#pragma mark - mc_xpolyeval14 -
+
+static MC_TARGET_INLINE float mc_xpolyeval14f(float x
+	, float p1
+	, float p2
+	, float p3
+	, float p4
+	, float p5
+	, float p6
+	, float p7
+	, float p8
+	, float p9
+	, float p10
+	, float p11
+	, float p12
+	, float p13
+	, float p14
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	float s;
+	s = p14;
+	s = s * x + p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+static MC_TARGET_INLINE double mc_xpolyeval14(double x
+	, double p1
+	, double p2
+	, double p3
+	, double p4
+	, double p5
+	, double p6
+	, double p7
+	, double p8
+	, double p9
+	, double p10
+	, double p11
+	, double p12
+	, double p13
+	, double p14
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	double s;
+	s = p14;
+	s = s * x + p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+static MC_TARGET_INLINE long double mc_xpolyeval14l(long double x
+	, long double p1
+	, long double p2
+	, long double p3
+	, long double p4
+	, long double p5
+	, long double p6
+	, long double p7
+	, long double p8
+	, long double p9
+	, long double p10
+	, long double p11
+	, long double p12
+	, long double p13
+	, long double p14
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	long double s;
+	s = p14;
+	s = s * x + p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+#pragma mark - mc_xpolyeval15 -
+
+static MC_TARGET_INLINE float mc_xpolyeval15f(float x
+	, float p1
+	, float p2
+	, float p3
+	, float p4
+	, float p5
+	, float p6
+	, float p7
+	, float p8
+	, float p9
+	, float p10
+	, float p11
+	, float p12
+	, float p13
+	, float p14
+	, float p15
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	float s;
+	s = p15;
+	s = s * x + p14;
+	s = s * x + p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+static MC_TARGET_INLINE double mc_xpolyeval15(double x
+	, double p1
+	, double p2
+	, double p3
+	, double p4
+	, double p5
+	, double p6
+	, double p7
+	, double p8
+	, double p9
+	, double p10
+	, double p11
+	, double p12
+	, double p13
+	, double p14
+	, double p15
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	double s;
+	s = p15;
+	s = s * x + p14;
+	s = s * x + p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
+static MC_TARGET_INLINE long double mc_xpolyeval15l(long double x
+	, long double p1
+	, long double p2
+	, long double p3
+	, long double p4
+	, long double p5
+	, long double p6
+	, long double p7
+	, long double p8
+	, long double p9
+	, long double p10
+	, long double p11
+	, long double p12
+	, long double p13
+	, long double p14
+	, long double p15
+) {
+//!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
+	long double s;
+	s = p15;
+	s = s * x + p14;
+	s = s * x + p13;
+	s = s * x + p12;
+	s = s * x + p11;
+	s = s * x + p10;
+	s = s * x + p9;
+	s = s * x + p8;
+	s = s * x + p7;
+	s = s * x + p6;
+	s = s * x + p5;
+	s = s * x + p4;
+	s = s * x + p3;
+	s = s * x + p2;
+	s = s * x + p1;
+	return s;
+}
+
 #pragma mark - mc_xpolyevaln -
 
 static MC_TARGET_INLINE float mc_xpolyevalnf(float x, const float * p, unsigned int n)
@@ -884,6 +1205,15 @@ static MC_TARGET_INLINE float mc_xpolyevalnf(float x, const float * p, unsigned 
 	break;
 	case 12:
 		s = mc_xpolyeval12f(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11]);
+	break;
+	case 13:
+		s = mc_xpolyeval13f(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12]);
+	break;
+	case 14:
+		s = mc_xpolyeval14f(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13]);
+	break;
+	case 15:
+		s = mc_xpolyeval15f(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14]);
 	break;
 	default:
 		s = mc_xpolyevalnef(x, p, n, NULL);
@@ -930,6 +1260,15 @@ static MC_TARGET_INLINE double mc_xpolyevaln(double x, const double * p, unsigne
 	case 12:
 		s = mc_xpolyeval12(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11]);
 	break;
+	case 13:
+		s = mc_xpolyeval13(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12]);
+	break;
+	case 14:
+		s = mc_xpolyeval14(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13]);
+	break;
+	case 15:
+		s = mc_xpolyeval15(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14]);
+	break;
 	default:
 		s = mc_xpolyevalne(x, p, n, NULL);
 	}
@@ -974,6 +1313,15 @@ static MC_TARGET_INLINE long double mc_xpolyevalnl(long double x, const long dou
 	break;
 	case 12:
 		s = mc_xpolyeval12l(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11]);
+	break;
+	case 13:
+		s = mc_xpolyeval13l(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12]);
+	break;
+	case 14:
+		s = mc_xpolyeval14l(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13]);
+	break;
+	case 15:
+		s = mc_xpolyeval15l(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14]);
 	break;
 	default:
 		s = mc_xpolyevalnel(x, p, n, NULL);
