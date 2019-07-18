@@ -956,9 +956,7 @@ MC_TARGET_FUNCTION float mc_igammapq_pseriesf(float a, float z)
 		w    += 1.0f;
 		term *= z / w;
 		sum  += term;
-		if (mc_fabsf(term) < mc_fabsf(sum) * e) { 
-			const float w = -z + a * mc_logf(z) - mc_lgammaf(a);
-			sum = sum * mc_expf(w);
+		if (mc_fabsf(term) < mc_fabsf(sum) * e) {
 			break;
 		}
 	}
@@ -976,9 +974,7 @@ MC_TARGET_FUNCTION double mc_igammapq_pseries(double a, double z)
 		w    += 1.0;
 		term *= z / w;
 		sum  += term;
-		if (mc_fabs(term) < mc_fabs(sum) * e) { 
-			const double w = -z + a * mc_log(z) - mc_lgamma(a);
-			sum = sum * mc_exp(w);
+		if (mc_fabs(term) < mc_fabs(sum) * e) {
 			break;
 		}
 	}
@@ -987,7 +983,7 @@ MC_TARGET_FUNCTION double mc_igammapq_pseries(double a, double z)
 
 MC_TARGET_FUNCTION long double mc_igammapq_pseriesl(long double a, long double z)
 {
-//!# Power series, regularized.
+//!# Power series.
 	const long double e = MCLIMITS_EPSILON;
 	long double term    = 1.0 / a;
 	long double sum     = term;
@@ -997,8 +993,6 @@ MC_TARGET_FUNCTION long double mc_igammapq_pseriesl(long double a, long double z
 		term *= z / w;
 		sum  += term;
 		if (mc_fabsl(term) < mc_fabsl(sum) * e) {
-			const long double w = -z + a * mc_logl(z) - mc_lgammal(a);
-			sum = sum * mc_expl(w);
 			break;
 		}
 	}
@@ -1115,6 +1109,8 @@ MC_TARGET_FUNCTION float mc_igammapf_approx1(float a, float z)
 	if (!(z <= 0.0f || a < 0.0f)) {
 		if (z < (a + 1.0f)) {
 			p = mc_igammapq_pseriesf(a, z);
+			const float w = -z + a * mc_logf(z) - mc_lgammaf(a);
+			p = p * mc_expl(w);
 		} else {
 			p = 1.0f / mc_igammapq_cfracf(a, z);
 			p = 1.0f - (mc_expf(a * mc_logf(z) - z - mc_lgammaf(a)) * p);
@@ -1130,6 +1126,8 @@ MC_TARGET_FUNCTION double mc_igammap_approx1(double a, double z)
 	if (!(z <= 0.0 || a < 0.0)) {
 		if (z < (a + 1.0)) {
 			p = mc_igammapq_pseries(a, z);
+			const double w = -z + a * mc_log(z) - mc_lgamma(a);
+			p = p * mc_exp(w);
 		} else {
 			p = 1.0 / mc_igammapq_cfrac(a, z);
 			p = 1.0 - (mc_exp(a * mc_log(z) - z - mc_lgamma(a)) * p);
@@ -1145,6 +1143,8 @@ MC_TARGET_FUNCTION long double mc_igammapl_approx1(long double a, long double z)
 	if (!(z <= 0.0L || a < 0.0L)) {
 		if (z < (a + 1.0L)) {
 			p = mc_igammapq_pseriesl(a, z);
+			const long double w = -z + a * mc_logl(z) - mc_lgammal(a);
+			p = p * mc_expl(w);
 		} else {
 			p = 1.0L / mc_igammapq_cfracl(a, z);
 			p = 1.0L - (mc_expl(a * mc_logl(z) - z - mc_lgammal(a)) * p);
