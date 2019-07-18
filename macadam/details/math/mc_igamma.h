@@ -1110,7 +1110,7 @@ MC_TARGET_FUNCTION float mc_igammapf_approx1(float a, float z)
 		if (z < (a + 1.0f)) {
 			p = mc_igammapq_pseriesf(a, z);
 			const float w = -z + a * mc_logf(z) - mc_lgammaf(a);
-			p = p * mc_expl(w);
+			p = p * mc_expf(w);
 		} else {
 			p = 1.0f / mc_igammapq_cfracf(a, z);
 			p = 1.0f - (mc_expf(a * mc_logf(z) - z - mc_lgammaf(a)) * p);
@@ -1161,7 +1161,10 @@ MC_TARGET_FUNCTION float mc_igammaqf_approx1(float a, float z)
 	float q = MCK_NAN;
 	if (!(z <= 0.0f || a < 0.0f)) {
 		if (z < (a + 1.0f)) {
-			q = 1.0f - mc_igammapq_pseriesf(a, z);
+			q = mc_igammapq_pseriesf(a, z);
+			const float w = -z + a * mc_logf(z) - mc_lgammaf(a);
+			q = q * mc_expf(w);
+			q = 1.0f - q;
 		} else {
 			q = 1.0f / mc_igammapq_cfracf(a, z);
 			q = mc_expf(a * mc_logf(z) - z - mc_lgammaf(a)) * q;
@@ -1176,7 +1179,10 @@ MC_TARGET_FUNCTION double mc_igammaq_approx1(double a, double z)
 	double q = MCK_NAN;
 	if (!(z <= 0.0 || a < 0.0)) {
 		if (z < (a + 1.0)) {
-			q = 1.0 - mc_igammapq_pseries(a, z);
+			q = mc_igammapq_pseries(a, z);
+			const double w = -z + a * mc_log(z) - mc_lgamma(a);
+			q = q * mc_exp(w);
+			q = 1.0 - q;
 		} else {
 			q = 1.0 / mc_igammapq_cfrac(a, z);
 			q = mc_exp(a * mc_log(z) - z - mc_lgamma(a)) * q;
@@ -1191,7 +1197,10 @@ MC_TARGET_FUNCTION long double mc_igammaql_approx1(long double a, long double z)
 	long double q = MCK_NAN;
 	if (!(z <= 0.0L || a < 0.0L)) {
 		if (z < (a + 1.0L)) {
-			q = 1.0L - mc_igammapq_pseriesl(a, z);
+			q = mc_igammapq_pseriesl(a, z);
+			const long double w = -z + a * mc_logl(z) - mc_lgammal(a);
+			q = q * mc_expl(w);
+			q = 1.0L - q;
 		} else {
 			q = 1.0L / mc_igammapq_cfracl(a, z);
 			q = mc_expl(a * mc_logl(z) - z - mc_lgammal(a)) * q;
