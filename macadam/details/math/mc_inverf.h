@@ -18,10 +18,10 @@
 
 #pragma mark - mc_inverf -
 
-static MC_TARGET_INLINE float mc_inverff(float x)
+MC_TARGET_FUNCTION float mc_inverff(float x)
 {
 	float w = 0.0f, z, n, d;
-	if(x < -1.0f || x > 1.0f) {
+	if (x < -1.0f || x > 1.0f) {
 		return MCK_NAN;
 	} else if (x == -1.0f) {
 		return MCK_INFP;
@@ -44,10 +44,10 @@ static MC_TARGET_INLINE float mc_inverff(float x)
 	return w;
 }
 
-static MC_TARGET_INLINE double mc_inverf(double x)
+MC_TARGET_FUNCTION double mc_inverf(double x)
 {
 	double w = 0.0, z, n, d;
-	if(x < -1.0 || x > 1.0) {
+	if (x < -1.0 || x > 1.0) {
 		return MCK_NAN;
 	} else if (x == -1.0) {
 		return MCK_INFP;
@@ -70,10 +70,10 @@ static MC_TARGET_INLINE double mc_inverf(double x)
 	return w;
 }
 
-static MC_TARGET_INLINE long double mc_inverfl(long double x)
+MC_TARGET_FUNCTION long double mc_inverfl(long double x)
 {
 	long double w = 0.0L, z, n, d;
-	if(x < -1.0L || x > 1.0L) {
+	if (x < -1.0L || x > 1.0L) {
 		return MCK_NAN;
 	} else if (x == -1.0L) {
 		return MCK_INFP;

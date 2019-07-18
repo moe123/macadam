@@ -14,7 +14,7 @@
 
 #pragma mark - mc_sqrt1pm1 -
 
-static MC_TARGET_INLINE float mc_sqrt1pm1f(float x)
+MC_TARGET_FUNCTION float mc_sqrt1pm1f(float x)
 {
 	if (mc_fabsf(x) > 0.75f) {
 		return mc_sqrtf(1.0f + x) - 1.0f;
@@ -22,7 +22,7 @@ static MC_TARGET_INLINE float mc_sqrt1pm1f(float x)
 	return x / (1.0f + mc_sqrtf(1.0f + x));
 }
 
-static MC_TARGET_INLINE double mc_sqrt1pm1(double x)
+MC_TARGET_FUNCTION double mc_sqrt1pm1(double x)
 {
 	if (mc_fabs(x) > 0.75) {
 		return mc_sqrt(1.0 + x) - 1.0;
@@ -30,7 +30,7 @@ static MC_TARGET_INLINE double mc_sqrt1pm1(double x)
 	return x / (1.0 + mc_sqrt(1.0 + x));
 }
 
-static MC_TARGET_INLINE long double mc_sqrt1pm1l(long double x)
+MC_TARGET_FUNCTION long double mc_sqrt1pm1l(long double x)
 {
 	if (mc_fabsl(x) > 0.75L) {
 		return mc_sqrtl(1.0L + x) - 1.0L;

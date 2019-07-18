@@ -13,17 +13,17 @@
 
 #pragma mark - mc_rsqr -
 
-static MC_TARGET_INLINE float mc_rsqrf(float x)
+MC_TARGET_FUNCTION float mc_rsqrf(float x)
 {
 	return 1.0f / mc_raise2f(x);
 }
 
-static MC_TARGET_INLINE double mc_rsqr(double x)
+MC_TARGET_FUNCTION double mc_rsqr(double x)
 {
 	return 1.0 / mc_raise2(x);
 }
 
-static MC_TARGET_INLINE long double mc_rsqrl(long double x)
+MC_TARGET_FUNCTION long double mc_rsqrl(long double x)
 {
 	return 1.0L / mc_raise2l(x);
 }

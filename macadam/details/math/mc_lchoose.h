@@ -13,7 +13,7 @@
 
 #pragma mark - mc_lchoose -
 
-static MC_TARGET_INLINE float mc_lchoosef(float x, float y)
+MC_TARGET_FUNCTION float mc_lchoosef(float x, float y)
 {
 	if (0 <= y && y <= x) {
 		return mc_lgammaf(x + 1.0f) - mc_lgammaf(y + 1.0f) - mc_lgammaf(x - y + 1.0f);
@@ -21,7 +21,7 @@ static MC_TARGET_INLINE float mc_lchoosef(float x, float y)
 	return MCLIMITS_MAXF;
 }
 
-static MC_TARGET_INLINE double mc_lchoose(double x, double y)
+MC_TARGET_FUNCTION double mc_lchoose(double x, double y)
 {
 	if (0 <= y && y <= x) {
 		return mc_lgamma(x + 1.0) - mc_lgamma(y + 1.0) - mc_lgamma(x - y + 1.0);
@@ -29,7 +29,7 @@ static MC_TARGET_INLINE double mc_lchoose(double x, double y)
 	return MCLIMITS_MAX;
 }
 
-static MC_TARGET_INLINE long double mc_lchoosel(long double x, long double y)
+MC_TARGET_FUNCTION long double mc_lchoosel(long double x, long double y)
 {
 	if (0 <= y && y <= x) {
 		return mc_lgammal(x + 1.0L) - mc_lgammal(y + 1.0L) - mc_lgammal(x - y + 1.0L);

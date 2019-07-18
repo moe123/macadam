@@ -15,7 +15,7 @@
 
 #pragma mark - mc_trunc -
 
-static MC_TARGET_INLINE float mc_truncf(float x)
+MC_TARGET_FUNCTION float mc_truncf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::truncf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_truncf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_trunc(double x)
+MC_TARGET_FUNCTION double mc_trunc(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::trunc(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_trunc(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_truncl(long double x)
+MC_TARGET_FUNCTION long double mc_truncl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::truncl(x);

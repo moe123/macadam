@@ -15,17 +15,17 @@
 
 #pragma mark - mc_raise4 -
 
-static MC_TARGET_INLINE float mc_raise4f(float x)
+MC_TARGET_FUNCTION float mc_raise4f(float x)
 {
 	return x * x * x * x;
 }
 
-static MC_TARGET_INLINE double mc_raise4(double x)
+MC_TARGET_FUNCTION double mc_raise4(double x)
 {
 	return x * x * x * x;
 }
 
-static MC_TARGET_INLINE long double mc_raise4l(long double x)
+MC_TARGET_FUNCTION long double mc_raise4l(long double x)
 {
 	return x * x * x * x;
 }

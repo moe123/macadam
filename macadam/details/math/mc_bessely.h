@@ -19,7 +19,7 @@
 
 #pragma mark - mc_bessely0 -
 
-static MC_TARGET_INLINE float mc_bessely0f(float x)
+MC_TARGET_FUNCTION float mc_bessely0f(float x)
 {
 #	if MC_TARGET_MSVC_CPP
 	
@@ -31,7 +31,7 @@ static MC_TARGET_INLINE float mc_bessely0f(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_bessely0(double x)
+MC_TARGET_FUNCTION double mc_bessely0(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::y0(x);
@@ -40,7 +40,7 @@ static MC_TARGET_INLINE double mc_bessely0(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_bessely0l(long double x)
+MC_TARGET_FUNCTION long double mc_bessely0l(long double x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::y0(mc_cast(double, x)));
@@ -51,7 +51,7 @@ static MC_TARGET_INLINE long double mc_bessely0l(long double x)
 
 #pragma mark - mc_bessely1 -
 
-static MC_TARGET_INLINE float mc_bessely1f(float x)
+MC_TARGET_FUNCTION float mc_bessely1f(float x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::y1(mc_cast(double, x)));
@@ -60,7 +60,7 @@ static MC_TARGET_INLINE float mc_bessely1f(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_bessely1(double x)
+MC_TARGET_FUNCTION double mc_bessely1(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::y1(x);
@@ -69,7 +69,7 @@ static MC_TARGET_INLINE double mc_bessely1(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_bessely1l(long double x)
+MC_TARGET_FUNCTION long double mc_bessely1l(long double x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::y1(mc_cast(double, x)));
@@ -80,7 +80,7 @@ static MC_TARGET_INLINE long double mc_bessely1l(long double x)
 
 #pragma mark - mc_besselyn -
 
-static MC_TARGET_INLINE float mc_besselynf(int n, float x)
+MC_TARGET_FUNCTION float mc_besselynf(int n, float x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::yn(n, mc_cast(double, x)));
@@ -89,7 +89,7 @@ static MC_TARGET_INLINE float mc_besselynf(int n, float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_besselyn(int n, double x)
+MC_TARGET_FUNCTION double mc_besselyn(int n, double x)
 {
 #	if MC_TARGET_CPP98
 	return ::yn(n, x);
@@ -98,7 +98,7 @@ static MC_TARGET_INLINE double mc_besselyn(int n, double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_besselynl(int n, long double x)
+MC_TARGET_FUNCTION long double mc_besselynl(int n, long double x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::yn(n, mc_cast(double, x)));

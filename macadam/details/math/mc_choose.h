@@ -15,19 +15,19 @@
 
 #pragma mark - mc_choose -
 
-static MC_TARGET_INLINE float mc_choosef(unsigned int n, unsigned int k)
+MC_TARGET_FUNCTION float mc_choosef(unsigned int n, unsigned int k)
 {
 	float r                 = MCLIMITS_MAXF;
 	const int max_factorial = 35;
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
-		if(k > n) {
+		if (k > n) {
 			return MCLIMITS_MAXF;
-		} else if((k == 0) || (k == n)) {
+		} else if ((k == 0) || (k == n)) {
 			return mc_cast(float, 1);
-		} else if((k == 1) || (k == n - 1)) {
+		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(float, n);
 		}
-		if(n < max_factorial) {
+		if (n < max_factorial) {
 			r  = mc_factorialf(n);
 			r /= mc_factorialf(n - k);
 			r /= mc_factorialf(k);
@@ -37,7 +37,7 @@ static MC_TARGET_INLINE float mc_choosef(unsigned int n, unsigned int k)
 				? (k - 0) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
 				: (n - k) * mc_betaf(mc_cast(float, (k + 1)), mc_cast(float, (n - k + 0)))
 			;
-			if(r != 0) {
+			if (r != 0) {
 				r = 1.0f / r;
 				r = mc_ceilf(r - 0.5f);
 			} else {
@@ -48,19 +48,19 @@ static MC_TARGET_INLINE float mc_choosef(unsigned int n, unsigned int k)
 	return r;
 }
 
-static MC_TARGET_INLINE double mc_choose(unsigned int n, unsigned int k)
+MC_TARGET_FUNCTION double mc_choose(unsigned int n, unsigned int k)
 {
 	double r                = MCLIMITS_MAX;
 	const int max_factorial = 171;
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
-		if(k > n) {
+		if (k > n) {
 			return MCLIMITS_MAX;
-		} else if((k == 0) || (k == n)) {
+		} else if ((k == 0) || (k == n)) {
 			return mc_cast(double, 1);
-		} else if((k == 1) || (k == n - 1)) {
+		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(double, n);
 		}
-		if(n < max_factorial) {
+		if (n < max_factorial) {
 			r  = mc_factorial(n);
 			r /= mc_factorial(n - k);
 			r /= mc_factorial(k);
@@ -70,7 +70,7 @@ static MC_TARGET_INLINE double mc_choose(unsigned int n, unsigned int k)
 				? (k - 0) * mc_beta(mc_cast(double, (k + 0)), mc_cast(double, (n - k + 1)))
 				: (n - k) * mc_beta(mc_cast(double, (k + 1)), mc_cast(double, (n - k + 0)))
 			;
-			if(r != 0) {
+			if (r != 0) {
 				r = 1.0f / r;
 				r = mc_ceil(r - 0.5);
 			} else {
@@ -81,7 +81,7 @@ static MC_TARGET_INLINE double mc_choose(unsigned int n, unsigned int k)
 	return r;
 }
 
-static MC_TARGET_INLINE long double mc_choosel(unsigned int n, unsigned int k)
+MC_TARGET_FUNCTION long double mc_choosel(unsigned int n, unsigned int k)
 {
 	long double r = MCLIMITS_MAXL;
 #	if MC_TARGET_MSVC_CPP
@@ -90,14 +90,14 @@ static MC_TARGET_INLINE long double mc_choosel(unsigned int n, unsigned int k)
 	const int max_factorial = 1755;
 #	endif
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
-		if(k > n) {
+		if (k > n) {
 			return MCLIMITS_MAXL;
-		} else if((k == 0) || (k == n)) {
+		} else if ((k == 0) || (k == n)) {
 			return mc_cast(long double, 1);
-		} else if((k == 1) || (k == n - 1)) {
+		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(long double, n);
 		}
-		if(n < max_factorial) {
+		if (n < max_factorial) {
 			r  = mc_cast(long double, mc_factoriall(n));
 			r /= mc_cast(long double, mc_factoriall(n - k));
 			r /= mc_cast(long double, mc_factoriall(k));
@@ -107,7 +107,7 @@ static MC_TARGET_INLINE long double mc_choosel(unsigned int n, unsigned int k)
 				? (k - 0) * mc_betal(mc_cast(long double, (k + 0)), mc_cast(long double, (n - k + 1)))
 				: (n - k) * mc_betal(mc_cast(long double, (k + 1)), mc_cast(long double, (n - k + 0)))
 			;
-			if(r != 0) {
+			if (r != 0) {
 				r = 1.0f / r;
 				r = mc_ceill(r - 0.5L);
 			} else {

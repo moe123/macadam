@@ -75,8 +75,7 @@
 #	include <macadam/details/math/mc_hypotc.h>
 #	include <macadam/details/math/mc_hypotq.h>
 #	include <macadam/details/math/mc_hzeta.h>
-#	include <macadam/details/math/mc_igammac.h>
-#	include <macadam/details/math/mc_igammad.h>
+#	include <macadam/details/math/mc_igamma.h>
 #	include <macadam/details/math/mc_inverf.h>
 #	include <macadam/details/math/mc_invlogit.h>
 #	include <macadam/details/math/mc_invprobit.h>
@@ -125,7 +124,6 @@
 #	include <macadam/details/math/mc_raise5.h>
 #	include <macadam/details/math/mc_raise6.h>
 #	include <macadam/details/math/mc_rbeta.h>
-#	include <macadam/details/math/mc_rgamma.h>
 #	include <macadam/details/math/mc_rootn.h>
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>

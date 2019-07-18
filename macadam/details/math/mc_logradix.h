@@ -13,17 +13,17 @@
 
 #pragma mark - mc_logradix -
 
-static MC_TARGET_INLINE float mc_logradixf(float x, int n)
+MC_TARGET_FUNCTION float mc_logradixf(float x, int n)
 {
 	return mc_logf(x) / mc_logf(mc_cast(float, n));
 }
 
-static MC_TARGET_INLINE double mc_logradix(double x, int n)
+MC_TARGET_FUNCTION double mc_logradix(double x, int n)
 {
 	return mc_log(x) / mc_log(mc_cast(double, n));
 }
 
-static MC_TARGET_INLINE long double mc_logradixl(long double x, int n)
+MC_TARGET_FUNCTION long double mc_logradixl(long double x, int n)
 {
 	return mc_logl(x) / mc_logl(mc_cast(long double, n));
 }

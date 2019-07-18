@@ -15,7 +15,7 @@
 
 #pragma mark - mc_cosh -
 
-static MC_TARGET_INLINE float mc_coshf(float x)
+MC_TARGET_FUNCTION float mc_coshf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::coshf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_coshf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_cosh(double x)
+MC_TARGET_FUNCTION double mc_cosh(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cosh(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_cosh(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_coshl(long double x)
+MC_TARGET_FUNCTION long double mc_coshl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::coshl(x);

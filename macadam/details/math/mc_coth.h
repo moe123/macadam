@@ -13,17 +13,17 @@
 
 #pragma mark - mc_coth -
 
-static MC_TARGET_INLINE float mc_cothf(float x)
+MC_TARGET_FUNCTION float mc_cothf(float x)
 {
 	return 1.0f / mc_tanhf(x);
 }
 
-static MC_TARGET_INLINE double mc_coth(double x)
+MC_TARGET_FUNCTION double mc_coth(double x)
 {
 	return 1.0 / mc_tanh(x);
 }
 
-static MC_TARGET_INLINE long double mc_cothl(long double x)
+MC_TARGET_FUNCTION long double mc_cothl(long double x)
 {
 	return 1.0L / mc_tanhl(x);
 }

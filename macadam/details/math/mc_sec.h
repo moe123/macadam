@@ -13,17 +13,17 @@
 
 #pragma mark - mc_sec -
 
-static MC_TARGET_INLINE float mc_secf(float x)
+MC_TARGET_FUNCTION float mc_secf(float x)
 {
 	return 1.0f / mc_cosf(x);
 }
 
-static MC_TARGET_INLINE double mc_sec(double x)
+MC_TARGET_FUNCTION double mc_sec(double x)
 {
 	return 1.0 / mc_cos(x);
 }
 
-static MC_TARGET_INLINE long double mc_secl(long double x)
+MC_TARGET_FUNCTION long double mc_secl(long double x)
 {
 	return 1.0L / mc_cosl(x);
 }

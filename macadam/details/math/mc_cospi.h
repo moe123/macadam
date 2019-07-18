@@ -17,13 +17,13 @@
 
 #pragma mark - mc_cospi -
 
-static MC_TARGET_INLINE float mc_cospif(float x)
+MC_TARGET_FUNCTION float mc_cospif (float x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
-	return ::__cospif(x);
+	return ::__cospif (x);
 #	else
-	return __cospif(x);
+	return __cospif (x);
 #	endif
 #	else
 	if (mc_isnan(x)) {
@@ -33,13 +33,13 @@ static MC_TARGET_INLINE float mc_cospif(float x)
 		return NAN;
 	}
 	x = mc_fmodf(mc_fabsf(x), 2.0f);
-	if(mc_fmodf(x, 1.0f) == 0.5f) {
+	if (mc_fmodf(x, 1.0f) == 0.5f) {
 		return 0.0f;
 	}
-	if(x == 1.0f) {
+	if (x == 1.0f) {
 		return -1.0f;
 	}
-	if(x == 0.0f) {
+	if (x == 0.0f) {
 		return 1.0f;
 	}
 	const float pix = MCK_KF(MCK_PI) * x;
@@ -47,7 +47,7 @@ static MC_TARGET_INLINE float mc_cospif(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_cospi(double x)
+MC_TARGET_FUNCTION double mc_cospi(double x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -63,13 +63,13 @@ static MC_TARGET_INLINE double mc_cospi(double x)
 		return NAN;
 	}
 	x = mc_fmod(mc_fabs(x), 2.0);
-	if(mc_fmod(x, 1.0) == 0.5) {
+	if (mc_fmod(x, 1.0) == 0.5) {
 		return 0.0;
 	}
-	if(x == 1.0) {
+	if (x == 1.0) {
 		return -1.0;
 	}
-	if(x == 0.0) {
+	if (x == 0.0) {
 		return 1.0;
 	}
 	const double pix = MCK_K(MCK_PI) * x;
@@ -77,7 +77,7 @@ static MC_TARGET_INLINE double mc_cospi(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_cospil(long double x)
+MC_TARGET_FUNCTION long double mc_cospil(long double x)
 {
 #	if MC_TARGET_APPLEXM
 	const double xx = mc_cast(double, x);
@@ -94,13 +94,13 @@ static MC_TARGET_INLINE long double mc_cospil(long double x)
 		return NAN;
 	}
 	x = mc_fmodl(mc_fabsl(x), 2.0L);
-	if(mc_fmodl(x, 1.0L) == 0.5L) {
+	if (mc_fmodl(x, 1.0L) == 0.5L) {
 		return 0.0L;
 	}
-	if(x == 1.0L) {
+	if (x == 1.0L) {
 		return -1.0L;
 	}
-	if(x == 0.0L) {
+	if (x == 0.0L) {
 		return 1.0L;
 	}
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)

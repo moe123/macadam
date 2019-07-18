@@ -15,7 +15,7 @@
 
 #pragma mark - mc_cbrt -
 
-static MC_TARGET_INLINE float mc_cbrtf(float x)
+MC_TARGET_FUNCTION float mc_cbrtf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::cbrtf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_cbrtf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_cbrt(double x)
+MC_TARGET_FUNCTION double mc_cbrt(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cbrt(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_cbrt(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_cbrtl(long double x)
+MC_TARGET_FUNCTION long double mc_cbrtl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cbrtl(x);

@@ -17,17 +17,17 @@
 
 #	if MC_TARGET_MSVC_CPP
 
-static MC_TARGET_INLINE float mc_scalbf(float x, float y)
+MC_TARGET_FUNCTION float mc_scalbf(float x, float y)
 { return ::_scalbf(mc_cast(float, x), mc_cast(long, y)); }
 
-static MC_TARGET_INLINE double mc_scalb(double x, double y)
+MC_TARGET_FUNCTION double mc_scalb(double x, double y)
 { return ::_scalb(mc_cast(double, x), mc_cast(long, y)); }
 
-static MC_TARGET_INLINE long double mc_scalbl(long double x, long double y)
+MC_TARGET_FUNCTION long double mc_scalbl(long double x, long double y)
 { return mc_cast(long double, ::_scalb(mc_cast(double, x), mc_cast(long, y))); }
 
 #	elif defined(__APPLE__) && defined(__MACH__)
-static MC_TARGET_INLINE float mc_scalbf(float x, float y)
+MC_TARGET_FUNCTION float mc_scalbf(float x, float y)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::scalb(mc_cast(double, x), mc_cast(double, y)));
@@ -38,7 +38,7 @@ static MC_TARGET_INLINE float mc_scalbf(float x, float y)
 
 #	define mc_scalb scalb
 
-static MC_TARGET_INLINE long double mc_scalbl(long double x, long double y)
+MC_TARGET_FUNCTION long double mc_scalbl(long double x, long double y)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::scalb(mc_cast(double, x), mc_cast(double, y)));

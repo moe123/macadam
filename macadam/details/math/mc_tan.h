@@ -12,7 +12,7 @@
 
 #pragma mark - mc_tan -
 
-static MC_TARGET_INLINE float mc_tanf(float x)
+MC_TARGET_FUNCTION float mc_tanf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::tanf(x);
@@ -21,7 +21,7 @@ static MC_TARGET_INLINE float mc_tanf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_tan(double x)
+MC_TARGET_FUNCTION double mc_tan(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::tan(x);
@@ -30,7 +30,7 @@ static MC_TARGET_INLINE double mc_tan(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_tanl(long double x)
+MC_TARGET_FUNCTION long double mc_tanl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::tanl(x);

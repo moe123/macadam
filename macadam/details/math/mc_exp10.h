@@ -15,7 +15,7 @@
 
 #pragma mark - mc_exp10 -
 
-static MC_TARGET_INLINE float mc_exp10f(float x)
+MC_TARGET_FUNCTION float mc_exp10f(float x)
 {
 #	if MC_TARGET_CPP98
 #	if MC_TARGET_APPLEXM
@@ -36,7 +36,7 @@ static MC_TARGET_INLINE float mc_exp10f(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_exp10(double x)
+MC_TARGET_FUNCTION double mc_exp10(double x)
 {
 #	if MC_TARGET_CPP98
 #	if MC_TARGET_APPLEXM
@@ -57,7 +57,7 @@ static MC_TARGET_INLINE double mc_exp10(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_exp10l(long double x)
+MC_TARGET_FUNCTION long double mc_exp10l(long double x)
 {
 #	if MC_TARGET_CPP98
 #	if MC_TARGET_APPLEXM

@@ -13,17 +13,17 @@
 
 #pragma mark - mc_sech -
 
-static MC_TARGET_INLINE float mc_sechf(float x)
+MC_TARGET_FUNCTION float mc_sechf(float x)
 {
 	return 1.0f / mc_coshf(x);
 }
 
-static MC_TARGET_INLINE double mc_sech(double x)
+MC_TARGET_FUNCTION double mc_sech(double x)
 {
 	return 1.0 / mc_cosh(x);
 }
 
-static MC_TARGET_INLINE long double mc_sechl(long double x)
+MC_TARGET_FUNCTION long double mc_sechl(long double x)
 {
 	return 1.0L / mc_coshl(x);
 }

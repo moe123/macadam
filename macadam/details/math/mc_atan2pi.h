@@ -15,19 +15,19 @@
 
 #pragma mark - mc_atan2pi -
 
-static MC_TARGET_INLINE float mc_atan2pif(float y, float x)
+MC_TARGET_FUNCTION float mc_atan2pif (float y, float x)
 {
 	const float z = mc_atan2f(y, x);
 	return z * MCK_KF(MCK_1_PI);
 }
 
-static MC_TARGET_INLINE double mc_atan2pi(double y, double x)
+MC_TARGET_FUNCTION double mc_atan2pi(double y, double x)
 {
 	const double z = mc_atan2(y, x);
 	return z * MCK_K(MCK_1_PI);
 }
 
-static MC_TARGET_INLINE long double mc_atan2pil(long double y, long double x)
+MC_TARGET_FUNCTION long double mc_atan2pil(long double y, long double x)
 {
 	const long double z = mc_atan2l(y, x);
 	return z * MCK_KL(MCK_1_PI);

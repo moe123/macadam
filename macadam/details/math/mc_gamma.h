@@ -16,7 +16,7 @@
 
 #pragma mark - mc_gamma_approx0 -
 
-static MC_TARGET_INLINE float mc_gammaf_approx0(float x)
+MC_TARGET_FUNCTION float mc_gammaf_approx0(float x)
 {
 //!# Stirling's formula formula for x >= 13.
 	if (isnan(x) || isinf(x)) {
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE float mc_gammaf_approx0(float x)
 	return mc_sqrtf(a) * mc_powf(b, x);
 }
 
-static MC_TARGET_INLINE double mc_gamma_approx0(double x)
+MC_TARGET_FUNCTION double mc_gamma_approx0(double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	if (isnan(x) || isinf(x)) {
@@ -50,7 +50,7 @@ static MC_TARGET_INLINE double mc_gamma_approx0(double x)
 	return mc_sqrt(a) * mc_pow(b, x);
 }
 
-static MC_TARGET_INLINE long double mc_gammal_approx0(long double x)
+MC_TARGET_FUNCTION long double mc_gammal_approx0(long double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	if (isnan(x) || isinf(x)) {
@@ -69,7 +69,7 @@ static MC_TARGET_INLINE long double mc_gammal_approx0(long double x)
 
 #pragma mark - mc_gamma_approx1 -
 
-static MC_TARGET_INLINE float mc_gammaf_approx1(float x)
+MC_TARGET_FUNCTION float mc_gammaf_approx1(float x)
 {
 	if (isnan(x) || isinf(x)) {
 		return x;
@@ -84,7 +84,7 @@ static MC_TARGET_INLINE float mc_gammaf_approx1(float x)
 	return mc_expf(r);
 }
 
-static MC_TARGET_INLINE double mc_gamma_approx1(double x)
+MC_TARGET_FUNCTION double mc_gamma_approx1(double x)
 {
 	if (isnan(x) || isinf(x)) {
 		return x;
@@ -99,7 +99,7 @@ static MC_TARGET_INLINE double mc_gamma_approx1(double x)
 	return mc_exp(r);
 }
 
-static MC_TARGET_INLINE long double mc_gammal_approx1(long double x)
+MC_TARGET_FUNCTION long double mc_gammal_approx1(long double x)
 {
 	if (isnan(x) || isinf(x)) {
 		return x;
@@ -116,7 +116,7 @@ static MC_TARGET_INLINE long double mc_gammal_approx1(long double x)
 
 #pragma mark - mc_gamma -
 
-static MC_TARGET_INLINE
+MC_TARGET_FUNCTION
 float mc_gammaf(float x)
 {
 	if (isnan(x) || isinf(x)) {
@@ -139,7 +139,7 @@ float mc_gammaf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE
+MC_TARGET_FUNCTION
 double mc_gamma(double x)
 {
 	if (isnan(x) || isinf(x)) {
@@ -162,7 +162,7 @@ double mc_gamma(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE
+MC_TARGET_FUNCTION
 long double mc_gammal(long double x)
 {
 	if (isnan(x) || isinf(x)) {

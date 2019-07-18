@@ -15,7 +15,7 @@
 
 #pragma mark - mc_ceil -
 
-static MC_TARGET_INLINE float mc_ceilf(float x)
+MC_TARGET_FUNCTION float mc_ceilf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::ceilf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_ceilf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_ceil(double x)
+MC_TARGET_FUNCTION double mc_ceil(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::ceil(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_ceil(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_ceill(long double x)
+MC_TARGET_FUNCTION long double mc_ceill(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::ceill(x);

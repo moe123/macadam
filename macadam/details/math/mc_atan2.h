@@ -15,7 +15,7 @@
 
 #pragma mark - mc_atan2 -
 
-static MC_TARGET_INLINE float mc_atan2f(float y, float x)
+MC_TARGET_FUNCTION float mc_atan2f(float y, float x)
 {
 #	if MC_TARGET_CPP98
 	return ::atan2f(y, x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_atan2f(float y, float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_atan2(double y, double x)
+MC_TARGET_FUNCTION double mc_atan2(double y, double x)
 {
 #	if MC_TARGET_CPP98
 	return ::atan2(y, x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_atan2(double y, double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_atan2l(long double y, long double x)
+MC_TARGET_FUNCTION long double mc_atan2l(long double y, long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::atan2l(y, x);

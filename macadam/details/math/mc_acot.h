@@ -15,17 +15,17 @@
 
 #pragma mark - mc_acot -
 
-static MC_TARGET_INLINE float mc_acotf(float x)
+MC_TARGET_FUNCTION float mc_acotf(float x)
 {
 	return mc_atanf(1.0f / x);
 }
 
-static MC_TARGET_INLINE double mc_acot(double x)
+MC_TARGET_FUNCTION double mc_acot(double x)
 {
 	return mc_atan(1.0 / x);
 }
 
-static MC_TARGET_INLINE long double mc_acotl(long double x)
+MC_TARGET_FUNCTION long double mc_acotl(long double x)
 {
 	return mc_atanl(1.0L / x);
 }

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nthroot -
 
-static MC_TARGET_INLINE float mc_nthrootf(float x, unsigned int n)
+MC_TARGET_FUNCTION float mc_nthrootf(float x, unsigned int n)
 {
 	if (n > 0 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
@@ -39,7 +39,7 @@ static MC_TARGET_INLINE float mc_nthrootf(float x, unsigned int n)
 	return MCK_NAN;
 }
 
-static MC_TARGET_INLINE double mc_nthroot(double x, unsigned int n)
+MC_TARGET_FUNCTION double mc_nthroot(double x, unsigned int n)
 {
 	if (n > 0 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
@@ -63,7 +63,7 @@ static MC_TARGET_INLINE double mc_nthroot(double x, unsigned int n)
 	return MCK_NAN;
 }
 
-static MC_TARGET_INLINE long double mc_nthrootl(long double x, unsigned int n)
+MC_TARGET_FUNCTION long double mc_nthrootl(long double x, unsigned int n)
 {
 	if (n > 0 && n < MCLIMITS_IMAX) {
 		if (n == 1) {

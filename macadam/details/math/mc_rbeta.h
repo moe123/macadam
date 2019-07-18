@@ -27,30 +27,30 @@
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
+MC_TARGET_FUNCTION float mc_rbetaf(float a, float b, float x)
 {
 	unsigned int i = 0, j;
 	float g, k, w, f = 1.0f, c = 1.0f, d = 0.0f;
-//#! NAN input results in NAN output.
+//!# NAN input results in NAN output.
 	if (mc_isnan(a) || mc_isnan(b) || mc_isnan(x)) {
 		return MCK_NAN;
 	}
-//#! x is out of bounds hence infinity is returned.
+//!# x is out of bounds hence infinity is returned.
 	if (x < 0.0f || x > 1.0f) {
 		return x < 0.0f ? MCK_INFN : MCK_INFP;
 	}
 	if (x > (a + 1.0f) / (a + b + 2.0f)) {
-	//#! The beta inverse is symetric.
+	//!# The beta inverse is symetric.
 		return (1.0f - mc_rbetaf(b, a, 1.0f - x));
 	}
-//#! Computing delta-gamma + front integral.
+//!# Computing delta-gamma + front integral.
 	g = mc_lbetaf(a, b);
 	k = mc_expf(mc_logf(x) * a + mc_logf(1.0f - x) * b - g) / a;
-//#! Reducing, converging.
+//!# Reducing, converging.
 	for (; i < 256; ++i) {
 		j = i / 2;
 		if (i == 0) {
-		//#! First iteration.
+		//!# First iteration.
 			w = 1.0f;
 		} else if ((i % 2) == 0) {
 			w = (j * (b - j) * x) / ((a + 2.0f * j - 1.0f) * (a + 2.0f * j));
@@ -59,13 +59,13 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 		}
 		d = 1.0f + w * d;
 		if (mc_fabsf(d) < 1.0E-15f) {
-		//#! Clipping to absolute min.
+		//!# Clipping to absolute min.
 			d = 1.0E-15f;
 		}
 		d = 1.0f / d;
 		c = 1.0f + w / c;
 		if (mc_fabsf(c) < 1.0E-15f) {
-		//#! Clipping to absolute min.
+		//!# Clipping to absolute min.
 			c = 1.0E-15f;
 		}
 		f *= (c * d);
@@ -73,7 +73,7 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
 			return k * (f - 1.0f);
 		}
 	}
-//#! Unable to reduce, returning towards infinity.
+//!# Unable to reduce, returning towards infinity.
 	return MCK_INFP;
 }
 
@@ -88,30 +88,30 @@ static MC_TARGET_INLINE float mc_rbetaf(float a, float b, float x)
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
+MC_TARGET_FUNCTION double mc_rbeta(double a, double b, double x)
 {
 	unsigned int i = 0, j;
 	double g, k, w, f = 1.0, c = 1.0, d = 0.0;
-//#! NAN input results in NAN output.
+//!# NAN input results in NAN output.
 	if (mc_isnan(a) || mc_isnan(b) || mc_isnan(x)) {
 		return MCK_NAN;
 	}
-//#! x is out of bounds hence infinity is returned.
+//!# x is out of bounds hence infinity is returned.
 	if (x < 0.0 || x > 1.0) {
 		return x < 0.0 ? MCK_INFN : MCK_INFP;
 	}
 	if (x > (a + 1.0) / (a + b + 2.0)) {
-	//#! The beta inverse is symetric.
+	//!# The beta inverse is symetric.
 		return (1.0 - mc_rbeta(b, a, 1.0 - x));
 	}
-//#! Computing delta-gamma + front integral.
+//!# Computing delta-gamma + front integral.
 	g = mc_lbeta(a, b);
 	k = mc_exp(mc_log(x) * a + mc_log(1.0 - x) * b - g) / a;
-//#! Reducing, converging.
+//!# Reducing, converging.
 	for (; i < 256; ++i) {
 		j = i / 2;
 		if (i == 0) {
-		//#! First iteration.
+		//!# First iteration.
 			w = 1.0;
 		} else if ((i % 2) == 0) {
 			w = (j * (b - j) * x) / ((a + 2.0 * j - 1.0) * (a + 2.0 * j));
@@ -120,13 +120,13 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 		}
 		d = 1.0 + w * d;
 		if (mc_fabs(d) < 1.0E-30) {
-		//#! Clipping to absolute min.
+		//!# Clipping to absolute min.
 			d = 1.0E-30;
 		}
 		d = 1.0 / d;
 		c = 1.0 + w / c;
 		if (mc_fabs(c) < 1.0E-30) {
-		//#! Clipping to absolute min.
+		//!# Clipping to absolute min.
 			c = 1.0E-30;
 		}
 		f *= (c * d);
@@ -134,7 +134,7 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
 			return k * (f - 1.0);
 		}
 	}
-//#! Unable to reduce, returning towards infinity.
+//!# Unable to reduce, returning towards infinity.
 	return MCK_INFP;
 }
 
@@ -149,30 +149,30 @@ static MC_TARGET_INLINE double mc_rbeta(double a, double b, double x)
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long double x)
+MC_TARGET_FUNCTION long double mc_rbetal(long double a, long double b, long double x)
 {
 	unsigned int i = 0, j;
 	long double g, k, w, f = 1.0L, c = 1.0L, d = 0.0L;
-//#! NAN input results in NAN output.
+//!# NAN input results in NAN output.
 	if (mc_isnan(a) || mc_isnan(b) || mc_isnan(x)) {
 		return MCK_NAN;
 	}
-//#! x is out of bounds hence infinity is returned.
+//!# x is out of bounds hence infinity is returned.
 	if (x < 0.0L || x > 1.0L) {
 		return x < 0.0L ? MCK_INFN : MCK_INFP;
 	}
 	if (x > (a + 1.0L) / (a + b + 2.0L)) {
-	//#! The beta inverse is symetric.
+	//!# The beta inverse is symetric.
 		return (1.0L - mc_rbetal(b, a, 1.0L - x));
 	}
-//#! Computing delta-gamma + front integral.
+//!# Computing delta-gamma + front integral.
 	g = mc_lbeta(a, b);
 	k = mc_expl(mc_logl(x) * a + mc_logl(1.0L - x) * b - g) / a;
-//#! Reducing, converging.
+//!# Reducing, converging.
 	for (; i < 256; ++i) {
 		j = i / 2;
 		if (i == 0) {
-		//#! First iteration.
+		//!# First iteration.
 			w = 1.0L;
 		} else if ((i % 2) == 0) {
 			w = (j * (b - j) * x) / ((a + 2.0L * j - 1.0L) * (a + 2.0L * j));
@@ -181,13 +181,13 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 		}
 		d = 1.0L + w * d;
 		if (mc_fabsl(d) < 1.0E-30L) {
-		//#! Clipping to absolute min.
+		//!# Clipping to absolute min.
 			d = 1.0E-30L;
 		}
 		d = 1.0L / d;
 		c = 1.0L + w / c;
 		if (mc_fabsl(c) < 1.0E-30L) {
-		//#! Clipping to absolute min.
+		//!# Clipping to absolute min.
 			c = 1.0E-30L;
 		}
 		f *= (c * d);
@@ -195,7 +195,7 @@ static MC_TARGET_INLINE long double mc_rbetal(long double a, long double b, long
 			return k * (f - 1.0L);
 		}
 	}
-//#! Unable to reduce, returning towards infinity.
+//!# Unable to reduce, returning towards infinity.
 	return MCK_INFP;
 }
 

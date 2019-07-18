@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sqrt -
 
-static MC_TARGET_INLINE float mc_sqrtf(float x)
+MC_TARGET_FUNCTION float mc_sqrtf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrtf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_sqrtf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_sqrt(double x)
+MC_TARGET_FUNCTION double mc_sqrt(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrt(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_sqrt(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_sqrtl(long double x)
+MC_TARGET_FUNCTION long double mc_sqrtl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrtl(x);

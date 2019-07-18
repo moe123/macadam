@@ -15,7 +15,7 @@
 
 #pragma mark - mc_floor -
 
-static MC_TARGET_INLINE float mc_floorf(float x)
+MC_TARGET_FUNCTION float mc_floorf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::floorf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_floorf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_floor(double x)
+MC_TARGET_FUNCTION double mc_floor(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::floor(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_floor(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_floorl(long double x)
+MC_TARGET_FUNCTION long double mc_floorl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::floorl(x);

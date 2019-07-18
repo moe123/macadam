@@ -19,7 +19,7 @@
 
 #pragma mark - mc_hzeta -
 
-static MC_TARGET_INLINE float mc_hzetaf(float s, float q)
+MC_TARGET_FUNCTION float mc_hzetaf(float s, float q)
 {
 	const float w = MCK_KF(FLT_MAX_10_EXP) * MCK_KF(MCK_LOG10);
 
@@ -60,7 +60,7 @@ hurwitz_end:
 	return r / (s - 1.0f);
 }
 
-static MC_TARGET_INLINE double mc_hzeta(double s, double q)
+MC_TARGET_FUNCTION double mc_hzeta(double s, double q)
 {
 	const double w = MCK_K(DBL_MAX_10_EXP) * MCK_K(MCK_LOG10);
 
@@ -101,7 +101,7 @@ hurwitz_end:
 	return r / (s - 1.0);
 }
 
-static MC_TARGET_INLINE long double mc_hzetal(long double s, long double q)
+MC_TARGET_FUNCTION long double mc_hzetal(long double s, long double q)
 {
 	const long double w = MCK_KL(LDBL_MAX_10_EXP) * MCK_KL(MCK_LOG10);
 

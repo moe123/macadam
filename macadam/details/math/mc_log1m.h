@@ -13,17 +13,17 @@
 
 #pragma mark - mc_log1m -
 
-static MC_TARGET_INLINE float mc_log1mf(float x)
+MC_TARGET_FUNCTION float mc_log1mf(float x)
 {
 	return mc_log1pf(-x);
 }
 
-static MC_TARGET_INLINE double mc_log1m(double x)
+MC_TARGET_FUNCTION double mc_log1m(double x)
 {
 	return mc_log1p(-x);
 }
 
-static MC_TARGET_INLINE long double mc_log1ml(long double x)
+MC_TARGET_FUNCTION long double mc_log1ml(long double x)
 {
 	return mc_log1pl(-x);
 }

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_modf -
 
-static MC_TARGET_INLINE float mc_modff(float x, float * y)
+MC_TARGET_FUNCTION float mc_modff(float x, float * y)
 {
 #	if MC_TARGET_CPP98
 	return ::modff(x, y);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_modff(float x, float * y)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_modf(double x, double * y)
+MC_TARGET_FUNCTION double mc_modf(double x, double * y)
 {
 #	if MC_TARGET_CPP98
 	return ::modf(x, y);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_modf(double x, double * y)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_modfl(long double x, long double * y)
+MC_TARGET_FUNCTION long double mc_modfl(long double x, long double * y)
 {
 #	if MC_TARGET_CPP98
 	return ::modfl(x, y);

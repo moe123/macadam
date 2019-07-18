@@ -15,7 +15,7 @@
 
 #pragma mark - mc_ipow2 -
 
-static MC_TARGET_INLINE float mc_ipow2f(int x)
+MC_TARGET_FUNCTION float mc_ipow2f(int x)
 {
 	if (x < -1074) {
 		return 0.0f;
@@ -31,7 +31,7 @@ static MC_TARGET_INLINE float mc_ipow2f(int x)
 	return mc_cast(float, (1 << x));
 }
 
-static MC_TARGET_INLINE double mc_ipow2(int x)
+MC_TARGET_FUNCTION double mc_ipow2(int x)
 {
 	if (x < -1074) {
 		return 0.0;
@@ -47,7 +47,7 @@ static MC_TARGET_INLINE double mc_ipow2(int x)
 	return mc_cast(double, (1 << x));
 }
 
-static MC_TARGET_INLINE long double mc_ipow2l(int x)
+MC_TARGET_FUNCTION long double mc_ipow2l(int x)
 {
 	if (x < -1074) {
 		return 0.0L;

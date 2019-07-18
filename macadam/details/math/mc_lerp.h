@@ -13,7 +13,7 @@
 
 #pragma mark - mc_lerp -
 
-static MC_TARGET_INLINE float mc_lerpf(float x, float y, float z)
+MC_TARGET_FUNCTION float mc_lerpf(float x, float y, float z)
 {
 	if (mc_isnan(x) || mc_isnan(y) || mc_isnan(z)) {
 		return MCK_NAN;
@@ -30,7 +30,7 @@ static MC_TARGET_INLINE float mc_lerpf(float x, float y, float z)
 	return w < y ? w : y;
 }
 
-static MC_TARGET_INLINE double mc_lerp(double x, double y, double z)
+MC_TARGET_FUNCTION double mc_lerp(double x, double y, double z)
 {
 	if (mc_isnan(x) || mc_isnan(y) || mc_isnan(z)) {
 		return MCK_NAN;
@@ -47,7 +47,7 @@ static MC_TARGET_INLINE double mc_lerp(double x, double y, double z)
 	return w < y ? w : y;
 }
 
-static MC_TARGET_INLINE long double mc_lerpl(long double x, long double y, long double z)
+MC_TARGET_FUNCTION long double mc_lerpl(long double x, long double y, long double z)
 {
 	if (mc_isnan(x) || mc_isnan(y) || mc_isnan(z)) {
 		return MCK_NAN;

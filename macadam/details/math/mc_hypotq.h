@@ -14,7 +14,7 @@
 
 #pragma mark - mc_hypotq -
 
-static MC_TARGET_INLINE float mc_hypotqf(float x, float y)
+MC_TARGET_FUNCTION float mc_hypotqf(float x, float y)
 {
 	float a = mc_fabsf(x);
 	float b = mc_fabsf(y);
@@ -29,7 +29,7 @@ static MC_TARGET_INLINE float mc_hypotqf(float x, float y)
 	return c;
 }
 
-static MC_TARGET_INLINE double mc_hypotq(double x, double y)
+MC_TARGET_FUNCTION double mc_hypotq(double x, double y)
 {
 	double a = mc_fabs(x);
 	double b = mc_fabs(y);
@@ -44,7 +44,7 @@ static MC_TARGET_INLINE double mc_hypotq(double x, double y)
 	return c;
 }
 
-static MC_TARGET_INLINE double mc_hypotql(long double x, long double y)
+MC_TARGET_FUNCTION double mc_hypotql(long double x, long double y)
 {
 	long double a = mc_fabsl(x);
 	long double b = mc_fabsl(y);

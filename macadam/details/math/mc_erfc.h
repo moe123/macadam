@@ -15,7 +15,7 @@
 
 #pragma mark - mc_erfc -
 
-static MC_TARGET_INLINE float mc_erfcf(float x)
+MC_TARGET_FUNCTION float mc_erfcf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::erfcf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_erfcf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_erfc(double x)
+MC_TARGET_FUNCTION double mc_erfc(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::erfc(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_erfc(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_erfcl(long double x)
+MC_TARGET_FUNCTION long double mc_erfcl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::erfcl(x);

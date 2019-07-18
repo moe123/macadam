@@ -15,14 +15,14 @@
 
 #pragma mark - mc_nchoosek -
 
-static MC_TARGET_INLINE unsigned int mc_nchoosek(unsigned int n, unsigned int k)
+MC_TARGET_FUNCTION unsigned int mc_nchoosek(unsigned int n, unsigned int k)
 {
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
-		if(k > n) {
+		if (k > n) {
 			return MCLIMITS_UIMAX;
-		} else if((k == 0) || (k == n)) {
+		} else if ((k == 0) || (k == n)) {
 			return 1;
-		} else if((k == 1) || (k == n - 1)) {
+		} else if ((k == 1) || (k == n - 1)) {
 			return n;
 		}
 		return (n * mc_nchoosek(n - 1, k - 1)) / k;

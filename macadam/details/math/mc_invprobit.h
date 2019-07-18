@@ -13,17 +13,17 @@
 
 #pragma mark - mc_invprobit -
 
-static MC_TARGET_INLINE float mc_invprobitf(float x)
+MC_TARGET_FUNCTION float mc_invprobitf(float x)
 {
 	return 0.5f * mc_erfcf(-x * MCK_KF(MCK_1_SQRT2));
 }
 
-static MC_TARGET_INLINE double mc_invprobit(double x)
+MC_TARGET_FUNCTION double mc_invprobit(double x)
 {
 	return 0.5 * mc_erfc(-x * MCK_K(MCK_1_SQRT2));
 }
 
-static MC_TARGET_INLINE long double mc_invprobitl(long double x)
+MC_TARGET_FUNCTION long double mc_invprobitl(long double x)
 {
 	return 0.5L * mc_erfcl(-x * MCK_KL(MCK_1_SQRT2));
 }

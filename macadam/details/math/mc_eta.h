@@ -17,7 +17,7 @@
 
 #pragma mark - mc_eta -
 
-static MC_TARGET_INLINE float mc_etaf(float x)
+MC_TARGET_FUNCTION float mc_etaf(float x)
 {
 	if (mc_isnan(x)) {
 		return MCK_NAN;
@@ -49,7 +49,7 @@ static MC_TARGET_INLINE float mc_etaf(float x)
 	return -powm1 * zeta;
 }
 
-static MC_TARGET_INLINE double mc_eta(double x)
+MC_TARGET_FUNCTION double mc_eta(double x)
 {
 	if (mc_isnan(x)) {
 		return MCK_NAN;
@@ -81,7 +81,7 @@ static MC_TARGET_INLINE double mc_eta(double x)
 	return -powm1 * zeta;
 }
 
-static MC_TARGET_INLINE long double mc_etal(long double x)
+MC_TARGET_FUNCTION long double mc_etal(long double x)
 {
 	if (mc_isnan(x)) {
 		return MCK_NAN;

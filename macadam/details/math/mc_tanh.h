@@ -12,7 +12,7 @@
 
 #pragma mark - mc_tanh -
 
-static MC_TARGET_INLINE float mc_tanhf(float x)
+MC_TARGET_FUNCTION float mc_tanhf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::tanhf(x);
@@ -21,7 +21,7 @@ static MC_TARGET_INLINE float mc_tanhf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_tanh(double x)
+MC_TARGET_FUNCTION double mc_tanh(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::tanh(x);
@@ -30,7 +30,7 @@ static MC_TARGET_INLINE double mc_tanh(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_tanhl(long double x)
+MC_TARGET_FUNCTION long double mc_tanhl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::tanhl(x);

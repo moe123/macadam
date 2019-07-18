@@ -13,17 +13,17 @@
 
 #pragma mark - mc_asec -
 
-static MC_TARGET_INLINE float mc_asecf(float x)
+MC_TARGET_FUNCTION float mc_asecf(float x)
 {
 	return mc_acosf(1.0f / x);
 }
 
-static MC_TARGET_INLINE double mc_asec(double x)
+MC_TARGET_FUNCTION double mc_asec(double x)
 {
 	return mc_acos(1.0 / x);
 }
 
-static MC_TARGET_INLINE long double mc_asecl(long double x)
+MC_TARGET_FUNCTION long double mc_asecl(long double x)
 {
 	return mc_acosl(1.0L / x);
 }

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_trigamma -
 
-static MC_TARGET_INLINE float mc_trigammaf(float x)
+MC_TARGET_FUNCTION float mc_trigammaf(float x)
 {
 	float g, y, z;
 	if ((x <= 0) && (mc_floorf(x) == x)) {
@@ -34,12 +34,12 @@ static MC_TARGET_INLINE float mc_trigammaf(float x)
 		z += 1.0f;
 	}
 	y  = 1.0f / (z * z);
-//#! Expansion as a Laurent series.
+//!# Expansion as a Laurent series.
 	g += 0.5f * y + (1.0f + y * (MCK_KF(MCK_BN2) + y * (MCK_KF(MCK_BN4) + y * (MCK_KF(MCK_BN6) + y * MCK_KF(MCK_BN8))))) / z;
 	return g;
 }
 
-static MC_TARGET_INLINE double mc_trigamma(double x)
+MC_TARGET_FUNCTION double mc_trigamma(double x)
 {
 	double g, y, z;
 	if ((x <= 0) && (mc_floor(x) == x)) {
@@ -58,12 +58,12 @@ static MC_TARGET_INLINE double mc_trigamma(double x)
 		z += 1.0;
 	}
 	y  = 1.0 / (z * z);
-//#! Expansion as a Laurent series.
+//!# Expansion as a Laurent series.
 	g += 0.5 * y + (1.0 + y * (MCK_K(MCK_BN2) + y * (MCK_K(MCK_BN4) + y * (MCK_K(MCK_BN6) + y * MCK_K(MCK_BN8))))) / z;
 	return g;
 }
 
-static MC_TARGET_INLINE long double mc_trigammal(long double x)
+MC_TARGET_FUNCTION long double mc_trigammal(long double x)
 {
 	long double g, y, z;
 	if ((x <= 0) && (mc_floorl(x) == x)) {
@@ -82,7 +82,7 @@ static MC_TARGET_INLINE long double mc_trigammal(long double x)
 		z += 1.0L;
 	}
 	y  = 1.0L / (z * z);
-//#! Expansion as a Laurent series.
+//!# Expansion as a Laurent series.
 	g += 0.5L * y + (1.0L + y * (MCK_KL(MCK_BN2) + y * (MCK_KL(MCK_BN4) + y * (MCK_KL(MCK_BN6) + y * MCK_KL(MCK_BN8))))) / z;
 	return g;
 }

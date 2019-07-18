@@ -17,7 +17,7 @@
 
 #pragma mark - mc_beta -
 
-static MC_TARGET_INLINE
+MC_TARGET_FUNCTION
 float mc_betaf(float x, float y)
 {
 	float r = MCK_NAN;
@@ -64,7 +64,7 @@ float mc_betaf(float x, float y)
 	return r;
 }
 
-static MC_TARGET_INLINE
+MC_TARGET_FUNCTION
 double mc_beta(double x, double y)
 {
 	double r = MCK_NAN;
@@ -111,7 +111,7 @@ double mc_beta(double x, double y)
 	return r;
 }
 
-static MC_TARGET_INLINE
+MC_TARGET_FUNCTION
 long double mc_betal(long double x, long double y)
 {
 	long double r = MCK_NAN;

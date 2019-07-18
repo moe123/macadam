@@ -13,7 +13,7 @@
 
 #pragma mark - mc_log2p1 -
 
-static MC_TARGET_INLINE float mc_log2p1f(float x)
+MC_TARGET_FUNCTION float mc_log2p1f(float x)
 {
 	if (x == 0.0f) {
 		return x;
@@ -22,7 +22,7 @@ static MC_TARGET_INLINE float mc_log2p1f(float x)
 	return mc_log1pf(y);
 }
 
-static MC_TARGET_INLINE double mc_log2p1(double x)
+MC_TARGET_FUNCTION double mc_log2p1(double x)
 {
 	if (x == 0.0) {
 		return x;
@@ -31,7 +31,7 @@ static MC_TARGET_INLINE double mc_log2p1(double x)
 	return mc_log1p(y);
 }
 
-static MC_TARGET_INLINE long double mc_log2p1l(long double x)
+MC_TARGET_FUNCTION long double mc_log2p1l(long double x)
 {
 	if (x == 0.0L) {
 		return x;

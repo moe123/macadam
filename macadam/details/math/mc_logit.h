@@ -15,17 +15,17 @@
 
 #pragma mark - mc_logit -
 
-static MC_TARGET_INLINE float mc_logitf(float x)
+MC_TARGET_FUNCTION float mc_logitf(float x)
 {
 	return -(mc_logf((1.0f / x) - 1.0f));
 }
 
-static MC_TARGET_INLINE double mc_logit(double x)
+MC_TARGET_FUNCTION double mc_logit(double x)
 {
 	return -(mc_log((1.0 / x) - 1.0));
 }
 
-static MC_TARGET_INLINE long double mc_logitl(long double x)
+MC_TARGET_FUNCTION long double mc_logitl(long double x)
 {
 	return -(mc_logl((1.0L / x) - 1.0L));
 }

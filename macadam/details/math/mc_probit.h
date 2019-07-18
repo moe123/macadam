@@ -15,7 +15,7 @@
 
 #pragma mark - mc_probit -
 
-static MC_TARGET_INLINE float mc_probitf(float x)
+MC_TARGET_FUNCTION float mc_probitf(float x)
 {
 	float y = mc_inverff(2.0f * x - 1.0f);
 	if (!mc_isnan(y) && mc_isfinite(x)) {
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_probitf(float x)
 	return y;
 }
 
-static MC_TARGET_INLINE double mc_probit(double x)
+MC_TARGET_FUNCTION double mc_probit(double x)
 {
 	double y = mc_inverf(2.0 * x - 1.0);
 	if (!mc_isnan(y) && mc_isfinite(x)) {
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_probit(double x)
 	return y;
 }
 
-static MC_TARGET_INLINE long double mc_probitl(long double x)
+MC_TARGET_FUNCTION long double mc_probitl(long double x)
 {
 	long double y = mc_inverfl(2.0L * x - 1.0L);
 	if (!mc_isnan(y) && mc_isfinite(x)) {

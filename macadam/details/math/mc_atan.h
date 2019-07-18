@@ -15,7 +15,7 @@
 
 #pragma mark - mc_atan -
 
-static MC_TARGET_INLINE float mc_atanf(float x)
+MC_TARGET_FUNCTION float mc_atanf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::atanf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_atanf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_atan(double x)
+MC_TARGET_FUNCTION double mc_atan(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::atan(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_atan(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_atanl(long double x)
+MC_TARGET_FUNCTION long double mc_atanl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::atanl(x);

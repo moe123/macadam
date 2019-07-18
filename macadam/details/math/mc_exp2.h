@@ -15,7 +15,7 @@
 
 #pragma mark - mc_exp2 -
 
-static MC_TARGET_INLINE float mc_exp2f(float x)
+MC_TARGET_FUNCTION float mc_exp2f(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::exp2f(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_exp2f(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_exp2(double x)
+MC_TARGET_FUNCTION double mc_exp2(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::exp2(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_exp2(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_exp2l(long double x)
+MC_TARGET_FUNCTION long double mc_exp2l(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::exp2l(x);

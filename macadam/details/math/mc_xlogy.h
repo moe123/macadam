@@ -13,17 +13,17 @@
 
 #pragma mark - mc_xlogy -
 
-static MC_TARGET_INLINE float mc_xlogyf(float x, float y)
+MC_TARGET_FUNCTION float mc_xlogyf(float x, float y)
 {
 	return (x== 0 ? 0 : x * mc_logf(y));
 }
 
-static MC_TARGET_INLINE double mc_xlogy(double x, double y)
+MC_TARGET_FUNCTION double mc_xlogy(double x, double y)
 {
 	return (x== 0 ? 0 : x * mc_log(y));
 }
 
-static MC_TARGET_INLINE long double mc_xlogyl(long double x, long double y)
+MC_TARGET_FUNCTION long double mc_xlogyl(long double x, long double y)
 {
 	return (x== 0 ? 0 : x * mc_logl(y));
 }

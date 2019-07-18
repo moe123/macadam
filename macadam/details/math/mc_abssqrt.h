@@ -14,17 +14,17 @@
 
 #pragma mark - mc_abssqrt -
 
-static MC_TARGET_INLINE float mc_abssqrtf(float x)
+MC_TARGET_FUNCTION float mc_abssqrtf(float x)
 {
 	return mc_sqrtf(mc_fabsf(x));
 }
 
-static MC_TARGET_INLINE double mc_abssqrt(double x)
+MC_TARGET_FUNCTION double mc_abssqrt(double x)
 {
 	return mc_sqrt(mc_fabs(x));
 }
 
-static MC_TARGET_INLINE long double mc_abssqrtl(long double x)
+MC_TARGET_FUNCTION long double mc_abssqrtl(long double x)
 {
 	return mc_sqrtl(mc_fabsl(x));
 }

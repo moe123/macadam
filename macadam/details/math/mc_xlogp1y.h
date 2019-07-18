@@ -11,19 +11,19 @@
 #ifndef MC_XLOGP1Y_H
 #define MC_XLOGP1Y_H
 
-#pragma mark -  mc_xlogp1y -
+#pragma mark - mc_xlogp1y -
 
-static MC_TARGET_INLINE float mc_xlogp1yf(float x, float y)
+MC_TARGET_FUNCTION float mc_xlogp1yf(float x, float y)
 {
 	return mc_xlog1pyf(x, y);
 }
 
-static MC_TARGET_INLINE double mc_xlogp1y(double x, double y)
+MC_TARGET_FUNCTION double mc_xlogp1y(double x, double y)
 {
 	return mc_xlog1py(x, y);
 }
 
-static MC_TARGET_INLINE long double mc_xlogp1yl(long double x, long double y)
+MC_TARGET_FUNCTION long double mc_xlogp1yl(long double x, long double y)
 {
 	return mc_xlog1pyl(x, y);
 }

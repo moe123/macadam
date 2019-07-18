@@ -15,7 +15,7 @@
 
 #pragma mark - mc_asinh -
 
-static MC_TARGET_INLINE float mc_asinhf(float x)
+MC_TARGET_FUNCTION float mc_asinhf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::asinhf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_asinhf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_asinh(double x)
+MC_TARGET_FUNCTION double mc_asinh(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::asinh(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_asinh(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_asinhl(long double x)
+MC_TARGET_FUNCTION long double mc_asinhl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::asinhl(x);

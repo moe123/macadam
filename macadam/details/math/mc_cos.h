@@ -15,7 +15,7 @@
 
 #pragma mark - mc_cos -
 
-static MC_TARGET_INLINE float mc_cosf(float x)
+MC_TARGET_FUNCTION float mc_cosf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::cosf(x);
@@ -24,7 +24,7 @@ static MC_TARGET_INLINE float mc_cosf(float x)
 #	endif
 }
 
-static MC_TARGET_INLINE double mc_cos(double x)
+MC_TARGET_FUNCTION double mc_cos(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cos(x);
@@ -33,7 +33,7 @@ static MC_TARGET_INLINE double mc_cos(double x)
 #	endif
 }
 
-static MC_TARGET_INLINE long double mc_cosl(long double x)
+MC_TARGET_FUNCTION long double mc_cosl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cosl(x);

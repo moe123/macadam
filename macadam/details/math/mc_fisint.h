@@ -14,7 +14,7 @@
 
 #pragma mark - mc_fisint -
 
-static MC_TARGET_INLINE int mc_fisintf(float x)
+MC_TARGET_FUNCTION int mc_fisintf(float x)
 {
 	if (x == mc_truncf(x)) {
 		return 1;
@@ -25,7 +25,7 @@ static MC_TARGET_INLINE int mc_fisintf(float x)
 	return 0;
 }
 
-static MC_TARGET_INLINE int mc_fisint(double x)
+MC_TARGET_FUNCTION int mc_fisint(double x)
 {
 	if (x == mc_trunc(x)) {
 		return 1;
@@ -36,7 +36,7 @@ static MC_TARGET_INLINE int mc_fisint(double x)
 	return 0;
 }
 
-static MC_TARGET_INLINE int mc_fisintl(long double x)
+MC_TARGET_FUNCTION int mc_fisintl(long double x)
 {
 	if (x == mc_truncl(x)) {
 		return 1;

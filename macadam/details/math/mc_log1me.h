@@ -16,17 +16,17 @@
 
 #pragma mark - mc_log1me -
 
-static MC_TARGET_INLINE float mc_log1mef(float x)
+MC_TARGET_FUNCTION float mc_log1mef(float x)
 {
 	return (x > MCK_KF(MCK_LOG2)) ? mc_log1pf(-mc_expf(-x)) : mc_logf(-mc_expm1f(-x));
 }
 
-static MC_TARGET_INLINE double mc_log1me(double x)
+MC_TARGET_FUNCTION double mc_log1me(double x)
 {
 	return (x > MCK_K(MCK_LOG2)) ? mc_log1p(-mc_exp(-x)) : mc_log(-mc_expm1(-x));
 }
 
-static MC_TARGET_INLINE long double mc_log1mel(long double x)
+MC_TARGET_FUNCTION long double mc_log1mel(long double x)
 {
 	return (x > MCK_KL(MCK_LOG2)) ? mc_log1pl(-mc_expl(-x)) : mc_logl(-mc_expm1l(-x));
 }

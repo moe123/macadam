@@ -23,7 +23,7 @@
 
 #pragma mark - mc_legendre_q0 -
 
-static MC_TARGET_INLINE float mc_legendre_q0f(float x)
+MC_TARGET_FUNCTION float mc_legendre_q0f(float x)
 {
 //!# Legendre functions of the second kind, degree 0.
 	if (mc_fabsf(x) < 1.0f) {
@@ -32,7 +32,7 @@ static MC_TARGET_INLINE float mc_legendre_q0f(float x)
 	return mc_acothf(x);
 }
 
-static MC_TARGET_INLINE double mc_legendre_q0(double x)
+MC_TARGET_FUNCTION double mc_legendre_q0(double x)
 {
 //!# Legendre functions of the second kind, degree 0.
 	if (mc_fabs(x) < 1.0) {
@@ -41,7 +41,7 @@ static MC_TARGET_INLINE double mc_legendre_q0(double x)
 	return mc_acoth(x);
 }
 
-static MC_TARGET_INLINE long double mc_legendre_q0l(long double x)
+MC_TARGET_FUNCTION long double mc_legendre_q0l(long double x)
 {
 //!# Legendre functions of the second kind, degree 0.
 	if (mc_fabsl(x) < 1.0L) {
@@ -52,7 +52,7 @@ static MC_TARGET_INLINE long double mc_legendre_q0l(long double x)
 
 #pragma mark - mc_legendre_q1 -
 
-static MC_TARGET_INLINE float mc_legendre_q1f(float x)
+MC_TARGET_FUNCTION float mc_legendre_q1f(float x)
 {
 //!# Legendre functions of the second kind, degree 1.
 	float q1 = 0.0f;
@@ -79,7 +79,7 @@ static MC_TARGET_INLINE float mc_legendre_q1f(float x)
 	return q1;
 }
 
-static MC_TARGET_INLINE double mc_legendre_q1(double x)
+MC_TARGET_FUNCTION double mc_legendre_q1(double x)
 {
 //!# Legendre functions of the second kind, degree 1.
 	double q1 = 0.0;
@@ -106,7 +106,7 @@ static MC_TARGET_INLINE double mc_legendre_q1(double x)
 	return q1;
 }
 
-static MC_TARGET_INLINE long double mc_legendre_q1l(long double x)
+MC_TARGET_FUNCTION long double mc_legendre_q1l(long double x)
 {
 //!# Legendre functions of the second kind, degree 1.
 	long double q1 = 0.0L;
@@ -135,7 +135,7 @@ static MC_TARGET_INLINE long double mc_legendre_q1l(long double x)
 
 #pragma mark - mc_legendre_q2 -
 
-static MC_TARGET_INLINE float mc_legendre_q2f(float x)
+MC_TARGET_FUNCTION float mc_legendre_q2f(float x)
 {
 //!# Legendre functions of the second kind, degree 2.
 	const float p2 = mc_legendre_p2f(x);
@@ -143,7 +143,7 @@ static MC_TARGET_INLINE float mc_legendre_q2f(float x)
 	return p2 * q0 - (MCK_KF(MCK_3_2) * x);
 }
 
-static MC_TARGET_INLINE double mc_legendre_q2(double x)
+MC_TARGET_FUNCTION double mc_legendre_q2(double x)
 {
 //!# Legendre functions of the second kind, degree 2.
 	const double p2 = mc_legendre_p2(x);
@@ -151,7 +151,7 @@ static MC_TARGET_INLINE double mc_legendre_q2(double x)
 	return p2 * q0 - (MCK_K(MCK_3_2) * x);
 }
 
-static MC_TARGET_INLINE long double mc_legendre_q2l(long double x)
+MC_TARGET_FUNCTION long double mc_legendre_q2l(long double x)
 {
 //!# Legendre functions of the second kind, degree 2.
 	const long double p2 = mc_legendre_p2(x);
@@ -161,7 +161,7 @@ static MC_TARGET_INLINE long double mc_legendre_q2l(long double x)
 
 #pragma mark - mc_legendre_q3 -
 
-static MC_TARGET_INLINE float mc_legendre_q3f(float x)
+MC_TARGET_FUNCTION float mc_legendre_q3f(float x)
 {
 //!# Legendre functions of the second kind, degree 3.
 	const float p3 = mc_legendre_p3f(x);
@@ -169,7 +169,7 @@ static MC_TARGET_INLINE float mc_legendre_q3f(float x)
 	return p3 * q0 - (MCK_KF(MCK_5_2) * mc_raise2f(x)) + MCK_KF(MCK_2_3);
 }
 
-static MC_TARGET_INLINE double mc_legendre_q3(double x)
+MC_TARGET_FUNCTION double mc_legendre_q3(double x)
 {
 //!# Legendre functions of the second kind, degree 3.
 	const double p3 = mc_legendre_p3(x);
@@ -177,7 +177,7 @@ static MC_TARGET_INLINE double mc_legendre_q3(double x)
 	return p3 * q0 - (MCK_K(MCK_5_2) * mc_raise2(x)) + MCK_K(MCK_2_3);
 }
 
-static MC_TARGET_INLINE long double mc_legendre_q3l(long double x)
+MC_TARGET_FUNCTION long double mc_legendre_q3l(long double x)
 {
 //!# Legendre functions of the second kind, degree 3.
 	const long double p3 = mc_legendre_p3l(x);
@@ -187,7 +187,7 @@ static MC_TARGET_INLINE long double mc_legendre_q3l(long double x)
 
 #pragma mark - mc_legendre_q4 -
 
-static MC_TARGET_INLINE float mc_legendre_q4f(float x)
+MC_TARGET_FUNCTION float mc_legendre_q4f(float x)
 {
 //!# Legendre functions of the second kind, degree 4.
 	const float p4 = mc_legendre_p4f(x);
@@ -195,7 +195,7 @@ static MC_TARGET_INLINE float mc_legendre_q4f(float x)
 	return p4 * q0 - (MCK_KF(MCK_35_8) * mc_raise3f(x)) + (MCK_KF(MCK_55_24) * x);
 }
 
-static MC_TARGET_INLINE double mc_legendre_q4(double x)
+MC_TARGET_FUNCTION double mc_legendre_q4(double x)
 {
 //!# Legendre functions of the second kind, degree 4.
 	const double p4 = mc_legendre_p4(x);
@@ -203,7 +203,7 @@ static MC_TARGET_INLINE double mc_legendre_q4(double x)
 	return p4 * q0 - (MCK_K(MCK_35_8) * mc_raise3(x)) + (MCK_K(MCK_55_24) * x);
 }
 
-static MC_TARGET_INLINE long double mc_legendre_q4l(long double x)
+MC_TARGET_FUNCTION long double mc_legendre_q4l(long double x)
 {
 //!# Legendre functions of the second kind, degree 4.
 	const long double p4 = mc_legendre_p4l(x);
@@ -213,7 +213,7 @@ static MC_TARGET_INLINE long double mc_legendre_q4l(long double x)
 
 #pragma mark - mc_legendre_q5 -
 
-static MC_TARGET_INLINE float mc_legendre_q5f(float x)
+MC_TARGET_FUNCTION float mc_legendre_q5f(float x)
 {
 //!# Legendre functions of the second kind, degree 5.
 	const float p5 = mc_legendre_p5f(x);
@@ -221,7 +221,7 @@ static MC_TARGET_INLINE float mc_legendre_q5f(float x)
 	return p5 * q0 - (MCK_KF(MCK_63_8) * mc_raise4f(x)) + (MCK_KF(MCK_49_8) * mc_raise2f(x)) - MCK_KF(MCK_8_15);
 }
 
-static MC_TARGET_INLINE double mc_legendre_q5(double x)
+MC_TARGET_FUNCTION double mc_legendre_q5(double x)
 {
 //!# Legendre functions of the second kind, degree 5.
 	const double p5 = mc_legendre_p5(x);
@@ -229,7 +229,7 @@ static MC_TARGET_INLINE double mc_legendre_q5(double x)
 	return p5 * q0 - (MCK_K(MCK_63_8) * mc_raise4(x)) + (MCK_K(MCK_49_8) * mc_raise2(x)) - MCK_K(MCK_8_15);
 }
 
-static MC_TARGET_INLINE long double mc_legendre_q5l(long double x)
+MC_TARGET_FUNCTION long double mc_legendre_q5l(long double x)
 {
 //!# Legendre functions of the second kind, degree 5.
 	const long double p5 = mc_legendre_p5l(x);
