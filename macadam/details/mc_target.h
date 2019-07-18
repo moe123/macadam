@@ -143,8 +143,12 @@
 #	endif
 #	endif
 
-#	if !defined(MC_TARGET_FUNCTION)
-#		define MC_TARGET_FUNCTION static MC_TARGET_INLINE
+#	if !defined(MC_TARGET_PROC)
+#		define MC_TARGET_PROC static MC_TARGET_INLINE
+#	endif
+
+#	if !defined(MC_TARGET_FUNC)
+#		define MC_TARGET_FUNC static MC_TARGET_INLINE
 #	endif
 
 #	if MC_DISABLE_OVERLOADABLE
@@ -345,21 +349,21 @@
 
 #	if defined(_MSC_VER)
 #	include <intrin.h>
-	MC_TARGET_FUNCTION int __builtin_ctz(unsigned int x)
+	MC_TARGET_FUNC int __builtin_ctz(unsigned int x)
 	{
 		unsigned long ret;
 		_BitScanForward(&ret, x);
 		return mc_cast(int, ret);
 	}
 
-	MC_TARGET_FUNCTION int __builtin_ctzll(unsigned long long x)
+	MC_TARGET_FUNC int __builtin_ctzll(unsigned long long x)
 	{
 		unsigned long ret;
 		_BitScanForward64(&ret, x);
 		return mc_cast(int, ret);
 	}
 
-	MC_TARGET_FUNCTION int __builtin_ctzl(unsigned long x)
+	MC_TARGET_FUNC int __builtin_ctzl(unsigned long x)
 	{
 		return (sizeof(x) == 8 ?
 			  __builtin_ctzll(mc_cast(unsigned long long, x))
@@ -367,21 +371,21 @@
 		);
 	}
 	
-	MC_TARGET_FUNCTION int __builtin_clz(unsigned int x)
+	MC_TARGET_FUNC int __builtin_clz(unsigned int x)
 	{
 		unsigned long ret;
 		_BitScanReverse(&ret, x);
 		return mc_cast(int, (31 ^ ret));
 	}
 
-	MC_TARGET_FUNCTION int __builtin_clzll(unsigned long long x)
+	MC_TARGET_FUNC int __builtin_clzll(unsigned long long x)
 	{
 		unsigned long ret;
 		_BitScanReverse64(&ret, x);
 		return mc_cast(int, (63 ^ ret));
 	}
 
-	MC_TARGET_FUNCTION int __builtin_clzl(unsigned long x)
+	MC_TARGET_FUNC int __builtin_clzl(unsigned long x)
 	{
 		return (sizeof(x) == 8 ?
 			  __builtin_clzll(x)
@@ -397,18 +401,18 @@
 #	define MC_TARGET_CLZL(x)  __builtin_clzl(x)
 #	define MC_TARGET_CLZLL(x) __builtin_clzll(x)
 
-MC_TARGET_FUNCTION char               MC_TARGET_CHAR      (char x)               { return x; }
-MC_TARGET_FUNCTION short              MC_TARGET_SHORT     (short x)              { return x; }
-MC_TARGET_FUNCTION int                MC_TARGET_INT       (int x)                { return x; }
-MC_TARGET_FUNCTION long               MC_TARGET_LONG      (long x)               { return x; }
-MC_TARGET_FUNCTION unsigned char      MC_TARGET_UCHAR     (unsigned char x)      { return x; }
-MC_TARGET_FUNCTION unsigned short     MC_TARGET_USHORT    (unsigned short x)     { return x; }
-MC_TARGET_FUNCTION unsigned int       MC_TARGET_UINT      (unsigned int x)       { return x; }
-MC_TARGET_FUNCTION unsigned long      MC_TARGET_ULONG     (unsigned long x)      { return x; }
+MC_TARGET_FUNC char               MC_TARGET_CHAR      (char x)               { return x; }
+MC_TARGET_FUNC short              MC_TARGET_SHORT     (short x)              { return x; }
+MC_TARGET_FUNC int                MC_TARGET_INT       (int x)                { return x; }
+MC_TARGET_FUNC long               MC_TARGET_LONG      (long x)               { return x; }
+MC_TARGET_FUNC unsigned char      MC_TARGET_UCHAR     (unsigned char x)      { return x; }
+MC_TARGET_FUNC unsigned short     MC_TARGET_USHORT    (unsigned short x)     { return x; }
+MC_TARGET_FUNC unsigned int       MC_TARGET_UINT      (unsigned int x)       { return x; }
+MC_TARGET_FUNC unsigned long      MC_TARGET_ULONG     (unsigned long x)      { return x; }
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNCTION long long          MC_TARGET_LONGLONG  (long long x)          { return x; }
-MC_TARGET_FUNCTION unsigned long long MC_TARGET_ULONGLONG (unsigned long long x) { return x; }
+MC_TARGET_FUNC long long          MC_TARGET_LONGLONG  (long long x)          { return x; }
+MC_TARGET_FUNC unsigned long long MC_TARGET_ULONGLONG (unsigned long long x) { return x; }
 #	else
 #	define MC_TARGET_LONGLONG  MC_TARGET_LONG
 #	define MC_TARGET_ULONGLONG MC_TARGET_ULONG

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_ilcm -
 
-MC_TARGET_FUNCTION int mc_ilcm(int m, int n)
+MC_TARGET_FUNC int mc_ilcm(int m, int n)
 {
 	const int c = mc_igcd(m, n);
 	return c != 0 ? ((m * n) / (c)) : 0;
@@ -21,7 +21,7 @@ MC_TARGET_FUNCTION int mc_ilcm(int m, int n)
 
 #pragma mark - mc_llcm -
 
-MC_TARGET_FUNCTION long mc_llcm(long m, long n)
+MC_TARGET_FUNC long mc_llcm(long m, long n)
 {
 	const long c = mc_lgcd(m, n);
 	return c != 0 ? ((m * n) / (c)) : 0;
@@ -30,7 +30,7 @@ MC_TARGET_FUNCTION long mc_llcm(long m, long n)
 #pragma mark - mc_lllcm -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNCTION long mc_lllcm(long long m, long long n)
+MC_TARGET_FUNC long mc_lllcm(long long m, long long n)
 {
 	const long  long c = mc_llgcd(m, n);
 	return c != 0 ? ((m * n) / (c)) : 0;

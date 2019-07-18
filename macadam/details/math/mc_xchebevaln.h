@@ -15,7 +15,7 @@
 
 #pragma mark - mc_xchebevaln -
 
-MC_TARGET_FUNCTION float mc_xchebevalnf(float x, const float * a, unsigned int n)
+MC_TARGET_FUNC float mc_xchebevalnf(float x, const float * a, unsigned int n)
 {
 //!# Evaluating Chebyshev sum using Clenshaw algorithm.
 	int i, m;
@@ -33,7 +33,7 @@ MC_TARGET_FUNCTION float mc_xchebevalnf(float x, const float * a, unsigned int n
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xchebevaln(double x, const double * a, unsigned int n)
+MC_TARGET_FUNC double mc_xchebevaln(double x, const double * a, unsigned int n)
 {
 //!# Evaluating Chebyshev sum using Clenshaw algorithm.
 	int i, m;
@@ -51,7 +51,7 @@ MC_TARGET_FUNCTION double mc_xchebevaln(double x, const double * a, unsigned int
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xchebevalnl(long double x, const long double * a, unsigned int n)
+MC_TARGET_FUNC long double mc_xchebevalnl(long double x, const long double * a, unsigned int n)
 {
 //!# Evaluating Chebyshev sum using Clenshaw algorithm.
 	int i, m;

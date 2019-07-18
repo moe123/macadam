@@ -19,7 +19,7 @@
 
 #pragma mark - mc_legendre_pnm -
 
-MC_TARGET_FUNCTION float mc_legendre_pnmf(int n, int m, float x)
+MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 {
 //!# Associated Legendre polynomials or functions of degree n and order m.
 	float p0                = 1.0f;
@@ -82,7 +82,7 @@ MC_TARGET_FUNCTION float mc_legendre_pnmf(int n, int m, float x)
 	return p1;
 }
 
-MC_TARGET_FUNCTION double mc_legendre_pnm(int n, int m, double x)
+MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 {
 //!# Associated Legendre polynomials or functions of degree n and order m.
 	double p0               = 1.0;
@@ -145,7 +145,7 @@ MC_TARGET_FUNCTION double mc_legendre_pnm(int n, int m, double x)
 	return p1;
 }
 
-MC_TARGET_FUNCTION long double mc_legendre_pnml(int n, int m, long double x)
+MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 {
 //!# Associated Legendre polynomials or functions of degree n and order m.
 	long double p0          = 1.0L;

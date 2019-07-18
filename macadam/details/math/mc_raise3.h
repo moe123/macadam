@@ -15,17 +15,17 @@
 
 #pragma mark - mc_raise3 -
 
-MC_TARGET_FUNCTION float mc_raise3f(float x)
+MC_TARGET_FUNC float mc_raise3f(float x)
 {
 	return x * x * x;
 }
 
-MC_TARGET_FUNCTION double mc_raise3(double x)
+MC_TARGET_FUNC double mc_raise3(double x)
 {
 	return x * x * x;
 }
 
-MC_TARGET_FUNCTION long double mc_raise3l(long double x)
+MC_TARGET_FUNC long double mc_raise3l(long double x)
 {
 	return x * x * x;
 }

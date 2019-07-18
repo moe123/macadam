@@ -13,17 +13,17 @@
 
 #pragma mark - mc_xlogp1y -
 
-MC_TARGET_FUNCTION float mc_xlogp1yf(float x, float y)
+MC_TARGET_FUNC float mc_xlogp1yf(float x, float y)
 {
 	return mc_xlog1pyf(x, y);
 }
 
-MC_TARGET_FUNCTION double mc_xlogp1y(double x, double y)
+MC_TARGET_FUNC double mc_xlogp1y(double x, double y)
 {
 	return mc_xlog1py(x, y);
 }
 
-MC_TARGET_FUNCTION long double mc_xlogp1yl(long double x, long double y)
+MC_TARGET_FUNC long double mc_xlogp1yl(long double x, long double y)
 {
 	return mc_xlog1pyl(x, y);
 }

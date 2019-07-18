@@ -13,7 +13,7 @@
 
 #pragma mark - mc_logodds -
 
-MC_TARGET_FUNCTION float mc_logoddsf(float x, float lambda)
+MC_TARGET_FUNC float mc_logoddsf(float x, float lambda)
 {
 
 	const float a = 1.0f / x - 1.0f;
@@ -21,14 +21,14 @@ MC_TARGET_FUNCTION float mc_logoddsf(float x, float lambda)
 	return -mc_logf(a) * b;
 }
 
-MC_TARGET_FUNCTION double mc_logodds(double x, double lambda)
+MC_TARGET_FUNC double mc_logodds(double x, double lambda)
 {
 	const double a = 1.0 / x - 1.0;
 	const double b = 1.0 / lambda;
 	return -mc_log(a) * b;
 }
 
-MC_TARGET_FUNCTION long double mc_logoddsl(long double x, long double lambda)
+MC_TARGET_FUNC long double mc_logoddsl(long double x, long double lambda)
 {
 	const long double a = 1.0L / x - 1.0L;
 	const long double b = 1.0L / lambda;

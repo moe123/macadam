@@ -15,17 +15,17 @@
 
 #pragma mark - mc_sqr -
 
-MC_TARGET_FUNCTION float mc_sqrf(float x)
+MC_TARGET_FUNC float mc_sqrf(float x)
 {
 	return mc_raise2f(x);
 }
 
-MC_TARGET_FUNCTION double mc_sqr(double x)
+MC_TARGET_FUNC double mc_sqr(double x)
 {
 	return mc_raise2(x);
 }
 
-MC_TARGET_FUNCTION long double mc_sqrl(long double x)
+MC_TARGET_FUNC long double mc_sqrl(long double x)
 {
 	return mc_raise2l(x);
 }

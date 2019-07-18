@@ -13,17 +13,17 @@
 
 #pragma mark - mc_cot -
 
-MC_TARGET_FUNCTION float mc_cotf(float x)
+MC_TARGET_FUNC float mc_cotf(float x)
 {
 	return 1.0f / mc_tanf(x);
 }
 
-MC_TARGET_FUNCTION double mc_cot(double x)
+MC_TARGET_FUNC double mc_cot(double x)
 {
 	return 1.0 / mc_tan(x);
 }
 
-MC_TARGET_FUNCTION long double mc_cotl(long double x)
+MC_TARGET_FUNC long double mc_cotl(long double x)
 {
 	return 1.0L / mc_tanl(x);
 }

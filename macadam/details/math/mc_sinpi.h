@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sinpi -
 
-MC_TARGET_FUNCTION float mc_sinpif (float x)
+MC_TARGET_FUNC float mc_sinpif (float x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -62,7 +62,7 @@ MC_TARGET_FUNCTION float mc_sinpif (float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_sinpi(double x)
+MC_TARGET_FUNC double mc_sinpi(double x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -109,7 +109,7 @@ MC_TARGET_FUNCTION double mc_sinpi(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_sinpil(long double x)
+MC_TARGET_FUNC long double mc_sinpil(long double x)
 {
 #	if MC_TARGET_APPLEXM
 	const double xx = mc_cast(double, x);

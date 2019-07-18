@@ -15,7 +15,7 @@
 
 #pragma mark - mc_ldexp -
 
-MC_TARGET_FUNCTION float mc_ldexpf(float x, int n)
+MC_TARGET_FUNC float mc_ldexpf(float x, int n)
 {
 #	if MC_TARGET_CPP98
 	return ::ldexpf(x, n);
@@ -24,7 +24,7 @@ MC_TARGET_FUNCTION float mc_ldexpf(float x, int n)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_ldexp(double x, int n)
+MC_TARGET_FUNC double mc_ldexp(double x, int n)
 {
 #	if MC_TARGET_CPP98
 	return ::ldexp(x, n);
@@ -33,7 +33,7 @@ MC_TARGET_FUNCTION double mc_ldexp(double x, int n)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_ldexpl(long double x, int n)
+MC_TARGET_FUNC long double mc_ldexpl(long double x, int n)
 {
 #	if MC_TARGET_CPP98
 	return ::ldexpl(x, n);

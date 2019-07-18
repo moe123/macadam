@@ -13,7 +13,7 @@
 
 #pragma mark - mc_logsubexp -
 
-MC_TARGET_FUNCTION float mc_logsubexpf(float x, float y)
+MC_TARGET_FUNC float mc_logsubexpf(float x, float y)
 {
 	if (x == y) {
 		return MCK_INFN;
@@ -29,7 +29,7 @@ MC_TARGET_FUNCTION float mc_logsubexpf(float x, float y)
 	return x;
 }
 
-MC_TARGET_FUNCTION double mc_logsubexp(double x, double y)
+MC_TARGET_FUNC double mc_logsubexp(double x, double y)
 {
 	if (x == y) {
 		return MCK_INFN;
@@ -45,7 +45,7 @@ MC_TARGET_FUNCTION double mc_logsubexp(double x, double y)
 	return x;
 }
 
-MC_TARGET_FUNCTION long double mc_logsubexpl(long double x, long double y)
+MC_TARGET_FUNC long double mc_logsubexpl(long double x, long double y)
 {
 	if (x == y) {
 		return MCK_INFN;

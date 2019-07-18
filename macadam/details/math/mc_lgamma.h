@@ -21,7 +21,7 @@
 
 #pragma mark - mc_lgamma_approx0 -
 
-MC_TARGET_FUNCTION float mc_lgammaf_approx0(float x)
+MC_TARGET_PROC float mc_lgammaf_approx0(float x)
 {
 //!# Stirling's formula for x >= 13.
 	const float a = MCK_KF(MCK_2PI) / x;
@@ -29,7 +29,7 @@ MC_TARGET_FUNCTION float mc_lgammaf_approx0(float x)
 	return mc_logf(mc_sqrtf(a) * mc_powf(b, x));
 }
 
-MC_TARGET_FUNCTION double mc_lgamma_approx0(double x)
+MC_TARGET_PROC double mc_lgamma_approx0(double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	const double a = MCK_K(MCK_2PI) / x;
@@ -37,7 +37,7 @@ MC_TARGET_FUNCTION double mc_lgamma_approx0(double x)
 	return mc_log(mc_sqrt(a) * mc_pow(b, x));
 }
 
-MC_TARGET_FUNCTION long double mc_lgammal_approx0(long double x)
+MC_TARGET_PROC long double mc_lgammal_approx0(long double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	const long double a = MCK_KL(MCK_2PI) / x;
@@ -47,7 +47,7 @@ MC_TARGET_FUNCTION long double mc_lgammal_approx0(long double x)
 
 #pragma mark - mc_lgamma_approx1 -
 
-MC_TARGET_FUNCTION float mc_lgammaf_approx1(float x)
+MC_TARGET_PROC float mc_lgammaf_approx1(float x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
 //!# Leading term.
@@ -59,7 +59,7 @@ MC_TARGET_FUNCTION float mc_lgammaf_approx1(float x)
 	return r;
 }
 
-MC_TARGET_FUNCTION double mc_lgamma_approx1(double x)
+MC_TARGET_PROC double mc_lgamma_approx1(double x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
 //!# Leading term.
@@ -71,7 +71,7 @@ MC_TARGET_FUNCTION double mc_lgamma_approx1(double x)
 	return r;
 }
 
-MC_TARGET_FUNCTION long double mc_lgammal_approx1(long double x)
+MC_TARGET_PROC long double mc_lgammal_approx1(long double x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
 	const long double q = mc_raise2l(x);
@@ -84,7 +84,7 @@ MC_TARGET_FUNCTION long double mc_lgammal_approx1(long double x)
 
 #pragma mark - mc_lgamma_approx2 -
 
-MC_TARGET_FUNCTION float mc_lgammaf_approx2(float x)
+MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 {
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
 	const float lanczos_c0 = +1.000000000190014892709200466924812644E+00f;
@@ -129,7 +129,7 @@ MC_TARGET_FUNCTION float mc_lgammaf_approx2(float x)
 	return r;
 }
 
-MC_TARGET_FUNCTION double mc_lgamma_approx2(double x)
+MC_TARGET_PROC double mc_lgamma_approx2(double x)
 {
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
 	const double lanczos_c0 = +1.0000000001900148927092004669248126447201E+00;
@@ -174,7 +174,7 @@ MC_TARGET_FUNCTION double mc_lgamma_approx2(double x)
 	return r;
 }
 
-MC_TARGET_FUNCTION long double mc_lgammal_approx2(long double x)
+MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 {
 #	if !MC_TARGET_MSVC_CPP
 	const long double lanczos_g  = +5.000000000000000000000000000000000000000000000000000000000000000E+00L;
@@ -226,7 +226,7 @@ MC_TARGET_FUNCTION long double mc_lgammal_approx2(long double x)
 
 #pragma mark - mc_lgamma -
 
-MC_TARGET_FUNCTION float mc_lgammaf(float x)
+MC_TARGET_FUNC float mc_lgammaf(float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_lgammaf_approx2(x);
@@ -239,7 +239,7 @@ MC_TARGET_FUNCTION float mc_lgammaf(float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_lgamma(double x)
+MC_TARGET_FUNC double mc_lgamma(double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_lgamma_approx2(x);
@@ -252,7 +252,7 @@ MC_TARGET_FUNCTION double mc_lgamma(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_lgammal(long double x)
+MC_TARGET_FUNC long double mc_lgammal(long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_lgammal_approx2(x);

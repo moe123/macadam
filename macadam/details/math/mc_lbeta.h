@@ -18,7 +18,7 @@
 
 #pragma mark - mc_lbeta -
 
-MC_TARGET_FUNCTION
+MC_TARGET_FUNC
 float mc_lbetaf(float x, float y)
 {
 	float a, b, c, d;
@@ -55,7 +55,7 @@ float mc_lbetaf(float x, float y)
 	return a + b - c;
 }
 
-MC_TARGET_FUNCTION
+MC_TARGET_FUNC
 double mc_lbeta(double x, double y)
 {
 	double a, b, c, d;
@@ -92,7 +92,7 @@ double mc_lbeta(double x, double y)
 	return a + b - c;
 }
 
-MC_TARGET_FUNCTION
+MC_TARGET_FUNC
 long double mc_lbetal(long double x, long double y)
 {
 	long double a, b, c, d;

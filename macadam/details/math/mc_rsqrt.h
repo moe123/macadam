@@ -15,7 +15,7 @@
 
 #pragma mark - mc_rsqrt -
 
-MC_TARGET_FUNCTION float mc_rsqrtf(float x)
+MC_TARGET_FUNC float mc_rsqrtf(float x)
 {
 #	if MC_TARGET_HAVE_SSE
 	__m128 y  = _mm_set_ss(x);
@@ -52,7 +52,7 @@ MC_TARGET_FUNCTION float mc_rsqrtf(float x)
 #	endif
 } 
 
-MC_TARGET_FUNCTION double mc_rsqrt(double x)
+MC_TARGET_FUNC double mc_rsqrt(double x)
 {
 #	if MC_TARGET_HAVE_SSE
 		double r;
@@ -84,7 +84,7 @@ MC_TARGET_FUNCTION double mc_rsqrt(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_rsqrtl(long double x)
+MC_TARGET_FUNC long double mc_rsqrtl(long double x)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11 || MC_TARGET_HAVE_SSE
 	return mc_cast(long double, mc_rsqrt(mc_cast(double, x)));

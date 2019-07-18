@@ -15,7 +15,7 @@
 
 #pragma mark - mc_acos -
 
-MC_TARGET_FUNCTION float mc_acosf(float x)
+MC_TARGET_FUNC float mc_acosf(float x)
 {
 #	if MC_TARGET_CPP98
 	return ::acosf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNCTION float mc_acosf(float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_acos(double x)
+MC_TARGET_FUNC double mc_acos(double x)
 {
 #	if MC_TARGET_CPP98
 	return ::acos(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNCTION double mc_acos(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_acosl(long double x)
+MC_TARGET_FUNC long double mc_acosl(long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::acosl(x);

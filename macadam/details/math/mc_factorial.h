@@ -16,7 +16,7 @@
 
 #pragma mark - mc_factorial -
 
-MC_TARGET_FUNCTION float mc_factorialf(unsigned int x)
+MC_TARGET_FUNC float mc_factorialf(unsigned int x)
 {
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
 //!# Hence you should consider -1! to be infinity.
@@ -72,7 +72,7 @@ MC_TARGET_FUNCTION float mc_factorialf(unsigned int x)
 	return y;
 }
 
-MC_TARGET_FUNCTION double mc_factorial(unsigned int x)
+MC_TARGET_FUNC double mc_factorial(unsigned int x)
 {
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
 //!# Hence you should consider -1! to be infinity.
@@ -264,7 +264,7 @@ MC_TARGET_FUNCTION double mc_factorial(unsigned int x)
 	return y;
 }
 
-MC_TARGET_FUNCTION long double mc_factoriall(unsigned int x)
+MC_TARGET_FUNC long double mc_factoriall(unsigned int x)
 {
 #	if !MC_TARGET_MSVC_CPP
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
@@ -2044,7 +2044,7 @@ MC_TARGET_FUNCTION long double mc_factoriall(unsigned int x)
 	return MCLIMITS_MAXL;
 }
 
-MC_TARGET_FUNCTION unsigned int mc_ufactorial(unsigned int x)
+MC_TARGET_FUNC unsigned int mc_ufactorial(unsigned int x)
 {
 	float y = mc_factorialf(x);
 	if (y < MCLIMITS_MAXF) {
@@ -2056,7 +2056,7 @@ MC_TARGET_FUNCTION unsigned int mc_ufactorial(unsigned int x)
 	return MCLIMITS_UIMAX;
 }
 
-MC_TARGET_FUNCTION unsigned long mc_ulfactorial(unsigned int x)
+MC_TARGET_FUNC unsigned long mc_ulfactorial(unsigned int x)
 {
 	if (sizeof(unsigned int) < sizeof(unsigned long)) {
 		double y = mc_factorial(x);
@@ -2079,7 +2079,7 @@ MC_TARGET_FUNCTION unsigned long mc_ulfactorial(unsigned int x)
 }
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNCTION unsigned long long mc_ullfactorial(unsigned int x)
+MC_TARGET_FUNC unsigned long long mc_ullfactorial(unsigned int x)
 {
 	long double y = mc_factoriall(x);
 	if (y < MCLIMITS_MAXL) {

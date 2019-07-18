@@ -15,7 +15,7 @@
 
 #pragma mark - mc_trigamma -
 
-MC_TARGET_FUNCTION float mc_trigammaf(float x)
+MC_TARGET_FUNC float mc_trigammaf(float x)
 {
 	float g, y, z;
 	if ((x <= 0) && (mc_floorf(x) == x)) {
@@ -39,7 +39,7 @@ MC_TARGET_FUNCTION float mc_trigammaf(float x)
 	return g;
 }
 
-MC_TARGET_FUNCTION double mc_trigamma(double x)
+MC_TARGET_FUNC double mc_trigamma(double x)
 {
 	double g, y, z;
 	if ((x <= 0) && (mc_floor(x) == x)) {
@@ -63,7 +63,7 @@ MC_TARGET_FUNCTION double mc_trigamma(double x)
 	return g;
 }
 
-MC_TARGET_FUNCTION long double mc_trigammal(long double x)
+MC_TARGET_FUNC long double mc_trigammal(long double x)
 {
 	long double g, y, z;
 	if ((x <= 0) && (mc_floorl(x) == x)) {

@@ -13,21 +13,21 @@
 
 #pragma mark - mc_sinc -
 
-MC_TARGET_FUNCTION float mc_sincf(float x)
+MC_TARGET_FUNC float mc_sincf(float x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	const float pix = MCK_KF(MCK_PI) * x;
 	return x == 0 ? 1.0f : mc_sinf(pix) / pix;
 }
 
-MC_TARGET_FUNCTION double mc_sinc(double x)
+MC_TARGET_FUNC double mc_sinc(double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	const double pix = MCK_K(MCK_PI) * x;
 	return x == 0 ? 1.0 : mc_sin(pix) / pix;
 }
 
-MC_TARGET_FUNCTION long double mc_sincl(long double x)
+MC_TARGET_FUNC long double mc_sincl(long double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
@@ -40,19 +40,19 @@ MC_TARGET_FUNCTION long double mc_sincl(long double x)
 
 #pragma mark - mc_unnmc_sinc -
 
-MC_TARGET_FUNCTION float mc_unnmc_sincf(float x)
+MC_TARGET_FUNC float mc_unnmc_sincf(float x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0f : mc_sinf(x) / x;
 }
 
-MC_TARGET_FUNCTION double mc_unnmc_sinc(double x)
+MC_TARGET_FUNC double mc_unnmc_sinc(double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0 : mc_sin(x) / x;
 }
 
-MC_TARGET_FUNCTION long double mc_unnmc_sincl(long double x)
+MC_TARGET_FUNC long double mc_unnmc_sincl(long double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0L : mc_sinl(x) / x;

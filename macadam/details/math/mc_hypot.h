@@ -15,7 +15,7 @@
 
 #pragma mark - mc_hypot -
 
-MC_TARGET_FUNCTION float mc_hypotf(float x, float y)
+MC_TARGET_FUNC float mc_hypotf(float x, float y)
 {
 #	if MC_TARGET_CPP98
 	return ::hypotf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNCTION float mc_hypotf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_hypot(double x, double y)
+MC_TARGET_FUNC double mc_hypot(double x, double y)
 {
 #	if MC_TARGET_CPP98
 	return ::hypot(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNCTION double mc_hypot(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_hypotl(long double x, long double y)
+MC_TARGET_FUNC double mc_hypotl(long double x, long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::hypotl(x, y);

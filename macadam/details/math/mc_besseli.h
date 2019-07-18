@@ -15,7 +15,7 @@
 
 #pragma mark - mc_besseli0_approx0 -
 
-MC_TARGET_FUNCTION float mc_besseli0f_approx0(float x)
+MC_TARGET_PROC float mc_besseli0f_approx0(float x)
 {
 	float r  = 1;
 	int   t  = 0;
@@ -26,7 +26,7 @@ MC_TARGET_FUNCTION float mc_besseli0f_approx0(float x)
 	return i0;
 }
 
-MC_TARGET_FUNCTION double mc_besseli0_approx0(double x)
+MC_TARGET_PROC double mc_besseli0_approx0(double x)
 {
 	double r  = 1;
 	int    t  = 0;
@@ -37,7 +37,7 @@ MC_TARGET_FUNCTION double mc_besseli0_approx0(double x)
 	return i0;
 }
 
-MC_TARGET_FUNCTION long double mc_besseli0l_approx0(long double x)
+MC_TARGET_PROC long double mc_besseli0l_approx0(long double x)
 {
 	long double r  = 1;
 	int         t  = 0;
@@ -50,7 +50,7 @@ MC_TARGET_FUNCTION long double mc_besseli0l_approx0(long double x)
 
 #pragma mark - mc_besseli1_approx0 -
 
-MC_TARGET_FUNCTION float mc_besseli1f_approx0(float x)
+MC_TARGET_PROC float mc_besseli1f_approx0(float x)
 {
 	float r  = 0.5f * x;
 	int   t  = 0;
@@ -61,7 +61,7 @@ MC_TARGET_FUNCTION float mc_besseli1f_approx0(float x)
 	return i1;
 }
 
-MC_TARGET_FUNCTION double mc_besseli1_approx0(double x)
+MC_TARGET_PROC double mc_besseli1_approx0(double x)
 {
 	double r  = 0.5 * x;
 	int    t  = 0;
@@ -72,7 +72,7 @@ MC_TARGET_FUNCTION double mc_besseli1_approx0(double x)
 	return i1;
 }
 
-MC_TARGET_FUNCTION long double mc_besseli1l_approx0(long double x)
+MC_TARGET_PROC long double mc_besseli1l_approx0(long double x)
 {
 	long double r  = 0.5L * x;
 	int         t  = 0;
@@ -85,7 +85,7 @@ MC_TARGET_FUNCTION long double mc_besseli1l_approx0(long double x)
 
 #pragma mark - mc_besselin_approx0 -
 
-MC_TARGET_FUNCTION double mc_besselinf_approx0(int n, float x)
+MC_TARGET_PROC double mc_besselinf_approx0(int n, float x)
 {
 	float i0 = mc_besseli0f_approx0(x);
 	float i1 = mc_besseli1f_approx0(x);
@@ -105,7 +105,7 @@ MC_TARGET_FUNCTION double mc_besselinf_approx0(int n, float x)
 	return in;
 }
 
-MC_TARGET_FUNCTION double mc_besselin_approx0(int n, double x)
+MC_TARGET_PROC double mc_besselin_approx0(int n, double x)
 {
 	double i0 = mc_besseli0_approx0(x);
 	double i1 = mc_besseli1_approx0(x);
@@ -125,7 +125,7 @@ MC_TARGET_FUNCTION double mc_besselin_approx0(int n, double x)
 	return in;
 }
 
-MC_TARGET_FUNCTION long double mc_besselinl_approx0(int n, long double x)
+MC_TARGET_PROC long double mc_besselinl_approx0(int n, long double x)
 {
 	long double i0 = mc_besseli0l_approx0(x);
 	long double i1 = mc_besseli1l_approx0(x);
@@ -147,7 +147,7 @@ MC_TARGET_FUNCTION long double mc_besselinl_approx0(int n, long double x)
 
 #pragma mark - mc_besseli0_approx1 -
 
-MC_TARGET_FUNCTION float mc_besseli0f_approx1(float x)
+MC_TARGET_PROC float mc_besseli0f_approx1(float x)
 {
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	float a1 = 0, a2 = 0, a3 = 0, a4 = 0;
@@ -170,7 +170,7 @@ MC_TARGET_FUNCTION float mc_besseli0f_approx1(float x)
 
 #pragma mark - mc_besseli0_approx1 -
 
-MC_TARGET_FUNCTION double mc_besseli0_approx1(double x)
+MC_TARGET_PROC double mc_besseli0_approx1(double x)
 {
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
@@ -191,7 +191,7 @@ MC_TARGET_FUNCTION double mc_besseli0_approx1(double x)
 	return (a1 * mc_exp(x * b1) + a2 * mc_exp(x * b2) + a3 * mc_exp(x * b3) + a4 * mc_exp(x * b4));
 }
 
-MC_TARGET_FUNCTION long double mc_besseli0l_approx1(long double x)
+MC_TARGET_PROC long double mc_besseli0l_approx1(long double x)
 {
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
@@ -214,7 +214,7 @@ MC_TARGET_FUNCTION long double mc_besseli0l_approx1(long double x)
 
 #pragma mark - mc_besseli1_approx1 -
 
-MC_TARGET_FUNCTION float mc_besseli1f_approx1(float x)
+MC_TARGET_PROC float mc_besseli1f_approx1(float x)
 {
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	float a1 = 0, a2 = 0, a3 = 0, a4 = 0;
@@ -235,7 +235,7 @@ MC_TARGET_FUNCTION float mc_besseli1f_approx1(float x)
 	return (a1 * b1 * mc_expf(x * b1) + a2 * b2 * mc_expf(x * b2) + a3 * b3 + mc_expf(x * b3) + a4 * b4 * mc_expf(x * b4));
 }
 
-MC_TARGET_FUNCTION double mc_besseli1_approx1(double x)
+MC_TARGET_PROC double mc_besseli1_approx1(double x)
 {
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
@@ -256,7 +256,7 @@ MC_TARGET_FUNCTION double mc_besseli1_approx1(double x)
 	return (a1 * b1 * mc_exp(x * b1) + a2 * b2 * mc_exp(x * b2) + a3 * b3 + mc_exp(x * b3) + a4 * b4 * mc_exp(x * b4));
 }
 
-MC_TARGET_FUNCTION long double mc_besseli1l_approx1(long double x)
+MC_TARGET_PROC long double mc_besseli1l_approx1(long double x)
 {
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1 = 0, a2 = 0, a3 = 0, a4 = 0;
@@ -279,7 +279,7 @@ MC_TARGET_FUNCTION long double mc_besseli1l_approx1(long double x)
 
 #pragma mark - mc_besselin_approx1 -
 
-MC_TARGET_FUNCTION double mc_besselinf_approx1(int n, float x)
+MC_TARGET_PROC double mc_besselinf_approx1(int n, float x)
 {
 	float i0 = mc_besseli0f_approx1(x);
 	float i1 = mc_besseli1f_approx1(x);
@@ -299,7 +299,7 @@ MC_TARGET_FUNCTION double mc_besselinf_approx1(int n, float x)
 	return in;
 }
 
-MC_TARGET_FUNCTION double mc_besselin_approx1(int n, double x)
+MC_TARGET_PROC double mc_besselin_approx1(int n, double x)
 {
 	double i0 = mc_besseli0_approx1(x);
 	double i1 = mc_besseli1_approx1(x);
@@ -319,7 +319,7 @@ MC_TARGET_FUNCTION double mc_besselin_approx1(int n, double x)
 	return in;
 }
 
-MC_TARGET_FUNCTION long double mc_besselinl_approx1(int n, long double x)
+MC_TARGET_PROC long double mc_besselinl_approx1(int n, long double x)
 {
 	long double i0 = mc_besseli0l_approx1(x);
 	long double i1 = mc_besseli1l_approx1(x);
@@ -341,7 +341,7 @@ MC_TARGET_FUNCTION long double mc_besselinl_approx1(int n, long double x)
 
 #pragma mark - mc_besseli0 -
 
-MC_TARGET_FUNCTION float mc_besseli0f(float x)
+MC_TARGET_FUNC float mc_besseli0f(float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besseli0f_approx1(x);
@@ -350,7 +350,7 @@ MC_TARGET_FUNCTION float mc_besseli0f(float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_besseli0(double x)
+MC_TARGET_FUNC double mc_besseli0(double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besseli0_approx1(x);
@@ -359,7 +359,7 @@ MC_TARGET_FUNCTION double mc_besseli0(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_besseli0l(long double x)
+MC_TARGET_FUNC long double mc_besseli0l(long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besseli0l_approx1(x);
@@ -370,7 +370,7 @@ MC_TARGET_FUNCTION long double mc_besseli0l(long double x)
 
 #pragma mark - mc_besseli1 -
 
-MC_TARGET_FUNCTION float mc_besseli1f(float x)
+MC_TARGET_FUNC float mc_besseli1f(float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besseli1f_approx1(x);
@@ -379,7 +379,7 @@ MC_TARGET_FUNCTION float mc_besseli1f(float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_besseli1(double x)
+MC_TARGET_FUNC double mc_besseli1(double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besseli1_approx1(x);
@@ -388,7 +388,7 @@ MC_TARGET_FUNCTION double mc_besseli1(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_besseli1l(long double x)
+MC_TARGET_FUNC long double mc_besseli1l(long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besseli1l_approx1(x);
@@ -399,7 +399,7 @@ MC_TARGET_FUNCTION long double mc_besseli1l(long double x)
 
 #pragma mark - mc_besselin -
 
-MC_TARGET_FUNCTION double mc_besselinf(int n, float x)
+MC_TARGET_FUNC double mc_besselinf(int n, float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besselinf_approx1(n, x);
@@ -408,7 +408,7 @@ MC_TARGET_FUNCTION double mc_besselinf(int n, float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_besselin(int n, double x)
+MC_TARGET_FUNC double mc_besselin(int n, double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besselin_approx1(n, x);
@@ -417,7 +417,7 @@ MC_TARGET_FUNCTION double mc_besselin(int n, double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_besselinl(int n, long double x)
+MC_TARGET_FUNC long double mc_besselinl(int n, long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besselinl_approx1(n, x);

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_fmod -
 
-MC_TARGET_FUNCTION float mc_fmodf(float x, float y)
+MC_TARGET_FUNC float mc_fmodf(float x, float y)
 {
 #	if MC_TARGET_CPP98
 	return ::fmodf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNCTION float mc_fmodf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_fmod(double x, double y)
+MC_TARGET_FUNC double mc_fmod(double x, double y)
 {
 #	if MC_TARGET_CPP98
 	return ::fmod(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNCTION double mc_fmod(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_fmodl(long double x, long double y)
+MC_TARGET_FUNC long double mc_fmodl(long double x, long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::fmodl(x, y);

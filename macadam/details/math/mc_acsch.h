@@ -13,17 +13,17 @@
 
 #pragma mark - mc_acsch -
 
-MC_TARGET_FUNCTION float mc_acschf(float x)
+MC_TARGET_FUNC float mc_acschf(float x)
 {
 	return mc_asinhf(1.0f / x);
 }
 
-MC_TARGET_FUNCTION double mc_acsch(double x)
+MC_TARGET_FUNC double mc_acsch(double x)
 {
 	return mc_asinh(1.0 / x);
 }
 
-MC_TARGET_FUNCTION long double mc_acschl(long double x)
+MC_TARGET_FUNC long double mc_acschl(long double x)
 {
 	return mc_asinhl(1.0L / x);
 }

@@ -17,7 +17,7 @@
 
 #pragma mark - mc_cospi -
 
-MC_TARGET_FUNCTION float mc_cospif (float x)
+MC_TARGET_FUNC float mc_cospif (float x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -47,7 +47,7 @@ MC_TARGET_FUNCTION float mc_cospif (float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_cospi(double x)
+MC_TARGET_FUNC double mc_cospi(double x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -77,7 +77,7 @@ MC_TARGET_FUNCTION double mc_cospi(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_cospil(long double x)
+MC_TARGET_FUNC long double mc_cospil(long double x)
 {
 #	if MC_TARGET_APPLEXM
 	const double xx = mc_cast(double, x);

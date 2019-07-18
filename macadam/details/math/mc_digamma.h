@@ -14,7 +14,7 @@
 
 #pragma mark - mc_digamma -
 
-MC_TARGET_FUNCTION float mc_digammaf(float x)
+MC_TARGET_FUNC float mc_digammaf(float x)
 {
 	if (x <= 1E-5) {
 		return -MCK_KF(MCK_G) - (1.0f / x);
@@ -34,7 +34,7 @@ MC_TARGET_FUNCTION float mc_digammaf(float x)
 	);
 }
 
-MC_TARGET_FUNCTION double mc_digamma(double x)
+MC_TARGET_FUNC double mc_digamma(double x)
 {
 	if (x <= 1E-5) {
 		return -MCK_K(MCK_G) - (1.0 / x);
@@ -54,7 +54,7 @@ MC_TARGET_FUNCTION double mc_digamma(double x)
 	);
 }
 
-MC_TARGET_FUNCTION long double mc_digammal(long double x)
+MC_TARGET_FUNC long double mc_digammal(long double x)
 {
 	if (x <= 1E-5) {
 		return -MCK_KL(MCK_G) - (1.0L / x);

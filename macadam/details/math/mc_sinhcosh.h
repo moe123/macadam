@@ -14,19 +14,19 @@
 
 #pragma mark - mc_sinhcosh -
 
-MC_TARGET_FUNCTION void mc_sinhcoshf(float x, float * mc_sinhp, float * mc_coshp)
+MC_TARGET_FUNC void mc_sinhcoshf(float x, float * mc_sinhp, float * mc_coshp)
 {
 	*mc_sinhp = mc_sinhf(x);
 	*mc_coshp = mc_coshf(x);
 }
 
-MC_TARGET_FUNCTION void mc_sinhcosh(double x, double * mc_sinhp, double * mc_coshp)
+MC_TARGET_FUNC void mc_sinhcosh(double x, double * mc_sinhp, double * mc_coshp)
 {
 	*mc_sinhp = mc_sinh(x);
 	*mc_coshp = mc_cosh(x);
 }
 
-MC_TARGET_FUNCTION void mc_sinhcoshl(long double x, long double * mc_sinhp, long double * mc_coshp)
+MC_TARGET_FUNC void mc_sinhcoshl(long double x, long double * mc_sinhp, long double * mc_coshp)
 {
 	*mc_sinhp = mc_sinhl(x);
 	*mc_coshp = mc_coshl(x);

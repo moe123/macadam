@@ -15,7 +15,7 @@
 
 #pragma mark - mc_log2 -
 
-MC_TARGET_FUNCTION float mc_log2f(float x)
+MC_TARGET_FUNC float mc_log2f(float x)
 {
 #	if MC_TARGET_HAVE_LOG2
 #	if MC_TARGET_CPP98
@@ -33,7 +33,7 @@ MC_TARGET_FUNCTION float mc_log2f(float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_log2(double x)
+MC_TARGET_FUNC double mc_log2(double x)
 {
 #	if MC_TARGET_HAVE_LOG2
 #	if MC_TARGET_CPP98
@@ -51,7 +51,7 @@ MC_TARGET_FUNCTION double mc_log2(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_log2l(long double x)
+MC_TARGET_FUNC long double mc_log2l(long double x)
 {
 #	if MC_TARGET_HAVE_LOG2
 #	if MC_TARGET_CPP98

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sigmoid -
 
-MC_TARGET_FUNCTION float mc_sigmoidf(float x)
+MC_TARGET_FUNC float mc_sigmoidf(float x)
 {
 	const float x0 = +46.0f;
 	const float x1 = -23.0f;
@@ -32,7 +32,7 @@ MC_TARGET_FUNCTION float mc_sigmoidf(float x)
 	return 1.0f / (mc_expf(-x) + 1.0f);
 }
 
-MC_TARGET_FUNCTION double mc_sigmoid(double x)
+MC_TARGET_FUNC double mc_sigmoid(double x)
 {
 	const double x0 = +46.0;
 	const double x1 = -23.0;
@@ -49,7 +49,7 @@ MC_TARGET_FUNCTION double mc_sigmoid(double x)
 	return 1.0 / (mc_exp(-x) + 1.0);
 }
 
-MC_TARGET_FUNCTION long double mc_sigmoidl(long double x)
+MC_TARGET_FUNC long double mc_sigmoidl(long double x)
 {
 	const long double x0 = +46.0;
 	const long double x1 = -23.0;

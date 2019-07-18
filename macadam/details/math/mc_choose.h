@@ -15,7 +15,7 @@
 
 #pragma mark - mc_choose -
 
-MC_TARGET_FUNCTION float mc_choosef(unsigned int n, unsigned int k)
+MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 {
 	float r                 = MCLIMITS_MAXF;
 	const int max_factorial = 35;
@@ -48,7 +48,7 @@ MC_TARGET_FUNCTION float mc_choosef(unsigned int n, unsigned int k)
 	return r;
 }
 
-MC_TARGET_FUNCTION double mc_choose(unsigned int n, unsigned int k)
+MC_TARGET_FUNC double mc_choose(unsigned int n, unsigned int k)
 {
 	double r                = MCLIMITS_MAX;
 	const int max_factorial = 171;
@@ -81,7 +81,7 @@ MC_TARGET_FUNCTION double mc_choose(unsigned int n, unsigned int k)
 	return r;
 }
 
-MC_TARGET_FUNCTION long double mc_choosel(unsigned int n, unsigned int k)
+MC_TARGET_FUNC long double mc_choosel(unsigned int n, unsigned int k)
 {
 	long double r = MCLIMITS_MAXL;
 #	if MC_TARGET_MSVC_CPP

@@ -17,7 +17,7 @@
 
 #pragma mark - mc_tanpi -
 
-MC_TARGET_FUNCTION float mc_tanpif (float x)
+MC_TARGET_FUNC float mc_tanpif (float x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -47,7 +47,7 @@ MC_TARGET_FUNCTION float mc_tanpif (float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_tanpi(double x)
+MC_TARGET_FUNC double mc_tanpi(double x)
 {
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
@@ -77,7 +77,7 @@ MC_TARGET_FUNCTION double mc_tanpi(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_tanpil(long double x)
+MC_TARGET_FUNC long double mc_tanpil(long double x)
 {
 #	if MC_TARGET_APPLEXM
 	const double xx = mc_cast(double, x);

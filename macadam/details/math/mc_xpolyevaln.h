@@ -15,7 +15,7 @@
 
 #pragma mark - mc_xpolyevalne -
 
-MC_TARGET_FUNCTION float mc_xpolyevalnef(float x, const float * p, unsigned int n, float * err)
+MC_TARGET_FUNC float mc_xpolyevalnef(float x, const float * p, unsigned int n, float * err)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
@@ -53,7 +53,7 @@ MC_TARGET_FUNCTION float mc_xpolyevalnef(float x, const float * p, unsigned int 
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyevalne(double x, const double * p, unsigned int n, double * err)
+MC_TARGET_FUNC double mc_xpolyevalne(double x, const double * p, unsigned int n, double * err)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
@@ -91,7 +91,7 @@ MC_TARGET_FUNCTION double mc_xpolyevalne(double x, const double * p, unsigned in
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyevalnel(long double x, const long double * p, unsigned int n, long double * err)
+MC_TARGET_FUNC long double mc_xpolyevalnel(long double x, const long double * p, unsigned int n, long double * err)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
@@ -131,7 +131,7 @@ MC_TARGET_FUNCTION long double mc_xpolyevalnel(long double x, const long double 
 
 #pragma mark - mc_xpolyeval2 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval2f(float x
+MC_TARGET_FUNC float mc_xpolyeval2f(float x
 	, float p1
 	, float p2
 ) {
@@ -142,7 +142,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval2f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval2(double x
+MC_TARGET_FUNC double mc_xpolyeval2(double x
 	, double p1
 	, double p2
 ) {
@@ -153,7 +153,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval2(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval2l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval2l(long double x
 	, long double p1
 	, long double p2
 ) {
@@ -166,7 +166,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval2l(long double x
 
 #pragma mark - mc_xpolyeval3 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval3f(float x
+MC_TARGET_FUNC float mc_xpolyeval3f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -179,7 +179,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval3f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval3(double x
+MC_TARGET_FUNC double mc_xpolyeval3(double x
 	, double p1
 	, double p2
 	, double p3
@@ -192,7 +192,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval3(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval3l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval3l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -207,7 +207,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval3l(long double x
 
 #pragma mark - mc_xpolyeval4 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval4f(float x
+MC_TARGET_FUNC float mc_xpolyeval4f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -222,7 +222,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval4f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval4(double x
+MC_TARGET_FUNC double mc_xpolyeval4(double x
 	, double p1
 	, double p2
 	, double p3
@@ -237,7 +237,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval4(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval4l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval4l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -254,7 +254,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval4l(long double x
 
 #pragma mark - mc_xpolyeval5 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval5f(float x
+MC_TARGET_FUNC float mc_xpolyeval5f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -271,7 +271,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval5f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval5(double x
+MC_TARGET_FUNC double mc_xpolyeval5(double x
 	, double p1
 	, double p2
 	, double p3
@@ -288,7 +288,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval5(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval5l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval5l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -307,7 +307,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval5l(long double x
 
 #pragma mark - mc_xpolyeval6 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval6f(float x
+MC_TARGET_FUNC float mc_xpolyeval6f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -326,7 +326,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval6f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval6(double x
+MC_TARGET_FUNC double mc_xpolyeval6(double x
 	, double p1
 	, double p2
 	, double p3
@@ -345,7 +345,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval6(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval6l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval6l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -366,7 +366,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval6l(long double x
 
 #pragma mark - mc_xpolyeval7 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval7f(float x
+MC_TARGET_FUNC float mc_xpolyeval7f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -387,7 +387,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval7f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval7(double x
+MC_TARGET_FUNC double mc_xpolyeval7(double x
 	, double p1
 	, double p2
 	, double p3
@@ -408,7 +408,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval7(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval7l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval7l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -431,7 +431,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval7l(long double x
 
 #pragma mark - mc_xpolyeval8 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval8f(float x
+MC_TARGET_FUNC float mc_xpolyeval8f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -454,7 +454,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval8f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval8(double x
+MC_TARGET_FUNC double mc_xpolyeval8(double x
 	, double p1
 	, double p2
 	, double p3
@@ -477,7 +477,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval8(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval8l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval8l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -502,7 +502,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval8l(long double x
 
 #pragma mark - mc_xpolyeval9 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval9f(float x
+MC_TARGET_FUNC float mc_xpolyeval9f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -527,7 +527,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval9f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval9(double x
+MC_TARGET_FUNC double mc_xpolyeval9(double x
 	, double p1
 	, double p2
 	, double p3
@@ -552,7 +552,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval9(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval9l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval9l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -579,7 +579,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval9l(long double x
 
 #pragma mark - mc_xpolyeval10 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval10f(float x
+MC_TARGET_FUNC float mc_xpolyeval10f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -606,7 +606,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval10f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval10(double x
+MC_TARGET_FUNC double mc_xpolyeval10(double x
 	, double p1
 	, double p2
 	, double p3
@@ -633,7 +633,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval10(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval10l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval10l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -662,7 +662,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval10l(long double x
 
 #pragma mark - mc_xpolyeval11 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval11f(float x
+MC_TARGET_FUNC float mc_xpolyeval11f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -691,7 +691,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval11f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval11(double x
+MC_TARGET_FUNC double mc_xpolyeval11(double x
 	, double p1
 	, double p2
 	, double p3
@@ -720,7 +720,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval11(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval11l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval11l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -751,7 +751,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval11l(long double x
 
 #pragma mark - mc_xpolyeval12 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval12f(float x
+MC_TARGET_FUNC float mc_xpolyeval12f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -782,7 +782,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval12f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval12(double x
+MC_TARGET_FUNC double mc_xpolyeval12(double x
 	, double p1
 	, double p2
 	, double p3
@@ -813,7 +813,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval12(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval12l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval12l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -846,7 +846,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval12l(long double x
 
 #pragma mark - mc_xpolyeval13 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval13f(float x
+MC_TARGET_FUNC float mc_xpolyeval13f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -879,7 +879,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval13f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval13(double x
+MC_TARGET_FUNC double mc_xpolyeval13(double x
 	, double p1
 	, double p2
 	, double p3
@@ -912,7 +912,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval13(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval13l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval13l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -947,7 +947,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval13l(long double x
 
 #pragma mark - mc_xpolyeval14 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval14f(float x
+MC_TARGET_FUNC float mc_xpolyeval14f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -982,7 +982,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval14f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval14(double x
+MC_TARGET_FUNC double mc_xpolyeval14(double x
 	, double p1
 	, double p2
 	, double p3
@@ -1017,7 +1017,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval14(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval14l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval14l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -1054,7 +1054,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval14l(long double x
 
 #pragma mark - mc_xpolyeval15 -
 
-MC_TARGET_FUNCTION float mc_xpolyeval15f(float x
+MC_TARGET_FUNC float mc_xpolyeval15f(float x
 	, float p1
 	, float p2
 	, float p3
@@ -1091,7 +1091,7 @@ MC_TARGET_FUNCTION float mc_xpolyeval15f(float x
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyeval15(double x
+MC_TARGET_FUNC double mc_xpolyeval15(double x
 	, double p1
 	, double p2
 	, double p3
@@ -1128,7 +1128,7 @@ MC_TARGET_FUNCTION double mc_xpolyeval15(double x
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyeval15l(long double x
+MC_TARGET_FUNC long double mc_xpolyeval15l(long double x
 	, long double p1
 	, long double p2
 	, long double p3
@@ -1167,7 +1167,7 @@ MC_TARGET_FUNCTION long double mc_xpolyeval15l(long double x
 
 #pragma mark - mc_xpolyevaln -
 
-MC_TARGET_FUNCTION float mc_xpolyevalnf(float x, const float * p, unsigned int n)
+MC_TARGET_FUNC float mc_xpolyevalnf(float x, const float * p, unsigned int n)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1221,7 +1221,7 @@ MC_TARGET_FUNCTION float mc_xpolyevalnf(float x, const float * p, unsigned int n
 	return s;
 }
 
-MC_TARGET_FUNCTION double mc_xpolyevaln(double x, const double * p, unsigned int n)
+MC_TARGET_FUNC double mc_xpolyevaln(double x, const double * p, unsigned int n)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1275,7 +1275,7 @@ MC_TARGET_FUNCTION double mc_xpolyevaln(double x, const double * p, unsigned int
 	return s;
 }
 
-MC_TARGET_FUNCTION long double mc_xpolyevalnl(long double x, const long double * p, unsigned int n)
+MC_TARGET_FUNC long double mc_xpolyevalnl(long double x, const long double * p, unsigned int n)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;

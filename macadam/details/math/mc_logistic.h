@@ -13,17 +13,17 @@
 
 #pragma mark - mc_logistic -
 
-MC_TARGET_FUNCTION float mc_logisticf(float x, float lambda)
+MC_TARGET_FUNC float mc_logisticf(float x, float lambda)
 {
 	return 1.0f / (mc_expf(-lambda * x) + 1.0f);
 }
 
-MC_TARGET_FUNCTION double mc_logistic(double x, double lambda)
+MC_TARGET_FUNC double mc_logistic(double x, double lambda)
 {
 	return 1.0 / (mc_exp(-lambda * x) + 1.0);
 }
 
-MC_TARGET_FUNCTION long double mc_logisticl(long double x, long double lambda)
+MC_TARGET_FUNC long double mc_logisticl(long double x, long double lambda)
 {
 	return 1.0L / (mc_expl(-lambda * x) + 1.0L);
 }

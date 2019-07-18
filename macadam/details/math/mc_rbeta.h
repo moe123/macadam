@@ -27,7 +27,7 @@
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNCTION float mc_rbetaf(float a, float b, float x)
+MC_TARGET_FUNC float mc_rbetaf(float a, float b, float x)
 {
 	unsigned int i = 0, j;
 	float g, k, w, f = 1.0f, c = 1.0f, d = 0.0f;
@@ -88,7 +88,7 @@ MC_TARGET_FUNCTION float mc_rbetaf(float a, float b, float x)
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNCTION double mc_rbeta(double a, double b, double x)
+MC_TARGET_FUNC double mc_rbeta(double a, double b, double x)
 {
 	unsigned int i = 0, j;
 	double g, k, w, f = 1.0, c = 1.0, d = 0.0;
@@ -149,7 +149,7 @@ MC_TARGET_FUNCTION double mc_rbeta(double a, double b, double x)
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNCTION long double mc_rbetal(long double a, long double b, long double x)
+MC_TARGET_FUNC long double mc_rbetal(long double a, long double b, long double x)
 {
 	unsigned int i = 0, j;
 	long double g, k, w, f = 1.0L, c = 1.0L, d = 0.0L;

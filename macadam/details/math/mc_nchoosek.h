@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nchoosek -
 
-MC_TARGET_FUNCTION unsigned int mc_nchoosek(unsigned int n, unsigned int k)
+MC_TARGET_FUNC unsigned int mc_nchoosek(unsigned int n, unsigned int k)
 {
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {

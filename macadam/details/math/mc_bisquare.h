@@ -13,7 +13,7 @@
 
 #pragma mark - mc_bisquare -
 
-MC_TARGET_FUNCTION float mc_bisquaref(float x, float k)
+MC_TARGET_FUNC float mc_bisquaref(float x, float k)
 {
 	float w, y;
 	if (mc_fabsf(x) >= k || k == 0.0f) {
@@ -25,7 +25,7 @@ MC_TARGET_FUNCTION float mc_bisquaref(float x, float k)
 	return w * w;
 }
 
-MC_TARGET_FUNCTION double mc_bisquare(double x, double k)
+MC_TARGET_FUNC double mc_bisquare(double x, double k)
 {
 	double w, y;
 	if (mc_fabs(x) >= k || k == 0.0) {
@@ -37,7 +37,7 @@ MC_TARGET_FUNCTION double mc_bisquare(double x, double k)
 	return w * w;
 }
 
-MC_TARGET_FUNCTION long double mc_bisquarel(long double x, long double k)
+MC_TARGET_FUNC long double mc_bisquarel(long double x, long double k)
 {
 	long double w, y;
 	if (mc_fabsl(x) >= k || k == 0.0L) {

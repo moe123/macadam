@@ -15,7 +15,7 @@
 
 #pragma mark - mc_logp1 -
 
-MC_TARGET_FUNCTION float mc_logp1f(float x)
+MC_TARGET_FUNC float mc_logp1f(float x)
 {
 	if (x == 0.0f) {
 		return x;
@@ -27,7 +27,7 @@ MC_TARGET_FUNCTION float mc_logp1f(float x)
 #	endif
 }
 
-MC_TARGET_FUNCTION double mc_logp1(double x)
+MC_TARGET_FUNC double mc_logp1(double x)
 {
 	if (x == 0.0) {
 		return x;
@@ -39,7 +39,7 @@ MC_TARGET_FUNCTION double mc_logp1(double x)
 #	endif
 }
 
-MC_TARGET_FUNCTION long double mc_logp1l(long double x)
+MC_TARGET_FUNC long double mc_logp1l(long double x)
 {
 	if (x == 0.0L) {
 		return x;
