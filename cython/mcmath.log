@@ -1,8 +1,0 @@
-Compiling mcmath.pyx because it changed.
-[1/1] Cythonizing mcmath.pyx
-running build_ext
-building 'mcmath' extension
-creating build
-creating build/temp.macosx-10.14-x86_64-3.7
-/usr/bin/clang -DNDEBUG -g -fwrapv -O3 -Wall -std=c99 -Wextra -pedantic -Wno-newline-eof -I../ -DMC_DISABLE_REENTRANT=1 -DMC_DISABLE_TGMATH=1 -I/opt/local/Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m -c mcmath.c -o build/temp.macosx-10.14-x86_64-3.7/mcmath.o
-/usr/bin/clang -bundle -undefined dynamic_lookup -L/opt/local/lib -Wl,-headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -std=c99 -Wextra -pedantic -Wno-newline-eof -I../ -DMC_DISABLE_REENTRANT=1 -DMC_DISABLE_TGMATH=1 build/temp.macosx-10.14-x86_64-3.7/mcmath.o -o /Users/moe/Projects/macadam/cython/mcmath.cpython-37m-darwin.so
