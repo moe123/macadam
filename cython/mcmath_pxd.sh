@@ -20,8 +20,8 @@ cmd_popd ()
 
 function main ()
 { 
-	declare -r path_self=`cd $(dirname "$0");pwd`
-	declare -r path_base=`cd $(dirname "$0");cd ..;pwd`
+	declare -r path_self=$(cd $(dirname "$0");pwd)
+	declare -r path_base=$(cd $(dirname "$0");cd ..;pwd)
 	if [ "$(uname -s)" == "Darwin" ]
 	then
 		declare -r cmd_sed="gsed"
@@ -30,27 +30,24 @@ function main ()
 	fi
 	cmd_pushd "${path_base}"
 
+	declare -a special
+	special=("fisint" "isfinite" "isinf" "isnan" )
+
 	:> "${path_self}/mcmath.pxd"
 
 	echo "# BOF"                      >> "${path_self}/mcmath.pxd"
 	echo "from libc.stdint cimport *" >> "${path_self}/mcmath.pxd"
 	echo ""                           >> "${path_self}/mcmath.pxd"
 
-	echo "cdef extern from \"<macadam/details/math/mc_fisint.h>\":"   >> "${path_self}/mcmath.pxd"
-	echo "	int mc_fisint(double x)"                                 >> "${path_self}/mcmath.pxd"
-	echo ""                                                           >> "${path_self}/mcmath.pxd"
-	echo "cdef extern from \"<macadam/details/math/mc_isfinite.h>\":" >> "${path_self}/mcmath.pxd"
-	echo "	int mc_isfinite(double x)"                               >> "${path_self}/mcmath.pxd"
-	echo ""                                                           >> "${path_self}/mcmath.pxd"
-	echo "cdef extern from \"<macadam/details/math/mc_isinf.h>\":"    >> "${path_self}/mcmath.pxd"
-	echo "	int mc_isinf(double x)"                                  >> "${path_self}/mcmath.pxd"
-	echo ""                                                           >> "${path_self}/mcmath.pxd"
-	echo "cdef extern from \"<macadam/details/math/mc_isnan.h>\":"    >> "${path_self}/mcmath.pxd"
-	echo "	int mc_isnan(double x)"                                  >> "${path_self}/mcmath.pxd"
-	echo ""                                                           >> "${path_self}/mcmath.pxd"
+	for i in "${!special[@]}"; do 
+		fn="${special[${i}]}"
+		echo "cdef extern from \"<macadam/details/math/mc_${fn}.h>\":" >> "${path_self}/mcmath.pxd"
+		echo "	int mc_${fn}(double x)"                               >> "${path_self}/mcmath.pxd"
+		echo ""                                                        >> "${path_self}/mcmath.pxd"
+	done
 
 	for f in macadam/details/math/*.h; do
-		symbol=$(cat ${f} | grep -E "^MC_TARGET_FUNC double (\w)" | ${cmd_sed} -e 's/MC_TARGET_FUNC /\t/g')
+		symbol=$(cat ${f} | grep -E "^MC_TARGET_FUNC double (\w)" | ${cmd_sed} -e "s/MC_TARGET_FUNC /\t/g")
 		if [ ${#symbol} -ne 0 ]
 		then
 			header="cdef extern from \"<${f}>\":"
