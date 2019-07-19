@@ -16,9 +16,9 @@
 #pragma mark - mc_isnan -
 
 #	if MC_TARGET_CPP98
-#	define mc_isnan(x) ::isnan(x)
+#	define mc_isnan(x) (::isnan(x) ? 1 : 0)
 #	else
-#	define mc_isnan(x) isnan(x)
+#	define mc_isnan(x) (isnan(x) ? 1 : 0)
 #	endif
 
 #endif /* !MC_ISNAN_H */

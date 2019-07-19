@@ -116,8 +116,7 @@ MC_TARGET_PROC long double mc_gammal_approx1(long double x)
 
 #pragma mark - mc_gamma -
 
-MC_TARGET_FUNC
-float mc_gammaf(float x)
+MC_TARGET_FUNC float mc_gammaf(float x)
 {
 	if (isnan(x) || isinf(x)) {
 		return x;
@@ -139,8 +138,7 @@ float mc_gammaf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC
-double mc_gamma(double x)
+MC_TARGET_FUNC double mc_gamma(double x)
 {
 	if (isnan(x) || isinf(x)) {
 		return x;
@@ -162,8 +160,7 @@ double mc_gamma(double x)
 #	endif
 }
 
-MC_TARGET_FUNC
-long double mc_gammal(long double x)
+MC_TARGET_FUNC long double mc_gammal(long double x)
 {
 	if (isnan(x) || isinf(x)) {
 		return x;

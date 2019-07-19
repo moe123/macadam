@@ -8,6 +8,14 @@
 
 cimport mcmath
 
+def isinf(x):
+	cdef int r = mcmath.mc_isinf(x)
+	return r
+
+def isnan(x):
+	cdef int r = mcmath.mc_isnan(x)
+	return r
+
 def fisint(x):
 	cdef int r = mcmath.mc_fisint(x)
 	return r

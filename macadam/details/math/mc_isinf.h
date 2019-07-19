@@ -16,9 +16,9 @@
 #pragma mark - mc_isinf -
 
 #	if MC_TARGET_CPP98
-#	define mc_isinf(x) ::isinf(x)
+#	define mc_isinf(x) (::isinf(x) ? 1 : 0)
 #	else
-#	define mc_isinf(x) isinf(x)
+#	define mc_isinf(x) (isinf(x) ? 1 : 0)
 #	endif
 
 #endif /* !MC_ISINF_H */

@@ -19,21 +19,21 @@
 
 #pragma mark - mc_hermite_h0 -
 
-MC_TARGET_FUNC float mc_hermite_h0f(float x)
+MC_TARGET_PROC float mc_hermite_h0f(float x)
 {
 //!# Physicists' Hermite polynomial, degree 0.
 	x = 1.0f;
 	return x;
 }
 
-MC_TARGET_FUNC double mc_hermite_h0(double x)
+MC_TARGET_PROC double mc_hermite_h0(double x)
 {
 //!# Physicists' Hermite polynomial, degree 0.
 	x = 1.0;
 	return x;
 }
 
-MC_TARGET_FUNC long  double mc_hermite_h0l(long double x)
+MC_TARGET_PROC long  double mc_hermite_h0l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 0.
 	x = 1.0L;
@@ -42,19 +42,19 @@ MC_TARGET_FUNC long  double mc_hermite_h0l(long double x)
 
 #pragma mark - mc_hermite_h1 -
 
-MC_TARGET_FUNC float mc_hermite_h1f(float x)
+MC_TARGET_PROC float mc_hermite_h1f(float x)
 {
 //!# Physicists' Hermite polynomial, degree 1.
 	return 2.0f * x;
 }
 
-MC_TARGET_FUNC double mc_hermite_h1(double x)
+MC_TARGET_PROC double mc_hermite_h1(double x)
 {
 //!# Physicists' Hermite polynomial, degree 1.
 	return 2.0 * x;
 }
 
-MC_TARGET_FUNC long  double mc_hermite_h1l(long double x)
+MC_TARGET_PROC long  double mc_hermite_h1l(long double x)
 {
 //!# Physicists' Hermite polynomial, degree 1.
 	return 2.0L * x;

@@ -16,9 +16,9 @@
 #pragma mark - mc_isfinite -
 
 #	if MC_TARGET_CPP98
-#	define mc_isfinite(x) ::isfinite(x)
+#	define mc_isfinite(x) (::isfinite(x) ? 1 : 0)
 #	else
-#	define mc_isfinite(x) isfinite(x)
+#	define mc_isfinite(x) (isfinite(x) ? 1 : 0)
 #	endif
 
 #endif /* !MC_ISFINITE_H */

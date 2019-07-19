@@ -16,7 +16,7 @@ cmd_popd () {
 	command popd "$@" > /dev/null
 }
 
-function gen_pxd ()
+function main ()
 { 
 	declare -r path_self=`cd $(dirname "$0");pwd`
 	declare -r path_base=`cd $(dirname "$0");cd ..;pwd`
@@ -30,14 +30,25 @@ function gen_pxd ()
 
 	:> ${path_self}/mcmath.pxd
 
+	echo "# BOF"                      >> ${path_self}/mcmath.pxd
 	echo "from libc.stdint cimport *" >> ${path_self}/mcmath.pxd
 	echo ""                           >> ${path_self}/mcmath.pxd
 
+	echo "cdef extern from \"<macadam/details/math/mc_isfinite.h>\":" >> ${path_self}/mcmath.pxd
+	echo "	int mc_isfinite(double x)"                               >> ${path_self}/mcmath.pxd
+	echo ""                                                           >> ${path_self}/mcmath.pxd
+	echo "cdef extern from \"<macadam/details/math/mc_isinf.h>\":"    >> ${path_self}/mcmath.pxd
+	echo "	int mc_isinf(double x)"                                  >> ${path_self}/mcmath.pxd
+	echo ""                                                           >> ${path_self}/mcmath.pxd
+	echo "cdef extern from \"<macadam/details/math/mc_isnan.h>\":"    >> ${path_self}/mcmath.pxd
+	echo "	int mc_isnan(double x)"                                  >> ${path_self}/mcmath.pxd
+	echo ""                                                           >> ${path_self}/mcmath.pxd
+
 	for f in macadam/details/math/*.h; do
-		header="cdef extern from \"<${f}>\":"
-		symbol=$(cat ${f} | grep -E "^MC_TARGET_FUNC (\w)" | ${cmd_sed} -e 's/MC_TARGET_FUNC /\t/g')
+		symbol=$(cat ${f} | grep -E "^MC_TARGET_FUNC (int|double) (\w)" | ${cmd_sed} -e 's/MC_TARGET_FUNC /\t/g')
 		if [ ${#symbol} -ne 0 ]
 		then
+			header="cdef extern from \"<${f}>\":"
 			echo "${header}" >> ${path_self}/mcmath.pxd
 			echo "${symbol}" >> ${path_self}/mcmath.pxd
 			echo ""          >> ${path_self}/mcmath.pxd
@@ -49,6 +60,6 @@ function gen_pxd ()
 	cmd_popd
 }
 
-gen_pxd $0 
+main "$@"
 
 # EOF

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_igcd -
 
-MC_TARGET_FUNC int mc_igcd(int m, int n)
+MC_TARGET_PROC int mc_igcd(int m, int n)
 {
 	if (m == 0 && n == 0) {
 		return 0;
@@ -32,7 +32,7 @@ MC_TARGET_FUNC int mc_igcd(int m, int n)
 
 #pragma mark - mc_lgcd -
 
-MC_TARGET_FUNC long mc_lgcd(long m, long n)
+MC_TARGET_PROC long mc_lgcd(long m, long n)
 {
 	if (m == 0 && n == 0) {
 		return 0;
@@ -50,7 +50,7 @@ MC_TARGET_FUNC long mc_lgcd(long m, long n)
 #pragma mark - mc_llgcd -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNC long long mc_llgcd(long long m, long long n)
+MC_TARGET_PROC long long mc_llgcd(long long m, long long n)
 {
 	if (m == 0 && n == 0) {
 		return 0;
