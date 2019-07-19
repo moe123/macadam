@@ -8,11 +8,13 @@
 # Copyright (C) 2019 Moe123. All rights reserved.
 #
 
-cmd_pushd () {
+cmd_pushd ()
+{
 	command pushd "$@" > /dev/null
 }
 
-cmd_popd () {
+cmd_popd ()
+{
 	command popd "$@" > /dev/null
 }
 
