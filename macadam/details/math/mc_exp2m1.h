@@ -37,14 +37,14 @@ MC_TARGET_FUNC long double mc_exp2m1l(long double x)
 
 #pragma mark - mc_uexp2m1 -
 
-MC_TARGET_FUNC unsigned int mc_uexp2m1(unsigned int x)
+MC_TARGET_PROC unsigned int mc_uexp2m1(unsigned int x)
 {
 	return (1 << x) - 1;
 }
 
 #pragma mark - mc_ulexp2m1 -
 
-MC_TARGET_FUNC unsigned long mc_ulexp2m1(unsigned long x)
+MC_TARGET_PROC unsigned long mc_ulexp2m1(unsigned long x)
 {
 	return (1 << x) - 1;
 }
@@ -52,7 +52,7 @@ MC_TARGET_FUNC unsigned long mc_ulexp2m1(unsigned long x)
 #pragma mark - mc_ullexp2m1 -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNC unsigned long long mc_ullexp2m1(unsigned long long x)
+MC_TARGET_PROC unsigned long long mc_ullexp2m1(unsigned long long x)
 {
 	return (1 << x) - 1;
 }

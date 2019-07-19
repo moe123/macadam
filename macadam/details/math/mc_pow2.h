@@ -43,7 +43,7 @@ MC_TARGET_FUNC double mc_pow2(double x)
 	return mc_pow(2.0, x);
 }
 
-MC_TARGET_FUNC double mc_pow2l(long double x)
+MC_TARGET_FUNC long double mc_pow2l(long double x)
 {
 	if (mc_floorl(x) == x) {
 		if (x < -1074.0L) {

@@ -1,12 +1,13 @@
 # BOF
 
 all: clean
+	@sh ./mcmath_pxd.sh
 	@python setup.py build_ext --inplace 1>&2 &> /dev/null
 
 run: all
 	@python mcmath_run.py
 
 clean:
-	@rm -rf build mcmath.c *.so
+	@rm -rf build mcmath.c mcmath.pxd *.so
 
 # EOF

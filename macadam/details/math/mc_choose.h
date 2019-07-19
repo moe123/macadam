@@ -34,8 +34,8 @@ MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 			r  = mc_ceilf(r - 0.5f);
 		} else {
 			r = (k < (n - k))
-				? (k - 0) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
-				: (n - k) * mc_betaf(mc_cast(float, (k + 1)), mc_cast(float, (n - k + 0)))
+				? mc_cast(float, (k - 0)) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
+				: mc_cast(float, (n - k)) * mc_betaf(mc_cast(float, (k + 1)), mc_cast(float, (n - k + 0)))
 			;
 			if (r != 0) {
 				r = 1.0f / r;
@@ -67,8 +67,8 @@ MC_TARGET_FUNC double mc_choose(unsigned int n, unsigned int k)
 			r  = mc_ceil(r - 0.5);
 		} else {
 			r = (k < (n - k))
-				? (k - 0) * mc_beta(mc_cast(double, (k + 0)), mc_cast(double, (n - k + 1)))
-				: (n - k) * mc_beta(mc_cast(double, (k + 1)), mc_cast(double, (n - k + 0)))
+				? mc_cast(double, (k - 0)) * mc_beta(mc_cast(double, (k + 0)), mc_cast(double, (n - k + 1)))
+				: mc_cast(double, (n - k)) * mc_beta(mc_cast(double, (k + 1)), mc_cast(double, (n - k + 0)))
 			;
 			if (r != 0) {
 				r = 1.0f / r;
@@ -104,8 +104,8 @@ MC_TARGET_FUNC long double mc_choosel(unsigned int n, unsigned int k)
 			r  = mc_ceill(r - 0.5L);
 		} else {
 			r = (k < (n - k))
-				? (k - 0) * mc_betal(mc_cast(long double, (k + 0)), mc_cast(long double, (n - k + 1)))
-				: (n - k) * mc_betal(mc_cast(long double, (k + 1)), mc_cast(long double, (n - k + 0)))
+				? mc_cast(long double, (k - 0)) * mc_betal(mc_cast(long double, (k + 0)), mc_cast(long double, (n - k + 1)))
+				: mc_cast(long double, (n - k)) * mc_betal(mc_cast(long double, (k + 1)), mc_cast(long double, (n - k + 0)))
 			;
 			if (r != 0) {
 				r = 1.0f / r;

@@ -40,19 +40,19 @@ MC_TARGET_FUNC long double mc_sincl(long double x)
 
 #pragma mark - mc_unnmc_sinc -
 
-MC_TARGET_FUNC float mc_unnmc_sincf(float x)
+MC_TARGET_PROC float mc_unnmc_sincf(float x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0f : mc_sinf(x) / x;
 }
 
-MC_TARGET_FUNC double mc_unnmc_sinc(double x)
+MC_TARGET_PROC double mc_unnmc_sinc(double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0 : mc_sin(x) / x;
 }
 
-MC_TARGET_FUNC long double mc_unnmc_sincl(long double x)
+MC_TARGET_PROC long double mc_unnmc_sincl(long double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0L : mc_sinl(x) / x;

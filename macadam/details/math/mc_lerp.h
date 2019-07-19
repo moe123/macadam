@@ -40,7 +40,7 @@ MC_TARGET_FUNC double mc_lerp(double x, double y, double z)
 	} else if (z == 1.0) {
 		return y;
 	}
-	const float w = x + z * (y - x);
+	const double w = x + z * (y - x);
 	if (z > 1.0 && y > x) {
 		return y < w ? w : y;
 	}
@@ -57,7 +57,7 @@ MC_TARGET_FUNC long double mc_lerpl(long double x, long double y, long double z)
 	} else if (z == 1.0L) {
 		return y;
 	}
-	const float w = x + z * (y - x);
+	const long double w = x + z * (y - x);
 	if (z > 1.0L && y > x) {
 		return y < w ? w : y;
 	}

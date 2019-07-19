@@ -23,7 +23,7 @@ MC_TARGET_FUNC double mc_hypotc(double x, double y, double z)
 	return mc_sqrt((x * x) + (y * y) + (z * z));
 }
 
-MC_TARGET_FUNC double mc_hypotcl(long double x, long double y, long double z)
+MC_TARGET_FUNC long double mc_hypotcl(long double x, long double y, long double z)
 {
 	return mc_sqrtl((x * x) + (y * y) + (z * z));
 }

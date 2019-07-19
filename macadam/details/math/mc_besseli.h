@@ -85,7 +85,7 @@ MC_TARGET_PROC long double mc_besseli1l_approx0(long double x)
 
 #pragma mark - mc_besselin_approx0 -
 
-MC_TARGET_PROC double mc_besselinf_approx0(int n, float x)
+MC_TARGET_PROC float mc_besselinf_approx0(int n, float x)
 {
 	float i0 = mc_besseli0f_approx0(x);
 	float i1 = mc_besseli1f_approx0(x);
@@ -279,7 +279,7 @@ MC_TARGET_PROC long double mc_besseli1l_approx1(long double x)
 
 #pragma mark - mc_besselin_approx1 -
 
-MC_TARGET_PROC double mc_besselinf_approx1(int n, float x)
+MC_TARGET_PROC float mc_besselinf_approx1(int n, float x)
 {
 	float i0 = mc_besseli0f_approx1(x);
 	float i1 = mc_besseli1f_approx1(x);
@@ -399,7 +399,7 @@ MC_TARGET_FUNC long double mc_besseli1l(long double x)
 
 #pragma mark - mc_besselin -
 
-MC_TARGET_FUNC double mc_besselinf(int n, float x)
+MC_TARGET_FUNC float mc_besselinf(int n, float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_besselinf_approx1(n, x);

@@ -33,5 +33,6 @@ xcuserdata
 */.vscode/*
 
 cython/mcmath.c
+cython/mcmath.pxd 
 
 # EOF

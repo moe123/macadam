@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_hypot(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_hypotl(long double x, long double y)
+MC_TARGET_FUNC long double mc_hypotl(long double x, long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::hypotl(x, y);

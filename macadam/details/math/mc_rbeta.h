@@ -166,7 +166,7 @@ MC_TARGET_FUNC long double mc_rbetal(long double a, long double b, long double x
 		return (1.0L - mc_rbetal(b, a, 1.0L - x));
 	}
 //!# Computing delta-gamma + front integral.
-	g = mc_lbeta(a, b);
+	g = mc_lbetal(a, b);
 	k = mc_expl(mc_logl(x) * a + mc_logl(1.0L - x) * b - g) / a;
 //!# Reducing, converging.
 	for (; i < 256; ++i) {

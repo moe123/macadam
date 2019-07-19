@@ -2044,7 +2044,7 @@ MC_TARGET_FUNC long double mc_factoriall(unsigned int x)
 	return MCLIMITS_MAXL;
 }
 
-MC_TARGET_FUNC unsigned int mc_ufactorial(unsigned int x)
+MC_TARGET_PROC unsigned int mc_ufactorial(unsigned int x)
 {
 	float y = mc_factorialf(x);
 	if (y < MCLIMITS_MAXF) {
@@ -2056,7 +2056,7 @@ MC_TARGET_FUNC unsigned int mc_ufactorial(unsigned int x)
 	return MCLIMITS_UIMAX;
 }
 
-MC_TARGET_FUNC unsigned long mc_ulfactorial(unsigned int x)
+MC_TARGET_PROC unsigned long mc_ulfactorial(unsigned int x)
 {
 	if (sizeof(unsigned int) < sizeof(unsigned long)) {
 		double y = mc_factorial(x);
@@ -2079,7 +2079,7 @@ MC_TARGET_FUNC unsigned long mc_ulfactorial(unsigned int x)
 }
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNC unsigned long long mc_ullfactorial(unsigned int x)
+MC_TARGET_PROC unsigned long long mc_ullfactorial(unsigned int x)
 {
 	long double y = mc_factoriall(x);
 	if (y < MCLIMITS_MAXL) {

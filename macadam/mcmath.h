@@ -1002,7 +1002,7 @@ template <>        MC_TARGET_INLINE long double mcmath_modf<long double> (const 
 MC_TARGET_ALIAS float       mcmath_modf (float x, float * y)             { return mc_modff (x, y); }
 MC_TARGET_ALIAS double      mcmath_modf (double x, double * y)           { return mc_modf  (x, y); }
 MC_TARGET_ALIAS long double mcmath_modf (long double x, long double * y) { return mc_modfl (x, y); }
-#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	elif MC_TARGET_C11  && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_modf(x, y) _Generic(x \
 	, float       : mc_modff \
 	, double      : mc_modf  \
@@ -2144,10 +2144,10 @@ template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const l
 		MC_TARGET_AUTOTYPE __mcmath_min_bb = (b); \
 		mc_cast(MC_TARGET_TYPEOF(__mcmath_min_aa), \
 		( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (__mcmath_min_aa, mc_cast(float, __mcmath_min_bb))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (__mcmath_min_aa, mc_cast(double, __mcmath_min_bb))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (__mcmath_min_aa, mc_cast(long double, __mcmath_min_bb)) \
-		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                               \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (mc_cast(float, __mcmath_min_aa), mc_cast(float, __mcmath_min_bb))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (mc_cast(double, __mcmath_min_aa), mc_cast(double, __mcmath_min_bb))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (mc_cast(long double, __mcmath_min_aa), mc_cast(long double, __mcmath_min_bb)) \
+		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                                                     \
 		)); \
 	})
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_TYPEOF
@@ -2157,10 +2157,10 @@ template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const l
 		MC_TARGET_TYPEOF((b)) __mcmath_min_bb = (b); \
 		mc_cast(MC_TARGET_TYPEOF(__mcmath_min_aa), \
 		( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (__mcmath_min_aa, mc_cast(float, __mcmath_min_bb))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (__mcmath_min_aa, mc_cast(double, __mcmath_min_bb))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (__mcmath_min_aa, mc_cast(long double, __mcmath_min_bb)) \
-		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                               \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (mc_cast(float, __mcmath_min_aa), mc_cast(float, __mcmath_min_bb))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (mc_cast(double, __mcmath_min_aa), mc_cast(double, __mcmath_min_bb))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (mc_cast(long double, __mcmath_min_aa), mc_cast(long double, __mcmath_min_bb)) \
+		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                                                     \
 		)); \
 	})
 #	else
@@ -2275,6 +2275,14 @@ template <>        MC_TARGET_INLINE long double mcmath_in<long double> (int n, c
 MC_TARGET_ALIAS float       mcmath_in (int n, float x)       { return mc_inf(n, x); }
 MC_TARGET_ALIAS double      mcmath_in (int n, double x)      { return mc_in(n, x);  }
 MC_TARGET_ALIAS long double mcmath_in (int n, long double x) { return mc_inl(n, x); }
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_in(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_inf (mc_cast_exp(int, n), mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_in  (mc_cast_exp(int, n), mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_inl (mc_cast_exp(int, n), mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_in(n, x) \
 	( \
@@ -2378,6 +2386,14 @@ template <>        MC_TARGET_INLINE long double mcmath_jn<long double> (int n, c
 MC_TARGET_ALIAS float       mcmath_jn (int n, float x)       { return mc_jnf(n, x); }
 MC_TARGET_ALIAS double      mcmath_jn (int n, double x)      { return mc_jn(n, x);  }
 MC_TARGET_ALIAS long double mcmath_jn (int n, long double x) { return mc_jnl(n, x); }
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_jn(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_jnf (mc_cast_exp(int, n), mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_jn  (mc_cast_exp(int, n), mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_jnl (mc_cast_exp(int, n), mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_jn(n, x) \
 	( \
@@ -2481,6 +2497,14 @@ template <>        MC_TARGET_INLINE long double mcmath_yn<long double> (int n, c
 MC_TARGET_ALIAS float       mcmath_yn (int n, float x)       { return mc_ynf(n, x); }
 MC_TARGET_ALIAS double      mcmath_yn (int n, double x)      { return mc_yn(n, x);  }
 MC_TARGET_ALIAS long double mcmath_yn (int n, long double x) { return mc_ynl(n, x); }
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_yn(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_ynf (mc_cast_exp(int, n), mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_yn  (mc_cast_exp(int, n), mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_ynl (mc_cast_exp(int, n), mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_yn(n, x) \
 	( \
@@ -2512,6 +2536,14 @@ MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return
 	, double      : mcmath_scalb  \
 	, long double : mcmath_scalbl \
 ) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_scalb(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_scalbf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_scalb  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_scalbl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_scalb(x, y) \
 	( \
@@ -2543,6 +2575,14 @@ MC_TARGET_ALIAS long double mcmath_rbeta (long double a, long double b, long dou
 	, double      : mc_rbeta  \
 	, long double : mc_rbetal \
 ) (a, mc_cast_exp(MC_TARGET_TYPEOF(a), b), mc_cast_exp(MC_TARGET_TYPEOF(a), x))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_rbeta(a, b, x) mc_cast(MC_TARGET_TYPEOF(a), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), float)       ? mc_rbetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), double)      ? mc_rbeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), long double) ? mc_rbetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_rbeta(a, b, x) \
 	( \
@@ -2572,6 +2612,14 @@ MC_TARGET_ALIAS long double mcmath_lbeta (long double x, long double y) { return
 	, double      : mc_lbeta  \
 	, long double : mc_lbetal \
 ) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_lbeta(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_lbetaf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_lbeta  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_lbetal (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_lbeta(x, y) \
 	( \
@@ -2606,6 +2654,14 @@ MC_TARGET_ALIAS long double mcmath_beta (long double x, long double y) { return 
 	, double      : mc_beta  \
 	, long double : mc_betal \
 ) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_beta(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_betaf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_beta  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_betal (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_beta(x, y) \
 	( \

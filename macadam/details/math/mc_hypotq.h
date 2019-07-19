@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_hypotq(double x, double y)
 	return c;
 }
 
-MC_TARGET_FUNC double mc_hypotql(long double x, long double y)
+MC_TARGET_FUNC long double mc_hypotql(long double x, long double y)
 {
 	long double a = mc_fabsl(x);
 	long double b = mc_fabsl(y);

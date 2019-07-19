@@ -176,7 +176,7 @@ MC_TARGET_PROC long double mc_rzetapl_approx1(long double x)
 
 #pragma mark - mc_zetapsc -
 
-MC_TARGET_FUNC float mc_zetapscf(float s, float sc)
+MC_TARGET_PROC float mc_zetapscf(float s, float sc)
 {
 	float r = 1.0f, y;
 	const float P1[] = {
@@ -358,7 +358,7 @@ MC_TARGET_FUNC float mc_zetapscf(float s, float sc)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_zetapsc(double s, double sc)
+MC_TARGET_PROC double mc_zetapsc(double s, double sc)
 {
 	double r = 1.0, y;
 	const double P1[] = {
@@ -540,7 +540,7 @@ MC_TARGET_FUNC double mc_zetapsc(double s, double sc)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_zetapscl(long double s, long double sc)
+MC_TARGET_PROC long double mc_zetapscl(long double s, long double sc)
 {
 #	if MC_TARGET_MSVC_CPP
 	const double x = mc_cast(double, s);
@@ -579,7 +579,7 @@ MC_TARGET_FUNC long double mc_zetapscl(long double s, long double sc)
 
 #pragma mark - mc_izetap -
 
-MC_TARGET_FUNC float mc_izetapf(unsigned int s)
+MC_TARGET_PROC float mc_izetapf(unsigned int s)
 {
 	const float Z[] = {
 		  -5.00000000000000000000000000000000000000E-01f
@@ -617,7 +617,7 @@ MC_TARGET_FUNC float mc_izetapf(unsigned int s)
 	return 1.0;
 }
 
-MC_TARGET_FUNC double mc_izetap(unsigned int s)
+MC_TARGET_PROC double mc_izetap(unsigned int s)
 {
 	const double Z[] = {
 		  -5.0000000000000000000000000000000000000000E-01
@@ -691,7 +691,7 @@ MC_TARGET_FUNC double mc_izetap(unsigned int s)
 	return 1.0;
 }
 
-MC_TARGET_FUNC long double mc_izetapl(unsigned int s)
+MC_TARGET_PROC long double mc_izetapl(unsigned int s)
 {
 #	if MC_TARGET_MSVC_CPP
 	const long double Z[] = {
@@ -782,7 +782,7 @@ MC_TARGET_FUNC long double mc_izetapl(unsigned int s)
 
 #pragma mark - mc_zetap -
 
-MC_TARGET_FUNC float mc_zetapf(float s)
+MC_TARGET_PROC float mc_zetapf(float s)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_rzetapf_approx0(s);
@@ -802,7 +802,7 @@ MC_TARGET_FUNC float mc_zetapf(float s)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_zetap(double s)
+MC_TARGET_PROC double mc_zetap(double s)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_rzetap_approx0(s);
@@ -822,7 +822,7 @@ MC_TARGET_FUNC double mc_zetap(double s)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_zetapl(long double s)
+MC_TARGET_PROC long double mc_zetapl(long double s)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_rzetapl_approx0(s);
