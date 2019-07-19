@@ -34,6 +34,9 @@ function main ()
 	echo "from libc.stdint cimport *" >> "${path_self}/mcmath.pxd"
 	echo ""                           >> "${path_self}/mcmath.pxd"
 
+	echo "cdef extern from \"<macadam/details/math/mc_fisint.h>\":"   >> "${path_self}/mcmath.pxd"
+	echo "	int mc_fisint(double x)"                                 >> "${path_self}/mcmath.pxd"
+	echo ""                                                           >> "${path_self}/mcmath.pxd"
 	echo "cdef extern from \"<macadam/details/math/mc_isfinite.h>\":" >> "${path_self}/mcmath.pxd"
 	echo "	int mc_isfinite(double x)"                               >> "${path_self}/mcmath.pxd"
 	echo ""                                                           >> "${path_self}/mcmath.pxd"
@@ -45,7 +48,7 @@ function main ()
 	echo ""                                                           >> "${path_self}/mcmath.pxd"
 
 	for f in macadam/details/math/*.h; do
-		symbol=$(cat ${f} | grep -E "^MC_TARGET_FUNC (int|double) (\w)" | ${cmd_sed} -e 's/MC_TARGET_FUNC /\t/g')
+		symbol=$(cat ${f} | grep -E "^MC_TARGET_FUNC double (\w)" | ${cmd_sed} -e 's/MC_TARGET_FUNC /\t/g')
 		if [ ${#symbol} -ne 0 ]
 		then
 			header="cdef extern from \"<${f}>\":"
