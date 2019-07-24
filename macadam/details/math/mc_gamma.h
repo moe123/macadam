@@ -7,6 +7,8 @@
 //
 
 #include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_lgamma.h>
 #include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_sqrt.h>
@@ -19,7 +21,7 @@
 MC_TARGET_PROC float mc_gammaf_approx0(float x)
 {
 //!# Stirling's formula formula for x >= 13.
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0f) {
@@ -36,7 +38,7 @@ MC_TARGET_PROC float mc_gammaf_approx0(float x)
 MC_TARGET_PROC double mc_gamma_approx0(double x)
 {
 //!# Stirling's formula formula for x >= 13.
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0) {
@@ -53,7 +55,7 @@ MC_TARGET_PROC double mc_gamma_approx0(double x)
 MC_TARGET_PROC long double mc_gammal_approx0(long double x)
 {
 //!# Stirling's formula formula for x >= 13.
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0L) {
@@ -71,7 +73,7 @@ MC_TARGET_PROC long double mc_gammal_approx0(long double x)
 
 MC_TARGET_PROC float mc_gammaf_approx1(float x)
 {
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0f) {
@@ -86,7 +88,7 @@ MC_TARGET_PROC float mc_gammaf_approx1(float x)
 
 MC_TARGET_PROC double mc_gamma_approx1(double x)
 {
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0) {
@@ -101,7 +103,7 @@ MC_TARGET_PROC double mc_gamma_approx1(double x)
 
 MC_TARGET_PROC long double mc_gammal_approx1(long double x)
 {
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0L) {
@@ -118,7 +120,7 @@ MC_TARGET_PROC long double mc_gammal_approx1(long double x)
 
 MC_TARGET_FUNC float mc_gammaf(float x)
 {
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0f) {
@@ -140,7 +142,7 @@ MC_TARGET_FUNC float mc_gammaf(float x)
 
 MC_TARGET_FUNC double mc_gamma(double x)
 {
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0) {
@@ -162,7 +164,7 @@ MC_TARGET_FUNC double mc_gamma(double x)
 
 MC_TARGET_FUNC long double mc_gammal(long double x)
 {
-	if (isnan(x) || isinf(x)) {
+	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
 	if (x == 0.0L) {

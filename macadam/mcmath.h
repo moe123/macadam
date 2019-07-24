@@ -56,7 +56,7 @@
 #		define mcmath_acos(x)          ::std::acos(x)
 #		define mcmath_asin(x)          ::std::asin(x)
 #		define mcmath_atan(x)          ::std::atan(x)
-#		define mcmath_atan2(x, y)      ::std::atan2(x, y)
+#		define mcmath_atan2(y, x)      ::std::atan2(y, x)
 #		define mcmath_cos(x)           ::std::cos(x)
 #		define mcmath_sin(x)           ::std::sin(x)
 #		define mcmath_tan(x)           ::std::tan(x)
@@ -132,7 +132,7 @@
 #		define mcmath_acos(x)          acos(x)
 #		define mcmath_asin(x)          asin(x)
 #		define mcmath_atan(x)          atan(x)
-#		define mcmath_atan2(x, y)      atan2(x, y)
+#		define mcmath_atan2(y, x)      atan2(y, x)
 #		define mcmath_cos(x)           cos(x)
 #		define mcmath_sin(x)           sin(x)
 #		define mcmath_tan(x)           tan(x)
@@ -1202,30 +1202,28 @@ MC_TARGET_ALIAS long double mcmath_fhrt (long double x) { return mc_fhrtl(x); }
 
 #pragma mark - mcmath_rootn -
 
-#pragma mark - mcmath_rootn -
-
 #	ifndef mcmath_rootn
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_rootn              (const T& x, unsigned int n)           { mc_cast(void, x); mc_cast(void, n); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_rootn<float>       (const float& x, unsigned int n)       { return mc_rootnf(x, n);                       }
-template <>        MC_TARGET_INLINE double      mcmath_rootn<double>      (const double& x, unsigned int n)      { return mc_rootn(x, n);                        }
-template <>        MC_TARGET_INLINE long double mcmath_rootn<long double> (const long double& x, unsigned int n) { return mc_rootnl(x, n);                       }
+template <class T> MC_TARGET_INLINE T           mcmath_rootn              (unsigned int n, const T& x)           { mc_cast(void, x); mc_cast(void, n); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_rootn<float>       (unsigned int n, const float& x)       { return mc_rootnf(n, x);                       }
+template <>        MC_TARGET_INLINE double      mcmath_rootn<double>      (unsigned int n, const double& x)      { return mc_rootn(n, x);                        }
+template <>        MC_TARGET_INLINE long double mcmath_rootn<long double> (unsigned int n, const long double& x) { return mc_rootnl(n, x);                       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_rootn (float x, unsigned int n)       { return mc_rootnf(x, n); }
-MC_TARGET_ALIAS double      mcmath_rootn (double x, unsigned int n)      { return mc_rootn(x, n);  }
-MC_TARGET_ALIAS long double mcmath_rootn (long double x, unsigned int n) { return mc_rootnl(x, n); }
+MC_TARGET_ALIAS float       mcmath_rootn (unsigned int n, float x)       { return mc_rootnf(n, x); }
+MC_TARGET_ALIAS double      mcmath_rootn (unsigned int n, double x)      { return mc_rootn(n, x);  }
+MC_TARGET_ALIAS long double mcmath_rootn (unsigned int n, long double x) { return mc_rootnl(n, x); }
 #	elif MC_TARGET_C11
-#	define mcmath_rootn(x, n) _Generic(x \
+#	define mcmath_rootn(n, x) _Generic(x \
 	, float       : mc_rootnf \
 	, double      : mc_rootn  \
 	, long double : mc_rootnl \
-) (x, mc_cast_exp(unsigned int, n))
+) (mc_cast_exp(unsigned int, n), x)
 #	else
-#	define mcmath_rootn(x, n) \
+#	define mcmath_rootn(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_rootnf (mc_cast_exp(float, x), mc_cast_exp(unsigned int, n))       \
-		: sizeof(x) == sizeof(double)      ? mc_rootn  (mc_cast_exp(double, x), mc_cast_exp(unsigned int, n))      \
-		: sizeof(x) == sizeof(long double) ? mc_rootnl (mc_cast_exp(long double, x), mc_cast_exp(unsigned int, n)) \
+		  sizeof(x) == sizeof(float)       ? mc_rootnf (mc_cast_exp(unsigned int, n), mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_rootn  (mc_cast_exp(unsigned int, n), mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_rootnl (mc_cast_exp(unsigned int, n), mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2811,26 +2809,26 @@ MC_TARGET_ALIAS long double mcmath_xlogx (long double x) { return mc_xlogxl(x); 
 
 #	ifndef mcmath_logradix
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_logradix              (const T& x, int n)           { mc_cast(void, x); mc_cast(void, n); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_logradix<float>       (const float& x, int n)       { return mc_logradixf(x, n);                    }
-template <>        MC_TARGET_INLINE double      mcmath_logradix<double>      (const double& x, int n)      { return mc_logradix(x, n);                     }
-template <>        MC_TARGET_INLINE long double mcmath_logradix<long double> (const long double& x, int n) { return mc_logradixl(x, n);                    }
+template <class T> MC_TARGET_INLINE T           mcmath_logradix              (unsigned int n, const T& x)           { mc_cast(void, n); mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_logradix<float>       (unsigned int n, const float& x)       { return mc_logradixf(n, x);                    }
+template <>        MC_TARGET_INLINE double      mcmath_logradix<double>      (unsigned int n ,const double& x)      { return mc_logradix(n, x);                     }
+template <>        MC_TARGET_INLINE long double mcmath_logradix<long double> (unsigned int n, const long double& x) { return mc_logradixl(n, x);                    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_logradix (float x, int n)       { return mc_logradixf(x, n); }
-MC_TARGET_ALIAS double      mcmath_logradix (double x, int n)      { return mc_logradix(x, n);  }
-MC_TARGET_ALIAS long double mcmath_logradix (long double x, int n) { return mc_logradixl(x, n); }
+MC_TARGET_ALIAS float       mcmath_logradix (unsigned int n, float x)       { return mc_logradixf(n, x); }
+MC_TARGET_ALIAS double      mcmath_logradix (unsigned int n, double x)      { return mc_logradix(n, x);  }
+MC_TARGET_ALIAS long double mcmath_logradix (unsigned int n, long double x) { return mc_logradixl(n, x); }
 #	elif MC_TARGET_C11
-#	define mcmath_logradix(x, n) _Generic(x \
+#	define mcmath_logradix(n, x) _Generic(x \
 	, float       : mc_logradixf \
 	, double      : mc_logradix  \
 	, long double : mc_logradixl \
-) (x, mc_cast_exp(int, n))
+) (mc_cast_exp(unsigned int, n), x)
 #	else
-#	define mcmath_logradix(x, n) \
+#	define mcmath_logradix(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_logradixf (mc_cast_exp(float, x), mc_cast_exp(int, n))       \
-		: sizeof(x) == sizeof(double)      ? mc_logradix  (mc_cast_exp(double, x), mc_cast_exp(int, n))      \
-		: sizeof(x) == sizeof(long double) ? mc_logradixl (mc_cast_exp(long double, x), mc_cast_exp(int, n)) \
+		  sizeof(x) == sizeof(float)       ? mc_logradixf (mc_cast_exp(unsigned int, n), mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_logradix  (mc_cast_exp(unsigned int, n), mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logradixl (mc_cast_exp(unsigned int, n), mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif

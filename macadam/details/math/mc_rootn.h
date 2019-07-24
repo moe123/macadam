@@ -13,19 +13,19 @@
 
 #pragma mark - mc_rootn -
 
-MC_TARGET_FUNC float mc_rootnf(float x, unsigned int n)
+MC_TARGET_FUNC float mc_rootnf(unsigned int n, float x)
 {
-	return mc_nthrootf(x, n);
+	return mc_nthrootf(n, x);
 }
 
-MC_TARGET_FUNC double mc_rootn(double x, unsigned int n)
+MC_TARGET_FUNC double mc_rootn(unsigned int n, double x)
 {
-	return mc_nthroot(x, n);
+	return mc_nthroot(n, x);
 }
 
-MC_TARGET_FUNC long double mc_rootnl(long double x, unsigned int n)
+MC_TARGET_FUNC long double mc_rootnl(unsigned int n, long double x)
 {
-	return mc_nthrootl(x, n);
+	return mc_nthrootl(n, x);
 }
 
 #endif /* !MC_ROOTN_H */

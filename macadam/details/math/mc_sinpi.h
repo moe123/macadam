@@ -6,9 +6,12 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fmod.h>
+#include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_isnan.h>
+#include <macadam/details/math/mc_sin.h>
+
 
 #ifndef MC_SINPI_H
 #define MC_SINPI_H
@@ -24,29 +27,16 @@ MC_TARGET_FUNC float mc_sinpif (float x)
 	return __sinpif (x);
 #	endif
 #	else
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return NAN;
 	}
-	if (::isinf(x)) {
+	if (mc_isinf(x)) {
 		return NAN;
 	}
-	x = ::fmodf(::fabsf(x), 2.0f);
-	if (::fmodf(x, 1.0f) == 0.5f) {
+	x = mc_fmodf(mc_fabsf(x), 2.0f);
+	if (mc_fmodf(x, 1.0f) == 0.5f) {
 		return 0.0f;
 	}
-#	else
-	if (isnan(x)) {
-		return NAN;
-	}
-	if (isinf(x)) {
-		return NAN;
-	}
-	x = fmodf(fabsf(x), 2.0f);
-	if (fmodf(x, 1.0f) == 0.5f) {
-		return 0.0f;
-	}
-#	endif
 	if (x == 1.0f) {
 		return -1.0f;
 	}
@@ -54,11 +44,7 @@ MC_TARGET_FUNC float mc_sinpif (float x)
 		return 1.0f;
 	}
 	const float pix = MCK_KF(MCK_PI) * x;
-#	if MC_TARGET_CPP98
-	return ::sinf(pix);
-#	else
-	return sinf(pix);
-#	endif
+	return mc_sinf(pix);
 #	endif
 }
 
@@ -71,29 +57,16 @@ MC_TARGET_FUNC double mc_sinpi(double x)
 	return __sinpi(x);
 #	endif
 #	else
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return NAN;
 	}
-	if (::isinf(x)) {
+	if (mc_isinf(x)) {
 		return NAN;
 	}
-	x = ::fmod(::fabs(x), 2.0);
-	if (::fmod(x, 1.0) == 0.5) {
+	x = mc_fmod(mc_fabs(x), 2.0);
+	if (mc_fmod(x, 1.0) == 0.5) {
 		return 0.0;
 	}
-#	else
-	if (isnan(x)) {
-		return NAN;
-	}
-	if (isinf(x)) {
-		return NAN;
-	}
-	x = fmod(fabs(x), 2.0);
-	if (fmod(x, 1.0) == 0.5) {
-		return 0.0;
-	}
-#	endif
 	if (x == 1.0) {
 		return -1.0;
 	}
@@ -101,11 +74,7 @@ MC_TARGET_FUNC double mc_sinpi(double x)
 		return 1.0;
 	}
 	const double pix = MCK_K(MCK_PI) * x;
-#	if MC_TARGET_CPP98
-	return ::sin(pix);
-#	else
-	return sin(pix);
-#	endif
+	return mc_sin(pix);
 #	endif
 }
 
@@ -119,29 +88,16 @@ MC_TARGET_FUNC long double mc_sinpil(long double x)
 	return mc_cast(long double, __sinpi(xx));
 #	endif
 #	else
-#	if MC_TARGET_CPP98
-	if (::isnan(x)) {
+	if (mc_isnan(x)) {
 		return NAN;
 	}
-	if (::isinf(x)) {
+	if (mc_isinf(x)) {
 		return NAN;
 	}
-	x = ::fmodl(::fabsl(x), 2.0L);
-	if (::fmodl(x, 1.0L) == 0.5L) {
+	x = mc_fmodl(mc_fabsl(x), 2.0L);
+	if (mc_fmodl(x, 1.0L) == 0.5L) {
 		return 0.0L;
 	}
-#	else
-	if (isnan(x)) {
-		return NAN;
-	}
-	if (isinf(x)) {
-		return NAN;
-	}
-	x = fmodl(fabsl(x), 2.0L);
-	if (fmodl(x, 1.0L) == 0.5L) {
-		return 0.0L;
-	}
-#	endif
 	if (x == 1.0L) {
 		return -1.0L;
 	}
@@ -153,11 +109,7 @@ MC_TARGET_FUNC long double mc_sinpil(long double x)
 #	else
 	const long double pix = MCK_KL(MCK_PI) * x;
 #	endif
-#	if MC_TARGET_CPP98
-	return ::sinl(pix);
-#	else
-	return sinl(pix);
-#	endif
+	return mc_sinl(pix);
 #	endif
 }
 
