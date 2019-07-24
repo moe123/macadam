@@ -34,6 +34,7 @@ xcuserdata
 
 cython/mcmath.c
 cython/mcmath.log
-cython/mcmath.pxd 
+cython/mcmath.pxd
+cython/mcmath.pyx
 
 # EOF

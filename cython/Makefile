@@ -18,6 +18,7 @@ clean:
 		build      \
 		mcmath.c   \
 		mcmath.pxd \
+		mcmath.pyx \
 		mcmath.log \
 		*.so
 
