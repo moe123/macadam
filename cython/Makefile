@@ -8,6 +8,7 @@ pdx::
 	@sh mcmath_pxd.sh 1>&2 &> mcmath.log
 
 pyx::
+	@sh mcmath_pyx.sh 1>&2 &> mcmath.log
 
 build::
 	@python setup.py build_ext --inplace 1>&2 >> mcmath.log
