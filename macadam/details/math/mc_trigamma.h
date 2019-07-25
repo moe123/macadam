@@ -7,7 +7,7 @@
 //
 
 #include <macadam/details/math/mc_floor.h>
-#include <macadam/details/math/mc_raise2.h>
+#include <macadam/details/math/mc_rsqr.h>
 #include <macadam/details/math/mc_sin.h>
 
 #ifndef MC_TRIGAMMA_H
@@ -25,15 +25,15 @@ MC_TARGET_FUNC float mc_trigammaf(float x)
 		return -mc_trigammaf(-x + 1.0f) + (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x));
 	}
 	if (x <= 1E-5f) {
-		return 1.0f / mc_raise2f(x);
+		return mc_rsqrf(x);
 	}
 	z = x;
 	g = 0;
 	while (z < 5.0f) {
-		g += 1.0f / (z * z);
+		g += mc_rsqrf(z);
 		z += 1.0f;
 	}
-	y  = 1.0f / (z * z);
+	y  = mc_rsqrf(z);
 //!# Expansion as a Laurent series.
 	g += 0.5f * y + (1.0f + y * (MCK_KF(MCK_BN2) + y * (MCK_KF(MCK_BN4) + y * (MCK_KF(MCK_BN6) + y * MCK_KF(MCK_BN8))))) / z;
 	return g;
@@ -49,15 +49,15 @@ MC_TARGET_FUNC double mc_trigamma(double x)
 		return -mc_trigamma(-x + 1.0) + (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x));
 	}
 	if (x <= 1E-5) {
-		return 1.0 / mc_raise2(x);
+		return mc_rsqr(x);
 	}
 	z = x;
 	g = 0;
 	while (z < 5.0) {
-		g += 1.0 / (z * z);
+		g += mc_rsqr(z);
 		z += 1.0;
 	}
-	y  = 1.0 / (z * z);
+	y  = mc_rsqr(z);
 //!# Expansion as a Laurent series.
 	g += 0.5 * y + (1.0 + y * (MCK_K(MCK_BN2) + y * (MCK_K(MCK_BN4) + y * (MCK_K(MCK_BN6) + y * MCK_K(MCK_BN8))))) / z;
 	return g;
@@ -73,15 +73,15 @@ MC_TARGET_FUNC long double mc_trigammal(long double x)
 		return -mc_trigammal(-x + 1.0L) + (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x));
 	}
 	if (x <= 1E-5L) {
-		return 1.0L / mc_raise2l(x);
+		return mc_rsqrl(x);
 	}
 	z = x;
 	g = 0;
 	while (z < 5.0L) {
-		g += 1.0L / (z * z);
+		g += mc_rsqrl(z);
 		z += 1.0L;
 	}
-	y  = 1.0L / (z * z);
+	y  = mc_rsqrl(z);
 //!# Expansion as a Laurent series.
 	g += 0.5L * y + (1.0L + y * (MCK_KL(MCK_BN2) + y * (MCK_KL(MCK_BN4) + y * (MCK_KL(MCK_BN6) + y * MCK_KL(MCK_BN8))))) / z;
 	return g;
