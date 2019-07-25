@@ -401,25 +401,22 @@
 #	define MCK_ZETA0     -0.500000000000000000000000000000000000000000000000000000000E+00
 
 //!# Value ~zeta(-1).
-#	define MCK_ZETA_N1    -MCK_1_12
+#	define MCK_ZETA_N1    (-(MCK_1_12))
 
 //!# Value ~zeta(-3).
-#	define MCK_ZETA_N3    +MCK_1_120
+#	define MCK_ZETA_N3    (+(MCK_1_120))
 
 //!# Value ~zeta(-5).
-#	define MCK_ZETA_N5    -MCK_1_252
+#	define MCK_ZETA_N5    (-(MCK_1_252))
 
 //!# Value ~zeta(-7).
-#	define MCK_ZETA_N7    +MCK_1_240
+#	define MCK_ZETA_N7    (+(MCK_1_240))
 
 //!# Value ~zeta(-9).
-#	define MCK_ZETA_N9    -MCK_1_132
+#	define MCK_ZETA_N9    (-(MCK_1_132))
 
 //!# Value ~zeta(-11).
-#	define MCK_ZETA_N11   +MCK_691_32760
-
-//!# Value ~zeta(-12).
-#	define MCK_ZETA_N12   +0.0
+#	define MCK_ZETA_N11   (+(MCK_691_32760))
 
 #define MCK_KF(K) (mc_cast_exp(const float, K))
 #define MCK_K(K)  (mc_cast_exp(const double, K))
