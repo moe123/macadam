@@ -42,7 +42,7 @@ function main ()
 	cmd_pushd "${path_base}"
 
 	declare -a special
-	special=( "fisint" "isfinite" "isinf" "isnan" )
+	special=( "fisint" "isfinite" "isinf" "isnan" "nchoosek")
 
 	:> "${path_self}/mcmath.pxd"
 
@@ -52,9 +52,15 @@ function main ()
 
 	for i in "${!special[@]}"; do 
 		fn="${special[${i}]}"
-		echo "cdef extern from \"<macadam/details/math/mc_${fn}.h>\":" >> "${path_self}/mcmath.pxd"
-		echo "\tint mc_${fn}(double x)"                                >> "${path_self}/mcmath.pxd"
-		echo ""                                                        >> "${path_self}/mcmath.pxd"
+		if [ "${fn}" = "nchoosek" ]; then
+			echo "cdef extern from \"<macadam/details/math/mc_${fn}.h>\":" >> "${path_self}/mcmath.pxd"
+			echo "\tunsigned int mc_${fn}(unsigned int n, unsigned int k)" >> "${path_self}/mcmath.pxd"
+			echo ""                                                        >> "${path_self}/mcmath.pxd"
+		else
+			echo "cdef extern from \"<macadam/details/math/mc_${fn}.h>\":" >> "${path_self}/mcmath.pxd"
+			echo "\tint mc_${fn}(double x)"                                >> "${path_self}/mcmath.pxd"
+			echo ""                                                        >> "${path_self}/mcmath.pxd"
+		fi
 	done
 
 	for f in macadam/details/math/*.h; do

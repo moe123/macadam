@@ -68,7 +68,7 @@ function main ()
 
 	ifs_current="${IFS}"
 	IFS=$'\n'
-	symbols=( $(cat "${path_self}/mcmath.pxd" | grep -E "^\t(double|int) (\w)" | ${cmd_sed} -e "s/\t//g; s/[*]/\\\*/g") )
+	symbols=( $(cat "${path_self}/mcmath.pxd" | grep -E "^\t(double|int|unsigned int) (\w)" | ${cmd_sed} -e "s/\t//g; s/[*]/\\\*/g") )
 	ifs_current="${IFS}"
 
 	IFS=$'|'
