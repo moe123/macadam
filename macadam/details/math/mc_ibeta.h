@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_rbeta.h
+// mc_ibeta.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -14,20 +14,20 @@
 #ifndef MC_RBETA_H
 #define MC_RBETA_H
 
-#pragma mark - mc_rbeta -
+#pragma mark - mc_ibeta -
 
 /*! Computes the regularized incomplete beta function.
  *
  * \brief Computing the regularized incomplete beta function.
  *
- * float mc_rbetaf(float a, float b, float x);
+ * float mc_ibetaf(float a, float b, float x);
  *
  * \param a Value strictly positive a>0.
  * \param b Value strictly positive b>0.
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNC float mc_rbetaf(float a, float b, float x)
+MC_TARGET_FUNC float mc_ibetaf(float a, float b, float x)
 {
 	unsigned int i = 0, j;
 	float g, k, w, f = 1.0f, c = 1.0f, d = 0.0f;
@@ -41,7 +41,7 @@ MC_TARGET_FUNC float mc_rbetaf(float a, float b, float x)
 	}
 	if (x > (a + 1.0f) / (a + b + 2.0f)) {
 	//!# The beta inverse is symetric.
-		return (1.0f - mc_rbetaf(b, a, 1.0f - x));
+		return (1.0f - mc_ibetaf(b, a, 1.0f - x));
 	}
 //!# Computing delta-gamma + front integral.
 	g = mc_lbetaf(a, b);
@@ -81,14 +81,14 @@ MC_TARGET_FUNC float mc_rbetaf(float a, float b, float x)
  *
  * \brief Computing the regularized incomplete beta function.
  *
- * double mc_rbeta(double a, double b, double x);
+ * double mc_ibeta(double a, double b, double x);
  *
  * \param a Value strictly positive a>0.
  * \param b Value strictly positive b>0.
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNC double mc_rbeta(double a, double b, double x)
+MC_TARGET_FUNC double mc_ibeta(double a, double b, double x)
 {
 	unsigned int i = 0, j;
 	double g, k, w, f = 1.0, c = 1.0, d = 0.0;
@@ -102,7 +102,7 @@ MC_TARGET_FUNC double mc_rbeta(double a, double b, double x)
 	}
 	if (x > (a + 1.0) / (a + b + 2.0)) {
 	//!# The beta inverse is symetric.
-		return (1.0 - mc_rbeta(b, a, 1.0 - x));
+		return (1.0 - mc_ibeta(b, a, 1.0 - x));
 	}
 //!# Computing delta-gamma + front integral.
 	g = mc_lbeta(a, b);
@@ -142,14 +142,14 @@ MC_TARGET_FUNC double mc_rbeta(double a, double b, double x)
  *
  * \brief Computing the regularized incomplete beta function.
  *
- * long double mc_rbetal(long double a, long double b, long double x);
+ * long double mc_ibetal(long double a, long double b, long double x);
  *
  * \param a Value strictly positive a>0.
  * \param b Value strictly positive b>0.
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNC long double mc_rbetal(long double a, long double b, long double x)
+MC_TARGET_FUNC long double mc_ibetal(long double a, long double b, long double x)
 {
 	unsigned int i = 0, j;
 	long double g, k, w, f = 1.0L, c = 1.0L, d = 0.0L;
@@ -163,7 +163,7 @@ MC_TARGET_FUNC long double mc_rbetal(long double a, long double b, long double x
 	}
 	if (x > (a + 1.0L) / (a + b + 2.0L)) {
 	//!# The beta inverse is symetric.
-		return (1.0L - mc_rbetal(b, a, 1.0L - x));
+		return (1.0L - mc_ibetal(b, a, 1.0L - x));
 	}
 //!# Computing delta-gamma + front integral.
 	g = mc_lbetal(a, b);

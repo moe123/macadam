@@ -2560,33 +2560,33 @@ MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return
 #	ifndef mcmath_rbeta
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_rbeta              (const T& a, const T& b, const T& x)                               { mc_cast(void, a); mc_cast(void, b); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_rbeta<float>       (const float& a, const float& b, const float& x)                   { return mc_rbetaf(a, b, x);                                      }
-template <>        MC_TARGET_INLINE double      mcmath_rbeta<double>      (const double& a, const double& b, const double& x)                { return mc_rbeta(a, b, x);                                       }
-template <>        MC_TARGET_INLINE long double mcmath_rbeta<long double> (const long double& a, const long double& b, const long double& x) { return mc_rbetal(a, b, x);                                      }
+template <>        MC_TARGET_INLINE float       mcmath_rbeta<float>       (const float& a, const float& b, const float& x)                   { return mc_ibetaf(a, b, x);                                      }
+template <>        MC_TARGET_INLINE double      mcmath_rbeta<double>      (const double& a, const double& b, const double& x)                { return mc_ibeta(a, b, x);                                       }
+template <>        MC_TARGET_INLINE long double mcmath_rbeta<long double> (const long double& a, const long double& b, const long double& x) { return mc_ibetal(a, b, x);                                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_rbeta (float a, float b, float x)                   { return mc_rbetaf(a, b, x); }
-MC_TARGET_ALIAS double      mcmath_rbeta (double a, double b, double x)                { return mc_rbeta(a, b, x);  }
-MC_TARGET_ALIAS long double mcmath_rbeta (long double a, long double b, long double x) { return mc_rbetal(a, b, x); }
+MC_TARGET_ALIAS float       mcmath_rbeta (float a, float b, float x)                   { return mc_ibetaf(a, b, x); }
+MC_TARGET_ALIAS double      mcmath_rbeta (double a, double b, double x)                { return mc_ibeta(a, b, x);  }
+MC_TARGET_ALIAS long double mcmath_rbeta (long double a, long double b, long double x) { return mc_ibetal(a, b, x); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_rbeta(a, b, x) _Generic(a \
-	, float       : mc_rbetaf \
-	, double      : mc_rbeta  \
-	, long double : mc_rbetal \
+	, float       : mc_ibetaf \
+	, double      : mc_ibeta  \
+	, long double : mc_ibetal \
 ) (a, mc_cast_exp(MC_TARGET_TYPEOF(a), b), mc_cast_exp(MC_TARGET_TYPEOF(a), x))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_rbeta(a, b, x) mc_cast(MC_TARGET_TYPEOF(a), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), float)       ? mc_rbetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), double)      ? mc_rbeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), long double) ? mc_rbetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), float)       ? mc_ibetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), double)      ? mc_ibeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), long double) ? mc_ibetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_rbeta(a, b, x) \
 	( \
-		  sizeof(a) == sizeof(float)       ? mc_rbetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
-		: sizeof(a) == sizeof(double)      ? mc_rbeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
-		: sizeof(a) == sizeof(long double) ? mc_rbetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
+		  sizeof(a) == sizeof(float)       ? mc_ibetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
+		: sizeof(a) == sizeof(double)      ? mc_ibeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
+		: sizeof(a) == sizeof(long double) ? mc_ibetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
