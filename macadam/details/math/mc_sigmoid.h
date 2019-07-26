@@ -27,7 +27,7 @@ MC_TARGET_FUNC float mc_sigmoidf(float x)
 	}
 	if (x < x1) {
 		x = mc_expf(x);
-		return x  - mc_raise2f(x);
+		return x - mc_raise2f(x);
 	}
 	return 1.0f / (mc_expf(-x) + 1.0f);
 }
@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_sigmoid(double x)
 	}
 	if (x < x1) {
 		x = mc_exp(x);
-		return x  - mc_raise2(x);
+		return x - mc_raise2(x);
 	}
 	return 1.0 / (mc_exp(-x) + 1.0);
 }
@@ -61,7 +61,7 @@ MC_TARGET_FUNC long double mc_sigmoidl(long double x)
 	}
 	if (x < x1) {
 		x = mc_expl(x);
-		return x  - mc_raise2l(x);
+		return x - mc_raise2l(x);
 	}
 	return 1.0L / (mc_expl(-x) + 1.0L);
 }

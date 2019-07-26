@@ -222,13 +222,13 @@
 #	ifndef mcmath_acos
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_acos              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_acos<float>       (const float& x)       { return mc_acosf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_acos<double>      (const double& x)      { return mc_acos(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_acos<long double> (const long double& x) { return mc_acosl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_acos<float>       (const float& x)       { return mc_acosf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_acos<double>      (const double& x)      { return mc_acos  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_acos<long double> (const long double& x) { return mc_acosl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_acos (float x)       { return mc_acosf(x); }
-MC_TARGET_ALIAS double      mcmath_acos (double x)      { return mc_acos(x);  }
-MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl(x); }
+MC_TARGET_ALIAS float       mcmath_acos (float x)       { return mc_acosf (x); }
+MC_TARGET_ALIAS double      mcmath_acos (double x)      { return mc_acos  (x); }
+MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_acos(x) _Generic(x \
 	, float       : mc_acosf \
@@ -263,13 +263,13 @@ MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl(x); }
 #	ifndef mcmath_asin
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_asin              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_asin<float>       (const float& x)       { return mc_asinf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_asin<double>      (const double& x)      { return mc_asin(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_asin<long double> (const long double& x) { return mc_asinl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_asin<float>       (const float& x)       { return mc_asinf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_asin<double>      (const double& x)      { return mc_asin  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_asin<long double> (const long double& x) { return mc_asinl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_asin (float x)       { return mc_asinf(x); }
-MC_TARGET_ALIAS double      mcmath_asin (double x)      { return mc_asin(x);  }
-MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl(x); }
+MC_TARGET_ALIAS float       mcmath_asin (float x)       { return mc_asinf (x); }
+MC_TARGET_ALIAS double      mcmath_asin (double x)      { return mc_asin  (x); }
+MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_asin(x) _Generic(x \
 	, float       : mc_asinf \
@@ -292,13 +292,13 @@ MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl(x); }
 #	ifndef mcmath_atan
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_atan              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_atan<float>       (const float& x)       { return mc_atanf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_atan<double>      (const double& x)      { return mc_atan(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_atan<long double> (const long double& x) { return mc_atanl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_atan<float>       (const float& x)       { return mc_atanf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_atan<double>      (const double& x)      { return mc_atan  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_atan<long double> (const long double& x) { return mc_atanl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_atan (float x)       { return mc_atanf(x); }
-MC_TARGET_ALIAS double      mcmath_atan (double x)      { return mc_atan(x);  }
-MC_TARGET_ALIAS long double mcmath_atan (long double x) { return mc_atanl(x); }
+MC_TARGET_ALIAS float       mcmath_atan (float x)       { return mc_atanf (x); }
+MC_TARGET_ALIAS double      mcmath_atan (double x)      { return mc_atan  (x); }
+MC_TARGET_ALIAS long double mcmath_atan (long double x) { return mc_atanl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_atan(x) _Generic(x \
 	, float       : mc_atanf \
@@ -321,13 +321,13 @@ MC_TARGET_ALIAS long double mcmath_atan (long double x) { return mc_atanl(x); }
 #	ifndef mcmath_atan2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_atan2              (const T& y, const T& x)                     { mc_cast(void, y); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_atan2<float>       (const float& y, const float& x)             { return mc_atan2f(y, x);                       }
-template <>        MC_TARGET_INLINE double      mcmath_atan2<double>      (const double& y, const double& x)           { return mc_atan2(y, x);                        }
-template <>        MC_TARGET_INLINE long double mcmath_atan2<long double> (const long double& y, const long double& x) { return mc_atan2l(y, x);                       }
+template <>        MC_TARGET_INLINE float       mcmath_atan2<float>       (const float& y, const float& x)             { return mc_atan2f (y, x);                      }
+template <>        MC_TARGET_INLINE double      mcmath_atan2<double>      (const double& y, const double& x)           { return mc_atan2  (y, x);                      }
+template <>        MC_TARGET_INLINE long double mcmath_atan2<long double> (const long double& y, const long double& x) { return mc_atan2l (y, x);                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_atan2 (float y, float x)             { return mc_atan2f(y, x); }
-MC_TARGET_ALIAS double      mcmath_atan2 (double y, double x)           { return mc_atan2(y, x);  }
-MC_TARGET_ALIAS long double mcmath_atan2 (long double y, long double x) { return mc_atan2l(y, x); }
+MC_TARGET_ALIAS float       mcmath_atan2 (float y, float x)             { return mc_atan2f (y, x); }
+MC_TARGET_ALIAS double      mcmath_atan2 (double y, double x)           { return mc_atan2  (y, x); }
+MC_TARGET_ALIAS long double mcmath_atan2 (long double y, long double x) { return mc_atan2l (y, x); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_atan2(y, x) _Generic(x \
 	, float       : mc_atan2f \
@@ -350,13 +350,13 @@ MC_TARGET_ALIAS long double mcmath_atan2 (long double y, long double x) { return
 #	ifndef mcmath_cos
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_cos              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_cos<float>       (const float& x)       { return mc_cosf(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_cos<double>      (const double& x)      { return mc_cos(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_cos<long double> (const long double& x) { return mc_cosl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_cos<float>       (const float& x)       { return mc_cosf (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_cos<double>      (const double& x)      { return mc_cos  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_cos<long double> (const long double& x) { return mc_cosl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_cos (float x)       { return mc_cosf(x); }
-MC_TARGET_ALIAS double      mcmath_cos (double x)      { return mc_cos(x);  }
-MC_TARGET_ALIAS long double mcmath_cos (long double x) { return mc_cosl(x); }
+MC_TARGET_ALIAS float       mcmath_cos (float x)       { return mc_cosf (x); }
+MC_TARGET_ALIAS double      mcmath_cos (double x)      { return mc_cos  (x); }
+MC_TARGET_ALIAS long double mcmath_cos (long double x) { return mc_cosl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_cos(x) _Generic(x \
 	, float       : mc_cosf \
@@ -379,13 +379,13 @@ MC_TARGET_ALIAS long double mcmath_cos (long double x) { return mc_cosl(x); }
 #	ifndef mcmath_sin
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_sin              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_sin<float>       (const float& x)       { return mc_sinf(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_sin<double>      (const double& x)      { return mc_sin(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_sin<long double> (const long double& x) { return mc_sinl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_sin<float>       (const float& x)       { return mc_sinf (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_sin<double>      (const double& x)      { return mc_sin  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_sin<long double> (const long double& x) { return mc_sinl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_sin (float x)       { return mc_sinf(x); }
-MC_TARGET_ALIAS double      mcmath_sin (double x)      { return mc_sin(x);  }
-MC_TARGET_ALIAS long double mcmath_sin (long double x) { return mc_sinl(x); }
+MC_TARGET_ALIAS float       mcmath_sin (float x)       { return mc_sinf (x); }
+MC_TARGET_ALIAS double      mcmath_sin (double x)      { return mc_sin  (x); }
+MC_TARGET_ALIAS long double mcmath_sin (long double x) { return mc_sinl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_sin(x) _Generic(x \
 	, float       : mc_sinf \
@@ -408,13 +408,13 @@ MC_TARGET_ALIAS long double mcmath_sin (long double x) { return mc_sinl(x); }
 #	ifndef mcmath_tan
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_tan              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_tan<float>       (const float& x)       { return mc_tanf(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_tan<double>      (const double& x)      { return mc_tan(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_tan<long double> (const long double& x) { return mc_tanl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_tan<float>       (const float& x)       { return mc_tanf (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_tan<double>      (const double& x)      { return mc_tan  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_tan<long double> (const long double& x) { return mc_tanl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_tan (float x)       { return mc_tanf(x); }
-MC_TARGET_ALIAS double      mcmath_tan (double x)      { return mc_tan(x);  }
-MC_TARGET_ALIAS long double mcmath_tan (long double x) { return mc_tanl(x); }
+MC_TARGET_ALIAS float       mcmath_tan (float x)       { return mc_tanf (x); }
+MC_TARGET_ALIAS double      mcmath_tan (double x)      { return mc_tan  (x); }
+MC_TARGET_ALIAS long double mcmath_tan (long double x) { return mc_tanl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_tan(x) _Generic(x \
 	, float       : mc_tanf \
@@ -437,13 +437,13 @@ MC_TARGET_ALIAS long double mcmath_tan (long double x) { return mc_tanl(x); }
 #	ifndef mcmath_acosh
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_acosh              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_acosh<float>       (const float& x)       { return mc_acoshf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_acosh<double>      (const double& x)      { return mc_acosh(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_acosh<long double> (const long double& x) { return mc_acoshl(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_acosh<float>       (const float& x)       { return mc_acoshf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_acosh<double>      (const double& x)      { return mc_acosh  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_acosh<long double> (const long double& x) { return mc_acoshl (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_acosh (float x)       { return mc_acoshf(x); }
-MC_TARGET_ALIAS double      mcmath_acosh (double x)      { return mc_acosh(x);  }
-MC_TARGET_ALIAS long double mcmath_acosh (long double x) { return mc_acoshl(x); }
+MC_TARGET_ALIAS float       mcmath_acosh (float x)       { return mc_acoshf (x); }
+MC_TARGET_ALIAS double      mcmath_acosh (double x)      { return mc_acosh  (x); }
+MC_TARGET_ALIAS long double mcmath_acosh (long double x) { return mc_acoshl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_acosh(x) _Generic(x \
 	, float       : mc_acoshf \
@@ -466,13 +466,13 @@ MC_TARGET_ALIAS long double mcmath_acosh (long double x) { return mc_acoshl(x); 
 #	ifndef mcmath_asinh
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_asinh              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_asinh<float>       (const float& x)       { return mc_asinhf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_asinh<double>      (const double& x)      { return mc_asinh(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_asinh<long double> (const long double& x) { return mc_asinhl(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_asinh<float>       (const float& x)       { return mc_asinhf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_asinh<double>      (const double& x)      { return mc_asinh  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_asinh<long double> (const long double& x) { return mc_asinhl (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_asinh (float x)       { return mc_asinhf(x); }
-MC_TARGET_ALIAS double      mcmath_asinh (double x)      { return mc_asinh(x);  }
-MC_TARGET_ALIAS long double mcmath_asinh (long double x) { return mc_asinhl(x); }
+MC_TARGET_ALIAS float       mcmath_asinh (float x)       { return mc_asinhf (x); }
+MC_TARGET_ALIAS double      mcmath_asinh (double x)      { return mc_asinh  (x); }
+MC_TARGET_ALIAS long double mcmath_asinh (long double x) { return mc_asinhl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_asinh(x) _Generic(x \
 	, float       : mc_asinhf \
@@ -495,13 +495,13 @@ MC_TARGET_ALIAS long double mcmath_asinh (long double x) { return mc_asinhl(x); 
 #	ifndef mcmath_atanh
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_atanh              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_atanh<float>       (const float& x)       { return mc_atanhf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_atanh<double>      (const double& x)      { return mc_atanh(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_atanh<long double> (const long double& x) { return mc_atanhl(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_atanh<float>       (const float& x)       { return mc_atanhf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_atanh<double>      (const double& x)      { return mc_atanh  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_atanh<long double> (const long double& x) { return mc_atanhl (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_atanh (float x)       { return mc_atanhf(x); }
-MC_TARGET_ALIAS double      mcmath_atanh (double x)      { return mc_atanh(x);  }
-MC_TARGET_ALIAS long double mcmath_atanh (long double x) { return mc_atanhl(x); }
+MC_TARGET_ALIAS float       mcmath_atanh (float x)       { return mc_atanhf (x); }
+MC_TARGET_ALIAS double      mcmath_atanh (double x)      { return mc_atanh  (x); }
+MC_TARGET_ALIAS long double mcmath_atanh (long double x) { return mc_atanhl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_atanh(x) _Generic(x \
 	, float       : mc_atanhf \
@@ -524,13 +524,13 @@ MC_TARGET_ALIAS long double mcmath_atanh (long double x) { return mc_atanhl(x); 
 #	ifndef mcmath_cosh
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_cosh              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_cosh<float>       (const float& x)       { return mc_coshf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_cosh<double>      (const double& x)      { return mc_cosh(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_cosh<long double> (const long double& x) { return mc_coshl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_cosh<float>       (const float& x)       { return mc_coshf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_cosh<double>      (const double& x)      { return mc_cosh  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_cosh<long double> (const long double& x) { return mc_coshl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_cosh (float x)       { return mc_coshf(x); }
-MC_TARGET_ALIAS double      mcmath_cosh (double x)      { return mc_cosh(x);  }
-MC_TARGET_ALIAS long double mcmath_cosh (long double x) { return mc_coshl(x); }
+MC_TARGET_ALIAS float       mcmath_cosh (float x)       { return mc_coshf (x); }
+MC_TARGET_ALIAS double      mcmath_cosh (double x)      { return mc_cosh  (x); }
+MC_TARGET_ALIAS long double mcmath_cosh (long double x) { return mc_coshl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_cosh(x) _Generic(x \
 	, float       : mc_coshf \
@@ -553,13 +553,13 @@ MC_TARGET_ALIAS long double mcmath_cosh (long double x) { return mc_coshl(x); }
 #	ifndef mcmath_sinh
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_sinh              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_sinh<float>       (const float& x)       { return mc_sinhf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_sinh<double>      (const double& x)      { return mc_sinh(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_sinh<long double> (const long double& x) { return mc_sinhl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_sinh<float>       (const float& x)       { return mc_sinhf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_sinh<double>      (const double& x)      { return mc_sinh  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_sinh<long double> (const long double& x) { return mc_sinhl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_sinh (float x)       { return mc_sinhf(x); }
-MC_TARGET_ALIAS double      mcmath_sinh (double x)      { return mc_sinh(x);  }
-MC_TARGET_ALIAS long double mcmath_sinh (long double x) { return mc_sinhl(x); }
+MC_TARGET_ALIAS float       mcmath_sinh (float x)       { return mc_sinhf (x); }
+MC_TARGET_ALIAS double      mcmath_sinh (double x)      { return mc_sinh  (x); }
+MC_TARGET_ALIAS long double mcmath_sinh (long double x) { return mc_sinhl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_sinh(x) _Generic(x \
 	, float       : mc_sinhf \
@@ -582,13 +582,13 @@ MC_TARGET_ALIAS long double mcmath_sinh (long double x) { return mc_sinhl(x); }
 #	ifndef mcmath_tanh
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_tanh              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_tanh<float>       (const float& x)       { return mc_tanhf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_tanh<double>      (const double& x)      { return mc_tanh(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_tanh<long double> (const long double& x) { return mc_tanhl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_tanh<float>       (const float& x)       { return mc_tanhf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_tanh<double>      (const double& x)      { return mc_tanh  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_tanh<long double> (const long double& x) { return mc_tanhl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_tanh (float x)       { return mc_tanhf(x); }
-MC_TARGET_ALIAS double      mcmath_tanh (double x)      { return mc_tanh(x);  }
-MC_TARGET_ALIAS long double mcmath_tanh (long double x) { return mc_tanhl(x); }
+MC_TARGET_ALIAS float       mcmath_tanh (float x)       { return mc_tanhf (x); }
+MC_TARGET_ALIAS double      mcmath_tanh (double x)      { return mc_tanh  (x); }
+MC_TARGET_ALIAS long double mcmath_tanh (long double x) { return mc_tanhl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_tanh(x) _Generic(x \
 	, float       : mc_tanhf \
@@ -611,13 +611,13 @@ MC_TARGET_ALIAS long double mcmath_tanh (long double x) { return mc_tanhl(x); }
 #	ifndef mcmath_exp
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_exp              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_exp<float>       (const float& x)       { return mc_expf(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_exp<double>      (const double& x)      { return mc_exp(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_exp<long double> (const long double& x) { return mc_expl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_exp<float>       (const float& x)       { return mc_expf (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_exp<double>      (const double& x)      { return mc_exp  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_exp<long double> (const long double& x) { return mc_expl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_exp (float x)       { return mc_expf(x); }
-MC_TARGET_ALIAS double      mcmath_exp (double x)      { return mc_exp(x);  }
-MC_TARGET_ALIAS long double mcmath_exp (long double x) { return mc_expl(x); }
+MC_TARGET_ALIAS float       mcmath_exp (float x)       { return mc_expf (x); }
+MC_TARGET_ALIAS double      mcmath_exp (double x)      { return mc_exp  (x); }
+MC_TARGET_ALIAS long double mcmath_exp (long double x) { return mc_expl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp(x) _Generic(x \
 	, float       : mc_expf \
@@ -640,13 +640,13 @@ MC_TARGET_ALIAS long double mcmath_exp (long double x) { return mc_expl(x); }
 #	ifndef mcmath_exp2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_exp2              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_exp2<float>       (const float& x)       { return mc_exp2f(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_exp2<double>      (const double& x)      { return mc_exp2(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_exp2<long double> (const long double& x) { return mc_exp2l(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_exp2<float>       (const float& x)       { return mc_exp2f (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_exp2<double>      (const double& x)      { return mc_exp2  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_exp2<long double> (const long double& x) { return mc_exp2l (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_exp2 (float x)       { return mc_exp2f(x); }
-MC_TARGET_ALIAS double      mcmath_exp2 (double x)      { return mc_exp2(x);  }
-MC_TARGET_ALIAS long double mcmath_exp2 (long double x) { return mc_exp2l(x); }
+MC_TARGET_ALIAS float       mcmath_exp2 (float x)       { return mc_exp2f (x); }
+MC_TARGET_ALIAS double      mcmath_exp2 (double x)      { return mc_exp2  (x); }
+MC_TARGET_ALIAS long double mcmath_exp2 (long double x) { return mc_exp2l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp2(x) _Generic(x \
 	, float       : mc_exp2f \
@@ -670,13 +670,13 @@ MC_TARGET_ALIAS long double mcmath_exp2 (long double x) { return mc_exp2l(x); }
 #	if MC_TARGET_CPP98
 
 template <class T> MC_TARGET_INLINE T           mcmath_exp10              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_exp10<float>       (const float& x)       { return mc_exp10f(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_exp10<double>      (const double& x)      { return mc_exp10(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_exp10<long double> (const long double& x) { return mc_exp10l(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_exp10<float>       (const float& x)       { return mc_exp10f (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_exp10<double>      (const double& x)      { return mc_exp10  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_exp10<long double> (const long double& x) { return mc_exp10l (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_exp10 (float x)       { return mc_exp10f(x); }
-MC_TARGET_ALIAS double      mcmath_exp10 (double x)      { return mc_exp10(x);  }
-MC_TARGET_ALIAS long double mcmath_exp10 (long double x) { return mc_exp10l(x); }
+MC_TARGET_ALIAS float       mcmath_exp10 (float x)       { return mc_exp10f (x); }
+MC_TARGET_ALIAS double      mcmath_exp10 (double x)      { return mc_exp10  (x); }
+MC_TARGET_ALIAS long double mcmath_exp10 (long double x) { return mc_exp10l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_exp10(x) _Generic(x \
 	, float       : mc_exp10f \
@@ -707,13 +707,13 @@ MC_TARGET_ALIAS long double mcmath_exp10 (long double x) { return mc_exp10l(x); 
 #	ifndef mcmath_expm1
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_expm1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_expm1<float>       (const float& x)       { return mc_expm1f(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_expm1<double>      (const double& x)      { return mc_expm1(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_expm1<long double> (const long double& x) { return mc_expm1l(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_expm1<float>       (const float& x)       { return mc_expm1f (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_expm1<double>      (const double& x)      { return mc_expm1  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_expm1<long double> (const long double& x) { return mc_expm1l (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_expm1 (float x)       { return mc_expm1f(x); }
-MC_TARGET_ALIAS double      mcmath_expm1 (double x)      { return mc_expm1(x);  }
-MC_TARGET_ALIAS long double mcmath_expm1 (long double x) { return mc_expm1l(x); }
+MC_TARGET_ALIAS float       mcmath_expm1 (float x)       { return mc_expm1f (x); }
+MC_TARGET_ALIAS double      mcmath_expm1 (double x)      { return mc_expm1  (x); }
+MC_TARGET_ALIAS long double mcmath_expm1 (long double x) { return mc_expm1l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_expm1(x) _Generic(x \
 	, float       : mc_expm1f \
@@ -736,13 +736,13 @@ MC_TARGET_ALIAS long double mcmath_expm1 (long double x) { return mc_expm1l(x); 
 #	ifndef mcmath_log
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log<float>       (const float& x)       { return mc_logf(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_log<double>      (const double& x)      { return mc_log(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_log<long double> (const long double& x) { return mc_logl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_log<float>       (const float& x)       { return mc_logf (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_log<double>      (const double& x)      { return mc_log  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_log<long double> (const long double& x) { return mc_logl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log (float x)       { return mc_logf(x); }
-MC_TARGET_ALIAS double      mcmath_log (double x)      { return mc_log(x);  }
-MC_TARGET_ALIAS long double mcmath_log (long double x) { return mc_logl(x); }
+MC_TARGET_ALIAS float       mcmath_log (float x)       { return mc_logf (x); }
+MC_TARGET_ALIAS double      mcmath_log (double x)      { return mc_log  (x); }
+MC_TARGET_ALIAS long double mcmath_log (long double x) { return mc_logl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log(x) _Generic(x \
 	, float       : mc_logf \
@@ -765,13 +765,13 @@ MC_TARGET_ALIAS long double mcmath_log (long double x) { return mc_logl(x); }
 #	ifndef mcmath_log10
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log10              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log10<float>       (const float& x)       { return mc_log10f(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_log10<double>      (const double& x)      { return mc_log10(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_log10<long double> (const long double& x) { return mc_log10l(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_log10<float>       (const float& x)       { return mc_log10f (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_log10<double>      (const double& x)      { return mc_log10  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_log10<long double> (const long double& x) { return mc_log10l (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log10 (float x)       { return mc_log10f(x); }
-MC_TARGET_ALIAS double      mcmath_log10 (double x)      { return mc_log10(x);  }
-MC_TARGET_ALIAS long double mcmath_log10 (long double x) { return mc_log10l(x); }
+MC_TARGET_ALIAS float       mcmath_log10 (float x)       { return mc_log10f (x); }
+MC_TARGET_ALIAS double      mcmath_log10 (double x)      { return mc_log10  (x); }
+MC_TARGET_ALIAS long double mcmath_log10 (long double x) { return mc_log10l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log10(x) _Generic(x \
 	, float       : mc_log10f \
@@ -794,13 +794,13 @@ MC_TARGET_ALIAS long double mcmath_log10 (long double x) { return mc_log10l(x); 
 #	ifndef mcmath_log2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log2              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log2<float>       (const float& x)       { return mc_log2f(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_log2<double>      (const double& x)      { return mc_log2(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_log2<long double> (const long double& x) { return mc_log2l(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_log2<float>       (const float& x)       { return mc_log2f (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_log2<double>      (const double& x)      { return mc_log2  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_log2<long double> (const long double& x) { return mc_log2l (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log2 (float x)       { return mc_log2f(x); }
-MC_TARGET_ALIAS double      mcmath_log2 (double x)      { return mc_log2(x);  }
-MC_TARGET_ALIAS long double mcmath_log2 (long double x) { return mc_log2l(x); }
+MC_TARGET_ALIAS float       mcmath_log2 (float x)       { return mc_log2f (x); }
+MC_TARGET_ALIAS double      mcmath_log2 (double x)      { return mc_log2  (x); }
+MC_TARGET_ALIAS long double mcmath_log2 (long double x) { return mc_log2l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log2(x) _Generic(x \
 	, float       : mc_log2f \
@@ -823,13 +823,13 @@ MC_TARGET_ALIAS long double mcmath_log2 (long double x) { return mc_log2l(x); }
 #	ifndef mcmath_log1p
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log1p              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log1p<float>       (const float& x)       { return mc_log1pf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_log1p<double>      (const double& x)      { return mc_log1p(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_log1p<long double> (const long double& x) { return mc_log1pl(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_log1p<float>       (const float& x)       { return mc_log1pf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_log1p<double>      (const double& x)      { return mc_log1p  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_log1p<long double> (const long double& x) { return mc_log1pl (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log1p (float x)       { return mc_log1pf(x); }
-MC_TARGET_ALIAS double      mcmath_log1p (double x)      { return mc_log1p(x);  }
-MC_TARGET_ALIAS long double mcmath_log1p (long double x) { return mc_log1pl(x); }
+MC_TARGET_ALIAS float       mcmath_log1p (float x)       { return mc_log1pf (x); }
+MC_TARGET_ALIAS double      mcmath_log1p (double x)      { return mc_log1p  (x); }
+MC_TARGET_ALIAS long double mcmath_log1p (long double x) { return mc_log1pl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1p(x) _Generic(x \
 	, float       : mc_log1pf \
@@ -852,13 +852,13 @@ MC_TARGET_ALIAS long double mcmath_log1p (long double x) { return mc_log1pl(x); 
 #	ifndef mcmath_logp1
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_logp1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_logp1<float>       (const float& x)       { return mc_logp1f(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_logp1<double>      (const double& x)      { return mc_logp1(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_logp1<long double> (const long double& x) { return mc_logp1l(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_logp1<float>       (const float& x)       { return mc_logp1f (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_logp1<double>      (const double& x)      { return mc_logp1  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_logp1<long double> (const long double& x) { return mc_logp1l (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_logp1 (float x)       { return mc_logp1f(x); }
-MC_TARGET_ALIAS double      mcmath_logp1 (double x)      { return mc_logp1(x);  }
-MC_TARGET_ALIAS long double mcmath_logp1 (long double x) { return mc_logp1l(x); }
+MC_TARGET_ALIAS float       mcmath_logp1 (float x)       { return mc_logp1f (x); }
+MC_TARGET_ALIAS double      mcmath_logp1 (double x)      { return mc_logp1  (x); }
+MC_TARGET_ALIAS long double mcmath_logp1 (long double x) { return mc_logp1l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_logp1(x) _Generic(x \
 	, float       : mc_logp1f \
@@ -881,13 +881,13 @@ MC_TARGET_ALIAS long double mcmath_logp1 (long double x) { return mc_logp1l(x); 
 #	ifndef mcmath_log1m
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log1m              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log1m<float>       (const float& x)       { return mc_log1mf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_log1m<double>      (const double& x)      { return mc_log1m(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_log1m<long double> (const long double& x) { return mc_log1ml(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_log1m<float>       (const float& x)       { return mc_log1mf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_log1m<double>      (const double& x)      { return mc_log1m  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_log1m<long double> (const long double& x) { return mc_log1ml (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log1m (float x)       { return mc_log1mf(x); }
-MC_TARGET_ALIAS double      mcmath_log1m (double x)      { return mc_log1m(x);  }
-MC_TARGET_ALIAS long double mcmath_log1m (long double x) { return mc_log1ml(x); }
+MC_TARGET_ALIAS float       mcmath_log1m (float x)       { return mc_log1mf (x); }
+MC_TARGET_ALIAS double      mcmath_log1m (double x)      { return mc_log1m  (x); }
+MC_TARGET_ALIAS long double mcmath_log1m (long double x) { return mc_log1ml (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1m(x) _Generic(x \
 	, float       : mc_log1mf \
@@ -910,13 +910,13 @@ MC_TARGET_ALIAS long double mcmath_log1m (long double x) { return mc_log1ml(x); 
 #	ifndef mcmath_log1pe
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log1pe              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log1pe<float>       (const float& x)       { return mc_log1pef(x);       }
-template <>        MC_TARGET_INLINE double      mcmath_log1pe<double>      (const double& x)      { return mc_log1pe(x);        }
-template <>        MC_TARGET_INLINE long double mcmath_log1pe<long double> (const long double& x) { return mc_log1pel(x);       }
+template <>        MC_TARGET_INLINE float       mcmath_log1pe<float>       (const float& x)       { return mc_log1pef (x);      }
+template <>        MC_TARGET_INLINE double      mcmath_log1pe<double>      (const double& x)      { return mc_log1pe  (x);      }
+template <>        MC_TARGET_INLINE long double mcmath_log1pe<long double> (const long double& x) { return mc_log1pel (x);      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log1pe (float x)       { return mc_log1pef(x); }
-MC_TARGET_ALIAS double      mcmath_log1pe (double x)      { return mc_log1pe(x);  }
-MC_TARGET_ALIAS long double mcmath_log1pe (long double x) { return mc_log1pel(x); }
+MC_TARGET_ALIAS float       mcmath_log1pe (float x)       { return mc_log1pef (x); }
+MC_TARGET_ALIAS double      mcmath_log1pe (double x)      { return mc_log1pe  (x); }
+MC_TARGET_ALIAS long double mcmath_log1pe (long double x) { return mc_log1pel (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1pe(x) _Generic(x \
 	, float       : mc_log1pef \
@@ -937,13 +937,13 @@ MC_TARGET_ALIAS long double mcmath_log1pe (long double x) { return mc_log1pel(x)
 #	ifndef mcmath_log1me
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_log1me              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log1me<float>       (const float& x)       { return mc_log1mef(x);       }
-template <>        MC_TARGET_INLINE double      mcmath_log1me<double>      (const double& x)      { return mc_log1me(x);        }
-template <>        MC_TARGET_INLINE long double mcmath_log1me<long double> (const long double& x) { return mc_log1mel(x);       }
+template <>        MC_TARGET_INLINE float       mcmath_log1me<float>       (const float& x)       { return mc_log1mef (x);      }
+template <>        MC_TARGET_INLINE double      mcmath_log1me<double>      (const double& x)      { return mc_log1me  (x);      }
+template <>        MC_TARGET_INLINE long double mcmath_log1me<long double> (const long double& x) { return mc_log1mel (x);      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log1me (float x)       { return mc_log1mef(x); }
-MC_TARGET_ALIAS double      mcmath_log1me (double x)      { return mc_log1me(x);  }
-MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel(x); }
+MC_TARGET_ALIAS float       mcmath_log1me (float x)       { return mc_log1mef (x); }
+MC_TARGET_ALIAS double      mcmath_log1me (double x)      { return mc_log1me  (x); }
+MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_log1me(x) _Generic(x \
 	, float       : mc_log1mef \
@@ -966,13 +966,13 @@ MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel(x)
 #	ifndef mcmath_logb
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_logb              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_logb<float>       (const float& x)       { return ::logbf(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_logb<double>      (const double& x)      { return ::logb(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_logb<long double> (const long double& x) { return ::logbl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_logb<float>       (const float& x)       { return ::logbf (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_logb<double>      (const double& x)      { return ::logb  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_logb<long double> (const long double& x) { return ::logbl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_logb (float x)       { return logbf(x); }
-MC_TARGET_ALIAS double      mcmath_logb (double x)      { return logb(x);  }
-MC_TARGET_ALIAS long double mcmath_logb (long double x) { return logbl(x); }
+MC_TARGET_ALIAS float       mcmath_logb (float x)       { return logbf (x); }
+MC_TARGET_ALIAS double      mcmath_logb (double x)      { return logb  (x); }
+MC_TARGET_ALIAS long double mcmath_logb (long double x) { return logbl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_logb(x) _Generic(x \
 	, float       : logbf \
@@ -1028,9 +1028,9 @@ template <>        MC_TARGET_INLINE float       mcmath_ldexp<float>       (const
 template <>        MC_TARGET_INLINE double      mcmath_ldexp<double>      (const double& x, int n)      { return mc_ldexp  (x, n);                      }
 template <>        MC_TARGET_INLINE long double mcmath_ldexp<long double> (const long double& x, int n) { return mc_ldexpl (x, n);                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_ldexp (float x, int n)       { return mc_ldexpf(x, n); }
-MC_TARGET_ALIAS double      mcmath_ldexp (double x, int n)      { return mc_ldexp(x, n);  }
-MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldexpl(x, n); }
+MC_TARGET_ALIAS float       mcmath_ldexp (float x, int n)       { return mc_ldexpf (x, n); }
+MC_TARGET_ALIAS double      mcmath_ldexp (double x, int n)      { return mc_ldexp  (x, n); }
+MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldexpl (x, n); }
 #	elif MC_TARGET_C11
 #	define mcmath_ldexp(x, n) _Generic(x \
 	, float       : mc_ldexpf \
@@ -1065,13 +1065,13 @@ MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldex
 #	ifndef mcmath_ilogb
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE int mcmath_ilogb              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE int mcmath_ilogb<float>       (const float& x)       { return ::ilogbf(x);         }
-template <>        MC_TARGET_INLINE int mcmath_ilogb<double>      (const double& x)      { return ::ilogb(x);          }
-template <>        MC_TARGET_INLINE int mcmath_ilogb<long double> (const long double& x) { return ::ilogbl(x);         }
+template <>        MC_TARGET_INLINE int mcmath_ilogb<float>       (const float& x)       { return ::ilogbf (x);        }
+template <>        MC_TARGET_INLINE int mcmath_ilogb<double>      (const double& x)      { return ::ilogb  (x);        }
+template <>        MC_TARGET_INLINE int mcmath_ilogb<long double> (const long double& x) { return ::ilogbl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_ilogb (float x)       { return ilogbf(x); }
-MC_TARGET_ALIAS double      mcmath_ilogb (double x)      { return ilogb(x);  }
-MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl(x); }
+MC_TARGET_ALIAS float       mcmath_ilogb (float x)       { return ilogbf (x); }
+MC_TARGET_ALIAS double      mcmath_ilogb (double x)      { return ilogb  (x); }
+MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_ilogb(x) _Generic(x \
 	, float       : ilogbf \
@@ -1122,9 +1122,9 @@ template <>        MC_TARGET_INLINE float       mcmath_fabs<float>       (const 
 template <>        MC_TARGET_INLINE double      mcmath_fabs<double>      (const double& x)      { return mc_fabs  (x);  }
 template <>        MC_TARGET_INLINE long double mcmath_fabs<long double> (const long double& x) { return mc_fabsl (x);  }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_fabs (float x)       { return mc_fabsf(x); }
-MC_TARGET_ALIAS double      mcmath_fabs (double x)      { return mc_fabs(x);  }
-MC_TARGET_ALIAS long double mcmath_fabs (long double x) { return mc_fabsl(x); }
+MC_TARGET_ALIAS float       mcmath_fabs (float x)       { return mc_fabsf (x); }
+MC_TARGET_ALIAS double      mcmath_fabs (double x)      { return mc_fabs  (x); }
+MC_TARGET_ALIAS long double mcmath_fabs (long double x) { return mc_fabsl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_fabs(x) _Generic(x \
 	, float       : mc_fabsf \
@@ -1147,13 +1147,13 @@ MC_TARGET_ALIAS long double mcmath_fabs (long double x) { return mc_fabsl(x); }
 #	ifndef mcmath_cbrt
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_cbrt              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_cbrt<float>       (const float& x)       { return mc_cbrtf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_cbrt<double>      (const double& x)      { return mc_cbrt(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_cbrt<long double> (const long double& x) { return mc_cbrtl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_cbrt<float>       (const float& x)       { return mc_cbrtf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_cbrt<double>      (const double& x)      { return mc_cbrt  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_cbrt<long double> (const long double& x) { return mc_cbrtl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_cbrt (float x)       { return mc_cbrtf(x); }
-MC_TARGET_ALIAS double      mcmath_cbrt (double x)      { return mc_cbrt(x);  }
-MC_TARGET_ALIAS long double mcmath_cbrt (long double x) { return mc_cbrtl(x); }
+MC_TARGET_ALIAS float       mcmath_cbrt (float x)       { return mc_cbrtf (x); }
+MC_TARGET_ALIAS double      mcmath_cbrt (double x)      { return mc_cbrt  (x); }
+MC_TARGET_ALIAS long double mcmath_cbrt (long double x) { return mc_cbrtl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_cbrt(x) _Generic(x \
 	, float       : mc_cbrtf \
@@ -1176,13 +1176,13 @@ MC_TARGET_ALIAS long double mcmath_cbrt (long double x) { return mc_cbrtl(x); }
 #	ifndef mcmath_fhrt
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_fhrt              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_fhrt<float>       (const float& x)       { return mc_fhrtf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_fhrt<double>      (const double& x)      { return mc_fhrt(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_fhrt<long double> (const long double& x) { return mc_fhrtl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_fhrt<float>       (const float& x)       { return mc_fhrtf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_fhrt<double>      (const double& x)      { return mc_fhrt  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_fhrt<long double> (const long double& x) { return mc_fhrtl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_fhrt (float x)       { return mc_fhrtf(x); }
-MC_TARGET_ALIAS double      mcmath_fhrt (double x)      { return mc_fhrt(x);  }
-MC_TARGET_ALIAS long double mcmath_fhrt (long double x) { return mc_fhrtl(x); }
+MC_TARGET_ALIAS float       mcmath_fhrt (float x)       { return mc_fhrtf (x); }
+MC_TARGET_ALIAS double      mcmath_fhrt (double x)      { return mc_fhrt  (x); }
+MC_TARGET_ALIAS long double mcmath_fhrt (long double x) { return mc_fhrtl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_fhrt(x) _Generic(x \
 	, float       : mc_fhrtf \
@@ -1205,13 +1205,13 @@ MC_TARGET_ALIAS long double mcmath_fhrt (long double x) { return mc_fhrtl(x); }
 #	ifndef mcmath_rootn
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_rootn              (unsigned int n, const T& x)           { mc_cast(void, x); mc_cast(void, n); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_rootn<float>       (unsigned int n, const float& x)       { return mc_rootnf(n, x);                       }
-template <>        MC_TARGET_INLINE double      mcmath_rootn<double>      (unsigned int n, const double& x)      { return mc_rootn(n, x);                        }
-template <>        MC_TARGET_INLINE long double mcmath_rootn<long double> (unsigned int n, const long double& x) { return mc_rootnl(n, x);                       }
+template <>        MC_TARGET_INLINE float       mcmath_rootn<float>       (unsigned int n, const float& x)       { return mc_rootnf (n, x);                      }
+template <>        MC_TARGET_INLINE double      mcmath_rootn<double>      (unsigned int n, const double& x)      { return mc_rootn  (n, x);                      }
+template <>        MC_TARGET_INLINE long double mcmath_rootn<long double> (unsigned int n, const long double& x) { return mc_rootnl (n, x);                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_rootn (unsigned int n, float x)       { return mc_rootnf(n, x); }
-MC_TARGET_ALIAS double      mcmath_rootn (unsigned int n, double x)      { return mc_rootn(n, x);  }
-MC_TARGET_ALIAS long double mcmath_rootn (unsigned int n, long double x) { return mc_rootnl(n, x); }
+MC_TARGET_ALIAS float       mcmath_rootn (unsigned int n, float x)       { return mc_rootnf (n, x); }
+MC_TARGET_ALIAS double      mcmath_rootn (unsigned int n, double x)      { return mc_rootn  (n, x); }
+MC_TARGET_ALIAS long double mcmath_rootn (unsigned int n, long double x) { return mc_rootnl (n, x); }
 #	elif MC_TARGET_C11
 #	define mcmath_rootn(n, x) _Generic(x \
 	, float       : mc_rootnf \
@@ -1233,14 +1233,14 @@ MC_TARGET_ALIAS long double mcmath_rootn (unsigned int n, long double x) { retur
 
 #	ifndef mcmath_hypot
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_hypot              (const T& x, const T& y)                     { return mc_hypot(mc_cast(double, x), mc_cast(double, y)); }
-template <>        MC_TARGET_INLINE float       mcmath_hypot<float>       (const float& x, const float& y)             { return mc_hypotf(x, y);                                  }
-template <>        MC_TARGET_INLINE double      mcmath_hypot<double>      (const double& x, const double& y)           { return mc_hypot(x, y);                                   }
-template <>        MC_TARGET_INLINE long double mcmath_hypot<long double> (const long double& x, const long double& y) { return mc_hypotl(x, y);                                  }
+template <class T> MC_TARGET_INLINE T           mcmath_hypot              (const T& x, const T& y)                     { return mc_hypot  (mc_cast(double, x), mc_cast(double, y)); }
+template <>        MC_TARGET_INLINE float       mcmath_hypot<float>       (const float& x, const float& y)             { return mc_hypotf (x, y);                                   }
+template <>        MC_TARGET_INLINE double      mcmath_hypot<double>      (const double& x, const double& y)           { return mc_hypot  (x, y);                                   }
+template <>        MC_TARGET_INLINE long double mcmath_hypot<long double> (const long double& x, const long double& y) { return mc_hypotl (x, y);                                   }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_hypot (float x, float y)             { return mc_hypotf(x, y); }
-MC_TARGET_ALIAS double      mcmath_hypot (double x, double y)           { return mc_hypot(x, y);  }
-MC_TARGET_ALIAS long double mcmath_hypot (long double x, long double y) { return mc_hypotl(x, y); }
+MC_TARGET_ALIAS float       mcmath_hypot (float x, float y)             { return mc_hypotf (x, y); }
+MC_TARGET_ALIAS double      mcmath_hypot (double x, double y)           { return mc_hypot  (x, y); }
+MC_TARGET_ALIAS long double mcmath_hypot (long double x, long double y) { return mc_hypotl (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_hypot(x, y) _Generic(x \
 	, float       : mc_hypotf \
@@ -1261,20 +1261,20 @@ MC_TARGET_ALIAS long double mcmath_hypot (long double x, long double y) { return
 #	ifndef mcmath_hypotc
 #	if MC_TARGET_CPP98
 #	if MC_TARGET_CPP17
-template <class T> MC_TARGET_INLINE T           mcmath_hypotc              (const T& x, const T& y, const T& z)                               { return ::std::hypot(mc_cast(double, x), mc_cast(double, y), mc_cast(double, z)); }
-template <>        MC_TARGET_INLINE float       mcmath_hypotc<float>       (const float& x, const float& y, const float& z)                   { return ::std::hypot(x, y, z);                                                    }
-template <>        MC_TARGET_INLINE double      mcmath_hypotc<double>      (const double& x, const double& y, const double& z)                { return ::std::hypot(x, y, z);                                                    }
-template <>        MC_TARGET_INLINE long double mcmath_hypotc<long double> (const long double& x, const long double& y, const long double& z) { return ::std::hypot(x, y, z);                                                    }
+template <class T> MC_TARGET_INLINE T           mcmath_hypotc              (const T& x, const T& y, const T& z)                               { return ::std::hypot (mc_cast(double, x), mc_cast(double, y), mc_cast(double, z)); }
+template <>        MC_TARGET_INLINE float       mcmath_hypotc<float>       (const float& x, const float& y, const float& z)                   { return ::std::hypot (x, y, z);                                                    }
+template <>        MC_TARGET_INLINE double      mcmath_hypotc<double>      (const double& x, const double& y, const double& z)                { return ::std::hypot (x, y, z);                                                    }
+template <>        MC_TARGET_INLINE long double mcmath_hypotc<long double> (const long double& x, const long double& y, const long double& z) { return ::std::hypot (x, y, z);                                                    }
 #	else
-template <class T> MC_TARGET_INLINE T           mcmath_hypotc              (const T& x, const T& y, const T& z)                               { return mc_hypotc(mc_cast(double, x), mc_cast(double, y), mc_cast(double, z));    }
-template <>        MC_TARGET_INLINE float       mcmath_hypotc<float>       (const float& x, const float& y, const float& z)                   { return mc_hypotcf(x, y, z);                                                      }
-template <>        MC_TARGET_INLINE double      mcmath_hypotc<double>      (const double& x, const double& y, const double& z)                { return mc_hypotc(x, y, z);                                                       }
-template <>        MC_TARGET_INLINE long double mcmath_hypotc<long double> (const long double& x, const long double& y, const long double& z) { return mc_hypotcl(x, y, z);                                                      }
+template <class T> MC_TARGET_INLINE T           mcmath_hypotc              (const T& x, const T& y, const T& z)                               { return mc_hypotc  (mc_cast(double, x), mc_cast(double, y), mc_cast(double, z));   }
+template <>        MC_TARGET_INLINE float       mcmath_hypotc<float>       (const float& x, const float& y, const float& z)                   { return mc_hypotcf (x, y, z);                                                      }
+template <>        MC_TARGET_INLINE double      mcmath_hypotc<double>      (const double& x, const double& y, const double& z)                { return mc_hypotc  (x, y, z);                                                      }
+template <>        MC_TARGET_INLINE long double mcmath_hypotc<long double> (const long double& x, const long double& y, const long double& z) { return mc_hypotcl (x, y, z);                                                      }
 #	endif
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_hypotc (float x, float y, float z)                   { return mc_hypotcf(x, y, z); }
-MC_TARGET_ALIAS double      mcmath_hypotc (double x, double y, double z)                { return mc_hypotc(x, y, z);  }
-MC_TARGET_ALIAS long double mcmath_hypotc (long double x, long double y, long double z) { return mc_hypotcl(x, y, z); }
+MC_TARGET_ALIAS float       mcmath_hypotc (float x, float y, float z)                   { return mc_hypotcf (x, y, z); }
+MC_TARGET_ALIAS double      mcmath_hypotc (double x, double y, double z)                { return mc_hypotc  (x, y, z); }
+MC_TARGET_ALIAS long double mcmath_hypotc (long double x, long double y, long double z) { return mc_hypotcl (x, y, z); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_hypotc(x, y, z) _Generic(x \
 	, float       : mc_hypotcf \
@@ -1294,14 +1294,14 @@ MC_TARGET_ALIAS long double mcmath_hypotc (long double x, long double y, long do
 
 #	ifndef mcmath_hypotq
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_hypotq              (const T& x, const T& y)                     { return mc_hypotq(mc_cast(double, x), mc_cast(double, y)); }
-template <>        MC_TARGET_INLINE float       mcmath_hypotq<float>       (const float& x, const float& y)             { return mc_hypotqf(x, y);                                  }
-template <>        MC_TARGET_INLINE double      mcmath_hypotq<double>      (const double& x, const double& y)           { return mc_hypotq(x, y);                                   }
-template <>        MC_TARGET_INLINE long double mcmath_hypotq<long double> (const long double& x, const long double& y) { return mc_hypotql(x, y);                                  }
+template <class T> MC_TARGET_INLINE T           mcmath_hypotq              (const T& x, const T& y)                     { return mc_hypotq  (mc_cast(double, x), mc_cast(double, y)); }
+template <>        MC_TARGET_INLINE float       mcmath_hypotq<float>       (const float& x, const float& y)             { return mc_hypotqf (x, y);                                   }
+template <>        MC_TARGET_INLINE double      mcmath_hypotq<double>      (const double& x, const double& y)           { return mc_hypotq  (x, y);                                   }
+template <>        MC_TARGET_INLINE long double mcmath_hypotq<long double> (const long double& x, const long double& y) { return mc_hypotql (x, y);                                   }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_hypotq (float x, float y)             { return mc_hypotqf(x, y); }
-MC_TARGET_ALIAS double      mcmath_hypotq (double x, double y)           { return mc_hypotq(x, y);  }
-MC_TARGET_ALIAS long double mcmath_hypotq (long double x, long double y) { return mc_hypotql(x, y); }
+MC_TARGET_ALIAS float       mcmath_hypotq (float x, float y)             { return mc_hypotqf (x, y); }
+MC_TARGET_ALIAS double      mcmath_hypotq (double x, double y)           { return mc_hypotq  (x, y); }
+MC_TARGET_ALIAS long double mcmath_hypotq (long double x, long double y) { return mc_hypotql (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_hypotq(x, y) _Generic(x \
 	, float       : mc_hypotqf \
@@ -1324,13 +1324,13 @@ MC_TARGET_ALIAS long double mcmath_hypotq (long double x, long double y) { retur
 #	ifndef mcmath_pow
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_pow              (const T& x, const T& y)                     { mc_cast(void, x); mc_cast(void, y); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_pow<float>       (const float& x, const float& y)             { return mc_powf(x, y);                         }
-template <>        MC_TARGET_INLINE double      mcmath_pow<double>      (const double& x, const double& y)           { return mc_pow(x, y);                          }
-template <>        MC_TARGET_INLINE long double mcmath_pow<long double> (const long double& x, const long double& y) { return mc_powl(x, y);                         }
+template <>        MC_TARGET_INLINE float       mcmath_pow<float>       (const float& x, const float& y)             { return mc_powf (x, y);                        }
+template <>        MC_TARGET_INLINE double      mcmath_pow<double>      (const double& x, const double& y)           { return mc_pow  (x, y);                        }
+template <>        MC_TARGET_INLINE long double mcmath_pow<long double> (const long double& x, const long double& y) { return mc_powl (x, y);                        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_pow (float x, float y)             { return mc_powf(x, y); }
-MC_TARGET_ALIAS double      mcmath_pow (double x, double y)           { return mc_pow(x, y);  }
-MC_TARGET_ALIAS long double mcmath_pow (long double x, long double y) { return mc_powl(x, y); }
+MC_TARGET_ALIAS float       mcmath_pow (float x, float y)             { return mc_powf (x, y); }
+MC_TARGET_ALIAS double      mcmath_pow (double x, double y)           { return mc_pow  (x, y); }
+MC_TARGET_ALIAS long double mcmath_pow (long double x, long double y) { return mc_powl (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_pow(x, y) _Generic(x \
 	, float       : mc_powf \
@@ -1351,13 +1351,13 @@ MC_TARGET_ALIAS long double mcmath_pow (long double x, long double y) { return m
 #	ifndef mcmath_pow2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_pow2              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_pow2<float>       (const float& x)       { return mc_pow2f(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_pow2<double>      (const double& x)      { return mc_pow2(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_pow2<long double> (const long double& x) { return mc_pow2l(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_pow2<float>       (const float& x)       { return mc_pow2f (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_pow2<double>      (const double& x)      { return mc_pow2  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_pow2<long double> (const long double& x) { return mc_pow2l (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_pow2 (float x)       { return mc_pow2f(x); }
-MC_TARGET_ALIAS double      mcmath_pow2 (double x)      { return mc_pow2(x);  }
-MC_TARGET_ALIAS long double mcmath_pow2 (long double x) { return mc_pow2l(x); }
+MC_TARGET_ALIAS float       mcmath_pow2 (float x)       { return mc_pow2f (x); }
+MC_TARGET_ALIAS double      mcmath_pow2 (double x)      { return mc_pow2  (x); }
+MC_TARGET_ALIAS long double mcmath_pow2 (long double x) { return mc_pow2l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_pow2(x) _Generic(x \
 	, float       : mc_pow2f \
@@ -1380,13 +1380,13 @@ MC_TARGET_ALIAS long double mcmath_pow2 (long double x) { return mc_pow2l(x); }
 #	ifndef mcmath_sqrt
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_sqrt              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_sqrt<float>       (const float& x)       { return mc_sqrtf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_sqrt<double>      (const double& x)      { return mc_sqrt(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_sqrt<long double> (const long double& x) { return mc_sqrtl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_sqrt<float>       (const float& x)       { return mc_sqrtf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_sqrt<double>      (const double& x)      { return mc_sqrt  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_sqrt<long double> (const long double& x) { return mc_sqrtl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_sqrt (float x)       { return mc_sqrtf(x); }
-MC_TARGET_ALIAS double      mcmath_sqrt (double x)      { return mc_sqrt(x);  }
-MC_TARGET_ALIAS long double mcmath_sqrt (long double x) { return mc_sqrtl(x); }
+MC_TARGET_ALIAS float       mcmath_sqrt (float x)       { return mc_sqrtf (x); }
+MC_TARGET_ALIAS double      mcmath_sqrt (double x)      { return mc_sqrt  (x); }
+MC_TARGET_ALIAS long double mcmath_sqrt (long double x) { return mc_sqrtl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_sqrt(x) _Generic(x \
 	, float       : mc_sqrtf \
@@ -1409,13 +1409,13 @@ MC_TARGET_ALIAS long double mcmath_sqrt (long double x) { return mc_sqrtl(x); }
 #	ifndef mcmath_sqrt1pm1
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_sqrt1pm1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_sqrt1pm1<float>       (const float& x)       { return mc_sqrt1pm1f(x);     }
-template <>        MC_TARGET_INLINE double      mcmath_sqrt1pm1<double>      (const double& x)      { return mc_sqrt1pm1(x);      }
-template <>        MC_TARGET_INLINE long double mcmath_sqrt1pm1<long double> (const long double& x) { return mc_sqrt1pm1l(x);     }
+template <>        MC_TARGET_INLINE float       mcmath_sqrt1pm1<float>       (const float& x)       { return mc_sqrt1pm1f (x);    }
+template <>        MC_TARGET_INLINE double      mcmath_sqrt1pm1<double>      (const double& x)      { return mc_sqrt1pm1  (x);    }
+template <>        MC_TARGET_INLINE long double mcmath_sqrt1pm1<long double> (const long double& x) { return mc_sqrt1pm1l (x);    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_sqrt1pm1 (float x)       { return mc_sqrt1pm1f(x); }
-MC_TARGET_ALIAS double      mcmath_sqrt1pm1 (double x)      { return mc_sqrt1pm1(x);  }
-MC_TARGET_ALIAS long double mcmath_sqrt1pm1 (long double x) { return mc_sqrt1pm1l(x); }
+MC_TARGET_ALIAS float       mcmath_sqrt1pm1 (float x)       { return mc_sqrt1pm1f (x); }
+MC_TARGET_ALIAS double      mcmath_sqrt1pm1 (double x)      { return mc_sqrt1pm1  (x); }
+MC_TARGET_ALIAS long double mcmath_sqrt1pm1 (long double x) { return mc_sqrt1pm1l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_sqrt1pm1(x) _Generic(x \
 	, float       : mc_sqrt1pm1f \
@@ -1438,13 +1438,13 @@ MC_TARGET_ALIAS long double mcmath_sqrt1pm1 (long double x) { return mc_sqrt1pm1
 #	ifndef mcmath_rsqrt
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_rsqrt              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_rsqrt<float>       (const float& x)       { return mc_rsqrtf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_rsqrt<double>      (const double& x)      { return mc_rsqrt(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_rsqrt<long double> (const long double& x) { return mc_rsqrtl(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_rsqrt<float>       (const float& x)       { return mc_rsqrtf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_rsqrt<double>      (const double& x)      { return mc_rsqrt  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_rsqrt<long double> (const long double& x) { return mc_rsqrtl (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_rsqrt (float x)       { return mc_rsqrtf(x); }
-MC_TARGET_ALIAS double      mcmath_rsqrt (double x)      { return mc_rsqrt(x);  }
-MC_TARGET_ALIAS long double mcmath_rsqrt (long double x) { return mc_rsqrtl(x); }
+MC_TARGET_ALIAS float       mcmath_rsqrt (float x)       { return mc_rsqrtf (x); }
+MC_TARGET_ALIAS double      mcmath_rsqrt (double x)      { return mc_rsqrt  (x); }
+MC_TARGET_ALIAS long double mcmath_rsqrt (long double x) { return mc_rsqrtl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_rsqrt(x) _Generic(x \
 	, float       : mc_rsqrtf \
@@ -1467,13 +1467,13 @@ MC_TARGET_ALIAS long double mcmath_rsqrt (long double x) { return mc_rsqrtl(x); 
 #	ifndef mcmath_erf
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_erf              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_erf<float>       (const float& x)       { return mc_erff(x);          }
-template <>        MC_TARGET_INLINE double      mcmath_erf<double>      (const double& x)      { return mc_erf(x);           }
-template <>        MC_TARGET_INLINE long double mcmath_erf<long double> (const long double& x) { return mc_erfl(x);          }
+template <>        MC_TARGET_INLINE float       mcmath_erf<float>       (const float& x)       { return mc_erff (x);         }
+template <>        MC_TARGET_INLINE double      mcmath_erf<double>      (const double& x)      { return mc_erf  (x);         }
+template <>        MC_TARGET_INLINE long double mcmath_erf<long double> (const long double& x) { return mc_erfl (x);         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_erf (float x)       { return mc_erff(x); }
-MC_TARGET_ALIAS double      mcmath_erf (double x)      { return mc_erf(x);  }
-MC_TARGET_ALIAS long double mcmath_erf (long double x) { return mc_erfl(x); }
+MC_TARGET_ALIAS float       mcmath_erf (float x)       { return mc_erff (x); }
+MC_TARGET_ALIAS double      mcmath_erf (double x)      { return mc_erf  (x); }
+MC_TARGET_ALIAS long double mcmath_erf (long double x) { return mc_erfl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_erf(x) _Generic(x \
 	, float       : mc_erff \
@@ -1496,13 +1496,13 @@ MC_TARGET_ALIAS long double mcmath_erf (long double x) { return mc_erfl(x); }
 #	ifndef mcmath_erfc
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_erfc              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_erfc<float>       (const float& x)       { return mc_erfcf(x);         }
-template <>        MC_TARGET_INLINE double      mcmath_erfc<double>      (const double& x)      { return mc_erfc(x);          }
-template <>        MC_TARGET_INLINE long double mcmath_erfc<long double> (const long double& x) { return mc_erfcl(x);         }
+template <>        MC_TARGET_INLINE float       mcmath_erfc<float>       (const float& x)       { return mc_erfcf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_erfc<double>      (const double& x)      { return mc_erfc  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_erfc<long double> (const long double& x) { return mc_erfcl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_erfc (float x)       { return mc_erfcf(x); }
-MC_TARGET_ALIAS double      mcmath_erfc (double x)      { return mc_erfc(x);  }
-MC_TARGET_ALIAS long double mcmath_erfc (long double x) { return mc_erfcl(x); }
+MC_TARGET_ALIAS float       mcmath_erfc (float x)       { return mc_erfcf (x); }
+MC_TARGET_ALIAS double      mcmath_erfc (double x)      { return mc_erfc  (x); }
+MC_TARGET_ALIAS long double mcmath_erfc (long double x) { return mc_erfcl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_erfc(x) _Generic(x \
 	, float       : mc_erfcf \
@@ -1525,9 +1525,9 @@ MC_TARGET_ALIAS long double mcmath_erfc (long double x) { return mc_erfcl(x); }
 #	ifndef mcmath_lgamma
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_lgamma              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_lgamma<float>       (const float& x)       { return mc_lgammaf(x);       }
-template <>        MC_TARGET_INLINE double      mcmath_lgamma<double>      (const double& x)      { return mc_lgamma(x);        }
-template <>        MC_TARGET_INLINE long double mcmath_lgamma<long double> (const long double& x) { return mc_lgammal(x);       }
+template <>        MC_TARGET_INLINE float       mcmath_lgamma<float>       (const float& x)       { return mc_lgammaf (x);      }
+template <>        MC_TARGET_INLINE double      mcmath_lgamma<double>      (const double& x)      { return mc_lgamma  (x);      }
+template <>        MC_TARGET_INLINE long double mcmath_lgamma<long double> (const long double& x) { return mc_lgammal (x);      }
 #	elif MC_TARGET_C11
 #	define mcmath_lgamma(x) _Generic(x \
 	, float       : mc_lgammaf \
@@ -1550,9 +1550,9 @@ template <>        MC_TARGET_INLINE long double mcmath_lgamma<long double> (cons
 #	ifndef mcmath_tgamma
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_tgamma              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_tgamma<float>       (const float& x)       { return mc_tgammaf(x);       }
-template <>        MC_TARGET_INLINE double      mcmath_tgamma<double>      (const double& x)      { return mc_tgamma(x);        }
-template <>        MC_TARGET_INLINE long double mcmath_tgamma<long double> (const long double& x) { return mc_tgammal(x);       }
+template <>        MC_TARGET_INLINE float       mcmath_tgamma<float>       (const float& x)       { return mc_tgammaf (x);      }
+template <>        MC_TARGET_INLINE double      mcmath_tgamma<double>      (const double& x)      { return mc_tgamma  (x);      }
+template <>        MC_TARGET_INLINE long double mcmath_tgamma<long double> (const long double& x) { return mc_tgammal (x);      }
 #	elif MC_TARGET_C11
 #	define mcmath_tgamma(x) _Generic(x \
 	, float       : mc_tgammaf \
@@ -1574,14 +1574,14 @@ template <>        MC_TARGET_INLINE long double mcmath_tgamma<long double> (cons
 
 #	ifndef mcmath_digamma
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_digamma              (const T& x)           { mc_cast(void, x); return 0;   }
-template <>        MC_TARGET_INLINE float       mcmath_digamma<float>       (const float& x)       { return mc_digammaf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_digamma<double>      (const double& x)      { return mc_digamma(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_digamma<long double> (const long double& x) { return mc_digammal(x);        }
+template <class T> MC_TARGET_INLINE T           mcmath_digamma              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_digamma<float>       (const float& x)       { return mc_digammaf (x);     }
+template <>        MC_TARGET_INLINE double      mcmath_digamma<double>      (const double& x)      { return mc_digamma  (x);     }
+template <>        MC_TARGET_INLINE long double mcmath_digamma<long double> (const long double& x) { return mc_digammal (x);     }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_digamma (float x)       { return mc_digammaf(x); }
-MC_TARGET_ALIAS double      mcmath_digamma (double x)      { return mc_digamma(x);  }
-MC_TARGET_ALIAS long double mcmath_digamma (long double x) { return mc_digammal(x); }
+MC_TARGET_ALIAS float       mcmath_digamma (float x)       { return mc_digammaf (x); }
+MC_TARGET_ALIAS double      mcmath_digamma (double x)      { return mc_digamma  (x); }
+MC_TARGET_ALIAS long double mcmath_digamma (long double x) { return mc_digammal (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_digamma(x) _Generic(x \
 	, float       : mc_digammaf \
@@ -1612,9 +1612,9 @@ MC_TARGET_ALIAS long double mcmath_digamma (long double x) { return mc_digammal(
 #	ifndef mcmath_trigamma
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_trigamma              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_trigamma<float>       (const float& x)       { return mc_trigammaf(x);     }
-template <>        MC_TARGET_INLINE double      mcmath_trigamma<double>      (const double& x)      { return mc_trigamma(x);      }
-template <>        MC_TARGET_INLINE long double mcmath_trigamma<long double> (const long double& x) { return mc_trigammal(x);     }
+template <>        MC_TARGET_INLINE float       mcmath_trigamma<float>       (const float& x)       { return mc_trigammaf (x);    }
+template <>        MC_TARGET_INLINE double      mcmath_trigamma<double>      (const double& x)      { return mc_trigamma  (x);    }
+template <>        MC_TARGET_INLINE long double mcmath_trigamma<long double> (const long double& x) { return mc_trigammal (x);    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
 MC_TARGET_ALIAS float       mcmath_trigamma (float x)       { return mc_trigammaf(x); }
 MC_TARGET_ALIAS double      mcmath_trigamma (double x)      { return mc_trigamma(x);  }
@@ -2075,16 +2075,16 @@ template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  lo
 #	ifndef mcmath_max
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T           mcmath_max              (const T& x, const T& y)                     { return ::std::max(x, y);   }
+template <class T> MC_TARGET_INLINE T           mcmath_max              (const T& x, const T& y)                     { return ::std::max (x, y);   }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return ::std::fmaxf(x, y); }
-template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return ::std::fmax(x, y);  }
-template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return ::std::fmaxl(x, y); }
+template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return ::std::fmaxf (x, y); }
+template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return ::std::fmax  (x, y); }
+template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return ::std::fmaxl(x, y);  }
 #	else
-template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return ::fmaxf(x, y);      }
-template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return ::fmax(x, y);       }
-template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return ::fmaxl(x, y);      }
+template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return ::fmaxf (x, y);      }
+template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return ::fmax  (x, y);      }
+template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return ::fmaxl (x, y);      }
 #	endif
 
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_AUTOTYPE
@@ -2123,16 +2123,16 @@ template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const l
 #	ifndef mcmath_min
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T           mcmath_min              (const T& x, const T& y)                     { return ::std::min(x, y);   }
+template <class T> MC_TARGET_INLINE T           mcmath_min              (const T& x, const T& y)                     { return ::std::min (x, y);   }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return ::std::fminf(x, y); }
-template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return ::std::fmin(x, y);  }
-template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return ::std::fminl(x, y); }
+template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return ::std::fminf (x, y); }
+template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return ::std::fmin  (x, y); }
+template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return ::std::fminl (x, y); }
 #	else
-template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return ::fminf(x, y);      }
-template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return ::fmin(x, y);       }
-template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return ::fminl(x, y);      }
+template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return ::fminf (x, y);      }
+template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return ::fmin  (x, y);      }
+template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return ::fminl (x, y);      }
 #	endif
 
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_AUTOTYPE
@@ -2192,13 +2192,13 @@ template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const l
 #	ifndef mcmath_i0
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_i0              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_i0<float>       (const float& x)       { return mc_i0f(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_i0<double>      (const double& x)      { return mc_i0(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_i0<long double> (const long double& x) { return mc_i0l(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_i0<float>       (const float& x)       { return mc_i0f (x);          }
+template <>        MC_TARGET_INLINE double      mcmath_i0<double>      (const double& x)      { return mc_i0  (x);          }
+template <>        MC_TARGET_INLINE long double mcmath_i0<long double> (const long double& x) { return mc_i0l (x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_i0 (float x)       { return mc_i0f(x); }
-MC_TARGET_ALIAS double      mcmath_i0 (double x)      { return mc_i0(x);  }
-MC_TARGET_ALIAS long double mcmath_i0 (long double x) { return mc_i0l(x); }
+MC_TARGET_ALIAS float       mcmath_i0 (float x)       { return mc_i0f (x); }
+MC_TARGET_ALIAS double      mcmath_i0 (double x)      { return mc_i0  (x); }
+MC_TARGET_ALIAS long double mcmath_i0 (long double x) { return mc_i0l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_i0(x) _Generic(x \
 	, float       : mc_i0f \
@@ -2229,13 +2229,13 @@ MC_TARGET_ALIAS long double mcmath_i0 (long double x) { return mc_i0l(x); }
 #	ifndef mcmath_i1
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_i1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_i1<float>       (const float& x)       { return mc_i1f(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_i1<double>      (const double& x)      { return mc_i1(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_i1<long double> (const long double& x) { return mc_i1l(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_i1<float>       (const float& x)       { return mc_i1f (x);          }
+template <>        MC_TARGET_INLINE double      mcmath_i1<double>      (const double& x)      { return mc_i1  (x);          }
+template <>        MC_TARGET_INLINE long double mcmath_i1<long double> (const long double& x) { return mc_i1l (x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_i1 (float x)       { return mc_i1f(x); }
-MC_TARGET_ALIAS double      mcmath_i1 (double x)      { return mc_i1(x);  }
-MC_TARGET_ALIAS long double mcmath_i1 (long double x) { return mc_i1l(x); }
+MC_TARGET_ALIAS float       mcmath_i1 (float x)       { return mc_i1f (x); }
+MC_TARGET_ALIAS double      mcmath_i1 (double x)      { return mc_i1  (x); }
+MC_TARGET_ALIAS long double mcmath_i1 (long double x) { return mc_i1l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_i1(x) _Generic(x \
 	, float       : mc_i1f \
@@ -2266,13 +2266,13 @@ MC_TARGET_ALIAS long double mcmath_i1 (long double x) { return mc_i1l(x); }
 #	ifndef mcmath_in
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_in              (int n, const T& x)           { mc_cast(void, n); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_in<float>       (int n, const float& x)       { return mc_inf(n, x);                          }
-template <>        MC_TARGET_INLINE double      mcmath_in<double>      (int n, const double& x)      { return mc_in(n, x);                           }
-template <>        MC_TARGET_INLINE long double mcmath_in<long double> (int n, const long double& x) { return mc_inl(n, x);                          }
+template <>        MC_TARGET_INLINE float       mcmath_in<float>       (int n, const float& x)       { return mc_inf (n, x);                         }
+template <>        MC_TARGET_INLINE double      mcmath_in<double>      (int n, const double& x)      { return mc_in  (n, x);                         }
+template <>        MC_TARGET_INLINE long double mcmath_in<long double> (int n, const long double& x) { return mc_inl (n, x);                         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_in (int n, float x)       { return mc_inf(n, x); }
-MC_TARGET_ALIAS double      mcmath_in (int n, double x)      { return mc_in(n, x);  }
-MC_TARGET_ALIAS long double mcmath_in (int n, long double x) { return mc_inl(n, x); }
+MC_TARGET_ALIAS float       mcmath_in (int n, float x)       { return mc_inf (n, x); }
+MC_TARGET_ALIAS double      mcmath_in (int n, double x)      { return mc_in  (n, x); }
+MC_TARGET_ALIAS long double mcmath_in (int n, long double x) { return mc_inl (n, x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_in(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -2299,13 +2299,13 @@ MC_TARGET_ALIAS long double mcmath_in (int n, long double x) { return mc_inl(n, 
 #	ifndef mcmath_j0
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_j0              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_j0<float>       (const float& x)       { return mc_j0f(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_j0<double>      (const double& x)      { return mc_j0(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_j0<long double> (const long double& x) { return mc_j0l(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_j0<float>       (const float& x)       { return mc_j0f (x);          }
+template <>        MC_TARGET_INLINE double      mcmath_j0<double>      (const double& x)      { return mc_j0  (x);          }
+template <>        MC_TARGET_INLINE long double mcmath_j0<long double> (const long double& x) { return mc_j0l (x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_j0 (float x)       { return mc_j0f(x); }
-MC_TARGET_ALIAS double      mcmath_j0 (double x)      { return mc_j0(x);  }
-MC_TARGET_ALIAS long double mcmath_j0 (long double x) { return mc_j0l(x); }
+MC_TARGET_ALIAS float       mcmath_j0 (float x)       { return mc_j0f (x); }
+MC_TARGET_ALIAS double      mcmath_j0 (double x)      { return mc_j0  (x); }
+MC_TARGET_ALIAS long double mcmath_j0 (long double x) { return mc_j0l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_j0(x) _Generic(x \
 	, float       : mc_j0f \
@@ -2338,13 +2338,13 @@ MC_TARGET_ALIAS long double mcmath_j0 (long double x) { return mc_j0l(x); }
 #	ifndef mcmath_j1
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_j1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_j1<float>       (const float& x)       { return mc_j1f(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_j1<double>      (const double& x)      { return mc_j1(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_j1<long double> (const long double& x) { return mc_j1l(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_j1<float>       (const float& x)       { return mc_j1f (x);          }
+template <>        MC_TARGET_INLINE double      mcmath_j1<double>      (const double& x)      { return mc_j1  (x);          }
+template <>        MC_TARGET_INLINE long double mcmath_j1<long double> (const long double& x) { return mc_j1l (x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_j1 (float x)       { return mc_j1f(x); }
-MC_TARGET_ALIAS double      mcmath_j1 (double x)      { return mc_j1(x);  }
-MC_TARGET_ALIAS long double mcmath_j1 (long double x) { return mc_j1l(x); }
+MC_TARGET_ALIAS float       mcmath_j1 (float x)       { return mc_j1f (x); }
+MC_TARGET_ALIAS double      mcmath_j1 (double x)      { return mc_j1  (x); }
+MC_TARGET_ALIAS long double mcmath_j1 (long double x) { return mc_j1l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_j1(x) _Generic(x \
 	, float       : mc_j1f \
@@ -2377,13 +2377,13 @@ MC_TARGET_ALIAS long double mcmath_j1 (long double x) { return mc_j1l(x); }
 #	ifndef mcmath_jn
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_jn              (int n, const T& x)           { mc_cast(void, n); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_jn<float>       (int n, const float& x)       { return mc_jnf(n, x);                          }
-template <>        MC_TARGET_INLINE double      mcmath_jn<double>      (int n, const double& x)      { return mc_jn(n, x);                           }
-template <>        MC_TARGET_INLINE long double mcmath_jn<long double> (int n, const long double& x) { return mc_jnl(n, x);                          }
+template <>        MC_TARGET_INLINE float       mcmath_jn<float>       (int n, const float& x)       { return mc_jnf (n, x);                         }
+template <>        MC_TARGET_INLINE double      mcmath_jn<double>      (int n, const double& x)      { return mc_jn  (n, x);                         }
+template <>        MC_TARGET_INLINE long double mcmath_jn<long double> (int n, const long double& x) { return mc_jnl (n, x);                         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_jn (int n, float x)       { return mc_jnf(n, x); }
-MC_TARGET_ALIAS double      mcmath_jn (int n, double x)      { return mc_jn(n, x);  }
-MC_TARGET_ALIAS long double mcmath_jn (int n, long double x) { return mc_jnl(n, x); }
+MC_TARGET_ALIAS float       mcmath_jn (int n, float x)       { return mc_jnf (n, x); }
+MC_TARGET_ALIAS double      mcmath_jn (int n, double x)      { return mc_jn  (n, x); }
+MC_TARGET_ALIAS long double mcmath_jn (int n, long double x) { return mc_jnl (n, x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_jn(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -2410,13 +2410,13 @@ MC_TARGET_ALIAS long double mcmath_jn (int n, long double x) { return mc_jnl(n, 
 #	ifndef mcmath_y0
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_y0              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_y0<float>       (const float& x)       { return mc_y0f(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_y0<double>      (const double& x)      { return mc_y0(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_y0<long double> (const long double& x) { return mc_y0l(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_y0<float>       (const float& x)       { return mc_y0f (x);          }
+template <>        MC_TARGET_INLINE double      mcmath_y0<double>      (const double& x)      { return mc_y0  (x);          }
+template <>        MC_TARGET_INLINE long double mcmath_y0<long double> (const long double& x) { return mc_y0l (x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_y0 (float x)       { return mc_y0f(x); }
-MC_TARGET_ALIAS double      mcmath_y0 (double x)      { return mc_y0(x);  }
-MC_TARGET_ALIAS long double mcmath_y0 (long double x) { return mc_y0l(x); }
+MC_TARGET_ALIAS float       mcmath_y0 (float x)       { return mc_y0f (x); }
+MC_TARGET_ALIAS double      mcmath_y0 (double x)      { return mc_y0  (x); }
+MC_TARGET_ALIAS long double mcmath_y0 (long double x) { return mc_y0l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_y0(x) _Generic(x \
 	, float       : mc_y0f \
@@ -2449,13 +2449,13 @@ MC_TARGET_ALIAS long double mcmath_y0 (long double x) { return mc_y0l(x); }
 #	ifndef mcmath_y1
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_y1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_y1<float>       (const float& x)       { return mc_y1f(x);           }
-template <>        MC_TARGET_INLINE double      mcmath_y1<double>      (const double& x)      { return mc_y1(x);            }
-template <>        MC_TARGET_INLINE long double mcmath_y1<long double> (const long double& x) { return mc_y1l(x);           }
+template <>        MC_TARGET_INLINE float       mcmath_y1<float>       (const float& x)       { return mc_y1f (x);          }
+template <>        MC_TARGET_INLINE double      mcmath_y1<double>      (const double& x)      { return mc_y1  (x);          }
+template <>        MC_TARGET_INLINE long double mcmath_y1<long double> (const long double& x) { return mc_y1l (x);          }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_y1 (float x)       { return mc_y1f(x); }
-MC_TARGET_ALIAS double      mcmath_y1 (double x)      { return mc_y1(x);  }
-MC_TARGET_ALIAS long double mcmath_y1 (long double x) { return mc_y1l(x); }
+MC_TARGET_ALIAS float       mcmath_y1 (float x)       { return mc_y1f (x); }
+MC_TARGET_ALIAS double      mcmath_y1 (double x)      { return mc_y1  (x); }
+MC_TARGET_ALIAS long double mcmath_y1 (long double x) { return mc_y1l (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_y1(x) _Generic(x \
 	, float       : mc_y1f \
@@ -2488,13 +2488,13 @@ MC_TARGET_ALIAS long double mcmath_y1 (long double x) { return mc_y1l(x); }
 #	ifndef mcmath_yn
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_yn              (int n, const T& x)           { mc_cast(void, n); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_yn<float>       (int n, const float& x)       { return mc_ynf(n, x);                          }
-template <>        MC_TARGET_INLINE double      mcmath_yn<double>      (int n, const double& x)      { return mc_yn(n, x);                           }
-template <>        MC_TARGET_INLINE long double mcmath_yn<long double> (int n, const long double& x) { return mc_ynl(n, x);                          }
+template <>        MC_TARGET_INLINE float       mcmath_yn<float>       (int n, const float& x)       { return mc_ynf (n, x);                         }
+template <>        MC_TARGET_INLINE double      mcmath_yn<double>      (int n, const double& x)      { return mc_yn  (n, x);                         }
+template <>        MC_TARGET_INLINE long double mcmath_yn<long double> (int n, const long double& x) { return mc_ynl (n, x);                         }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_yn (int n, float x)       { return mc_ynf(n, x); }
-MC_TARGET_ALIAS double      mcmath_yn (int n, double x)      { return mc_yn(n, x);  }
-MC_TARGET_ALIAS long double mcmath_yn (int n, long double x) { return mc_ynl(n, x); }
+MC_TARGET_ALIAS float       mcmath_yn (int n, float x)       { return mc_ynf (n, x); }
+MC_TARGET_ALIAS double      mcmath_yn (int n, double x)      { return mc_yn  (n, x); }
+MC_TARGET_ALIAS long double mcmath_yn (int n, long double x) { return mc_ynl (n, x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_yn(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -2521,13 +2521,13 @@ MC_TARGET_ALIAS long double mcmath_yn (int n, long double x) { return mc_ynl(n, 
 #	ifndef mcmath_scalb
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_scalb              (const T& x, const T& y)                     { mc_cast(void, x); mc_cast(void, y); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_scalb<float>       (const float& x, const float& y)             { return mc_scalbf(x, y);                       }
-template <>        MC_TARGET_INLINE double      mcmath_scalb<double>      (const double& x, const double& y)           { return mc_scalb(x, y);                        }
-template <>        MC_TARGET_INLINE long double mcmath_scalb<long double> (const long double& x, const long double& y) { return mc_scalbl(x, y);                       }
+template <>        MC_TARGET_INLINE float       mcmath_scalb<float>       (const float& x, const float& y)             { return mc_scalbf (x, y);                      }
+template <>        MC_TARGET_INLINE double      mcmath_scalb<double>      (const double& x, const double& y)           { return mc_scalb  (x, y);                      }
+template <>        MC_TARGET_INLINE long double mcmath_scalb<long double> (const long double& x, const long double& y) { return mc_scalbl (x, y);                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_scalb (float x, float y)             { return mc_scalbf(x, y); }
-MC_TARGET_ALIAS double      mcmath_scalb (double x, double y)           { return mc_scalb(x, y);  }
-MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return mc_scalbl(x, y); }
+MC_TARGET_ALIAS float       mcmath_scalb (float x, float y)             { return mc_scalbf (x, y); }
+MC_TARGET_ALIAS double      mcmath_scalb (double x, double y)           { return mc_scalb  (x, y); }
+MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return mc_scalbl (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lbeta(x, y) _Generic(x \
 	, float       : mcmath_scalbf \
@@ -2560,13 +2560,13 @@ MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return
 #	ifndef mcmath_ibeta
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_ibeta              (const T& a, const T& b, const T& x)                               { mc_cast(void, a); mc_cast(void, b); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_ibeta<float>       (const float& a, const float& b, const float& x)                   { return mc_ibetaf(a, b, x);                                      }
-template <>        MC_TARGET_INLINE double      mcmath_ibeta<double>      (const double& a, const double& b, const double& x)                { return mc_ibeta(a, b, x);                                       }
-template <>        MC_TARGET_INLINE long double mcmath_ibeta<long double> (const long double& a, const long double& b, const long double& x) { return mc_ibetal(a, b, x);                                      }
+template <>        MC_TARGET_INLINE float       mcmath_ibeta<float>       (const float& a, const float& b, const float& x)                   { return mc_ibetaf (a, b, x);                                     }
+template <>        MC_TARGET_INLINE double      mcmath_ibeta<double>      (const double& a, const double& b, const double& x)                { return mc_ibeta  (a, b, x);                                     }
+template <>        MC_TARGET_INLINE long double mcmath_ibeta<long double> (const long double& a, const long double& b, const long double& x) { return mc_ibetal (a, b, x);                                     }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_ibeta (float a, float b, float x)                   { return mc_ibetaf(a, b, x); }
-MC_TARGET_ALIAS double      mcmath_ibeta (double a, double b, double x)                { return mc_ibeta(a, b, x);  }
-MC_TARGET_ALIAS long double mcmath_ibeta (long double a, long double b, long double x) { return mc_ibetal(a, b, x); }
+MC_TARGET_ALIAS float       mcmath_ibeta (float a, float b, float x)                   { return mc_ibetaf (a, b, x); }
+MC_TARGET_ALIAS double      mcmath_ibeta (double a, double b, double x)                { return mc_ibeta  (a, b, x); }
+MC_TARGET_ALIAS long double mcmath_ibeta (long double a, long double b, long double x) { return mc_ibetal (a, b, x); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_ibeta(a, b, x) _Generic(a \
 	, float       : mc_ibetaf \
@@ -2597,13 +2597,13 @@ MC_TARGET_ALIAS long double mcmath_ibeta (long double a, long double b, long dou
 #	ifndef mcmath_lbeta
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_lbeta              (const T& x, const T& y)                     { mc_cast(void, x); mc_cast(void, y); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_lbeta<float>       (const float& x, const float& y)             { return mc_lbetaf(x, y);                       }
-template <>        MC_TARGET_INLINE double      mcmath_lbeta<double>      (const double& x, const double& y)           { return mc_lbeta(x, y);                        }
-template <>        MC_TARGET_INLINE long double mcmath_lbeta<long double> (const long double& x, const long double& y) { return mc_lbetal(x, y);                       }
+template <>        MC_TARGET_INLINE float       mcmath_lbeta<float>       (const float& x, const float& y)             { return mc_lbetaf (x, y);                      }
+template <>        MC_TARGET_INLINE double      mcmath_lbeta<double>      (const double& x, const double& y)           { return mc_lbeta  (x, y);                      }
+template <>        MC_TARGET_INLINE long double mcmath_lbeta<long double> (const long double& x, const long double& y) { return mc_lbetal (x, y);                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_lbeta (float x, float y)             { return mc_lbetaf(x, y); }
-MC_TARGET_ALIAS double      mcmath_lbeta (double x, double y)           { return mc_lbeta(x, y);  }
-MC_TARGET_ALIAS long double mcmath_lbeta (long double x, long double y) { return mc_lbetal(x, y); }
+MC_TARGET_ALIAS float       mcmath_lbeta (float x, float y)             { return mc_lbetaf (x, y); }
+MC_TARGET_ALIAS double      mcmath_lbeta (double x, double y)           { return mc_lbeta  (x, y); }
+MC_TARGET_ALIAS long double mcmath_lbeta (long double x, long double y) { return mc_lbetal (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lbeta(x, y) _Generic(x \
 	, float       : mc_lbetaf \
@@ -2639,13 +2639,13 @@ MC_TARGET_ALIAS long double mcmath_lbeta (long double x, long double y) { return
 #	else
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_beta              (const T& x, const T& y)                     { mc_cast(void, x); mc_cast(void, y); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_beta<float>       (const float& x, const float& y)             { return mc_betaf(x, y);                        }
-template <>        MC_TARGET_INLINE double      mcmath_beta<double>      (const double& x, const double& y)           { return mc_beta(x, y);                         }
-template <>        MC_TARGET_INLINE long double mcmath_beta<long double> (const long double& x, const long double& y) { return mc_betal(x, y);                        }
+template <>        MC_TARGET_INLINE float       mcmath_beta<float>       (const float& x, const float& y)             { return mc_betaf (x, y);                       }
+template <>        MC_TARGET_INLINE double      mcmath_beta<double>      (const double& x, const double& y)           { return mc_beta  (x, y);                       }
+template <>        MC_TARGET_INLINE long double mcmath_beta<long double> (const long double& x, const long double& y) { return mc_betal (x, y);                       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_beta (float x, float y)             { return mc_betaf(x, y); }
-MC_TARGET_ALIAS double      mcmath_beta (double x, double y)           { return mc_beta(x, y);  }
-MC_TARGET_ALIAS long double mcmath_beta (long double x, long double y) { return mc_betal(x, y); }
+MC_TARGET_ALIAS float       mcmath_beta (float x, float y)             { return mc_betaf (x, y); }
+MC_TARGET_ALIAS double      mcmath_beta (double x, double y)           { return mc_beta  (x, y); }
+MC_TARGET_ALIAS long double mcmath_beta (long double x, long double y) { return mc_betal (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_beta(x, y) _Generic(x \
 	, float       : mc_betaf \
@@ -2680,13 +2680,13 @@ MC_TARGET_ALIAS long double mcmath_beta (long double x, long double y) { return 
 #	ifndef mcmath_xlogy
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_xlogy              (const T& x, const T& y)                     { mc_cast(void, x); mc_cast(void, y); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_xlogy<float>       (const float& x, const float& y)             { return mc_xlogyf(x, y);                       }
-template <>        MC_TARGET_INLINE double      mcmath_xlogy<double>      (const double& x, const double& y)           { return mc_xlogy(x, y);                        }
-template <>        MC_TARGET_INLINE long double mcmath_xlogy<long double> (const long double& x, const long double& y) { return mc_xlogyl(x, y);                       }
+template <>        MC_TARGET_INLINE float       mcmath_xlogy<float>       (const float& x, const float& y)             { return mc_xlogyf (x, y);                      }
+template <>        MC_TARGET_INLINE double      mcmath_xlogy<double>      (const double& x, const double& y)           { return mc_xlogy  (x, y);                      }
+template <>        MC_TARGET_INLINE long double mcmath_xlogy<long double> (const long double& x, const long double& y) { return mc_xlogyl (x, y);                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_xlogy (float x, float y)             { return mc_xlogyf(x, y); }
-MC_TARGET_ALIAS double      mcmath_xlogy (double x, double y)           { return mc_xlogy(x, y);  }
-MC_TARGET_ALIAS long double mcmath_xlogy (long double x, long double y) { return mc_xlogyl(x, y); }
+MC_TARGET_ALIAS float       mcmath_xlogy (float x, float y)             { return mc_xlogyf (x, y); }
+MC_TARGET_ALIAS double      mcmath_xlogy (double x, double y)           { return mc_xlogy  (x, y); }
+MC_TARGET_ALIAS long double mcmath_xlogy (long double x, long double y) { return mc_xlogyl (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_xlogy(x, y) _Generic(x \
 	, float       : mc_xlogyf \
@@ -2709,13 +2709,13 @@ MC_TARGET_ALIAS long double mcmath_xlogy (long double x, long double y) { return
 #	ifndef mcmath_xlog1py
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_xlog1py              (const T& x, const T& y)                     { mc_cast(void, x); mc_cast(void, y); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_xlog1py<float>       (const float& x, const float& y)             { return mc_xlog1pyf(x, y);                     }
-template <>        MC_TARGET_INLINE double      mcmath_xlog1py<double>      (const double& x, const double& y)           { return mc_xlog1py(x, y);                      }
-template <>        MC_TARGET_INLINE long double mcmath_xlog1py<long double> (const long double& x, const long double& y) { return mc_xlog1pyl(x, y);                     }
+template <>        MC_TARGET_INLINE float       mcmath_xlog1py<float>       (const float& x, const float& y)             { return mc_xlog1pyf (x, y);                    }
+template <>        MC_TARGET_INLINE double      mcmath_xlog1py<double>      (const double& x, const double& y)           { return mc_xlog1py  (x, y);                    }
+template <>        MC_TARGET_INLINE long double mcmath_xlog1py<long double> (const long double& x, const long double& y) { return mc_xlog1pyl (x, y);                    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_xlog1py (float x, float y)             { return mc_xlog1pyf(x, y); }
-MC_TARGET_ALIAS double      mcmath_xlog1py (double x, double y)           { return mc_xlog1py(x, y);  }
-MC_TARGET_ALIAS long double mcmath_xlog1py (long double x, long double y) { return mc_xlog1pyl(x, y); }
+MC_TARGET_ALIAS float       mcmath_xlog1py (float x, float y)             { return mc_xlog1pyf (x, y); }
+MC_TARGET_ALIAS double      mcmath_xlog1py (double x, double y)           { return mc_xlog1py  (x, y); }
+MC_TARGET_ALIAS long double mcmath_xlog1py (long double x, long double y) { return mc_xlog1pyl (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_xlog1py(x, y) _Generic(x \
 	, float       : mc_xlog1pyf \
@@ -2738,13 +2738,13 @@ MC_TARGET_ALIAS long double mcmath_xlog1py (long double x, long double y) { retu
 #	ifndef mcmath_xlog1px
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_xlog1px              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_xlog1px<float>       (const float& x)       { return mc_xlog1pxf(x);      }
-template <>        MC_TARGET_INLINE double      mcmath_xlog1px<double>      (const double& x)      { return mc_xlog1px(x);       }
-template <>        MC_TARGET_INLINE long double mcmath_xlog1px<long double> (const long double& x) { return mc_xlog1pxl(x);      }
+template <>        MC_TARGET_INLINE float       mcmath_xlog1px<float>       (const float& x)       { return mc_xlog1pxf (x);     }
+template <>        MC_TARGET_INLINE double      mcmath_xlog1px<double>      (const double& x)      { return mc_xlog1px  (x);     }
+template <>        MC_TARGET_INLINE long double mcmath_xlog1px<long double> (const long double& x) { return mc_xlog1pxl (x);     }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_xlog1px (float x)       { return mc_xlog1pxf(x); }
-MC_TARGET_ALIAS double      mcmath_xlog1px (double x)      { return mc_xlog1px(x);  }
-MC_TARGET_ALIAS long double mcmath_xlog1px (long double x) { return mc_xlog1pxl(x); }
+MC_TARGET_ALIAS float       mcmath_xlog1px (float x)       { return mc_xlog1pxf (x); }
+MC_TARGET_ALIAS double      mcmath_xlog1px (double x)      { return mc_xlog1px  (x); }
+MC_TARGET_ALIAS long double mcmath_xlog1px (long double x) { return mc_xlog1pxl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_xlog1px(x) _Generic(x \
 	, float       : mc_xlog1pxf \
@@ -2775,13 +2775,13 @@ MC_TARGET_ALIAS long double mcmath_xlog1px (long double x) { return mc_xlog1pxl(
 #	ifndef mcmath_xlogx
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_xlogx              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_xlogx<float>       (const float& x)       { return mc_xlogxf(x);        }
-template <>        MC_TARGET_INLINE double      mcmath_xlogx<double>      (const double& x)      { return mc_xlogx(x);         }
-template <>        MC_TARGET_INLINE long double mcmath_xlogx<long double> (const long double& x) { return mc_xlogxl(x);        }
+template <>        MC_TARGET_INLINE float       mcmath_xlogx<float>       (const float& x)       { return mc_xlogxf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_xlogx<double>      (const double& x)      { return mc_xlogx  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_xlogx<long double> (const long double& x) { return mc_xlogxl (x);       }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_xlogx (float x)       { return mc_xlogxf(x); }
-MC_TARGET_ALIAS double      mcmath_xlogx (double x)      { return mc_xlogx(x);  }
-MC_TARGET_ALIAS long double mcmath_xlogx (long double x) { return mc_xlogxl(x); }
+MC_TARGET_ALIAS float       mcmath_xlogx (float x)       { return mc_xlogxf (x); }
+MC_TARGET_ALIAS double      mcmath_xlogx (double x)      { return mc_xlogx  (x); }
+MC_TARGET_ALIAS long double mcmath_xlogx (long double x) { return mc_xlogxl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_xlogx(x) _Generic(x \
 	, float       : mc_xlogxf \
@@ -2810,13 +2810,13 @@ MC_TARGET_ALIAS long double mcmath_xlogx (long double x) { return mc_xlogxl(x); 
 #	ifndef mcmath_logradix
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_logradix              (unsigned int n, const T& x)           { mc_cast(void, n); mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_logradix<float>       (unsigned int n, const float& x)       { return mc_logradixf(n, x);                    }
-template <>        MC_TARGET_INLINE double      mcmath_logradix<double>      (unsigned int n ,const double& x)      { return mc_logradix(n, x);                     }
-template <>        MC_TARGET_INLINE long double mcmath_logradix<long double> (unsigned int n, const long double& x) { return mc_logradixl(n, x);                    }
+template <>        MC_TARGET_INLINE float       mcmath_logradix<float>       (unsigned int n, const float& x)       { return mc_logradixf (n, x);                   }
+template <>        MC_TARGET_INLINE double      mcmath_logradix<double>      (unsigned int n ,const double& x)      { return mc_logradix  (n, x);                   }
+template <>        MC_TARGET_INLINE long double mcmath_logradix<long double> (unsigned int n, const long double& x) { return mc_logradixl (n, x);                   }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_logradix (unsigned int n, float x)       { return mc_logradixf(n, x); }
-MC_TARGET_ALIAS double      mcmath_logradix (unsigned int n, double x)      { return mc_logradix(n, x);  }
-MC_TARGET_ALIAS long double mcmath_logradix (unsigned int n, long double x) { return mc_logradixl(n, x); }
+MC_TARGET_ALIAS float       mcmath_logradix (unsigned int n, float x)       { return mc_logradixf (n, x); }
+MC_TARGET_ALIAS double      mcmath_logradix (unsigned int n, double x)      { return mc_logradix  (n, x); }
+MC_TARGET_ALIAS long double mcmath_logradix (unsigned int n, long double x) { return mc_logradixl (n, x); }
 #	elif MC_TARGET_C11
 #	define mcmath_logradix(n, x) _Generic(x \
 	, float       : mc_logradixf \
@@ -2844,13 +2844,13 @@ MC_TARGET_ALIAS long double mcmath_logradix (unsigned int n, long double x) { re
 #	else
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_lerp              (const T& x, const T& y, const T& z)                               { mc_cast(void, x); mc_cast(void, y); mc_cast(void, z); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_lerp<float>       (const float& x, const float& y, const float& z)                   { return mc_lerpf(x, y, z);                                       }
-template <>        MC_TARGET_INLINE double      mcmath_lerp<double>      (const double& x, const double& y, const double& z)                { return mc_lerp(x, y, z);                                        }
-template <>        MC_TARGET_INLINE long double mcmath_lerp<long double> (const long double& x, const long double& y, const long double& z) { return mc_lerpl(x, y, z);                                       }
+template <>        MC_TARGET_INLINE float       mcmath_lerp<float>       (const float& x, const float& y, const float& z)                   { return mc_lerpf (x, y, z);                                      }
+template <>        MC_TARGET_INLINE double      mcmath_lerp<double>      (const double& x, const double& y, const double& z)                { return mc_lerp  (x, y, z);                                      }
+template <>        MC_TARGET_INLINE long double mcmath_lerp<long double> (const long double& x, const long double& y, const long double& z) { return mc_lerpl (x, y, z);                                      }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_lerp (float x, float y, float z)                   { return mc_lerpf(x, y, z); }
-MC_TARGET_ALIAS double      mcmath_lerp (double x, double y, double z)                { return mc_lerp(x, y, z);  }
-MC_TARGET_ALIAS long double mcmath_lerp (long double x, long double y, long double z) { return mc_lerpl(x, y, z); }
+MC_TARGET_ALIAS float       mcmath_lerp (float x, float y, float z)                   { return mc_lerpf (x, y, z); }
+MC_TARGET_ALIAS double      mcmath_lerp (double x, double y, double z)                { return mc_lerp  (x, y, z); }
+MC_TARGET_ALIAS long double mcmath_lerp (long double x, long double y, long double z) { return mc_lerpl( x, y, z); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lerp(x, y, z) _Generic(x \
 	, float       : mc_lerpf \

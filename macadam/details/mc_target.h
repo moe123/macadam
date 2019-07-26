@@ -213,22 +213,22 @@
 				>::value == true ? 1 : 0 \
 			)
 #		elif MC_TARGET_CPP98
-			template< class T >        struct mc_remove_const                { typedef T type; };
-			template< class T >        struct mc_remove_const<const T>       { typedef T type; };
-			template< class T >        struct mc_remove_volatile             { typedef T type; };
-			template< class T >        struct mc_remove_volatile<volatile T> { typedef T type; };
-			template< class T >        struct mc_remove_cv
+			template<class T>        struct mc_remove_const                { typedef T type; };
+			template<class T>        struct mc_remove_const<const T>       { typedef T type; };
+			template<class T>        struct mc_remove_volatile             { typedef T type; };
+			template<class T>        struct mc_remove_volatile<volatile T> { typedef T type; };
+			template<class T>        struct mc_remove_cv
 			{
 				typedef typename mc_remove_volatile<typename mc_remove_const<T>::type>::type type;
 			};
-			template< class T >        struct mc_remove_reference            { typedef T type; };
-			template< class T >        struct mc_remove_reference<T&>        { typedef T type; };
-			template< class T >        struct mc_decay
+			template<class T>        struct mc_remove_reference            { typedef T type; };
+			template<class T>        struct mc_remove_reference<T&>        { typedef T type; };
+			template<class T>        struct mc_decay
 			{
 				typedef typename mc_remove_reference<typename mc_remove_cv<T>::type>::type type;
 			};
-			template<class T, class U> struct mc_is_same                     { static const bool value = false; };
-			template<class T>          struct mc_is_same<T, T>               { static const bool value = true;  };
+			template<class T, class U> struct mc_is_same                   { static const bool value = false; };
+			template<class T>          struct mc_is_same<T, T>             { static const bool value = true;  };
 #			define MC_TARGET_TYPEISOF(type1, type2) \
 			( \
 				mc_is_same< \
@@ -240,7 +240,7 @@
 #		if MC_TARGET_MSVC_CPP
 #			define MC_TARGET_TYPEOF(x) ::std::decay<decltype((x))>::type
 #		else
-#			define MC_TARGET_TYPEOF(x)  __typeof__((x) + 0)
+#			define MC_TARGET_TYPEOF(x) __typeof__((x) + 0)
 #		endif
 #	else
 #		undef  MC_TARGET_HAVE_TYPEOF
