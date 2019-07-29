@@ -93,12 +93,12 @@ function main ()
 		unset entities
 
 		if [ "${call_symbol}" = "modf" ]; then
-			echo "def ${call_symbol}(x):"                                        >> "${path_self}/mcmath.pyx"
-			echo "\tcdef double p0 = x"                                          >> "${path_self}/mcmath.pyx"
-			echo "\tcdef double p1 = 0"                                          >> "${path_self}/mcmath.pyx"
-			echo "\tcdef ${call_return} r0 = mcmath.mc_${call_symbol}(p0, &p1)"  >> "${path_self}/mcmath.pyx"
-			echo "\treturn r0, p1"                                               >> "${path_self}/mcmath.pyx"
-			echo ""                                                              >> "${path_self}/mcmath.pyx"
+			echo "def ${call_symbol}(x):"                                       >> "${path_self}/mcmath.pyx"
+			echo "\tcdef double p0 = x"                                         >> "${path_self}/mcmath.pyx"
+			echo "\tcdef double p1 = 0"                                         >> "${path_self}/mcmath.pyx"
+			echo "\tcdef ${call_return} r0 = mcmath.mc_${call_symbol}(p0, &p1)" >> "${path_self}/mcmath.pyx"
+			echo "\treturn r0, p1"                                              >> "${path_self}/mcmath.pyx"
+			echo ""                                                             >> "${path_self}/mcmath.pyx"
 		else
 			declare -a cparameter_types
 			declare -a cparameter_names
@@ -128,9 +128,9 @@ function main ()
 					tuple=$(echo "${tuple}", "p${k}")
 				fi
 			done
-			echo "\tcdef ${call_return} r0 = mcmath.mc_${call_symbol}(${tuple})"         >> "${path_self}/mcmath.pyx"
-			echo "\treturn r0"                                                           >> "${path_self}/mcmath.pyx"
-			echo ""                                                                      >> "${path_self}/mcmath.pyx"
+			echo "\tcdef ${call_return} r0 = mcmath.mc_${call_symbol}(${tuple})" >> "${path_self}/mcmath.pyx"
+			echo "\treturn r0"                                                   >> "${path_self}/mcmath.pyx"
+			echo ""                                                              >> "${path_self}/mcmath.pyx"
 			unset cparameter_types
 			unset cparameter_names
 		fi
