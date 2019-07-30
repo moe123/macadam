@@ -780,7 +780,7 @@ MC_TARGET_PROC long double mc_igammael_approx0(long double z, long double a)
 
 MC_TARGET_PROC float mc_igamma_pseriesf_approx1(float a, float z)
 {
-//!# Power series, regularized.
+//!# Power series.
 	const float e = MCLIMITS_EPSILONF;
 	float term    = 1.0f / a;
 	float sum     = term;
@@ -798,7 +798,7 @@ MC_TARGET_PROC float mc_igamma_pseriesf_approx1(float a, float z)
 
 MC_TARGET_PROC double mc_igamma_pseries_approx1(double a, double z)
 {
-//!# Power series, regularized.
+//!# Power series.
 	const double e = MCLIMITS_EPSILON;
 	double term    = 1.0 / a;
 	double sum     = term;

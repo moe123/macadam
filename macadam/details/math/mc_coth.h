@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_tanh.h>
 
 #ifndef MC_COTH_H
@@ -15,17 +16,35 @@
 
 MC_TARGET_FUNC float mc_cothf(float x)
 {
+#	if MC_TARGET_EMBEDDED
+	const float x0 = mc_expf(-x);
+	const float x1 = mc_expf(+x);
+	return (x1 + x0) / (x1 - x0);
+#	else
 	return 1.0f / mc_tanhf(x);
+#	endif
 }
 
 MC_TARGET_FUNC double mc_coth(double x)
 {
+#	if MC_TARGET_EMBEDDED
+	const double x0 = mc_exp(-x);
+	const double x1 = mc_exp(+x);
+	return (x1 + x0) / (x1 - x0);
+#	else
 	return 1.0 / mc_tanh(x);
+#	endif
 }
 
 MC_TARGET_FUNC long double mc_cothl(long double x)
 {
+#	if MC_TARGET_EMBEDDED
+	const long double x0 = mc_expl(-x);
+	const long double x1 = mc_expl(+x);
+	return (x1 + x0) / (x1 - x0);
+#	else
 	return 1.0L / mc_tanhl(x);
+#	endif
 }
 
 #endif /* !MC_COTH_H */
