@@ -29,6 +29,7 @@
 #	include <macadam/details/math/mc_atan2pi.h>
 #	include <macadam/details/math/mc_atanh.h>
 #	include <macadam/details/math/mc_atanpi.h>
+#	include <macadam/details/math/mc_bernoulli_b2n.h>
 #	include <macadam/details/math/mc_bessel.h>
 #	include <macadam/details/math/mc_besseli.h>
 #	include <macadam/details/math/mc_besselj.h>

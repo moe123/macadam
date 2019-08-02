@@ -118,7 +118,7 @@ function main ()
 				unset cparameter_pair
 				unset index
 			done
-			echo "def ${call_symbol}(${tuple}):"                                         >> "${path_self}/mcmath.pyx"
+			echo "def ${call_symbol}(${tuple}):" >> "${path_self}/mcmath.pyx"
 			tuple=""
 			for k in "${!cparameter_types[@]}"; do
 				echo "\tcdef ${cparameter_types[${k}]} p${k} = ${cparameter_names[${k}]}" >> "${path_self}/mcmath.pyx"

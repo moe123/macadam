@@ -68,9 +68,9 @@ function main ()
 		if [ ${#symbols} -ne 0 ]
 		then
 			header="cdef extern from \"<${f}>\":"
-			echo "${header}" >> "${path_self}/mcmath.pxd"
+			echo "${header}"  >> "${path_self}/mcmath.pxd"
 			echo "${symbols}" >> "${path_self}/mcmath.pxd"
-			echo ""          >> "${path_self}/mcmath.pxd"
+			echo ""           >> "${path_self}/mcmath.pxd"
 		fi
 	done
 
