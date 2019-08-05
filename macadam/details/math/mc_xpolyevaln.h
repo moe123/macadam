@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_fabs.h>
 
 #ifndef MC_XPOLYEVALN_H
 #define MC_XPOLYEVALN_H
@@ -25,25 +23,14 @@ MC_TARGET_PROC float mc_xpolyevalnef(float x, const float * p, unsigned int n, f
 		m = mc_cast(int, n);
 		s = p[m - 1];
 		if (err != NULL) {
-#	if MC_TARGET_CPP98
-			z = ::fabsf(x);
-			e = 0.5f * ::fabsf(s);
+			z = mc_fabsf(x);
+			e = 0.5f * mc_fabsf(s);
 			for (i = m - 2; i >= 0; i--) {
 				s = s * x + p[i];
-				e = e * z + ::fabsf(s);
+				e = e * z + mc_fabsf(s);
 			}
-			e    = MCLIMITS_EPSILONF * ::fabsf(2.0f * e - ::fabsf(s));
+			e    = MCLIMITS_EPSILONF * mc_fabsf(2.0f * e - mc_fabsf(s));
 			*err = e;
-#	else
-			z = fabsf(x);
-			e = 0.5f * fabsf(s);
-			for (i = m - 2; i >= 0; i--) {
-				s = s * x + p[i];
-				e = e * z + fabsf(s);
-			}
-			e    = MCLIMITS_EPSILONF * fabsf(2.0f * e - fabsf(s));
-			*err = e;
-#	endif
 		} else {
 			for (i = m - 2; i >= 0; i--) {
 				s = s * x + p[i];
@@ -63,25 +50,14 @@ MC_TARGET_PROC double mc_xpolyevalne(double x, const double * p, unsigned int n,
 		m = mc_cast(int, n);
 		s = p[m - 1];
 		if (err != NULL) {
-#	if MC_TARGET_CPP98
-			z = fabs(x);
-			e = 0.5 * ::fabs(s);
+			z = mc_fabs(x);
+			e = 0.5 * mc_fabs(s);
 			for (i = m - 2; i >= 0; i--) {
 				s = s * x + p[i];
-				e = e * z + ::fabs(s);
+				e = e * z + mc_fabs(s);
 			}
-			e    = MCLIMITS_EPSILON * ::fabs(2.0 * e - ::fabs(s));
+			e    = MCLIMITS_EPSILON * mc_fabs(2.0 * e - mc_fabs(s));
 			*err = e;
-#	else
-			z = fabs(x);
-			e = 0.5 * fabs(s);
-			for (i = m - 2; i >= 0; i--) {
-				s = s * x + p[i];
-				e = e * z + fabs(s);
-			}
-			e    = MCLIMITS_EPSILON * fabs(2.0 * e - fabs(s));
-			*err = e;
-#	endif
 		} else {
 			for (i = m - 2; i >= 0; i--) {
 				s = s * x + p[i];
@@ -101,25 +77,14 @@ MC_TARGET_PROC long double mc_xpolyevalnel(long double x, const long double * p,
 		m = mc_cast(int, n);
 		s = p[m - 1];
 		if (err != NULL) {
-#	if MC_TARGET_CPP98
-			z = fabsl(x);
-			e = 0.5L * ::fabsl(s);
+			z = mc_fabsl(x);
+			e = 0.5L * mc_fabsl(s);
 			for (i = m - 2; i >= 0; i--) {
 				s = s * x + p[i];
-				e = e * z + ::fabsl(s);
+				e = e * z + mc_fabsl(s);
 			}
-			e    = MCLIMITS_EPSILONL * ::fabsl(2.0L * e - ::fabsl(s));
+			e    = MCLIMITS_EPSILONL * mc_fabsl(2.0L * e - mc_fabsl(s));
 			*err = e;
-#	else
-			z = fabsl(x);
-			e = 0.5L * fabsl(s);
-			for (i = m - 2; i >= 0; i--) {
-				s = s * x + p[i];
-				e = e * z + fabsl(s);
-			}
-			e    = MCLIMITS_EPSILONL * fabsl(2.0L * e - fabsl(s));
-			*err = e;
-#	endif
 		} else {
 			for (i = m - 2; i >= 0; i--) {
 				s = s * x + p[i];
