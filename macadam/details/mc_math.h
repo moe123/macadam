@@ -107,6 +107,7 @@
 #	include <macadam/details/math/mc_logaddexp.h>
 #	include <macadam/details/math/mc_logdiffexp.h>
 #	include <macadam/details/math/mc_logistic.h>
+#	include <macadam/details/math/mc_lognn.h>
 #	include <macadam/details/math/mc_logit.h>
 #	include <macadam/details/math/mc_logodds.h>
 #	include <macadam/details/math/mc_logp1.h>

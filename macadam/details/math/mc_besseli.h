@@ -23,9 +23,9 @@
 
 MC_TARGET_PROC float mc_besseli0f_approx0(float x)
 {
-	float r  = 1;
-	int   t  = 0;
-	float i0 = 0;
+	float r  = 1.0f;
+	int   t  = 0.0f;
+	float i0 = 0.0f;
 	do {
 		i0 += r; ++t; r *= mc_raise2f(x) / (4.0f * t * t);
 	} while (r > MCLIMITS_EPSILONF * i0);
@@ -34,9 +34,9 @@ MC_TARGET_PROC float mc_besseli0f_approx0(float x)
 
 MC_TARGET_PROC double mc_besseli0_approx0(double x)
 {
-	double r  = 1;
-	int    t  = 0;
-	double i0 = 0;
+	double r  = 1.0;
+	int    t  = 0.0;
+	double i0 = 0.0;
 	do {
 		i0 += r; ++t; r *= mc_raise2(x) / (4.0 * t * t);
 	} while (r > MCLIMITS_EPSILON * i0);
@@ -45,9 +45,9 @@ MC_TARGET_PROC double mc_besseli0_approx0(double x)
 
 MC_TARGET_PROC long double mc_besseli0l_approx0(long double x)
 {
-	long double r  = 1;
-	int         t  = 0;
-	long double i0 = 0;
+	long double r  = 1.0L;
+	int         t  = 0.0L;
+	long double i0 = 0.0L;
 	do {
 		i0 += r; ++t; r *= mc_raise2l(x) / (4.0L * t * t);
 	} while (r > MCLIMITS_EPSILONL * i0);
@@ -59,8 +59,8 @@ MC_TARGET_PROC long double mc_besseli0l_approx0(long double x)
 MC_TARGET_PROC float mc_besseli1f_approx0(float x)
 {
 	float r  = 0.5f * x;
-	int   t  = 0;
-	float i1 = 0;
+	int   t  = 0.0f;
+	float i1 = 0.0f;
 	do {
 		i1 += r; ++t; r *= mc_raise2f(x) / (4.0f * t * (t + 1));
 	} while (r > MCLIMITS_EPSILONF * i1);
@@ -70,8 +70,8 @@ MC_TARGET_PROC float mc_besseli1f_approx0(float x)
 MC_TARGET_PROC double mc_besseli1_approx0(double x)
 {
 	double r  = 0.5 * x;
-	int    t  = 0;
-	double i1 = 0;
+	int    t  = 0.0;
+	double i1 = 0.0;
 	do { 
 		i1 += r; ++t; r *= mc_raise2(x) / (4.0 * t * (t + 1));
 	} while (r > MCLIMITS_EPSILON * i1);
@@ -81,8 +81,8 @@ MC_TARGET_PROC double mc_besseli1_approx0(double x)
 MC_TARGET_PROC long double mc_besseli1l_approx0(long double x)
 {
 	long double r  = 0.5L * x;
-	int         t  = 0;
-	long double i1 = 0;
+	int         t  = 0.0L;
+	long double i1 = 0.0L;
 	do {
 		i1 += r; ++t; r *= mc_raise2l(x) / (4.0L * t * (t + 1));
 	} while (r > MCLIMITS_EPSILONL * i1);
@@ -150,8 +150,6 @@ MC_TARGET_PROC long double mc_besselinl_approx0(int n, long double x)
 	}
 	return in;
 }
-
-#pragma mark - mc_besseli0_approx1 -
 
 #pragma mark - mc_besseli0_approx1 -
 
@@ -942,7 +940,7 @@ MC_TARGET_PROC long double mc_besselinl_approx2(int n, long double x)
 
 MC_TARGET_PROC float mc_besseli0f_approx3(float x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	float r, y, w;
 
 	y = mc_fabsf(x);
@@ -980,7 +978,7 @@ MC_TARGET_PROC float mc_besseli0f_approx3(float x)
 
 MC_TARGET_PROC double mc_besseli0_approx3(double x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	double r, y, w;
 
 	y = mc_fabs(x);
@@ -1018,7 +1016,7 @@ MC_TARGET_PROC double mc_besseli0_approx3(double x)
 
 MC_TARGET_PROC long double mc_besseli0l_approx3(long double x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	long double r, y, w;
 
 	y = mc_fabsl(x);
@@ -1058,7 +1056,7 @@ MC_TARGET_PROC long double mc_besseli0l_approx3(long double x)
 
 MC_TARGET_PROC float mc_besseli1f_approx3(float x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	float r, w, y;
 
 	y = mc_fabsf(x);
@@ -1100,7 +1098,7 @@ MC_TARGET_PROC float mc_besseli1f_approx3(float x)
 
 MC_TARGET_PROC double mc_besseli1_approx3(double x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	double r, w, y;
 
 	y = mc_fabs(x);
@@ -1142,7 +1140,7 @@ MC_TARGET_PROC double mc_besseli1_approx3(double x)
 
 MC_TARGET_PROC long double mc_besseli1l_approx3(long double x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	long double r, w, y;
 
 	y = mc_fabsl(x);
@@ -1186,7 +1184,7 @@ MC_TARGET_PROC long double mc_besseli1l_approx3(long double x)
 
 MC_TARGET_PROC float mc_besselinf_approx3(int n, float x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	float r, w;
 	float p0, p1, p2, p3;
 	if (n == 0) {
@@ -1237,7 +1235,7 @@ MC_TARGET_PROC float mc_besselinf_approx3(int n, float x)
 
 MC_TARGET_PROC double mc_besselin_approx3(int n, double x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	double r, w;
 	double p0, p1, p2, p3;
 	if (n == 0) {
@@ -1288,7 +1286,7 @@ MC_TARGET_PROC double mc_besselin_approx3(int n, double x)
 
 MC_TARGET_PROC long double mc_besselinl_approx3(int n, long double x)
 {
-//!# Abramovitz, Segun.
+//!# Abramowitz, Stegun.
 	long double r, w;
 	long double p0, p1, p2, p3;
 	if (n == 0) {

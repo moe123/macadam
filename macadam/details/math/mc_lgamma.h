@@ -228,6 +228,15 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 
 MC_TARGET_FUNC float mc_lgammaf(float x)
 {
+	if (x == 0.0f) {
+		return MCK_INFP;
+	}
+	if (x == 1.0f || x == 2.0f) {
+		return 0.0f;
+	}
+	if (x < 0.0f && mc_fisintf(x)) {
+		return MCK_INFP;
+	}
 #	if MC_TARGET_EMBEDDED
 	return mc_lgammaf_approx2(x);
 #	else
@@ -241,6 +250,15 @@ MC_TARGET_FUNC float mc_lgammaf(float x)
 
 MC_TARGET_FUNC double mc_lgamma(double x)
 {
+	if (x == 0.0) {
+		return MCK_INFP;
+	}
+	if (x == 1.0 || x == 2.0) {
+		return 0.0;
+	}
+	if (x < 0.0 && mc_fisint(x)) {
+		return MCK_INFP;
+	}
 #	if MC_TARGET_EMBEDDED
 	return mc_lgamma_approx2(x);
 #	else
@@ -254,6 +272,15 @@ MC_TARGET_FUNC double mc_lgamma(double x)
 
 MC_TARGET_FUNC long double mc_lgammal(long double x)
 {
+	if (x == 0.0L) {
+		return MCK_INFP;
+	}
+	if (x == 1.0L || x == 2.0L) {
+		return 0.0L;
+	}
+	if (x < 0.0L && mc_fisintl(x)) {
+		return MCK_INFP;
+	}
 #	if MC_TARGET_EMBEDDED
 	return mc_lgammal_approx2(x);
 #	else
