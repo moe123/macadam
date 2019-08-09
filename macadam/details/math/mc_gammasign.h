@@ -40,6 +40,6 @@ MC_TARGET_FUNC long double mc_gammasignl(long double x)
 	return -1.0L;
 }
 
-#endif /* !MC_GAMMA_H */
+#endif /* !MC_GAMMASIGN_H */
 
 /* EOF */
