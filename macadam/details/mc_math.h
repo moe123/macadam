@@ -39,6 +39,7 @@
 #	include <macadam/details/math/mc_bisquare.h>
 #	include <macadam/details/math/mc_biweight.h>
 #	include <macadam/details/math/mc_ceil.h>
+#	include <macadam/details/math/mc_chbevl.h>
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cos.h>
 #	include <macadam/details/math/mc_cosh.h>

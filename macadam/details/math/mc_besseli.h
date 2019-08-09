@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_chbevl.h>
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_isinf.h>
@@ -13,7 +14,6 @@
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_rsqrt.h>
 #include <macadam/details/math/mc_sqrt.h>
-#include <macadam/details/math/mc_xchebevaln.h>
 #include <macadam/details/math/mc_xpolyevaln.h>
 
 #ifndef MC_BESSELI_H
@@ -531,8 +531,8 @@ MC_TARGET_PROC float mc_besseli0f_approx2(float x)
 	};
 
 	float y = mc_fabsf(x), r = ((y <= 8.0f)
-		? (mc_expf(y) * mc_xchebevalnf((0.5f * y) - 2.0f, A, 18))
-		: (mc_expf(y) * mc_xchebevalnf(32.0f / y - 2.0f, B, 7)) * mc_rsqrtf(y)
+		? (mc_expf(y) * mc_chbevlf((0.5f * y) - 2.0f, A, 18))
+		: (mc_expf(y) * mc_chbevlf(32.0f / y - 2.0f, B, 7)) * mc_rsqrtf(y)
 	);
 	return r;
 }
@@ -603,8 +603,8 @@ MC_TARGET_PROC double mc_besseli0_approx2(double x)
 	};
 
 	double y = mc_fabs(x), r = ((y <= 8.0)
-		? (mc_exp(y) * mc_xchebevaln((0.5 * y) - 2.0, A, 30))
-		: (mc_exp(y) * mc_xchebevaln(32.0 / y - 2.0, B, 25)) * mc_rsqrt(y)
+		? (mc_exp(y) * mc_chbevl((0.5 * y) - 2.0, A, 30))
+		: (mc_exp(y) * mc_chbevl(32.0 / y - 2.0, B, 25)) * mc_rsqrt(y)
 	);
 	return r;
 }
@@ -676,8 +676,8 @@ MC_TARGET_PROC long double mc_besseli0l_approx2(long double x)
 	};
 
 	long double y = mc_fabsl(x), r = ((y <= 8.0L)
-		? (mc_expl(y) * mc_xchebevalnl((0.5L * y) - 2.0L, A, 30))
-		: (mc_expl(y) * mc_xchebevalnl(32.0L / y - 2.0L, B, 25)) * mc_rsqrtl(y)
+		? (mc_expl(y) * mc_chbevll((0.5L * y) - 2.0L, A, 30))
+		: (mc_expl(y) * mc_chbevll(32.0L / y - 2.0L, B, 25)) * mc_rsqrtl(y)
 	);
 	return r;
 #	else
@@ -722,8 +722,8 @@ MC_TARGET_PROC float mc_besseli1f_approx2(float x)
 	};
 
 	float y = mc_fabsf(x), r = ((y <= 8.0f)
-		? (mc_xchebevalnf((0.5f * y) - 2.0f, A, 17) * y * mc_expf(y))
-		: (mc_expf(y) * mc_xchebevalnf(32.0f / y - 2.0f, B, 7)) * mc_rsqrtf(y)
+		? (mc_chbevlf((0.5f * y) - 2.0f, A, 17) * y * mc_expf(y))
+		: (mc_expf(y) * mc_chbevlf(32.0f / y - 2.0f, B, 7)) * mc_rsqrtf(y)
 	);
 	return x < 0.0f ? -r : r;
 }
@@ -793,8 +793,8 @@ MC_TARGET_PROC double mc_besseli1_approx2(double x)
 	};
 
 	double y = mc_fabs(x), r = ((y <= 8.0)
-		? (mc_xchebevaln((0.5 * y) - 2.0, A, 29) * y * mc_exp(y))
-		: (mc_exp(y) * mc_xchebevaln(32.0 / y - 2.0, B, 25)) * mc_rsqrt(y)
+		? (mc_chbevl((0.5 * y) - 2.0, A, 29) * y * mc_exp(y))
+		: (mc_exp(y) * mc_chbevl(32.0 / y - 2.0, B, 25)) * mc_rsqrt(y)
 	);
 	return x < 0.0 ? -r : r;
 }
@@ -865,8 +865,8 @@ MC_TARGET_PROC long double mc_besseli1l_approx2(long double x)
 	};
 
 	long double y = mc_fabsl(x), r = ((y <= 8.0L)
-		? (mc_xchebevalnl((0.5L * y) - 2.0L, A, 29) * y * mc_expl(y))
-		: (mc_expl(y) * mc_xchebevalnl(32.0L / y - 2.0L, B, 25)) * mc_rsqrtl(y)
+		? (mc_chbevll((0.5L * y) - 2.0L, A, 29) * y * mc_expl(y))
+		: (mc_expl(y) * mc_chbevll(32.0L / y - 2.0L, B, 25)) * mc_rsqrtl(y)
 	);
 	return x < 0.0L ? -r : r;
 #	else

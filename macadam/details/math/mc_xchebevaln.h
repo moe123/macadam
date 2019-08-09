@@ -20,7 +20,7 @@ MC_TARGET_PROC float mc_xchebevalnf(float x, const float * a, unsigned int n)
 //!# Evaluating Chebyshev sum using Clenshaw algorithm.
 	int i, m;
 	float s = 0.0f, b0 = 0.0f, b1 = 0.0f, b2 = 0.0f;
-	if (n > 0 && n < 256) {
+	if (a != NULL && (n > 0 && n < 256)) {
 		m = mc_cast(int, n);
 		x = 2.0f * x;
 		for (i = m - 1; i >= 0; i--) {
@@ -38,7 +38,7 @@ MC_TARGET_PROC double mc_xchebevaln(double x, const double * a, unsigned int n)
 //!# Evaluating Chebyshev sum using Clenshaw algorithm.
 	int i, m;
 	double s = 0.0, b0 = 0.0, b1 = 0.0, b2 = 0.0;
-	if (n > 0 && n < 256) {
+	if (a != NULL && (n > 0 && n < 256)) {
 		m = mc_cast(int, n);
 		x = 2.0 * x;
 		for (i = m - 1; i >= 0; i--) {
@@ -56,7 +56,7 @@ MC_TARGET_PROC long double mc_xchebevalnl(long double x, const long double * a, 
 //!# Evaluating Chebyshev sum using Clenshaw algorithm.
 	int i, m;
 	long double s = 0.0L, b0 = 0.0L, b1 = 0.0L, b2 = 0.0L;
-	if (n > 0 && n < 256) {
+	if (a != NULL && (n > 0 && n < 256)) {
 		m = mc_cast(int, n);
 		x = 2.0L * x;
 		for (i = m - 1; i >= 0; i--) {
