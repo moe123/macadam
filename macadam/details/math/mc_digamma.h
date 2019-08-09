@@ -12,15 +12,16 @@
 #ifndef MC_DIGAMMA_H
 #define MC_DIGAMMA_H
 
-#pragma mark - mc_digamma -
+#pragma mark - mc_digamma_approx0 -
 
-MC_TARGET_FUNC float mc_digammaf(float x)
+MC_TARGET_PROC float mc_digammaf_approx0(float x)
 {
+//!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
 		return -MCK_KF(MCK_G) - (1.0f / x);
 	}
 	if (x < 8.5f) {
-		return mc_digammaf(1.0f + x) - 1.0f / x;
+		return mc_digammaf_approx0(1.0f + x) - 1.0f / x;
 	}
 	const float p = mc_powf(x, -2.0f);
 	return (
@@ -34,13 +35,14 @@ MC_TARGET_FUNC float mc_digammaf(float x)
 	);
 }
 
-MC_TARGET_FUNC double mc_digamma(double x)
+MC_TARGET_PROC double mc_digamma_approx0(double x)
 {
+//!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
 		return -MCK_K(MCK_G) - (1.0 / x);
 	}
 	if (x < 8.5) {
-		return mc_digamma(1.0 + x) - 1.0 / x;
+		return mc_digamma_approx0(1.0 + x) - 1.0 / x;
 	}
 	const double p = mc_pow(x, -2.0);
 	return (
@@ -54,13 +56,14 @@ MC_TARGET_FUNC double mc_digamma(double x)
 	);
 }
 
-MC_TARGET_FUNC long double mc_digammal(long double x)
+MC_TARGET_PROC long double mc_digammal_approx0(long double x)
 {
+//!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
 		return -MCK_KL(MCK_G) - (1.0L / x);
 	}
 	if (x < 8.5L) {
-		return mc_digammal(1.0L + x) - 1.0L / x;
+		return mc_digammal_approx0(1.0L + x) - 1.0L / x;
 	}
 	const long double p = mc_powl(x, -2.0L);
 	return (
@@ -72,6 +75,139 @@ MC_TARGET_FUNC long double mc_digammal(long double x)
 		+ MCK_KL(MCK_ZETA_N9)  * mc_powl(p, 5)
 		+ MCK_KL(MCK_ZETA_N11) * mc_powl(p, 6)
 	);
+}
+
+#pragma mark - mc_digamma_approx1 -
+
+MC_TARGET_PROC float mc_digammaf_approx1(float x)
+{
+//!# Returns psi0(x) by Taylor series expansion.
+	const float c1 = -8.33333333333333290000000000000000000000E-02f;
+	const float c2 = +8.33333333333333320000000000000000000000E-03f;
+	const float c3 = -3.96825396825396800000000000000000000000E-03f;
+	const float c4 = +4.16666666666666660000000000000000000000E-03f;
+	const float c5 = -7.57575757575757600000000000000000000000E-03f;
+	const float c6 = +2.10927960927960940000000000000000000000E-02f;
+	const float c7 = -8.33333333333333290000000000000000000000E-02f;
+
+	float r = 0.0f, y = mc_raise2f(x), w = y;
+
+	do {
+		r = r - (1.0f / x);
+		x = x + 1.0f;
+	} while (x < 10.0f);
+
+	r = r + ((mc_logf(x) - 0.5f) * (1.0f / x));
+
+	r = r + (c1 * (1.0f / w));
+	w = w * y;
+	r = r + (c2 * (1.0f / w));
+	w = w * y;
+	r = r + (c3 * (1.0f / w));
+	w = w * y;
+	r = r + (c4 * (1.0f / w));
+	w = w * y;
+	r = r + (c5 * (1.0f / w));
+	w = w * y;
+	r = r + (c6 * (1.0f / w));
+	w = w * y;
+	r = r + (c7 * (1.0f / w));
+	w = w * y;
+
+	return r;
+}
+
+MC_TARGET_PROC double mc_digamma_approx1(double x)
+{
+//!# Returns psi0(x) by Taylor series expansion.
+	const double c1 = -8.3333333333333329000000000000000000000000E-02;
+	const double c2 = +8.3333333333333332000000000000000000000000E-03;
+	const double c3 = -3.9682539682539680000000000000000000000000E-03;
+	const double c4 = +4.1666666666666666000000000000000000000000E-03;
+	const double c5 = -7.5757575757575760000000000000000000000000E-03;
+	const double c6 = +2.1092796092796094000000000000000000000000E-02;
+	const double c7 = -8.3333333333333329000000000000000000000000E-02;
+
+	double r = 0.0, y = mc_raise2(x), w = y;
+
+	do {
+		r = r - (1.0 / x);
+		x = x + 1.0;
+	} while (x < 10.0);
+
+	r = r + ((mc_log(x) - 0.5) * (1.0 / x));
+
+	r = r + (c1 * (1.0 / w));
+	w = w * y;
+	r = r + (c2 * (1.0 / w));
+	w = w * y;
+	r = r + (c3 * (1.0 / w));
+	w = w * y;
+	r = r + (c4 * (1.0 / w));
+	w = w * y;
+	r = r + (c5 * (1.0 / w));
+	w = w * y;
+	r = r + (c6 * (1.0 / w));
+	w = w * y;
+	r = r + (c7 * (1.0 / w));
+	w = w * y;
+
+	return r;
+}
+
+MC_TARGET_PROC long double mc_digammal_approx1(long double x)
+{
+//!# Returns psi0(x) by Taylor series expansion.
+	const long double c1 = -8.333333333333332900000000000000000000000000000000000000000000000E-02L;
+	const long double c2 = +8.333333333333333200000000000000000000000000000000000000000000000E-03L;
+	const long double c3 = -3.968253968253968000000000000000000000000000000000000000000000000E-03L;
+	const long double c4 = +4.166666666666666600000000000000000000000000000000000000000000000E-03L;
+	const long double c5 = -7.575757575757576000000000000000000000000000000000000000000000000E-03L;
+	const long double c6 = +2.109279609279609400000000000000000000000000000000000000000000000E-02L;
+	const long double c7 = -8.333333333333332900000000000000000000000000000000000000000000000E-02L;
+
+	long double r = 0.0L, y = mc_raise2l(x), w = y;
+
+	do {
+		r = r - (1.0L / x);
+		x = x + 1.0L;
+	} while (x < 10.0L);
+
+	r = r + ((mc_logl(x) - 0.5L) * (1.0L / x));
+
+	r = r + (c1 * (1.0L / w));
+	w = w * y;
+	r = r + (c2 * (1.0L / w));
+	w = w * y;
+	r = r + (c3 * (1.0L / w));
+	w = w * y;
+	r = r + (c4 * (1.0L / w));
+	w = w * y;
+	r = r + (c5 * (1.0L / w));
+	w = w * y;
+	r = r + (c6 * (1.0L / w));
+	w = w * y;
+	r = r + (c7 * (1.0L / w));
+	w = w * y;
+
+	return r;
+}
+
+#pragma mark - mc_digamma -
+
+MC_TARGET_FUNC float mc_digammaf(float x)
+{
+	return mc_digammaf_approx1(x);
+}
+
+MC_TARGET_FUNC double mc_digamma(double x)
+{
+	return mc_digamma_approx1(x);
+}
+
+MC_TARGET_FUNC long double mc_digammal(long double x)
+{
+	return mc_digammal_approx1(x);
 }
 
 #endif /* !MC_DIGAMMA_H */
