@@ -13,16 +13,16 @@
 #ifndef MC_TRIGAMMA_H
 #define MC_TRIGAMMA_H
 
-#pragma mark - mc_trigamma -
+#pragma mark - mc_trigamma_approx0 -
 
-MC_TARGET_FUNC float mc_trigammaf(float x)
+MC_TARGET_FUNC float mc_trigammaf_approx0(float x)
 {
 	float g, y, z;
 	if ((x <= 0) && (mc_floorf(x) == x)) {
 		return MCK_INFP;
 	}
 	if ((x <= 0) && (mc_floorf(x) != x)) {
-		return -mc_trigammaf(-x + 1.0f) + (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x));
+		return -mc_trigammaf_approx0(-x + 1.0f) + (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x)) * (MCK_KF(MCK_PI) / mc_sinf(-MCK_KF(MCK_PI) * x));
 	}
 	if (x <= 1E-5f) {
 		return mc_rsqrf(x);
@@ -39,14 +39,14 @@ MC_TARGET_FUNC float mc_trigammaf(float x)
 	return g;
 }
 
-MC_TARGET_FUNC double mc_trigamma(double x)
+MC_TARGET_FUNC double mc_trigamma_approx0(double x)
 {
 	double g, y, z;
 	if ((x <= 0) && (mc_floor(x) == x)) {
 		return MCK_INFP;
 	}
 	if ((x <= 0) && (mc_floor(x) != x)) {
-		return -mc_trigamma(-x + 1.0) + (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x));
+		return -mc_trigamma_approx0(-x + 1.0) + (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x)) * (MCK_K(MCK_PI) / mc_sin(-MCK_K(MCK_PI) * x));
 	}
 	if (x <= 1E-5) {
 		return mc_rsqr(x);
@@ -63,14 +63,14 @@ MC_TARGET_FUNC double mc_trigamma(double x)
 	return g;
 }
 
-MC_TARGET_FUNC long double mc_trigammal(long double x)
+MC_TARGET_FUNC long double mc_trigammal_approx0(long double x)
 {
 	long double g, y, z;
 	if ((x <= 0) && (mc_floorl(x) == x)) {
 		return MCK_INFP;
 	}
 	if ((x <= 0) && (mc_floorl(x) != x)) {
-		return -mc_trigammal(-x + 1.0L) + (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x));
+		return -mc_trigammal_approx0(-x + 1.0L) + (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x)) * (MCK_KL(MCK_PI) / mc_sinl(-MCK_KL(MCK_PI) * x));
 	}
 	if (x <= 1E-5L) {
 		return mc_rsqrl(x);
@@ -85,6 +85,146 @@ MC_TARGET_FUNC long double mc_trigammal(long double x)
 //!# Expansion as a Laurent series.
 	g += 0.5L * y + (1.0L + y * (MCK_KL(MCK_BN2) + y * (MCK_KL(MCK_BN4) + y * (MCK_KL(MCK_BN6) + y * MCK_KL(MCK_BN8))))) / z;
 	return g;
+}
+
+#pragma mark - mc_trigamma_approx1 -
+
+MC_TARGET_PROC float mc_trigammaf_approx1(float x)
+{
+//!# Returns psi1(x) by Taylor series expansion.
+	const float c1 = +1.00000000000000000000000000000000000000E+00f;
+	const float c2 = +1.66666666666666660000000000000000000000E-01f;
+	const float c3 = -3.33333333333333330000000000000000000000E-02f;
+	const float c4 = +2.38095238095238080000000000000000000000E-02f;
+	const float c5 = -3.33333333333333330000000000000000000000E-02f;
+	const float c6 = +7.57575757575757600000000000000000000000E-02f;
+	const float c7 = -2.53113553113553100000000000000000000000E-01f;
+
+	float r = 0.0f, y, w;
+
+	do {
+		r = r + (1.0f / mc_raise2f(x));
+		x = x + 1.0f;
+	} while (x < 10.0f);
+
+	y = mc_raise2f(x);
+	r = r + (5.0f / x);
+	w = x;
+
+	r = r + (c1 * (1.0f / w));
+	w = w * y;
+	r = r + (c2 * (1.0f / w));
+	w = w * y;
+	r = r + (c3 * (1.0f / w));
+	w = w * y;
+	r = r + (c4 * (1.0f / w));
+	w = w * y;
+	r = r + (c5 * (1.0f / w));
+	w = w * y;
+	r = r + (c6 * (1.0f / w));
+	w = w * y;
+	r = r + (c7 * (1.0f / w));
+	w = w * y;
+
+	return r;
+}
+
+MC_TARGET_PROC double mc_trigamma_approx1(double x)
+{
+//!# Returns psi1(x) by Taylor series expansion.
+	const double c1 = +1.0000000000000000000000000000000000000000E+00;
+	const double c2 = +1.6666666666666666000000000000000000000000E-01;
+	const double c3 = -3.3333333333333333000000000000000000000000E-02;
+	const double c4 = +2.3809523809523808000000000000000000000000E-02;
+	const double c5 = -3.3333333333333333000000000000000000000000E-02;
+	const double c6 = +7.5757575757575760000000000000000000000000E-02;
+	const double c7 = -2.5311355311355310000000000000000000000000E-01;
+
+	double r = 0.0, y, w;
+
+	do {
+		r = r + (1.0 / mc_raise2(x));
+		x = x + 1.0;
+	} while (x < 10.0);
+
+	y = mc_raise2(x);
+	r = r + (5.0 / x);
+	w = x;
+
+	r = r + (c1 * (1.0 / w));
+	w = w * y;
+	r = r + (c2 * (1.0 / w));
+	w = w * y;
+	r = r + (c3 * (1.0 / w));
+	w = w * y;
+	r = r + (c4 * (1.0 / w));
+	w = w * y;
+	r = r + (c5 * (1.0 / w));
+	w = w * y;
+	r = r + (c6 * (1.0 / w));
+	w = w * y;
+	r = r + (c7 * (1.0 / w));
+	w = w * y;
+
+	return r;
+}
+
+MC_TARGET_PROC long double mc_trigammal_approx1(long double x)
+{
+//!# Returns psi1(x) by Taylor series expansion.
+	const long double c1 = +1.000000000000000000000000000000000000000000000000000000000000000E+00L;
+	const long double c2 = +1.666666666666666600000000000000000000000000000000000000000000000E-01L;
+	const long double c3 = -3.333333333333333300000000000000000000000000000000000000000000000E-02L;
+	const long double c4 = +2.380952380952380800000000000000000000000000000000000000000000000E-02L;
+	const long double c5 = -3.333333333333333300000000000000000000000000000000000000000000000E-02L;
+	const long double c6 = +7.575757575757576000000000000000000000000000000000000000000000000E-02L;
+	const long double c7 = -2.531135531135531000000000000000000000000000000000000000000000000E-01L;
+
+
+	long double r = 0.0L, y, w;
+
+	do {
+		r = r + (1.0L / mc_raise2l(x));
+		x = x + 1.0L;
+	} while (x < 10.0L);
+
+	y = mc_raise2l(x);
+	r = r + (5.0L / x);
+	w = x;
+
+	r = r + (c1 * (1.0L / w));
+	w = w * y;
+	r = r + (c2 * (1.0L / w));
+	w = w * y;
+	r = r + (c3 * (1.0L / w));
+	w = w * y;
+	r = r + (c4 * (1.0L / w));
+	w = w * y;
+	r = r + (c5 * (1.0L / w));
+	w = w * y;
+	r = r + (c6 * (1.0L / w));
+	w = w * y;
+	r = r + (c7 * (1.0L / w));
+	w = w * y;
+
+	return r;
+}
+
+#pragma mark - mc_trigamma -
+
+MC_TARGET_FUNC float mc_trigammaf(float x)
+{
+	return mc_trigammaf_approx1(x);
+}
+
+MC_TARGET_FUNC double mc_trigamma(double x)
+{
+	return mc_trigamma_approx1(x);
+}
+
+MC_TARGET_FUNC long double mc_trigammal(long double x)
+{
+	return mc_trigammal_approx1(x);
 }
 
 #endif /* !MC_TRIGAMMA_H */

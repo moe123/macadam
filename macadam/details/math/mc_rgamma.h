@@ -21,6 +21,7 @@
 
 MC_TARGET_PROC float mc_rgammaf(float x)
 {
+//!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
 	if (mc_isnan(x) || mc_isinf(x)) {
 		if (mc_isinfp(x)) {
 			return 0.0f;
@@ -71,6 +72,7 @@ MC_TARGET_PROC float mc_rgammaf(float x)
 
 MC_TARGET_PROC double mc_rgamma(double x)
 {
+//!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
 	if (mc_isnan(x) || mc_isinf(x)) {
 		if (mc_isinfp(x)) {
 			return 0.0;
@@ -121,6 +123,7 @@ MC_TARGET_PROC double mc_rgamma(double x)
 
 MC_TARGET_PROC long double mc_rgammal(long double x)
 {
+//!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
 #	if !MC_TARGET_MSVC_CPP
 	if (mc_isnan(x) || mc_isinf(x)) {
 		if (mc_isinfp(x)) {

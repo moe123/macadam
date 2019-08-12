@@ -90,14 +90,16 @@ MC_TARGET_PROC float mc_digammaf_approx1(float x)
 	const float c6 = +2.10927960927960940000000000000000000000E-02f;
 	const float c7 = -8.33333333333333290000000000000000000000E-02f;
 
-	float r = 0.0f, y = mc_raise2f(x), w = y;
+	float r = 0.0f, y, w;
 
 	do {
 		r = r - (1.0f / x);
 		x = x + 1.0f;
 	} while (x < 10.0f);
 
-	r = r + ((mc_logf(x) - 0.5f) * (1.0f / x));
+	y = mc_raise2f(x);
+	r = r + (mc_logf(x) - 0.5f / x);
+	w = y;
 
 	r = r + (c1 * (1.0f / w));
 	w = w * y;
@@ -128,14 +130,16 @@ MC_TARGET_PROC double mc_digamma_approx1(double x)
 	const double c6 = +2.1092796092796094000000000000000000000000E-02;
 	const double c7 = -8.3333333333333329000000000000000000000000E-02;
 
-	double r = 0.0, y = mc_raise2(x), w = y;
+	double r = 0.0, y, w;
 
 	do {
 		r = r - (1.0 / x);
 		x = x + 1.0;
 	} while (x < 10.0);
 
-	r = r + ((mc_log(x) - 0.5) * (1.0 / x));
+	y = mc_raise2(x);
+	r = r + (mc_log(x) - 0.5 / x);
+	w = y;
 
 	r = r + (c1 * (1.0 / w));
 	w = w * y;
@@ -166,14 +170,16 @@ MC_TARGET_PROC long double mc_digammal_approx1(long double x)
 	const long double c6 = +2.109279609279609400000000000000000000000000000000000000000000000E-02L;
 	const long double c7 = -8.333333333333332900000000000000000000000000000000000000000000000E-02L;
 
-	long double r = 0.0L, y = mc_raise2l(x), w = y;
+	long double r = 0.0L, y, w;
 
 	do {
 		r = r - (1.0L / x);
 		x = x + 1.0L;
 	} while (x < 10.0L);
 
-	r = r + ((mc_logl(x) - 0.5L) * (1.0L / x));
+	y = mc_raise2l(x);
+	r = r + (mc_logl(x) - 0.5L / x);
+	w = y;
 
 	r = r + (c1 * (1.0L / w));
 	w = w * y;

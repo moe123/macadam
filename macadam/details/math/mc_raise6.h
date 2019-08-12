@@ -17,17 +17,17 @@
 
 MC_TARGET_PROC float mc_raise6f(float x)
 {
-	return x * x * x * x * x* x;
+	return x * x * x * x * x * x;
 }
 
 MC_TARGET_PROC double mc_raise6(double x)
 {
-	return x * x * x * x * x* x;
+	return x * x * x * x * x * x;
 }
 
 MC_TARGET_PROC long double mc_raise6l(long double x)
 {
-	return x * x * x * x * x* x;
+	return x * x * x * x * x * x;
 }
 
 #endif /* !MC_RAISE6_H */
