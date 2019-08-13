@@ -42,8 +42,10 @@ MC_TARGET_PROC void mc_zdiv(double * c_r, double * c_i
 	}
 }
 
-MC_TARGET_PROC void mc_zdivl(long double * c_r, long double * c_i, long double a_r, long double a_i, long double b_r, long double b_i)
-{
+MC_TARGET_PROC void mc_zdivl(long double * c_r, long double * c_i
+	, long double a_r, long double a_i
+	, long double b_r, long double b_i
+) {
 	long double w = b_r * b_r + b_i * b_i;
 	if (w != 0.0L) {
 		w = 1.0L / w;

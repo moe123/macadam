@@ -171,6 +171,7 @@
 #	include <macadam/details/math/mc_zmul.h>
 #	include <macadam/details/math/mc_zneg.h>
 #	include <macadam/details/math/mc_znorm.h>
+#	include <macadam/details/math/mc_zpolar.h>
 #	include <macadam/details/math/mc_zsub.h>
 
 #endif /* !MC_MATH_H */
