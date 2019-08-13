@@ -18,7 +18,7 @@
 MC_TARGET_FUNC float mc_bernoulli_b2nf(unsigned int n)
 {
 	const unsigned int max_b2n = 33;
-	const float b2n[] = 
+	const float b2n[]          =
 	{
 		  MCK_KF(MCK_BN0)
 		, MCK_KF(MCK_BN2)
@@ -64,7 +64,7 @@ MC_TARGET_FUNC float mc_bernoulli_b2nf(unsigned int n)
 MC_TARGET_FUNC double mc_bernoulli_b2n(unsigned int n)
 {
 	const unsigned int max_b2n = 130;
-	const double b2n[] = 
+	const double b2n[]         =
 	{
 		  MCK_K(MCK_BN0)
 		, MCK_K(MCK_BN2)
@@ -208,7 +208,7 @@ MC_TARGET_FUNC long double mc_bernoulli_b2nl(unsigned int n)
 {
 #	if !MC_TARGET_MSVC_CPP
 	const unsigned int max_b2n = 1157;
-	const long double b2n[] = 
+	const long double b2n[]    =
 	{
 		  +1.000000000000000000000000000000000000000000000000000000000000000E+00L
 		, +1.666666666666666666711841757186896018083643866702914237976074219E-01L

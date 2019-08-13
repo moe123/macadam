@@ -785,7 +785,7 @@ MC_TARGET_PROC float mc_igamma_pseriesf_approx1(float a, float z)
 	float term    = 1.0f / a;
 	float sum     = term;
 	float w       = a;
-	for(;;) {
+	for (;;) {
 		w    += 1.0f;
 		term *= z / w;
 		sum  += term;
@@ -803,7 +803,7 @@ MC_TARGET_PROC double mc_igamma_pseries_approx1(double a, double z)
 	double term    = 1.0 / a;
 	double sum     = term;
 	double w       = a;
-	for(;;) {
+	for (;;) {
 		w    += 1.0;
 		term *= z / w;
 		sum  += term;
@@ -821,7 +821,7 @@ MC_TARGET_PROC long double mc_igamma_pseriesl_approx1(long double a, long double
 	long double term    = 1.0 / a;
 	long double sum     = term;
 	long double w       = a;
-	for(;;) {
+	for (;;) {
 		w    += 1.0L;
 		term *= z / w;
 		sum  += term;
@@ -863,7 +863,7 @@ MC_TARGET_PROC float mc_igamma_cfracf_approx1(float a, float z)
 		d0 = da;
 		c0 = ca;
 		k  = k + 1.0f;
-	} while(mc_fabsf(de - 1.0f) > e1);
+	} while (mc_fabsf(de - 1.0f) > e1);
 	return fa;
 }
 
@@ -896,7 +896,7 @@ MC_TARGET_PROC double mc_igamma_cfrac_approx1(double a, double z)
 		d0 = da;
 		c0 = ca;
 		k  = k + 1.0;
-	} while(mc_fabs(de - 1.0) > e1);
+	} while (mc_fabs(de - 1.0) > e1);
 	return fa;
 }
 
@@ -929,7 +929,7 @@ MC_TARGET_PROC long double mc_igamma_cfracl_approx1(long double a, long double z
 		d0 = da;
 		c0 = ca;
 		k  = k + 1.0L;
-	} while(mc_fabsl(de - 1.0L) > e1);
+	} while (mc_fabsl(de - 1.0L) > e1);
 	return fa;
 }
 

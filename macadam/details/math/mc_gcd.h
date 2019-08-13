@@ -26,7 +26,7 @@ MC_TARGET_PROC int mc_igcd(int m, int n)
 	int a = m < 0 ? -m : m;
 	int b = n < 0 ? -n : n;
 	int c = a % b;
-	while(c > 0) { a = b; b = c; c = a % b; }
+	while (c > 0) { a = b; b = c; c = a % b; }
 	return b;
 }
 
@@ -43,7 +43,7 @@ MC_TARGET_PROC long mc_lgcd(long m, long n)
 	long a = m < 0 ? -m : m;
 	long b = n < 0 ? -n : n;
 	long c = a % b;
-	while(c > 0) { a = b; b = c; c = a % b; }
+	while (c > 0) { a = b; b = c; c = a % b; }
 	return b;
 }
 
@@ -61,7 +61,7 @@ MC_TARGET_PROC long long mc_llgcd(long long m, long long n)
 	long long a = m < 0 ? -m : m;
 	long long b = n < 0 ? -n : n;
 	long long c = a % b;
-	while(c > 0) { a = b; b = c; c = a % b; }
+	while (c > 0) { a = b; b = c; c = a % b; }
 	return b;
 }
 #	else

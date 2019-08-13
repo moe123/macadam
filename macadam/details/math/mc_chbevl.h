@@ -28,7 +28,7 @@ MC_TARGET_PROC float mc_chbevlf(float x, const float * a, unsigned int n)
 			b2 = b1;
 			b1 = b0;
 			b0 = x * b1 -  b2 + *p++;
-		} while(--i);
+		} while (--i);
 		s = 0.5f * (b0 - b2);
 	}
 	return s;
@@ -47,7 +47,7 @@ MC_TARGET_PROC double mc_chbevl(double x, const double * a, unsigned int n)
 			b2 = b1;
 			b1 = b0;
 			b0 = x * b1 -  b2 + *p++;
-		} while(--i);
+		} while (--i);
 		s = 0.5 * (b0 - b2);
 	}
 	return s;
@@ -66,7 +66,7 @@ MC_TARGET_PROC long double mc_chbevll(long double x, const long double * a, unsi
 			b2 = b1;
 			b1 = b0;
 			b0 = x * b1 -  b2 + *p++;
-		} while(--i);
+		} while (--i);
 		s = 0.5L * (b0 - b2);
 	}
 	return s;

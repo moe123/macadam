@@ -41,6 +41,7 @@
 #	include <macadam/details/math/mc_ceil.h>
 #	include <macadam/details/math/mc_chbevl.h>
 #	include <macadam/details/math/mc_choose.h>
+#	include <macadam/details/math/mc_copysign.h>
 #	include <macadam/details/math/mc_cos.h>
 #	include <macadam/details/math/mc_cosh.h>
 #	include <macadam/details/math/mc_cospi.h>
@@ -136,6 +137,7 @@
 #	include <macadam/details/math/mc_sec.h>
 #	include <macadam/details/math/mc_sech.h>
 #	include <macadam/details/math/mc_sigmoid.h>
+#	include <macadam/details/math/mc_signbit.h>
 #	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sinc.h>
 #	include <macadam/details/math/mc_sincos.h>
@@ -159,8 +161,17 @@
 #	include <macadam/details/math/mc_xlogx.h>
 #	include <macadam/details/math/mc_xlogy.h>
 #	include <macadam/details/math/mc_xpolyevaln.h>
+#	include <macadam/details/math/mc_zabs.h>
+#	include <macadam/details/math/mc_zadd.h>
+#	include <macadam/details/math/mc_zarg.h>
+#	include <macadam/details/math/mc_zconj.h>
+#	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
+#	include <macadam/details/math/mc_zmul.h>
+#	include <macadam/details/math/mc_zneg.h>
+#	include <macadam/details/math/mc_znorm.h>
+#	include <macadam/details/math/mc_zsub.h>
 
 #endif /* !MC_MATH_H */
 

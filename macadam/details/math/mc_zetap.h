@@ -430,12 +430,12 @@ MC_TARGET_PROC long double mc_zetapscl(long double s, long double sc)
 	n = mc_cast(int, mc_floorl(-0.5L * mc_logl(MCLIMITS_EPSILONL)));
 	if (n < MCLIMITS_IMAX) {
 		nn = mc_ldexpl(1.0L, n);
-		for(; k < n; k++) {
+		for (; k < n; k++) {
 			p     = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
 			sum  += (sign * -nn)  * p;
 			sign *= -1.0L; 
 		}
-		for(k = n; k <= 2 * n - 1; k++) {
+		for (k = n; k <= 2 * n - 1; k++) {
 			p     = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
 			sum  += (sign * (sumk - nn)) * p;
 			sign *= -1.0L;

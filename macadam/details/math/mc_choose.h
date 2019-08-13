@@ -17,7 +17,7 @@
 
 MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 {
-	float r                 = MCLIMITS_MAXF;
+	float r                          = MCLIMITS_MAXF;
 	const unsigned int max_factorial = 35;
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
@@ -50,7 +50,7 @@ MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 
 MC_TARGET_FUNC double mc_choose(unsigned int n, unsigned int k)
 {
-	double r                = MCLIMITS_MAX;
+	double r                         = MCLIMITS_MAX;
 	const unsigned int max_factorial = 171;
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
@@ -83,7 +83,7 @@ MC_TARGET_FUNC double mc_choose(unsigned int n, unsigned int k)
 
 MC_TARGET_FUNC long double mc_choosel(unsigned int n, unsigned int k)
 {
-	long double r = MCLIMITS_MAXL;
+	long double r                    = MCLIMITS_MAXL;
 #	if MC_TARGET_MSVC_CPP
 	const unsigned int max_factorial = 171;
 #	else

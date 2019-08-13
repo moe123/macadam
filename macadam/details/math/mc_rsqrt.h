@@ -86,7 +86,7 @@ MC_TARGET_FUNC double mc_rsqrt(double x)
 
 MC_TARGET_FUNC long double mc_rsqrtl(long double x)
 {
-#	if MC_TARGET_C99 || MC_TARGET_CPP11 || MC_TARGET_HAVE_SSE
+#	if MC_TARGET_HAVE_SSE
 	return mc_cast(long double, mc_rsqrt(mc_cast(double, x)));
 #	else
 	long double g = 2.0L / x;
