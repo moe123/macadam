@@ -244,7 +244,6 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 		s += lanczos_c0;
 		r  = ((MCK_KL(MCK_LSQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (x + 0.5L);
 	} else if (x < 0.0) {
-		// @TODO fix sinpi behaviors to allow rotation.
 		r = x *  mc_sinpil(x);
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
 		r = mc_logl(r) - mc_lgammal_approx2(y);
