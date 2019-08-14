@@ -89,6 +89,7 @@
 #	include <macadam/details/math/mc_isfinite.h>
 #	include <macadam/details/math/mc_isinf.h>
 #	include <macadam/details/math/mc_isnan.h>
+#	include <macadam/details/math/mc_isnormal.h>
 #	include <macadam/details/math/mc_lbeta.h>
 #	include <macadam/details/math/mc_lchoose.h>
 #	include <macadam/details/math/mc_lcm.h>
@@ -121,6 +122,7 @@
 #	include <macadam/details/math/mc_modf.h>
 #	include <macadam/details/math/mc_nchoosek.h>
 #	include <macadam/details/math/mc_nthroot.h>
+#	include <macadam/details/math/mc_polyroot2.h>
 #	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
@@ -168,10 +170,18 @@
 #	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
+#	include <macadam/details/math/mc_zfadd.h>
+#	include <macadam/details/math/mc_zfdiv.h>
+#	include <macadam/details/math/mc_zfmul.h>
+#	include <macadam/details/math/mc_zfsub.h>
+#	include <macadam/details/math/mc_zlog.h>
+#	include <macadam/details/math/mc_zlog10.h>
 #	include <macadam/details/math/mc_zmul.h>
 #	include <macadam/details/math/mc_zneg.h>
 #	include <macadam/details/math/mc_znorm.h>
 #	include <macadam/details/math/mc_zpolar.h>
+#	include <macadam/details/math/mc_zpolyroot2.h>
+#	include <macadam/details/math/mc_zsqrt.h>
 #	include <macadam/details/math/mc_zsub.h>
 
 #endif /* !MC_MATH_H */

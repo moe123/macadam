@@ -1,3 +1,6 @@
+//
+// # -*- coding: utf-8, tab-width: 3 -*-
+
 // mc_zabs.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
