@@ -20,6 +20,9 @@
 
 MC_TARGET_FUNC float mc_sinpif (float x)
 {
+	const float pix = MCK_KF(MCK_PI) * x;
+	return mc_sinf(pix);
+#	if 0
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
 	return ::__sinpif (x);
@@ -46,10 +49,14 @@ MC_TARGET_FUNC float mc_sinpif (float x)
 	const float pix = MCK_KF(MCK_PI) * x;
 	return mc_sinf(pix);
 #	endif
+#	endif
 }
 
 MC_TARGET_FUNC double mc_sinpi(double x)
 {
+	const double pix = MCK_K(MCK_PI) * x;
+	return mc_sin(pix);
+#	if 0
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
 	return ::__sinpi(x);
@@ -76,10 +83,18 @@ MC_TARGET_FUNC double mc_sinpi(double x)
 	const double pix = MCK_K(MCK_PI) * x;
 	return mc_sin(pix);
 #	endif
+#	endif
 }
 
 MC_TARGET_FUNC long double mc_sinpil(long double x)
 {
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
+	const long double pix = M_PIl * x;
+#	else
+	const long double pix = MCK_KL(MCK_PI) * x;
+#	endif
+	return mc_sinl(pix);
+#	if 0
 #	if MC_TARGET_APPLEXM
 	const double xx = mc_cast(double, x);
 #	if MC_TARGET_CPP98
@@ -110,6 +125,7 @@ MC_TARGET_FUNC long double mc_sinpil(long double x)
 	const long double pix = MCK_KL(MCK_PI) * x;
 #	endif
 	return mc_sinl(pix);
+#	endif
 #	endif
 }
 

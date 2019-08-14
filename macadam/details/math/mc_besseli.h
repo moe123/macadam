@@ -1409,7 +1409,7 @@ MC_TARGET_FUNC double mc_besselin(int n, double x)
 #	if MC_TARGET_EMBEDDED
 	return mc_besselin_approx1(n, x);
 #	else
-	return mc_besselinf_approx3(n, x);
+	return mc_besselin_approx3(n, x);
 #	endif
 }
 
@@ -1418,7 +1418,7 @@ MC_TARGET_FUNC long double mc_besselinl(int n, long double x)
 #	if MC_TARGET_EMBEDDED
 	return mc_besselinl_approx1(n, x);
 #	else
-	return mc_besselinf_approx3(n, x);
+	return mc_besselinl_approx3(n, x);
 #	endif
 }
 

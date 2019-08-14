@@ -44,8 +44,6 @@
 #	define _REENTRANT 1
 #	endif
 
-#	define MC_TARGET_EMBEDDED 1
-
 #	if MC_DISABLE_TGMATH
 #	undef  MC_TARGET_HAVE_TGMATH
 #	define MC_TARGET_HAVE_TGMATH 0

@@ -19,6 +19,9 @@
 
 MC_TARGET_FUNC float mc_cospif (float x)
 {
+	const float pix = MCK_KF(MCK_PI) * x;
+	return mc_cosf(pix);
+#	if 0
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
 	return ::__cospif (x);
@@ -45,10 +48,14 @@ MC_TARGET_FUNC float mc_cospif (float x)
 	const float pix = MCK_KF(MCK_PI) * x;
 	return mc_cosf(pix);
 #	endif
+#	endif
 }
 
 MC_TARGET_FUNC double mc_cospi(double x)
 {
+	const double pix = MCK_K(MCK_PI) * x;
+	return mc_cos(pix);
+#	if 0
 #	if MC_TARGET_APPLEXM
 #	if MC_TARGET_CPP98
 	return ::__cospi(x);
@@ -72,13 +79,19 @@ MC_TARGET_FUNC double mc_cospi(double x)
 	if (x == 0.0) {
 		return 1.0;
 	}
-	const double pix = MCK_K(MCK_PI) * x;
-	return mc_cos(pix);
+#	endif
 #	endif
 }
 
 MC_TARGET_FUNC long double mc_cospil(long double x)
 {
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
+	const long double pix = M_PIl * x;
+#	else
+	const long double pix = MCK_KL(MCK_PI) * x;
+#	endif
+	return mc_cosl(pix);
+#	if 0
 #	if MC_TARGET_APPLEXM
 	const double xx = mc_cast(double, x);
 #	if MC_TARGET_CPP98
@@ -109,6 +122,7 @@ MC_TARGET_FUNC long double mc_cospil(long double x)
 	const long double pix = MCK_KL(MCK_PI) * x;
 #	endif
 	return mc_cosl(pix);
+#	endif
 #	endif
 }
 
