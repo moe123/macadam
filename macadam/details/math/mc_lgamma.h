@@ -115,12 +115,12 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 		return 0.0f;
 	}
 	const float y = mc_fabsf(x);
-	if (y <= FLT_MIN) {
+	/*if (y <= FLT_MIN) {
 		return -mc_logf(y);
-	}
-	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
+	}*/
+	/*if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
 		return MCK_INFP;
-	}
+	}*/
 	if (x >= 0.5f) {
 		x  = x - 1.0f;
 		b  = x + lanczos_g + 0.5f;
@@ -133,7 +133,8 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 		s += lanczos_c0;
 		r  = ((MCK_KF(MCK_LSQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (x + 0.5f);
 	} else if (x < 0.0f) {
-		r = x * mc_sinpif(x);
+		// @TODO fix sinpi behaviors to allow rotation.
+		r = x * (x > -1.0f ? mc_sinpif(x) : mc_sinf(MCK_KF(MCK_PI) * x));
 		r = mc_fabsf(MCK_KF(MCK_PI) / r);
 		r = mc_logf(r) - mc_lgammaf_approx2(y);
 	} else {
@@ -190,7 +191,8 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 		s += lanczos_c0;
 		r  = ((MCK_K(MCK_LSQRT2PI) + mc_log(s)) - b) + mc_log(b) * (x + 0.5);
 	} else if (x < 0.0) {
-		r = x * mc_sinpi(x);
+		// @TODO fix sinpi behaviors to allow rotation.
+		r = x * (x > -1.0 ? mc_sinpi(x) : mc_sin(MCK_K(MCK_PI) * x));
 		r = mc_fabs(MCK_K(MCK_PI) / r);
 		r = mc_log(r) - mc_lgamma_approx2(y);
 	} else {
@@ -242,7 +244,8 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 		s += lanczos_c0;
 		r  = ((MCK_KL(MCK_LSQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (x + 0.5L);
 	} else if (x < 0.0) {
-		r = x * mc_sinpil(x);
+		// @TODO fix sinpi behaviors to allow rotation.
+		r = x * (x > -1.0L ? mc_sinpil(x) : mc_sinl(MCK_KL(MCK_PI) * x));
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
 		r = mc_logl(r) - mc_lgammal_approx2(y);
 	} else {
