@@ -14,6 +14,7 @@
 #include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sin.h>
+#include <macadam/details/math/mc_sinpi.h>
 #include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_LGAMMA_H
@@ -74,6 +75,7 @@ MC_TARGET_PROC double mc_lgamma_approx1(double x)
 MC_TARGET_PROC long double mc_lgammal_approx1(long double x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
+//!# Leading term.
 	const long double q = mc_raise2l(x);
 	long double r       = MCK_KL(MCK_LSQRT2PI) - x + (x - 0.5L) * mc_logl(x);
 	r = r +  MCK_KL(MCK_1_12)   / x; x *= q;
@@ -86,6 +88,7 @@ MC_TARGET_PROC long double mc_lgammal_approx1(long double x)
 
 MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 {
+//!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
 	const float lanczos_c0 = +1.000000000190014892709200466924812644E+00f;
 	const float lanczos_c1 = +7.618009172947145657417422626167535781E+01f;
@@ -105,6 +108,12 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 	if (x <= 0 && mc_fisintf(x)) {
 		return MCK_INFP;
 	}
+	if (x == 0.0f) {
+		return MCK_INFP;
+	}
+	if (x == 1.0f || x == 2.0f) {
+		return 0.0f;
+	}
 	const float y = mc_fabsf(x);
 	if (y <= FLT_MIN) {
 		return -mc_logf(y);
@@ -123,14 +132,20 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 		s += lanczos_c1 / (x + 1.0f);
 		s += lanczos_c0;
 		r  = ((MCK_KF(MCK_LSQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (x + 0.5f);
+	} else if (x < 0.0f) {
+		r = x * mc_sinpif(x);
+		r = mc_fabsf(MCK_KF(MCK_PI) / r);
+		r = mc_logf(r) - mc_lgammaf_approx2(y);
 	} else {
-		r = mc_logf(MCK_KF(MCK_PI) / mc_sinf(MCK_KF(MCK_PI) * x)) - mc_lgammaf_approx2(1.0f - x);
+		r = MCK_KF(MCK_PI) / mc_sinf(MCK_KF(MCK_PI) * x);
+		r = mc_logf(r) - mc_lgammaf_approx2(1.0f - x);
 	}
 	return r;
 }
 
 MC_TARGET_PROC double mc_lgamma_approx2(double x)
 {
+//!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
 	const double lanczos_c0 = +1.0000000001900148927092004669248126447201E+00;
 	const double lanczos_c1 = +7.6180091729471456574174226261675357818604E+01;
@@ -150,6 +165,12 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 	if (x <= 0 && mc_fisint(x)) {
 		return MCK_INFP;
 	}
+	if (x == 0.0) {
+		return MCK_INFP;
+	}
+	if (x == 1.0 || x == 2.0) {
+		return 0.0;
+	}
 	const double y = mc_fabs(x);
 	if (y <= DBL_MIN) {
 		return -mc_log(y);
@@ -168,14 +189,20 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 		s += lanczos_c1 / (x + 1.0);
 		s += lanczos_c0;
 		r  = ((MCK_K(MCK_LSQRT2PI) + mc_log(s)) - b) + mc_log(b) * (x + 0.5);
+	} else if (x < 0.0) {
+		r = x * mc_sinpi(x);
+		r = mc_fabs(MCK_K(MCK_PI) / r);
+		r = mc_log(r) - mc_lgamma_approx2(y);
 	} else {
-		r = mc_log(MCK_K(MCK_PI) / mc_sin(MCK_K(MCK_PI) * x)) - mc_lgamma_approx2(1.0 - x);
+		r = MCK_K(MCK_PI) / mc_sin(MCK_K(MCK_PI) * x);
+		r = mc_log(r) - mc_lgamma_approx2(1.0 - x);
 	}
 	return r;
 }
 
 MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 {
+//!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 #	if !MC_TARGET_MSVC_CPP
 	const long double lanczos_g  = +5.000000000000000000000000000000000000000000000000000000000000000E+00L;
 	const long double lanczos_c0 = +1.000000000190014892709200466924812644720077514648437500000000000E+00L;
@@ -214,8 +241,13 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 		s += lanczos_c1 / (x + 1.0L);
 		s += lanczos_c0;
 		r  = ((MCK_KL(MCK_LSQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (x + 0.5L);
+	} else if (x < 0.0) {
+		r = x * mc_sinpil(x);
+		r = mc_fabsl(MCK_KL(MCK_PI) / r);
+		r = mc_logl(r) - mc_lgammal_approx2(y);
 	} else {
-		r = mc_logl(MCK_KL(MCK_PI) / mc_sinl(MCK_KL(MCK_PI) * x)) - mc_lgammal_approx2(1.0L - x);
+		r = MCK_KL(MCK_PI) / mc_sinl(MCK_KL(MCK_PI) * x);
+		r = mc_logl(r) - mc_lgammal_approx2(1.0 - x);
 	}
 	return r;
 #	else
@@ -228,15 +260,7 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 
 MC_TARGET_FUNC float mc_lgammaf(float x)
 {
-	if (x == 0.0f) {
-		return MCK_INFP;
-	}
-	if (x == 1.0f || x == 2.0f) {
-		return 0.0f;
-	}
-	if (x < 0.0f && mc_fisintf(x)) {
-		return MCK_INFP;
-	}
+//!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
 	return mc_lgammaf_approx2(x);
 #	else
@@ -250,15 +274,7 @@ MC_TARGET_FUNC float mc_lgammaf(float x)
 
 MC_TARGET_FUNC double mc_lgamma(double x)
 {
-	if (x == 0.0) {
-		return MCK_INFP;
-	}
-	if (x == 1.0 || x == 2.0) {
-		return 0.0;
-	}
-	if (x < 0.0 && mc_fisint(x)) {
-		return MCK_INFP;
-	}
+//!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
 	return mc_lgamma_approx2(x);
 #	else
@@ -272,15 +288,7 @@ MC_TARGET_FUNC double mc_lgamma(double x)
 
 MC_TARGET_FUNC long double mc_lgammal(long double x)
 {
-	if (x == 0.0L) {
-		return MCK_INFP;
-	}
-	if (x == 1.0L || x == 2.0L) {
-		return 0.0L;
-	}
-	if (x < 0.0L && mc_fisintl(x)) {
-		return MCK_INFP;
-	}
+//!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
 	return mc_lgammal_approx2(x);
 #	else

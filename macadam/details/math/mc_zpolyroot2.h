@@ -17,7 +17,7 @@
 
 #pragma mark - mc_zpolyroot2 -
 
-int mc_zpolyroot2f(float a, float b, float c
+MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 	, float * r1
 	, float * i1
 	, float * r2
@@ -53,7 +53,7 @@ int mc_zpolyroot2f(float a, float b, float c
 	return r;
 }
 
-int mc_zpolyroot2(double a, double b, double c
+MC_TARGET_PROC int mc_zpolyroot2(double a, double b, double c
 	, double * r1
 	, double * i1
 	, double * r2
@@ -89,7 +89,7 @@ int mc_zpolyroot2(double a, double b, double c
 	return r;
 }
 
-int mc_zpolyroot2l(long double a, long double b, long double c
+MC_TARGET_PROC int mc_zpolyroot2l(long double a, long double b, long double c
 	, long double * r1
 	, long double * i1
 	, long double * r2
