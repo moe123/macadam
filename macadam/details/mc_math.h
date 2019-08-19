@@ -65,6 +65,7 @@
 #	include <macadam/details/math/mc_ffrac.h>
 #	include <macadam/details/math/mc_fhrt.h>
 #	include <macadam/details/math/mc_fisint.h>
+#	include <macadam/details/math/mc_fisodd.h>
 #	include <macadam/details/math/mc_fisval.h>
 #	include <macadam/details/math/mc_floor.h>
 #	include <macadam/details/math/mc_fmod.h>

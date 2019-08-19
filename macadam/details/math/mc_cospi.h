@@ -6,11 +6,9 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_isinf.h>
-#include <macadam/details/math/mc_isnan.h>
-#include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/math/mc_fmod.h>
 #include <macadam/details/math/mc_cos.h>
+#include <macadam/details/math/mc_sin.h>
+#include <macadam/details/math/mc_xpihnpi.h>
 
 #ifndef MC_COSPI_H
 #define MC_COSPI_H
@@ -19,111 +17,65 @@
 
 MC_TARGET_FUNC float mc_cospif (float x)
 {
-	const float pix = MCK_KF(MCK_PI) * x;
-	return mc_cosf(pix);
-#	if 0
-#	if MC_TARGET_APPLEXM
-#	if MC_TARGET_CPP98
-	return ::__cospif (x);
-#	else
-	return __cospif (x);
-#	endif
-#	else
-	if (mc_isnan(x)) {
-		return NAN;
+	float r = 0.0f;
+	int64_t i = mc_xpihnpif(x, &r) & 3;
+	r = MCK_KF(MCK_PI) * r;
+	switch (i) {
+		case 0:
+			r =  mc_cosf(r);
+		break;
+		case 1:
+			r = -mc_sinf(r);
+		break;
+		case 2:
+			r = -mc_cosf(r);
+		break;
+		default:
+			r =  mc_sinf(r);
 	}
-	if (mc_isinf(x)) {
-		return NAN;
-	}
-	x = mc_fmodf(mc_fabsf(x), 2.0f);
-	if (mc_fmodf(x, 1.0f) == 0.5f) {
-		return 0.0f;
-	}
-	if (x == 1.0f) {
-		return -1.0f;
-	}
-	if (x == 0.0f) {
-		return 1.0f;
-	}
-	const float pix = MCK_KF(MCK_PI) * x;
-	return mc_cosf(pix);
-#	endif
-#	endif
+	return r;
 }
 
 MC_TARGET_FUNC double mc_cospi(double x)
 {
-	const double pix = MCK_K(MCK_PI) * x;
-	return mc_cos(pix);
-#	if 0
-#	if MC_TARGET_APPLEXM
-#	if MC_TARGET_CPP98
-	return ::__cospi(x);
-#	else
-	return __cospi(x);
-#	endif
-#	else
-	if (mc_isnan(x)) {
-		return NAN;
+	double r = 0.0;
+	int64_t i = mc_xpihnpi(x, &r) & 3;
+	r = MCK_K(MCK_PI) * r;
+	switch (i) {
+		case 0:
+			r =  mc_cos(r);
+		break;
+		case 1:
+			r = -mc_sin(r);
+		break;
+		case 2:
+			r = -mc_cos(r);
+		break;
+		default:
+			r =  mc_sin(r);
 	}
-	if (mc_isinf(x)) {
-		return NAN;
-	}
-	x = mc_fmod(mc_fabs(x), 2.0);
-	if (mc_fmod(x, 1.0) == 0.5) {
-		return 0.0;
-	}
-	if (x == 1.0) {
-		return -1.0;
-	}
-	if (x == 0.0) {
-		return 1.0;
-	}
-#	endif
-#	endif
+	return r;
 }
 
 MC_TARGET_FUNC long double mc_cospil(long double x)
 {
-#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
-	const long double pix = M_PIl * x;
-#	else
-	const long double pix = MCK_KL(MCK_PI) * x;
-#	endif
-	return mc_cosl(pix);
-#	if 0
-#	if MC_TARGET_APPLEXM
-	const double xx = mc_cast(double, x);
-#	if MC_TARGET_CPP98
-	return mc_cast(long double, ::__cospi(xx));
-#	else
-	return mc_cast(long double, __cospi(xx));
-#	endif
-#	else
-	if (mc_isnan(x)) {
-		return NAN;
+	long double r = 0.0;
+	int64_t i = mc_xpihnpil(x, &r) & 3;
+	r = MCK_KL(MCK_PI) * r;
+	switch (i) {
+		case 0:
+			r =  mc_cosl(r);
+		break;
+		case 1:
+			r = -mc_sinl(r);
+		break;
+		case 2:
+			r = -mc_cosl(r);
+		break;
+		default:
+			r =  mc_sinl(r);
 	}
-	if (mc_isinf(x)) {
-		return NAN;
-	}
-	x = mc_fmodl(mc_fabsl(x), 2.0L);
-	if (mc_fmodl(x, 1.0L) == 0.5L) {
-		return 0.0L;
-	}
-	if (x == 1.0L) {
-		return -1.0L;
-	}
-	if (x == 0.0L) {
-		return 1.0L;
-	}
-#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
-	const long double pix = M_PIl * x;
-#	else
-	const long double pix = MCK_KL(MCK_PI) * x;
-#	endif
-	return mc_cosl(pix);
-#	endif
-#	endif
+	return r;
 }
 
 #endif /* !MC_COSPI_H */
