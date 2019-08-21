@@ -77,6 +77,8 @@
 #	include <macadam/details/math/mc_gcd.h>
 #	include <macadam/details/math/mc_hermite_hen.h>
 #	include <macadam/details/math/mc_hermite_hn.h>
+#	include <macadam/details/math/mc_huberloss.h>
+#	include <macadam/details/math/mc_huberweight.h>
 #	include <macadam/details/math/mc_hypot.h>
 #	include <macadam/details/math/mc_hypotc.h>
 #	include <macadam/details/math/mc_hypotq.h>

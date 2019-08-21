@@ -24,7 +24,7 @@ MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 	, float * i2
 ) {
 	int r = -1;
-	const float e = 1E-07f;
+	const float e = 1E-05f;
 	const float d = b * b - 4.0f * a * c;
 
 	if (mc_fabsf(d) < e) {
@@ -32,14 +32,14 @@ MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 		*i1 = 0.0f;
 		*r2 = *r1;
 		*i2 = *i1;
-		 r  = 1;
+		r   = 1;
 	} else if (d > 0.0f) {
 		const float q = mc_sqrtf(d);
 		*r1 = (-b + q) * (1.0f / (a * 2.0f));
 		*i1 = 0.0f;
 		*r2 = (-b - q) * (1.0f / (a * 2.0f));
 		*i2 = 0.0f;
-		 r  = 2;
+		r   = 2;
 	} else {
 		mc_zsqrtf(r1, i1, d, 0.0f);
 		mc_zaddf(r1, i1, -b, 0.0f, *r1, *i1);
@@ -68,14 +68,14 @@ MC_TARGET_PROC int mc_zpolyroot2(double a, double b, double c
 		*i1 = 0.0;
 		*r2 = *r1;
 		*i2 = *i1;
-		 r  = 1;
+		r   = 1;
 	} else if (d > 0.0) {
 		const double q = mc_sqrt(d);
 		*r1 = (-b + q) * (1.0 / (a * 2.0));
 		*i1 = 0.0;
 		*r2 = (-b - q) * (1.0 / (a * 2.0));
 		*i2 = 0.0;
-		 r  = 2;
+		r   = 2;
 	} else {
 		mc_zsqrt(r1, i1, d, 0.0);
 		mc_zadd(r1, i1, -b, 0.0, *r1, *i1);
@@ -104,14 +104,14 @@ MC_TARGET_PROC int mc_zpolyroot2l(long double a, long double b, long double c
 		*i1 = 0.0L;
 		*r2 = *r1;
 		*i2 = *i1;
-		 r  = 1;
+		r   = 1;
 	} else if (d > 0.0L) {
 		const long double q = mc_sqrtl(d);
 		*r1 = (-b + q) * (1.0L / (a * 2.0L));
 		*i1 = 0.0L;
 		*r2 = (-b - q) * (1.0L / (a * 2.0L));
 		*i2 = 0.0L;
-		 r  = 2;
+		r   = 2;
 	} else {
 		mc_zsqrtl(r1, i1, d, 0.0L);
 		mc_zaddl(r1, i1, -b, 0.0L, *r1, *i1);

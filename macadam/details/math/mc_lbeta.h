@@ -118,7 +118,7 @@ MC_TARGET_FUNC long double mc_lbetal(long double x, long double y)
 	if (!mc_isinf(c) && c < MCLIMITS_MAXL) {
 		a = mc_gammal(x);
 		b = mc_gammal(y);
-		return  mc_logl(a / (c / b));
+		return mc_logl(a / (c / b));
 	}
 	a = mc_lgammal(x);
 	b = mc_lgammal(y);

@@ -42,7 +42,7 @@ function main ()
 	cmd_pushd "${path_base}"
 
 	declare -a special
-	special=( "fisint" "isfinite" "isinf" "isnan" "nchoosek")
+	special=( "fisint" "isfinite" "isinf" "isnan" "isnormal" "nchoosek")
 
 	:> "${path_self}/mcmath.pxd"
 

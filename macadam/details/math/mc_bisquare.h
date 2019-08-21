@@ -7,46 +7,47 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_BISQUARE_H
 #define MC_BISQUARE_H
 
 #pragma mark - mc_bisquare -
 
-MC_TARGET_FUNC float mc_bisquaref(float x, float k)
+MC_TARGET_FUNC float mc_bisquaref(float r, float c, float s)
 {
-	float w, y;
-	if (mc_fabsf(x) >= k || k == 0.0f) {
+//!# Tukey's bisquare function.
+//!# Default settings c=4.685 and s=1 (scale)
+	const float w = s != 0.0f ? 1.0f / s : 1.0f;
+	const float h = mc_fabsf(r * w);
+	if (h > c) {
 		return 0.0f;
 	}
-	k = 1.0f / k;
-	y = x * k;
-	w = 1.0f - y * y;
-	return w * w;
+	return mc_raise2f(1.0f - mc_raise2f(h / c));
 }
 
-MC_TARGET_FUNC double mc_bisquare(double x, double k)
+MC_TARGET_FUNC double mc_bisquare(double r, double c, double s)
 {
-	double w, y;
-	if (mc_fabs(x) >= k || k == 0.0) {
+//!# Tukey's bisquare function.
+//!# Default settings c=4.685 and s=1 (scale)
+	const double w = s != 0.0 ? 1.0 / s : 1.0;
+	const double h = mc_fabs(r * w);
+	if (h > c) {
 		return 0.0;
 	}
-	k = 1.0 / k;
-	y = x * k;
-	w = 1.0 - y * y;
-	return w * w;
+	return mc_raise2(1.0 - mc_raise2(h / c));
 }
 
-MC_TARGET_FUNC long double mc_bisquarel(long double x, long double k)
+MC_TARGET_FUNC long double mc_bisquarel(long double r, long double c, long double s)
 {
-	long double w, y;
-	if (mc_fabsl(x) >= k || k == 0.0L) {
+//!# Tukey's bisquare function.
+//!# Default settings c=4.685 and s=1 (scale)
+	const long double w = s != 0.0L ? 1.0L / s : 1.0L;
+	const long double h = mc_fabsl(r * w);
+	if (h > c) {
 		return 0.0L;
 	}
-	k = 1.0L / k;
-	y = x * k;
-	w = 1.0L - y * y;
-	return w * w;
+	return mc_raise2l(1.0L - mc_raise2l(h / c));
 }
 
 #endif /* !MC_BISQUARE_H */
