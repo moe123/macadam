@@ -77,8 +77,10 @@
 #	include <macadam/details/math/mc_gcd.h>
 #	include <macadam/details/math/mc_hermite_hen.h>
 #	include <macadam/details/math/mc_hermite_hn.h>
-#	include <macadam/details/math/mc_huberloss.h>
-#	include <macadam/details/math/mc_huberweight.h>
+#	include <macadam/details/math/mc_huber_loss.h>
+#	include <macadam/details/math/mc_huber_psi.h>
+#	include <macadam/details/math/mc_huber_rho.h>
+#	include <macadam/details/math/mc_huber_weight.h>
 #	include <macadam/details/math/mc_hypot.h>
 #	include <macadam/details/math/mc_hypotc.h>
 #	include <macadam/details/math/mc_hypotq.h>
@@ -126,6 +128,7 @@
 #	include <macadam/details/math/mc_nchoosek.h>
 #	include <macadam/details/math/mc_nthroot.h>
 #	include <macadam/details/math/mc_polyroot2.h>
+#	include <macadam/details/math/mc_polyroot3.h>
 #	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
@@ -184,6 +187,7 @@
 #	include <macadam/details/math/mc_znorm.h>
 #	include <macadam/details/math/mc_zpolar.h>
 #	include <macadam/details/math/mc_zpolyroot2.h>
+#	include <macadam/details/math/mc_zpolyroot3.h>
 #	include <macadam/details/math/mc_zsqrt.h>
 #	include <macadam/details/math/mc_zsub.h>
 

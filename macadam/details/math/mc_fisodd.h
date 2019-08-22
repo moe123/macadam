@@ -19,11 +19,11 @@ MC_TARGET_FUNC int mc_fisoddf(float x, int frac)
 	if (x == 0.0f) {
 		return 1;
 	}
-//#! Checking integral-part.
+//!# Checking integral-part.
 	if (frac == 1) {
 		mc_modff(x, &x);
 	}
-//#! Returns if x is odd-integral.
+//!# Returns if x is odd-integral.
 	if (mc_fmodf(x, 1.0f) == 0.0f && mc_fmodf(x, 2.0f) != 0.0f) {
 		return 1;
 	}
@@ -35,11 +35,11 @@ MC_TARGET_FUNC int mc_fisodd(double x, int frac)
 	if (x == 0.0) {
 		return 1;
 	}
-//#! Checking integral-part.
+//!# Checking integral-part.
 	if (frac == 1) {
 		mc_modf(x, &x);
 	}
-//#! Returns if x is odd-integral.
+//!# Returns if x is odd-integral.
 	if (mc_fmod(x, 1.0) == 0.0 && mc_fmod(x, 2.0) != 0.0) {
 		return 1;
 	}
@@ -51,11 +51,11 @@ MC_TARGET_FUNC int mc_fisoddl(long double x, int frac)
 	if (x == 0.0L) {
 		return 1;
 	}
-//#! Checking integral-part.
+//!# Checking integral-part.
 	if (frac == 1) {
 		mc_modfl(x, &x);
 	}
-//#! Returns if x is odd-integral.
+//!# Returns if x is odd-integral.
 	if (mc_fmodl(x, 1.0L) == 0.0 && mc_fmodl(x, 2.0L) != 0.0) {
 		return 1;
 	}

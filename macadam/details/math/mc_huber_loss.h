@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_huberloss.h
+// mc_huber_loss.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -10,12 +10,12 @@
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_rsqrt.h>
 
-#ifndef MC_HUBERLOSS_H
-#define MC_HUBERLOSS_H
+#ifndef MC_HUBER_LOSS_H
+#define MC_HUBER_LOSS_H
 
-#pragma mark - mc_huberloss -
+#pragma mark - mc_huber_loss -
 
-MC_TARGET_FUNC float mc_huberlossf(float r, float c, float s, int p)
+MC_TARGET_FUNC float mc_huber_lossf(float r, float c, float s, int p)
 {
 //!# Huber loss functions. Pass p=1 for pseudo.
 //!# Default settings c=1.345 and s=1 (scale)
@@ -32,7 +32,7 @@ MC_TARGET_FUNC float mc_huberlossf(float r, float c, float s, int p)
 	return d;
 }
 
-MC_TARGET_FUNC double mc_huberloss(double r, double c, double s, int p)
+MC_TARGET_FUNC double mc_huber_loss(double r, double c, double s, int p)
 {
 //!# Huber loss functions. Pass p=1 for pseudo.
 //!# Default settings c=1.345 and s=1 (scale)
@@ -49,7 +49,7 @@ MC_TARGET_FUNC double mc_huberloss(double r, double c, double s, int p)
 	return d;
 }
 
-MC_TARGET_FUNC long double mc_huberlossl(long double r, long double c, long double s, int p)
+MC_TARGET_FUNC long double mc_huber_lossl(long double r, long double c, long double s, int p)
 {
 //!# Huber loss functions. Pass p=1 for pseudo.
 //!# Default settings c=1.345 and s=1 (scale)
@@ -66,6 +66,6 @@ MC_TARGET_FUNC long double mc_huberlossl(long double r, long double c, long doub
 	return d;
 }
 
-#endif /* !MC_HUBERLOSS_H */
+#endif /* !MC_HUBER_LOSS_H */
 
 /* EOF */
