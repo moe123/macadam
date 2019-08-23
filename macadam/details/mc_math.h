@@ -106,6 +106,7 @@
 #	include <macadam/details/math/mc_legendre_qn.h>
 #	include <macadam/details/math/mc_lerp.h>
 #	include <macadam/details/math/mc_lgamma.h>
+#	include <macadam/details/math/mc_lmgamma.h>
 #	include <macadam/details/math/mc_log.h>
 #	include <macadam/details/math/mc_log10.h>
 #	include <macadam/details/math/mc_log10p1.h>
