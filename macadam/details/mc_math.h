@@ -36,6 +36,8 @@
 #	include <macadam/details/math/mc_bessely.h>
 #	include <macadam/details/math/mc_beta.h>
 #	include <macadam/details/math/mc_binomial.h>
+#	include <macadam/details/math/mc_bisquare_psi.h>
+#	include <macadam/details/math/mc_bisquare_rho.h>
 #	include <macadam/details/math/mc_bisquare.h>
 #	include <macadam/details/math/mc_biweight.h>
 #	include <macadam/details/math/mc_ceil.h>

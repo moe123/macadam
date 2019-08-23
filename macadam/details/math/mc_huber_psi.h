@@ -7,16 +7,14 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_HUBER_PSI_H
 #define MC_HUBER_PSI_H
 
-#pragma mark - mc_huber_psi -
+#pragma mark - mc_huber_psic -
 
-MC_TARGET_FUNC float mc_huber_psif(float r)
+MC_TARGET_FUNC float mc_huber_psicf(float r, float c)
 {
-	const float c = 1.345f;
 	if (r > c) {
 		return r;
 	}
@@ -26,9 +24,8 @@ MC_TARGET_FUNC float mc_huber_psif(float r)
 	return -c;
 }
 
-MC_TARGET_FUNC double mc_huber_psi(double r)
+MC_TARGET_FUNC double mc_huber_psic(double r, double c)
 {
-	const double c = 1.345;
 	if (r > c) {
 		return r;
 	}
@@ -38,9 +35,8 @@ MC_TARGET_FUNC double mc_huber_psi(double r)
 	return -c;
 }
 
-MC_TARGET_FUNC long double mc_huber_psil(long double r)
+MC_TARGET_FUNC long double mc_huber_psicl(long double r, long double c)
 {
-	const long double c = 1.345L;
 	if (r > c) {
 		return r;
 	}
@@ -48,6 +44,26 @@ MC_TARGET_FUNC long double mc_huber_psil(long double r)
 		return r;
 	}
 	return -c;
+}
+
+#pragma mark - mc_huber_psi -
+
+MC_TARGET_FUNC float mc_huber_psif(float r)
+{
+	const float c = 1.345f;
+	return mc_huber_psicf(r, c);
+}
+
+MC_TARGET_FUNC double mc_huber_psi(double r)
+{
+	const double c = 1.345;
+	return mc_huber_psic(r, c);
+}
+
+MC_TARGET_FUNC long double mc_huber_psil(long double r)
+{
+	const long double c = 1.345L;
+	return mc_huber_psicl(r, c);
 }
 
 #endif /* !MC_HUBER_PSI_H */
