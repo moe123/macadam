@@ -12,7 +12,6 @@
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_raise3.h>
-
 #include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_ZPOLYROOT3_H
@@ -32,7 +31,8 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 //!# Returns 2 if roots are real and at least two are equal.
 //!# Returns 3 if roots are real and distinct.
 //!# Returns 5 if first root is real, the two others are conjugate.
-	int r = -1;
+	int r         = -1;
+	const float e = 1E-05f;
 	if (!(a == 0.0f || d == 0.0f)) {
 		if (a != 1.0f) {
 			a = 1.0f / a;
@@ -44,7 +44,7 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 		const float t = (9.0f * b * c - 27.0f * d - 2.0f * mc_raise2f(b) * b) / 54.0f;
 		const float s = mc_raise3f(q) + mc_raise2f(t);
 
-		if (s == 0) {
+		if (mc_fabsf(s) < e) {
 			const float m = t > 0.0f ? mc_cbrtf(t) : -mc_cbrtf(-t);
 			*r1           = 2.0f * m - b / 3.0f;
 			*i1           = 0.0f;
@@ -99,7 +99,8 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 //!# Returns 2 if roots are real and at least two are equal.
 //!# Returns 3 if roots are real and distinct.
 //!# Returns 5 if first root is real, the two others are conjugate.
-	int r = -1;
+	int r          = -1;
+	const double e = 1E-09;
 	if (!(a == 0.0 || d == 0.0)) {
 		if (a != 1.0) {
 			a = 1.0 / a;
@@ -111,7 +112,7 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 		const double t = (9.0 * b * c - 27.0 * d - 2.0 * mc_raise2(b) * b) / 54.0;
 		const double s = mc_raise3(q) + mc_raise2(t);
 
-		if (s == 0) {
+		if (mc_fabs(s) < e) {
 			const double m = t > 0.0 ? mc_cbrt(t) : -mc_cbrt(-t);
 			*r1            = 2.0 * m - b / 3.0;
 			*i1            = 0.0;
@@ -166,7 +167,8 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 //!# Returns 2 if roots are real and at least two are equal.
 //!# Returns 3 if roots are real and distinct.
 //!# Returns 5 if first root is real, the two others are conjugate.
-	int r = -1;
+	int r               = -1;
+	const long double e = 1E-12L;
 	if (!(a == 0.0L || d == 0.0L)) {
 		if (a != 1.0L) {
 			a = 1.0L / a;
@@ -178,7 +180,7 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 		const long double t = (9.0L * b * c - 27.0L * d - 2.0L * mc_raise2l(b) * b) / 54.0L;
 		const long double s = mc_raise3l(q) + mc_raise2l(t);
 
-		if (s == 0) {
+		if (mc_fabsl(s) < e) {
 			const long double m = t > 0.0L ? mc_cbrtl(t) : -mc_cbrtl(-t);
 			*r1                 = 2.0L * m - b / 3.0L;
 			*i1                 = 0.0L;

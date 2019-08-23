@@ -28,8 +28,8 @@ MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 //!# Two roots of the quadratic equation: ax^2+bx+c=0.
 //!# Returns 1 if roots are real and equal.
 //!# Returns 2 if roots are real and distinct.
-//!# Returns 4 if roots are imaginary.
-	int r = -1;
+//!# Returns 4 if roots are conjugate.
+	int r         = -1;
 	const float e = 1E-05f;
 	const float s = mc_raise2f(b) - 4.0f * a * c;
 
@@ -46,7 +46,7 @@ MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 		*r2           = (-b - q) * (1.0f / (a * 2.0f));
 		*i2           = 0.0f;
 		r             = 2;
-	} else {
+	} else if (s < 0.0f) {
 		mc_zsqrtf(r1, i1, s, 0.0f);
 		mc_zaddf(r1, i1, -b, 0.0f, *r1, *i1);
 		mc_zfdivf(r1, i1, *r1, *i1, a * 2.0f);
@@ -68,9 +68,9 @@ MC_TARGET_PROC int mc_zpolyroot2(double a, double b, double c
 //!# Two roots of the quadratic equation: ax^2+bx+c=0.
 //!# Returns 1 if roots are real and equal.
 //!# Returns 2 if roots are real and distinct.
-//!# Returns 4 if roots are imaginary.
-	int r = -1;
-	const double e = 1E-10;
+//!# Returns 4 if roots are conjugate.
+	int r          = -1;
+	const double e = 1E-09;
 	const double s = mc_raise2(b) - 4.0 * a * c;
 
 	if (mc_fabs(s) < e) {
@@ -86,7 +86,7 @@ MC_TARGET_PROC int mc_zpolyroot2(double a, double b, double c
 		*r2            = (-b - q) * (1.0 / (a * 2.0));
 		*i2            = 0.0;
 		r              = 2;
-	} else {
+	} else if (s < 0.0) {
 		mc_zsqrt(r1, i1, s, 0.0);
 		mc_zadd(r1, i1, -b, 0.0, *r1, *i1);
 		mc_zfdiv(r1, i1, *r1, *i1, a * 2.0);
@@ -108,9 +108,9 @@ MC_TARGET_PROC int mc_zpolyroot2l(long double a, long double b, long double c
 //!# Two roots of the quadratic equation: ax^2+bx+c=0.
 //!# Returns 1 if roots are real and equal.
 //!# Returns 2 if roots are real and distinct.
-//!# Returns 4 if roots are imaginary.
-	int r = -1;
-	const long double e = 1E-15L;
+//!# Returns 4 if roots are conjugate.
+	int r               = -1;
+	const long double e = 1E-12L;
 	const long double s = mc_raise2l(b) - 4.0L * a * c;
 
 	if (mc_fabsl(s) < e) {
@@ -126,7 +126,7 @@ MC_TARGET_PROC int mc_zpolyroot2l(long double a, long double b, long double c
 		*r2                 = (-b - q) * (1.0L / (a * 2.0L));
 		*i2                 = 0.0L;
 		r                   = 2;
-	} else {
+	} else if (s < 0.0L) {
 		mc_zsqrtl(r1, i1, s, 0.0L);
 		mc_zaddl(r1, i1, -b, 0.0L, *r1, *i1);
 		mc_zfdivl(r1, i1, *r1, *i1, a * 2.0);
