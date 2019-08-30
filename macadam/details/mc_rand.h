@@ -190,9 +190,6 @@ MC_TARGET_FUNC float mc_randuf(float a, float b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
-	if (a == 0.0f && b == 1.0f) {
-		return mc_randuuf();
-	}
 	const float x = mc_cast(float, mc_rand());
 	const float u = mc_cast(float, mc_rand_max());
 	return x / (u + 1.0f) * (b - a + 1.0f) + a;
@@ -202,9 +199,6 @@ MC_TARGET_FUNC double mc_randu(double a, double b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
-	if (a == 0.0 && b == 1.0) {
-		return mc_randuu();
-	}
 	const double x = mc_cast(double, mc_rand());
 	const double u = mc_cast(double, mc_rand_max());
 	return x / (u + 1.0) * (b - a + 1.0) + a;
@@ -214,9 +208,6 @@ MC_TARGET_FUNC long double mc_randul(long double a, long double b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
-	if (a == 0.0L && b == 1.0L) {
-		return mc_randuul();
-	}
 	const long double x = mc_cast(long double, mc_rand());
 	const long double u = mc_cast(long double, mc_rand_max());
 	return x / (u + 1.0L) * (b - a + 1.0L) + a;
