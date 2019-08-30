@@ -152,6 +152,7 @@
 #	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sinc.h>
 #	include <macadam/details/math/mc_sincos.h>
+#	include <macadam/details/math/mc_sincospi.h>
 #	include <macadam/details/math/mc_sinh.h>
 #	include <macadam/details/math/mc_sinhcosh.h>
 #	include <macadam/details/math/mc_sinpi.h>

@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fisint.h>
 #include <macadam/details/math/mc_fisodd.h>
 #include <macadam/details/math/mc_fisval.h>
@@ -28,7 +29,10 @@ MC_TARGET_PROC int64_t mc_xpihnpif(float x, float * z)
 #	endif
 	*z = 0.0f;
 	if (mc_fisvalf(x)) {
-		if (mc_fisintf(x)) {
+		if (mc_fabsf(x) <= 0.25f) {
+			 r = 0;
+			*z = x;
+		} else if (mc_fisintf(x)) {
 			if (mc_fisoddf(x, 0)) {
 				r = 2;
 			}
@@ -45,7 +49,7 @@ MC_TARGET_PROC int64_t mc_xpihnpif(float x, float * z)
 				 r = (mc_cast(uint64_t, r) >> 1) & 7;
 				*z = x - 0.25f * w;
 			} else {
-				 r = 0.0f;
+				 r = 0;
 				*z = x;
 			}
 		}
@@ -65,7 +69,10 @@ MC_TARGET_PROC int64_t mc_xpihnpi(double x, double * z)
 #	endif
 	*z = 0.0;
 	if (mc_fisval(x)) {
-		if (mc_fisint(x)) {
+		if (mc_fabs(x) <= 0.25) {
+			 r = 0;
+			*z = x;
+		} else if (mc_fisint(x)) {
 			if (mc_fisodd(x, 0)) {
 				r = 2;
 			}
@@ -82,7 +89,7 @@ MC_TARGET_PROC int64_t mc_xpihnpi(double x, double * z)
 				 r = (mc_cast(uint64_t, r) >> 1) & 7;
 				*z = x - 0.25 * w;
 			} else {
-				 r = 0.0;
+				 r = 0;
 				*z = x;
 			}
 		}
@@ -102,7 +109,10 @@ MC_TARGET_PROC int64_t mc_xpihnpil(long double x, long double * z)
 #	endif
 	*z = 0.0L;
 	if (mc_fisvall(x)) {
-		if (mc_fisintl(x)) {
+		if (mc_fabsl(x) <= 0.25L) {
+			 r = 0;
+			*z = x;
+		} else if (mc_fisintl(x)) {
 			if (mc_fisoddl(x, 0)) {
 				r = 2;
 			}
@@ -119,7 +129,7 @@ MC_TARGET_PROC int64_t mc_xpihnpil(long double x, long double * z)
 				 r = (mc_cast(uint64_t, r) >> 1) & 7;
 				*z = x - 0.25L * w;
 			} else {
-				 r = 0.0L;
+				 r = 0;
 				*z = x;
 			}
 		}
