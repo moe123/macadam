@@ -15,7 +15,7 @@
 
 #pragma mark - mc_cospi -
 
-MC_TARGET_FUNC float mc_cospif (float x)
+MC_TARGET_FUNC float mc_cospif(float x)
 {
 	float r = 0.0f;
 	int64_t i = mc_xpihnpif(x, &r) & 3;

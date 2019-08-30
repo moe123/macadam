@@ -13,7 +13,7 @@
 
 #pragma mark - mc_acospi -
 
-MC_TARGET_FUNC float mc_acospif (float x)
+MC_TARGET_FUNC float mc_acospif(float x)
 {
 	const float y = mc_acosf(x);
 	return y * MCK_KF(MCK_1_PI);

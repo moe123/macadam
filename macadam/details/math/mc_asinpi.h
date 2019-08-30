@@ -13,7 +13,7 @@
 
 #pragma mark - mc_asinpi -
 
-MC_TARGET_FUNC float mc_asinpif (float x)
+MC_TARGET_FUNC float mc_asinpif(float x)
 {
 	const float y = mc_asinf(x);
 	return y * MCK_KF(MCK_1_PI);

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_atan2pi -
 
-MC_TARGET_FUNC float mc_atan2pif (float y, float x)
+MC_TARGET_FUNC float mc_atan2pif(float y, float x)
 {
 	const float z = mc_atan2f(y, x);
 	return z * MCK_KF(MCK_1_PI);

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_atanpi -
 
-MC_TARGET_FUNC float mc_atanpif (float x)
+MC_TARGET_FUNC float mc_atanpif(float x)
 {
 	const float y = mc_atanf(x);
 	return y * MCK_KF(MCK_1_PI);
