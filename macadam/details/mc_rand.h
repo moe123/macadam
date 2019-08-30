@@ -17,9 +17,9 @@
 #define MC_RAND_H
 
 #	if MCTARGET_USE_MARSAGLIAMWC
-static volatile unsigned int mc_rseeds_s[]  = { 2, 8, 16, 128 };
-#	else
 static volatile unsigned int mc_rseeds_s[]  = { 1234, 0, 5678, 0 };
+#	else
+static volatile unsigned int mc_rseeds_s[]  = { 2, 8, 16, 128 };
 #	endif
 
 static volatile unsigned int mc_rand_init_s = 0;
