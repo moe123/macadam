@@ -13,6 +13,10 @@
 #	include <macadam/details/math/mc_sqrt.h>
 #	include <macadam/details/math/mc_zsqrt.h>
 
+#	define MCTARGET_USE_LIBCRAND     1
+#	define MCTARGET_USE_MARSAGLIAMWC 1
+#	define MCTARGET_USE_BOXMULLER    1
+
 #ifndef MC_RAND_H
 #define MC_RAND_H
 
@@ -72,13 +76,13 @@ MC_TARGET_PROC void mc_ssrand()
 #	else
 	clck = clock();
 #	endif
-	x    = mc_cast(unsigned long, ((clck) * CLOCKS_PER_SEC));
+	x    = mc_cast_exp(unsigned long, clck * CLOCKS_PER_SEC);
 //!# Building seeds from whatever is there.
-	s5   = s5 + mc_cast(unsigned int, (x >> 9 & 0xFF));
-	s4   = s4 + mc_cast(unsigned int, (x >> 7 & 0xFF));
-	s3   = s3 + mc_cast(unsigned int, (x >> 5 & 0xFF));
-	s2   = s2 + mc_cast(unsigned int, (x >> 3 & 0xFF));
-	s1   = s1 + mc_cast(unsigned int, (x >> 1 & 0xFF));
+	s5   = s5 + mc_cast_exp(unsigned int, x >> 9 & 0xFF);
+	s4   = s4 + mc_cast_exp(unsigned int, x >> 7 & 0xFF);
+	s3   = s3 + mc_cast_exp(unsigned int, x >> 5 & 0xFF);
+	s2   = s2 + mc_cast_exp(unsigned int, x >> 3 & 0xFF);
+	s1   = s1 + mc_cast_exp(unsigned int, x >> 1 & 0xFF);
 //!# Assigning new seeds.
 	mc_srand(s1, s2, s3, s4, s5);
 }
@@ -225,8 +229,10 @@ MC_TARGET_PROC float mc_randstdgf(void)
 		r = x;
 	} else {
 		do {
-			u = mc_randuf(0.0f, 1.0f);
-			v = mc_randuf(0.0f, 1.0f);
+			const float r1 = mc_randuf(0.0f, 1.0f);
+			const float r2 = mc_randuf(0.0f, 1.0f);
+			u              = r1;
+			v              = r2;
 		}
 		while (u <= MCLIMITS_EPSILONF);
 		r = mc_sqrtf(-2.0f * mc_logf(u)) * mc_cosf(MCK_KF(MCK_2PI) * v);
@@ -245,9 +251,9 @@ MC_TARGET_PROC float mc_randstdgf(void)
 		do {
 			const float r1 = mc_randuf(0.0f, 1.0f);
 			const float r2 = mc_randuf(0.0f, 1.0f);
-			u = 2.0f * r1 - 1.0f;
-			v = 2.0f * r2 - 1.0f;
-			s	= mc_raise2f(u) + mc_raise2f(v);
+			u              = 2.0f * r1 - 1.0f;
+			v              = 2.0f * r2 - 1.0f;
+			s              = mc_raise2f(u) + mc_raise2f(v);
 		} while (s < 1.0f && s > 0.0f);
 		w = -2.0f * mc_logf(s) * (1.0f / s);
 		if (w < 0.0f) {
@@ -275,8 +281,10 @@ MC_TARGET_PROC double mc_randstdg(void)
 		r = x;
 	} else {
 		do {
-			u = mc_randu(0.0, 1.0);
-			v = mc_randu(0.0, 1.0);
+			const double r1 = mc_randu(0.0, 1.0);
+			const double r2 = mc_randu(0.0, 1.0);
+			u               = r1;
+			v               = r2;
 		}
 		while (u <= MCLIMITS_EPSILON);
 		r = mc_sqrt(-2.0 * mc_log(u)) * mc_cos(MCK_K(MCK_2PI) * v);
@@ -295,9 +303,9 @@ MC_TARGET_PROC double mc_randstdg(void)
 		do {
 			const double r1 = mc_randu(0.0, 1.0);
 			const double r2 = mc_randu(0.0, 1.0);
-			u = 2.0 * r1 - 1.0;
-			v = 2.0 * r2 - 1.0;
-			s	= mc_raise2(u) + mc_raise2(v);
+			u               = 2.0 * r1 - 1.0;
+			v               = 2.0 * r2 - 1.0;
+			s               = mc_raise2(u) + mc_raise2(v);
 		} while (s < 1.0 && s > 0.0);
 		w = -2.0 * mc_log(s) * (1.0 / s);
 		if (w < 0.0) {
@@ -325,8 +333,10 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 		r = x;
 	} else {
 		do {
-			u = mc_randul(0.0L, 1.0L);
-			v = mc_randul(0.0L, 1.0L);
+			const long double r1 = mc_randul(0.0L, 1.0L);
+			const long double r2 = mc_randul(0.0L, 1.0L);
+			u                    = r1;
+			v                    = r2;
 		}
 		while (u <= MCLIMITS_EPSILONL);
 		r = mc_sqrtl(-2.0L * mc_logl(u)) * mc_cosl(MCK_KL(MCK_2PI) * v);
@@ -345,9 +355,9 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 		do {
 			const long double r1 = mc_randul(0.0L, 1.0L);
 			const long double r2 = mc_randul(0.0L, 1.0L);
-			u = 2.0L * r1 - 1.0L;
-			v = 2.0L * r2 - 1.0L;
-			s	= mc_raise2l(u) + mc_raise2l(v);
+			u                    = 2.0L * r1 - 1.0L;
+			v                    = 2.0L * r2 - 1.0L;
+			s                    = mc_raise2l(u) + mc_raise2l(v);
 		} while (s < 1.0 && s > 0.0);
 		w = -2.0L * mc_logl(s) * (1.0L / s);
 		if (w < 0.0L) {

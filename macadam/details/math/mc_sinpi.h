@@ -10,7 +10,6 @@
 #include <macadam/details/math/mc_sin.h>
 #include <macadam/details/math/mc_xpihnpi.h>
 
-
 #ifndef MC_SINPI_H
 #define MC_SINPI_H
 
