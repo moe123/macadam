@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_fmod.h>
 #include <macadam/details/math/mc_tan.h>
 
