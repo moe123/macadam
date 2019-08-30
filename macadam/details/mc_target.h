@@ -279,6 +279,7 @@
 #	if MC_TARGET_CPP98
 #		include <cstdio>
 #		include <climits>
+#		include <ctime>
 #		include <cstdlib>
 #		include <cstdint>
 #		include <cinttypes>
@@ -289,6 +290,7 @@
 #	elif MC_TARGET_HAVE_TGMATH
 #		include <stdio.h>
 #		include <limits.h>
+#		include <time.h>
 #		include <stdlib.h>
 #		include <stdint.h>
 #		include <inttypes.h>
@@ -298,6 +300,7 @@
 #	else
 #		include <stdio.h>
 #		include <limits.h>
+#		include <time.h>
 #		include <stdlib.h>
 #		include <stdint.h>
 #		include <inttypes.h>

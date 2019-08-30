@@ -48,10 +48,12 @@ MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 		r             = 2;
 	} else if (s < 0.0f) {
 		mc_zsqrtf(r1, i1, s, 0.0f);
+		*r2 = *r1;
+		*i2 = *i1;
+
 		mc_zaddf(r1, i1, -b, 0.0f, *r1, *i1);
 		mc_zfdivf(r1, i1, *r1, *i1, a * 2.0f);
 
-		mc_zsqrtf(r2, i2, s, 0.0f);
 		mc_zsubf(r2, i2, -b, 0.0f, *r2, *i2);
 		mc_zfdivf(r2, i2, *r2, *i2, a * 2.0f);
 		r = 4;
@@ -88,10 +90,12 @@ MC_TARGET_PROC int mc_zpolyroot2(double a, double b, double c
 		r              = 2;
 	} else if (s < 0.0) {
 		mc_zsqrt(r1, i1, s, 0.0);
+		*r2 = *r1;
+		*i2 = *i1;
+
 		mc_zadd(r1, i1, -b, 0.0, *r1, *i1);
 		mc_zfdiv(r1, i1, *r1, *i1, a * 2.0);
 
-		mc_zsqrt(r2, i2, s, 0.0);
 		mc_zsub(r2, i2, -b, 0.0, *r2, *i2);
 		mc_zfdiv(r2, i2, *r2, *i2, a * 2.0);
 		r = 4;
@@ -128,10 +132,12 @@ MC_TARGET_PROC int mc_zpolyroot2l(long double a, long double b, long double c
 		r                   = 2;
 	} else if (s < 0.0L) {
 		mc_zsqrtl(r1, i1, s, 0.0L);
+		*r2 = *r1;
+		*i2 = *i1;
+
 		mc_zaddl(r1, i1, -b, 0.0L, *r1, *i1);
 		mc_zfdivl(r1, i1, *r1, *i1, a * 2.0);
 
-		mc_zsqrtl(r2, i2, s, 0.0L);
 		mc_zsubl(r2, i2, -b, 0.0L, *r2, *i2);
 		mc_zfdivl(r2, i2, *r2, *i2, a * 2.0L);
 		r = 4;
