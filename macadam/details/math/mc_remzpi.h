@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// xpihnpi.h
+// mc_remzpi.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -12,12 +12,12 @@
 #include <macadam/details/math/mc_fisval.h>
 #include <macadam/details/math/mc_floor.h>
 
-#ifndef MC_XPIHNPI_H
-#define MC_XPIHNPI_H
+#ifndef MC_REMZPI_H
+#define MC_REMZPI_H
 
-#pragma mark - xpihnpi -
+#pragma mark - mc_remzpi -
 
-MC_TARGET_PROC int64_t mc_xpihnpif(float x, float * z)
+MC_TARGET_PROC int64_t mc_remzpif(float x, float * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4.
 	int64_t r = 0;
@@ -57,7 +57,7 @@ MC_TARGET_PROC int64_t mc_xpihnpif(float x, float * z)
 	return r;
 }
 
-MC_TARGET_PROC int64_t mc_xpihnpi(double x, double * z)
+MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4.
 	int64_t r = 0;
@@ -97,7 +97,7 @@ MC_TARGET_PROC int64_t mc_xpihnpi(double x, double * z)
 	return r;
 }
 
-MC_TARGET_PROC int64_t mc_xpihnpil(long double x, long double * z)
+MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4.
 	int64_t r = 0;
@@ -137,6 +137,6 @@ MC_TARGET_PROC int64_t mc_xpihnpil(long double x, long double * z)
 	return r;
 }
 
-#endif /* !MC_XPIHNPI_H */
+#endif /* !MC_REMZPI_H */
 
 /* EOF */

@@ -6,8 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_remzpi.h>
 #include <macadam/details/math/mc_sincos.h>
-#include <macadam/details/math/mc_xpihnpi.h>
 
 #ifndef MC_SINCOSPI_H
 #define MC_SINCOSPI_H
@@ -17,7 +17,7 @@
 MC_TARGET_FUNC void mc_sincospif(float x, float * sinp, float * cosp)
 {
 	float z   = 0.0f, ss = 0.0f, cc = 0.0f;
-	int64_t i = mc_xpihnpif(x, &z) & 3;
+	int64_t i = mc_remzpif(x, &z) & 3;
 	z         = MCK_KF(MCK_PI) * z;
 	mc_sincosf(z, &ss, &cc);
 	switch (i) {
@@ -42,7 +42,7 @@ MC_TARGET_FUNC void mc_sincospif(float x, float * sinp, float * cosp)
 MC_TARGET_FUNC void mc_sincospi(double x, double * sinp, double * cosp)
 {
 	double z  = 0.0, ss = 0.0, cc = 0.0;
-	int64_t i = mc_xpihnpi(x, &z) & 3;
+	int64_t i = mc_remzpi(x, &z) & 3;
 	z         = MCK_K(MCK_PI) * z;
 	mc_sincos(z, &ss, &cc);
 	switch (i) {
@@ -67,7 +67,7 @@ MC_TARGET_FUNC void mc_sincospi(double x, double * sinp, double * cosp)
 MC_TARGET_FUNC void mc_sincospil(long double x, long double * sinp, long double * cosp)
 {
 	long double z = 0.0L, ss = 0.0L, cc = 0.0L;
-	int64_t i     = mc_xpihnpil(x, &z) & 3;
+	int64_t i     = mc_remzpil(x, &z) & 3;
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
 	z             = M_PIl * z;
 #	else
