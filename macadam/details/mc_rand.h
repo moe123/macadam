@@ -13,10 +13,6 @@
 #	include <macadam/details/math/mc_sqrt.h>
 #	include <macadam/details/math/mc_zsqrt.h>
 
-#	define MCTARGET_USE_LIBCRAND     1
-#	define MCTARGET_USE_MARSAGLIAMWC 1
-#	define MCTARGET_USE_BOXMULLER    1
-
 #ifndef MC_RAND_H
 #define MC_RAND_H
 
@@ -119,7 +115,7 @@ MC_TARGET_PROC unsigned int mc_rand(void)
 	b              = ((mc_rseeds_s[0] << 16) ^ (mc_rseeds_s[1] & 0177777));
 	if (!(b < mc_rand_max())) {
 		mc_ssrand();
-		return mc_rand();
+		return mc_rand_max();
 	}
 	return b;
 #	else
@@ -139,7 +135,7 @@ MC_TARGET_PROC unsigned int mc_rand(void)
 
 	if (!(b < mc_rand_max())) {
 		mc_ssrand();
-		return mc_rand();
+		return mc_rand_max();
 	}
 	return b;
 #	endif
@@ -150,9 +146,12 @@ MC_TARGET_PROC float mc_randuuf(void)
 //!# 32-bits Random number generator i.e sample from uniform
 //!# distribution range [0, 1] (theoretically may include low and high).
 	const float a = mc_cast(float, mc_rand());
-#	if MCTARGET_USE_LIBCRAND
+#	if MCTARGET_USE_LIBCRAND && RAND_MAX < MCLIMITS_IMAX
 	const float b = mc_cast(float, mc_rand_max());
 	return a / (b + 1.0f);
+#	elif MCTARGET_USE_LIBCRAND
+	const float b = mc_cast(float, mc_rand_max());
+	return a / b;
 #	else
 	const float b = +2.32830643708079700000000000000000000000E-10f;
 	return a * b;
@@ -195,8 +194,13 @@ MC_TARGET_FUNC float mc_randuf(float a, float b)
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
 	const float x = mc_cast(float, mc_rand());
+#	if MCTARGET_USE_LIBCRAND && RAND_MAX < MCLIMITS_IMAX
+	const float u = mc_cast(float, mc_rand_max());
+	return x / u * (b - a + 1.0f) + a;
+#	else
 	const float u = mc_cast(float, mc_rand_max());
 	return x / (u + 1.0f) * (b - a + 1.0f) + a;
+#	endif
 }
 
 MC_TARGET_FUNC double mc_randu(double a, double b)
@@ -234,7 +238,7 @@ MC_TARGET_PROC float mc_randstdgf(void)
 			u              = r1;
 			v              = r2;
 		}
-		while (u <= MCLIMITS_EPSILONF);
+		while (u <= MCLIMITS_EPSILONF * 2.0f);
 		r = mc_sqrtf(-2.0f * mc_logf(u)) * mc_cosf(MCK_KF(MCK_2PI) * v);
 		x = mc_sqrtf(-2.0f * mc_logf(u)) * mc_sinf(MCK_KF(MCK_2PI) * v);
 	}
@@ -286,7 +290,7 @@ MC_TARGET_PROC double mc_randstdg(void)
 			u               = r1;
 			v               = r2;
 		}
-		while (u <= MCLIMITS_EPSILON);
+		while (u <= MCLIMITS_EPSILON * 2.0);
 		r = mc_sqrt(-2.0 * mc_log(u)) * mc_cos(MCK_K(MCK_2PI) * v);
 		x = mc_sqrt(-2.0 * mc_log(u)) * mc_sin(MCK_K(MCK_2PI) * v);
 	}
@@ -338,7 +342,7 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 			u                    = r1;
 			v                    = r2;
 		}
-		while (u <= MCLIMITS_EPSILONL);
+		while (u <= MCLIMITS_EPSILONL  * 2.0L);
 		r = mc_sqrtl(-2.0L * mc_logl(u)) * mc_cosl(MCK_KL(MCK_2PI) * v);
 		x = mc_sqrtl(-2.0L * mc_logl(u)) * mc_sinl(MCK_KL(MCK_2PI) * v);
 	}
