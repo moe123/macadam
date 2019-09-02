@@ -7,14 +7,24 @@
 //
 
 #	include <macadam/details/math/mc_cos.h>
+#	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_log.h>
 #	include <macadam/details/math/mc_raise2.h>
+#	include <macadam/details/math/mc_rsqrt.h>
 #	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sqrt.h>
 #	include <macadam/details/math/mc_zsqrt.h>
 
 #ifndef MC_RAND_H
 #define MC_RAND_H
+
+#	undef  MCTARGET_USE_LIBCRAND
+#	undef  MCTARGET_USE_MARSAGLIAMWC
+#	undef  MCTARGET_USE_MARSAGLIAXOR128
+#	undef  MCTARGET_USE_BOXMULLER
+
+#	undef  MCTARGET_USE_LFSR113
+#	define MCTARGET_USE_LFSR113 1
 
 #	if MCTARGET_USE_MARSAGLIAMWC
 static volatile unsigned int mc_rseeds_s[]  = { 1234, 0, 5678, 0 };
@@ -89,6 +99,8 @@ MC_TARGET_PROC unsigned int mc_rand_max(void)
 	return mc_cast(const unsigned int, RAND_MAX);
 #	elif MCTARGET_USE_MARSAGLIAMWC
 	return MCLIMITS_UIMAX;
+#	elif MCTARGET_USE_LFSR113
+	return MCLIMITS_UIMAX;
 #	else
 	return MCLIMITS_UIMAX;
 #	endif
@@ -118,7 +130,7 @@ MC_TARGET_PROC unsigned int mc_rand(void)
 		return mc_rand_max();
 	}
 	return b;
-#	else
+#	elif MCTARGET_USE_LFSR113
 //!# 32-bits Random number generator [0, UINT_MAX].
 	unsigned int b;
 //!# Tables of maximally equidistributed combined LFSR generators. Pierre L'Ecuyer.
@@ -138,8 +150,28 @@ MC_TARGET_PROC unsigned int mc_rand(void)
 		return mc_rand_max();
 	}
 	return b;
+#	else
+//!# 32-bits Random number generator [0, UINT_MAX].
+	unsigned int b, s0;
+//!# @see xorshift128, Marsaglia "Xorshift RNGs" p. 5.
+	b               = mc_rseeds_s[3];
+	s0              = mc_rseeds_s[0];
+	mc_rseeds_s[3]  = mc_rseeds_s[2];
+	mc_rseeds_s[2]  = mc_rseeds_s[1];
+	mc_rseeds_s[1]  = s0;
+	b              ^= b << 11;
+	b              ^= b >> 8;
+	b               = mc_rseeds_s[0] = b ^ s0 ^ (s0 >> 19);
+
+	if (!(b < mc_rand_max())) {
+		mc_ssrand();
+		return mc_rand_max();
+	}
+	return b;
 #	endif
 }
+
+#pragma mark - mc_randuu -
 
 MC_TARGET_PROC float mc_randuuf(void)
 {
@@ -189,6 +221,8 @@ MC_TARGET_PROC long double mc_randuul(void)
 #	endif
 }
 
+#pragma mark - mc_randu -
+
 MC_TARGET_FUNC float mc_randuf(float a, float b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
@@ -221,6 +255,8 @@ MC_TARGET_FUNC long double mc_randul(long double a, long double b)
 	return x / (u + 1.0L) * (b - a + 1.0L) + a;
 }
 
+#pragma mark - mc_randstdg -
+
 MC_TARGET_PROC float mc_randstdgf(void)
 {
 #	if MCTARGET_USE_BOXMULLER
@@ -248,7 +284,7 @@ MC_TARGET_PROC float mc_randstdgf(void)
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
 	static volatile float x     = 0.0f;
-	float r, s = 0.0f, u, v, w;
+	float r, s0 = 0.0f, u, v, w;
 	if (phase_s != 0) {
 		r = x;
 	} else {
@@ -257,16 +293,16 @@ MC_TARGET_PROC float mc_randstdgf(void)
 			const float r2 = mc_randuf(0.0f, 1.0f);
 			u              = 2.0f * r1 - 1.0f;
 			v              = 2.0f * r2 - 1.0f;
-			s              = mc_raise2f(u) + mc_raise2f(v);
-		} while (s < 1.0f && s > 0.0f);
-		w = -2.0f * mc_logf(s) * (1.0f / s);
+			s0              = mc_raise2f(u) + mc_raise2f(v);
+		} while (s0 < 1.0f && s0 > 0.0f);
+		w = -2.0f * mc_logf(s0) * (1.0f / s0);
 		if (w < 0.0f) {
-			mc_zsqrtf(&w, &s, w, 0.0f);
+			mc_zsqrtf(&w, &s0, w, 0.0f);
 		} else {
-			s = mc_sqrtf(w);
+			s0 = mc_sqrtf(w);
 		}
-		r = u * s;
-		x = v * s;
+		r = u * s0;
+		x = v * s0;
 	}
 	phase_s = !phase_s;
 	return r;
@@ -300,7 +336,7 @@ MC_TARGET_PROC double mc_randstdg(void)
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
 	static volatile double x    = 0.0;
-	double r, s = 0.0, u, v, w;
+	double r, s0 = 0.0, u, v, w;
 	if (phase_s != 0) {
 		r = x;
 	} else {
@@ -309,16 +345,16 @@ MC_TARGET_PROC double mc_randstdg(void)
 			const double r2 = mc_randu(0.0, 1.0);
 			u               = 2.0 * r1 - 1.0;
 			v               = 2.0 * r2 - 1.0;
-			s               = mc_raise2(u) + mc_raise2(v);
-		} while (s < 1.0 && s > 0.0);
-		w = -2.0 * mc_log(s) * (1.0 / s);
+			s0               = mc_raise2(u) + mc_raise2(v);
+		} while (s0 < 1.0 && s0 > 0.0);
+		w = -2.0 * mc_log(s0) * (1.0 / s0);
 		if (w < 0.0) {
-			mc_zsqrt(&w, &s, w, 0.0);
+			mc_zsqrt(&w, &s0, w, 0.0);
 		} else {
-			s = mc_sqrt(w);
+			s0 = mc_sqrt(w);
 		}
-		r = u * s;
-		x = v * s;
+		r = u * s0;
+		x = v * s0;
 	}
 	phase_s = !phase_s;
 	return r;
@@ -351,8 +387,8 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 #	else
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s   = 0;
-	static volatile long double x = 0.0;
-	long double r, s = 0.0, u, v, w;
+	static volatile long double x = 0.0L;
+	long double r, s0 = 0.0L, u, v, w;
 	if (phase_s != 0) {
 		r = x;
 	} else {
@@ -361,21 +397,124 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 			const long double r2 = mc_randul(0.0L, 1.0L);
 			u                    = 2.0L * r1 - 1.0L;
 			v                    = 2.0L * r2 - 1.0L;
-			s                    = mc_raise2l(u) + mc_raise2l(v);
-		} while (s < 1.0 && s > 0.0);
-		w = -2.0L * mc_logl(s) * (1.0L / s);
+			s0                    = mc_raise2l(u) + mc_raise2l(v);
+		} while (s0 < 1.0 && s0 > 0.0);
+		w = -2.0L * mc_logl(s0) * (1.0L / s0);
 		if (w < 0.0L) {
-			mc_zsqrtl(&w, &s, w, 0.0L);
+			mc_zsqrtl(&w, &s0, w, 0.0L);
 		} else {
-			s = mc_sqrtl(w);
+			s0 = mc_sqrtl(w);
 		}
-		r = u * s;
-		x = v * s;
+		r = u * s0;
+		x = v * s0;
 	}
 	phase_s = !phase_s;
 	return r;
 #	endif
 }
+
+#pragma mark - mc_randlgam -
+
+MC_TARGET_FUNC float mc_randlgamf(float a)
+{
+//!# A Simple Gamma Random Number Generator for Arbitrary Shape Parameters, Hisashi Tanizaki.
+//!# @see https://pdfs.semanticscholar.org/a902/665feae2e44da0e6d3ab034cc7c9a25ff518.pdf.
+	float r  = 0.0f;
+	float b0 = 0.0f, b1 = 0.0f, c0 = 1.0f, c1 = 0.0f, y = 0.0f, x = 0.0f, u = 0.0f, v = 0.0f;
+	if (a > 0.0f && a <= 0.4f) {
+		r = 1.0f / a;
+	} else if (a > 0.4f && a <= 4.0f) {
+		r = 1.0f / a + (1.0f / a) * (a - 0.4f) / 3.6f;
+	} else if (a > 4.0f) {
+		r = mc_rsqrtf(a);
+	}
+	if (r != 0.0f) {
+		b0 = a - 1.0f * (1.0f / r);
+		b1 = a + 1.0f * (1.0f / r);
+		c0 = a > 0.0f && a <= 0.4f ? 0.0f : a > 0.4f ? b0 * (mc_logf(b0) - 1.0f) * 0.5f : c0;
+		c1 = b1 * (mc_logf(b1) - 1.0f) * 0.5f;
+		do {
+			while (y < 0) {
+				const float r1 = mc_randuf(0.0f, 1.0f);
+				const float r2 = mc_randuf(0.0f, 1.0f);
+				u              = c0 + mc_logf(r1);
+				v              = c1 + mc_logf(r2);
+				y              = r * (b0 * v - b1 * u);
+			}
+			x = r * (v - u);
+		} while (y < x);
+		r = x;
+	}
+	return r;
+}
+
+MC_TARGET_FUNC double mc_randlgam(double a)
+{
+//!# A Simple Gamma Random Number Generator for Arbitrary Shape Parameters, Hisashi Tanizaki.
+//!# @see https://pdfs.semanticscholar.org/a902/665feae2e44da0e6d3ab034cc7c9a25ff518.pdf.
+	double r  = 0.0;
+	double b0 = 0.0, b1 = 0.0, c0 = 1.0, c1 = 0.0, y = 0.0, x = 0.0, u = 0.0, v = 0.0;
+	if (a > 0.0 && a <= 0.4) {
+		r = 1.0 / a;
+	} else if (a > 0.4 && a <= 4.0) {
+		r = 1.0 / a + (1.0 / a) * (a - 0.4) / 3.6;
+	} else if (a > 4.0) {
+		r = mc_rsqrt(a);
+	}
+	if (r != 0.0) {
+		b0 = a - 1.0 * (1.0 / r);
+		b1 = a + 1.0 * (1.0 / r);
+		c0 = a > 0.0 && a <= 0.4 ? 0.0 : a > 0.4 ? b0 * (mc_log(b0) - 1.0) * 0.5 : c0;
+		c1 = b1 * (mc_log(b1) - 1.0) * 0.5;
+		do {
+			while (y < 0) {
+				const double r1 = mc_randu(0.0, 1.0);
+				const double r2 = mc_randu(0.0, 1.0);
+				u               = c0 + mc_log(r1);
+				v               = c1 + mc_log(r2);
+				y               = r * (b0 * v - b1 * u);
+			}
+			x = r * (v - u);
+		} while (y < x);
+		r = x;
+	}
+	return r;
+}
+
+MC_TARGET_FUNC long double mc_randlgaml(long double a)
+{
+//!# A Simple Gamma Random Number Generator for Arbitrary Shape Parameters, Hisashi Tanizaki.
+//!# @see https://pdfs.semanticscholar.org/a902/665feae2e44da0e6d3ab034cc7c9a25ff518.pdf.
+	long double r  = 0.0L;
+	long double b0 = 0.0L, b1 = 0.0L, c0 = 1.0L, c1 = 0.0L, y = 0.0L, x = 0.0L, u = 0.0L, v = 0.0L;
+	if (a > 0.0L && a <= 0.4L) {
+		r = 1.0L / a;
+	} else if (a > 0.4L && a <= 4.0L) {
+		r = 1.0L / a + (1.0L / a) * (a - 0.4L) / 3.6L;
+	} else if (a > 4.0L) {
+		r = mc_rsqrtl(a);
+	}
+	if (r != 0.0L) {
+		b0 = a - 1.0L * (1.0L / r);
+		b1 = a + 1.0L * (1.0L / r);
+		c0 = a > 0.0L && a <= 0.4L ? 0.0L : a > 0.4L ? b0 * (mc_logl(b0) - 1.0L) * 0.5L : c0;
+		c1 = b1 * (mc_logl(b1) - 1.0L) * 0.5L;
+		do {
+			while (y < 0) {
+				const long double r1 = mc_randul(0.0L, 1.0L);
+				const long double r2 = mc_randul(0.0L, 1.0L);
+				u              = c0 + mc_logl(r1);
+				v              = c1 + mc_logl(r2);
+				y              = r * (b0 * v - b1 * u);
+			}
+			x = r * (v - u);
+		} while (y < x);
+		r = x;
+	}
+	return r;
+}
+
+#pragma mark - mc_randg -
 
 MC_TARGET_FUNC float mc_randgf(float mu, float std1)
 {
@@ -393,6 +532,26 @@ MC_TARGET_FUNC long double mc_randgl(long double mu, long double std1)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
 	return mu + std1 * mc_randstdgl();
+}
+
+#pragma mark - mc_randgm -
+
+MC_TARGET_FUNC float mc_randgmf(float a)
+{
+//!# Random number from Gamma distribution for arbitrary shape a > 0.
+	return mc_expf(mc_randlgamf(a));
+}
+
+MC_TARGET_FUNC double mc_randgm(double a)
+{
+//!# Random number from Gamma distribution for arbitrary shape a > 0.
+	return mc_exp(mc_randlgam(a));
+}
+
+MC_TARGET_FUNC long double mc_randgml(long double a)
+{
+//!# Random number from Gamma distribution for arbitrary shape a > 0.
+	return mc_expl(mc_randlgaml(a));
 }
 
 #endif /* !MC_RAND_H */
