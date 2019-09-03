@@ -415,20 +415,21 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 
 #pragma mark - mc_randlgam -
 
-MC_TARGET_FUNC float mc_randlgamf(float k)
+MC_TARGET_FUNC float mc_randlgamf(float a, float l)
 {
-//!# Log Gamma Random Number Generator k=shape, scale=theta=1.
-	float r = 0.0f, b, c, v, u;
+//!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
+//!# Log Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+	float r = 0.0f, d, c, v, u;
 	unsigned int j = 0;
-	if (k <= 0.0f) {
+	if (a <= 0.0f || l <= 0.0f) {
 		return r;
 	}
-	if ( k < 1.0f) {
+	if ( a < 1.0f) {
 		j = 1;
-		k = k + 1.0f;
+		a = a + 1.0f;
 	}
-	b = k - 1.0f / 3.0f;
-	c = 1.0f / 3.0f / mc_sqrtf(b);
+	d = a - 1.0f / 3.0f;
+	c = 1.0f / 3.0f / mc_sqrtf(d);
 	do {
 		do {
 			r = mc_randstdgf();
@@ -441,28 +442,29 @@ MC_TARGET_FUNC float mc_randlgamf(float k)
 			break;
 		}
 		u = mc_logf(u);
-	} while(!(u <= 0.5f * r + b * (1.0f - v + mc_logf(v))));
-	r = b * v;
+	} while(!(u <= 0.5f * r + d * (1.0f - v + mc_logf(v))));
+	r = d * v;
 	if (j) {
-		r = r * mc_powf(1.0f - mc_randuuf(), 1.0f / (k - 1.0f));
+		r = r * mc_powf(1.0f - mc_randuuf(), 1.0f / (a - 1.0f));
 	}
-	return mc_logf(r);
+	return mc_logf(r / l);
 }
 
-MC_TARGET_FUNC double mc_randlgam(double k)
+MC_TARGET_FUNC double mc_randlgam(double a, double l)
 {
-//!# Log Gamma Random Number Generator k=shape, scale=theta=1.
-	double r = 0.0, b, c, v, u;
+//!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
+//!# Log Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+	double r = 0.0, d, c, v, u;
 	unsigned int j = 0;
-	if (k <= 0.0) {
+	if (a <= 0.0 || l <= 0.0) {
 		return r;
 	}
-	if ( k < 1.0) {
+	if ( a < 1.0) {
 		j = 1;
-		k = k + 1.0;
+		a = a + 1.0;
 	}
-	b = k - 1.0 / 3.0;
-	c = 1.0 / 3.0 / mc_sqrt(b);
+	d = a - 1.0 / 3.0;
+	c = 1.0 / 3.0 / mc_sqrt(d);
 	do {
 		do {
 			r = mc_randstdg();
@@ -475,28 +477,29 @@ MC_TARGET_FUNC double mc_randlgam(double k)
 			break;
 		}
 		u = mc_log(u);
-	} while(!(u <= 0.5 * r + b * (1.0 - v + mc_log(v))));
-	r = b * v;
+	} while(!(u <= 0.5 * r + d * (1.0 - v + mc_log(v))));
+	r = d * v;
 	if (j) {
-		r = r * mc_pow(1.0 - mc_randuu(), 1.0 / (k - 1.0));
+		r = r * mc_pow(1.0 - mc_randuu(), 1.0 / (a - 1.0));
 	}
-	return mc_log(r);
+	return mc_log(r / l);
 }
 
-MC_TARGET_FUNC long double mc_randlgaml(long double k)
+MC_TARGET_FUNC long double mc_randlgaml(long double a, long double l)
 {
-//!# Log Gamma Random Number Generator k=shape, scale=theta=1.
-	long double r = 0.0L, b, c, v, u;
+//!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
+//!# Log Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+	long double r = 0.0L, d, c, v, u;
 	unsigned int j = 0;
-	if (k <= 0.0L) {
+	if (a <= 0.0L || l <= 0.0L) {
 		return r;
 	}
-	if ( k < 1.0L) {
+	if (a < 1.0L) {
 		j = 1;
-		k = k + 1.0L;
+		a = a + 1.0L;
 	}
-	b = k - 1.0L / 3.0L;
-	c = 1.0L / 3.0L / mc_sqrtl(b);
+	d = a - 1.0L / 3.0L;
+	c = 1.0L / 3.0L / mc_sqrtl(d);
 	do {
 		do {
 			r = mc_randstdgl();
@@ -509,12 +512,12 @@ MC_TARGET_FUNC long double mc_randlgaml(long double k)
 			break;
 		}
 		u = mc_logl(u);
-	} while(!(u <= 0.5L * r + b * (1.0L - v + mc_logl(v))));
-	r = b * v;
+	} while(!(u <= 0.5L * r + d * (1.0L - v + mc_logl(v))));
+	r = d * v;
 	if (j) {
-		r = r * mc_powl(1.0L - mc_randuul(), 1.0L / (k - 1.0L));
+		r = r * mc_powl(1.0L - mc_randuul(), 1.0L / (a - 1.0L));
 	}
-	return mc_logl(r);
+	return mc_logl(r / l);
 }
 
 #pragma mark - mc_randg -
@@ -539,22 +542,25 @@ MC_TARGET_FUNC long double mc_randgl(long double mu, long double std1)
 
 #pragma mark - mc_randgm -
 
-MC_TARGET_FUNC float mc_randgmf(float a)
+MC_TARGET_FUNC float mc_randgmf(float a, float l)
 {
-//!# Random number from Gamma distribution for arbitrary shape a > 0.
-	return mc_expf(mc_randlgamf(a));
+//!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
+//!# Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+	return mc_expf(mc_randlgamf(a, l));
 }
 
-MC_TARGET_FUNC double mc_randgm(double a)
+MC_TARGET_FUNC double mc_randgm(double a, double l)
 {
-//!# Random number from Gamma distribution for arbitrary shape a > 0.
-	return mc_exp(mc_randlgam(a));
+//!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
+//!# Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+	return mc_exp(mc_randlgam(a, l));
 }
 
-MC_TARGET_FUNC long double mc_randgml(long double a)
+MC_TARGET_FUNC long double mc_randgml(long double a, long double l)
 {
-//!# Random number from Gamma distribution for arbitrary shape a > 0.
-	return mc_expl(mc_randlgaml(a));
+//!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
+//!# Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+	return mc_expl(mc_randlgaml(a, l));
 }
 
 #endif /* !MC_RAND_H */
