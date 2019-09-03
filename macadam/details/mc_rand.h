@@ -10,7 +10,7 @@
 #	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_log.h>
 #	include <macadam/details/math/mc_raise2.h>
-#	include <macadam/details/math/mc_rsqrt.h>
+#	include <macadam/details/math/mc_raise3.h>
 #	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sqrt.h>
 #	include <macadam/details/math/mc_zsqrt.h>
@@ -230,10 +230,10 @@ MC_TARGET_FUNC float mc_randuf(float a, float b)
 	const float x = mc_cast(float, mc_rand());
 #	if MCTARGET_USE_LIBCRAND && RAND_MAX < MCLIMITS_IMAX
 	const float u = mc_cast(float, mc_rand_max());
-	return x / u * (b - a + 1.0f) + a;
+	return x / u * (b - a) + a;
 #	else
 	const float u = mc_cast(float, mc_rand_max());
-	return x / (u + 1.0f) * (b - a + 1.0f) + a;
+	return x / (u + 1.0f) * (b - a) + a;
 #	endif
 }
 
@@ -415,103 +415,106 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 
 #pragma mark - mc_randlgam -
 
-MC_TARGET_FUNC float mc_randlgamf(float a)
+MC_TARGET_FUNC float mc_randlgamf(float k)
 {
-//!# A Simple Gamma Random Number Generator for Arbitrary Shape Parameters, Hisashi Tanizaki.
-//!# @see https://pdfs.semanticscholar.org/a902/665feae2e44da0e6d3ab034cc7c9a25ff518.pdf.
-	float r  = 0.0f;
-	float b0 = 0.0f, b1 = 0.0f, c0 = 1.0f, c1 = 0.0f, y = 0.0f, x = 0.0f, u = 0.0f, v = 0.0f;
-	if (a > 0.0f && a <= 0.4f) {
-		r = 1.0f / a;
-	} else if (a > 0.4f && a <= 4.0f) {
-		r = 1.0f / a + (1.0f / a) * (a - 0.4f) / 3.6f;
-	} else if (a > 4.0f) {
-		r = mc_rsqrtf(a);
+//!# Gamma Random Number Generator k=shape, scale=theta=1.
+	float r = 0.0f, b, c, v, u;
+	unsigned int j = 0;
+	if (k <= 0.0f) {
+		return r;
 	}
-	if (r != 0.0f) {
-		b0 = a - 1.0f * (1.0f / r);
-		b1 = a + 1.0f * (1.0f / r);
-		c0 = a > 0.0f && a <= 0.4f ? 0.0f : a > 0.4f ? b0 * (mc_logf(b0) - 1.0f) * 0.5f : c0;
-		c1 = b1 * (mc_logf(b1) - 1.0f) * 0.5f;
+	if ( k < 1.0f) {
+		j = 1;
+		k = k + 1.0f;
+	}
+	b = k - 1.0f / 3.0f;
+	c = 1.0f / 3.0f / mc_sqrtf(b);
+	do {
 		do {
-			while (y < 0) {
-				const float r1 = mc_randuf(0.0f, 1.0f);
-				const float r2 = mc_randuf(0.0f, 1.0f);
-				u              = c0 + mc_logf(r1);
-				v              = c1 + mc_logf(r2);
-				y              = r * (b0 * v - b1 * u);
-			}
-			x = r * (v - u);
-		} while (y < x);
-		r = x;
+			r = mc_randstdgf();
+			v = 1.0f + c * r;
+		} while ( v <= 0 );
+		v = mc_raise3f(v);
+		r = mc_raise2f(r);
+		u = mc_randuuf();
+		if (u <= 1.0f - 0.331f * mc_raise2f(r)) {
+			break;
+		}
+		u = mc_logf(u);
+	} while(!(u <= 0.5f * r + b * (1.0f - v + mc_logf(v))));
+	r = b * v;
+	if (j) {
+		r = r * mc_powf(1.0f - mc_randuuf(), 1.0f / (k - 1.0f));
 	}
-	return r;
+	return mc_logf(r);
 }
 
-MC_TARGET_FUNC double mc_randlgam(double a)
+MC_TARGET_FUNC double mc_randlgam(double k)
 {
-//!# A Simple Gamma Random Number Generator for Arbitrary Shape Parameters, Hisashi Tanizaki.
-//!# @see https://pdfs.semanticscholar.org/a902/665feae2e44da0e6d3ab034cc7c9a25ff518.pdf.
-	double r  = 0.0;
-	double b0 = 0.0, b1 = 0.0, c0 = 1.0, c1 = 0.0, y = 0.0, x = 0.0, u = 0.0, v = 0.0;
-	if (a > 0.0 && a <= 0.4) {
-		r = 1.0 / a;
-	} else if (a > 0.4 && a <= 4.0) {
-		r = 1.0 / a + (1.0 / a) * (a - 0.4) / 3.6;
-	} else if (a > 4.0) {
-		r = mc_rsqrt(a);
+//!# Gamma Random Number Generator k=shape, scale=theta=1.
+	double r = 0.0, b, c, v, u;
+	unsigned int j = 0;
+	if (k <= 0.0) {
+		return r;
 	}
-	if (r != 0.0) {
-		b0 = a - 1.0 * (1.0 / r);
-		b1 = a + 1.0 * (1.0 / r);
-		c0 = a > 0.0 && a <= 0.4 ? 0.0 : a > 0.4 ? b0 * (mc_log(b0) - 1.0) * 0.5 : c0;
-		c1 = b1 * (mc_log(b1) - 1.0) * 0.5;
+	if ( k < 1.0) {
+		j = 1;
+		k = k + 1.0;
+	}
+	b = k - 1.0 / 3.0;
+	c = 1.0 / 3.0 / mc_sqrt(b);
+	do {
 		do {
-			while (y < 0) {
-				const double r1 = mc_randu(0.0, 1.0);
-				const double r2 = mc_randu(0.0, 1.0);
-				u               = c0 + mc_log(r1);
-				v               = c1 + mc_log(r2);
-				y               = r * (b0 * v - b1 * u);
-			}
-			x = r * (v - u);
-		} while (y < x);
-		r = x;
+			r = mc_randstdg();
+			v = 1.0 + c * r;
+		} while ( v <= 0 );
+		v = mc_raise3(v);
+		r = mc_raise2(r);
+		u = mc_randuu();
+		if (u <= 1.0 - 0.331 * mc_raise2(r)) {
+			break;
+		}
+		u = mc_log(u);
+	} while(!(u <= 0.5 * r + b * (1.0 - v + mc_log(v))));
+	r = b * v;
+	if (j) {
+		r = r * mc_pow(1.0 - mc_randuu(), 1.0 / (k - 1.0));
 	}
-	return r;
+	return mc_log(r);
 }
 
-MC_TARGET_FUNC long double mc_randlgaml(long double a)
+MC_TARGET_FUNC long double mc_randlgaml(long double k)
 {
-//!# A Simple Gamma Random Number Generator for Arbitrary Shape Parameters, Hisashi Tanizaki.
-//!# @see https://pdfs.semanticscholar.org/a902/665feae2e44da0e6d3ab034cc7c9a25ff518.pdf.
-	long double r  = 0.0L;
-	long double b0 = 0.0L, b1 = 0.0L, c0 = 1.0L, c1 = 0.0L, y = 0.0L, x = 0.0L, u = 0.0L, v = 0.0L;
-	if (a > 0.0L && a <= 0.4L) {
-		r = 1.0L / a;
-	} else if (a > 0.4L && a <= 4.0L) {
-		r = 1.0L / a + (1.0L / a) * (a - 0.4L) / 3.6L;
-	} else if (a > 4.0L) {
-		r = mc_rsqrtl(a);
+//!# Gamma Random Number Generator k=shape, scale=theta=1.
+	long double r = 0.0L, b, c, v, u;
+	unsigned int j = 0;
+	if (k <= 0.0L) {
+		return r;
 	}
-	if (r != 0.0L) {
-		b0 = a - 1.0L * (1.0L / r);
-		b1 = a + 1.0L * (1.0L / r);
-		c0 = a > 0.0L && a <= 0.4L ? 0.0L : a > 0.4L ? b0 * (mc_logl(b0) - 1.0L) * 0.5L : c0;
-		c1 = b1 * (mc_logl(b1) - 1.0L) * 0.5L;
+	if ( k < 1.0L) {
+		j = 1;
+		k = k + 1.0L;
+	}
+	b = k - 1.0L / 3.0L;
+	c = 1.0L / 3.0L / mc_sqrtl(b);
+	do {
 		do {
-			while (y < 0) {
-				const long double r1 = mc_randul(0.0L, 1.0L);
-				const long double r2 = mc_randul(0.0L, 1.0L);
-				u              = c0 + mc_logl(r1);
-				v              = c1 + mc_logl(r2);
-				y              = r * (b0 * v - b1 * u);
-			}
-			x = r * (v - u);
-		} while (y < x);
-		r = x;
+			r = mc_randstdgl();
+			v = 1.0L + c * r;
+		} while ( v <= 0 );
+		v = mc_raise3l(v);
+		r = mc_raise2l(r);
+		u = mc_randuul();
+		if (u <= 1.0L - 0.331L * mc_raise2l(r)) {
+			break;
+		}
+		u = mc_logl(u);
+	} while(!(u <= 0.5L * r + b * (1.0L - v + mc_logl(v))));
+	r = b * v;
+	if (j) {
+		r = r * mc_powl(1.0L - mc_randuul(), 1.0L / (k - 1.0L));
 	}
-	return r;
+	return mc_logl(r);
 }
 
 #pragma mark - mc_randg -
