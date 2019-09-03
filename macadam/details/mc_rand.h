@@ -9,8 +9,10 @@
 #	include <macadam/details/math/mc_cos.h>
 #	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_log.h>
+#	include <macadam/details/math/mc_log1m.h>
 #	include <macadam/details/math/mc_raise2.h>
 #	include <macadam/details/math/mc_raise3.h>
+#	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_sin.h>
 #	include <macadam/details/math/mc_sqrt.h>
 #	include <macadam/details/math/mc_zsqrt.h>
@@ -227,32 +229,24 @@ MC_TARGET_FUNC float mc_randuf(float a, float b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
-	const float x = mc_cast(float, mc_rand());
-#	if MCTARGET_USE_LIBCRAND && RAND_MAX < MCLIMITS_IMAX
-	const float u = mc_cast(float, mc_rand_max());
-	return x / u * (b - a) + a;
-#	else
-	const float u = mc_cast(float, mc_rand_max());
-	return x / (u + 1.0f) * (b - a) + a;
-#	endif
+	const float u = mc_randuuf();
+	return a * (1.0f - u) + b * u;
 }
 
 MC_TARGET_FUNC double mc_randu(double a, double b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
-	const double x = mc_cast(double, mc_rand());
-	const double u = mc_cast(double, mc_rand_max());
-	return x / (u + 1.0) * (b - a + 1.0) + a;
+	const double u = mc_randuu();
+	return a * (1.0 - u) + b * u;
 }
 
 MC_TARGET_FUNC long double mc_randul(long double a, long double b)
 {
 //!# 32-bits Random number generator range [a, b] i.e sample
 //!# from uniform distribution (theoretically may include low, but excludes high).
-	const long double x = mc_cast(long double, mc_rand());
-	const long double u = mc_cast(long double, mc_rand_max());
-	return x / (u + 1.0L) * (b - a + 1.0L) + a;
+	const long double u = mc_randuul();
+	return a * (1.0L - u) + b * u;
 }
 
 #pragma mark - mc_randstdg -
@@ -418,7 +412,7 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 MC_TARGET_FUNC float mc_randlgamf(float a, float l)
 {
 //!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
-//!# Log Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+//!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
 	float r = 0.0f, d, c, v, u;
 	unsigned int j = 0;
 	if (a <= 0.0f || l <= 0.0f) {
@@ -453,7 +447,7 @@ MC_TARGET_FUNC float mc_randlgamf(float a, float l)
 MC_TARGET_FUNC double mc_randlgam(double a, double l)
 {
 //!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
-//!# Log Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+//!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
 	double r = 0.0, d, c, v, u;
 	unsigned int j = 0;
 	if (a <= 0.0 || l <= 0.0) {
@@ -488,7 +482,7 @@ MC_TARGET_FUNC double mc_randlgam(double a, double l)
 MC_TARGET_FUNC long double mc_randlgaml(long double a, long double l)
 {
 //!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
-//!# Log Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+//!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
 	long double r = 0.0L, d, c, v, u;
 	unsigned int j = 0;
 	if (a <= 0.0L || l <= 0.0L) {
@@ -520,47 +514,142 @@ MC_TARGET_FUNC long double mc_randlgaml(long double a, long double l)
 	return mc_logl(r / l);
 }
 
-#pragma mark - mc_randg -
+#pragma mark - mc_randgss -
 
-MC_TARGET_FUNC float mc_randgf(float mu, float std1)
+MC_TARGET_FUNC float mc_randgssf(float mu, float std1)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
 	return mu + std1 * mc_randstdgf();
 }
 
-MC_TARGET_FUNC double mc_randg(double mu, double std1)
+MC_TARGET_FUNC double mc_randgss(double mu, double std1)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
 	return mu + std1 * mc_randstdg();
 }
 
-MC_TARGET_FUNC long double mc_randgl(long double mu, long double std1)
+MC_TARGET_FUNC long double mc_randgssl(long double mu, long double std1)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
 	return mu + std1 * mc_randstdgl();
 }
 
-#pragma mark - mc_randgm -
+#pragma mark - mc_randgam -
 
-MC_TARGET_FUNC float mc_randgmf(float a, float l)
+MC_TARGET_FUNC float mc_randgamf(float a, float l)
 {
 //!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
-//!# Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+//!# Gamma RNG a=alpha=shape, l=lambda=scale.
 	return mc_expf(mc_randlgamf(a, l));
 }
 
-MC_TARGET_FUNC double mc_randgm(double a, double l)
+MC_TARGET_FUNC double mc_randgam(double a, double l)
 {
 //!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
-//!# Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+//!# Gamma RNG a=alpha=shape, l=lambda=scale.
 	return mc_exp(mc_randlgam(a, l));
 }
 
-MC_TARGET_FUNC long double mc_randgml(long double a, long double l)
+MC_TARGET_FUNC long double mc_randgaml(long double a, long double l)
 {
 //!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
-//!# Gamma Random Number Generator a=alpha=shape, l=lambda=scale.
+//!# Gamma RNG a=alpha=shape, l=lambda=scale.
 	return mc_expl(mc_randlgaml(a, l));
+}
+
+#pragma mark -  mc_randexp -
+
+MC_TARGET_FUNC float mc_randexpf(float l)
+{
+//!# Exponential distribution generator.
+	const float u = mc_randuuf();
+	const float s = 1.0f / (l > 0.0f ? l : 1.0f);
+	return -mc_log1mf(u) * s;
+}
+
+MC_TARGET_FUNC double mc_randexp(double l)
+{
+//!# Exponential distribution generator.
+	const double u = mc_randuu();
+	const double s = 1.0 / (l > 0.0 ? l : 1.0);
+	return -mc_log1m(u) * s;
+}
+
+MC_TARGET_FUNC long double mc_randexpl(long double l)
+{
+//!# Exponential distribution generator.
+	const long double u = mc_randuul();
+	const long double s = 1.0L / (l > 0.0L ? l : 0.0L);
+	return -mc_log1ml(u) * s;
+}
+
+#pragma mark -  mc_randchi2 -
+
+MC_TARGET_FUNC float mc_randchi2f(float df)
+{
+//!# Chisquare distribution generator. df=degree of freedom.
+	return 2.0f * mc_randgamf(df * 0.5f, 1.0f);
+}
+
+MC_TARGET_FUNC double mc_randchi2(double df)
+{
+//!# Chisquare distribution generator. df=degree of freedom.
+	return 2.0 * mc_randgam(df * 0.5, 1.0);
+}
+
+MC_TARGET_FUNC long double mc_randchi2l(long double df)
+{
+//!# Chisquare distribution generator. df=degree of freedom.
+	return 2.0L * mc_randgaml(df * 0.5L, 1.0L);
+}
+
+#pragma mark -  mc_randwbl1 -
+
+MC_TARGET_FUNC float mc_randwbl1f(float a)
+{
+//!# Weibull distribution generator. a=alpha=shape.
+	return a != 0.0f ? (a == 1.0f ? mc_randexpf(1.0f) : mc_powf(mc_randexpf(1.0f), 1.0f / a)) : 0.0f;
+}
+
+MC_TARGET_FUNC double mc_randwbl1(double a)
+{
+//!# Weibull distribution generator. a=alpha=shape.
+	return a != 0.0 ? (a == 1.0 ? mc_randexp(1.0f) : mc_pow(mc_randexp(1.0), 1.0 / a)) : 0.0;
+}
+
+MC_TARGET_FUNC long double mc_randwbl1l(long double a)
+{
+//!# Weibull distribution generator. a=alpha=shape.
+	return a != 0.0L ? (a == 1.0L ? mc_randexpl(1.0f) : mc_powl(mc_randexpl(1.0), 1.0L / a)) : 0.0L;
+}
+
+#pragma mark -  mc_randbta -
+
+MC_TARGET_FUNC float mc_randbtaf(float a, float b)
+{
+//!# Beta distribution generator.
+	const float x = mc_randgamf(a, 1.0f);
+	const float y = mc_randgamf(b, 1.0f);
+	const float z = x + y;
+	return z != 0.0f ? x / z : 0.0f;
+}
+
+MC_TARGET_FUNC double mc_randbta(double a, double b)
+{
+//!# Beta distribution generator.
+	const double x = mc_randgam(a, 1.0);
+	const double y = mc_randgam(b, 1.0);
+	const double z = x + y;
+	return z != 0.0 ? x / z : 0.0;
+}
+
+MC_TARGET_FUNC long double mc_randbtal(long double a, long double b)
+{
+//!# Beta distribution generator.
+	const long double x = mc_randgaml(a, 1.0L);
+	const long double y = mc_randgaml(b, 1.0L);
+	const long double z = x + y;
+	return z != 0.0L ? x / z : 0.0L;
 }
 
 #endif /* !MC_RAND_H */
