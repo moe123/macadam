@@ -417,7 +417,7 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 
 MC_TARGET_FUNC float mc_randlgamf(float k)
 {
-//!# Gamma Random Number Generator k=shape, scale=theta=1.
+//!# Log Gamma Random Number Generator k=shape, scale=theta=1.
 	float r = 0.0f, b, c, v, u;
 	unsigned int j = 0;
 	if (k <= 0.0f) {
@@ -451,7 +451,7 @@ MC_TARGET_FUNC float mc_randlgamf(float k)
 
 MC_TARGET_FUNC double mc_randlgam(double k)
 {
-//!# Gamma Random Number Generator k=shape, scale=theta=1.
+//!# Log Gamma Random Number Generator k=shape, scale=theta=1.
 	double r = 0.0, b, c, v, u;
 	unsigned int j = 0;
 	if (k <= 0.0) {
@@ -485,7 +485,7 @@ MC_TARGET_FUNC double mc_randlgam(double k)
 
 MC_TARGET_FUNC long double mc_randlgaml(long double k)
 {
-//!# Gamma Random Number Generator k=shape, scale=theta=1.
+//!# Log Gamma Random Number Generator k=shape, scale=theta=1.
 	long double r = 0.0L, b, c, v, u;
 	unsigned int j = 0;
 	if (k <= 0.0L) {
