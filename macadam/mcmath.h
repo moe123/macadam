@@ -2530,10 +2530,10 @@ MC_TARGET_ALIAS float       mcmath_scalb (float x, float y)             { return
 MC_TARGET_ALIAS double      mcmath_scalb (double x, double y)           { return mc_scalb  (x, y); }
 MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return mc_scalbl (x, y); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
-#	define mcmath_lbeta(x, y) _Generic(x \
-	, float       : mcmath_scalbf \
-	, double      : mcmath_scalb  \
-	, long double : mcmath_scalbl \
+#	define mcmath_scalb(x, y) _Generic(x \
+	, float       : mc_scalbf \
+	, double      : mc_scalb  \
+	, long double : mc_scalbl \
 ) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_scalb(x, y) mc_cast(MC_TARGET_TYPEOF(x), \

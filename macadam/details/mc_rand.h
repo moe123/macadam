@@ -72,25 +72,33 @@ MC_TARGET_PROC void mc_ssrand()
 	unsigned int s1 = 1, s2 = 9, s3 = 17, s4 = 129, s5 = 183;
 	unsigned long x;
 #	if MC_TARGET_CPP98
-	::clock_t clck;
+	::clock_t clck0, clck1;
 #	else
-	clock_t clck;
+	clock_t clck0, clck1;
 #	endif
+#	if MC_TARGET_CPP98
+	clck0 = ::clock();
+#	else
+	clck0 = clock();
+#	endif
+	x     = mc_cast_exp(unsigned long, clck0 * CLOCKS_PER_SEC);
+	s2    = s2 + mc_cast_exp(unsigned int, x >> 3 & 0xFF);
+	s1    = s1 + mc_cast_exp(unsigned int, x >> 1 & 0xFF);
 //!# Consuming CPU cycles (guard).
 	while (s1 < 16) { ++s1; ++s2; ++s3; ++s4; ++s5; }
 //!# Fetching clock approximation.
 #	if MC_TARGET_CPP98
-	clck = ::clock();
+	clck1 = ::clock();
 #	else
-	clck = clock();
+	clck1 = clock();
 #	endif
-	x    = mc_cast_exp(unsigned long, clck * CLOCKS_PER_SEC);
+	x     = mc_cast_exp(unsigned long, clck1 * CLOCKS_PER_SEC);
 //!# Building seeds from whatever is there.
-	s5   = s5 + mc_cast_exp(unsigned int, x >> 9 & 0xFF);
-	s4   = s4 + mc_cast_exp(unsigned int, x >> 7 & 0xFF);
-	s3   = s3 + mc_cast_exp(unsigned int, x >> 5 & 0xFF);
-	s2   = s2 + mc_cast_exp(unsigned int, x >> 3 & 0xFF);
-	s1   = s1 + mc_cast_exp(unsigned int, x >> 1 & 0xFF);
+	s5    = s5 + mc_cast_exp(unsigned int, x >> 9 & 0xFF);
+	s4    = s4 + mc_cast_exp(unsigned int, x >> 7 & 0xFF);
+	s3    = s3 + mc_cast_exp(unsigned int, x >> 5 & 0xFF);
+	s2    = s2 + s4;
+	s1    = s1 + s3;
 //!# Assigning new seeds.
 	mc_srand(s1, s2, s3, s4, s5);
 }
@@ -256,11 +264,11 @@ MC_TARGET_PROC float mc_randstdgf(void)
 #	if MCTARGET_USE_BOXMULLER
 //!# Box-Muller transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
-	static volatile float x     = 0.0f;
+	static volatile float x_s   = 0.0f;
 	float r = 0.0f, u, v;
 
 	if (phase_s != 0) {
-		r = x;
+		r = x_s;
 	} else {
 		do {
 			const float r1 = mc_randuf(0.0f, 1.0f);
@@ -269,18 +277,18 @@ MC_TARGET_PROC float mc_randstdgf(void)
 			v              = r2;
 		}
 		while (u <= MCLIMITS_EPSILONF * 2.0f);
-		r = mc_sqrtf(-2.0f * mc_logf(u)) * mc_cosf(MCK_KF(MCK_2PI) * v);
-		x = mc_sqrtf(-2.0f * mc_logf(u)) * mc_sinf(MCK_KF(MCK_2PI) * v);
+		r   = mc_sqrtf(-2.0f * mc_logf(u)) * mc_cosf(MCK_KF(MCK_2PI) * v);
+		x_s = mc_sqrtf(-2.0f * mc_logf(u)) * mc_sinf(MCK_KF(MCK_2PI) * v);
 	}
 	phase_s = !phase_s;
 	return r;
 #	else
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
-	static volatile float x     = 0.0f;
+	static volatile float x_s   = 0.0f;
 	float r, s0 = 0.0f, u, v, w;
 	if (phase_s != 0) {
-		r = x;
+		r = x_s;
 	} else {
 		do {
 			const float r1 = mc_randuf(0.0f, 1.0f);
@@ -295,8 +303,8 @@ MC_TARGET_PROC float mc_randstdgf(void)
 		} else {
 			s0 = mc_sqrtf(w);
 		}
-		r = u * s0;
-		x = v * s0;
+		r   = u * s0;
+		x_s = v * s0;
 	}
 	phase_s = !phase_s;
 	return r;
@@ -308,11 +316,11 @@ MC_TARGET_PROC double mc_randstdg(void)
 #	if MCTARGET_USE_BOXMULLER
 //!# Box-Muller transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
-	static volatile double x    = 0.0;
+	static volatile double x_s  = 0.0;
 	double r = 0.0, u, v;
 
 	if (phase_s != 0) {
-		r = x;
+		r = x_s;
 	} else {
 		do {
 			const double r1 = mc_randu(0.0, 1.0);
@@ -321,18 +329,18 @@ MC_TARGET_PROC double mc_randstdg(void)
 			v               = r2;
 		}
 		while (u <= MCLIMITS_EPSILON * 2.0);
-		r = mc_sqrt(-2.0 * mc_log(u)) * mc_cos(MCK_K(MCK_2PI) * v);
-		x = mc_sqrt(-2.0 * mc_log(u)) * mc_sin(MCK_K(MCK_2PI) * v);
+		r   = mc_sqrt(-2.0 * mc_log(u)) * mc_cos(MCK_K(MCK_2PI) * v);
+		x_s = mc_sqrt(-2.0 * mc_log(u)) * mc_sin(MCK_K(MCK_2PI) * v);
 	}
 	phase_s = !phase_s;
 	return r;
 #	else
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
-	static volatile double x    = 0.0;
+	static volatile double x_s  = 0.0;
 	double r, s0 = 0.0, u, v, w;
 	if (phase_s != 0) {
-		r = x;
+		r = x_s;
 	} else {
 		do {
 			const double r1 = mc_randu(0.0, 1.0);
@@ -347,8 +355,8 @@ MC_TARGET_PROC double mc_randstdg(void)
 		} else {
 			s0 = mc_sqrt(w);
 		}
-		r = u * s0;
-		x = v * s0;
+		r   = u * s0;
+		x_s = v * s0;
 	}
 	phase_s = !phase_s;
 	return r;
@@ -359,12 +367,12 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 {
 #	if MCTARGET_USE_BOXMULLER
 //!# Box-Muller transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
-	static volatile int phase_s   = 0;
-	static volatile long double x = 0.0L;
+	static volatile int phase_s     = 0;
+	static volatile long double x_s = 0.0L;
 	long double r = 0.0L, u, v;
 
 	if (phase_s != 0) {
-		r = x;
+		r = x_s;
 	} else {
 		do {
 			const long double r1 = mc_randul(0.0L, 1.0L);
@@ -373,18 +381,18 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 			v                    = r2;
 		}
 		while (u <= MCLIMITS_EPSILONL  * 2.0L);
-		r = mc_sqrtl(-2.0L * mc_logl(u)) * mc_cosl(MCK_KL(MCK_2PI) * v);
-		x = mc_sqrtl(-2.0L * mc_logl(u)) * mc_sinl(MCK_KL(MCK_2PI) * v);
+		r   = mc_sqrtl(-2.0L * mc_logl(u)) * mc_cosl(MCK_KL(MCK_2PI) * v);
+		x_s = mc_sqrtl(-2.0L * mc_logl(u)) * mc_sinl(MCK_KL(MCK_2PI) * v);
 	}
 	phase_s = !phase_s;
 	return r;
 #	else
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
-	static volatile int phase_s   = 0;
-	static volatile long double x = 0.0L;
+	static volatile int phase_s     = 0;
+	static volatile long double x_s = 0.0L;
 	long double r, s0 = 0.0L, u, v, w;
 	if (phase_s != 0) {
-		r = x;
+		r = x_s;
 	} else {
 		do {
 			const long double r1 = mc_randul(0.0L, 1.0L);
@@ -399,8 +407,8 @@ MC_TARGET_PROC long double mc_randstdgl(void)
 		} else {
 			s0 = mc_sqrtl(w);
 		}
-		r = u * s0;
-		x = v * s0;
+		r   = u * s0;
+		x_s = v * s0;
 	}
 	phase_s = !phase_s;
 	return r;
