@@ -1365,6 +1365,14 @@ MC_TARGET_ALIAS long double mcmath_pow2 (long double x) { return mc_pow2l (x); }
 	, double      : mc_pow2  \
 	, long double : mc_pow2l \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_pow2(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_pow2f (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_pow2  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_pow2l (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_pow2(x) \
 	( \
@@ -1394,6 +1402,14 @@ MC_TARGET_ALIAS long double mcmath_sqrt (long double x) { return mc_sqrtl (x); }
 	, double      : mc_sqrt  \
 	, long double : mc_sqrtl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_sqrt(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sqrtf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sqrt  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sqrtl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_sqrt(x) \
 	( \
@@ -1423,6 +1439,14 @@ MC_TARGET_ALIAS long double mcmath_sqrt1pm1 (long double x) { return mc_sqrt1pm1
 	, double      : mc_sqrt1pm1  \
 	, long double : mc_sqrt1pm1l \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_sqrt1pm1(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sqrt1pm1f (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sqrt1pm1  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sqrt1pm1l (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_sqrt1pm1(x) \
 	( \
@@ -1452,6 +1476,14 @@ MC_TARGET_ALIAS long double mcmath_rsqrt (long double x) { return mc_rsqrtl (x);
 	, double      : mc_rsqrt  \
 	, long double : mc_rsqrtl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_rsqrt(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_rsqrtf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_rsqrt  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_rsqrtl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_rsqrt(x) \
 	( \
@@ -1481,6 +1513,14 @@ MC_TARGET_ALIAS long double mcmath_erf (long double x) { return mc_erfl (x); }
 	, double      : mc_erf  \
 	, long double : mc_erfl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_erf(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_erff (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_erf  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_erfl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_erf(x) \
 	( \
@@ -1510,6 +1550,14 @@ MC_TARGET_ALIAS long double mcmath_erfc (long double x) { return mc_erfcl (x); }
 	, double      : mc_erfc  \
 	, long double : mc_erfcl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_erfc(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_erfcf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_erfc  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_erfcl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_erfc(x) \
 	( \
@@ -1529,12 +1577,24 @@ template <class T> MC_TARGET_INLINE T           mcmath_lgamma              (cons
 template <>        MC_TARGET_INLINE float       mcmath_lgamma<float>       (const float& x)       { return mc_lgammaf (x);      }
 template <>        MC_TARGET_INLINE double      mcmath_lgamma<double>      (const double& x)      { return mc_lgamma  (x);      }
 template <>        MC_TARGET_INLINE long double mcmath_lgamma<long double> (const long double& x) { return mc_lgammal (x);      }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_lgamma (float x)       { return mc_lgammaf (x); }
+MC_TARGET_ALIAS double      mcmath_lgamma (double x)      { return mc_lgamma  (x); }
+MC_TARGET_ALIAS long double mcmath_lgamma (long double x) { return mc_lgammal (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_lgamma(x) _Generic(x \
 	, float       : mc_lgammaf \
 	, double      : mc_lgamma  \
 	, long double : mc_lgammal \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_lgamma(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mcmath_lgammaf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mcmath_lgamma  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mcmath_lgammal (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_lgamma(x) \
 	( \
@@ -1554,12 +1614,24 @@ template <class T> MC_TARGET_INLINE T           mcmath_tgamma              (cons
 template <>        MC_TARGET_INLINE float       mcmath_tgamma<float>       (const float& x)       { return mc_tgammaf (x);      }
 template <>        MC_TARGET_INLINE double      mcmath_tgamma<double>      (const double& x)      { return mc_tgamma  (x);      }
 template <>        MC_TARGET_INLINE long double mcmath_tgamma<long double> (const long double& x) { return mc_tgammal (x);      }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_tgamma (float x)       { return mc_tgammaf (x); }
+MC_TARGET_ALIAS double      mcmath_tgamma (double x)      { return mc_tgamma  (x); }
+MC_TARGET_ALIAS long double mcmath_tgamma (long double x) { return mc_tgammal (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_tgamma(x) _Generic(x \
 	, float       : mc_tgammaf \
 	, double      : mc_tgamma  \
 	, long double : mc_tgammal \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_tgamma(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_tgammaf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_tgamma  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_tgammal (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_tgamma(x) \
 	( \
@@ -1617,9 +1689,9 @@ template <>        MC_TARGET_INLINE float       mcmath_trigamma<float>       (co
 template <>        MC_TARGET_INLINE double      mcmath_trigamma<double>      (const double& x)      { return mc_trigamma  (x);    }
 template <>        MC_TARGET_INLINE long double mcmath_trigamma<long double> (const long double& x) { return mc_trigammal (x);    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_trigamma (float x)       { return mc_trigammaf(x); }
-MC_TARGET_ALIAS double      mcmath_trigamma (double x)      { return mc_trigamma(x);  }
-MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigammal(x); }
+MC_TARGET_ALIAS float       mcmath_trigamma (float x)       { return mc_trigammaf (x); }
+MC_TARGET_ALIAS double      mcmath_trigamma (double x)      { return mc_trigamma  (x);  }
+MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigammal (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_trigamma(x) _Generic(x \
 	, float       : mc_trigammaf \
@@ -1651,12 +1723,29 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #pragma mark - mcmath_ceil -
 
 #	ifndef mcmath_ceil
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_ceil              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_ceil<float>       (const float& x)       { return mc_ceilf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_ceil<double>      (const double& x)      { return mc_ceil  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_ceil<long double> (const long double& x) { return mc_ceill (x);        }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_ceil (float x)       { return mc_ceilf (x); }
+MC_TARGET_ALIAS double      mcmath_ceil (double x)      { return mc_ceil  (x); }
+MC_TARGET_ALIAS long double mcmath_ceil (long double x) { return mc_ceill (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_ceil(x) _Generic(x \
 	, float       : mc_ceilf \
 	, double      : mc_ceil  \
 	, long double : mc_ceill \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_ceil(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_ceilf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_ceil  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_ceill (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_ceil(x) \
 	( \
@@ -1671,12 +1760,29 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #pragma mark - mcmath_floor -
 
 #	ifndef mcmath_floor
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_floor              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_floor<float>       (const float& x)       { return mc_floorf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_floor<double>      (const double& x)      { return mc_floor  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_floor<long double> (const long double& x) { return mc_floorl (x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_floor (float x)       { return mc_floorf (x); }
+MC_TARGET_ALIAS double      mcmath_floor (double x)      { return mc_floor  (x); }
+MC_TARGET_ALIAS long double mcmath_floor (long double x) { return mc_floorl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_floor(x) _Generic(x \
 	, float       : mc_floorf \
 	, double      : mc_floor  \
 	, long double : mc_floorl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_floor(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_floorf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_floor  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_floorl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_floor(x) \
 	( \
@@ -1691,18 +1797,35 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #pragma mark - mcmath_nearbyint -
 
 #	ifndef mcmath_nearbyint
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_nearbyint              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_nearbyint<float>       (const float& x)       { return mc_nearbyintf (x);   }
+template <>        MC_TARGET_INLINE double      mcmath_nearbyint<double>      (const double& x)      { return mc_nearbyint  (x);   }
+template <>        MC_TARGET_INLINE long double mcmath_nearbyint<long double> (const long double& x) { return mc_nearbyintl (x);   }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_nearbyint (float x)       { return mc_nearbyintf (x); }
+MC_TARGET_ALIAS double      mcmath_nearbyint (double x)      { return mc_nearbyint  (x); }
+MC_TARGET_ALIAS long double mcmath_nearbyint (long double x) { return mc_nearbyintl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_nearbyint(x) _Generic(x \
-	, float       : nearbyintf \
-	, double      : nearbyint  \
-	, long double : nearbyintl \
+	, float       : mc_nearbyintf \
+	, double      : mc_nearbyint  \
+	, long double : mc_nearbyintl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_nearbyint(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_nearbyintf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_nearbyint  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_nearbyintl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_nearbyint(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? nearbyintf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? nearbyint  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? nearbyintl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_nearbyintf (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_nearbyint  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_nearbyintl (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1711,18 +1834,35 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #pragma mark - mcmath_rint -
 
 #	ifndef mcmath_rint
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_rint              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_rint<float>       (const float& x)       { return mc_rintf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_rint<double>      (const double& x)      { return mc_rint  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_rint<long double> (const long double& x) { return mc_rintl (x);        }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_rint (float x)       { return mc_rintf (x); }
+MC_TARGET_ALIAS double      mcmath_rint (double x)      { return mc_rint  (x); }
+MC_TARGET_ALIAS long double mcmath_rint (long double x) { return mc_rintl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_rint(x) _Generic(x \
-	, float       : rintf \
-	, double      : rint  \
-	, long double : rintl \
+	, float       : mc_rintf \
+	, double      : mc_rint  \
+	, long double : mc_rintl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_rint(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_rintf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_rint  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_rintl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_rint(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? rintf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? rint  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? rintl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_rintf (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_rint  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_rintl (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1775,18 +1915,35 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #pragma mark - mcmath_round -
 
 #	ifndef mcmath_round
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_round              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_round<float>       (const float& x)       { return mc_roundf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_round<double>      (const double& x)      { return mc_round  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_round<long double> (const long double& x) { return mc_roundl (x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_round (float x)       { return mc_roundf (x); }
+MC_TARGET_ALIAS double      mcmath_round (double x)      { return mc_round  (x); }
+MC_TARGET_ALIAS long double mcmath_round (long double x) { return mc_roundl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_round(x) _Generic(x \
-	, float       : roundf \
-	, double      : round  \
-	, long double : roundl \
+	, float       : mc_roundf \
+	, double      : mc_round  \
+	, long double : mc_roundl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_round(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_roundf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_round  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_roundl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_round(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? roundf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? round  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? roundl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_roundf (mc_cast_exp(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_round  (mc_cast_exp(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_roundl (mc_cast_exp(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1839,12 +1996,29 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #pragma mark - mcmath_trunc -
 
 #	ifndef mcmath_trunc
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_trunc              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_trunc<float>       (const float& x)       { return mc_truncf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_trunc<double>      (const double& x)      { return mc_trunc  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_trunc<long double> (const long double& x) { return mc_truncl (x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_trunc (float x)       { return mc_truncf (x); }
+MC_TARGET_ALIAS double      mcmath_trunc (double x)      { return mc_trunc  (x); }
+MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_trunc(x) _Generic(x \
 	, float       : mc_truncf \
 	, double      : mc_trunc  \
 	, long double : mc_truncl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_trunc(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_truncf (mc_cast_exp(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_trunc  (mc_cast_exp(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_truncl (mc_cast_exp(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_trunc(x) \
 	( \

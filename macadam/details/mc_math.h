@@ -129,6 +129,7 @@
 #	include <macadam/details/math/mc_minmag.h>
 #	include <macadam/details/math/mc_modf.h>
 #	include <macadam/details/math/mc_nchoosek.h>
+#	include <macadam/details/math/mc_nearbyint.h>
 #	include <macadam/details/math/mc_nthroot.h>
 #	include <macadam/details/math/mc_polyroot2.h>
 #	include <macadam/details/math/mc_polyroot3.h>
@@ -136,12 +137,10 @@
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
-#	include <macadam/details/math/mc_raise2.h>
-#	include <macadam/details/math/mc_raise3.h>
-#	include <macadam/details/math/mc_raise4.h>
-#	include <macadam/details/math/mc_raise5.h>
-#	include <macadam/details/math/mc_raise6.h>
+#	include <macadam/details/math/mc_rgamma.h>
+#	include <macadam/details/math/mc_rint.h>
 #	include <macadam/details/math/mc_rootn.h>
+#	include <macadam/details/math/mc_round.h>
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>
 #	include <macadam/details/math/mc_scalb.h>

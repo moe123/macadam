@@ -19,7 +19,7 @@
 
 #pragma mark - mc_rgamma_approx0 -
 
-MC_TARGET_PROC float mc_rgammaf(float x)
+MC_TARGET_FUNC float mc_rgammaf(float x)
 {
 //!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
 	if (mc_isnan(x) || mc_isinf(x)) {
@@ -70,7 +70,7 @@ MC_TARGET_PROC float mc_rgammaf(float x)
 	return mc_gammasignf(x) * mc_expf(-g);
 }
 
-MC_TARGET_PROC double mc_rgamma(double x)
+MC_TARGET_FUNC double mc_rgamma(double x)
 {
 //!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
 	if (mc_isnan(x) || mc_isinf(x)) {
@@ -121,7 +121,7 @@ MC_TARGET_PROC double mc_rgamma(double x)
 	return mc_gammasign(x) * mc_exp(-g);
 }
 
-MC_TARGET_PROC long double mc_rgammal(long double x)
+MC_TARGET_FUNC long double mc_rgammal(long double x)
 {
 //!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
 #	if !MC_TARGET_MSVC_CPP
