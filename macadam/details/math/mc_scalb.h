@@ -6,51 +6,28 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
+#include <macadam/details/math/mc_scalbln.h>
+#include <macadam/details/math/mc_trunc.h>
 
 #ifndef MC_SCALB_H
 #define MC_SCALB_H
 
 #pragma mark - mc_scalb -
 
-#	if MC_TARGET_MSVC_CPP
-
 MC_TARGET_FUNC float mc_scalbf(float x, float y)
-{ return ::_scalbf(mc_cast(float, x), mc_cast(long, y)); }
+{
+	return mc_scalblnf(x, mc_cast(long, mc_truncf(y)));
+}
 
 MC_TARGET_FUNC double mc_scalb(double x, double y)
-{ return ::_scalb(mc_cast(double, x), mc_cast(long, y)); }
-
-MC_TARGET_FUNC long double mc_scalbl(long double x, long double y)
-{ return mc_cast(long double, ::_scalb(mc_cast(double, x), mc_cast(long, y))); }
-
-#	elif defined(__APPLE__) && defined(__MACH__)
-MC_TARGET_FUNC float mc_scalbf(float x, float y)
 {
-#	if MC_TARGET_CPP98
-	return mc_cast(float, ::scalb(mc_cast(double, x), mc_cast(double, y)));
-#	else
-	return mc_cast(float, scalb(mc_cast(double, x), mc_cast(double, y)));
-#	endif
+	return mc_scalbln(x, mc_cast(long, mc_trunc(y)));
 }
-
-#	define mc_scalb scalb
 
 MC_TARGET_FUNC long double mc_scalbl(long double x, long double y)
 {
-#	if MC_TARGET_CPP98
-	return mc_cast(long double, ::scalb(mc_cast(double, x), mc_cast(double, y)));
-#	else
-	return mc_cast(long double, scalb(mc_cast(double, x), mc_cast(double, y)));
-#	endif
+	return mc_scalblnl(x, mc_cast(long, mc_truncl(y)));
 }
-#	else
-#	define mc_scalbf scalbf
-#	define mc_scalb  scalb
-#	define mc_scalbl scalbl
-#	endif
 
 #endif /* !MC_SCALB_H */
 

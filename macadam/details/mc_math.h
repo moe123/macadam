@@ -145,6 +145,8 @@
 #	include <macadam/details/math/mc_rsqr.h>
 #	include <macadam/details/math/mc_rsqrt.h>
 #	include <macadam/details/math/mc_scalb.h>
+#	include <macadam/details/math/mc_scalbln.h>
+#	include <macadam/details/math/mc_scalbn.h>
 #	include <macadam/details/math/mc_sec.h>
 #	include <macadam/details/math/mc_sech.h>
 #	include <macadam/details/math/mc_sigmoid.h>

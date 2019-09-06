@@ -21,13 +21,21 @@
 #	undef  MCTARGET_USE_LFSR113
 #	define MCTARGET_USE_LFSR113 1
 
+#	if MC_TARGET_C11 || MC_TARGET_CPP11
+#	if MCTARGET_USE_MARSAGLIAMWC
+static _Thread_local unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
+#	else
+static _Thread_local unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
+#	endif
+static _Thread_local unsigned int mc_randi_init_s = 0;
+#	else
 #	if MCTARGET_USE_MARSAGLIAMWC
 static volatile unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
 #	else
 static volatile unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
 #	endif
-
 static volatile unsigned int mc_randi_init_s = 0;
+#	endif
 
 #	if MCTARGET_USE_LIBCRAND
 #		define MCLIMITS_RANDMAX mc_cast(const unsigned int, RAND_MAX)
@@ -39,7 +47,7 @@ static volatile unsigned int mc_randi_init_s = 0;
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
 #	endif
 
-MC_TARGET_PROC void mc_srandb(
+MC_TARGET_PROC void mc_srandi(
 	  unsigned int s1
 	, unsigned int s2
 	, unsigned int s3
@@ -68,7 +76,7 @@ MC_TARGET_PROC void mc_srandb(
 #	endif
 }
 
-MC_TARGET_PROC void mc_ssrandb()
+MC_TARGET_PROC void mc_ssrandi()
 {
 //!# Auto-generating seeds based on an approximation of
 //!# processor time used. Not perfect but fast and portable.
@@ -103,14 +111,14 @@ MC_TARGET_PROC void mc_ssrandb()
 	s2    = s2 + s4;
 	s1    = s1 + s3;
 //!# Assigning new seeds.
-	mc_srandb(s1, s2, s3, s4, s5);
+	mc_srandi(s1, s2, s3, s4, s5);
 }
 
 MC_TARGET_PROC unsigned int mc_randi(void)
 {
 	if (mc_randi_init_s < 1) {
 		++mc_randi_init_s;
-		mc_ssrandb();
+		mc_ssrandi();
 	}
 #	if MCTARGET_USE_LIBCRAND
 	++mc_randi_init_s;
@@ -130,7 +138,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	mc_randi_seeds_s[1] = 18000 * (mc_randi_seeds_s[1] & 0177777) + (mc_randi_seeds_s[1] >> 16);
 	b                  = ((mc_randi_seeds_s[0] << 16) ^ (mc_randi_seeds_s[1] & 0177777));
 	if (!(b < MCLIMITS_RANDMAX)) {
-		mc_ssrandb();
+		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
 	}
 	return b;
@@ -150,7 +158,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	b                   = (mc_randi_seeds_s[0] ^ mc_randi_seeds_s[1] ^ mc_randi_seeds_s[2] ^ mc_randi_seeds_s[3]);
 
 	if (!(b < MCLIMITS_RANDMAX)) {
-		mc_ssrandb();
+		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
 	}
 	return b;
@@ -163,12 +171,12 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	mc_randi_seeds_s[3]  = mc_randi_seeds_s[2];
 	mc_randi_seeds_s[2]  = mc_randi_seeds_s[1];
 	mc_randi_seeds_s[1]  = s0;
-	b                  ^= b << 11;
-	b                  ^= b >> 8;
-	b                   = mc_randi_seeds_s[0] = b ^ s0 ^ (s0 >> 19);
+	b                   ^= b << 11;
+	b                   ^= b >> 8;
+	b                    = mc_randi_seeds_s[0] = b ^ s0 ^ (s0 >> 19);
 
 	if (!(b < MCLIMITS_RANDMAX)) {
-		mc_ssrandb();
+		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
 	}
 	return b;

@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/math/mc_isinf.h>
+#include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_ZNORM_H
 #define MC_ZNORM_H
@@ -21,7 +22,7 @@ MC_TARGET_PROC float mc_znormf(float z_r, float z_i)
 	if (mc_isinf(z_i)) {
 		return MCK_INFP;
 	}
-	return z_r * z_r + z_i * z_i;
+	return mc_raise2f(z_r) + mc_raise2f(z_i);
 }
 
 MC_TARGET_PROC double mc_znorm(double z_r, double z_i)
@@ -32,7 +33,7 @@ MC_TARGET_PROC double mc_znorm(double z_r, double z_i)
 	if (mc_isinf(z_i)) {
 		return MCK_INFP;
 	}
-	return z_r * z_r + z_i * z_i;
+	return mc_raise2(z_r) + mc_raise2(z_i);
 }
 
 MC_TARGET_PROC long double mc_znorml(long double z_r, long double z_i)
@@ -43,7 +44,7 @@ MC_TARGET_PROC long double mc_znorml(long double z_r, long double z_i)
 	if (mc_isinf(z_i)) {
 		return MCK_INFP;
 	}
-	return z_r * z_r + z_i * z_i;
+	return mc_raise2l(z_r) + mc_raise2l(z_i);
 }
 
 #endif /* !MC_ZNORM_H */

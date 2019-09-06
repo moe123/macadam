@@ -213,7 +213,7 @@ MC_TARGET_PROC float mc_zetapscf(float s, float sc)
 		const float q42 = mc_xpolyeval10f(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
 		y               = p42 / q42;
 		r               = 1.0f + mc_expf(y);
-	} else if (s < 63.0f) {
+	} else if (s < 64.0f) {
 		r = 1.0f + mc_exp2f(-s);
 	}
 	return r;
@@ -407,7 +407,7 @@ MC_TARGET_PROC double mc_zetapsc(double s, double sc)
 		const double q42 = mc_xpolyeval10(s, Q42[0], Q42[1], Q42[2], Q42[3], Q42[4], Q42[5], Q42[6], Q42[7], Q42[8], Q42[9]);
 		y                = p42 / q42;
 		r                = 1.0 + mc_exp(y);
-	} else if (s < 63.0) {
+	} else if (s < 64.0) {
 		r = 1.0 + mc_exp2(-s);
 	}
 	return r;
