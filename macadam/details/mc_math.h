@@ -40,6 +40,7 @@
 #	include <macadam/details/math/mc_bisquare_rho.h>
 #	include <macadam/details/math/mc_bisquare.h>
 #	include <macadam/details/math/mc_biweight.h>
+#	include <macadam/details/math/mc_cbrt.h>
 #	include <macadam/details/math/mc_ceil.h>
 #	include <macadam/details/math/mc_chbevl.h>
 #	include <macadam/details/math/mc_choose.h>
@@ -89,6 +90,7 @@
 #	include <macadam/details/math/mc_hzeta.h>
 #	include <macadam/details/math/mc_ibeta.h>
 #	include <macadam/details/math/mc_igamma.h>
+#	include <macadam/details/math/mc_ilog2.h>
 #	include <macadam/details/math/mc_inverf.h>
 #	include <macadam/details/math/mc_invlogit.h>
 #	include <macadam/details/math/mc_invprobit.h>
@@ -97,6 +99,10 @@
 #	include <macadam/details/math/mc_isinf.h>
 #	include <macadam/details/math/mc_isnan.h>
 #	include <macadam/details/math/mc_isnormal.h>
+#	include <macadam/details/math/mc_itrunc.h>
+#	include <macadam/details/math/mc_itrunc16.h>
+#	include <macadam/details/math/mc_itrunc32.h>
+#	include <macadam/details/math/mc_itrunc64.h>
 #	include <macadam/details/math/mc_lbeta.h>
 #	include <macadam/details/math/mc_lchoose.h>
 #	include <macadam/details/math/mc_lcm.h>
@@ -119,8 +125,8 @@
 #	include <macadam/details/math/mc_logaddexp.h>
 #	include <macadam/details/math/mc_logdiffexp.h>
 #	include <macadam/details/math/mc_logistic.h>
-#	include <macadam/details/math/mc_lognn.h>
 #	include <macadam/details/math/mc_logit.h>
+#	include <macadam/details/math/mc_lognn.h>
 #	include <macadam/details/math/mc_logodds.h>
 #	include <macadam/details/math/mc_logp1.h>
 #	include <macadam/details/math/mc_logradix.h>
@@ -137,6 +143,13 @@
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
+#	include <macadam/details/math/mc_raise2.h>
+#	include <macadam/details/math/mc_raise3.h>
+#	include <macadam/details/math/mc_raise4.h>
+#	include <macadam/details/math/mc_raise5.h>
+#	include <macadam/details/math/mc_raise6.h>
+#	include <macadam/details/math/mc_rempio2_cw.h>
+#	include <macadam/details/math/mc_remzpi.h>
 #	include <macadam/details/math/mc_rgamma.h>
 #	include <macadam/details/math/mc_rint.h>
 #	include <macadam/details/math/mc_rootn.h>
@@ -190,6 +203,7 @@
 #	include <macadam/details/math/mc_zmul.h>
 #	include <macadam/details/math/mc_zneg.h>
 #	include <macadam/details/math/mc_znorm.h>
+#	include <macadam/details/math/mc_zpochhammer.h>
 #	include <macadam/details/math/mc_zpolar.h>
 #	include <macadam/details/math/mc_zpolyroot2.h>
 #	include <macadam/details/math/mc_zpolyroot3.h>

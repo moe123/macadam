@@ -6,7 +6,6 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-
 #include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_zabs.h>
 #include <macadam/details/math/mc_zarg.h>
