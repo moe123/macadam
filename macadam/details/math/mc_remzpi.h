@@ -42,7 +42,7 @@ MC_TARGET_PROC int64_t mc_remzpif(float x, float * z)
 			x = 2.0f * (x - mc_floorf(x));
 			w = mc_floorf(4.0f * x);
 			r = mc_itrunc64f(w - 16.0f * mc_floorf(w / 16.0f));
-			if (r < max) {
+			if (r < (max - 1)) {
 				if (r & 1) {
 					++r;
 					w = w + 1.0f;
@@ -82,7 +82,7 @@ MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
 			x = 2.0 * (x - mc_floor(x));
 			w = mc_floor(4.0 * x);
 			r = mc_itrunc64(w - 16.0 * mc_floor(w / 16.0));
-			if (r < max) {
+			if (r < (max - 1)) {
 				if (r & 1) {
 					++r;
 					w = w + 1.0;
@@ -122,7 +122,7 @@ MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 			x = 2.0L * (x - mc_floorl(x));
 			w = mc_floorl(4.0L * x);
 			r = mc_itrunc64l(w - 16.0L * mc_floorl(w / 16.0L));
-			if (r < max) {
+			if (r < (max - 1)) {
 				if (r & 1) {
 					++r;
 					w = w + 1.0L;

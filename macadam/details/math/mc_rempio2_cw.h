@@ -35,7 +35,7 @@ MC_TARGET_PROC int64_t mc_rempio2f_cw(float x, float * z)
 		}
 		w = mc_floorf(x * MCK_KF(MCK_1_PI_4));
 		r = mc_itrunc64f(w - 16.0f * mc_floorf(w / 16.0f));
-		if (r < max) {
+		if (r < (max - 1)) {
 			if (r & 1) {
 				++r;
 				w = w + 1.0f;
@@ -72,7 +72,7 @@ MC_TARGET_PROC int64_t mc_rempio2_cw(double x, double * z)
 		}
 		w = mc_floor(x * MCK_K(MCK_1_PI_4));
 		r = mc_itrunc64(w - 16.0 * mc_floor(w / 16.0));
-		if (r < max) {
+		if (r < (max - 1)) {
 			if (r & 1) {
 				++r;
 				w = w + 1.0;
@@ -110,7 +110,7 @@ MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
 		}
 		w = mc_floorl(x * MCK_KL(MCK_1_PI_4));
 		r = mc_itrunc64l(w - 16.0L * mc_floorl(w / 16.0L));
-		if (r < max) {
+		if (r < (max - 1)) {
 			if (r & 1) {
 				++r;
 				w = w + 1.0L;
