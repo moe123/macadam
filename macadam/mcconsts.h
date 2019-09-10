@@ -163,6 +163,9 @@
 //!# Value of pi/4.
 #	define MCK_PI_4       M_PI_4
 
+//!# Value of 1 /(pi/4).
+#	define MCK_1_PI_4    +1.273239544735162686151070106980114896275677165923651589981E+00
+
 //!# Value of 1/pi.
 #	define MCK_1_PI       M_1_PI
 

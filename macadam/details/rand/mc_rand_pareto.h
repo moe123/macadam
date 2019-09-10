@@ -17,22 +17,34 @@
 MC_TARGET_FUNC float mc_rand_paretof(float a)
 {
 //!# Pareto distribution generator.
-	const float x = mc_rand_exponentialf(1.0f) / a;
-	return mc_expf(x) - 1.0f;
+	float r = 0.0f;
+	if (a != r) {
+		const float x = mc_rand_exponentialf(1.0f) / a;
+		r             = mc_expf(x) - 1.0f;
+	}
+	return r;
 }
 
 MC_TARGET_FUNC double mc_rand_pareto(double a)
 {
 //!# Pareto distribution generator.
-	const double x = mc_rand_exponential(1.0) / a;
-	return mc_exp(x) - 1.0;
+	double r = 0.0;
+	if (a != r) {
+		const double x = mc_rand_exponential(1.0) / a;
+		r              = mc_exp(x) - 1.0;
+	}
+	return r;
 }
 
 MC_TARGET_FUNC long double mc_rand_paretol(long double a)
 {
 //!# Pareto distribution generator.
-	const long double x = mc_rand_exponentiall(1.0L) / a;
-	return mc_expl(x) - 1.0L;
+	long double r = 0.0L;
+	if (a != r) {
+		const long double x = mc_rand_exponentiall(1.0L) / a;
+		r                   = mc_expl(x) - 1.0L;
+	}
+	return r;
 }
 
 #endif /* !MC_RAND_PARETO_H */
