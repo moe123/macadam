@@ -198,6 +198,8 @@
 #	include <macadam/details/math/mc_zfdiv.h>
 #	include <macadam/details/math/mc_zfmul.h>
 #	include <macadam/details/math/mc_zfsub.h>
+#	include <macadam/details/math/mc_zgamma.h>
+#	include <macadam/details/math/mc_zlgamma.h>
 #	include <macadam/details/math/mc_zlog.h>
 #	include <macadam/details/math/mc_zlog10.h>
 #	include <macadam/details/math/mc_zmul.h>

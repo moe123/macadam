@@ -100,6 +100,7 @@ MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
 
 MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 {
+#	if !MC_TARGET_MSVC_CPP
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
 	int64_t r = 0;
 	long double w;
@@ -136,6 +137,12 @@ MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 		}
 	}
 	return r;
+#	else
+	double y  = mc_cast(double, x), w = 0.0;
+	int64_t r = mc_remzpi(y, &w);
+	*z        = mc_cast(long double, w);
+	return r;
+#	endif
 }
 
 #endif /* !MC_REMZPI_H */
