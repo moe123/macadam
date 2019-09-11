@@ -201,6 +201,7 @@
 #	include <macadam/details/math/mc_zfpow.h>
 #	include <macadam/details/math/mc_zfsub.h>
 #	include <macadam/details/math/mc_zgamma.h>
+#	include <macadam/details/math/mc_zinv.h>
 #	include <macadam/details/math/mc_zlgamma.h>
 #	include <macadam/details/math/mc_zlog.h>
 #	include <macadam/details/math/mc_zlog10.h>
