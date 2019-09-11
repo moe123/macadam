@@ -194,6 +194,7 @@
 #	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
+#	include <macadam/details/math/mc_zexp.h>
 #	include <macadam/details/math/mc_zfadd.h>
 #	include <macadam/details/math/mc_zfdiv.h>
 #	include <macadam/details/math/mc_zfmul.h>
@@ -202,6 +203,7 @@
 #	include <macadam/details/math/mc_zlgamma.h>
 #	include <macadam/details/math/mc_zlog.h>
 #	include <macadam/details/math/mc_zlog10.h>
+#	include <macadam/details/math/mc_zmod.h>
 #	include <macadam/details/math/mc_zmul.h>
 #	include <macadam/details/math/mc_zneg.h>
 #	include <macadam/details/math/mc_znorm.h>
@@ -209,6 +211,7 @@
 #	include <macadam/details/math/mc_zpolar.h>
 #	include <macadam/details/math/mc_zpolyroot2.h>
 #	include <macadam/details/math/mc_zpolyroot3.h>
+#	include <macadam/details/math/mc_zsqr.h>
 #	include <macadam/details/math/mc_zsqrt.h>
 #	include <macadam/details/math/mc_zsub.h>
 

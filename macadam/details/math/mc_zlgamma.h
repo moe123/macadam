@@ -15,7 +15,7 @@
 #include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_sin.h>
 #include <macadam/details/math/mc_sinh.h>
-#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/math/mc_zmod.h>
 #include <macadam/details/math/mc_znorm.h>
 
 #ifndef MC_ZLGAMMA_H
@@ -45,7 +45,7 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 	const float a5  = +8.41750841750841800000000000000000000000E-04f;
 	const float a6  = -1.91752691752691800000000000000000000000E-03f;
 	const float a7  = +6.41025641025641000000000000000000000000E-03f;
-	const float a8  = -.029550653594771240000000000000000000000E-00f;
+	const float a8  = -0.02955065359477124000000000000000000000E-00f;
 	const float a9  = +0.17964437236883070000000000000000000000E-00f;
 	const float a10 = -1.39243221690590000000000000000000000000E-00f;
 
@@ -66,7 +66,7 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 			n = mc_itruncf(7.0f - x_r); 
 			d = x_r + mc_cast(float, n);
 		}
-		 a   = mc_sqrtf(mc_znormf(d, x_i));
+		 a   = mc_zmodf(d, x_i);
 		 b   = mc_atanf(x_i / d);
 		*r_r = (d - 0.5f) * mc_logf(a) - b * x_i - d + 0.5f * mc_logf(MCK_KF(MCK_2PI));
 		*r_i = b * (d - 0.5f) + x_i * mc_logf(a) - x_i;
@@ -123,12 +123,12 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0f) {
-			a    = mc_sqrtf(mc_znormf(x_r, x_i));
+			a    = mc_zmodf(x_r, x_i);
 			c    = -mc_sinf(MCK_KF(MCK_PI) * x_r) * mc_coshf(MCK_KF(MCK_PI) * x_i);
 			d    = -mc_cosf(MCK_KF(MCK_PI) * x_r) * mc_sinhf(MCK_KF(MCK_PI) * x_i);
 			b    = mc_atanf(d / c);
 			b    = c < 0.0f ? b + MCK_KF(MCK_PI) : b;
-			*r_r = mc_logf(MCK_KF(MCK_PI) / (a * mc_sqrtf(mc_znormf(c, d)))) - (*r_r);
+			*r_r = mc_logf(MCK_KF(MCK_PI) / (a * mc_zmodf(c, d))) - (*r_r);
 			*r_i = -mc_atanf(x_i / x_r) - b - (*r_i);
 		}
 	}
@@ -156,7 +156,7 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 	const double a5  = +8.4175084175084180000000000000000000000000E-04;
 	const double a6  = -1.9175269175269180000000000000000000000000E-03;
 	const double a7  = +6.4102564102564100000000000000000000000000E-03;
-	const double a8  = -.02955065359477124000000000000000000000000E-00;
+	const double a8  = -0.0295506535947712400000000000000000000000E-00;
 	const double a9  = +0.1796443723688307000000000000000000000000E-00;
 	const double a10 = -1.3924322169059000000000000000000000000000E-00;
 
@@ -177,7 +177,7 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 			n = mc_itrunc(7.0 - x_r); 
 			d = x_r + mc_cast(double, n);
 		}
-		 a   = mc_sqrt(mc_znorm(d, x_i));
+		 a   = mc_zmod(d, x_i);
 		 b   = mc_atan(x_i / d);
 		*r_r = (d - 0.5) * mc_log(a) - b * x_i - d + 0.5 * mc_log(MCK_K(MCK_2PI));
 		*r_i = b * (d - 0.5) + x_i * mc_log(a) - x_i;
@@ -234,12 +234,12 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0) {
-			 a   = mc_sqrt(mc_znorm(x_r, x_i));
+			 a   = mc_zmod(x_r, x_i);
 			 c   = -mc_sin(MCK_K(MCK_PI) * x_r) * mc_cosh(MCK_K(MCK_PI) * x_i);
 			 d   = -mc_cos(MCK_K(MCK_PI) * x_r) * mc_sinh(MCK_K(MCK_PI) * x_i);
 			 b   = mc_atan(d / c);
 			 b   = c < 0.0 ? b + MCK_K(MCK_PI) : b;
-			*r_r = mc_log(MCK_K(MCK_PI) / (a * mc_sqrt(mc_znorm(c, d)))) - (*r_r);
+			*r_r = mc_log(MCK_K(MCK_PI) / (a *mc_zmod(c, d))) - (*r_r);
 			*r_i = -mc_atan(x_i / x_r) - b - (*r_i);
 		}
 	}
@@ -267,7 +267,7 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 	const long double a5  = +8.417508417508418000000000000000000000000000000000000000000000000E-04L;
 	const long double a6  = -1.917526917526918000000000000000000000000000000000000000000000000E-03L;
 	const long double a7  = +6.410256410256410000000000000000000000000000000000000000000000000E-03L;
-	const long double a8  = -.0295506535947712400000000000000000000000000000000000000000000000E-00L;
+	const long double a8  = -0.029550653594771240000000000000000000000000000000000000000000000E-00L;
 	const long double a9  = +0.179644372368830700000000000000000000000000000000000000000000000E-00L;
 	const long double a10 = -1.392432216905900000000000000000000000000000000000000000000000000E-00L;
 
@@ -288,7 +288,7 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 			n = mc_itruncl(7.0L - x_r); 
 			d = x_r + mc_cast(long double, n);
 		}
-		 a   = mc_sqrtl(mc_znorml(d, x_i));
+		 a   = mc_zmodl(d, x_i);
 		 b   = mc_atanl(x_i / d);
 		*r_r = (d - 0.5L) * mc_logl(a) - b * x_i - d + 0.5L * mc_logl(MCK_KL(MCK_2PI));
 		*r_i = b * (d - 0.5L) + x_i * mc_logl(a) - x_i;
@@ -345,12 +345,12 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0L) {
-			a    = mc_sqrtl(mc_znorml(x_r, x_i));
+			a    = mc_zmodl(x_r, x_i);
 			c    = -mc_sinl(MCK_KL(MCK_PI) * x_r) * mc_coshl(MCK_KL(MCK_PI) * x_i);
 			d    = -mc_cosl(MCK_KL(MCK_PI) * x_r) * mc_sinhl(MCK_KL(MCK_PI) * x_i);
 			b    = mc_atanl(d / c);
 			b    = c < 0.0L ? b + MCK_KL(MCK_PI) : b;
-			*r_r = mc_logl(MCK_KL(MCK_PI) / (a * mc_sqrtl(mc_znorml(c, d)))) - (*r_r);
+			*r_r = mc_logl(MCK_KL(MCK_PI) / (a * mc_zmodl(c, d))) - (*r_r);
 			*r_i = -mc_atanl(x_i / x_r) - b - (*r_i);
 		}
 	}
