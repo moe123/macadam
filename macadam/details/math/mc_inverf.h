@@ -39,8 +39,8 @@ MC_TARGET_FUNC float mc_inverff(float x)
 		d = ((1.637067800f * z + 3.543889200f) * z + 1.0f);
 		w = (x < 0 ? -n : n) / d;
 	}
-	w -= (mc_erff(w) - x) / (MCK_KF(MCK_2_SQRTPI) * mc_expf(-w * w));
-	w -= (mc_erff(w) - x) / (MCK_KF(MCK_2_SQRTPI) * mc_expf(-w * w));
+	w = w - ((mc_erff(w) - x) / (MCK_KF(MCK_2_SQRTPI) * mc_expf(-w * w)));
+	w = w - ((mc_erff(w) - x) / (MCK_KF(MCK_2_SQRTPI) * mc_expf(-w * w)));
 	return w;
 }
 
@@ -65,8 +65,8 @@ MC_TARGET_FUNC double mc_inverf(double x)
 		d = ((1.637067800 * z + 3.543889200) * z + 1.0);
 		w = (x < 0 ? -n : n) / d;
 	}
-	w -= (mc_erf(w) - x) / (MCK_K(MCK_2_SQRTPI) * mc_exp(-w * w));
-	w -= (mc_erf(w) - x) / (MCK_K(MCK_2_SQRTPI) * mc_exp(-w * w));
+	w = w - ((mc_erf(w) - x) / (MCK_K(MCK_2_SQRTPI) * mc_exp(-w * w)));
+	w = w - ((mc_erf(w) - x) / (MCK_K(MCK_2_SQRTPI) * mc_exp(-w * w)));
 	return w;
 }
 
@@ -91,8 +91,8 @@ MC_TARGET_FUNC long double mc_inverfl(long double x)
 		d = ((1.637067800L * z + 3.543889200L) * z + 1.0L);
 		w = (x < 0 ? -n : n) / d;
 	}
-	w -= (mc_erfl(w) - x) / (MCK_KL(MCK_2_SQRTPI) * mc_expl(-w * w));
-	w -= (mc_erfl(w) - x) / (MCK_KL(MCK_2_SQRTPI) * mc_expl(-w * w));
+	w = w - ((mc_erfl(w) - x) / (MCK_KL(MCK_2_SQRTPI) * mc_expl(-w * w)));
+	w = w - ((mc_erfl(w) - x) / (MCK_KL(MCK_2_SQRTPI) * mc_expl(-w * w)));
 	return w;
 }
 

@@ -115,19 +115,19 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 			b = 0.0f;
 			a = 0.0f;
 			for (; i <= (n - 1); i++) {
-				d  = x_r + mc_cast(float, i);
-				b += 0.5f * mc_logf(mc_znormf(d, x_i)); 
-				a += mc_atanf(x_i / (x_r + mc_cast(float, i)));
+				d = x_r + mc_cast(float, i);
+				b = b + (0.5f * mc_logf(mc_znormf(d, x_i))); 
+				a = a + (mc_atanf(x_i / (x_r + mc_cast(float, i))));
 			} 
 			*r_r = *r_r - b;
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0f) {
-			a    = mc_zmodf(x_r, x_i);
-			c    = -mc_sinf(MCK_KF(MCK_PI) * x_r) * mc_coshf(MCK_KF(MCK_PI) * x_i);
-			d    = -mc_cosf(MCK_KF(MCK_PI) * x_r) * mc_sinhf(MCK_KF(MCK_PI) * x_i);
-			b    = mc_atanf(d / c);
-			b    = c < 0.0f ? b + MCK_KF(MCK_PI) : b;
+			 a   = mc_zmodf(x_r, x_i);
+			 c   = -mc_sinf(MCK_KF(MCK_PI) * x_r) * mc_coshf(MCK_KF(MCK_PI) * x_i);
+			 d   = -mc_cosf(MCK_KF(MCK_PI) * x_r) * mc_sinhf(MCK_KF(MCK_PI) * x_i);
+			 b   = mc_atanf(d / c);
+			 b   = c < 0.0f ? b + MCK_KF(MCK_PI) : b;
 			*r_r = mc_logf(MCK_KF(MCK_PI) / (a * mc_zmodf(c, d))) - (*r_r);
 			*r_i = -mc_atanf(x_i / x_r) - b - (*r_i);
 		}
@@ -226,9 +226,9 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 			b = 0.0;
 			a = 0.0;
 			for (; i <= (n - 1); i++) {
-				d  = x_r + mc_cast(double, i);
-				b += 0.5 * mc_log(mc_znorm(d, x_i)); 
-				a += mc_atan(x_i / (x_r + mc_cast(double, i)));
+				d = x_r + mc_cast(double, i);
+				b = b + (0.5 * mc_log(mc_znorm(d, x_i))); 
+				a = a + (mc_atan(x_i / (x_r + mc_cast(double, i))));
 			} 
 			*r_r = *r_r - b;
 			*r_i = *r_i - a;
@@ -337,9 +337,9 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 			b = 0.0L;
 			a = 0.0L;
 			for (; i <= (n - 1); i++) {
-				d  = x_r + mc_cast(long double, i);
-				b += 0.5L * mc_logl(mc_znorml(d, x_i)); 
-				a += mc_atanl(x_i / (x_r + mc_cast(long double, i)));
+				d = x_r + mc_cast(long double, i);
+				b = b + (0.5L * mc_logl(mc_znorml(d, x_i))); 
+				a = a + (mc_atanl(x_i / (x_r + mc_cast(long double, i))));
 			} 
 			*r_r = *r_r - b;
 			*r_i = *r_i - a;

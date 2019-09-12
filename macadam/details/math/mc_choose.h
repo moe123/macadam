@@ -28,10 +28,10 @@ MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 			return mc_cast(float, n);
 		}
 		if (n < max_factorial) {
-			r  = mc_factorialf(n);
-			r /= mc_factorialf(n - k);
-			r /= mc_factorialf(k);
-			r  = mc_ceilf(r - 0.5f);
+			r = mc_factorialf(n);
+			r = r / mc_factorialf(n - k);
+			r = r / mc_factorialf(k);
+			r = mc_ceilf(r - 0.5f);
 		} else {
 			r = (k < (n - k))
 				? mc_cast(float, (k - 0)) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
@@ -61,10 +61,10 @@ MC_TARGET_FUNC double mc_choose(unsigned int n, unsigned int k)
 			return mc_cast(double, n);
 		}
 		if (n < max_factorial) {
-			r  = mc_factorial(n);
-			r /= mc_factorial(n - k);
-			r /= mc_factorial(k);
-			r  = mc_ceil(r - 0.5);
+			r = mc_factorial(n);
+			r = r / mc_factorial(n - k);
+			r = r / mc_factorial(k);
+			r = mc_ceil(r - 0.5);
 		} else {
 			r = (k < (n - k))
 				? mc_cast(double, (k - 0)) * mc_beta(mc_cast(double, (k + 0)), mc_cast(double, (n - k + 1)))
@@ -98,10 +98,10 @@ MC_TARGET_FUNC long double mc_choosel(unsigned int n, unsigned int k)
 			return mc_cast(long double, n);
 		}
 		if (n < max_factorial) {
-			r  = mc_cast(long double, mc_factoriall(n));
-			r /= mc_cast(long double, mc_factoriall(n - k));
-			r /= mc_cast(long double, mc_factoriall(k));
-			r  = mc_ceill(r - 0.5L);
+			r = mc_cast(long double, mc_factoriall(n));
+			r = r / mc_cast(long double, mc_factoriall(n - k));
+			r = r / mc_cast(long double, mc_factoriall(k));
+			r = mc_ceill(r - 0.5L);
 		} else {
 			r = (k < (n - k))
 				? mc_cast(long double, (k - 0)) * mc_betal(mc_cast(long double, (k + 0)), mc_cast(long double, (n - k + 1)))

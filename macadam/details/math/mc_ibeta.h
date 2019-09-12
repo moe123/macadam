@@ -58,17 +58,17 @@ MC_TARGET_FUNC float mc_ibetaf(float a, float b, float x)
 			w = -((a + j) * (a + b + j) * x) / ((a + 2.0f * j) * (a + 2.0f * j + 1));
 		}
 		d = 1.0f + w * d;
-		if (mc_fabsf(d) < 1.0E-15f) {
+		if (mc_fabsf(d) < 1.0E-7f) {
 		//!# Clipping to absolute min.
-			d = 1.0E-15f;
+			d = 1.0E-7f;
 		}
 		d = 1.0f / d;
 		c = 1.0f + w / c;
-		if (mc_fabsf(c) < 1.0E-15f) {
+		if (mc_fabsf(c) < 1.0E-7f) {
 		//!# Clipping to absolute min.
-			c = 1.0E-15f;
+			c = 1.0E-7f;
 		}
-		f *= (c * d);
+		f = f * (c * d);
 		if (mc_fabsf(1.0f - (c * d)) < 1.0E-5f) {
 			return k * (f - 1.0f);
 		}
@@ -119,17 +119,17 @@ MC_TARGET_FUNC double mc_ibeta(double a, double b, double x)
 			w = -((a + j) * (a + b + j) * x) / ((a + 2.0 * j) * (a + 2.0 * j + 1));
 		}
 		d = 1.0 + w * d;
-		if (mc_fabs(d) < 1.0E-30) {
+		if (mc_fabs(d) < 1.0E-15) {
 		//!# Clipping to absolute min.
-			d = 1.0E-30;
+			d = 1.0E-15;
 		}
 		d = 1.0 / d;
 		c = 1.0 + w / c;
-		if (mc_fabs(c) < 1.0E-30) {
+		if (mc_fabs(c) < 1.0E-15) {
 		//!# Clipping to absolute min.
-			c = 1.0E-30;
+			c = 1.0E-15;
 		}
-		f *= (c * d);
+		f = f * (c * d);
 		if (mc_fabs(1.0 - (c * d)) < 1.0E-8) {
 			return k * (f - 1.0);
 		}
@@ -190,8 +190,8 @@ MC_TARGET_FUNC long double mc_ibetal(long double a, long double b, long double x
 		//!# Clipping to absolute min.
 			c = 1.0E-30L;
 		}
-		f *= (c * d);
-		if (mc_fabsl(1.0L - (c * d)) < 1.0E-8L) {
+		f = f * (c * d);
+		if (mc_fabsl(1.0L - (c * d)) < 1.0E-12L) {
 			return k * (f - 1.0L);
 		}
 	}

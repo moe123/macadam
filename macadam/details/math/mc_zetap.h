@@ -431,17 +431,17 @@ MC_TARGET_PROC long double mc_zetapscl(long double s, long double sc)
 	if (n < MCLIMITS_IMAX) {
 		nn = mc_ldexpl(1.0L, n);
 		for (; k < n; k++) {
-			p     = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
-			sum  += (sign * -nn)  * p;
-			sign *= -1.0L; 
+			p    = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
+			sum  = sum + ((sign * -nn)  * p);
+			sign = sign * -1.0L; 
 		}
 		for (k = n; k <= 2 * n - 1; k++) {
-			p     = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
-			sum  += (sign * (sumk - nn)) * p;
-			sign *= -1.0L;
-			term *= 2.0L * mc_cast(long double, n) - mc_cast(long double, k);
-			term /= k - n + 1;
-			sumk += term;
+			p    = 1.0L / mc_powl(mc_cast(long double, (k + 1)), s);
+			sum  = sum + ((sign * (sumk - nn)) * p);
+			sign = sign * -1.0L;
+			term = term * (2.0L * mc_cast(long double, n) - mc_cast(long double, k));
+			term = term / mc_cast(long double, (k - n + 1));
+			sumk = sumk + term;
 		}
 		p = 1.0L / (nn * (-mc_powm1l(2.0L, sc)));
 		return -sum * p;

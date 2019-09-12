@@ -54,8 +54,8 @@ MC_TARGET_PROC float mc_lgammaf_approx1(float x)
 //!# Leading term.
 	const float q = mc_raise2f(x);
 	float r       = MCK_KF(MCK_LSQRT2PI) - x + (x - 0.5f) * mc_logf(x);
-	r = r +  MCK_KF(MCK_1_12)   / x; x *= q;
-	r = r + -MCK_KF(MCK_1_360)  / x; x *= q;
+	r = r +  MCK_KF(MCK_1_12)   / x; x = x * q;
+	r = r + -MCK_KF(MCK_1_360)  / x; x = x * q;
 	r = r +  MCK_KF(MCK_1_1260) / x;
 	return r;
 }
@@ -66,8 +66,8 @@ MC_TARGET_PROC double mc_lgamma_approx1(double x)
 //!# Leading term.
 	const double q = mc_raise2(x);
 	double r       = MCK_K(MCK_LSQRT2PI) - x + (x - 0.5) * mc_log(x);
-	r = r +  MCK_K(MCK_1_12)   / x; x *= q;
-	r = r + -MCK_K(MCK_1_360)  / x; x *= q;
+	r = r +  MCK_K(MCK_1_12)   / x; x = x * q;
+	r = r + -MCK_K(MCK_1_360)  / x; x = x * q;
 	r = r +  MCK_K(MCK_1_1260) / x;
 	return r;
 }
@@ -78,8 +78,8 @@ MC_TARGET_PROC long double mc_lgammal_approx1(long double x)
 //!# Leading term.
 	const long double q = mc_raise2l(x);
 	long double r       = MCK_KL(MCK_LSQRT2PI) - x + (x - 0.5L) * mc_logl(x);
-	r = r +  MCK_KL(MCK_1_12)   / x; x *= q;
-	r = r + -MCK_KL(MCK_1_360)  / x; x *= q;
+	r = r +  MCK_KL(MCK_1_12)   / x; x = x * q;
+	r = r + -MCK_KL(MCK_1_360)  / x; x = x * q;
 	r = r +  MCK_KL(MCK_1_1260) / x;
 	return r;
 }
@@ -122,15 +122,15 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 		return MCK_INFP;
 	}
 	if (x >= 0.5f) {
-		x  = x - 1.0f;
-		b  = x + lanczos_g + 0.5f;
-		s  = lanczos_c6 / (x + 6.0f);
-		s += lanczos_c5 / (x + 5.0f);
-		s += lanczos_c4 / (x + 4.0f);
-		s += lanczos_c3 / (x + 3.0f);
-		s += lanczos_c2 / (x + 2.0f);
-		s += lanczos_c1 / (x + 1.0f);
-		s += lanczos_c0;
+		x = x - 1.0f;
+		b = x + lanczos_g + 0.5f;
+		s = lanczos_c6 / (x + 6.0f);
+		s = s + (lanczos_c5 / (x + 5.0f));
+		s = s + (lanczos_c4 / (x + 4.0f));
+		s = s + (lanczos_c3 / (x + 3.0f));
+		s = s + (lanczos_c2 / (x + 2.0f));
+		s = s + (lanczos_c1 / (x + 1.0f));
+		s = s + lanczos_c0;
 		r  = ((MCK_KF(MCK_LSQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (x + 0.5f);
 	} else if (x < 0.0f) {
 		r = x * mc_sinpif(x);
@@ -180,15 +180,15 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 		return MCK_INFP;
 	}
 	if (x >= 0.5) {
-		x  = x - 1.0;
-		b  = x + lanczos_g + 0.5;
-		s  = lanczos_c6 / (x + 6.0);
-		s += lanczos_c5 / (x + 5.0);
-		s += lanczos_c4 / (x + 4.0);
-		s += lanczos_c3 / (x + 3.0);
-		s += lanczos_c2 / (x + 2.0);
-		s += lanczos_c1 / (x + 1.0);
-		s += lanczos_c0;
+		x = x - 1.0;
+		b = x + lanczos_g + 0.5;
+		s = lanczos_c6 / (x + 6.0);
+		s = s + (lanczos_c5 / (x + 5.0));
+		s = s + (lanczos_c4 / (x + 4.0));
+		s = s + (lanczos_c3 / (x + 3.0));
+		s = s + (lanczos_c2 / (x + 2.0));
+		s = s + (lanczos_c1 / (x + 1.0));
+		s = s + lanczos_c0;
 		r  = ((MCK_K(MCK_LSQRT2PI) + mc_log(s)) - b) + mc_log(b) * (x + 0.5);
 	} else if (x < 0.0) {
 		r = x * mc_sinpi(x);
@@ -233,15 +233,15 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 		return MCK_INFP;
 	}
 	if (x >= 0.5L) {
-		x  = x - 1.0L;
-		b  = x + lanczos_g + 0.5L;
-		s  = lanczos_c6 / (x + 6.0L);
-		s += lanczos_c5 / (x + 5.0L);
-		s += lanczos_c4 / (x + 4.0L);
-		s += lanczos_c3 / (x + 3.0L);
-		s += lanczos_c2 / (x + 2.0L);
-		s += lanczos_c1 / (x + 1.0L);
-		s += lanczos_c0;
+		x = x - 1.0L;
+		b = x + lanczos_g + 0.5L;
+		s = lanczos_c6 / (x + 6.0L);
+		s = s + (lanczos_c5 / (x + 5.0L));
+		s = s + (lanczos_c4 / (x + 4.0L));
+		s = s + (lanczos_c3 / (x + 3.0L));
+		s = s + (lanczos_c2 / (x + 2.0L));
+		s = s + (lanczos_c1 / (x + 1.0L));
+		s = s + lanczos_c0;
 		r  = ((MCK_KL(MCK_LSQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (x + 0.5L);
 	} else if (x < 0.0) {
 		r = x *  mc_sinpil(x);

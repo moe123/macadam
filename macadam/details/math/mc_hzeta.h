@@ -43,18 +43,18 @@ MC_TARGET_FUNC float mc_hzetaf(float s, float q)
 		term = 0.0f;
 		for (j = 0; j <= i; ++j) {
 			if (w < (c = mc_lchoosef(mc_cast(float, i), mc_cast(float, j)))) {
-				c     = sign * mc_expf(c);
-				sign *= -1.0f;
-				term += c * mc_powf(q + mc_cast(float, j), -s);
+				c    = sign * mc_expf(c);
+				sign = sign * -1.0f;
+				term = term + (c * mc_powf(q + mc_cast(float, j), -s));
 				continue;
 			}
 			goto hurwitz_end;
 		}
-		term *= 1.0f / mc_cast(float, (i + 1));
+		term = term * (1.0f / mc_cast(float, (i + 1)));
 		if (mc_fabsf(term * (1.0f / r)) < MCLIMITS_EPSILONF) {
 			goto hurwitz_end;
 		}
-		r += term;
+		r = r + term;
 	}
 hurwitz_end:
 	return r / (s - 1.0f);
@@ -84,18 +84,18 @@ MC_TARGET_FUNC double mc_hzeta(double s, double q)
 		term = 0.0;
 		for (j = 0; j <= i; ++j) {
 			if (w < (c = mc_lchoose(mc_cast(double, i), mc_cast(double, j)))) {
-				c     = sign * mc_exp(c);
-				sign *= -1.0;
-				term += c * mc_pow(q + mc_cast(double, j), -s);
+				c    = sign * mc_exp(c);
+				sign = sign * -1.0;
+				term = term + (c * mc_pow(q + mc_cast(double, j), -s));
 				continue;
 			}
 			goto hurwitz_end;
 		}
-		term *= 1.0 / mc_cast(double, (i + 1));
+		term = term * (1.0 / mc_cast(double, (i + 1)));
 		if (mc_fabs(term * (1.0 / r)) < MCLIMITS_EPSILON) {
 			goto hurwitz_end;
 		}
-		r += term;
+		r = r + term;
 	}
 hurwitz_end:
 	return r / (s - 1.0);
@@ -125,18 +125,18 @@ MC_TARGET_FUNC long double mc_hzetal(long double s, long double q)
 		term = 0.0L;
 		for (j = 0; j <= i; ++j) {
 			if (w < (c = mc_lchoosel(mc_cast(long double, i), mc_cast(long double, j)))) {
-				c     = sign * mc_expl(c);
-				sign *= -1.0L;
-				term += c * mc_powl(q + mc_cast(long double, j), -s);
+				c    = sign * mc_expl(c);
+				sign = sign * -1.0L;
+				term = term + (c * mc_powl(q + mc_cast(long double, j), -s));
 				continue;
 			}
 			goto hurwitz_end;
 		}
-		term *= 1.0L / mc_cast(long double, (i + 1));
+		term = term * (1.0L / mc_cast(long double, (i + 1)));
 		if (mc_fabsl(term * (1.0L / r)) < MCLIMITS_EPSILONL) {
 			goto hurwitz_end;
 		}
-		r += term;
+		r = r + term;
 	}
 hurwitz_end:
 	return r / (s - 1.0L);

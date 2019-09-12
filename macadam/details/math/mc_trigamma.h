@@ -28,14 +28,14 @@ MC_TARGET_PROC float mc_trigammaf_approx0(float x)
 		return mc_rsqrf(x);
 	}
 	z = x;
-	g = 0;
+	g = 0.0f;
 	while (z < 5.0f) {
-		g += mc_rsqrf(z);
-		z += 1.0f;
+		g = g + mc_rsqrf(z);
+		z = z + 1.0f;
 	}
 	y  = mc_rsqrf(z);
 //!# Expansion as a Laurent series.
-	g += 0.5f * y + (1.0f + y * (MCK_KF(MCK_BN2) + y * (MCK_KF(MCK_BN4) + y * (MCK_KF(MCK_BN6) + y * MCK_KF(MCK_BN8))))) / z;
+	g = g + (0.5f * y + (1.0f + y * (MCK_KF(MCK_BN2) + y * (MCK_KF(MCK_BN4) + y * (MCK_KF(MCK_BN6) + y * MCK_KF(MCK_BN8))))) / z);
 	return g;
 }
 
@@ -52,14 +52,14 @@ MC_TARGET_PROC double mc_trigamma_approx0(double x)
 		return mc_rsqr(x);
 	}
 	z = x;
-	g = 0;
+	g = 0.0;
 	while (z < 5.0) {
-		g += mc_rsqr(z);
-		z += 1.0;
+		g = g + mc_rsqr(z);
+		z = z + 1.0;
 	}
 	y  = mc_rsqr(z);
 //!# Expansion as a Laurent series.
-	g += 0.5 * y + (1.0 + y * (MCK_K(MCK_BN2) + y * (MCK_K(MCK_BN4) + y * (MCK_K(MCK_BN6) + y * MCK_K(MCK_BN8))))) / z;
+	g = g + (0.5 * y + (1.0 + y * (MCK_K(MCK_BN2) + y * (MCK_K(MCK_BN4) + y * (MCK_K(MCK_BN6) + y * MCK_K(MCK_BN8))))) / z);
 	return g;
 }
 
@@ -76,14 +76,14 @@ MC_TARGET_PROC long double mc_trigammal_approx0(long double x)
 		return mc_rsqrl(x);
 	}
 	z = x;
-	g = 0;
+	g = 0.0L;
 	while (z < 5.0L) {
-		g += mc_rsqrl(z);
-		z += 1.0L;
+		g = g + mc_rsqrl(z);
+		z = z + 1.0L;
 	}
 	y  = mc_rsqrl(z);
 //!# Expansion as a Laurent series.
-	g += 0.5L * y + (1.0L + y * (MCK_KL(MCK_BN2) + y * (MCK_KL(MCK_BN4) + y * (MCK_KL(MCK_BN6) + y * MCK_KL(MCK_BN8))))) / z;
+	g = g + (0.5L * y + (1.0L + y * (MCK_KL(MCK_BN2) + y * (MCK_KL(MCK_BN4) + y * (MCK_KL(MCK_BN6) + y * MCK_KL(MCK_BN8))))) / z);
 	return g;
 }
 

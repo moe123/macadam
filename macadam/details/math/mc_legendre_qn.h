@@ -69,10 +69,10 @@ MC_TARGET_PROC float mc_legendre_q1f(float x)
 	} else {
 		y = mc_rsqrf(x); w = 1.0f; f = 3.0f; s = 1.0f; k = 5.0f;
 		do {
-			f *= y;
-			w  = f / k;
-			s  = s + w;
-			k += 2.0f;
+			f = f * y;
+			w = f / k;
+			s = s + w;
+			k = k + 2.0f;
 		} while (w <= s * MCLIMITS_EPSILONF);
 		q1 = (s * y) * MCK_KF(MCK_1_3);
 	}
@@ -96,10 +96,10 @@ MC_TARGET_PROC double mc_legendre_q1(double x)
 	} else {
 		y = mc_rsqr(x); w = 1.0; f = 3.0; s = 1.0; k = 5.0;
 		do {
-			f *= y;
-			w  = f / k;
-			s  = s + w;
-			k += 2.0;
+			f = f * y;
+			w = f / k;
+			s = s + w;
+			k = k + 2.0;
 		} while (w <= s * MCLIMITS_EPSILON);
 		q1 = (s * y) * MCK_K(MCK_1_3);
 	}
@@ -123,10 +123,10 @@ MC_TARGET_PROC long double mc_legendre_q1l(long double x)
 	} else {
 		y = mc_rsqrl(x); w = 1.0L; f = 3.0L; s = 1.0L; k = 5.0L;
 		do {
-			f *= y;
-			w  = f / k;
-			s  = s + w;
-			k += 2.0L;
+			f = f * y;
+			w = f / k;
+			s = s + w;
+			k = k + 2.0L;
 		} while (w <= s * MCLIMITS_EPSILONL);
 		q1 = (s * y) * MCK_KL(MCK_1_3);
 	}

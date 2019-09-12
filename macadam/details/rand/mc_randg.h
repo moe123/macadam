@@ -46,7 +46,7 @@ MC_TARGET_PROC float mc_randgf(void)
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
 	static volatile float x_s   = 0.0f;
-	float r, s0 = 0.0f, u, v, w;
+	float r, s = 0.0f, u, v, w;
 	if (phase_s != 0) {
 		r = x_s;
 	} else {
@@ -55,16 +55,16 @@ MC_TARGET_PROC float mc_randgf(void)
 			const float r2 = mc_rand_uniformf(0.0f, 1.0f);
 			u              = 2.0f * r1 - 1.0f;
 			v              = 2.0f * r2 - 1.0f;
-			s0              = mc_raise2f(u) + mc_raise2f(v);
-		} while (s0 < 1.0f && s0 > 0.0f);
-		w = -2.0f * mc_logf(s0) * (1.0f / s0);
+			s              = mc_raise2f(u) + mc_raise2f(v);
+		} while (s < 1.0f && s > 0.0f);
+		w = -2.0f * mc_logf(s) * (1.0f / s);
 		if (w < 0.0f) {
-			mc_zsqrtf(&w, &s0, w, 0.0f);
+			mc_zsqrtf(&w, &s, w, 0.0f);
 		} else {
-			s0 = mc_sqrtf(w);
+			s = mc_sqrtf(w);
 		}
-		r   = u * s0;
-		x_s = v * s0;
+		r   = u * s;
+		x_s = v * s;
 	}
 	phase_s = !phase_s;
 	return r;
@@ -98,7 +98,7 @@ MC_TARGET_PROC double mc_randg(void)
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
 	static volatile double x_s  = 0.0;
-	double r, s0 = 0.0, u, v, w;
+	double r, s = 0.0, u, v, w;
 	if (phase_s != 0) {
 		r = x_s;
 	} else {
@@ -107,16 +107,16 @@ MC_TARGET_PROC double mc_randg(void)
 			const double r2 = mc_rand_uniform(0.0, 1.0);
 			u               = 2.0 * r1 - 1.0;
 			v               = 2.0 * r2 - 1.0;
-			s0               = mc_raise2(u) + mc_raise2(v);
-		} while (s0 < 1.0 && s0 > 0.0);
-		w = -2.0 * mc_log(s0) * (1.0 / s0);
+			s               = mc_raise2(u) + mc_raise2(v);
+		} while (s < 1.0 && s > 0.0);
+		w = -2.0 * mc_log(s) * (1.0 / s);
 		if (w < 0.0) {
-			mc_zsqrt(&w, &s0, w, 0.0);
+			mc_zsqrt(&w, &s, w, 0.0);
 		} else {
-			s0 = mc_sqrt(w);
+			s = mc_sqrt(w);
 		}
-		r   = u * s0;
-		x_s = v * s0;
+		r   = u * s;
+		x_s = v * s;
 	}
 	phase_s = !phase_s;
 	return r;
@@ -150,7 +150,7 @@ MC_TARGET_PROC long double mc_randgl(void)
 //!# Marsaglia polar transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s     = 0;
 	static volatile long double x_s = 0.0L;
-	long double r, s0 = 0.0L, u, v, w;
+	long double r, s = 0.0L, u, v, w;
 	if (phase_s != 0) {
 		r = x_s;
 	} else {
@@ -159,16 +159,16 @@ MC_TARGET_PROC long double mc_randgl(void)
 			const long double r2 = mc_rand_uniforml(0.0L, 1.0L);
 			u                    = 2.0L * r1 - 1.0L;
 			v                    = 2.0L * r2 - 1.0L;
-			s0                    = mc_raise2l(u) + mc_raise2l(v);
-		} while (s0 < 1.0 && s0 > 0.0);
-		w = -2.0L * mc_logl(s0) * (1.0L / s0);
+			s                    = mc_raise2l(u) + mc_raise2l(v);
+		} while (s < 1.0 && s > 0.0);
+		w = -2.0L * mc_logl(s) * (1.0L / s);
 		if (w < 0.0L) {
-			mc_zsqrtl(&w, &s0, w, 0.0L);
+			mc_zsqrtl(&w, &s, w, 0.0L);
 		} else {
-			s0 = mc_sqrtl(w);
+			s = mc_sqrtl(w);
 		}
-		r   = u * s0;
-		x_s = v * s0;
+		r   = u * s;
+		x_s = v * s;
 	}
 	phase_s = !phase_s;
 	return r;

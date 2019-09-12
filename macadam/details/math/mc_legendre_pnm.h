@@ -63,8 +63,8 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 		z = mc_sqrtf(1.0f - x * x);
 		w = 1.0f;
 		for (; i <= m; i++) {
-			p0 *= -1.0f * w * z;
-			w  += 2.0f;
+			p0 = p0 * -1.0f * w * z;
+			w  = w + 2.0f;
 		}
 	}
 	if (n == m) {
@@ -126,8 +126,8 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 		z = mc_sqrt(1.0 - x * x);
 		w = 1.0;
 		for (; i <= m; i++) {
-			p0 *= -1.0 * w * z;
-			w  += 2.0;
+			p0 = p0 * -1.0 * w * z;
+			w  = w + 2.0;
 		}
 	}
 	if (n == m) {
@@ -193,8 +193,8 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 		z = mc_sqrtl(1.0L - x * x);
 		w = 1.0L;
 		for (; i <= m; i++) {
-			p0 *= -1.0L * w * z;
-			w  += 2.0L;
+			p0 = p0 * -1.0L * w * z;
+			w  = w + 2.0L;
 		}
 	}
 	if (n == m) {

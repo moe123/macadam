@@ -31,9 +31,9 @@ MC_TARGET_PROC float mc_igamma_pseriesf_approx0(float a, float z)
 	float sum     = term;
 	float w       = a;
 	do {
-		w    += 1.0f;
-		term *= z / w;
-		sum  += term;
+		w    = w + 1.0f;
+		term = term * (z / w);
+		sum  = sum + term;
 	} while (mc_fabsf(term) > mc_fabsf(sum) * e);
 	return sum;
 }
@@ -46,9 +46,9 @@ MC_TARGET_PROC double mc_igamma_pseries_approx0(double a, double z)
 	double sum     = term;
 	double w       = a;
 	do {
-		w    += 1.0;
-		term *= z / w;
-		sum  += term;
+		w    = w + 1.0;
+		term = term * (z / w);
+		sum  = sum + term;
 	} while (mc_fabs(term) > mc_fabs(sum) * e);
 	return sum;
 }
@@ -61,9 +61,9 @@ MC_TARGET_PROC long double mc_igamma_pseriesl_approx0(long double a, long double
 	long double sum     = term;
 	long double w       = a;
 	do {
-		w    += 1.0L;
-		term *= z / w;
-		sum  += term;
+		w    = w + 1.0L;
+		term = term * (z / w);
+		sum  = sum + term;
 	} while (mc_fabsl(term) > mc_fabsl(sum) * e);
 	return sum;
 }
@@ -81,16 +81,16 @@ MC_TARGET_PROC float mc_igamma_cfracf_approx0(float a, float z)
 	c3 = 1.0f / c1;
 	c5 = c3;
 	do {
-		c0  = k * (a - k);
-		c1  = c1 +  2.0f;
-		c3  = c0 * c3 + c1;
-		c3  = mc_fabsf(c3) < e3 ? e3 : c3;
-		c2  = c1 + c0 / c2;
-		c2  = mc_fabsf(c2) < e3 ? e3 : c2;
-		c3  = 1.0f / c3;
-		c4  = c3 * c2;
-		c5  = c5 *  c4;
-		k   = k + 1.0f;
+		c0 = k * (a - k);
+		c1 = c1 +  2.0f;
+		c3 = c0 * c3 + c1;
+		c3 = mc_fabsf(c3) < e3 ? e3 : c3;
+		c2 = c1 + c0 / c2;
+		c2 = mc_fabsf(c2) < e3 ? e3 : c2;
+		c3 = 1.0f / c3;
+		c4 = c3 * c2;
+		c5 = c5 *  c4;
+		k  = k + 1.0f;
 	} while (mc_fabsf(c4 - 1.0f) > e1);
 	return c5;
 }
@@ -786,9 +786,9 @@ MC_TARGET_PROC float mc_igamma_pseriesf_approx1(float a, float z)
 	float sum     = term;
 	float w       = a;
 	for (;;) {
-		w    += 1.0f;
-		term *= z / w;
-		sum  += term;
+		w    = w + 1.0f;
+		term = term * (z / w);
+		sum  = sum + term;
 		if (mc_fabsf(term) < mc_fabsf(sum) * e) {
 			break;
 		}
@@ -804,9 +804,9 @@ MC_TARGET_PROC double mc_igamma_pseries_approx1(double a, double z)
 	double sum     = term;
 	double w       = a;
 	for (;;) {
-		w    += 1.0;
-		term *= z / w;
-		sum  += term;
+		w    = w + 1.0;
+		term = term * (z / w);
+		sum  = sum + term;
 		if (mc_fabs(term) < mc_fabs(sum) * e) {
 			break;
 		}
@@ -822,9 +822,9 @@ MC_TARGET_PROC long double mc_igamma_pseriesl_approx1(long double a, long double
 	long double sum     = term;
 	long double w       = a;
 	for (;;) {
-		w    += 1.0L;
-		term *= z / w;
-		sum  += term;
+		w    = w + 1.0L;
+		term = term * (z / w);
+		sum  = sum + term;
 		if (mc_fabsl(term) < mc_fabsl(sum) * e) {
 			break;
 		}

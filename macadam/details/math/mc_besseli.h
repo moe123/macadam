@@ -27,7 +27,7 @@ MC_TARGET_PROC float mc_besseli0f_approx0(float x)
 	int   t  = 0.0f;
 	float i0 = 0.0f;
 	do {
-		i0 += r; ++t; r *= mc_raise2f(x) / (4.0f * t * t);
+		i0 = i0 + r; ++t; r = r * (mc_raise2f(x) / (4.0f * t * t));
 	} while (r > MCLIMITS_EPSILONF * i0);
 	return i0;
 }
@@ -38,7 +38,7 @@ MC_TARGET_PROC double mc_besseli0_approx0(double x)
 	int    t  = 0.0;
 	double i0 = 0.0;
 	do {
-		i0 += r; ++t; r *= mc_raise2(x) / (4.0 * t * t);
+		i0 = i0 + r; ++t; r = r * (mc_raise2(x) / (4.0 * t * t));
 	} while (r > MCLIMITS_EPSILON * i0);
 	return i0;
 }
@@ -49,7 +49,7 @@ MC_TARGET_PROC long double mc_besseli0l_approx0(long double x)
 	int         t  = 0.0L;
 	long double i0 = 0.0L;
 	do {
-		i0 += r; ++t; r *= mc_raise2l(x) / (4.0L * t * t);
+		i0 = i0 + r; ++t; r = r * (mc_raise2l(x) / (4.0L * t * t));
 	} while (r > MCLIMITS_EPSILONL * i0);
 	return i0;
 }
@@ -62,7 +62,7 @@ MC_TARGET_PROC float mc_besseli1f_approx0(float x)
 	int   t  = 0.0f;
 	float i1 = 0.0f;
 	do {
-		i1 += r; ++t; r *= mc_raise2f(x) / (4.0f * t * (t + 1));
+		i1 =  i1  + r; ++t; r = r * (mc_raise2f(x) / (4.0f * t * (t + 1.0f)));
 	} while (r > MCLIMITS_EPSILONF * i1);
 	return i1;
 }
@@ -73,7 +73,7 @@ MC_TARGET_PROC double mc_besseli1_approx0(double x)
 	int    t  = 0.0;
 	double i1 = 0.0;
 	do { 
-		i1 += r; ++t; r *= mc_raise2(x) / (4.0 * t * (t + 1));
+		i1 =  i1  + r; ++t; r = r * (mc_raise2(x) / (4.0 * t * (t + 1.0)));
 	} while (r > MCLIMITS_EPSILON * i1);
 	return i1;
 }
@@ -84,7 +84,7 @@ MC_TARGET_PROC long double mc_besseli1l_approx0(long double x)
 	int         t  = 0.0L;
 	long double i1 = 0.0L;
 	do {
-		i1 += r; ++t; r *= mc_raise2l(x) / (4.0L * t * (t + 1));
+		i1 =  i1  + r; ++t; r = r * (mc_raise2l(x) / (4.0L * t * (t + 1.0L)));
 	} while (r > MCLIMITS_EPSILONL * i1);
 	return i1;
 }
