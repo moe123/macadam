@@ -9,6 +9,7 @@
 #include <macadam/details/mc_target.h>
 #include <macadam/details/mc_math.h>
 #include <macadam/details/mc_rand.h>
+#include <macadam/details/mc_blas.h>
 
 #ifndef MCMATH_H
 #define MCMATH_H

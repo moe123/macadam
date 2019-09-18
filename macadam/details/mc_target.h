@@ -281,6 +281,7 @@
 #		include <climits>
 #		include <ctime>
 #		include <cstdlib>
+#		include <cctype>
 #		include <cstdint>
 #		include <cinttypes>
 #		include <cfenv>
@@ -292,6 +293,7 @@
 #		include <limits.h>
 #		include <time.h>
 #		include <stdlib.h>
+#		include <ctype.h>
 #		include <stdint.h>
 #		include <inttypes.h>
 #		include <fenv.h>
@@ -302,6 +304,7 @@
 #		include <limits.h>
 #		include <time.h>
 #		include <stdlib.h>
+#		include <ctype.h>
 #		include <stdint.h>
 #		include <inttypes.h>
 #		include <fenv.h>

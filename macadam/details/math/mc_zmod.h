@@ -16,35 +16,41 @@
 
 MC_TARGET_PROC float mc_zmodf(float z_r, float z_i)
 {
+//!# \note: mc_zmod is similar to mc_zabs with additional boundary checks.
 	if (mc_isinf(z_r)) {
 		return MCK_INFP;
 	}
 	if (mc_isinf(z_i)) {
 		return MCK_INFP;
 	}
-	return mc_sqrtf(mc_znormf(z_r, z_i));
+	const float n = mc_znormf(z_r, z_i);
+	return mc_sqrtf(n);
 }
 
 MC_TARGET_PROC double mc_zmod(double z_r, double z_i)
 {
+//!# \note: mc_zmod is similar to mc_zabs with additional boundary checks.
 	if (mc_isinf(z_r)) {
 		return MCK_INFP;
 	}
 	if (mc_isinf(z_i)) {
 		return MCK_INFP;
 	}
-	return mc_sqrt(mc_znorm(z_r, z_i));
+	const double n = mc_znorm(z_r, z_i);
+	return mc_sqrt(n);
 }
 
 MC_TARGET_PROC long double mc_zmodl(long double z_r, long double z_i)
 {
+//!# \note: mc_zmod is similar to mc_zabs with additional boundary checks.
 	if (mc_isinf(z_r)) {
 		return MCK_INFP;
 	}
 	if (mc_isinf(z_i)) {
 		return MCK_INFP;
 	}
-	return mc_sqrtl(mc_znorml(z_r, z_i));
+	const long double n = mc_znorml(z_r, z_i);
+	return mc_sqrtl(n);
 }
 
 #endif /* !MC_ZMOD_H */
