@@ -323,7 +323,7 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, int m, int n, int kl, int ku
 		info = 13;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("DGBMV ", info);
+		mc_blas_xerbla("LGBMV ", info);
 		return;
 	}
 	if (m == 0 || n == 0 || (alpha == zero && beta == one)) {
