@@ -6,6 +6,114 @@
 //!# Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?gbmv - perform one of the matrix-vector operations
+ *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y.
+ * 
+ * \synopsis
+ *    void ?gbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy)
+ *    real-floating alpha, beta
+ *    int           incx, incy, kl, ku, lda, m, n
+ *    char          trans
+ *    real-floating a(lda,*), x(*), y(*)
+ *
+ * \purpose
+ *   ?gbmv performs one of the matrix-vector operations where alpha and beta are scalars, x and y
+ *   are vectors and a is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
+ *
+ * \parameters
+ *    [in] trans - char. Specifies the operation to be performed as follows:
+ *    trans='N' or 'n' y=alpha*a*x  + beta*y.
+ *    trans='T' or 't' y=alpha*a'*x + beta*y.
+ *    trans='C' or 'c' y=alpha*a'*x + beta*y.
+ *
+ *    [in] m     - int. Specifies the number of rows of the matrix a, m must be at least zero.
+ *    [in] n     - int. Specifies the number of columns of the matrix a, n must be at least zero.
+ *    [in] kl    - int. Specifies the number of sub-diagonals of the matrix a. kl must satisfy 0 < kl.
+ *    [in] ku    - int. Specifies the number of super-diagonals of the matrix a. ku must satisfy 0 < ku.
+ *
+ *    [in] alpha - real-floating. pecifies the scalar alpha.
+ *
+ *    [in] a     - real-floating array of dimension (lda, n). The leading (kl + ku + 1) by n part of
+ *    the array a must contain the matrix of coefficients, supplied column by column, with the leading
+ *    diagonal of the matrix in row (ku + 1) of the array, the first super-diagonal starting at position
+ *    2 in row ku, the first sub-diagonal starting at position 1 in row (ku + 2), and so on. Elements in
+ *    the array a that do not correspond to elements in the band matrix (such as the top left ku by ku
+ *    triangle) are not referenced.
+ *
+ *    [in] lda   - int. Specifies the first dimension of a band matrix, lda must be at least (kl + ku + 1).
+ *
+ *    [in] x     - real-floating array of dimension at least (1 + (n - 1)*abs(incx)) when trans = 'N' or 'n'
+ *    and at least (1 + (m - 1)*abs(incx)) otherwise. The incremented array x must contain the vector x.
+ *
+ *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *
+ *    [in] beta  - real-floating. Specifies the scalar beta. when beta is supplied as zero then y need not
+ *    be set on input.
+ *
+ *    [out] y    - real-floating array of dimension at least (1 + (m - 1)*abs(incy)) when trans = 'N' or 'n'
+ *    and at least (1 + (n - 1)*abs(incy)) otherwise. The incremented array y must contain the vector y, y
+ *    is overwritten by the updated vector y.
+ *
+ *    [in] incy  - int. Specifies the increment for the elements of y. incy must not be zero.
+ *
+ * \examples
+ *              | 1.0  1.0  1.0  0.0 |
+ *              | 2.0  2.0  2.0  2.0 |
+ *     a[5x4] = | 3.0  3.0  3.0  3.0 |
+ *              | 4.0  4.0  4.0  4.0 |
+ *              | 0.0  5.0  5.0  5.0 |
+ *
+ *     const real-floating a_band[] = {
+ *          0, 0, 1, 2 
+ *        , 0, 1, 2, 3 
+ *        , 1, 2, 3, 4 
+ *        , 2, 3, 4, 5 
+ *        , 3, 4, 5, 0 
+ *        , 4, 5, 0, 0 
+ *        , 0, 0, 0, 0 
+ *        , 0, 0, 0, 0
+ *     };
+ *     const real-floating x[] = { 1, 2, 3, 4 };
+ *           real-floating y[] = { 1, 0 , 2, 0 , 3, 0 , 4, 0 , 5, 0 };
+ *     mc_blas_?gbmv('N', 5, 4, 3, 2, 2, a, 8, x, 1, 10, y, 2);
+ *     on output -> y = { 22, 0, 60, 0, 90, 0, 120, 0, 140, 0 }
+ *
+ *              | 1.0  1.0  1.0  1.0  1.0 |
+ *     a[4x5] = | 2.0  2.0  2.0  2.0  2.0 |
+ *              | 3.0  3.0  3.0  3.0  3.0 |
+ *              | 4.0  4.0  4.0  4.0  4.0 |
+ *
+ *     const real-floating a_band[] = {
+ *          0, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 1
+ *        , 0, 0, 0, 1, 2
+ *        , 0, 0, 1, 2, 3
+ *        , 0, 1, 2, 3, 4
+ *        , 1, 2, 3, 4, 0
+ *        , 2, 3, 4, 0, 0
+ *        , 3, 4, 0, 0, 0
+ *        , 4, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 0
+ *     };
+ *     const real-floating x[] = { 1, 2, 3, 4, 5 };
+ *           real-floating y[] = { 1, 0, 2, 0, 3, 0, 4, 0 };
+ *     mc_blas_?gbmv('N', 4, 5, 6, 5, 2, a_band, 12, x, 1, 10, y, 2);
+ *     on output -> y = { 40, 0 , 80, 0 , 120, 0 , 160, 0 }
+ *
+ * \level 2 blas routine.
+ *     \author Univ. of Tennessee
+ *     \author Univ. of California Berkeley
+ *     \author Univ. of Colorado Denver
+ *     \author NAG Ltd.
+ *     \author Jack Dongarra, Argonne National Lab.
+ *     \author Jeremy Du Croz, Nag Central Office.
+ *     \author Sven Hammarling, Nag Central Office.
+ *     \author Richard Hanson, Sandia National Labs.
+ */
+
 #include <macadam/details/blas/mc_blas_access.h>
 #include <macadam/details/blas/mc_blas_lsame.h>
 #include <macadam/details/blas/mc_blas_xerbla.h>

@@ -6,6 +6,34 @@
 //!# Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?dot computes the inner product of two vectors.
+ * 
+ * \synopsis
+ *    real-floating ?dot(n, x, incx, y, incy)
+ *    int           incx, incy, n
+ *    real-floating x(*), y(*)
+ *
+ * \purpose
+ *    ?dot computes the inner product of two vectors.
+ *
+ * \parameters
+ *    [in] n     - int. Specifies the number of elements in the input vectors x and y.
+ *    [in] x     - real-floating array of size at least (1+(n -1)*abs(incx)).
+ *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [in] y     - real-floating arrays of size at least (1+(n-1)*abs(incy)).
+ *    [in] incy  - int. Specifies the increment for the elements of y. incy must not be zero.
+ *
+ * \examples
+ *
+ * \level 1 blas routine.
+ *     \author Univ. of Tennessee
+ *     \author Univ. of California Berkeley
+ *     \author Univ. of Colorado Denver
+ *     \author NAG Ltd.
+ *     \author Jack Dongarra, Linpack.
+ */
+
 #include <macadam/details/blas/mc_blas_access.h>
 
 #ifndef MC_BLAS_DOT_H
@@ -16,25 +44,25 @@
 MC_TARGET_FUNC float mc_blas_sdot(int n, const float * x, int incx, const float * y , int incy)
 {
 	int i, m, ix, iy, mp1;
-	float stemp;
+	float temp;
 
-	stemp = 0.0f;
+	temp = 0.0f;
 	if (n <= 0) {
-		return stemp;
+		return temp;
 	}
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				stemp = stemp + (MC_BLAS_VAT(x, i) * MC_BLAS_VAT(y, i));
+				temp = temp + (MC_BLAS_VAT(x, i) * MC_BLAS_VAT(y, i));
 			}
 			if (n < 5) {
-				return stemp;
+				return temp;
 			}
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 5) {
-			stemp = stemp + (
+			temp = temp + (
 				  (MC_BLAS_VAT(x, i    ) * MC_BLAS_VAT(y, i    ))
 				+ (MC_BLAS_VAT(x, i + 1) * MC_BLAS_VAT(y, i + 1))
 				+ (MC_BLAS_VAT(x, i + 2) * MC_BLAS_VAT(y, i + 2))
@@ -52,12 +80,12 @@ MC_TARGET_FUNC float mc_blas_sdot(int n, const float * x, int incx, const float 
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			stemp = stemp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
+			temp = temp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
 			ix    = ix + incx;
 			iy    = iy + incy;
 		}
 	}
-	return stemp;
+	return temp;
 }
 
 #pragma mark - mc_blas_dsdot -
@@ -65,25 +93,25 @@ MC_TARGET_FUNC float mc_blas_sdot(int n, const float * x, int incx, const float 
 MC_TARGET_FUNC double mc_blas_dsdot(int n, const float * x, int incx, const float * y , int incy)
 {
 	int i, m, ix, iy, mp1;
-	double stemp;
+	double temp;
 
-	stemp = 0.0;
+	temp = 0.0;
 	if (n <= 0) {
-		return stemp;
+		return temp;
 	}
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				stemp = stemp + (mc_cast(double, MC_BLAS_VAT(x, i)) * mc_cast(double, MC_BLAS_VAT(y, i)));
+				temp = temp + (mc_cast(double, MC_BLAS_VAT(x, i)) * mc_cast(double, MC_BLAS_VAT(y, i)));
 			}
 			if (n < 5) {
-				return stemp;
+				return temp;
 			}
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 5) {
-			stemp = stemp + (
+			temp = temp + (
 				  (mc_cast(double, MC_BLAS_VAT(x, i    )) * mc_cast(double, MC_BLAS_VAT(y, i    )))
 				+ (mc_cast(double, MC_BLAS_VAT(x, i + 1)) * mc_cast(double, MC_BLAS_VAT(y, i + 1)))
 				+ (mc_cast(double, MC_BLAS_VAT(x, i + 2)) * mc_cast(double, MC_BLAS_VAT(y, i + 2)))
@@ -101,12 +129,19 @@ MC_TARGET_FUNC double mc_blas_dsdot(int n, const float * x, int incx, const floa
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			stemp = stemp + (mc_cast(double, MC_BLAS_VAT(x, ix)) * mc_cast(double, MC_BLAS_VAT(y, iy)));
+			temp = temp + (mc_cast(double, MC_BLAS_VAT(x, ix)) * mc_cast(double, MC_BLAS_VAT(y, iy)));
 			ix    = ix + incx;
 			iy    = iy + incy;
 		}
 	}
-	return stemp;
+	return temp;
+}
+
+#pragma mark - mc_blas_sdsdot -
+
+MC_TARGET_FUNC float mc_blas_sdsdot(int n, float b, const float * x, int incx, const float * y , int incy)
+{
+	return mc_cast(float, (mc_cast(double, b) + mc_blas_dsdot(n, x, incx, y, incy)));
 }
 
 #pragma mark - mc_blas_ddot -
@@ -114,25 +149,25 @@ MC_TARGET_FUNC double mc_blas_dsdot(int n, const float * x, int incx, const floa
 MC_TARGET_FUNC double mc_blas_ddot(int n, const double * x, int incx, const double * y , int incy)
 {
 	int i, m, ix, iy, mp1;
-	double stemp;
+	double temp;
 
-	stemp = 0.0;
+	temp = 0.0;
 	if (n <= 0) {
-		return stemp;
+		return temp;
 	}
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				stemp = stemp + (MC_BLAS_VAT(x, i) * MC_BLAS_VAT(y, i));
+				temp = temp + (MC_BLAS_VAT(x, i) * MC_BLAS_VAT(y, i));
 			}
 			if (n < 5) {
-				return stemp;
+				return temp;
 			}
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 5) {
-			stemp = stemp + (
+			temp = temp + (
 				  (MC_BLAS_VAT(x, i    ) * MC_BLAS_VAT(y, i    ))
 				+ (MC_BLAS_VAT(x, i + 1) * MC_BLAS_VAT(y, i + 1))
 				+ (MC_BLAS_VAT(x, i + 2) * MC_BLAS_VAT(y, i + 2))
@@ -150,12 +185,12 @@ MC_TARGET_FUNC double mc_blas_ddot(int n, const double * x, int incx, const doub
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			stemp = stemp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
+			temp = temp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
 			ix    = ix + incx;
 			iy    = iy + incy;
 		}
 	}
-	return stemp;
+	return temp;
 }
 
 #pragma mark - mc_blas_ldot -
@@ -163,25 +198,25 @@ MC_TARGET_FUNC double mc_blas_ddot(int n, const double * x, int incx, const doub
 MC_TARGET_FUNC long double mc_blas_ldot(int n, const long double * x, int incx, const long double * y , int incy)
 {
 	int i, m, ix, iy, mp1;
-	long double stemp;
+	long double temp;
 
-	stemp = 0.0L;
+	temp = 0.0L;
 	if (n <= 0) {
-		return stemp;
+		return temp;
 	}
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				stemp = stemp + (MC_BLAS_VAT(x, i) * MC_BLAS_VAT(y, i));
+				temp = temp + (MC_BLAS_VAT(x, i) * MC_BLAS_VAT(y, i));
 			}
 			if (n < 5) {
-				return stemp;
+				return temp;
 			}
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 5) {
-			stemp = stemp + (
+			temp = temp + (
 				  (MC_BLAS_VAT(x, i    ) * MC_BLAS_VAT(y, i    ))
 				+ (MC_BLAS_VAT(x, i + 1) * MC_BLAS_VAT(y, i + 1))
 				+ (MC_BLAS_VAT(x, i + 2) * MC_BLAS_VAT(y, i + 2))
@@ -199,12 +234,12 @@ MC_TARGET_FUNC long double mc_blas_ldot(int n, const long double * x, int incx, 
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			stemp = stemp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
+			temp = temp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
 			ix    = ix + incx;
 			iy    = iy + incy;
 		}
 	}
-	return stemp;
+	return temp;
 }
 
 #endif /* !MC_BLAS_DOT_H */
