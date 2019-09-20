@@ -46,7 +46,7 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 	info = 1;
-	} else if (! notb && ! mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
+	} else if (!notb && !mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
 		info = 2;
 	} else if (m < 0) {
 		info = 3;
@@ -190,7 +190,7 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 	info = 1;
-	} else if (! notb && ! mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
+	} else if (!notb && !mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
 		info = 2;
 	} else if (m < 0) {
 		info = 3;
@@ -334,7 +334,7 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 	info = 1;
-	} else if (! notb && ! mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
+	} else if (!notb && !mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
 		info = 2;
 	} else if (m < 0) {
 		info = 3;
