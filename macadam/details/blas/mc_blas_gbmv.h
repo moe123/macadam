@@ -9,7 +9,7 @@
 /* \name
  *    ?gbmv - perform one of the matrix-vector operations
  *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y.
- * 
+ *
  * \synopsis
  *    void ?gbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy)
  *    real-floating alpha, beta
@@ -32,7 +32,7 @@
  *    [in] kl    - int. Specifies the number of sub-diagonals of the matrix a. kl must satisfy 0 < kl.
  *    [in] ku    - int. Specifies the number of super-diagonals of the matrix a. ku must satisfy 0 < ku.
  *
- *    [in] alpha - real-floating. pecifies the scalar alpha.
+ *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
  *    [in] a     - real-floating array of dimension (lda, n). The leading (kl + ku + 1) by n part of
  *    the array a must contain the matrix of coefficients, supplied column by column, with the leading
@@ -43,16 +43,16 @@
  *
  *    [in] lda   - int. Specifies the first dimension of a band matrix, lda must be at least (kl + ku + 1).
  *
- *    [in] x     - real-floating array of dimension at least (1 + (n - 1)*abs(incx)) when trans = 'N' or 'n'
- *    and at least (1 + (m - 1)*abs(incx)) otherwise. The incremented array x must contain the vector x.
+ *    [in] x     - real-floating array of dimension at least (1+(n-1)*abs(incx)) when trans = 'N' or 'n'
+ *    and at least (1+(m-1)*abs(incx)) otherwise. The incremented array x must contain the vector x.
  *
  *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
  *
  *    [in] beta  - real-floating. Specifies the scalar beta. when beta is supplied as zero then y need not
  *    be set on input.
  *
- *    [out] y    - real-floating array of dimension at least (1 + (m - 1)*abs(incy)) when trans = 'N' or 'n'
- *    and at least (1 + (n - 1)*abs(incy)) otherwise. The incremented array y must contain the vector y, y
+ *    [out] y    - real-floating array of dimension at least (1+(m-1)*abs(incy)) when trans = 'N' or 'n'
+ *    and at least (1+(n-1)*abs(incy)) otherwise. The incremented array y must contain the vector y, y
  *    is overwritten by the updated vector y.
  *
  *    [in] incy  - int. Specifies the increment for the elements of y. incy must not be zero.

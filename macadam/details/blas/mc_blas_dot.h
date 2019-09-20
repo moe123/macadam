@@ -8,7 +8,7 @@
 
 /* \name
  *    ?dot computes the inner product of two vectors.
- * 
+ *
  * \synopsis
  *    real-floating ?dot(n, x, incx, y, incy)
  *    int           incx, incy, n
