@@ -19,7 +19,7 @@
  *
  * \parameters
  *    [in] n     - int. Specifies the number of elements in the input vectors x and y.
- *    [in] x     - real-floating array of size at least (1+(n -1)*abs(incx)).
+ *    [in] x     - real-floating array of size at least (1+(n-1)*abs(incx)).
  *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
  *    [in] y     - real-floating arrays of size at least (1+(n-1)*abs(incy)).
  *    [in] incy  - int. Specifies the increment for the elements of y. incy must not be zero.
@@ -81,8 +81,8 @@ MC_TARGET_FUNC float mc_blas_sdot(int n, const float * x, int incx, const float 
 		}
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
-			ix    = ix + incx;
-			iy    = iy + incy;
+			ix   = ix + incx;
+			iy   = iy + incy;
 		}
 	}
 	return temp;
@@ -130,8 +130,8 @@ MC_TARGET_FUNC double mc_blas_dsdot(int n, const float * x, int incx, const floa
 		}
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (mc_cast(double, MC_BLAS_VAT(x, ix)) * mc_cast(double, MC_BLAS_VAT(y, iy)));
-			ix    = ix + incx;
-			iy    = iy + incy;
+			ix   = ix + incx;
+			iy   = iy + incy;
 		}
 	}
 	return temp;
@@ -186,8 +186,8 @@ MC_TARGET_FUNC double mc_blas_ddot(int n, const double * x, int incx, const doub
 		}
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
-			ix    = ix + incx;
-			iy    = iy + incy;
+			ix   = ix + incx;
+			iy   = iy + incy;
 		}
 	}
 	return temp;
@@ -235,8 +235,8 @@ MC_TARGET_FUNC long double mc_blas_ldot(int n, const long double * x, int incx, 
 		}
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (MC_BLAS_VAT(x, ix) * MC_BLAS_VAT(y, iy));
-			ix    = ix + incx;
-			iy    = iy + incy;
+			ix   = ix + incx;
+			iy   = iy + incy;
 		}
 	}
 	return temp;

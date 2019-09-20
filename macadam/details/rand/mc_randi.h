@@ -13,23 +13,23 @@
 #ifndef MC_RANDI_H
 #define MC_RANDI_H
 
-#	undef  MCTARGET_USE_LIBCRAND
-#	undef  MCTARGET_USE_MARSAGLIAMWC
-#	undef  MCTARGET_USE_MARSAGLIAXOR128
-#	undef  MCTARGET_USE_BOXMULLER
+#	undef  MCTARGET_RAND_USE_LIBCRAND
+#	undef  MCTARGET_RAND_USE_MARSAGLIAMWC
+#	undef  MCTARGET_RAND_USE_MARSAGLIAXOR128
+#	undef  MCTARGET_RAND_USE_BOXMULLER
 
-#	undef  MCTARGET_USE_LFSR113
-#	define MCTARGET_USE_LFSR113 1
+#	undef  MCTARGET_RAND_USE_LFSR113
+#	define MCTARGET_RAND_USE_LFSR113 1
 
 #	if MC_TARGET_C11 || MC_TARGET_CPP11
-#	if MCTARGET_USE_MARSAGLIAMWC
+#	if MCTARGET_RAND_USE_MARSAGLIAMWC
 static _Thread_local unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
 #	else
 static _Thread_local unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
 #	endif
 static _Thread_local unsigned int mc_randi_init_s = 0;
 #	else
-#	if MCTARGET_USE_MARSAGLIAMWC
+#	if MCTARGET_RAND_USE_MARSAGLIAMWC
 static volatile unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
 #	else
 static volatile unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
@@ -37,11 +37,11 @@ static volatile unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
 static volatile unsigned int mc_randi_init_s = 0;
 #	endif
 
-#	if MCTARGET_USE_LIBCRAND
+#	if MCTARGET_RAND_USE_LIBCRAND
 #		define MCLIMITS_RANDMAX mc_cast(const unsigned int, RAND_MAX)
-#	elif MCTARGET_USE_MARSAGLIAMWC
+#	elif MCTARGET_RAND_USE_MARSAGLIAMWC
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
-#	elif MCTARGET_USE_LFSR113
+#	elif MCTARGET_RAND_USE_LFSR113
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
 #	else
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
@@ -62,13 +62,13 @@ MC_TARGET_PROC void mc_srandi(
 	mc_randi_seeds_s[1] = s2 > 8   && s2 < MCLIMITS_USMAX ? s2 : 8;
 	mc_randi_seeds_s[2] = s3 > 16  && s3 < MCLIMITS_USMAX ? s3 : 16;
 	mc_randi_seeds_s[3] = s4 > 128 && s4 < MCLIMITS_USMAX ? s4 : 128;
-#	if MCTARGET_USE_LIBCRAND
+#	if MCTARGET_RAND_USE_LIBCRAND
 #	if MC_TARGET_CPP98
 	::srand(mc_randi_seeds_s[0] + mc_randi_seeds_s[1] + mc_randi_seeds_s[2] + mc_randi_seeds_s[3]);
 #	else
 	srand(mc_randi_seeds_s[0] + mc_randi_seeds_s[1] + mc_randi_seeds_s[2] + mc_randi_seeds_s[3]);
 #	endif
-#	elif MCTARGET_USE_MARSAGLIAMWC
+#	elif MCTARGET_RAND_USE_MARSAGLIAMWC
 	mc_randi_seeds_s[0] = s1 > 1234 && s1 < MCLIMITS_USMAX ? s1 : 1234;
 	mc_randi_seeds_s[1] = s2 > 5678 && s2 < MCLIMITS_USMAX ? s2 : 5678;
 	mc_randi_seeds_s[0] = mc_randi_seeds_s[0] + mc_randi_seeds_s[2];
@@ -120,7 +120,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 		++mc_randi_init_s;
 		mc_ssrandi();
 	}
-#	if MCTARGET_USE_LIBCRAND
+#	if MCTARGET_RAND_USE_LIBCRAND
 	++mc_randi_init_s;
 	if (mc_randi_init_s > 600) {
 		mc_randi_init_s = 0;
@@ -130,7 +130,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 #	else
 	return mc_cast(unsigned int, rand());
 #	endif
-#	elif MCTARGET_USE_MARSAGLIAMWC
+#	elif MCTARGET_RAND_USE_MARSAGLIAMWC
 //!# 32-bits Random number generator [0, UINT_MAX].
 	unsigned int b;
 //!# Marsaglia-multiply-with-carry.
@@ -142,7 +142,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 		return MCLIMITS_RANDMAX;
 	}
 	return b;
-#	elif MCTARGET_USE_LFSR113
+#	elif MCTARGET_RAND_USE_LFSR113
 //!# 32-bits Random number generator [0, UINT_MAX].
 	unsigned int b;
 //!# Tables of maximally equidistributed combined LFSR generators. Pierre L'Ecuyer.

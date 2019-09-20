@@ -96,6 +96,13 @@ MC_TARGET_FUNC double mc_blas_dsasum(int n, const float * x, int incx)
 	return temp;
 }
 
+#pragma mark - mc_blas_sdsasum -
+
+MC_TARGET_FUNC float mc_blas_sdsasum(int n, const float * x, int incx)
+{
+	return mc_cast(float, mc_blas_dsasum(n, x, incx));
+}
+
 #pragma mark - mc_blas_dasum -
 
 MC_TARGET_FUNC double mc_blas_dasum(int n, const double * x, int incx)

@@ -21,7 +21,7 @@
 
 MC_TARGET_PROC float mc_randgf(void)
 {
-#	if MCTARGET_USE_BOXMULLER
+#	if MCTARGET_RAND_USE_BOXMULLER
 //!# Box-Muller transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
 	static volatile float x_s   = 0.0f;
@@ -73,7 +73,7 @@ MC_TARGET_PROC float mc_randgf(void)
 
 MC_TARGET_PROC double mc_randg(void)
 {
-#	if MCTARGET_USE_BOXMULLER
+#	if MCTARGET_RAND_USE_BOXMULLER
 //!# Box-Muller transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s = 0;
 	static volatile double x_s  = 0.0;
@@ -125,7 +125,7 @@ MC_TARGET_PROC double mc_randg(void)
 
 MC_TARGET_PROC long double mc_randgl(void)
 {
-#	if MCTARGET_USE_BOXMULLER
+#	if MCTARGET_RAND_USE_BOXMULLER
 //!# Box-Muller transform. Standard gaussian (normal) distribution for mean=0, stddev=1.
 	static volatile int phase_s     = 0;
 	static volatile long double x_s = 0.0L;
