@@ -21,7 +21,7 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 	const float one = 1.0f, zero = 0.0f;
 
 	float temp;
-	int i, info, j, l, ncola, nrowa, nrowb, kb, ka;
+	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
 	int nota, notb;
 
 	nota = mc_blas_lsame(transa, 'N');
@@ -165,7 +165,7 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 	const double one = 1.0, zero = 0.0;
 
 	double temp;
-	int i, info, j, l, ncola, nrowa, nrowb, kb, ka;
+	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
 	int nota, notb;
 
 	nota = mc_blas_lsame(transa, 'N');
@@ -309,7 +309,7 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 	const long double one = 1.0, zero = 0.0;
 
 	long double temp;
-	int i, info, j, l, ncola, nrowa, nrowb, kb, ka;
+	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
 	int nota, notb;
 
 	nota = mc_blas_lsame(transa, 'N');
