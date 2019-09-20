@@ -118,6 +118,8 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 		nrowb = n;
 	}
 
+	mc_cast(void, ka);
+	mc_cast(void, kb);
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 		info = 1;
@@ -262,6 +264,8 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 		nrowb = n;
 	}
 
+	mc_cast(void, ka);
+	mc_cast(void, kb);
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 		info = 1;
@@ -406,6 +410,8 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 		nrowb = n;
 	}
 
+	mc_cast(void, ka);
+	mc_cast(void, kb);
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 		info = 1;
