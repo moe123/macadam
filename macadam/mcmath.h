@@ -209,18 +209,6 @@
 
 #pragma mark - mcmath_acos -
 
-/*! Computes the arc cosine of x.
- *
- * \brief Computing the principle value of the arc cosine of x.
- *        The result is within the range [0, pi].
- *        - If |x| > 1 NAN is returned and an exception is raised.
- *        - If x = 1 +0 is returned.
- *
- * <macro T> inline T mcmath_acos(T x);
- *
- * \param x Cosine of x.
- * \result  Arc cosine of x.
- */
 #	ifndef mcmath_acos
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_acos              (const T& x)           { mc_cast(void, x); return 0; }
@@ -250,18 +238,6 @@ MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl (x); }
 
 #pragma mark - mcmath_asin -
 
-/*! Computes the arc sine of x.
- *
- * \brief Computing the principle value of the arc sine of x.
- *        The result is within the range [-pi/2, +pi/2].
- *        - If |x| > 1 NAN is returned and an exception is raised.
- *        - If x = +-0 +-0 is returned.
- *
- * <macro T> inline T mcmath_asin(T x);
- *
- * \param x Sine of x.
- * \result  Arc sine of x.
- */
 #	ifndef mcmath_asin
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_asin              (const T& x)           { mc_cast(void, x); return 0; }
