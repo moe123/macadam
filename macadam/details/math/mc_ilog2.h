@@ -13,6 +13,8 @@
 #ifndef MC_ILOG2_H
 #define MC_ILOG2_H
 
+#pragma mark - mc_ilog2 -
+
 MC_TARGET_FUNC int mc_ilog2(int x)
 {
 	if (x > 0 && x < MCLIMITS_IMAX) {
@@ -23,6 +25,8 @@ MC_TARGET_FUNC int mc_ilog2(int x)
 	return MCLIMITS_IMAX;
 }
 
+#pragma mark - mc_llog2 -
+
 MC_TARGET_FUNC long mc_llog2(long x)
 {
 	if (x > 0 && x < MCLIMITS_LMAX) {
@@ -32,6 +36,8 @@ MC_TARGET_FUNC long mc_llog2(long x)
 	}
 	return MCLIMITS_LMAX;
 }
+
+#pragma mark - mc_lllog2 -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 MC_TARGET_FUNC long long mc_lllog2(long long x)

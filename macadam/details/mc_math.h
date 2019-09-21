@@ -89,6 +89,7 @@
 #	include <macadam/details/math/mc_hypotq.h>
 #	include <macadam/details/math/mc_hzeta.h>
 #	include <macadam/details/math/mc_ibeta.h>
+#	include <macadam/details/math/mc_iexp2.h>
 #	include <macadam/details/math/mc_igamma.h>
 #	include <macadam/details/math/mc_ilog2.h>
 #	include <macadam/details/math/mc_inverf.h>

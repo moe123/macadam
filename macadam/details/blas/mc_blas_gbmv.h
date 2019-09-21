@@ -407,7 +407,7 @@ MC_TARGET_FUNC void mc_blas_dgbmv(const char trans, int m, int n, int kl, int ku
 
 MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, int m, int n, int kl, int ku, long double alpha, const long double * a, int lda, const long double * x, int incx, long double beta, long double * y, int incy)
 {
-	const long double one = 1.0, zero = 0.0;
+	const long double one = 1.0L, zero = 0.0L;
 
 	long double temp;
 	int i, j, k, ix, iy, jx, jy, kx, ky, kup1, info, lenx, leny;

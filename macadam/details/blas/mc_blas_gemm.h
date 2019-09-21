@@ -13,7 +13,7 @@
  * \synopsis
  *    void  void ?gemm(transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
  * 	real-floating alpha, beta
- *    int           k,lda,ldb,ldc,m,n
+ *    int           k, lda, ldb, ldc, m, n
  *    char          transa, transb
  *    real-floating a(lda, *), b(ldb, *), c(ldc, *)
  *
@@ -385,7 +385,7 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 
 MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, int n, int k, long double alpha, const long double * a, int lda, const long double * b, int ldb, long double beta, long double * c, int ldc)
 {
-	const long double one = 1.0, zero = 0.0;
+	const long double one = 1.0L, zero = 0.0L;
 
 	long double temp;
 	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
