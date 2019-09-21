@@ -11,8 +11,8 @@
  *    c=alpha*op(a)*op(b) + beta*c where op(x)=x or op(x)=x'.
  *
  * \synopsis
- *    void  void ?gemm(transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
- * 	real-floating alpha, beta
+ *    void ?gemm(transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
+ *    real-floating alpha, beta
  *    int           k, lda, ldb, ldc, m, n
  *    char          transa, transb
  *    real-floating a(lda, *), b(ldb, *), c(ldc, *)
@@ -38,7 +38,7 @@
  *    at least zero.
  *
  *    [in] n     - int. Specifies the number of columns of the matrix op(b) and the number of columns of
- *    the matrix c. N must be at least zero.
+ *    the matrix c, n must be at least zero.
  *
  *    [in] k     - int. Specifies  the number of columns of the matrix op(a) and the number of rows of
  *    the matrix op(b), k must be at least zero.
@@ -47,14 +47,14 @@
  *
  *    [in] a     - real-floating array of dimension (lda, ka), where ka is k when transa='N' or 'n' and
  *    is m otherwise. Prior entry with transa='N' or 'n', the leading m by k part of the array a must
- *    contain the matrix a, otherwise the leading  k by m part of the array a must contain the matrix a.
+ *    contain the matrix a, otherwise the leading k by m part of the array a must contain the matrix a.
  *
  *    [in] lda   - int. Specifies the first dimension of a. When transa='N' or 'n' then
  *    lda must be at least max(1, m), otherwise lda must be at least max(1, k).
  *
  *    [in] b     - real-floating array of dimension (ldb, kb), where kb is n when transb='N' or 'n' and
  *    is k otherwise. Prior entry with transb='N' or 'n', the leading k by n part of the array b must
- *    contain the matrix b, otherwise the leading  n by k part of the array b must contain the matrix b.
+ *    contain the matrix b, otherwise the leading n by k part of the array b must contain the matrix b.
  *
  *    [in] ldb   - int. Specifies the first dimension of b. When transb='N' or 'n' then
  *    ldb must be at least max(1, k), otherwise ldb must be at least max(1, n).
@@ -64,7 +64,7 @@
  *
  *    [out] c    - real-floating array of dimension (ldc, n). Prior entry the leading  m by n part of the
  *    array c must contain the matrix c, except when beta is set to zero, in which case c need not be set
- *    on entry. c is overwritten by the m by n matrix (alpha*op(a)*op(b) + beta*c).
+ *    on entry, c is overwritten by the m by n matrix (alpha*op(a)*op(b) + beta*c).
  *
  *    [in] ldc   - int. Sspecifies the first dimension of c, ldc must be at least max(1, m).
  *
