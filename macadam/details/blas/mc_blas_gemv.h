@@ -7,11 +7,11 @@
 //
 
 /* \name
- *    ?sgemv performs one of the matrix-vector operations
+ *    ?gemv performs one of the matrix-vector operations
  *    y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y.
  *
  * \synopsis
- *    void ?sgemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy)
+ *    void ?gemv(trans, m, n, alpha, a, lda, x, incx, beta, y, incy)
  *    real-floating alpha, beta
  *    int           incx, incy, lda, m, n
  *    char          trans
@@ -90,7 +90,7 @@ MC_TARGET_FUNC void mc_blas_sgemv(const char trans, int m, int n, float alpha, c
 		info = 2;
 	} else if (n < 0) {
 		info = 3;
-	} else if (lda < mc_maxmag(1,m)) {
+	} else if (lda < mc_maxmag(1, m)) {
 		info = 6;
 	} else if (incx == 0) {
 		info = 8;
@@ -216,7 +216,7 @@ MC_TARGET_FUNC void mc_blas_dgemv(const char trans, int m, int n, double alpha, 
 		info = 2;
 	} else if (n < 0) {
 		info = 3;
-	} else if (lda < mc_maxmag(1,m)) {
+	} else if (lda < mc_maxmag(1, m)) {
 		info = 6;
 	} else if (incx == 0) {
 		info = 8;
@@ -342,7 +342,7 @@ MC_TARGET_FUNC void mc_blas_lgemv(const char trans, int m, int n, long double al
 		info = 2;
 	} else if (n < 0) {
 		info = 3;
-	} else if (lda < mc_maxmag(1,m)) {
+	} else if (lda < mc_maxmag(1, m)) {
 		info = 6;
 	} else if (incx == 0) {
 		info = 8;

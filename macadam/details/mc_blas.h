@@ -17,6 +17,7 @@
 #	include <macadam/details/blas/mc_blas_gbmv.h>
 #	include <macadam/details/blas/mc_blas_gemm.h>
 #	include <macadam/details/blas/mc_blas_gemv.h>
+#	include <macadam/details/blas/mc_blas_ger.h>
 #	include <macadam/details/blas/mc_blas_lsame.h>
 #	include <macadam/details/blas/mc_blas_scal.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>

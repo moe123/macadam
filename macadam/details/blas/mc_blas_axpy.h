@@ -155,7 +155,7 @@ MC_TARGET_FUNC void mc_blas_laxpy(int n, long double a, const long double * x, i
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 4) {
-			MC_BLAS_VAT(y, i    ) = MC_BLAS_VAT(y, i    ) + (a * MC_BLAS_VAT(x, i   ));
+			MC_BLAS_VAT(y, i    ) = MC_BLAS_VAT(y, i    ) + (a * MC_BLAS_VAT(x, i    ));
 			MC_BLAS_VAT(y, i + 1) = MC_BLAS_VAT(y, i + 1) + (a * MC_BLAS_VAT(x, i + 1));
 			MC_BLAS_VAT(y, i + 2) = MC_BLAS_VAT(y, i + 2) + (a * MC_BLAS_VAT(x, i + 2));
 			MC_BLAS_VAT(y, i + 3) = MC_BLAS_VAT(y, i + 3) + (a * MC_BLAS_VAT(x, i + 3));

@@ -15,7 +15,6 @@
 
 MC_TARGET_FUNC float mc_logoddsf(float x, float l)
 {
-
 	const float a = 1.0f / x - 1.0f;
 	const float b = 1.0f / l;
 	return -mc_logf(a) * b;
@@ -34,6 +33,7 @@ MC_TARGET_FUNC long double mc_logoddsl(long double x, long double l)
 	const long double b = 1.0L / l;
 	return -mc_logl(a) * b;
 }
+
 #endif /* !MC_LOGODDS_H */
 
 /* EOF */
