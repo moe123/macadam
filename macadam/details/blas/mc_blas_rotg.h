@@ -36,7 +36,10 @@
  *     \author Jack Dongarra, Linpack.
  */
 
-#include <macadam/details/blas/mc_blas_access.h>
+#include <macadam/details/math/mc_copysign.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_raise2.h>
+#include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_BLAS_ROTG_H
 #define MC_BLAS_ROTG_H
