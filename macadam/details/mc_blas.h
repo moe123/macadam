@@ -20,6 +20,7 @@
 #	include <macadam/details/blas/mc_blas_ger.h>
 #	include <macadam/details/blas/mc_blas_lsame.h>
 #	include <macadam/details/blas/mc_blas_nrm2.h>
+#	include <macadam/details/blas/mc_blas_rot.h>
 #	include <macadam/details/blas/mc_blas_scal.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>
 

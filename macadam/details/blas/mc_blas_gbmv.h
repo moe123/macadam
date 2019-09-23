@@ -1,9 +1,9 @@
 //
 //!# # -*- coding: utf-8, tab-width: 3 -*-
 
-//!# mc_blas_gbmv.h
+// mc_blas_gbmv.h
 //
-//!# Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name

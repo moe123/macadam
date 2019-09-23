@@ -1,8 +1,8 @@
 //!# # -*- coding: utf-8, tab-width: 3 -*-
 
-//!# mc_blas_nrm2.h
+// mc_blas_nrm2.h
 //
-//!# Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
@@ -51,7 +51,7 @@ MC_TARGET_FUNC float mc_blas_snrm2(int n, const float * x, int incx)
 	if (n < 1 || incx < 1) {
 		norm = zero;
 	} else if (n == 1) {
-		norm = mc_fabsf( MC_BLAS_VAT(x, 1));
+		norm = mc_fabsf(MC_BLAS_VAT(x, 1));
 	} else {
 		scale = zero;
 		ssq   = one;
