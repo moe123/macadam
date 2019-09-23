@@ -1,4 +1,4 @@
-//!# # -*- coding: utf-8, tab-width: 3 -*-
+// # -*- coding: utf-8, tab-width: 3 -*-
 
 // mc_blas_rot.h
 //
