@@ -6,7 +6,7 @@
 //
 
 /* \name
- *    ?ger performs the rank 1 operation a=alpha*x*y' + a.
+ *    ?ger performs the rank 1 operation: a=alpha*x*y' + a.
  *
  * \synopsis
  *    void ?ger(trans, m, n, alpha, x, incx, y, incy, a, lda)
@@ -16,7 +16,7 @@
  *    float-floating a(lda, *), x(*), y(*)
  *
  * \purpose
- *    ?ger erforms the rank 1 operation a=alpha*x*y' + a where alpha is a scalar,
+ *    ?ger erforms the rank 1 operation: a=alpha*x*y' + a where alpha is a scalar,
  *    x is an m element vector, y is an n element vector and a is an m by n matrix.
  *
  * \parameters
@@ -47,7 +47,7 @@
  *     \author Univ. of California Berkeley
  *     \author Univ. of Colorado Denver
  *     \author NAG Ltd.
- *     \author ack Dongarra, Argonne National Lab.
+ *     \author Jack Dongarra, Argonne National Lab.
  *     \author Jeremy Du Croz, Nag Central Office.
  *     \author Sven Hammarling, Nag Central Office.
  *     \author Richard Hanson, Sandia National Labs.

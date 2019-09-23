@@ -7,7 +7,7 @@
 //
 
 /* \name
- *    ?gbmv - perform one of the matrix-vector operations
+ *    ?gbmv - perform one of the matrix-vector operations:
  *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y.
  *
  * \synopsis

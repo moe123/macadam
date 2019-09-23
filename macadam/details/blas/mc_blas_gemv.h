@@ -7,7 +7,7 @@
 //
 
 /* \name
- *    ?gemv performs one of the matrix-vector operations
+ *    ?gemv performs one of the matrix-vector operations:
  *    y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y.
  *
  * \synopsis
@@ -18,7 +18,7 @@
  *    real-floating a(lda, *), x(*), y(*)
  *
  * \purpose
- *    ?gemv performs one of the matrix-vector operations
+ *    ?gemv performs one of the matrix-vector operations:
  *    y=alpha*a*x + beta*y or y=alpha*Aa'*x + beta*y where
  *    alpha and beta are scalars, x and y are vectors and
  *    a is an m by n matrix.
