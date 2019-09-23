@@ -81,6 +81,76 @@ MC_TARGET_FUNC void mc_blas_srot(int n, float * x, int incx, float * y, int incy
 	}
 }
 
+#pragma mark - mc_blas_drot -
+
+MC_TARGET_FUNC void mc_blas_drot(int n, double * x, int incx, double * y, int incy, double c, double s)
+{
+	double temp;
+	int i, ix, iy;
+
+	if (n <= 0) {
+		return;
+	}
+	if (incx == 1 && incy == 1) {
+		for (i = 1; i <= n; ++i) {
+			temp              = c * MC_BLAS_VAT(x, i) + s * MC_BLAS_VAT(y, i);
+			MC_BLAS_VAT(y, i) = c * MC_BLAS_VAT(y, i) - s * MC_BLAS_VAT(x, i);
+			MC_BLAS_VAT(x, i) = temp;
+		}
+	} else {
+		ix = 1;
+		iy = 1;
+		if (incx < 0) {
+			ix = (-(n) + 1) * incx + 1;
+		}
+		if (incy < 0) {
+			iy = (-(n) + 1) * incy + 1;
+		}
+		for (i = 1; i <= n; ++i) {
+			temp               = c * MC_BLAS_VAT(x, ix) + s * MC_BLAS_VAT(y, iy);
+			MC_BLAS_VAT(y, iy) = c * MC_BLAS_VAT(y, iy) - s * MC_BLAS_VAT(x, ix);
+			MC_BLAS_VAT(x, ix) = temp;
+			ix                 = ix + incx;
+			iy                 = iy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_lrot -
+
+MC_TARGET_FUNC void mc_blas_lrot(int n, long double * x, int incx, long double * y, int incy, long double c, long double s)
+{
+	long double temp;
+	int i, ix, iy;
+
+	if (n <= 0) {
+		return;
+	}
+	if (incx == 1 && incy == 1) {
+		for (i = 1; i <= n; ++i) {
+			temp              = c * MC_BLAS_VAT(x, i) + s * MC_BLAS_VAT(y, i);
+			MC_BLAS_VAT(y, i) = c * MC_BLAS_VAT(y, i) - s * MC_BLAS_VAT(x, i);
+			MC_BLAS_VAT(x, i) = temp;
+		}
+	} else {
+		ix = 1;
+		iy = 1;
+		if (incx < 0) {
+			ix = (-(n) + 1) * incx + 1;
+		}
+		if (incy < 0) {
+			iy = (-(n) + 1) * incy + 1;
+		}
+		for (i = 1; i <= n; ++i) {
+			temp               = c * MC_BLAS_VAT(x, ix) + s * MC_BLAS_VAT(y, iy);
+			MC_BLAS_VAT(y, iy) = c * MC_BLAS_VAT(y, iy) - s * MC_BLAS_VAT(x, ix);
+			MC_BLAS_VAT(x, ix) = temp;
+			ix                 = ix + incx;
+			iy                 = iy + incy;
+		}
+	}
+}
+
 #endif /* !MC_BLAS_ROT_H */
 
 /* EOF */
