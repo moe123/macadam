@@ -17,12 +17,12 @@
  *    of a point, returns the parameters c, s, r, and z associated with the Givens rotation.
  *
  * \parameters
- *    [out] a    - real-floating. Provides the x-coordinate of the point p.
- *    a is overwritten by the parameter r associated with the Givens rotation.
+ *    [out] a    - real-floating. Provides the x-coordinate of the point p, a is overwritten by
+ *    the parameter r associated with the Givens rotation.
  *
- *    [out] b    - real-floating. Provides the y-coordinate of the point p.
- *    b is overwritten by the parameter z associated with the Givens rotation.
-
+ *    [out] b    - real-floating. Provides the y-coordinate of the point p, b is overwritten by
+ *    the parameter z associated with the Givens rotation.
+ *
  *    [out] c    - real-floating. Contains the cosine associated with the Givens rotation.
  *    [out] s    - real-floating. Contains the sine associated with the Givens rotation.
  *
