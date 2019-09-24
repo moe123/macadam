@@ -34,9 +34,9 @@
  * \examples
  *
  * \level 1 blas routine.
- *     \author Univ. of Tennessee
- *     \author Univ. of California Berkeley
- *     \author Univ. of Colorado Denver
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
  *     \author NAG Ltd.
  *     \author Jack Dongarra, Linpack.
  */

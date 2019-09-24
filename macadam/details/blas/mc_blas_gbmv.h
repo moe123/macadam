@@ -104,9 +104,9 @@
  *     on output -> y = { 40, 0 , 80, 0 , 120, 0 , 160, 0 }
  *
  * \level 2 blas routine.
- *     \author Univ. of Tennessee
- *     \author Univ. of California Berkeley
- *     \author Univ. of Colorado Denver
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
  *     \author NAG Ltd.
  *     \author Jack Dongarra, Argonne National Lab.
  *     \author Jeremy Du Croz, Nag Central Office.

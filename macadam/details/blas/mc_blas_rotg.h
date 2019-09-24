@@ -29,9 +29,9 @@
  * \examples
  *
  * \level 1 blas routine.
- *     \author Univ. of Tennessee
- *     \author Univ. of California Berkeley
- *     \author Univ. of Colorado Denver
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
  *     \author NAG Ltd.
  *     \author Jack Dongarra, Linpack.
  */
@@ -46,7 +46,7 @@
 
 #pragma mark - mc_blas_srotg -
 
-void mc_blas_srotg(float * a, float * b, float * c, float * s)
+MC_TARGET_FUNC void mc_blas_srotg(float * a, float * b, float * c, float * s)
 {
 	float r, roe, scale, z;
 
@@ -79,7 +79,7 @@ void mc_blas_srotg(float * a, float * b, float * c, float * s)
 
 #pragma mark - mc_blas_drotg -
 
-void mc_blas_drotg(double * a, double * b, double * c, double * s)
+MC_TARGET_FUNC void mc_blas_drotg(double * a, double * b, double * c, double * s)
 {
 	double r, roe, scale, z;
 
@@ -112,7 +112,7 @@ void mc_blas_drotg(double * a, double * b, double * c, double * s)
 
 #pragma mark - mc_blas_lrotg -
 
-void mc_blas_lrotg(long double * a, long double * b, long double * c, long double * s)
+MC_TARGET_FUNC void mc_blas_lrotg(long double * a, long double * b, long double * c, long double * s)
 {
 	long double r, roe, scale, z;
 
