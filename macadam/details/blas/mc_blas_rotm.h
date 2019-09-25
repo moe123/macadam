@@ -80,40 +80,40 @@ MC_TARGET_FUNC void mc_blas_srotm(int n, float * x, int incx, float * y, int inc
 	float flag, h11, h12, h21, h22, w, z;
 	int i, kx, ky, nsteps;
 
-	flag = MC_BLAS_VAT(param, 1);
+	flag = mc_blas_vector_at(param, 1);
 	if (n <= 0 || (flag + two) == zero) {
 		return;
 	}
 	if (incx == incy && incx > 0) {
 		nsteps = n * incx;
 		if (flag < zero) {
-			h11 = MC_BLAS_VAT(param, 2);
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) = w * h11 + z * h12;
-				MC_BLAS_VAT(y, i) = w * h21 + z * h22;
+				w                       = mc_blas_vector_at(x, i);
+				z                       = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) = w * h11 + z * h12;
+				mc_blas_vector_at(y, i) = w * h21 + z * h22;
 			}
 		} else if (flag == zero) {
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) = w + z * h12;
-				MC_BLAS_VAT(y, i) = w * h21 + z;
+				w                       = mc_blas_vector_at(x, i);
+				z                       = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) = w + z * h12;
+				mc_blas_vector_at(y, i) = w * h21 + z;
 			}
 		} else {
-			h11 = MC_BLAS_VAT(param, 2);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) =  w * h11 + z;
-				MC_BLAS_VAT(y, i) = -w + h22 * z;
+				w                       = mc_blas_vector_at(x, i);
+				z                       = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) =  w * h11 + z;
+				mc_blas_vector_at(y, i) = -w + h22 * z;
 			}
 		}
 	} else {
@@ -127,39 +127,39 @@ MC_TARGET_FUNC void mc_blas_srotm(int n, float * x, int incx, float * y, int inc
 		}
 
 		if (flag < zero) {
-			h11 = MC_BLAS_VAT(param, 2);
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) = w * h11 + z * h12;
-				MC_BLAS_VAT(y, ky) = w * h21 + z * h22;
-				kx                 = kx + incx;
-				ky                 = ky + incy;
+				w                        = mc_blas_vector_at(x, kx);
+				z                        = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) = w * h11 + z * h12;
+				mc_blas_vector_at(y, ky) = w * h21 + z * h22;
+				kx                       = kx + incx;
+				ky                       = ky + incy;
 			}
 		} else if (flag == zero) {
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) = w + z * h12;
-				MC_BLAS_VAT(y, ky) = w * h21 + z;
-				kx                 = kx + incx;
-				ky                 = ky + incy;
+				w                        = mc_blas_vector_at(x, kx);
+				z                        = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) = w + z * h12;
+				mc_blas_vector_at(y, ky) = w * h21 + z;
+				kx                       = kx + incx;
+				ky                       = ky + incy;
 			}
 		} else {
-			h11 = MC_BLAS_VAT(param, 2);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) =  w * h11 + z;
-				MC_BLAS_VAT(y, ky) = -w + h22 * z;
-				kx                 = kx + incx;
-				ky                 = ky + incy;
+				w                        = mc_blas_vector_at(x, kx);
+				z                        = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) =  w * h11 + z;
+				mc_blas_vector_at(y, ky) = -w + h22 * z;
+				kx                       = kx + incx;
+				ky                       = ky + incy;
 			}
 		}
 	}
@@ -174,40 +174,40 @@ MC_TARGET_FUNC void mc_blas_drotm(int n, double * x, int incx, double * y, int i
 	double flag, h11, h12, h21, h22, w, z;
 	int i, kx, ky, nsteps;
 
-	flag = MC_BLAS_VAT(param, 1);
+	flag = mc_blas_vector_at(param, 1);
 	if (n <= 0 || (flag + two) == zero) {
 		return;
 	}
 	if (incx == incy && incx > 0) {
 		nsteps = n * incx;
 		if (flag < zero) {
-			h11 = MC_BLAS_VAT(param, 2);
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) = w * h11 + z * h12;
-				MC_BLAS_VAT(y, i) = w * h21 + z * h22;
+				w                 = mc_blas_vector_at(x, i);
+				z                 = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) = w * h11 + z * h12;
+				mc_blas_vector_at(y, i) = w * h21 + z * h22;
 			}
 		} else if (flag == zero) {
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) = w + z * h12;
-				MC_BLAS_VAT(y, i) = w * h21 + z;
+				w                 = mc_blas_vector_at(x, i);
+				z                 = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) = w + z * h12;
+				mc_blas_vector_at(y, i) = w * h21 + z;
 			}
 		} else {
-			h11 = MC_BLAS_VAT(param, 2);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) =  w * h11 + z;
-				MC_BLAS_VAT(y, i) = -w + h22 * z;
+				w                 = mc_blas_vector_at(x, i);
+				z                 = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) =  w * h11 + z;
+				mc_blas_vector_at(y, i) = -w + h22 * z;
 			}
 		}
 	} else {
@@ -221,37 +221,37 @@ MC_TARGET_FUNC void mc_blas_drotm(int n, double * x, int incx, double * y, int i
 		}
 
 		if (flag < zero) {
-			h11 = MC_BLAS_VAT(param, 2);
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) = w * h11 + z * h12;
-				MC_BLAS_VAT(y, ky) = w * h21 + z * h22;
+				w                  = mc_blas_vector_at(x, kx);
+				z                  = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) = w * h11 + z * h12;
+				mc_blas_vector_at(y, ky) = w * h21 + z * h22;
 				kx                 = kx + incx;
 				ky                 = ky + incy;
 			}
 		} else if (flag == zero) {
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) = w + z * h12;
-				MC_BLAS_VAT(y, ky) = w * h21 + z;
+				w                  = mc_blas_vector_at(x, kx);
+				z                  = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) = w + z * h12;
+				mc_blas_vector_at(y, ky) = w * h21 + z;
 				kx                 = kx + incx;
 				ky                 = ky + incy;
 			}
 		} else {
-			h11 = MC_BLAS_VAT(param, 2);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) =  w * h11 + z;
-				MC_BLAS_VAT(y, ky) = -w + h22 * z;
+				w                  = mc_blas_vector_at(x, kx);
+				z                  = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) =  w * h11 + z;
+				mc_blas_vector_at(y, ky) = -w + h22 * z;
 				kx                 = kx + incx;
 				ky                 = ky + incy;
 			}
@@ -268,40 +268,40 @@ MC_TARGET_FUNC void mc_blas_lrotm(int n, long double * x, int incx, long double 
 	long double flag, h11, h12, h21, h22, w, z;
 	int i, kx, ky, nsteps;
 
-	flag = MC_BLAS_VAT(param, 1);
+	flag = mc_blas_vector_at(param, 1);
 	if (n <= 0 || (flag + two) == zero) {
 		return;
 	}
 	if (incx == incy && incx > 0) {
 		nsteps = n * incx;
 		if (flag < zero) {
-			h11 = MC_BLAS_VAT(param, 2);
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) = w * h11 + z * h12;
-				MC_BLAS_VAT(y, i) = w * h21 + z * h22;
+				w                 = mc_blas_vector_at(x, i);
+				z                 = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) = w * h11 + z * h12;
+				mc_blas_vector_at(y, i) = w * h21 + z * h22;
 			}
 		} else if (flag == zero) {
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) = w + z * h12;
-				MC_BLAS_VAT(y, i) = w * h21 + z;
+				w                 = mc_blas_vector_at(x, i);
+				z                 = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) = w + z * h12;
+				mc_blas_vector_at(y, i) = w * h21 + z;
 			}
 		} else {
-			h11 = MC_BLAS_VAT(param, 2);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
-				w                 = MC_BLAS_VAT(x, i);
-				z                 = MC_BLAS_VAT(y, i);
-				MC_BLAS_VAT(x, i) =  w * h11 + z;
-				MC_BLAS_VAT(y, i) = -w + h22 * z;
+				w                 = mc_blas_vector_at(x, i);
+				z                 = mc_blas_vector_at(y, i);
+				mc_blas_vector_at(x, i) =  w * h11 + z;
+				mc_blas_vector_at(y, i) = -w + h22 * z;
 			}
 		}
 	} else {
@@ -315,37 +315,37 @@ MC_TARGET_FUNC void mc_blas_lrotm(int n, long double * x, int incx, long double 
 		}
 
 		if (flag < zero) {
-			h11 = MC_BLAS_VAT(param, 2);
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) = w * h11 + z * h12;
-				MC_BLAS_VAT(y, ky) = w * h21 + z * h22;
+				w                  = mc_blas_vector_at(x, kx);
+				z                  = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) = w * h11 + z * h12;
+				mc_blas_vector_at(y, ky) = w * h21 + z * h22;
 				kx                 = kx + incx;
 				ky                 = ky + incy;
 			}
 		} else if (flag == zero) {
-			h12 = MC_BLAS_VAT(param, 4);
-			h21 = MC_BLAS_VAT(param, 3);
+			h12 = mc_blas_vector_at(param, 4);
+			h21 = mc_blas_vector_at(param, 3);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) = w + z * h12;
-				MC_BLAS_VAT(y, ky) = w * h21 + z;
+				w                  = mc_blas_vector_at(x, kx);
+				z                  = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) = w + z * h12;
+				mc_blas_vector_at(y, ky) = w * h21 + z;
 				kx                 = kx + incx;
 				ky                 = ky + incy;
 			}
 		} else {
-			h11 = MC_BLAS_VAT(param, 2);
-			h22 = MC_BLAS_VAT(param, 5);
+			h11 = mc_blas_vector_at(param, 2);
+			h22 = mc_blas_vector_at(param, 5);
 			for (i = 1; i <= n; ++i) {
-				w                  = MC_BLAS_VAT(x, kx);
-				z                  = MC_BLAS_VAT(y, ky);
-				MC_BLAS_VAT(x, kx) =  w * h11 + z;
-				MC_BLAS_VAT(y, ky) = -w + h22 * z;
+				w                  = mc_blas_vector_at(x, kx);
+				z                  = mc_blas_vector_at(y, ky);
+				mc_blas_vector_at(x, kx) =  w * h11 + z;
+				mc_blas_vector_at(y, ky) = -w + h22 * z;
 				kx                 = kx + incx;
 				ky                 = ky + incy;
 			}

@@ -51,13 +51,14 @@ MC_TARGET_FUNC float mc_blas_snrm2(int n, const float * x, int incx)
 	if (n < 1 || incx < 1) {
 		norm = zero;
 	} else if (n == 1) {
-		norm = mc_fabsf(MC_BLAS_VAT(x, 1));
+		norm = mc_fabsf(mc_blas_vector_at(x, 1));
 	} else {
 		scale = zero;
 		ssq   = one;
 		for (ix = 1; incx < 0 ? ix >= (n - 1) * incx + 1 : ix <= (n - 1) * incx + 1; ix += incx) {
-			if (MC_BLAS_VAT(x, ix) != zero) {
-				absxi = mc_fabsf(MC_BLAS_VAT(x, ix));
+			absxi = mc_blas_vector_at(x, ix);
+			if (absxi != zero) {
+				absxi = mc_fabsf(absxi);
 				if (scale < absxi) {
 					ssq   = one + (ssq * mc_raise2f(scale / absxi));
 					scale = absxi;
@@ -83,13 +84,14 @@ MC_TARGET_FUNC double mc_blas_sdnrm2(int n, const float * x, int incx)
 	if (n < 1 || incx < 1) {
 		norm = zero;
 	} else if (n == 1) {
-		norm = mc_fabs(mc_cast(double, MC_BLAS_VAT(x, 1)));
+		norm = mc_fabs(mc_cast(double, mc_blas_vector_at(x, 1)));
 	} else {
 		scale = zero;
 		ssq   = one;
 		for (ix = 1; incx < 0 ? ix >= (n - 1) * incx + 1 : ix <= (n - 1) * incx + 1; ix += incx) {
-			if (mc_cast(double, MC_BLAS_VAT(x, ix)) != zero) {
-				absxi = mc_fabs(mc_cast(double, MC_BLAS_VAT(x, ix)));
+			absxi = mc_cast(double, mc_blas_vector_at(x, ix));
+			if (absxi != zero) {
+				absxi = mc_fabs(absxi);
 				if (scale < absxi) {
 					ssq   = one + (ssq * mc_raise2(scale / absxi));
 					scale = absxi;
@@ -115,13 +117,14 @@ MC_TARGET_FUNC double mc_blas_dnrm2(int n, const double * x, int incx)
 	if (n < 1 || incx < 1) {
 		norm = zero;
 	} else if (n == 1) {
-		norm = mc_fabs(MC_BLAS_VAT(x, 1));
+		norm = mc_fabs(mc_blas_vector_at(x, 1));
 	} else {
 		scale = zero;
 		ssq   = one;
 		for (ix = 1; incx < 0 ? ix >= (n - 1) * incx + 1 : ix <= (n - 1) * incx + 1; ix += incx) {
-			if (MC_BLAS_VAT(x, ix) != zero) {
-				absxi = mc_fabs(MC_BLAS_VAT(x, ix));
+			absxi = mc_blas_vector_at(x, ix);
+			if (absxi != zero) {
+				absxi = mc_fabs(absxi);
 				if (scale < absxi) {
 					ssq   = one + (ssq * mc_raise2(scale / absxi));
 					scale = absxi;
@@ -147,13 +150,14 @@ MC_TARGET_FUNC long double mc_blas_lnrm2(int n, const long double * x, int incx)
 	if (n < 1 || incx < 1) {
 		norm = zero;
 	} else if (n == 1) {
-		norm = mc_fabsl(MC_BLAS_VAT(x, 1));
+		norm = mc_fabsl(mc_blas_vector_at(x, 1));
 	} else {
 		scale = zero;
 		ssq   = one;
 		for (ix = 1; incx < 0 ? ix >= (n - 1) * incx + 1 : ix <= (n - 1) * incx + 1; ix += incx) {
-			if (MC_BLAS_VAT(x, ix) != zero) {
-				absxi = mc_fabsl(MC_BLAS_VAT(x, ix));
+			absxi = mc_blas_vector_at(x, ix);
+			if (absxi != zero) {
+				absxi = mc_fabsl(absxi);
 				if (scale < absxi) {
 					ssq   = one + (ssq * mc_raise2l(scale / absxi));
 					scale = absxi;

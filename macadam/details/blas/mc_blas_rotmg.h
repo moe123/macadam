@@ -86,8 +86,8 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, float y1,
 	} else {
 		p2 = *d2 * y1;
 		if (p2 == zero) {
-			flag                  = -two;
-			MC_BLAS_VAT(param, 1) = flag;
+			flag                        = -two;
+			mc_blas_vector_at(param, 1) = flag;
 			return;
 		}
 		p1 = (*d1) * (*x1);
@@ -173,18 +173,18 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, float y1,
 		}
 	}
 	if (flag < zero) {
-		MC_BLAS_VAT(param, 2) = h11;
-		MC_BLAS_VAT(param, 3) = h21;
-		MC_BLAS_VAT(param, 4) = h12;
-		MC_BLAS_VAT(param, 5) = h22;
+		mc_blas_vector_at(param, 2) = h11;
+		mc_blas_vector_at(param, 3) = h21;
+		mc_blas_vector_at(param, 4) = h12;
+		mc_blas_vector_at(param, 5) = h22;
 	} else if (flag == zero) {
-		MC_BLAS_VAT(param, 3) = h21;
-		MC_BLAS_VAT(param, 4) = h12;
+		mc_blas_vector_at(param, 3) = h21;
+		mc_blas_vector_at(param, 4) = h12;
 	} else {
-		MC_BLAS_VAT(param, 2) = h11;
-		MC_BLAS_VAT(param, 5) = h22;
+		mc_blas_vector_at(param, 2) = h11;
+		mc_blas_vector_at(param, 5) = h22;
 	}
-	MC_BLAS_VAT(param, 1) = flag;
+	mc_blas_vector_at(param, 1) = flag;
 }
 
 #pragma mark - mc_blas_drotmg -
@@ -212,8 +212,8 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, double
 	} else {
 		p2 = *d2 * y1;
 		if (p2 == zero) {
-			flag                  = -two;
-			MC_BLAS_VAT(param, 1) = flag;
+			flag                        = -two;
+			mc_blas_vector_at(param, 1) = flag;
 			return;
 		}
 		p1 = (*d1) * (*x1);
@@ -299,18 +299,18 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, double
 		}
 	}
 	if (flag < zero) {
-		MC_BLAS_VAT(param, 2) = h11;
-		MC_BLAS_VAT(param, 3) = h21;
-		MC_BLAS_VAT(param, 4) = h12;
-		MC_BLAS_VAT(param, 5) = h22;
+		mc_blas_vector_at(param, 2) = h11;
+		mc_blas_vector_at(param, 3) = h21;
+		mc_blas_vector_at(param, 4) = h12;
+		mc_blas_vector_at(param, 5) = h22;
 	} else if (flag == zero) {
-		MC_BLAS_VAT(param, 3) = h21;
-		MC_BLAS_VAT(param, 4) = h12;
+		mc_blas_vector_at(param, 3) = h21;
+		mc_blas_vector_at(param, 4) = h12;
 	} else {
-		MC_BLAS_VAT(param, 2) = h11;
-		MC_BLAS_VAT(param, 5) = h22;
+		mc_blas_vector_at(param, 2) = h11;
+		mc_blas_vector_at(param, 5) = h22;
 	}
-	MC_BLAS_VAT(param, 1) = flag;
+	mc_blas_vector_at(param, 1) = flag;
 }
 
 #pragma mark - mc_blas_lrotmg -
@@ -344,8 +344,8 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 	} else {
 		p2 = *d2 * y1;
 		if (p2 == zero) {
-			flag                  = -two;
-			MC_BLAS_VAT(param, 1) = flag;
+			flag                        = -two;
+			mc_blas_vector_at(param, 1) = flag;
 			return;
 		}
 		p1 = (*d1) * (*x1);
@@ -431,18 +431,18 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 		}
 	}
 	if (flag < zero) {
-		MC_BLAS_VAT(param, 2) = h11;
-		MC_BLAS_VAT(param, 3) = h21;
-		MC_BLAS_VAT(param, 4) = h12;
-		MC_BLAS_VAT(param, 5) = h22;
+		mc_blas_vector_at(param, 2) = h11;
+		mc_blas_vector_at(param, 3) = h21;
+		mc_blas_vector_at(param, 4) = h12;
+		mc_blas_vector_at(param, 5) = h22;
 	} else if (flag == zero) {
-		MC_BLAS_VAT(param, 3) = h21;
-		MC_BLAS_VAT(param, 4) = h12;
+		mc_blas_vector_at(param, 3) = h21;
+		mc_blas_vector_at(param, 4) = h12;
 	} else {
-		MC_BLAS_VAT(param, 2) = h11;
-		MC_BLAS_VAT(param, 5) = h22;
+		mc_blas_vector_at(param, 2) = h11;
+		mc_blas_vector_at(param, 5) = h22;
 	}
-	MC_BLAS_VAT(param, 1) = flag;
+	mc_blas_vector_at(param, 1) = flag;
 }
 
 #endif /* !MC_BLAS_ROTMG_H */

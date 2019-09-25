@@ -22,7 +22,7 @@ MC_TARGET_FUNC void mc_blas_scopy(int n, const float * x, int incx, float * y, i
 		m = n % 7;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				MC_BLAS_VAT(y, i) = MC_BLAS_VAT(x, i);
+				mc_blas_vector_at(y, i) = mc_blas_vector_at(x, i);
 			}
 			if (n < 7) {
 				return;
@@ -30,13 +30,13 @@ MC_TARGET_FUNC void mc_blas_scopy(int n, const float * x, int incx, float * y, i
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 7) {
-			MC_BLAS_VAT(y, i    ) = MC_BLAS_VAT(x, i    );
-			MC_BLAS_VAT(y, i + 1) = MC_BLAS_VAT(x, i + 1);
-			MC_BLAS_VAT(y, i + 2) = MC_BLAS_VAT(x, i + 2);
-			MC_BLAS_VAT(y, i + 3) = MC_BLAS_VAT(x, i + 3);
-			MC_BLAS_VAT(y, i + 4) = MC_BLAS_VAT(x, i + 4);
-			MC_BLAS_VAT(y, i + 5) = MC_BLAS_VAT(x, i + 5);
-			MC_BLAS_VAT(y, i + 6) = MC_BLAS_VAT(x, i + 6);
+			mc_blas_vector_at(y, i    ) = mc_blas_vector_at(x, i    );
+			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(x, i + 1);
+			mc_blas_vector_at(y, i + 2) = mc_blas_vector_at(x, i + 2);
+			mc_blas_vector_at(y, i + 3) = mc_blas_vector_at(x, i + 3);
+			mc_blas_vector_at(y, i + 4) = mc_blas_vector_at(x, i + 4);
+			mc_blas_vector_at(y, i + 5) = mc_blas_vector_at(x, i + 5);
+			mc_blas_vector_at(y, i + 6) = mc_blas_vector_at(x, i + 6);
 		}
 	} else {
 		ix = 1;
@@ -48,9 +48,9 @@ MC_TARGET_FUNC void mc_blas_scopy(int n, const float * x, int incx, float * y, i
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			MC_BLAS_VAT(y, iy) = MC_BLAS_VAT(x, ix);
-			ix                 = ix + incx;
-			iy                 = iy + incy;
+			mc_blas_vector_at(y, iy) = mc_blas_vector_at(x, ix);
+			ix                       = ix + incx;
+			iy                       = iy + incy;
 		}
 	}
 }
@@ -68,7 +68,7 @@ MC_TARGET_FUNC void mc_blas_dcopy(int n, const double * x, int incx, double * y,
 		m = n % 7;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				MC_BLAS_VAT(y, i) = MC_BLAS_VAT(x, i);
+				mc_blas_vector_at(y, i) = mc_blas_vector_at(x, i);
 			}
 			if (n < 7) {
 				return;
@@ -76,13 +76,13 @@ MC_TARGET_FUNC void mc_blas_dcopy(int n, const double * x, int incx, double * y,
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 7) {
-			MC_BLAS_VAT(y, i)     = MC_BLAS_VAT(x, i    );
-			MC_BLAS_VAT(y, i + 1) = MC_BLAS_VAT(x, i + 1);
-			MC_BLAS_VAT(y, i + 2) = MC_BLAS_VAT(x, i + 2);
-			MC_BLAS_VAT(y, i + 3) = MC_BLAS_VAT(x, i + 3);
-			MC_BLAS_VAT(y, i + 4) = MC_BLAS_VAT(x, i + 4);
-			MC_BLAS_VAT(y, i + 5) = MC_BLAS_VAT(x, i + 5);
-			MC_BLAS_VAT(y, i + 6) = MC_BLAS_VAT(x, i + 6);
+			mc_blas_vector_at(y, i)     = mc_blas_vector_at(x, i    );
+			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(x, i + 1);
+			mc_blas_vector_at(y, i + 2) = mc_blas_vector_at(x, i + 2);
+			mc_blas_vector_at(y, i + 3) = mc_blas_vector_at(x, i + 3);
+			mc_blas_vector_at(y, i + 4) = mc_blas_vector_at(x, i + 4);
+			mc_blas_vector_at(y, i + 5) = mc_blas_vector_at(x, i + 5);
+			mc_blas_vector_at(y, i + 6) = mc_blas_vector_at(x, i + 6);
 		}
 	} else {
 		ix = 1;
@@ -94,9 +94,9 @@ MC_TARGET_FUNC void mc_blas_dcopy(int n, const double * x, int incx, double * y,
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			MC_BLAS_VAT(y, iy) = MC_BLAS_VAT(x, ix);
-			ix                 = ix + incx;
-			iy                 = iy + incy;
+			mc_blas_vector_at(y, iy) = mc_blas_vector_at(x, ix);
+			ix                       = ix + incx;
+			iy                       = iy + incy;
 		}
 	}
 }
@@ -114,7 +114,7 @@ MC_TARGET_FUNC void mc_blas_lcopy(int n, const long double * x, int incx, long d
 		m = n % 7;
 		if (m != 0) {
 			for (i = 1; i <= m; ++i) {
-				MC_BLAS_VAT(y, i) = MC_BLAS_VAT(x, i);
+				mc_blas_vector_at(y, i) = mc_blas_vector_at(x, i);
 			}
 			if (n < 7) {
 				return;
@@ -122,13 +122,13 @@ MC_TARGET_FUNC void mc_blas_lcopy(int n, const long double * x, int incx, long d
 		}
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 7) {
-			MC_BLAS_VAT(y, i)     = MC_BLAS_VAT(x, i    );
-			MC_BLAS_VAT(y, i + 1) = MC_BLAS_VAT(x, i + 1);
-			MC_BLAS_VAT(y, i + 2) = MC_BLAS_VAT(x, i + 2);
-			MC_BLAS_VAT(y, i + 3) = MC_BLAS_VAT(x, i + 3);
-			MC_BLAS_VAT(y, i + 4) = MC_BLAS_VAT(x, i + 4);
-			MC_BLAS_VAT(y, i + 5) = MC_BLAS_VAT(x, i + 5);
-			MC_BLAS_VAT(y, i + 6) = MC_BLAS_VAT(x, i + 6);
+			mc_blas_vector_at(y, i)     = mc_blas_vector_at(x, i    );
+			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(x, i + 1);
+			mc_blas_vector_at(y, i + 2) = mc_blas_vector_at(x, i + 2);
+			mc_blas_vector_at(y, i + 3) = mc_blas_vector_at(x, i + 3);
+			mc_blas_vector_at(y, i + 4) = mc_blas_vector_at(x, i + 4);
+			mc_blas_vector_at(y, i + 5) = mc_blas_vector_at(x, i + 5);
+			mc_blas_vector_at(y, i + 6) = mc_blas_vector_at(x, i + 6);
 		}
 	} else {
 		ix = 1;
@@ -140,9 +140,9 @@ MC_TARGET_FUNC void mc_blas_lcopy(int n, const long double * x, int incx, long d
 			iy = (-(n) + 1) * incy + 1;
 		}
 		for (i = 1; i <= n; ++i) {
-			MC_BLAS_VAT(y, iy) = MC_BLAS_VAT(x, ix);
-			ix                 = ix + incx;
-			iy                 = iy + incy;
+			mc_blas_vector_at(y, iy) = mc_blas_vector_at(x, ix);
+			ix                       = ix + incx;
+			iy                       = iy + incy;
 		}
 	}
 }

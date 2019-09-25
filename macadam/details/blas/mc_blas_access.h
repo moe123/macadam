@@ -12,17 +12,17 @@
 #	undef  MCTARGET_BLAS_USE_CLAYOUT
 #	define MCTARGET_BLAS_USE_CLAYOUT 1
 
-#	define MC_BLAS_VAT(B, BI) B[((BI) - 1)]
+#	define mc_blas_vector_at(g, gi) g[((gi) - 1)]
 
-#	define MC_BLAS_CMAT_RMJ_AT(A, M, N, AI, AJ) A[((AI) * N) + (AJ)]
-#	define MC_BLAS_CMAT_CMJ_AT(A, M, N, AI, AJ) A[((AJ) * M) + (AI)]
+#	define mc_blas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * ng) + (gj)]
+#	define mc_blas_matrix_cmj_at(g, mg, ng, gi, gj) g[((gj) * mg) + (gi)]
 
 #	if MCTARGET_BLAS_USE_CLAYOUT
-#		define MC_BLAS_MAT(A, M, N, AJ, AI) \
-			MC_BLAS_CMAT_RMJ_AT(A, M, N, ((AJ) - 1), ((AI) - 1))
+#		define mc_blas_matrix_at(g, mg, ng, gj, gi) \
+			mc_blas_matrix_rmj_at(g, mg, ng, ((gj) - 1), ((gi) - 1))
 #	else
-#		define MC_BLAS_MAT(A, M, N, AJ, AI) \
-			MC_BLAS_CMAT_CMJ_AT(A, M, N, ((AJ) - 1), ((AI) - 1))
+#		define mc_blas_matrix_at(g, mg, ng, gj, gi) \
+			mc_blas_matrix_cmj_at(g, mg, ng, ((gj) - 1), ((gi) - 1))
 #	endif
 
 #endif /* !MC_BLAS_ACCESS_H */

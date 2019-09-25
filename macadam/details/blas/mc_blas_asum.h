@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_blas_sasum(int n, const float * x, int incx)
 		if (m != 0) {
 			nincx = m;
 			for (i = 1; i <= nincx; ++i) {
-				temp = temp + mc_fabsf(MC_BLAS_VAT(x, i));
+				temp = temp + mc_fabsf(mc_blas_vector_at(x, i));
 			}
 			if (n < 6) {
 				return temp;
@@ -37,18 +37,18 @@ MC_TARGET_FUNC float mc_blas_sasum(int n, const float * x, int incx)
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 6) {
 			temp = temp + (
-				  mc_fabsf(MC_BLAS_VAT(x, i    ))
-				+ mc_fabsf(MC_BLAS_VAT(x, i + 1))
-				+ mc_fabsf(MC_BLAS_VAT(x, i + 2))
-				+ mc_fabsf(MC_BLAS_VAT(x, i + 3))
-				+ mc_fabsf(MC_BLAS_VAT(x, i + 4))
-				+ mc_fabsf(MC_BLAS_VAT(x, i + 5))
+				  mc_fabsf(mc_blas_vector_at(x, i    ))
+				+ mc_fabsf(mc_blas_vector_at(x, i + 1))
+				+ mc_fabsf(mc_blas_vector_at(x, i + 2))
+				+ mc_fabsf(mc_blas_vector_at(x, i + 3))
+				+ mc_fabsf(mc_blas_vector_at(x, i + 4))
+				+ mc_fabsf(mc_blas_vector_at(x, i + 5))
 			);
 		}
 	} else {
 		nincx = n * incx;
 		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
-			temp = temp + mc_fabsf(MC_BLAS_VAT(x, i));
+			temp = temp + mc_fabsf(mc_blas_vector_at(x, i));
 		}
 	}
 	return temp;
@@ -70,7 +70,7 @@ MC_TARGET_FUNC double mc_blas_dsasum(int n, const float * x, int incx)
 		if (m != 0) {
 			nincx = m;
 			for (i = 1; i <= nincx; ++i) {
-				temp = temp + mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i)));
+				temp = temp + mc_fabs(mc_cast(double, mc_blas_vector_at(x, i)));
 			}
 			if (n < 6) {
 				return temp;
@@ -79,18 +79,18 @@ MC_TARGET_FUNC double mc_blas_dsasum(int n, const float * x, int incx)
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 6) {
 			temp = temp + (
-				  mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i    )))
-				+ mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i + 1)))
-				+ mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i + 2)))
-				+ mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i + 3)))
-				+ mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i + 4)))
-				+ mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i + 5)))
+				  mc_fabs(mc_cast(double, mc_blas_vector_at(x, i    )))
+				+ mc_fabs(mc_cast(double, mc_blas_vector_at(x, i + 1)))
+				+ mc_fabs(mc_cast(double, mc_blas_vector_at(x, i + 2)))
+				+ mc_fabs(mc_cast(double, mc_blas_vector_at(x, i + 3)))
+				+ mc_fabs(mc_cast(double, mc_blas_vector_at(x, i + 4)))
+				+ mc_fabs(mc_cast(double, mc_blas_vector_at(x, i + 5)))
 			);
 		}
 	} else {
 		nincx = n * incx;
 		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
-			temp = temp + mc_fabs(mc_cast(double, MC_BLAS_VAT(x, i)));
+			temp = temp + mc_fabs(mc_cast(double, mc_blas_vector_at(x, i)));
 		}
 	}
 	return temp;
@@ -119,7 +119,7 @@ MC_TARGET_FUNC double mc_blas_dasum(int n, const double * x, int incx)
 		if (m != 0) {
 			nincx = m;
 			for (i = 1; i <= nincx; ++i) {
-				temp = temp + mc_fabs(MC_BLAS_VAT(x, i));
+				temp = temp + mc_fabs(mc_blas_vector_at(x, i));
 			}
 			if (n < 6) {
 				return temp;
@@ -128,18 +128,18 @@ MC_TARGET_FUNC double mc_blas_dasum(int n, const double * x, int incx)
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 6) {
 			temp = temp + (
-				  mc_fabs(MC_BLAS_VAT(x, i    ))
-				+ mc_fabs(MC_BLAS_VAT(x, i + 1))
-				+ mc_fabs(MC_BLAS_VAT(x, i + 2))
-				+ mc_fabs(MC_BLAS_VAT(x, i + 3))
-				+ mc_fabs(MC_BLAS_VAT(x, i + 4))
-				+ mc_fabs(MC_BLAS_VAT(x, i + 5))
+				  mc_fabs(mc_blas_vector_at(x, i    ))
+				+ mc_fabs(mc_blas_vector_at(x, i + 1))
+				+ mc_fabs(mc_blas_vector_at(x, i + 2))
+				+ mc_fabs(mc_blas_vector_at(x, i + 3))
+				+ mc_fabs(mc_blas_vector_at(x, i + 4))
+				+ mc_fabs(mc_blas_vector_at(x, i + 5))
 			);
 		}
 	} else {
 		nincx = n * incx;
 		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
-			temp = temp + mc_fabs(MC_BLAS_VAT(x, i));
+			temp = temp + mc_fabs(mc_blas_vector_at(x, i));
 		}
 	}
 	return temp;
@@ -161,7 +161,7 @@ MC_TARGET_FUNC long double mc_blas_lasum(int n, const long double * x, int incx)
 		if (m != 0) {
 			nincx = m;
 			for (i = 1; i <= nincx; ++i) {
-				temp = temp + mc_fabsl(MC_BLAS_VAT(x, i));
+				temp = temp + mc_fabsl(mc_blas_vector_at(x, i));
 			}
 			if (n < 6) {
 				return temp;
@@ -170,18 +170,18 @@ MC_TARGET_FUNC long double mc_blas_lasum(int n, const long double * x, int incx)
 		mp1 = m + 1;
 		for (i = mp1; i <= n; i += 6) {
 			temp = temp + (
-				  mc_fabsl(MC_BLAS_VAT(x, i    ))
-				+ mc_fabsl(MC_BLAS_VAT(x, i + 1))
-				+ mc_fabsl(MC_BLAS_VAT(x, i + 2))
-				+ mc_fabsl(MC_BLAS_VAT(x, i + 3))
-				+ mc_fabsl(MC_BLAS_VAT(x, i + 4))
-				+ mc_fabsl(MC_BLAS_VAT(x, i + 5))
+				  mc_fabsl(mc_blas_vector_at(x, i    ))
+				+ mc_fabsl(mc_blas_vector_at(x, i + 1))
+				+ mc_fabsl(mc_blas_vector_at(x, i + 2))
+				+ mc_fabsl(mc_blas_vector_at(x, i + 3))
+				+ mc_fabsl(mc_blas_vector_at(x, i + 4))
+				+ mc_fabsl(mc_blas_vector_at(x, i + 5))
 			);
 		}
 	} else {
 		nincx = n * incx;
 		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
-			temp = temp + mc_fabsl(MC_BLAS_VAT(x, i));
+			temp = temp + mc_fabsl(mc_blas_vector_at(x, i));
 		}
 	}
 	return temp;

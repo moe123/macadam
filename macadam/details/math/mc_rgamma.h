@@ -50,7 +50,7 @@ MC_TARGET_FUNC float mc_rgammaf(float x)
 
 		return x * mc_xpolyeval9f(x, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 	}
-	if (x < 0.0f && x > 0.03125f) {
+	if (x < 0.0f && x > -0.03125f) {
 		const float p1 = -1.00000000000000000000000000000000000000E+00f;
 		const float p2 = +5.77215664901532860872700000000000000000E-01f;
 		const float p3 = +6.55878071520253654711600000000000000000E-01f;
@@ -101,7 +101,7 @@ MC_TARGET_FUNC double mc_rgamma(double x)
 
 		return x * mc_xpolyeval9(x, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 	}
-	if (x < 0.0 && x > 0.03125) {
+	if (x < 0.0 && x > -0.03125) {
 		const double p1 = -1.0000000000000000000000000000000000000000E+00;
 		const double p2 = +5.7721566490153286087270000000000000000000E-01;
 		const double p3 = +6.5587807152025365471160000000000000000000E-01;
@@ -153,7 +153,7 @@ MC_TARGET_FUNC long double mc_rgammal(long double x)
 
 		return x * mc_xpolyeval9l(x, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 	}
-	if (x < 0.0L && x > 0.03125L) {
+	if (x < 0.0L && x > -0.03125L) {
 		const long double p1 = -1.000000000000000000000000000000000000000000000000000000000000000E+00L;
 		const long double p2 = +5.772156649015328608727000000000000000000000000000000000000000000E-01L;
 		const long double p3 = +6.558780715202536547116000000000000000000000000000000000000000000E-01L;

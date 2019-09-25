@@ -98,10 +98,10 @@ MC_TARGET_FUNC void mc_blas_sger(int m, int n, float alpha, const float * x, int
 	}
 	if (incx == 1) {
 		for (j = 1; j <= n; ++j) {
-			if (MC_BLAS_VAT(y, jy) != zero) {
-				temp = alpha * MC_BLAS_VAT(y, jy);
+			if (mc_blas_vector_at(y, jy) != zero) {
+				temp = alpha * mc_blas_vector_at(y, jy);
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(a, lda, n, i, j) = MC_BLAS_MAT(a, lda, n, i, j) + (MC_BLAS_VAT(x, i) * temp);
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, i) * temp);
 				}
 			}
 			jy = jy + incy;
@@ -113,12 +113,12 @@ MC_TARGET_FUNC void mc_blas_sger(int m, int n, float alpha, const float * x, int
 			kx = 1 - (m - 1) * incx;
 		}
 		for (j = 1; j <= n; ++j) {
-			if (MC_BLAS_VAT(y, jy) != zero) {
-				temp = alpha * MC_BLAS_VAT(y, jy);
+			if (mc_blas_vector_at(y, jy) != zero) {
+				temp = alpha * mc_blas_vector_at(y, jy);
 				ix   = kx;
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(a, lda, n, i, j) = MC_BLAS_MAT(a, lda, n, i, j) + (MC_BLAS_VAT(x, ix) * temp);
-					ix                           = ix + incx;
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, ix) * temp);
+					ix                                 = ix + incx;
 				}
 			}
 			jy = jy + incy;
@@ -163,10 +163,10 @@ MC_TARGET_FUNC void mc_blas_dger(int m, int n, double alpha, const double * x, i
 	}
 	if (incx == 1) {
 		for (j = 1; j <= n; ++j) {
-			if (MC_BLAS_VAT(y, jy) != zero) {
-				temp = alpha * MC_BLAS_VAT(y, jy);
+			if (mc_blas_vector_at(y, jy) != zero) {
+				temp = alpha * mc_blas_vector_at(y, jy);
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(a, lda, n, i, j) = MC_BLAS_MAT(a, lda, n, i, j) + (MC_BLAS_VAT(x, i) * temp);
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, i) * temp);
 				}
 			}
 			jy = jy + incy;
@@ -178,12 +178,12 @@ MC_TARGET_FUNC void mc_blas_dger(int m, int n, double alpha, const double * x, i
 			kx = 1 - (m - 1) * incx;
 		}
 		for (j = 1; j <= n; ++j) {
-			if (MC_BLAS_VAT(y, jy) != zero) {
-				temp = alpha * MC_BLAS_VAT(y, jy);
+			if (mc_blas_vector_at(y, jy) != zero) {
+				temp = alpha * mc_blas_vector_at(y, jy);
 				ix   = kx;
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(a, lda, n, i, j) = MC_BLAS_MAT(a, lda, n, i, j) + (MC_BLAS_VAT(x, ix) * temp);
-					ix                           = ix + incx;
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, ix) * temp);
+					ix                                 = ix + incx;
 				}
 			}
 			jy = jy + incy;
@@ -228,10 +228,10 @@ MC_TARGET_FUNC void mc_blas_lger(int m, int n, long double alpha, const long dou
 	}
 	if (incx == 1) {
 		for (j = 1; j <= n; ++j) {
-			if (MC_BLAS_VAT(y, jy) != zero) {
-				temp = alpha * MC_BLAS_VAT(y, jy);
+			if (mc_blas_vector_at(y, jy) != zero) {
+				temp = alpha * mc_blas_vector_at(y, jy);
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(a, lda, n, i, j) = MC_BLAS_MAT(a, lda, n, i, j) + (MC_BLAS_VAT(x, i) * temp);
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, i) * temp);
 				}
 			}
 			jy = jy + incy;
@@ -243,12 +243,12 @@ MC_TARGET_FUNC void mc_blas_lger(int m, int n, long double alpha, const long dou
 			kx = 1 - (m - 1) * incx;
 		}
 		for (j = 1; j <= n; ++j) {
-			if (MC_BLAS_VAT(y, jy) != zero) {
-				temp = alpha * MC_BLAS_VAT(y, jy);
+			if (mc_blas_vector_at(y, jy) != zero) {
+				temp = alpha * mc_blas_vector_at(y, jy);
 				ix   = kx;
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(a, lda, n, i, j) = MC_BLAS_MAT(a, lda, n, i, j) + (MC_BLAS_VAT(x, ix) * temp);
-					ix                           = ix + incx;
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, ix) * temp);
+					ix                                 = ix + incx;
 				}
 			}
 			jy = jy + incy;

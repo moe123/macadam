@@ -151,13 +151,13 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 		if (beta == zero) {
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 				}
 			}
 		} else {
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 				}
 			}
 		}
@@ -169,17 +169,17 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				} else if (beta != one) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 				for (l = 1; l <= k; ++l) {
-					temp = alpha * MC_BLAS_MAT(b, ldb, kb, l, j);
+					temp = alpha * mc_blas_matrix_at(b, ldb, kb, l, j);
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = MC_BLAS_MAT(c, ldc, n, i, j) + (temp * MC_BLAS_MAT(a, lda, ka, i, l));
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
 					}
 				}
 			}
@@ -188,12 +188,12 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 				for (i = 1; i <= m; ++i) {
 					temp = zero;
 					for (l = 1; l <= m; ++l) {
-						temp = temp + (MC_BLAS_MAT(a, lda, ka, l, i) * MC_BLAS_MAT(b, ldb, kb, l, j));
+						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, l, j));
 					}
 					if (beta == zero) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp;
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
 					} else {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp + beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 			}
@@ -203,17 +203,17 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= m; ++i) {
-						 MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				} else if (beta != one) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 				for (l = 1; l <= k; ++l) {
-					temp = alpha * MC_BLAS_MAT(b, ldb, kb, j, l);
+					temp = alpha * mc_blas_matrix_at(b, ldb, kb, j, l);
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = MC_BLAS_MAT(c, ldc, n, i, j) + (temp * MC_BLAS_MAT(a, lda, ka, i, l));
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
 					}
 				}
 			}
@@ -222,12 +222,12 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 				for (i = 1; i <= m; ++i) {
 					temp = zero;
 					for (l = 1; l <= k; ++l) {
-						temp = temp + (MC_BLAS_MAT(a, lda, ka, l, i) * MC_BLAS_MAT(b, ldb, kb, j, l));
+						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, j, l));
 					}
 					if (beta == zero) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp;
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
 					} else {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp + beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 			}
@@ -297,13 +297,13 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 		if (beta == zero) {
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 				}
 			}
 		} else {
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 				}
 			}
 		}
@@ -315,17 +315,17 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				} else if (beta != one) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 				for (l = 1; l <= k; ++l) {
-					temp = alpha * MC_BLAS_MAT(b, ldb, kb, l, j);
+					temp = alpha * mc_blas_matrix_at(b, ldb, kb, l, j);
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = MC_BLAS_MAT(c, ldc, n, i, j) + (temp * MC_BLAS_MAT(a, lda, ka, i, l));
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
 					}
 				}
 			}
@@ -334,12 +334,12 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 				for (i = 1; i <= m; ++i) {
 					temp = zero;
 					for (l = 1; l <= m; ++l) {
-						temp = temp + (MC_BLAS_MAT(a, lda, ka, l, i) * MC_BLAS_MAT(b, ldb, kb, l, j));
+						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, l, j));
 					}
 					if (beta == zero) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp;
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
 					} else {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp + beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 			}
@@ -349,17 +349,17 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= m; ++i) {
-						 MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				} else if (beta != one) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 				for (l = 1; l <= k; ++l) {
-					temp = alpha * MC_BLAS_MAT(b, ldb, kb, j, l);
+					temp = alpha * mc_blas_matrix_at(b, ldb, kb, j, l);
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = MC_BLAS_MAT(c, ldc, n, i, j) + (temp * MC_BLAS_MAT(a, lda, ka, i, l));
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
 					}
 				}
 			}
@@ -368,12 +368,12 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 				for (i = 1; i <= m; ++i) {
 					temp = zero;
 					for (l = 1; l <= k; ++l) {
-						temp = temp + (MC_BLAS_MAT(a, lda, ka, l, i) * MC_BLAS_MAT(b, ldb, kb, j, l));
+						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, j, l));
 					}
 					if (beta == zero) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp;
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
 					} else {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp + beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 			}
@@ -443,13 +443,13 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 		if (beta == zero) {
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 				}
 			}
 		} else {
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
-					MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 				}
 			}
 		}
@@ -461,17 +461,17 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				} else if (beta != one) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 				for (l = 1; l <= k; ++l) {
-					temp = alpha * MC_BLAS_MAT(b, ldb, kb, l, j);
+					temp = alpha * mc_blas_matrix_at(b, ldb, kb, l, j);
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = MC_BLAS_MAT(c, ldc, n, i, j) + (temp * MC_BLAS_MAT(a, lda, ka, i, l));
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
 					}
 				}
 			}
@@ -480,12 +480,12 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 				for (i = 1; i <= m; ++i) {
 					temp = zero;
 					for (l = 1; l <= m; ++l) {
-						temp = temp + (MC_BLAS_MAT(a, lda, ka, l, i) * MC_BLAS_MAT(b, ldb, kb, l, j));
+						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, l, j));
 					}
 					if (beta == zero) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp;
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
 					} else {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp + beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 			}
@@ -495,17 +495,17 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= m; ++i) {
-						 MC_BLAS_MAT(c, ldc, n, i, j) = zero;
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				} else if (beta != one) {
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 				for (l = 1; l <= k; ++l) {
-					temp = alpha * MC_BLAS_MAT(b, ldb, kb, j, l);
+					temp = alpha * mc_blas_matrix_at(b, ldb, kb, j, l);
 					for (i = 1; i <= m; ++i) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = MC_BLAS_MAT(c, ldc, n, i, j) + (temp * MC_BLAS_MAT(a, lda, ka, i, l));
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
 					}
 				}
 			}
@@ -514,12 +514,12 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 				for (i = 1; i <= m; ++i) {
 					temp = zero;
 					for (l = 1; l <= k; ++l) {
-						temp = temp + (MC_BLAS_MAT(a, lda, ka, l, i) * MC_BLAS_MAT(b, ldb, kb, j, l));
+						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, j, l));
 					}
 					if (beta == zero) {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp;
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
 					} else {
-						MC_BLAS_MAT(c, ldc, n, i, j) = alpha * temp + beta * MC_BLAS_MAT(c, ldc, n, i, j);
+						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
 					}
 				}
 			}
