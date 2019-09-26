@@ -141,8 +141,8 @@ MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, int n, float alpha, const flo
 				ix                       = jx;
 				iy                       = jy;
 				for (k = (kk + 1); k <= (kk + n - j); ++k) {
-					ix = ix + incx;
-					iy = iy + incy;
+					ix                       = ix + incx;
+					iy                       = iy + incy;
 					mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (temp1 * mc_blas_vector_at(ap, k));
 					temp2                    = temp2 + (mc_blas_vector_at(ap, k) * mc_blas_vector_at(x, ix));
 				}
@@ -284,8 +284,8 @@ MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, int n, double alpha, const do
 				ix                       = jx;
 				iy                       = jy;
 				for (k = (kk + 1); k <= (kk + n - j); ++k) {
-					ix = ix + incx;
-					iy = iy + incy;
+					ix                       = ix + incx;
+					iy                       = iy + incy;
 					mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (temp1 * mc_blas_vector_at(ap, k));
 					temp2                    = temp2 + (mc_blas_vector_at(ap, k) * mc_blas_vector_at(x, ix));
 				}
@@ -427,8 +427,8 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, int n, long double alpha, con
 				ix                       = jx;
 				iy                       = jy;
 				for (k = (kk + 1); k <= (kk + n - j); ++k) {
-					ix = ix + incx;
-					iy = iy + incy;
+					ix                       = ix + incx;
+					iy                       = iy + incy;
 					mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (temp1 * mc_blas_vector_at(ap, k));
 					temp2                    = temp2 + (mc_blas_vector_at(ap, k) * mc_blas_vector_at(x, ix));
 				}

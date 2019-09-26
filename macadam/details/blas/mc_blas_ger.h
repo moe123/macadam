@@ -9,14 +9,13 @@
  *    ?ger performs the rank 1 operation: a=alpha*x*y' + a.
  *
  * \synopsis
- *    void ?ger(trans, m, n, alpha, x, incx, y, incy, a, lda)
+ *    void ?ger(m, n, alpha, x, incx, y, incy, a, lda)
  *    float-floating alpha
  *    int            incx, incy, lda, m, n
- *    char           trans
  *    float-floating a(lda, *), x(*), y(*)
  *
  * \purpose
- *    ?ger erforms the rank 1 operation: a=alpha*x*y' + a where alpha is a scalar,
+ *    ?ger performs the rank 1 operation: a=alpha*x*y' + a where alpha is a scalar,
  *    x is an m element vector, y is an n element vector and a is an m by n matrix.
  *
  * \parameters

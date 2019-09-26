@@ -5,6 +5,94 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?sbmv performs the matrix-vector operation:
+ *    y=alpha*a*x + beta*y
+ *
+ * \synopsis
+ *    void ?sbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy)
+ *    float-floating alpha, beta
+ *    int            incx, incy, k, lda, n
+ *    char           uplo
+ *    float-floating a(lda, *), x(*), y(*)
+ *
+ * \purpose
+ *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
+ *    scalars, x and y are n element vectors and a is an n by n symmetric band matrix, with k
+ *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
+ *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
+ *    the scalars alpha and beta, vectors x and y, and band matrix a.
+ *
+ * \parameters
+ *    [in] uplo - char. Sspecifies whether the upper or lower triangular part of the band matrix a
+ *    is being supplied as follows:
+ *    UPLO='U' or 'u', the upper triangular part of a is being supplied.
+ *    UPLO='L' or 'l', the lower triangular part of a is being supplied.
+ *
+ *    [in] n    - int. Specifies the order of the symmetric matrix a, must be at least zero.
+ *    [in] k    - int. Specifies the number of super-diagonals of the matrix symmetric a, k
+ *    must satisfy  0 < k, i.e must be at least one.
+ *
+ *    [in] alpha - float-floating. Specifies the scalar alpha.
+ *
+ *    [in] a    - float-floating array of dimension (lda, n).
+ *    With UPLO='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
+ *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
+ *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
+ *    top left k by k triangle of the array a is not referenced.
+ *
+ *    With UPLO='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
+ *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
+ *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
+ *    right k by k triangle of the array a is not referenced.
+ *
+ *    [in] lda   - int. Specifies the first dimension of a, a must be at least (k+1).
+ *
+ *    [int] x    - real-floating array of size at least (1+(n-1)*abs(incx)). The incremented array x must
+ *    contain the vector x.
+ *
+ *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *
+ *    [in] beta  - float-floating. Specifies the scalar beta.
+ *
+ *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)). The incremented array y must
+ *    contain the vector y, y is overwritten by the updated vector y.
+ *
+ *    [in] incy  - int. Specifies the increment for the elements of y, incy must not be zero.
+ * 
+ * \examples
+ *              | 1 | 1 | 1 | 1 | 0 | 0 | 0 |
+ *              | 1 | 2 | 2 | 2 | 2 | 0 | 0 |
+ *              | 1 | 2 | 3 | 3 | 3 | 3 | 0 |
+ *     a[7x7] = | 1 | 2 | 3 | 4 | 4 | 4 | 4 |
+ *              | 0 | 2 | 3 | 4 | 5 | 5 | 5 |
+ *              | 0 | 0 | 3 | 4 | 5 | 6 | 6 |
+ *              | 0 | 0 | 0 | 4 | 5 | 6 | 7 |
+ *
+ *     const real-floating a_band[] = {
+ *          0, 0, 0, 1, 2, 3, 4
+ *        , 0, 0, 1, 2, 3, 4, 5
+ *        , 0, 1, 2, 3, 4, 5, 6
+ *        , 1, 2, 3, 4, 5, 6, 7
+ *        , 0, 0, 0, 0, 0, 0, 0
+ *     };
+ *     const real-floating x[] = { 1, 2, 3, 4, 5, 6, 7 };
+ *           real-floating y[] = { 1, 0 , 2, 0 , 3, 0 , 4, 0 , 5, 0 , 6, 0 , 7 };
+ *     mc_blas_?sbmv('U', 7, 3, 2, a_band, 5, x, 1, 10, y, 2);
+ *     on output -> y = { 30, 0 , 78, 0 , 148, 0 , 244, 0 , 288, 0 , 316, 0 , 322 }
+ *
+ *
+ * \level 2 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ *     \author Jack Dongarra, Argonne National Lab.
+ *     \author Jeremy Du Croz, Nag Central Office.
+ *     \author Sven Hammarling, Nag Central Office.
+ *     \author Richard Hanson, Sandia National Labs.
+ */
+
 #include <macadam/details/blas/mc_blas_access.h>
 #include <macadam/details/blas/mc_blas_lsame.h>
 #include <macadam/details/blas/mc_blas_xerbla.h>
@@ -149,8 +237,8 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, int n, int k, float alpha, co
 				ix                       = jx;
 				iy                       = jy;
 				for (i = (j + 1); i <= mc_minmag(n , j + k); ++i) {
-					ix = ix + incx;
-					iy = iy + incy;
+					ix                       = ix + incx;
+					iy                       = iy + incy;
 					mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (temp1 * mc_blas_matrix_at(a, lda, n, l + i, j));
 					temp2                    = temp2 + (mc_blas_matrix_at(a, lda, n, l + i, j) * mc_blas_vector_at(x, ix));
 				}
@@ -297,8 +385,8 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, int n, int k, double alpha, c
 				ix                       = jx;
 				iy                       = jy;
 				for (i = (j + 1); i <= mc_minmag(n , j + k); ++i) {
-					ix = ix + incx;
-					iy = iy + incy;
+					ix                       = ix + incx;
+					iy                       = iy + incy;
 					mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (temp1 * mc_blas_matrix_at(a, lda, n, l + i, j));
 					temp2                    = temp2 + (mc_blas_matrix_at(a, lda, n, l + i, j) * mc_blas_vector_at(x, ix));
 				}
@@ -445,8 +533,8 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, int n, int k, long double alp
 				ix                       = jx;
 				iy                       = jy;
 				for (i = (j + 1); i <= mc_minmag(n , j + k); ++i) {
-					ix = ix + incx;
-					iy = iy + incy;
+					ix                       = ix + incx;
+					iy                       = iy + incy;
 					mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (temp1 * mc_blas_matrix_at(a, lda, n, l + i, j));
 					temp2                    = temp2 + (mc_blas_matrix_at(a, lda, n, l + i, j) * mc_blas_vector_at(x, ix));
 				}
