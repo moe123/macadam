@@ -24,6 +24,7 @@
 #	include <macadam/details/blas/mc_blas_rotg.h>
 #	include <macadam/details/blas/mc_blas_rotm.h>
 #	include <macadam/details/blas/mc_blas_rotmg.h>
+#	include <macadam/details/blas/mc_blas_sbmv.h>
 #	include <macadam/details/blas/mc_blas_scal.h>
 #	include <macadam/details/blas/mc_blas_spmv.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>

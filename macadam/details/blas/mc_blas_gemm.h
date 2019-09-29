@@ -66,7 +66,7 @@
  *    array c must contain the matrix c, except when beta is set to zero, in which case c need not be set
  *    on entry, c is overwritten by the m by n matrix (alpha*op(a)*op(b) + beta*c).
  *
- *    [in] ldc   - int. Sspecifies the first dimension of c, ldc must be at least max(1, m).
+ *    [in] ldc   - int. Specifies the first dimension of c, ldc must be at least max(1, m).
  *
  * \examples
  *

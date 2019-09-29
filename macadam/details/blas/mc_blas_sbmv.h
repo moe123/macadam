@@ -24,7 +24,7 @@
  *    the scalars alpha and beta, vectors x and y, and band matrix a.
  *
  * \parameters
- *    [in] uplo - char. Sspecifies whether the upper or lower triangular part of the band matrix a
+ *    [in] uplo - char. Specifies whether the upper or lower triangular part of the band matrix a
  *    is being supplied as follows:
  *    UPLO='U' or 'u', the upper triangular part of a is being supplied.
  *    UPLO='L' or 'l', the lower triangular part of a is being supplied.
