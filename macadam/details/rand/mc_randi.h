@@ -127,7 +127,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 //!# Marsaglia-multiply-with-carry.
 	mc_randi_seeds_s[0] = 36969 * (mc_randi_seeds_s[0] & 0177777) + (mc_randi_seeds_s[0] >> 16);
 	mc_randi_seeds_s[1] = 18000 * (mc_randi_seeds_s[1] & 0177777) + (mc_randi_seeds_s[1] >> 16);
-	b                  = ((mc_randi_seeds_s[0] << 16) ^ (mc_randi_seeds_s[1] & 0177777));
+	b                   = ((mc_randi_seeds_s[0] << 16) ^ (mc_randi_seeds_s[1] & 0177777));
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
