@@ -176,6 +176,26 @@
 #	endif
 #	endif
 
+#	if defined(WIN32) && (defined(_MSC_VER) || defined(__ICL))
+#		define __declspec(thread)
+#	elif defined(__clang__)
+#		if __has_feature(c_thread_local) || __has_extension(c_thread_local)
+#			define MC_TARGET_THREAD_LOCAL _Thread_local
+#		else
+#			define MC_TARGET_THREAD_LOCAL
+#		endif
+#	elif defined(__GNUG__) && (__GNUC__ <= 4 && __GNUC_MINOR__ < 80)
+#		define MC_TARGET_THREAD_LOCAL __thread
+#	elif defined(__GNUG__) && (__GNUC__ == 4 && __GNUC_MINOR__ >= 80)
+#		define MC_TARGET_THREAD_LOCAL _Thread_local
+#	elif defined(__GNUG__) && (__GNUC__ > 4)
+#		define MC_TARGET_THREAD_LOCAL _Thread_local
+#	elif (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L) && !defined(__STDC_NO_THREADS__)
+#		define MC_TARGET_THREAD_LOCAL _Thread_local
+#	else
+#		define MC_TARGET_THREAD_LOCAL
+#	endif
+
 #	if MC_DISABLE_TYPEOF
 #		undef  MC_TARGET_HAVE_TYPEOF
 #		undef  MC_TARGET_HAVE_AUTOTYPE

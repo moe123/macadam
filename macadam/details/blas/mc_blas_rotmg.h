@@ -15,7 +15,7 @@
  *
  * \purpose
  *    ?rotmg computes the parameters for a modified Givens rotation. Construct Gentleman's
- *    modified a Given's plane rotation that will annihilate an element of a vector.
+ *    modified a Given's plane rotation that will annihilate an element of a vector:
  *       flag=-1:
  *       H[2x2] = | h11 | h12 |
  *                | h21 | h22 |
@@ -29,7 +29,6 @@
  *       H[2x2] = |  1  |  0  |
  *                |  0  |  1  |
  *
- *
  * \parameters
  *    [out] d1    - real-floating. The first diagonal entry in the H matrix. Overwritten to
  *    reflect the effect of the transformation.
@@ -40,7 +39,7 @@
  *    [out] x1    - real-floating. The first element of the vector to which the H matrix is
  *    applied.  to reflect the effect of the transformation.
  *
- *    [in] y1    - real-floating. The second element of the vector to which the H matrix is
+ *    [in] y1     - real-floating. The second element of the vector to which the H matrix is
  *    applied.
  *
  *    [out] param - real-floating array of size 5 such as param[flag, h11, h21, h12, h22].

@@ -21,21 +21,12 @@
 #	undef  MCTARGET_RAND_USE_LFSR113
 #	define MCTARGET_RAND_USE_LFSR113 1
 
-#	if MC_TARGET_C11 || MC_TARGET_CPP11
 #	if MCTARGET_RAND_USE_MARSAGLIAMWC
-static _Thread_local unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
+static MC_TARGET_THREAD_LOCAL unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
 #	else
-static _Thread_local unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
+static MC_TARGET_THREAD_LOCAL unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
 #	endif
-static _Thread_local unsigned int mc_randi_init_s = 0;
-#	else
-#	if MCTARGET_RAND_USE_MARSAGLIAMWC
-static volatile unsigned int mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 };
-#	else
-static volatile unsigned int mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
-#	endif
-static volatile unsigned int mc_randi_init_s = 0;
-#	endif
+static MC_TARGET_THREAD_LOCAL unsigned int mc_randi_init_s = 0;
 
 #	if MCTARGET_RAND_USE_LIBCRAND
 #		define MCLIMITS_RANDMAX mc_cast(const unsigned int, RAND_MAX)

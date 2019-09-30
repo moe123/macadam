@@ -18,9 +18,8 @@
  *    real-floating a(lda, *), b(ldb, *), c(ldc, *)
  *
  * \purpose
- *    ?gemm performs one of the matrix-matrix operations:
- *    c=alpha*op(a)*op(b) + beta*c where op(x)=x or op(x)=x' alpha
- *    and beta are scalars, and a, b and c are matrices, with op(a)
+ *    ?gemm performs one of the matrix-matrix operations: c=alpha*op(a)*op(b) + beta*c where
+ *    op(x)=x or op(x)=x' alpha and beta are scalars, and a, b and c are matrices, with op(a)
  *    an m by k matrix, op(b) a k by n matrix and c an m by n matrix.
  *
  * \parameters
