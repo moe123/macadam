@@ -29,6 +29,7 @@
 #	include <macadam/details/blas/mc_blas_spmv.h>
 #	include <macadam/details/blas/mc_blas_spr.h>
 #	include <macadam/details/blas/mc_blas_spr2.h>
+#	include <macadam/details/blas/mc_blas_symm.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>
 
 #endif /* !MC_BLAS_H */
