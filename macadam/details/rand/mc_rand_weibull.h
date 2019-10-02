@@ -13,19 +13,19 @@
 
 #pragma mark - mc_rand_weibull -
 
-MC_TARGET_FUNC float  mc_rand_weibullf(float a)
+MC_TARGET_FUNC float mc_rand_weibullf(float a)
 {
 //!# Weibull distribution generator. a=alpha=shape.
 	return a != 0.0f ? (a == 1.0f ? mc_rand_exponentialf(1.0f) : mc_powf(mc_rand_exponentialf(1.0f), 1.0f / a)) : 0.0f;
 }
 
-MC_TARGET_FUNC double  mc_rand_weibull(double a)
+MC_TARGET_FUNC double mc_rand_weibull(double a)
 {
 //!# Weibull distribution generator. a=alpha=shape.
 	return a != 0.0 ? (a == 1.0 ? mc_rand_exponential(1.0f) : mc_pow(mc_rand_exponential(1.0), 1.0 / a)) : 0.0;
 }
 
-MC_TARGET_FUNC long double  mc_rand_weibulll(long double a)
+MC_TARGET_FUNC long double mc_rand_weibulll(long double a)
 {
 //!# Weibull distribution generator. a=alpha=shape.
 	return a != 0.0L ? (a == 1.0L ? mc_rand_exponentiall(1.0f) : mc_powl(mc_rand_exponentiall(1.0), 1.0L / a)) : 0.0L;

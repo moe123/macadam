@@ -16,6 +16,7 @@
 #	include <macadam/details/rand/mc_rand_lgamma.h>
 #	include <macadam/details/rand/mc_rand_lnormal.h>
 #	include <macadam/details/rand/mc_rand_pareto.h>
+#	include <macadam/details/rand/mc_rand_poisson.h>
 #	include <macadam/details/rand/mc_rand_uniform.h>
 #	include <macadam/details/rand/mc_rand_weibull.h>
 #	include <macadam/details/rand/mc_randg.h>

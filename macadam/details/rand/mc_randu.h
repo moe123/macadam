@@ -13,10 +13,9 @@
 
 #pragma mark - mc_randu -
 
-MC_TARGET_PROC float  mc_randuf(void)
+MC_TARGET_PROC float mc_randuf(void)
 {
-//!# 32-bits Random number generator i.e sample from uniform
-//!# distribution range [0, 1] (theoretically may include low and high).
+//!# Uniform distribution range [0, 1] (theoretically may include low and high).
 	const float a = mc_cast(float, mc_randi());
 #	if MCTARGET_RAND_USE_LIBCRAND && RAND_MAX < MCLIMITS_IMAX
 	const float b = mc_cast(float, MCLIMITS_RANDMAX);
@@ -30,10 +29,9 @@ MC_TARGET_PROC float  mc_randuf(void)
 #	endif
 }
 
-MC_TARGET_PROC double  mc_randu(void)
+MC_TARGET_PROC double mc_randu(void)
 {
-//!# 32-bits Random number generator i.e sample from uniform
-//!# distribution range [0, 1] (theoretically may include low and high).
+//!# Uniform distribution range [0, 1] (theoretically may include low and high).
 	const double a = mc_cast(double, mc_randi());
 #	if MCTARGET_RAND_USE_LIBCRAND
 	const double b = mc_cast(double, MCLIMITS_RANDMAX);
@@ -44,11 +42,10 @@ MC_TARGET_PROC double  mc_randu(void)
 #	endif
 }
 
-MC_TARGET_PROC long double  mc_randul(void)
+MC_TARGET_PROC long double mc_randul(void)
 {
+//!# Uniform distribution range [0, 1] (theoretically may include low and high).
 #	if !MC_TARGET_MSVC_CPP
-//!# 32-bits Random number generator i.e sample from uniform
-//!# distribution range [0, 1] (theoretically may include low and high).
 	const long double a = mc_cast(long double, mc_randi());
 #	if MCTARGET_RAND_USE_LIBCRAND
 	const long double b = mc_cast(long double, MCLIMITS_RANDMAX);

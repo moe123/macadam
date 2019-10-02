@@ -8,6 +8,7 @@
 #include <macadam/details/blas/mc_blas_access.h>
 #include <macadam/details/blas/mc_blas_lsame.h>
 #include <macadam/details/blas/mc_blas_xerbla.h>
+#include <macadam/details/math/mc_maxmag.h>
 
 #ifndef MC_BLAS_SYMM_H
 #define MC_BLAS_SYMM_H

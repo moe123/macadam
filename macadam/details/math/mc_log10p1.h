@@ -15,7 +15,7 @@
 
 #pragma mark - mc_log10p1 -
 
-MC_TARGET_FUNC float  mc_log10p1f(float x)
+MC_TARGET_FUNC float mc_log10p1f(float x)
 {
 	if (mc_fabsf(x) > 0.5f) {
 		return mc_log10f(1.0f + x);
@@ -23,7 +23,7 @@ MC_TARGET_FUNC float  mc_log10p1f(float x)
 	return MCK_KF(MCK_LOG10E) * mc_log1pf(x);
 }
 
-MC_TARGET_FUNC double  mc_log10p1(double x)
+MC_TARGET_FUNC double mc_log10p1(double x)
 {
 	if (mc_fabs(x) > 0.5) {
 		return mc_log10(1.0 + x);
@@ -31,7 +31,7 @@ MC_TARGET_FUNC double  mc_log10p1(double x)
 	return MCK_K(MCK_LOG10E) * mc_log1p(x);
 }
 
-MC_TARGET_FUNC long double  mc_log10p1l(long double x)
+MC_TARGET_FUNC long double mc_log10p1l(long double x)
 {
 	if (mc_fabsl(x) > 0.5) {
 		return mc_log10l(1.0 + x);
