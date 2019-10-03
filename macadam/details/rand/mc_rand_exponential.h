@@ -34,7 +34,7 @@ MC_TARGET_FUNC long double mc_rand_exponentiall(long double l)
 {
 //!# Exponential distribution generator.
 	const long double u =  mc_randul();
-	const long double s = 1.0L / (l > 0.0L ? l : 0.0L);
+	const long double s = 1.0L / (l > 0.0L ? l : 1.0L);
 	return -mc_log1ml(u) * s;
 }
 
