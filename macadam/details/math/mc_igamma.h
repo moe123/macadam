@@ -234,7 +234,7 @@ MC_TARGET_PROC float mc_igammapf_approx0(float a, float z)
 //!# Normalised lower incomplete gamma function of a and z.
 	float p = MCK_NAN;
 	if (a > 0.0f && z >= 0.0f) {
-		if (z <=  0.0f) {
+		if (z <= 0.0f) {
 			return 0.0f;
 		}
 		const float y = a * mc_logf(z) - z;
@@ -257,7 +257,7 @@ MC_TARGET_PROC double mc_igammap_approx0(double a, double z)
 //!# Normalised lower incomplete gamma function of a and z.
 	double p = MCK_NAN;
 	if (a > 0.0 && z >= 0.0) {
-		if (z <=  0.0) {
+		if (z <= 0.0) {
 			return 0.0;
 		}
 		const double y = a * mc_log(z) - z;
@@ -280,7 +280,7 @@ MC_TARGET_PROC long double mc_igammapl_approx0(long double a, long double z)
 //!# Normalised lower incomplete gamma function of a and z.
 	long double p = MCK_NAN;
 	if (a > 0.0L && z >= 0.0L) {
-		if (z <=  0.0L) {
+		if (z <= 0.0L) {
 			return 0.0L;
 		}
 		const long double y = a * mc_logl(z) - z;
@@ -305,7 +305,7 @@ MC_TARGET_PROC float mc_igammaqf_approx0(float a, float z)
 //!# Normalised upper incomplete gamma function of a and z.
 	float q = MCK_NAN;
 	if (a > 0.0f && z >= 0.0f) {
-		if (z <=  0.0f) {
+		if (z <= 0.0f) {
 			return 1.0f;
 		}
 		const float y = a * mc_logf(z) - z;
@@ -328,7 +328,7 @@ MC_TARGET_PROC double mc_igammaq_approx0(double a, double z)
 //!# Normalised upper incomplete gamma function of a and z.
 	double q = MCK_NAN;
 	if (a > 0.0 && z >= 0.0) {
-		if (z <=  0.0) {
+		if (z <= 0.0) {
 			return 1.0;
 		}
 		const double y = a * mc_log(z) - z;
@@ -351,7 +351,7 @@ MC_TARGET_PROC long double mc_igammaql_approx0(long double a, long double z)
 //!# Normalised upper incomplete gamma function of a and z.
 	long double q = MCK_NAN;
 	if (a > 0.0L && z >= 0.0L) {
-		if (z <=  0.0L) {
+		if (z <= 0.0L) {
 			return 1.0L;
 		}
 		const long double y = a * mc_logl(z) - z;

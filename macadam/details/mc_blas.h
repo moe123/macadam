@@ -34,6 +34,7 @@
 #	include <macadam/details/blas/mc_blas_syr.h>
 #	include <macadam/details/blas/mc_blas_syr2.h>
 #	include <macadam/details/blas/mc_blas_syr2k.h>
+#	include <macadam/details/blas/mc_blas_syrk.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>
 
 #endif /* !MC_BLAS_H */

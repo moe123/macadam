@@ -17,8 +17,8 @@
 MC_TARGET_FUNC float mc_rand_betaf(float a, float b)
 {
 //!# Beta distribution generator.
-	const float x =  mc_rand_gammaf(a, 1.0f);
-	const float y =  mc_rand_gammaf(b, 1.0f);
+	const float x = mc_rand_gammaf(a, 1.0f);
+	const float y = mc_rand_gammaf(b, 1.0f);
 	const float z = x + y;
 	return z != 0.0f ? x / z : 0.0f;
 }
@@ -26,8 +26,8 @@ MC_TARGET_FUNC float mc_rand_betaf(float a, float b)
 MC_TARGET_FUNC double mc_rand_beta(double a, double b)
 {
 //!# Beta distribution generator.
-	const double x =  mc_rand_gamma(a, 1.0);
-	const double y =  mc_rand_gamma(b, 1.0);
+	const double x = mc_rand_gamma(a, 1.0);
+	const double y = mc_rand_gamma(b, 1.0);
 	const double z = x + y;
 	return z != 0.0 ? x / z : 0.0;
 }
@@ -35,8 +35,8 @@ MC_TARGET_FUNC double mc_rand_beta(double a, double b)
 MC_TARGET_FUNC long double mc_rand_betal(long double a, long double b)
 {
 //!# Beta distribution generator.
-	const long double x =  mc_rand_gammal(a, 1.0L);
-	const long double y =  mc_rand_gammal(b, 1.0L);
+	const long double x = mc_rand_gammal(a, 1.0L);
+	const long double y = mc_rand_gammal(b, 1.0L);
 	const long double z = x + y;
 	return z != 0.0L ? x / z : 0.0L;
 }
