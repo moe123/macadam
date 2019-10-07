@@ -7,7 +7,7 @@
 //
 
 /* \name
- *    ?gbmv - perform one of the matrix-vector operations:
+ *    ?gbmv - performs one of the matrix-vector operations:
  *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y.
  *
  * \synopsis
@@ -37,7 +37,7 @@
  *    [in] a     - real-floating array of dimension (lda, n). The leading (kl + ku + 1) by n part of
  *    the array a must contain the matrix of coefficients, supplied column by column, with the leading
  *    diagonal of the matrix in row (ku + 1) of the array, the first super-diagonal starting at position
- *    2 in row ku, the first sub-diagonal starting at position 1 in row (ku + 2), and so on. Elements in
+ *    1 in row ku, the first sub-diagonal starting at position 0 in row (ku + 1), and so on. Elements in
  *    the array a that do not correspond to elements in the band matrix (such as the top left ku by ku
  *    triangle) are not referenced.
  *
