@@ -67,7 +67,7 @@ MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, j) = mc_blas_vector_at(x, j) / mc_blas_matrix_at(a, lda, n, kplus1, j);
 						}
 						temp = mc_blas_vector_at(x, j);
-						for (i = j - 1; i >= mc_maxmag(1, j - k); --i) {
+						for (i = (j - 1); i >= mc_maxmag(1, j - k); --i) {
 							mc_blas_vector_at(x, i) = mc_blas_vector_at(x, i) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 						}
 					}
@@ -84,7 +84,7 @@ MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, jx) = mc_blas_vector_at(x, jx) / mc_blas_matrix_at(a, lda, n, kplus1, j);
 						}
 						temp = mc_blas_vector_at(x, jx);
-						for (i = j - 1; i >= mc_maxmag(1, j - k); --i) {
+						for (i = (j - 1); i >= mc_maxmag(1, j - k); --i) {
 							mc_blas_vector_at(x, ix) = mc_blas_vector_at(x, ix) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 							ix                       = ix - incx;
 						}
@@ -101,7 +101,7 @@ MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, j) = mc_blas_vector_at(x, j) / mc_blas_matrix_at(a, lda, n, 1, j);
 						}
 						temp = mc_blas_vector_at(x, j);
-						for (i = j + 1; i <= mc_minmag(n, j + k); ++i) {
+						for (i = (j + 1); i <= mc_minmag(n, j + k); ++i) {
 							mc_blas_vector_at(x, i) = mc_blas_vector_at(x, i) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 						}
 					}
@@ -117,7 +117,7 @@ MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, jx) = mc_blas_vector_at(x, jx) / mc_blas_matrix_at(a, lda, n, 1, j);
 						}
 						temp = mc_blas_vector_at(x, jx);
-						for (i = j + 1; i <= mc_minmag(n, j + k); ++i) {
+						for (i = (j + 1); i <= mc_minmag(n, j + k); ++i) {
 							mc_blas_vector_at(x, ix) = mc_blas_vector_at(x, ix) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 							ix                       = ix + incx;
 						}
@@ -252,7 +252,7 @@ MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, j) = mc_blas_vector_at(x, j) / mc_blas_matrix_at(a, lda, n, kplus1, j);
 						}
 						temp = mc_blas_vector_at(x, j);
-						for (i = j - 1; i >= mc_maxmag(1, j - k); --i) {
+						for (i = (j - 1); i >= mc_maxmag(1, j - k); --i) {
 							mc_blas_vector_at(x, i) = mc_blas_vector_at(x, i) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 						}
 					}
@@ -269,7 +269,7 @@ MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, jx) = mc_blas_vector_at(x, jx) / mc_blas_matrix_at(a, lda, n, kplus1, j);
 						}
 						temp = mc_blas_vector_at(x, jx);
-						for (i = j - 1; i >= mc_maxmag(1, j - k); --i) {
+						for (i = (j - 1); i >= mc_maxmag(1, j - k); --i) {
 							mc_blas_vector_at(x, ix) = mc_blas_vector_at(x, ix) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 							ix                       = ix - incx;
 						}
@@ -286,7 +286,7 @@ MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, j) = mc_blas_vector_at(x, j) / mc_blas_matrix_at(a, lda, n, 1, j);
 						}
 						temp = mc_blas_vector_at(x, j);
-						for (i = j + 1; i <= mc_minmag(n, j + k); ++i) {
+						for (i = (j + 1); i <= mc_minmag(n, j + k); ++i) {
 							mc_blas_vector_at(x, i) = mc_blas_vector_at(x, i) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 						}
 					}
@@ -302,7 +302,7 @@ MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, jx) = mc_blas_vector_at(x, jx) / mc_blas_matrix_at(a, lda, n, 1, j);
 						}
 						temp = mc_blas_vector_at(x, jx);
-						for (i = j + 1; i <= mc_minmag(n, j + k); ++i) {
+						for (i = (j + 1); i <= mc_minmag(n, j + k); ++i) {
 							mc_blas_vector_at(x, ix) = mc_blas_vector_at(x, ix) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 							ix                       = ix + incx;
 						}
@@ -437,7 +437,7 @@ MC_TARGET_FUNC void mc_blas_ltbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, j) = mc_blas_vector_at(x, j) / mc_blas_matrix_at(a, lda, n, kplus1, j);
 						}
 						temp = mc_blas_vector_at(x, j);
-						for (i = j - 1; i >= mc_maxmag(1, j - k); --i) {
+						for (i = (j - 1); i >= mc_maxmag(1, j - k); --i) {
 							mc_blas_vector_at(x, i) = mc_blas_vector_at(x, i) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 						}
 					}
@@ -454,7 +454,7 @@ MC_TARGET_FUNC void mc_blas_ltbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, jx) = mc_blas_vector_at(x, jx) / mc_blas_matrix_at(a, lda, n, kplus1, j);
 						}
 						temp = mc_blas_vector_at(x, jx);
-						for (i = j - 1; i >= mc_maxmag(1, j - k); --i) {
+						for (i = (j - 1); i >= mc_maxmag(1, j - k); --i) {
 							mc_blas_vector_at(x, ix) = mc_blas_vector_at(x, ix) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 							ix                       = ix - incx;
 						}
@@ -471,7 +471,7 @@ MC_TARGET_FUNC void mc_blas_ltbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, j) = mc_blas_vector_at(x, j) / mc_blas_matrix_at(a, lda, n, 1, j);
 						}
 						temp = mc_blas_vector_at(x, j);
-						for (i = j + 1; i <= mc_minmag(n, j + k); ++i) {
+						for (i = (j + 1); i <= mc_minmag(n, j + k); ++i) {
 							mc_blas_vector_at(x, i) = mc_blas_vector_at(x, i) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 						}
 					}
@@ -487,7 +487,7 @@ MC_TARGET_FUNC void mc_blas_ltbsv(const char uplo, const char trans, const char 
 							mc_blas_vector_at(x, jx) = mc_blas_vector_at(x, jx) / mc_blas_matrix_at(a, lda, n, 1, j);
 						}
 						temp = mc_blas_vector_at(x, jx);
-						for (i = j + 1; i <= mc_minmag(n, j + k); ++i) {
+						for (i = (j + 1); i <= mc_minmag(n, j + k); ++i) {
 							mc_blas_vector_at(x, ix) = mc_blas_vector_at(x, ix) - (temp * mc_blas_matrix_at(a, lda, n, l + i, j));
 							ix                       = ix + incx;
 						}
