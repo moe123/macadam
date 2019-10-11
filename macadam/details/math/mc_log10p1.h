@@ -43,6 +43,6 @@ MC_TARGET_FUNC long double mc_log10p1l(long double x)
 #	endif
 }
 
-#endif /* ! MC_LOG10P1_H */
+#endif /* !MC_LOG10P1_H */
 
 /* EOF */

@@ -23,10 +23,10 @@ MC_TARGET_PROC void mc_zsinhf(float * c_r, float * c_i
 	*c_r = mc_sinhf(a_r) * mc_cosf(a_i);
 	*c_i = mc_coshf(a_r) * mc_sinf(a_i);
 #	else
-	if ((mc_isinf(a_r) || a_r == 0) && !mc_isfinite(a_i)) {
+	if ((mc_isinf(a_r) || a_r == 0.0f) && !mc_isfinite(a_i)) {
 		*c_r = a_r;
 		*c_i = MCK_NAN;
-	} else if (a_i == 0 && !mc_isfinite(a_r)) {
+	} else if (a_i == 0.0f && !mc_isfinite(a_r)) {
 		*c_r = a_r;
 		*c_i = a_i;
 	} else {
@@ -43,10 +43,10 @@ MC_TARGET_PROC void mc_zsinh(double * c_r, double * c_i
 	*c_r = mc_sinh(a_r) * mc_cos(a_i);
 	*c_i = mc_cosh(a_r) * mc_sin(a_i);
 #	else
-	if ((mc_isinf(a_r) || a_r == 0) && !mc_isfinite(a_i)) {
+	if ((mc_isinf(a_r) || a_r == 0.0) && !mc_isfinite(a_i)) {
 		*c_r = a_r;
 		*c_i = MCK_NAN;
-	} else if (a_i == 0 && !mc_isfinite(a_r)) {
+	} else if (a_i == 0.0 && !mc_isfinite(a_r)) {
 		*c_r = a_r;
 		*c_i = a_i;
 	} else {
@@ -63,10 +63,10 @@ MC_TARGET_PROC void mc_zsinhl(long double * c_r, long double * c_i
 	*c_r = mc_sinhl(a_r) * mc_cosl(a_i);
 	*c_i = mc_coshl(a_r) * mc_sinl(a_i);
 #	else
-	if ((mc_isinf(a_r) || a_r == 0) && !mc_isfinite(a_i)) {
+	if ((mc_isinf(a_r) || a_r == 0.0L) && !mc_isfinite(a_i)) {
 		*c_r = a_r;
 		*c_i = MCK_NAN;
-	} else if (a_i == 0 && !mc_isfinite(a_r)) {
+	} else if (a_i == 0.0L && !mc_isfinite(a_r)) {
 		*c_r = a_r;
 		*c_i = a_i;
 	} else {
