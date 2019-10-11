@@ -39,6 +39,8 @@
 #	include <macadam/details/blas/mc_blas_tbsv.h>
 #	include <macadam/details/blas/mc_blas_tpmv.h>
 #	include <macadam/details/blas/mc_blas_tpsv.h>
+#	include <macadam/details/blas/mc_blas_trmm.h>
+#	include <macadam/details/blas/mc_blas_trmv.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>
 
 #endif /* !MC_BLAS_H */
