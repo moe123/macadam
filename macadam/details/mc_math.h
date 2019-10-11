@@ -194,6 +194,8 @@
 #	include <macadam/details/math/mc_zasin.h>
 #	include <macadam/details/math/mc_zasinh.h>
 #	include <macadam/details/math/mc_zconj.h>
+#	include <macadam/details/math/mc_zcos.h>
+#	include <macadam/details/math/mc_zcosh.h>
 #	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
