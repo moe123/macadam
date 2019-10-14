@@ -123,12 +123,12 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0f) {
-			 a   = mc_zmodf(x_r, x_i);
+			 a   =  mc_zmodf(x_r, x_i);
 			 c   = -mc_sinf(MCK_KF(MCK_PI) * x_r) * mc_coshf(MCK_KF(MCK_PI) * x_i);
 			 d   = -mc_cosf(MCK_KF(MCK_PI) * x_r) * mc_sinhf(MCK_KF(MCK_PI) * x_i);
-			 b   = mc_atanf(d / c);
-			 b   = c < 0.0f ? b + MCK_KF(MCK_PI) : b;
-			*r_r = mc_logf(MCK_KF(MCK_PI) / (a * mc_zmodf(c, d))) - (*r_r);
+			 b   =  mc_atanf(d / c);
+			 b   =  c < 0.0f ? b + MCK_KF(MCK_PI) : b;
+			*r_r =  mc_logf(MCK_KF(MCK_PI) / (a * mc_zmodf(c, d))) - (*r_r);
 			*r_i = -mc_atanf(x_i / x_r) - b - (*r_i);
 		}
 	}
@@ -234,12 +234,12 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0) {
-			 a   = mc_zmod(x_r, x_i);
+			 a   =  mc_zmod(x_r, x_i);
 			 c   = -mc_sin(MCK_K(MCK_PI) * x_r) * mc_cosh(MCK_K(MCK_PI) * x_i);
 			 d   = -mc_cos(MCK_K(MCK_PI) * x_r) * mc_sinh(MCK_K(MCK_PI) * x_i);
-			 b   = mc_atan(d / c);
-			 b   = c < 0.0 ? b + MCK_K(MCK_PI) : b;
-			*r_r = mc_log(MCK_K(MCK_PI) / (a *mc_zmod(c, d))) - (*r_r);
+			 b   =  mc_atan(d / c);
+			 b   =  c < 0.0 ? b + MCK_K(MCK_PI) : b;
+			*r_r =  mc_log(MCK_K(MCK_PI) / (a *mc_zmod(c, d))) - (*r_r);
 			*r_i = -mc_atan(x_i / x_r) - b - (*r_i);
 		}
 	}
@@ -345,12 +345,12 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 			*r_i = *r_i - a;
 		}
 		if (c < 0.0L) {
-			a    = mc_zmodl(x_r, x_i);
+			a    =  mc_zmodl(x_r, x_i);
 			c    = -mc_sinl(MCK_KL(MCK_PI) * x_r) * mc_coshl(MCK_KL(MCK_PI) * x_i);
 			d    = -mc_cosl(MCK_KL(MCK_PI) * x_r) * mc_sinhl(MCK_KL(MCK_PI) * x_i);
-			b    = mc_atanl(d / c);
-			b    = c < 0.0L ? b + MCK_KL(MCK_PI) : b;
-			*r_r = mc_logl(MCK_KL(MCK_PI) / (a * mc_zmodl(c, d))) - (*r_r);
+			b    =  mc_atanl(d / c);
+			b    =  c < 0.0L ? b + MCK_KL(MCK_PI) : b;
+			*r_r =  mc_logl(MCK_KL(MCK_PI) / (a * mc_zmodl(c, d))) - (*r_r);
 			*r_i = -mc_atanl(x_i / x_r) - b - (*r_i);
 		}
 	}

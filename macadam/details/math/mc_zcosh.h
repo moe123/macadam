@@ -8,6 +8,9 @@
 
 #include <macadam/details/math/mc_cos.h>
 #include <macadam/details/math/mc_cosh.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_isfinite.h>
+#include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_sin.h>
 #include <macadam/details/math/mc_sinh.h>
 
