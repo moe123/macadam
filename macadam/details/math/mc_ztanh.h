@@ -23,6 +23,13 @@
 MC_TARGET_PROC void mc_ztanhf(float * c_r, float * c_i
 	, float a_r, float a_i
 ) {
+#	if MC_TARGET_EMBEDDED
+	const float z2r = 2.0f * a_r;
+	const float z2i = 2.0f * a_i;
+	const float zd  = mc_coshf(z2r) + mc_cosf(z2i);
+	*c_r            = mc_sinhf(z2r) / zd;
+	*c_i            = mc_sinf(z2i) / zd;
+#	else
 	if (mc_isinf(a_r)) {
 		if (!mc_isfinite(a_i)) {
 			*c_r = 1.0f;
@@ -47,11 +54,19 @@ MC_TARGET_PROC void mc_ztanhf(float * c_r, float * c_i
 			*c_i = mc_sinf(z2i) / zd;
 		}
 	}
+#	endif
 }
 
 MC_TARGET_PROC void mc_ztanh(double * c_r, double * c_i
 	, double a_r, double a_i
 ) {
+#	if MC_TARGET_EMBEDDED
+	const double z2r = 2.0 * a_r;
+	const double z2i = 2.0 * a_i;
+	const double zd  = mc_cosh(z2r) + mc_cos(z2i);
+	*c_r             = mc_sinh(z2r) / zd;
+	*c_i             = mc_sin(z2i) / zd;
+#	else
 	if (mc_isinf(a_r)) {
 		if (!mc_isfinite(a_i)) {
 			*c_r = 1.0;
@@ -76,11 +91,19 @@ MC_TARGET_PROC void mc_ztanh(double * c_r, double * c_i
 			*c_i = mc_sin(z2i) / zd;
 		}
 	}
+#	endif
 }
 
 MC_TARGET_PROC void mc_ztanhl(long double * c_r, long double * c_i
 	, long double a_r, long double a_i
 ) {
+#	if MC_TARGET_EMBEDDED
+	const long double z2r = 2.0L * a_r;
+	const long double z2i = 2.0L * a_i;
+	const long double zd  = mc_coshl(z2r) + mc_cosl(z2i);
+	*c_r                  = mc_sinhl(z2r) / zd;
+	*c_i                  = mc_sinl(z2i) / zd;
+#	else
 	if (mc_isinf(a_r)) {
 		if (!mc_isfinite(a_i)) {
 			*c_r = 1.0;
@@ -105,6 +128,7 @@ MC_TARGET_PROC void mc_ztanhl(long double * c_r, long double * c_i
 			*c_i = mc_sinl(z2i) / zd;
 		}
 	}
+#	endif
 }
 
 #endif /* !MC_ZCOSH_H */
