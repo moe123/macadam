@@ -200,6 +200,9 @@
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetap.h>
 #	include <macadam/details/math/mc_zexp.h>
+#	include <macadam/details/math/mc_zexp2.h>
+#	include <macadam/details/math/mc_zexp10.h>
+#	include <macadam/details/math/mc_zexpm1.h>
 #	include <macadam/details/math/mc_zfadd.h>
 #	include <macadam/details/math/mc_zfdiv.h>
 #	include <macadam/details/math/mc_zfmul.h>
