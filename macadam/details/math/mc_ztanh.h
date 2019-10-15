@@ -15,8 +15,8 @@
 #include <macadam/details/math/mc_sin.h>
 #include <macadam/details/math/mc_sinh.h>
 
-#ifndef MC_ZCOSH_H
-#define MC_ZCOSH_H
+#ifndef MC_ZTANH_H
+#define MC_ZTANH_H
 
 #pragma mark - mc_ztanh -
 
@@ -131,6 +131,6 @@ MC_TARGET_PROC void mc_ztanhl(long double * c_r, long double * c_i
 #	endif
 }
 
-#endif /* !MC_ZCOSH_H */
+#endif /* !MC_ZTANH_H */
 
 /* EOF */

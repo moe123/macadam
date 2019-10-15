@@ -224,6 +224,7 @@
 #	include <macadam/details/math/mc_zsqr.h>
 #	include <macadam/details/math/mc_zsqrt.h>
 #	include <macadam/details/math/mc_zsub.h>
+#	include <macadam/details/math/mc_ztan.h>
 #	include <macadam/details/math/mc_ztanh.h>
 
 #endif /* !MC_MATH_H */
