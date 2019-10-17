@@ -17,7 +17,7 @@ MC_TARGET_FUNC float mc_lapacke_slamch(const char cmach)
 {
 	const float one = 1.0f, zero = 0.0f;
 
-	float lamch, sfmin, small;
+	float lamch, afmin, small;
 	
 	switch (cmach)
 	{
@@ -51,12 +51,12 @@ MC_TARGET_FUNC float mc_lapacke_slamch(const char cmach)
 		break;
 		case 'S':
 		case 's':
-			sfmin = FLT_MIN;
+			afmin = FLT_MIN;
 			small = one / FLT_MAX;
-			if (small >= sfmin) {
-				sfmin = small * (one + FLT_EPSILON);
+			if (small >= afmin) {
+				afmin = small * (one + FLT_EPSILON);
 			}
-			lamch = sfmin;
+			lamch = afmin;
 		break;
 		case 'U':
 		case 'u':
@@ -74,7 +74,7 @@ MC_TARGET_FUNC double mc_lapacke_dlamch(const char cmach)
 {
 	const double one = 1.0, zero = 0.0;
 
-	double lamch, sfmin, small;
+	double lamch, afmin, small;
 	
 	switch (cmach)
 	{
@@ -108,12 +108,12 @@ MC_TARGET_FUNC double mc_lapacke_dlamch(const char cmach)
 		break;
 		case 'S':
 		case 's':
-			sfmin = DBL_MIN;
+			afmin = DBL_MIN;
 			small = one / DBL_MAX;
-			if (small >= sfmin) {
-				sfmin = small * (one + DBL_EPSILON);
+			if (small >= afmin) {
+				afmin = small * (one + DBL_EPSILON);
 			}
-			lamch = sfmin;
+			lamch = afmin;
 		break;
 		case 'U':
 		case 'u':
@@ -131,7 +131,7 @@ MC_TARGET_FUNC long double mc_lapacke_llamch(const char cmach)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
-	long double lamch, sfmin, small;
+	long double lamch, afmin, small;
 	
 	switch (cmach)
 	{
@@ -165,12 +165,12 @@ MC_TARGET_FUNC long double mc_lapacke_llamch(const char cmach)
 		break;
 		case 'S':
 		case 's':
-			sfmin = LDBL_MIN;
+			afmin = LDBL_MIN;
 			small = one / LDBL_MAX;
-			if (small >= sfmin) {
-				sfmin = small * (one + LDBL_EPSILON);
+			if (small >= afmin) {
+				afmin = small * (one + LDBL_EPSILON);
 			}
-			lamch = sfmin;
+			lamch = afmin;
 		break;
 		case 'U':
 		case 'u':

@@ -53,6 +53,9 @@
 #	include <macadam/details/blas/mc_lapacke_ilatrans.h>
 #	include <macadam/details/blas/mc_lapacke_ilauplo.h>
 #	include <macadam/details/blas/mc_lapacke_lamch.h>
+#	include <macadam/details/blas/mc_lapacke_lartg.h>
+#	include <macadam/details/blas/mc_lapacke_lartgp.h>
+#	include <macadam/details/blas/mc_lapacke_lartgs.h>
 #	include <macadam/details/blas/mc_lapacke_lasr.h>
 #	include <macadam/details/blas/mc_lapacke_lsamen.h>
 
