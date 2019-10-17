@@ -46,6 +46,16 @@
 #	include <macadam/details/blas/mc_blas_trsv.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>
 
+#	include <macadam/details/blas/mc_lapacke_iladiag.h>
+#	include <macadam/details/blas/mc_lapacke_ilalc.h>
+#	include <macadam/details/blas/mc_lapacke_ilalr.h>
+#	include <macadam/details/blas/mc_lapacke_ilaprec.h>
+#	include <macadam/details/blas/mc_lapacke_ilatrans.h>
+#	include <macadam/details/blas/mc_lapacke_ilauplo.h>
+#	include <macadam/details/blas/mc_lapacke_lamch.h>
+#	include <macadam/details/blas/mc_lapacke_lasr.h>
+#	include <macadam/details/blas/mc_lapacke_lsamen.h>
+
 #endif /* !MC_BLAS_H */
 
 /* EOF */

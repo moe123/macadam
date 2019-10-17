@@ -13,7 +13,11 @@
 
 MC_TARGET_FUNC int mc_blas_lsame(const char ca, const char cb)
 {
+#	if MC_TARGET_CPP98
+	return (ca == cb) ? 1 : ::toupper(ca) == ::toupper(cb) ? 1 : 0;
+#	else
 	return (ca == cb) ? 1 : toupper(ca) == toupper(cb) ? 1 : 0;
+#	endif
 }
 
 #endif /* !MC_BLAS_LSAME_H */

@@ -6,8 +6,7 @@
 //
 
 /* \name
- *    ?trsv solves one of the systems of equations:
- *    x*x=b or a'*x=b.
+ *    ?trsv Solves a system of linear equations whose coefficients are in a triangular matrix.
  * 
  * \synopsis
  *    void ?trsv(uplo, trans, diag, n, a, lda, x, incx)
@@ -18,9 +17,13 @@
  *
  * \purpose
  *    ?trsv solves one of the systems of equations: x*x=b or a'*x=b where b and x are n element
- *    vectors and a is an n by n unit, or non-unit, upper or lower triangular matrix. However, no
- *    test for singularity or near-singularity is included in this routine. Such tests must be
- *    performed before calling this routine.
+ *    vectors and a is an n by n unit, or non-unit, upper or lower triangular matrix. However,
+ *    no test for singularity or near-singularity is included in this routine. Such tests must
+ *    be performed before calling this routine.
+ *
+ *    The term b used in the systems of equations listed above represents the right-hand side of
+ *    the system. It is important to note that in these subroutines the right-hand side of the
+ *    equation is actually provided in the input-output argument x.
  *
  * \parameters
  *    [in] uplo  - char. Specifies whether the matrix is an upper or lower triangular matrix as follows:
@@ -36,7 +39,7 @@
  *    diag='U' or 'u' a is assumed to be unit triangular.
  *    diag='N' or 'n' a is not assumed to be unit triangular.
  *
- *    [in] n     - int. Specifies the order of the matrix a, n must be at least zero.
+ *    [in] n     - int. Specifies the order of the matrix a, n must be at least zero; n>=0 and n<=lda
  *
  *    [in] a     - real-floating array of dimension (lda, n). With uplo='U' or 'u', the leading n by n
  *    upper triangular part of the array A must contain the upper triangular matrix and the strictly
@@ -53,6 +56,35 @@
  *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
  *
  * \examples
+ *              | 0 0 0 0 |
+ *     a[4x4] = | 1 0 0 0 |
+ *              | 2 3 0 0 |
+ *              | 3 4 3 0 |
+ *
+ *     const real-floating a[] = {
+ *          0, 0, 0, 0
+ *        , 1, 0, 0, 0
+ *        , 2, 3, 0, 0
+ *        , 3, 4, 3, 0
+ *     };
+ *     real-floating x[] = { 1, 3, 11, 24 };
+ *     mc_blas_?trsv('L', 'N', 'U', 4, a, 4, x, 1);
+ *     on output -> x = { 1, 2, 3, 4 }
+ *
+ *              | 1 2 3 2 |
+ *     a[4x4] = | 0 2 2 5 |
+ *              | 0 0 3 3 |
+ *              | 0 0 0 1 |
+ *
+ *     const real-floating a[] = {
+ *          1, 2, 3, 2
+ *        , 0, 2, 2, 5
+ *        , 0, 0, 3, 3
+ *        , 0, 0, 0, 1
+ *     };
+ *     real-floating x[] = { 5, 18, 32, 41 };
+ *     mc_blas_?trsv('U', 'T', 'N', 4 , a, 4 , x, 1);
+ *     on output -> x = { 5, 4, 3, 2 }
  *
  * \level 2 blas routine.
  *     \author Univ. of Tennessee.

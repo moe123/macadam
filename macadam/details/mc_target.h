@@ -301,6 +301,7 @@
 #		include <climits>
 #		include <ctime>
 #		include <cstdlib>
+#		include <cstring>
 #		include <cctype>
 #		include <cstdint>
 #		include <cinttypes>
@@ -313,6 +314,7 @@
 #		include <limits.h>
 #		include <time.h>
 #		include <stdlib.h>
+#		include <string.h>
 #		include <ctype.h>
 #		include <stdint.h>
 #		include <inttypes.h>
@@ -324,6 +326,7 @@
 #		include <limits.h>
 #		include <time.h>
 #		include <stdlib.h>
+#		include <string.h>
 #		include <ctype.h>
 #		include <stdint.h>
 #		include <inttypes.h>

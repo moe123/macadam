@@ -14,8 +14,8 @@
 
 #	define mc_blas_vector_at(g, gi) g[((gi) - 1)]
 
-#	define mc_blas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * ng) + (gj)]
-#	define mc_blas_matrix_cmj_at(g, mg, ng, gi, gj) g[((gj) * mg) + (gi)]
+#	define mc_blas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * (ng)) + (gj)]
+#	define mc_blas_matrix_cmj_at(g, mg, ng, gi, gj) g[((gj) * (mg)) + (gi)]
 
 #	if MCTARGET_BLAS_USE_CLAYOUT
 #		define mc_blas_matrix_at(g, mg, ng, gj, gi) \
