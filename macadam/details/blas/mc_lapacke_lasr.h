@@ -233,7 +233,7 @@ MC_TARGET_FUNC void mc_lapacke_dlasr(const char side, const char pivot, const ch
 		info = 9;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("SLASR ", info);
+		mc_blas_xerbla("DLASR ", info);
 		return;
 	}
 
@@ -428,7 +428,7 @@ MC_TARGET_FUNC void mc_lapacke_llasr(const char side, const char pivot, const ch
 		info = 9;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("SLASR ", info);
+		mc_blas_xerbla("LLASR ", info);
 		return;
 	}
 
