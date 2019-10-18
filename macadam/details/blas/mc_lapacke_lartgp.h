@@ -9,8 +9,8 @@
 #include <macadam/details/blas/mc_lapacke_lamch.h>
 #include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/math/mc_log.h>
-#include <macadam/details/math/mc_maxmag.h>
 #include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_round.h>
@@ -44,14 +44,14 @@ MC_TARGET_FUNC void mc_lapacke_slartgp(float f, float g, float * cs, float * sn,
 	} else {
 		f1    = f;
 		g1    = g;
-		scale = mc_maxmag(mc_fabsf(f1), mc_fabsf(g1));
+		scale = mc_fmaxf(mc_fabsf(f1), mc_fabsf(g1));
 		if (scale >= afmx2) {
 			count = 0;
 l10:
 			count = count + 1;
 			f1    = f1 * afmn2;
 			g1    = g1 * afmn2;
-			scale = mc_maxmag(mc_fabsf(f1), mc_fabsf(g1));
+			scale = mc_fmaxf(mc_fabsf(f1), mc_fabsf(g1));
 			if (scale >= afmx2) {
 				goto l10;
 			}
@@ -67,7 +67,7 @@ l30:
 			count = count + 1;
 			f1    = f1 * afmx2;
 			g1    = g1 * afmx2;
-			scale = mc_maxmag(mc_fabsf(f1), mc_fabsf(g1));
+			scale = mc_fmaxf(mc_fabsf(f1), mc_fabsf(g1));
 			if (scale <= afmn2) {
 				goto l30;
 			}
@@ -115,14 +115,14 @@ MC_TARGET_FUNC void mc_lapacke_dlartgp(double f, double g, double * cs, double *
 	} else {
 		f1    = f;
 		g1    = g;
-		scale = mc_maxmag(mc_fabs(f1), mc_fabs(g1));
+		scale = mc_fmax(mc_fabs(f1), mc_fabs(g1));
 		if (scale >= afmx2) {
 			count = 0;
 l10:
 			count = count + 1;
 			f1    = f1 * afmn2;
 			g1    = g1 * afmn2;
-			scale = mc_maxmag(mc_fabs(f1), mc_fabs(g1));
+			scale = mc_fmax(mc_fabs(f1), mc_fabs(g1));
 			if (scale >= afmx2) {
 				goto l10;
 			}
@@ -138,7 +138,7 @@ l30:
 			count = count + 1;
 			f1    = f1 * afmx2;
 			g1    = g1 * afmx2;
-			scale = mc_maxmag(mc_fabs(f1), mc_fabs(g1));
+			scale = mc_fmax(mc_fabs(f1), mc_fabs(g1));
 			if (scale <= afmn2) {
 				goto l30;
 			}
@@ -186,14 +186,14 @@ MC_TARGET_FUNC void mc_lapacke_llartgp(long double f, long double g, long double
 	} else {
 		f1    = f;
 		g1    = g;
-		scale = mc_maxmag(mc_fabsl(f1), mc_fabsl(g1));
+		scale = mc_fmaxl(mc_fabsl(f1), mc_fabsl(g1));
 		if (scale >= afmx2) {
 			count = 0;
 l10:
 			count = count + 1;
 			f1    = f1 * afmn2;
 			g1    = g1 * afmn2;
-			scale = mc_maxmag(mc_fabsl(f1), mc_fabsl(g1));
+			scale = mc_fmaxl(mc_fabsl(f1), mc_fabsl(g1));
 			if (scale >= afmx2) {
 				goto l10;
 			}
@@ -209,7 +209,7 @@ l30:
 			count = count + 1;
 			f1    = f1 * afmx2;
 			g1    = g1 * afmx2;
-			scale = mc_maxmag(mc_fabsl(f1), mc_fabsl(g1));
+			scale = mc_fmaxl(mc_fabsl(f1), mc_fabsl(g1));
 			if (scale <= afmn2) {
 				goto l30;
 			}

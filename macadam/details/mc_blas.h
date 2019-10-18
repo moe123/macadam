@@ -45,7 +45,6 @@
 #	include <macadam/details/blas/mc_blas_trsm.h>
 #	include <macadam/details/blas/mc_blas_trsv.h>
 #	include <macadam/details/blas/mc_blas_xerbla.h>
-
 #	include <macadam/details/blas/mc_lapacke_iladiag.h>
 #	include <macadam/details/blas/mc_lapacke_ilalc.h>
 #	include <macadam/details/blas/mc_lapacke_ilalr.h>
@@ -56,6 +55,9 @@
 #	include <macadam/details/blas/mc_lapacke_lartg.h>
 #	include <macadam/details/blas/mc_lapacke_lartgp.h>
 #	include <macadam/details/blas/mc_lapacke_lartgs.h>
+#	include <macadam/details/blas/mc_lapacke_las2.h>
+#	include <macadam/details/blas/mc_lapacke_lascl.h>
+#	include <macadam/details/blas/mc_lapacke_lascl2.h>
 #	include <macadam/details/blas/mc_lapacke_lasr.h>
 #	include <macadam/details/blas/mc_lapacke_lsamen.h>
 

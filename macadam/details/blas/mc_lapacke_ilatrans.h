@@ -17,14 +17,22 @@ MC_TARGET_FUNC int mc_lapacke_ilatrans(const char trans)
 {
 	int ilatrans;
 
-	if (mc_blas_lsame(trans, 'N')) {
-		ilatrans = 111;
-	} else if (mc_blas_lsame(trans, 'T')) {
-		ilatrans = 112;
-	} else if (mc_blas_lsame(trans, 'C')) {
-		ilatrans = 113;
-	} else {
-		ilatrans = -1;
+	switch (trans)
+	{
+		case 'N':
+		case 'n':
+			ilatrans = 111;
+		break;
+		case 'T':
+		case 't':
+			ilatrans = 112;
+		break;
+		case 'C':
+		case 'c':
+			ilatrans = 113;
+		break;
+		default:
+			ilatrans = -1;
 	}
 	return ilatrans;
 }

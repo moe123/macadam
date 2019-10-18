@@ -17,16 +17,28 @@ MC_TARGET_FUNC int mc_lapacke_ilaprec(const char prec)
 {
 	int ilaprec;
 
-	if (mc_blas_lsame(prec, 'S')) {
-		ilaprec = 211;
-	} else if (mc_blas_lsame(prec, 'D')) {
-		ilaprec = 212;
-	} else if (mc_blas_lsame(prec, 'I')) {
-		ilaprec = 213;
-	} else if (mc_blas_lsame(prec, 'X') || mc_blas_lsame(prec, 'E')) {
-		ilaprec = 214;
-	} else {
-		ilaprec = -1;
+	switch (prec)
+	{
+		case 'S':
+		case 's':
+			ilaprec = 211;
+		break;
+		case 'D':
+		case 'd':
+			ilaprec = 212;
+		break;
+		case 'I':
+		case 'i':
+			ilaprec = 213;
+		break;
+		case 'X':
+		case 'x':
+		case 'E':
+		case 'e':
+			ilaprec = 214;
+		break;
+		default:
+			ilaprec = -1;
 	}
 	return ilaprec;
 }
