@@ -71,6 +71,8 @@
 #	include <macadam/details/math/mc_fisodd.h>
 #	include <macadam/details/math/mc_fisval.h>
 #	include <macadam/details/math/mc_floor.h>
+#	include <macadam/details/math/mc_fmax.h>
+#	include <macadam/details/math/mc_fmin.h>
 #	include <macadam/details/math/mc_fmod.h>
 #	include <macadam/details/math/mc_gamma.h>
 #	include <macadam/details/math/mc_gammap.h>
