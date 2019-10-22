@@ -25,10 +25,10 @@ MC_TARGET_FUNC void mc_lapacke_slartgp(float f, float g, float * cs, float * sn,
 {
 	const float two = 2.0f, one = 1.0f, zero = 0.0f;
 
-	const float afmin = mc_lapacke_slamch('S');
-	const float eps   = mc_lapacke_slamch('E');
-	const float afmn2 = mc_powf(mc_lapacke_slamch('B'), mc_roundf(mc_logf(afmin / eps) / mc_logf(mc_lapacke_slamch('B')) / two));
-	const float afmx2 = one / afmn2;
+	const float safmin = mc_lapacke_slamch('S');
+	const float eps    = mc_lapacke_slamch('E');
+	const float safmn2 = mc_powf(mc_lapacke_slamch('B'), mc_roundf(mc_logf(safmin / eps) / mc_logf(mc_lapacke_slamch('B')) / two));
+	const float safmx2 = one / safmn2;
 
 	int count, i;
 	float f1, g1, scale;
@@ -45,37 +45,37 @@ MC_TARGET_FUNC void mc_lapacke_slartgp(float f, float g, float * cs, float * sn,
 		f1    = f;
 		g1    = g;
 		scale = mc_fmaxf(mc_fabsf(f1), mc_fabsf(g1));
-		if (scale >= afmx2) {
+		if (scale >= safmx2) {
 			count = 0;
-l10:
+F10:
 			count = count + 1;
-			f1    = f1 * afmn2;
-			g1    = g1 * afmn2;
+			f1    = f1 * safmn2;
+			g1    = g1 * safmn2;
 			scale = mc_fmaxf(mc_fabsf(f1), mc_fabsf(g1));
-			if (scale >= afmx2) {
-				goto l10;
+			if (scale >= safmx2) {
+				goto F10;
 			}
 			*r  = mc_sqrtf(mc_raise2f(f1) + mc_raise2f(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 			for (i = 1; i <= count; ++i) {
-				*r = (*r) * afmx2;
+				*r = (*r) * safmx2;
 			}
-		} else if (scale <= afmn2) {
+		} else if (scale <= safmn2) {
 			count = 0;
-l30:
+F30:
 			count = count + 1;
-			f1    = f1 * afmx2;
-			g1    = g1 * afmx2;
+			f1    = f1 * safmx2;
+			g1    = g1 * safmx2;
 			scale = mc_fmaxf(mc_fabsf(f1), mc_fabsf(g1));
-			if (scale <= afmn2) {
-				goto l30;
+			if (scale <= safmn2) {
+				goto F30;
 			}
 			*r  = mc_sqrtf(mc_raise2f(f1) + mc_raise2f(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 			for (i = 1; i <= count; ++i) {
-				*r = (*r) * afmn2;
+				*r = (*r) * safmn2;
 			}
 		} else {
 			*r = mc_sqrtf(mc_raise2f(f1) + mc_raise2f(g1));
@@ -96,10 +96,10 @@ MC_TARGET_FUNC void mc_lapacke_dlartgp(double f, double g, double * cs, double *
 {
 	const double two = 2.0, one = 1.0, zero = 0.0;
 
-	const double afmin = mc_lapacke_dlamch('S');
-	const double eps   = mc_lapacke_dlamch('E');
-	const double afmn2 = mc_pow(mc_lapacke_dlamch('B'), mc_round(mc_log(afmin / eps) / mc_log(mc_lapacke_dlamch('B')) / two));
-	const double afmx2 = one / afmn2;
+	const double safmin = mc_lapacke_dlamch('S');
+	const double eps    = mc_lapacke_dlamch('E');
+	const double safmn2 = mc_pow(mc_lapacke_dlamch('B'), mc_round(mc_log(safmin / eps) / mc_log(mc_lapacke_dlamch('B')) / two));
+	const double safmx2 = one / safmn2;
 
 	int count, i;
 	double f1, g1, scale;
@@ -116,37 +116,37 @@ MC_TARGET_FUNC void mc_lapacke_dlartgp(double f, double g, double * cs, double *
 		f1    = f;
 		g1    = g;
 		scale = mc_fmax(mc_fabs(f1), mc_fabs(g1));
-		if (scale >= afmx2) {
+		if (scale >= safmx2) {
 			count = 0;
-l10:
+F10:
 			count = count + 1;
-			f1    = f1 * afmn2;
-			g1    = g1 * afmn2;
+			f1    = f1 * safmn2;
+			g1    = g1 * safmn2;
 			scale = mc_fmax(mc_fabs(f1), mc_fabs(g1));
-			if (scale >= afmx2) {
-				goto l10;
+			if (scale >= safmx2) {
+				goto F10;
 			}
 			*r  = mc_sqrt(mc_raise2(f1) + mc_raise2(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 			for (i = 1; i <= count; ++i) {
-				*r = (*r) * afmx2;
+				*r = (*r) * safmx2;
 			}
-		} else if (scale <= afmn2) {
+		} else if (scale <= safmn2) {
 			count = 0;
-l30:
+F30:
 			count = count + 1;
-			f1    = f1 * afmx2;
-			g1    = g1 * afmx2;
+			f1    = f1 * safmx2;
+			g1    = g1 * safmx2;
 			scale = mc_fmax(mc_fabs(f1), mc_fabs(g1));
-			if (scale <= afmn2) {
-				goto l30;
+			if (scale <= safmn2) {
+				goto F30;
 			}
 			*r  = mc_sqrt(mc_raise2(f1) + mc_raise2(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 			for (i = 1; i <= count; ++i) {
-				*r = (*r) * afmn2;
+				*r = (*r) * safmn2;
 			}
 		} else {
 			*r = mc_sqrt(mc_raise2(f1) + mc_raise2(g1));
@@ -167,10 +167,10 @@ MC_TARGET_FUNC void mc_lapacke_llartgp(long double f, long double g, long double
 {
 	const long double two = 2.0f, one = 1.0f, zero = 0.0f;
 
-	const long double afmin = mc_lapacke_llamch('S');
-	const long double eps   = mc_lapacke_llamch('E');
-	const long double afmn2 = mc_powl(mc_lapacke_llamch('B'), mc_roundl(mc_logl(afmin / eps) / mc_logl(mc_lapacke_llamch('B')) / two));
-	const long double afmx2 = one / afmn2;
+	const long double safmin = mc_lapacke_llamch('S');
+	const long double eps    = mc_lapacke_llamch('E');
+	const long double safmn2 = mc_powl(mc_lapacke_llamch('B'), mc_roundl(mc_logl(safmin / eps) / mc_logl(mc_lapacke_llamch('B')) / two));
+	const long double safmx2 = one / safmn2;
 
 	int count, i;
 	long double f1, g1, scale;
@@ -187,37 +187,37 @@ MC_TARGET_FUNC void mc_lapacke_llartgp(long double f, long double g, long double
 		f1    = f;
 		g1    = g;
 		scale = mc_fmaxl(mc_fabsl(f1), mc_fabsl(g1));
-		if (scale >= afmx2) {
+		if (scale >= safmx2) {
 			count = 0;
-l10:
+F10:
 			count = count + 1;
-			f1    = f1 * afmn2;
-			g1    = g1 * afmn2;
+			f1    = f1 * safmn2;
+			g1    = g1 * safmn2;
 			scale = mc_fmaxl(mc_fabsl(f1), mc_fabsl(g1));
-			if (scale >= afmx2) {
-				goto l10;
+			if (scale >= safmx2) {
+				goto F10;
 			}
 			*r  = mc_sqrtl(mc_raise2l(f1) + mc_raise2l(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 			for (i = 1; i <= count; ++i) {
-				*r = (*r) * afmx2;
+				*r = (*r) * safmx2;
 			}
-		} else if (scale <= afmn2) {
+		} else if (scale <= safmn2) {
 			count = 0;
-l30:
+F30:
 			count = count + 1;
-			f1    = f1 * afmx2;
-			g1    = g1 * afmx2;
+			f1    = f1 * safmx2;
+			g1    = g1 * safmx2;
 			scale = mc_fmaxl(mc_fabsl(f1), mc_fabsl(g1));
-			if (scale <= afmn2) {
-				goto l30;
+			if (scale <= safmn2) {
+				goto F30;
 			}
 			*r  = mc_sqrtl(mc_raise2l(f1) + mc_raise2l(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 			for (i = 1; i <= count; ++i) {
-				*r = (*r) * afmn2;
+				*r = (*r) * safmn2;
 			}
 		} else {
 			*r = mc_sqrtl(mc_raise2l(f1) + mc_raise2l(g1));

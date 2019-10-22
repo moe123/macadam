@@ -17,12 +17,18 @@ MC_TARGET_FUNC int mc_lapacke_iladiag(const char diag)
 {
 	int iladiag;
 
-	if (mc_blas_lsame(diag, 'N')) {
-		iladiag = 131;
-	} else if (mc_blas_lsame(diag, 'U')) {
-		iladiag = 132;
-	} else {
-		iladiag = -1;
+	switch (diag)
+	{
+		case 'N':
+		case 'n':
+			iladiag = 131;
+		break;
+		case 'U':
+		case 'u':
+			iladiag = 132;
+		break;
+		default:
+			iladiag = -1;
 	}
 	return iladiag;
 }

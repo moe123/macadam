@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/blas/mc_blas_access.h>
 #include <macadam/details/blas/mc_lapacke_lamch.h>
 #include <macadam/details/blas/mc_lapacke_lartgp.h>
 #include <macadam/details/math/mc_fabs.h>

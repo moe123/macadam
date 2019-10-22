@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/blas/mc_blas_access.h>
 #include <macadam/details/blas/mc_lapacke_lamch.h>
 #include <macadam/details/blas/mc_lapacke_lartgp.h>
 #include <macadam/details/math/mc_fabs.h>
@@ -89,7 +90,7 @@ MC_TARGET_FUNC void mc_lapacke_slascl(const char type, int kl, int ku, float cfr
 	cfromc = cfrom;
 	ctoc   = cto;
 
-l10:
+F10:
 	cfrom1 = cfromc * smlnum;
 	if (cfrom1 == cfromc) {
 		mul  = ctoc / cfromc;
@@ -167,7 +168,7 @@ l10:
 		}
 	}
 	if (!done) {
-		goto l10;
+		goto F10;
 	}
 }
 
@@ -247,7 +248,7 @@ MC_TARGET_FUNC void mc_lapacke_dlascl(const char type, int kl, int ku, double cf
 	cfromc = cfrom;
 	ctoc   = cto;
 
-l10:
+F10:
 	cfrom1 = cfromc * smlnum;
 	if (cfrom1 == cfromc) {
 		mul  = ctoc / cfromc;
@@ -325,7 +326,7 @@ l10:
 		}
 	}
 	if (!done) {
-		goto l10;
+		goto F10;
 	}
 }
 
@@ -405,7 +406,7 @@ MC_TARGET_FUNC void mc_lapacke_llascl(const char type, int kl, int ku, long doub
 	cfromc = cfrom;
 	ctoc   = cto;
 
-l10:
+F10:
 	cfrom1 = cfromc * smlnum;
 	if (cfrom1 == cfromc) {
 		mul  = ctoc / cfromc;
@@ -483,7 +484,7 @@ l10:
 		}
 	}
 	if (!done) {
-		goto l10;
+		goto F10;
 	}
 }
 
