@@ -31,7 +31,7 @@ MC_TARGET_PROC void mc_lapacke_slasq4(int i0, int n0, const float * z
 	, int * ttype
 	, float * g
 ) {
-	const float hundrd = 100.0f, two = 1.0f, one = 1.0f, half = 0.5f, third = 0.333f, qurtr = 0.25f, zero = 0.0f;
+	const float hundrd = 100.0f, two = 2.0f, one = 1.0f, half = 0.5f, third = 0.333f, qurtr = 0.25f, zero = 0.0f;
 	const float cnst1 = 0.563f, cnst2 = 1.01f, cnst3 = 1.05f;
 
 	int i4, nn, np;
@@ -260,7 +260,7 @@ MC_TARGET_PROC void mc_lapacke_dlasq4(int i0, int n0, const double * z
 	, int * ttype
 	, double * g
 ) {
-	const double hundrd = 100.0, two = 1.0, one = 1.0, half = 0.5, third = 0.333, qurtr = 0.25, zero = 0.0;
+	const double hundrd = 100.0, two = 2.0, one = 1.0, half = 0.5, third = 0.333, qurtr = 0.25, zero = 0.0;
 	const double cnst1 = 0.563, cnst2 = 1.01, cnst3 = 1.05;
 
 	int i4, nn, np;
@@ -489,7 +489,7 @@ MC_TARGET_PROC void mc_lapacke_llasq4(int i0, int n0, const long double * z
 	, int * ttype
 	, long double * g
 ) {
-	const long double hundrd = 100.0L, two = 1.0L, one = 1.0L, half = 0.5L, third = 0.333L, qurtr = 0.25L, zero = 0.0L;
+	const long double hundrd = 100.0L, two = 2.0L, one = 1.0L, half = 0.5L, third = 0.333L, qurtr = 0.25L, zero = 0.0L;
 	const long double cnst1 = 0.563L, cnst2 = 1.01L, cnst3 = 1.05L;
 
 	int i4, nn, np;

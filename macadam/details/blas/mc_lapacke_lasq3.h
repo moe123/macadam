@@ -42,7 +42,7 @@ MC_TARGET_PROC void mc_lapacke_slasq3(int i0, int * n0, float * z
 	, float * g
 	, float * tau
 ) {
-	const float hundrd = 100.0f, two = 1.0f, one = 1.0f, half = 0.5f, qurtr = 0.25f, zero = 0.0f;
+	const float hundrd = 100.0f, two = 2.0f, one = 1.0f, half = 0.5f, qurtr = 0.25f, zero = 0.0f;
 	const float cbias = 1.5f;
 
 	int ipn4, j4, n0in, nn;
@@ -132,14 +132,14 @@ F50:
 			}
 			if (*n0 - i0 <= 4) {
 				mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1) = mc_blas_vector_at(z, (4 * i0) + (*pp) - 1);
-				mc_blas_vector_at(z, (4 * (*n0)) - *pp)       = mc_blas_vector_at(z, (4 * i0) - *pp);
+				mc_blas_vector_at(z, (4 * (*n0)) - (*pp))     = mc_blas_vector_at(z, (4 * i0) - *pp);
 			}
 			*dmin2                                        = mc_fminf(*dmin2, mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1));
 			mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1) = mc_fminf(
 				  mc_fminf(mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1), mc_blas_vector_at(z, (4 * i0) + (*pp) - 1))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 3)
 			);
-			mc_blas_vector_at(z, (4 * (*n0)) - *pp)      = mc_fminf(
+			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))    = mc_fminf(
 				  mc_fminf(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
@@ -230,7 +230,7 @@ MC_TARGET_PROC void mc_lapacke_dlasq3(int i0, int * n0, double * z
 	, double * g
 	, double * tau
 ) {
-	const double hundrd = 100.0, two = 1.0, one = 1.0, half = 0.5, qurtr = 0.25, zero = 0.0;
+	const double hundrd = 100.0, two = 2.0, one = 1.0, half = 0.5, qurtr = 0.25, zero = 0.0;
 	const double cbias = 1.5;
 
 	int ipn4, j4, n0in, nn;
@@ -320,14 +320,14 @@ F50:
 			}
 			if (*n0 - i0 <= 4) {
 				mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1) = mc_blas_vector_at(z, (4 * i0) + (*pp) - 1);
-				mc_blas_vector_at(z, (4 * (*n0)) - *pp)       = mc_blas_vector_at(z, (4 * i0) - *pp);
+				mc_blas_vector_at(z, (4 * (*n0)) - (*pp))     = mc_blas_vector_at(z, (4 * i0) - *pp);
 			}
 			*dmin2                                        = mc_fmin(*dmin2, mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1));
 			mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1) = mc_fmin(
 				  mc_fmin(mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1), mc_blas_vector_at(z, (4 * i0) + (*pp) - 1))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 3)
 			);
-			mc_blas_vector_at(z, (4 * (*n0)) - *pp)      = mc_fmin(
+			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))    = mc_fmin(
 				  mc_fmin(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
@@ -418,7 +418,7 @@ MC_TARGET_PROC void mc_lapacke_llasq3(int i0, int * n0, long double * z
 	, long double * g
 	, long double * tau
 ) {
-	const long double hundrd = 100.0L, two = 1.0L, one = 1.0L, half = 0.5L, qurtr = 0.25L, zero = 0.0L;
+	const long double hundrd = 100.0L, two = 2.0L, one = 1.0L, half = 0.5L, qurtr = 0.25L, zero = 0.0L;
 	const long double cbias = 1.5L;
 
 	int ipn4, j4, n0in, nn;
@@ -508,14 +508,14 @@ F50:
 			}
 			if (*n0 - i0 <= 4) {
 				mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1) = mc_blas_vector_at(z, (4 * i0) + (*pp) - 1);
-				mc_blas_vector_at(z, (4 * (*n0)) - *pp)       = mc_blas_vector_at(z, (4 * i0) - *pp);
+				mc_blas_vector_at(z, (4 * (*n0)) - (*pp))     = mc_blas_vector_at(z, (4 * i0) - *pp);
 			}
 			*dmin2                                        = mc_fminl(*dmin2, mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1));
 			mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1) = mc_fminl(
 				  mc_fminl(mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1), mc_blas_vector_at(z, (4 * i0) + (*pp) - 1))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 3)
 			);
-			mc_blas_vector_at(z, (4 * (*n0)) - *pp)      = mc_fminl(
+			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))    = mc_fminl(
 				  mc_fminl(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
