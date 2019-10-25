@@ -10,6 +10,7 @@
 #include <macadam/details/blas/mc_lapacke_lamch.h>
 #include <macadam/details/blas/mc_lapacke_lartgp.h>
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_isnan.h>
 
 #ifndef MC_LAPACKE_LASCL_H
 #define MC_LAPACKE_LASCL_H

@@ -62,6 +62,7 @@
 #	include <macadam/details/blas/mc_lapacke_lasdt.h>
 #	include <macadam/details/blas/mc_lapacke_lasq1.h>
 #	include <macadam/details/blas/mc_lapacke_lasq2.h>
+#	include <macadam/details/blas/mc_lapacke_lasq3.h>
 #	include <macadam/details/blas/mc_lapacke_lasq5.h>
 #	include <macadam/details/blas/mc_lapacke_lasq6.h>
 #	include <macadam/details/blas/mc_lapacke_lasr.h>

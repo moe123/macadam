@@ -22,7 +22,7 @@
 
 #pragma mark - mc_lapacke_slasq1 -
 
-MC_TARGET_FUNC void mc_lapacke_slasq1(int n, float * d, float * e, float * work, int * info)
+MC_TARGET_PROC void mc_lapacke_slasq1(int n, float * d, float * e, float * work, int * info)
 {
 	const float zero = 0.0f;
 
@@ -70,7 +70,6 @@ MC_TARGET_FUNC void mc_lapacke_slasq1(int n, float * d, float * e, float * work,
 	eps    = mc_lapacke_slamch('P');
 	safmin = mc_lapacke_slamch('S');
 	scale  = mc_sqrtf(eps / safmin);
-	// TODO TRANSPOSE
 	mc_blas_scopy(n, d, 1, work, 2);
 	mc_blas_scopy(n - 1, e, 1, work + 1, 2);
 	mc_lapacke_slascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
@@ -85,12 +84,14 @@ MC_TARGET_FUNC void mc_lapacke_slasq1(int n, float * d, float * e, float * work,
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrtf(mc_blas_vector_at(work, i));
 		}
+		// TODO TRANSPOSE
 		mc_lapacke_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	} else if ((*info) == 2) {
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrtf(mc_blas_vector_at(work, (2 * i) - 1));
 			mc_blas_vector_at(e, i) = mc_sqrtf(mc_blas_vector_at(work, i * 2));
 		}
+		// TODO TRANSPOSE
 		mc_lapacke_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 		mc_lapacke_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	}
@@ -98,7 +99,7 @@ MC_TARGET_FUNC void mc_lapacke_slasq1(int n, float * d, float * e, float * work,
 
 #pragma mark - mc_lapacke_dlasq1 -
 
-MC_TARGET_FUNC void mc_lapacke_dlasq1(int n, double * d, double * e, double * work, int * info)
+MC_TARGET_PROC void mc_lapacke_dlasq1(int n, double * d, double * e, double * work, int * info)
 {
 	const double zero = 0.0;
 
@@ -146,7 +147,6 @@ MC_TARGET_FUNC void mc_lapacke_dlasq1(int n, double * d, double * e, double * wo
 	eps    = mc_lapacke_dlamch('P');
 	safmin = mc_lapacke_dlamch('S');
 	scale  = mc_sqrt(eps / safmin);
-	// TODO TRANSPOSE
 	mc_blas_dcopy(n, d, 1, work, 2);
 	mc_blas_dcopy(n - 1, e, 1, work + 1, 2);
 	mc_lapacke_dlascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
@@ -161,12 +161,14 @@ MC_TARGET_FUNC void mc_lapacke_dlasq1(int n, double * d, double * e, double * wo
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrt(mc_blas_vector_at(work, i));
 		}
+		// TODO TRANSPOSE
 		mc_lapacke_dlascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	} else if ((*info) == 2) {
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrt(mc_blas_vector_at(work, (2 * i) - 1));
 			mc_blas_vector_at(e, i) = mc_sqrt(mc_blas_vector_at(work, i * 2));
 		}
+		// TODO TRANSPOSE
 		mc_lapacke_dlascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 		mc_lapacke_dlascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	}
@@ -174,7 +176,7 @@ MC_TARGET_FUNC void mc_lapacke_dlasq1(int n, double * d, double * e, double * wo
 
 #pragma mark - mc_lapacke_llasq1 -
 
-MC_TARGET_FUNC void mc_lapacke_llasq1(int n, long double * d, long double * e, long double * work, int * info)
+MC_TARGET_PROC void mc_lapacke_llasq1(int n, long double * d, long double * e, long double * work, int * info)
 {
 	const long double zero = 0.0L;
 
@@ -222,7 +224,6 @@ MC_TARGET_FUNC void mc_lapacke_llasq1(int n, long double * d, long double * e, l
 	eps    = mc_lapacke_llamch('P');
 	safmin = mc_lapacke_llamch('S');
 	scale  = mc_sqrtl(eps / safmin);
-	// TODO TRANSPOSE
 	mc_blas_lcopy(n, d, 1, work, 2);
 	mc_blas_lcopy(n - 1, e, 1, work + 1, 2);
 	mc_lapacke_llascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
@@ -237,12 +238,14 @@ MC_TARGET_FUNC void mc_lapacke_llasq1(int n, long double * d, long double * e, l
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrtl(mc_blas_vector_at(work, i));
 		}
+		// TODO TRANSPOSE
 		mc_lapacke_llascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	} else if ((*info) == 2) {
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrtl(mc_blas_vector_at(work, (2 * i) - 1));
 			mc_blas_vector_at(e, i) = mc_sqrtl(mc_blas_vector_at(work, i * 2));
 		}
+		// TODO TRANSPOSE
 		mc_lapacke_llascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 		mc_lapacke_llascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	}

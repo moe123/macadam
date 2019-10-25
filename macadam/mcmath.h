@@ -125,11 +125,6 @@
 #		define mcmath_fmin(x, y)       ::std::fmin(x, y)
 #	endif
 #		define mcmath_fma(x, y, z)     ::std::fma((x),(y), (z))
-#		define mcmath_carg(x)          ::std::arg(x)
-#		define mcmath_cimag(x)         ::std::imag(x)
-#		define mcmath_conj(x)          ::std::conj(x)
-#		define mcmath_cproj(x)         ::std::proj(x)
-#		define mcmath_creal(x)         ::std::real(x)
 #	elif MC_TARGET_HAVE_TGMATH
 #		define mcmath_acos(x)          acos(x)
 #		define mcmath_asin(x)          asin(x)
@@ -188,11 +183,6 @@
 #		define mcmath_fmax(x, y)       fmax(x, y)
 #		define mcmath_fmin(x, y)       fmin(x, y)
 #		define mcmath_fma(x, y, z)     fma((x),(y), (z))
-#		define mcmath_carg(x)          carg(x)
-#		define mcmath_cimag(x)         cimag(x)
-#		define mcmath_conj(x)          conj(x)
-#		define mcmath_cproj(x)         cproj(x)
-#		define mcmath_creal(x)         creal(x)
 #	endif
 
 #pragma mark - mcmath_imod -

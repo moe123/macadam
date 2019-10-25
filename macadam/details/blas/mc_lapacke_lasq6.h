@@ -16,8 +16,14 @@
 
 #pragma mark - mc_lapacke_slasq6 -
 
-MC_TARGET_FUNC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp, float * dmin, float * dmin1, float * dmin2, float * dn, float * dnm1, float * dnm2)
-{
+MC_TARGET_PROC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp
+	, float * dmin
+	, float * dmin1
+	, float * dmin2
+	, float * dn
+	, float * dnm1
+	, float * dnm2
+) {
 	const float zero = 0.0f;
 
 	int j4, j4p2;
@@ -28,7 +34,7 @@ MC_TARGET_FUNC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp, float *
 	}
 
 	 safmin = mc_lapacke_slamch('S');
-	 j4     = (4* i0) + pp - 3;
+	 j4     = (4 * i0) + pp - 3;
 	 emin   = mc_blas_vector_at(z, j4 + 4);
 	 d      = mc_blas_vector_at(z, j4);
 	*dmin   = d;
@@ -128,8 +134,14 @@ MC_TARGET_FUNC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp, float *
 
 #pragma mark - mc_lapacke_dlasq6 -
 
-MC_TARGET_FUNC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp, double * dmin, double * dmin1, double * dmin2, double * dn, double * dnm1, double * dnm2)
-{
+MC_TARGET_PROC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp
+	, double * dmin
+	, double * dmin1
+	, double * dmin2
+	, double * dn
+	, double * dnm1
+	, double * dnm2
+) {
 	const double zero = 0.0;
 
 	int j4, j4p2;
@@ -140,7 +152,7 @@ MC_TARGET_FUNC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp, double
 	}
 
 	 safmin = mc_lapacke_dlamch('S');
-	 j4     = (4* i0) + pp - 3;
+	 j4     = (4 * i0) + pp - 3;
 	 emin   = mc_blas_vector_at(z, j4 + 4);
 	 d      = mc_blas_vector_at(z, j4);
 	*dmin   = d;
@@ -240,8 +252,14 @@ MC_TARGET_FUNC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp, double
 
 #pragma mark - mc_lapacke_llasq6 -
 
-MC_TARGET_FUNC void mc_lapacke_llasq6(int i0, int n0, long double * z, int pp, long double * dmin, long double * dmin1, long double * dmin2, long double * dn, long double * dnm1, long double * dnm2)
-{
+MC_TARGET_PROC void mc_lapacke_llasq6(int i0, int n0, long double * z, int pp
+	, long double * dmin
+	, long double * dmin1
+	, long double * dmin2
+	, long double * dn
+	, long double * dnm1
+	, long double * dnm2
+) {
 	const long double zero = 0.0L;
 
 	int j4, j4p2;
@@ -252,7 +270,7 @@ MC_TARGET_FUNC void mc_lapacke_llasq6(int i0, int n0, long double * z, int pp, l
 	}
 
 	 safmin = mc_lapacke_llamch('S');
-	 j4     = (4* i0) + pp - 3;
+	 j4     = (4 * i0) + pp - 3;
 	 emin   = mc_blas_vector_at(z, j4 + 4);
 	 d      = mc_blas_vector_at(z, j4);
 	*dmin   = d;

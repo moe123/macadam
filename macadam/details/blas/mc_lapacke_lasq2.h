@@ -10,6 +10,7 @@
 #include <macadam/details/blas/mc_blas_copy.h>
 #include <macadam/details/blas/mc_lapacke_lamch.h>
 #include <macadam/details/blas/mc_lapacke_lasrt.h>
+#include <macadam/details/blas/mc_lapacke_lasq3.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/math/mc_fmin.h>
@@ -21,7 +22,7 @@
 
 #pragma mark - mc_lapacke_slasq2 -
 
-MC_TARGET_FUNC void mc_lapacke_slasq2(int n, float * z, int * info)
+MC_TARGET_PROC void mc_lapacke_slasq2(int n, float * z, int * info)
 {
 	const float hundrd = 100.0f, four = 4.0f, two = 1.0f, one = 1.0f, half = 0.5f, zero = 0.0f;
 	const float cbias = 1.5f;
@@ -233,7 +234,7 @@ MC_TARGET_FUNC void mc_lapacke_slasq2(int n, float * z, int * info)
 		}
 		qmin = mc_blas_vector_at(z, (4 * n0) - 3);
 		qmax = qmin;
-		for (i4 = 4 * n0; i4 >= 8; i4 += -4) {
+		for (i4 = (4 * n0); i4 >= 8; i4 += -4) {
 			if (mc_blas_vector_at(z, i4 - 5) <= zero) {
 				goto F100;
 			}
@@ -377,7 +378,7 @@ F170:
 
 #pragma mark - mc_lapacke_dlasq2 -
 
-MC_TARGET_FUNC void mc_lapacke_dlasq2(int n, double * z, int * info)
+MC_TARGET_PROC void mc_lapacke_dlasq2(int n, double * z, int * info)
 {
 	const double hundrd = 100.0, four = 4.0, two = 1.0, one = 1.0, half = 0.5, zero = 0.0;
 	const double cbias = 1.5;
@@ -589,7 +590,7 @@ MC_TARGET_FUNC void mc_lapacke_dlasq2(int n, double * z, int * info)
 		}
 		qmin = mc_blas_vector_at(z, (4 * n0) - 3);
 		qmax = qmin;
-		for (i4 = 4 * n0; i4 >= 8; i4 += -4) {
+		for (i4 = (4 * n0); i4 >= 8; i4 += -4) {
 			if (mc_blas_vector_at(z, i4 - 5) <= zero) {
 				goto F100;
 			}
@@ -733,7 +734,7 @@ F170:
 
 #pragma mark - mc_lapacke_llasq2 -
 
-MC_TARGET_FUNC void mc_lapacke_llasq2(int n, long double * z, int * info)
+MC_TARGET_PROC void mc_lapacke_llasq2(int n, long double * z, int * info)
 {
 	const long double hundrd = 100.0L, four = 4.0L, two = 1.0L, one = 1.0L, half = 0.5L, zero = 0.0L;
 	const long double cbias = 1.5L;
@@ -945,7 +946,7 @@ MC_TARGET_FUNC void mc_lapacke_llasq2(int n, long double * z, int * info)
 		}
 		qmin = mc_blas_vector_at(z, (4 * n0) - 3);
 		qmax = qmin;
-		for (i4 = 4 * n0; i4 >= 8; i4 += -4) {
+		for (i4 = (4 * n0); i4 >= 8; i4 += -4) {
 			if (mc_blas_vector_at(z, i4 - 5) <= zero) {
 				goto F100;
 			}

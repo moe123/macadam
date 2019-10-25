@@ -10,10 +10,7 @@
 #include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
-#include <macadam/details/math/mc_log.h>
-#include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/math/mc_round.h>
 #include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_LAPACKE_LARTGP_H
@@ -23,11 +20,9 @@
 
 MC_TARGET_FUNC void mc_lapacke_slartgp(float f, float g, float * cs, float * sn, float * r)
 {
-	const float two = 2.0f, one = 1.0f, zero = 0.0f;
+	const float one = 1.0f, zero = 0.0f;
 
-	const float safmin = mc_lapacke_slamch('S');
-	const float eps    = mc_lapacke_slamch('E');
-	const float safmn2 = mc_powf(mc_lapacke_slamch('B'), mc_roundf(mc_logf(safmin / eps) / mc_logf(mc_lapacke_slamch('B')) / two));
+	const float safmn2 = mc_lapacke_slamch('W');
 	const float safmx2 = one / safmn2;
 
 	int count, i;
@@ -94,11 +89,9 @@ F30:
 
 MC_TARGET_FUNC void mc_lapacke_dlartgp(double f, double g, double * cs, double * sn, double * r)
 {
-	const double two = 2.0, one = 1.0, zero = 0.0;
+	const double one = 1.0, zero = 0.0;
 
-	const double safmin = mc_lapacke_dlamch('S');
-	const double eps    = mc_lapacke_dlamch('E');
-	const double safmn2 = mc_pow(mc_lapacke_dlamch('B'), mc_round(mc_log(safmin / eps) / mc_log(mc_lapacke_dlamch('B')) / two));
+	const double safmn2 = mc_lapacke_dlamch('W');
 	const double safmx2 = one / safmn2;
 
 	int count, i;
@@ -165,11 +158,9 @@ F30:
 
 MC_TARGET_FUNC void mc_lapacke_llartgp(long double f, long double g, long double * cs, long double * sn, long double * r)
 {
-	const long double two = 2.0f, one = 1.0f, zero = 0.0f;
+	const long double one = 1.0L, zero = 0.0L;
 
-	const long double safmin = mc_lapacke_llamch('S');
-	const long double eps    = mc_lapacke_llamch('E');
-	const long double safmn2 = mc_powl(mc_lapacke_llamch('B'), mc_roundl(mc_logl(safmin / eps) / mc_logl(mc_lapacke_llamch('B')) / two));
+	const long double safmn2 = mc_lapacke_llamch('W');
 	const long double safmx2 = one / safmn2;
 
 	int count, i;
