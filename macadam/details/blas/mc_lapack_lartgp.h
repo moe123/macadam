@@ -1,12 +1,12 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lartgp.h
+// mc_lapack_lartgp.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/blas/mc_lapacke_lamch.h>
+#include <macadam/details/blas/mc_lapack_lamch.h>
 #include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
@@ -16,13 +16,13 @@
 #ifndef MC_LAPACKE_LARTGP_H
 #define MC_LAPACKE_LARTGP_H
 
-#pragma mark - mc_lapacke_slartgp -
+#pragma mark - mc_lapack_slartgp -
 
-MC_TARGET_FUNC void mc_lapacke_slartgp(float f, float g, float * cs, float * sn, float * r)
+MC_TARGET_FUNC void mc_lapack_slartgp(float f, float g, float * cs, float * sn, float * r)
 {
 	const float one = 1.0f, zero = 0.0f;
 
-	const float safmn2 = mc_lapacke_slamch('W');
+	const float safmn2 = mc_lapack_slamch('W');
 	const float safmx2 = one / safmn2;
 
 	int count, i;
@@ -85,13 +85,13 @@ F30:
 	}
 }
 
-#pragma mark - mc_lapacke_dlartgp -
+#pragma mark - mc_lapack_dlartgp -
 
-MC_TARGET_FUNC void mc_lapacke_dlartgp(double f, double g, double * cs, double * sn, double * r)
+MC_TARGET_FUNC void mc_lapack_dlartgp(double f, double g, double * cs, double * sn, double * r)
 {
 	const double one = 1.0, zero = 0.0;
 
-	const double safmn2 = mc_lapacke_dlamch('W');
+	const double safmn2 = mc_lapack_dlamch('W');
 	const double safmx2 = one / safmn2;
 
 	int count, i;
@@ -154,13 +154,13 @@ F30:
 	}
 }
 
-#pragma mark - mc_lapacke_llartgp -
+#pragma mark - mc_lapack_llartgp -
 
-MC_TARGET_FUNC void mc_lapacke_llartgp(long double f, long double g, long double * cs, long double * sn, long double * r)
+MC_TARGET_FUNC void mc_lapack_llartgp(long double f, long double g, long double * cs, long double * sn, long double * r)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
-	const long double safmn2 = mc_lapacke_llamch('W');
+	const long double safmn2 = mc_lapack_llamch('W');
 	const long double safmx2 = one / safmn2;
 
 	int count, i;

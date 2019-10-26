@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lamch.h
+// mc_lapack_lamch.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -13,9 +13,9 @@
 #ifndef MC_LAPACKE_LAMCH_H
 #define MC_LAPACKE_LAMCH_H
 
-#pragma mark - mc_lapacke_slamch -
+#pragma mark - mc_lapack_slamch -
 
-MC_TARGET_FUNC float mc_lapacke_slamch(const char cmach)
+MC_TARGET_FUNC float mc_lapack_slamch(const char cmach)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -75,9 +75,9 @@ MC_TARGET_FUNC float mc_lapacke_slamch(const char cmach)
 	return lamch;
 }
 
-#pragma mark - mc_lapacke_dlamch -
+#pragma mark - mc_lapack_dlamch -
 
-MC_TARGET_FUNC double mc_lapacke_dlamch(const char cmach)
+MC_TARGET_FUNC double mc_lapack_dlamch(const char cmach)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -137,9 +137,9 @@ MC_TARGET_FUNC double mc_lapacke_dlamch(const char cmach)
 	return lamch;
 }
 
-#pragma mark - mc_lapacke_llamch -
+#pragma mark - mc_lapack_llamch -
 
-MC_TARGET_FUNC long double mc_lapacke_llamch(const char cmach)
+MC_TARGET_FUNC long double mc_lapack_llamch(const char cmach)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_ilauplo.h
+// mc_lapack_ilauplo.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -11,9 +11,9 @@
 #ifndef MC_LAPACKE_ILAUPLO_H
 #define MC_LAPACKE_ILAUPLO_H
 
-#pragma mark - mc_lapacke_ilauplo -
+#pragma mark - mc_lapack_ilauplo -
 
-MC_TARGET_FUNC int mc_lapacke_ilauplo(const char uplo)
+MC_TARGET_FUNC int mc_lapack_ilauplo(const char uplo)
 {
 	int ilauplo;
 

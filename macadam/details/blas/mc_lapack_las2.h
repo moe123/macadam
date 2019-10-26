@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_las2.h
+// mc_lapack_las2.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -15,9 +15,9 @@
 #ifndef MC_LAPACKE_LAS2_H
 #define MC_LAPACKE_LAS2_H
 
-#pragma mark - mc_lapacke_slas2 -
+#pragma mark - mc_lapack_slas2 -
 
-MC_TARGET_FUNC void mc_lapacke_slas2(float f, float g, float h, float * ssmin, float * ssmax)
+MC_TARGET_FUNC void mc_lapack_slas2(float f, float g, float h, float * ssmin, float * ssmax)
 {
 	const float two = 2.0f, one = 1.0f, zero = 0.0f;
 
@@ -60,9 +60,9 @@ MC_TARGET_FUNC void mc_lapacke_slas2(float f, float g, float h, float * ssmin, f
 	}
 }
 
-#pragma mark - mc_lapacke_dlas2 -
+#pragma mark - mc_lapack_dlas2 -
 
-MC_TARGET_FUNC void mc_lapacke_dlas2(double f, double g, double h, double * ssmin, double * ssmax)
+MC_TARGET_FUNC void mc_lapack_dlas2(double f, double g, double h, double * ssmin, double * ssmax)
 {
 	const double two = 2.0, one = 1.0, zero = 0.0;
 
@@ -105,9 +105,9 @@ MC_TARGET_FUNC void mc_lapacke_dlas2(double f, double g, double h, double * ssmi
 	}
 }
 
-#pragma mark - mc_lapacke_llas2 -
+#pragma mark - mc_lapack_llas2 -
 
-MC_TARGET_FUNC void mc_lapacke_llas2(long double f, long double g, long double h, long double * ssmin, long double * ssmax)
+MC_TARGET_FUNC void mc_lapack_llas2(long double f, long double g, long double h, long double * ssmin, long double * ssmax)
 {
 	const long double two = 2.0L, one = 1.0L, zero = 0.0L;
 

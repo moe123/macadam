@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_ilatrans.h
+// mc_lapack_ilatrans.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -11,9 +11,9 @@
 #ifndef MC_LAPACKE_ILATRANS_H
 #define MC_LAPACKE_ILATRANS_H
 
-#pragma mark - mc_lapacke_ilatrans -
+#pragma mark - mc_lapack_ilatrans -
 
-MC_TARGET_FUNC int mc_lapacke_ilatrans(const char trans)
+MC_TARGET_FUNC int mc_lapack_ilatrans(const char trans)
 {
 	int ilatrans;
 

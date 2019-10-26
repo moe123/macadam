@@ -1,12 +1,12 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasv2.h
+// mc_lapack_lasv2.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/blas/mc_lapacke_lamch.h>
+#include <macadam/details/blas/mc_lapack_lamch.h>
 #include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_sqrt.h>
@@ -14,9 +14,9 @@
 #ifndef MC_LAPACKE_LASV2_H
 #define MC_LAPACKE_LASV2_H
 
-#pragma mark - mc_lapacke_slasv2 -
+#pragma mark - mc_lapack_slasv2 -
 
-MC_TARGET_FUNC void mc_lapacke_slasv2(float f, float g, float h, float * ssmin, float * ssmax, float * snr, float * csr, float * snl, float * csl)
+MC_TARGET_FUNC void mc_lapack_slasv2(float f, float g, float h, float * ssmin, float * ssmax, float * snr, float * csr, float * snl, float * csl)
 {
 	const float four = 4.0f, two = 2.0f, one = 1.0f, half = 0.5f, zero = 0.0f;
 
@@ -54,7 +54,7 @@ MC_TARGET_FUNC void mc_lapacke_slasv2(float f, float g, float h, float * ssmin, 
 		gasmal = 1;
 		if (ga > fa) {
 			pmax = 2;
-			if (fa / ga < mc_lapacke_slamch('E')) {
+			if (fa / ga < mc_lapack_slamch('E')) {
 				 gasmal = 0;
 				*ssmax  = ga;
 				if (ha > one) {
@@ -128,9 +128,9 @@ MC_TARGET_FUNC void mc_lapacke_slasv2(float f, float g, float h, float * ssmin, 
 	*ssmin = mc_copysignf(*ssmin, tsign * mc_copysignf(one, f) * mc_copysignf(one, h));
 }
 
-#pragma mark - mc_lapacke_dlasv2 -
+#pragma mark - mc_lapack_dlasv2 -
 
-MC_TARGET_FUNC void mc_lapacke_dlasv2(double f, double g, double h, double * ssmin, double * ssmax, double * snr, double * csr, double * snl, double * csl)
+MC_TARGET_FUNC void mc_lapack_dlasv2(double f, double g, double h, double * ssmin, double * ssmax, double * snr, double * csr, double * snl, double * csl)
 {
 	const double four = 4.0, two = 2.0, one = 1.0, half = 0.5, zero = 0.0;
 
@@ -168,7 +168,7 @@ MC_TARGET_FUNC void mc_lapacke_dlasv2(double f, double g, double h, double * ssm
 		gasmal = 1;
 		if (ga > fa) {
 			pmax = 2;
-			if (fa / ga < mc_lapacke_dlamch('E')) {
+			if (fa / ga < mc_lapack_dlamch('E')) {
 				 gasmal = 0;
 				*ssmax  = ga;
 				if (ha > one) {
@@ -242,9 +242,9 @@ MC_TARGET_FUNC void mc_lapacke_dlasv2(double f, double g, double h, double * ssm
 	*ssmin = mc_copysign(*ssmin, tsign * mc_copysign(one, f) * mc_copysign(one, h));
 }
 
-#pragma mark - mc_lapacke_llasv2 -
+#pragma mark - mc_lapack_llasv2 -
 
-MC_TARGET_FUNC void mc_lapacke_llasv2(long double f, long double g, long double h, long double * ssmin, long double * ssmax, long double * snr, long double * csr, long double * snl, long double * csl)
+MC_TARGET_FUNC void mc_lapack_llasv2(long double f, long double g, long double h, long double * ssmin, long double * ssmax, long double * snr, long double * csr, long double * snl, long double * csl)
 {
 	const long double four = 4.0L, two = 2.0L, one = 1.0L, half = 0.5L, zero = 0.0L;
 
@@ -282,7 +282,7 @@ MC_TARGET_FUNC void mc_lapacke_llasv2(long double f, long double g, long double 
 		gasmal = 1;
 		if (ga > fa) {
 			pmax = 2;
-			if (fa / ga < mc_lapacke_llamch('E')) {
+			if (fa / ga < mc_lapack_llamch('E')) {
 				 gasmal = 0;
 				*ssmax  = ga;
 				if (ha > one) {

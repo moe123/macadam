@@ -1,16 +1,16 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasq3.h
+// mc_lapack_lasq3.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/blas/mc_blas_access.h>
-#include <macadam/details/blas/mc_lapacke_lamch.h>
-#include <macadam/details/blas/mc_lapacke_lasq4.h>
-#include <macadam/details/blas/mc_lapacke_lasq5.h>
-#include <macadam/details/blas/mc_lapacke_lasq6.h>
+#include <macadam/details/blas/mc_lapack_lamch.h>
+#include <macadam/details/blas/mc_lapack_lasq4.h>
+#include <macadam/details/blas/mc_lapack_lasq5.h>
+#include <macadam/details/blas/mc_lapack_lasq6.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/math/mc_fmin.h>
@@ -21,9 +21,9 @@
 #ifndef MC_LAPACKE_LASQ3_H
 #define MC_LAPACKE_LASQ3_H
 
-#pragma mark - mc_lapacke_slasq3 -
+#pragma mark - mc_lapack_slasq3 -
 
-MC_TARGET_PROC void mc_lapacke_slasq3(int i0, int * n0, float * z
+MC_TARGET_PROC void mc_lapack_slasq3(int i0, int * n0, float * z
 	, int * pp
 	, float * dmin
 	, float * sigma
@@ -49,7 +49,7 @@ MC_TARGET_PROC void mc_lapacke_slasq3(int i0, int * n0, float * z
 	float eps, s, t, temp, tol, tol2;
 
 	n0in = (*n0);
-	eps  = mc_lapacke_slamch('P');
+	eps  = mc_lapack_slamch('P');
 	tol  = eps * hundrd;
 	tol2 = mc_raise2f(tol);
 
@@ -151,10 +151,10 @@ F50:
 		}
 	}
 
-	mc_lapacke_slasq4(i0, *n0, z, *pp, n0in, *dmin, *dmin1, *dmin2, *dn, *dn1, *dn2, tau, ttype, g);
+	mc_lapack_slasq4(i0, *n0, z, *pp, n0in, *dmin, *dmin1, *dmin2, *dn, *dn1, *dn2, tau, ttype, g);
 
 F70:
-	mc_lapacke_slasq5(i0, *n0, z, *pp, *tau, *sigma, dmin, dmin1, dmin2, dn, dn1, dn2, ieee, eps);
+	mc_lapack_slasq5(i0, *n0, z, *pp, *tau, *sigma, dmin, dmin1, dmin2, dn, dn1, dn2, ieee, eps);
 	*ndiv = (*ndiv) + (*n0 - i0 + 2);
 	*iter = (*iter) + 1;
 
@@ -192,7 +192,7 @@ F70:
 	}
 
 F80:
-	mc_lapacke_slasq6(i0, *n0, z, *pp, dmin, dmin1, dmin2, dn, dn1, dn2);
+	mc_lapack_slasq6(i0, *n0, z, *pp, dmin, dmin1, dmin2, dn, dn1, dn2);
 	*ndiv = (*ndiv) + ((*n0) - i0 + 2);
 	*iter = (*iter) + 1;
 	*tau  = zero;
@@ -209,9 +209,9 @@ F90:
 	*sigma = t;
 }
 
-#pragma mark - mc_lapacke_dlasq3 -
+#pragma mark - mc_lapack_dlasq3 -
 
-MC_TARGET_PROC void mc_lapacke_dlasq3(int i0, int * n0, double * z
+MC_TARGET_PROC void mc_lapack_dlasq3(int i0, int * n0, double * z
 	, int * pp
 	, double * dmin
 	, double * sigma
@@ -237,7 +237,7 @@ MC_TARGET_PROC void mc_lapacke_dlasq3(int i0, int * n0, double * z
 	double eps, s, t, temp, tol, tol2;
 
 	n0in = (*n0);
-	eps  = mc_lapacke_dlamch('P');
+	eps  = mc_lapack_dlamch('P');
 	tol  = eps * hundrd;
 	tol2 = mc_raise2(tol);
 
@@ -339,10 +339,10 @@ F50:
 		}
 	}
 
-	mc_lapacke_dlasq4(i0, *n0, z, *pp, n0in, *dmin, *dmin1, *dmin2, *dn, *dn1, *dn2, tau, ttype, g);
+	mc_lapack_dlasq4(i0, *n0, z, *pp, n0in, *dmin, *dmin1, *dmin2, *dn, *dn1, *dn2, tau, ttype, g);
 
 F70:
-	mc_lapacke_dlasq5(i0, *n0, z, *pp, *tau, *sigma, dmin, dmin1, dmin2, dn, dn1, dn2, ieee, eps);
+	mc_lapack_dlasq5(i0, *n0, z, *pp, *tau, *sigma, dmin, dmin1, dmin2, dn, dn1, dn2, ieee, eps);
 	*ndiv = (*ndiv) + (*n0 - i0 + 2);
 	*iter = (*iter) + 1;
 
@@ -380,7 +380,7 @@ F70:
 	}
 
 F80:
-	mc_lapacke_dlasq6(i0, *n0, z, *pp, dmin, dmin1, dmin2, dn, dn1, dn2);
+	mc_lapack_dlasq6(i0, *n0, z, *pp, dmin, dmin1, dmin2, dn, dn1, dn2);
 	*ndiv = (*ndiv) + ((*n0) - i0 + 2);
 	*iter = (*iter) + 1;
 	*tau  = zero;
@@ -397,9 +397,9 @@ F90:
 	*sigma = t;
 }
 
-#pragma mark - mc_lapacke_llasq3 -
+#pragma mark - mc_lapack_llasq3 -
 
-MC_TARGET_PROC void mc_lapacke_llasq3(int i0, int * n0, long double * z
+MC_TARGET_PROC void mc_lapack_llasq3(int i0, int * n0, long double * z
 	, int * pp
 	, long double * dmin
 	, long double * sigma
@@ -425,7 +425,7 @@ MC_TARGET_PROC void mc_lapacke_llasq3(int i0, int * n0, long double * z
 	long double eps, s, t, temp, tol, tol2;
 
 	n0in = (*n0);
-	eps  = mc_lapacke_llamch('P');
+	eps  = mc_lapack_llamch('P');
 	tol  = eps * hundrd;
 	tol2 = mc_raise2l(tol);
 
@@ -527,10 +527,10 @@ F50:
 		}
 	}
 
-	mc_lapacke_llasq4(i0, *n0, z, *pp, n0in, *dmin, *dmin1, *dmin2, *dn, *dn1, *dn2, tau, ttype, g);
+	mc_lapack_llasq4(i0, *n0, z, *pp, n0in, *dmin, *dmin1, *dmin2, *dn, *dn1, *dn2, tau, ttype, g);
 
 F70:
-	mc_lapacke_llasq5(i0, *n0, z, *pp, *tau, *sigma, dmin, dmin1, dmin2, dn, dn1, dn2, ieee, eps);
+	mc_lapack_llasq5(i0, *n0, z, *pp, *tau, *sigma, dmin, dmin1, dmin2, dn, dn1, dn2, ieee, eps);
 	*ndiv = (*ndiv) + (*n0 - i0 + 2);
 	*iter = (*iter) + 1;
 
@@ -568,7 +568,7 @@ F70:
 	}
 
 F80:
-	mc_lapacke_llasq6(i0, *n0, z, *pp, dmin, dmin1, dmin2, dn, dn1, dn2);
+	mc_lapack_llasq6(i0, *n0, z, *pp, dmin, dmin1, dmin2, dn, dn1, dn2);
 	*ndiv = (*ndiv) + ((*n0) - i0 + 2);
 	*iter = (*iter) + 1;
 	*tau  = zero;

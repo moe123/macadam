@@ -1,22 +1,22 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasq6.h
+// mc_lapack_lasq6.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/blas/mc_blas_access.h>
-#include <macadam/details/blas/mc_lapacke_lamch.h>
+#include <macadam/details/blas/mc_lapack_lamch.h>
 #include <macadam/details/math/mc_fmin.h>
 #include <macadam/details/math/mc_raise2.h>
 
 #ifndef MC_LAPACKE_LASQ6_H
 #define MC_LAPACKE_LASQ6_H
 
-#pragma mark - mc_lapacke_slasq6 -
+#pragma mark - mc_lapack_slasq6 -
 
-MC_TARGET_PROC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp
+MC_TARGET_PROC void mc_lapack_slasq6(int i0, int n0, float * z, int pp
 	, float * dmin
 	, float * dmin1
 	, float * dmin2
@@ -33,7 +33,7 @@ MC_TARGET_PROC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp
 		return;
 	}
 
-	 safmin = mc_lapacke_slamch('S');
+	 safmin = mc_lapack_slamch('S');
 	 j4     = (4 * i0) + pp - 3;
 	 emin   = mc_blas_vector_at(z, j4 + 4);
 	 d      = mc_blas_vector_at(z, j4);
@@ -132,9 +132,9 @@ MC_TARGET_PROC void mc_lapacke_slasq6(int i0, int n0, float * z, int pp
 	mc_blas_vector_at(z, (4 * n0 ) - pp) = emin;
 }
 
-#pragma mark - mc_lapacke_dlasq6 -
+#pragma mark - mc_lapack_dlasq6 -
 
-MC_TARGET_PROC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp
+MC_TARGET_PROC void mc_lapack_dlasq6(int i0, int n0, double * z, int pp
 	, double * dmin
 	, double * dmin1
 	, double * dmin2
@@ -151,7 +151,7 @@ MC_TARGET_PROC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp
 		return;
 	}
 
-	 safmin = mc_lapacke_dlamch('S');
+	 safmin = mc_lapack_dlamch('S');
 	 j4     = (4 * i0) + pp - 3;
 	 emin   = mc_blas_vector_at(z, j4 + 4);
 	 d      = mc_blas_vector_at(z, j4);
@@ -250,9 +250,9 @@ MC_TARGET_PROC void mc_lapacke_dlasq6(int i0, int n0, double * z, int pp
 	mc_blas_vector_at(z, (4 * n0 ) - pp) = emin;
 }
 
-#pragma mark - mc_lapacke_llasq6 -
+#pragma mark - mc_lapack_llasq6 -
 
-MC_TARGET_PROC void mc_lapacke_llasq6(int i0, int n0, long double * z, int pp
+MC_TARGET_PROC void mc_lapack_llasq6(int i0, int n0, long double * z, int pp
 	, long double * dmin
 	, long double * dmin1
 	, long double * dmin2
@@ -269,7 +269,7 @@ MC_TARGET_PROC void mc_lapacke_llasq6(int i0, int n0, long double * z, int pp
 		return;
 	}
 
-	 safmin = mc_lapacke_llamch('S');
+	 safmin = mc_lapack_llamch('S');
 	 j4     = (4 * i0) + pp - 3;
 	 emin   = mc_blas_vector_at(z, j4 + 4);
 	 d      = mc_blas_vector_at(z, j4);

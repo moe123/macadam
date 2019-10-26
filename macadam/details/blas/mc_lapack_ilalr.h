@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_ilalr.h
+// mc_lapack_ilalr.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -12,9 +12,9 @@
 #ifndef MC_LAPACKE_ILALR_H
 #define MC_LAPACKE_ILALR_H
 
-#pragma mark - mc_lapacke_ilaslr -
+#pragma mark - mc_lapack_ilaslr -
 
-MC_TARGET_FUNC int mc_lapacke_ilaslr(int m, int n, const float * a, int lda)
+MC_TARGET_FUNC int mc_lapack_ilaslr(int m, int n, const float * a, int lda)
 {
 	const float zero = 0.0f;
 
@@ -38,9 +38,9 @@ MC_TARGET_FUNC int mc_lapacke_ilaslr(int m, int n, const float * a, int lda)
 	return ilalr;
 }
 
-#pragma mark - mc_lapacke_iladlr -
+#pragma mark - mc_lapack_iladlr -
 
-MC_TARGET_FUNC int mc_lapacke_iladlr(int m, int n, const double * a, int lda)
+MC_TARGET_FUNC int mc_lapack_iladlr(int m, int n, const double * a, int lda)
 {
 	const double zero = 0.0;
 
@@ -64,9 +64,9 @@ MC_TARGET_FUNC int mc_lapacke_iladlr(int m, int n, const double * a, int lda)
 	return ilalr;
 }
 
-#pragma mark - mc_lapacke_ilallr -
+#pragma mark - mc_lapack_ilallr -
 
-MC_TARGET_FUNC int mc_lapacke_ilallr(int m, int n, const long double * a, int lda)
+MC_TARGET_FUNC int mc_lapack_ilallr(int m, int n, const long double * a, int lda)
 {
 	const long double zero = 0.0L;
 

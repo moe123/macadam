@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lsamen.h
+// mc_lapack_lsamen.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -11,9 +11,9 @@
 #ifndef MC_LAPACKE_LSAMEN_H
 #define MC_LAPACKE_LSAMEN_H
 
-#pragma mark - mc_lapacke_lsamen -
+#pragma mark - mc_lapack_lsamen -
 
-MC_TARGET_FUNC int mc_lapacke_lsamen(int n, const char * ca, const char * cb)
+MC_TARGET_FUNC int mc_lapack_lsamen(int n, const char * ca, const char * cb)
 {
 	int i, lsamen;
 	lsamen = 0;

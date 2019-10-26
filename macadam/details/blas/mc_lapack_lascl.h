@@ -1,23 +1,23 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lascl.h
+// mc_lapack_lascl.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/blas/mc_blas_access.h>
-#include <macadam/details/blas/mc_lapacke_lamch.h>
-#include <macadam/details/blas/mc_lapacke_lartgp.h>
+#include <macadam/details/blas/mc_lapack_lamch.h>
+#include <macadam/details/blas/mc_lapack_lartgp.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_isnan.h>
 
 #ifndef MC_LAPACKE_LASCL_H
 #define MC_LAPACKE_LASCL_H
 
-#pragma mark - mc_lapacke_slascl -
+#pragma mark - mc_lapack_slascl -
 
-MC_TARGET_FUNC void mc_lapacke_slascl(const char type, int kl, int ku, float cfrom, float cto, int m, int n, float * a, int lda, int * info)
+MC_TARGET_FUNC void mc_lapack_slascl(const char type, int kl, int ku, float cfrom, float cto, int m, int n, float * a, int lda, int * info)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -85,7 +85,7 @@ MC_TARGET_FUNC void mc_lapacke_slascl(const char type, int kl, int ku, float cfr
 		return;
 	}
 
-	smlnum = mc_lapacke_slamch('S');
+	smlnum = mc_lapack_slamch('S');
 	bignum = one / smlnum;
 
 	cfromc = cfrom;
@@ -173,9 +173,9 @@ F10:
 	}
 }
 
-#pragma mark - mc_lapacke_dlascl -
+#pragma mark - mc_lapack_dlascl -
 
-MC_TARGET_FUNC void mc_lapacke_dlascl(const char type, int kl, int ku, double cfrom, double cto, int m, int n, double * a, int lda, int * info)
+MC_TARGET_FUNC void mc_lapack_dlascl(const char type, int kl, int ku, double cfrom, double cto, int m, int n, double * a, int lda, int * info)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -243,7 +243,7 @@ MC_TARGET_FUNC void mc_lapacke_dlascl(const char type, int kl, int ku, double cf
 		return;
 	}
 
-	smlnum = mc_lapacke_dlamch('S');
+	smlnum = mc_lapack_dlamch('S');
 	bignum = one / smlnum;
 
 	cfromc = cfrom;
@@ -331,9 +331,9 @@ F10:
 	}
 }
 
-#pragma mark - mc_lapacke_llascl -
+#pragma mark - mc_lapack_llascl -
 
-MC_TARGET_FUNC void mc_lapacke_llascl(const char type, int kl, int ku, long double cfrom, long double cto, int m, int n, long double * a, int lda, int * info)
+MC_TARGET_FUNC void mc_lapack_llascl(const char type, int kl, int ku, long double cfrom, long double cto, int m, int n, long double * a, int lda, int * info)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
@@ -401,7 +401,7 @@ MC_TARGET_FUNC void mc_lapacke_llascl(const char type, int kl, int ku, long doub
 		return;
 	}
 
-	smlnum = mc_lapacke_llamch('S');
+	smlnum = mc_lapack_llamch('S');
 	bignum = one / smlnum;
 
 	cfromc = cfrom;

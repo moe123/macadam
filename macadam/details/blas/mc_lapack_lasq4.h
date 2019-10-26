@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasq3.h
+// mc_lapack_lasq3.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -16,9 +16,9 @@
 #ifndef MC_LAPACKE_LASQ4_H
 #define MC_LAPACKE_LASQ4_H
 
-#pragma mark - mc_lapacke_slasq4 -
+#pragma mark - mc_lapack_slasq4 -
 
-MC_TARGET_PROC void mc_lapacke_slasq4(int i0, int n0, const float * z
+MC_TARGET_PROC void mc_lapack_slasq4(int i0, int n0, const float * z
 	, int pp
 	, int n0in
 	, float dmin
@@ -245,9 +245,9 @@ F80:
 	*tau = s;
 }
 
-#pragma mark - mc_lapacke_dlasq4 -
+#pragma mark - mc_lapack_dlasq4 -
 
-MC_TARGET_PROC void mc_lapacke_dlasq4(int i0, int n0, const double * z
+MC_TARGET_PROC void mc_lapack_dlasq4(int i0, int n0, const double * z
 	, int pp
 	, int n0in
 	, double dmin
@@ -474,9 +474,9 @@ F80:
 	*tau = s;
 }
 
-#pragma mark - mc_lapacke_llasq4 -
+#pragma mark - mc_lapack_llasq4 -
 
-MC_TARGET_PROC void mc_lapacke_llasq4(int i0, int n0, const long double * z
+MC_TARGET_PROC void mc_lapack_llasq4(int i0, int n0, const long double * z
 	, int pp
 	, int n0in
 	, long double dmin

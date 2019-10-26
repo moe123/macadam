@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lamrg.h
+// mc_lapack_lamrg.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -11,9 +11,9 @@
 #ifndef MC_LAPACKE_LAMRG_H
 #define MC_LAPACKE_LAMRG_H
 
-#pragma mark - mc_lapacke_slamrg -
+#pragma mark - mc_lapack_slamrg -
 
-MC_TARGET_FUNC void mc_lapacke_slamrg(int n1, int n2, const float * a, int strd1, int strd2, int * index)
+MC_TARGET_FUNC void mc_lapack_slamrg(int n1, int n2, const float * a, int strd1, int strd2, int * index)
 {
 	int i, ind1, ind2, n1sv, n2sv;
 
@@ -62,9 +62,9 @@ F10:
 	}
 }
 
-#pragma mark - mc_lapacke_llamrg -
+#pragma mark - mc_lapack_llamrg -
 
-MC_TARGET_FUNC void mc_lapacke_llamrg(int n1, int n2, const long double * a, int strd1, int strd2, int * index)
+MC_TARGET_FUNC void mc_lapack_llamrg(int n1, int n2, const long double * a, int strd1, int strd2, int * index)
 {
 	int i, ind1, ind2, n1sv, n2sv;
 
@@ -113,9 +113,9 @@ F10:
 	}
 }
 
-#pragma mark - mc_lapacke_dlamrg -
+#pragma mark - mc_lapack_dlamrg -
 
-MC_TARGET_FUNC void mc_lapacke_dlamrg(int n1, int n2, const double * a, int strd1, int strd2, int * index)
+MC_TARGET_FUNC void mc_lapack_dlamrg(int n1, int n2, const double * a, int strd1, int strd2, int * index)
 {
 	int i, ind1, ind2, n1sv, n2sv;
 

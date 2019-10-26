@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasrt.h
+// mc_lapack_lasrt.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -14,9 +14,9 @@
 #ifndef MC_LAPACKE_LASRT_H
 #define MC_LAPACKE_LASRT_H
 
-#pragma mark - mc_lapacke_slasrt -
+#pragma mark - mc_lapack_slasrt -
 
-MC_TARGET_FUNC void mc_lapacke_slasrt(const char id, int n, float * d, int * info)
+MC_TARGET_FUNC void mc_lapack_slasrt(const char id, int n, float * d, int * info)
 {
 	int select = 20;
 	int dir, endd, i, j, start, stkpnt;
@@ -181,9 +181,9 @@ F100:
 	}
 }
 
-#pragma mark - mc_lapacke_dlasrt -
+#pragma mark - mc_lapack_dlasrt -
 
-MC_TARGET_FUNC void mc_lapacke_dlasrt(const char id, int n, double * d, int * info)
+MC_TARGET_FUNC void mc_lapack_dlasrt(const char id, int n, double * d, int * info)
 {
 	int select = 20;
 	int dir, endd, i, j, start, stkpnt;
@@ -348,9 +348,9 @@ F100:
 	}
 }
 
-#pragma mark - mc_lapacke_llasrt -
+#pragma mark - mc_lapack_llasrt -
 
-MC_TARGET_FUNC void mc_lapacke_llasrt(const char id, int n, long double * d, int * info)
+MC_TARGET_FUNC void mc_lapack_llasrt(const char id, int n, long double * d, int * info)
 {
 	int select = 20;
 	int dir, endd, i, j, start, stkpnt;

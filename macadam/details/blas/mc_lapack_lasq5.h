@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasq5.h
+// mc_lapack_lasq5.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -12,9 +12,9 @@
 #ifndef MC_LAPACKE_LASQ5_H
 #define MC_LAPACKE_LASQ5_H
 
-#pragma mark - mc_lapacke_slasq5 -
+#pragma mark - mc_lapack_slasq5 -
 
-MC_TARGET_PROC void mc_lapacke_slasq5(int i0, int n0, float * z, int pp, float tau, float sigma
+MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float tau, float sigma
 	, float * dmin
 	, float * dmin1
 	, float * dmin2
@@ -245,9 +245,9 @@ MC_TARGET_PROC void mc_lapacke_slasq5(int i0, int n0, float * z, int pp, float t
 	mc_blas_vector_at(z, (4 * n0) - pp) = emin;
 }
 
-#pragma mark - mc_lapacke_dlasq5 -
+#pragma mark - mc_lapack_dlasq5 -
 
-MC_TARGET_PROC void mc_lapacke_dlasq5(int i0, int n0, double * z, int pp, double tau, double sigma
+MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double tau, double sigma
 	, double * dmin
 	, double * dmin1
 	, double * dmin2
@@ -478,9 +478,9 @@ MC_TARGET_PROC void mc_lapacke_dlasq5(int i0, int n0, double * z, int pp, double
 	mc_blas_vector_at(z, (4 * n0) - pp) = emin;
 }
 
-#pragma mark - mc_lapacke_llasq5 -
+#pragma mark - mc_lapack_llasq5 -
 
-MC_TARGET_PROC void mc_lapacke_llasq5(int i0, int n0, long double * z, int pp, long double tau, long double sigma
+MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, long double tau, long double sigma
 	, long double * dmin
 	, long double * dmin1
 	, long double * dmin2

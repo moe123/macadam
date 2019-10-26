@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasdt.h
+// mc_lapack_lasdt.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -14,9 +14,9 @@
 #ifndef MC_LAPACKE_LASDT_H
 #define MC_LAPACKE_LASDT_H
 
-#pragma mark - mc_lapacke_slasdt -
+#pragma mark - mc_lapack_slasdt -
 
-MC_TARGET_FUNC void mc_lapacke_slasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
+MC_TARGET_FUNC void mc_lapack_slasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
 {
 	const float two = 2.0f;
 
@@ -51,9 +51,9 @@ MC_TARGET_FUNC void mc_lapacke_slasdt(int n, int * lvl, int * nd, int * inode, i
 	*nd = (llst * 2) - 1;
 }
 
-#pragma mark - mc_lapacke_dlasdt -
+#pragma mark - mc_lapack_dlasdt -
 
-MC_TARGET_FUNC void mc_lapacke_dlasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
+MC_TARGET_FUNC void mc_lapack_dlasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
 {
 	const double two = 2.0;
 
@@ -88,9 +88,9 @@ MC_TARGET_FUNC void mc_lapacke_dlasdt(int n, int * lvl, int * nd, int * inode, i
 	*nd = (llst * 2) - 1;
 }
 
-#pragma mark - mc_lapacke_llasdt -
+#pragma mark - mc_lapack_llasdt -
 
-MC_TARGET_FUNC void mc_lapacke_llasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
+MC_TARGET_FUNC void mc_lapack_llasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
 {
 	const long double two = 2.0L;
 

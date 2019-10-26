@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_ilaprec.h
+// mc_lapack_ilaprec.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -11,9 +11,9 @@
 #ifndef MC_LAPACKE_ILAPREC_H
 #define MC_LAPACKE_ILAPREC_H
 
-#pragma mark - mc_lapacke_ilaprec -
+#pragma mark - mc_lapack_ilaprec -
 
-MC_TARGET_FUNC int mc_lapacke_ilaprec(const char prec)
+MC_TARGET_FUNC int mc_lapack_ilaprec(const char prec)
 {
 	int ilaprec;
 

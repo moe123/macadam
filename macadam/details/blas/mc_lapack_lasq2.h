@@ -1,16 +1,16 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_lasq2.h
+// mc_lapack_lasq2.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/blas/mc_blas_access.h>
 #include <macadam/details/blas/mc_blas_copy.h>
-#include <macadam/details/blas/mc_lapacke_lamch.h>
-#include <macadam/details/blas/mc_lapacke_lasrt.h>
-#include <macadam/details/blas/mc_lapacke_lasq3.h>
+#include <macadam/details/blas/mc_lapack_lamch.h>
+#include <macadam/details/blas/mc_lapack_lasrt.h>
+#include <macadam/details/blas/mc_lapack_lasq3.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/math/mc_fmin.h>
@@ -20,9 +20,9 @@
 #ifndef MC_LAPACKE_LASQ2_H
 #define MC_LAPACKE_LASQ2_H
 
-#pragma mark - mc_lapacke_slasq2 -
+#pragma mark - mc_lapack_slasq2 -
 
-MC_TARGET_PROC void mc_lapacke_slasq2(int n, float * z, int * info)
+MC_TARGET_PROC void mc_lapack_slasq2(int n, float * z, int * info)
 {
 	const float hundrd = 100.0f, four = 4.0f, two = 2.0f, one = 1.0f, half = 0.5f, zero = 0.0f;
 	const float cbias = 1.5f;
@@ -38,8 +38,8 @@ MC_TARGET_PROC void mc_lapacke_slasq2(int n, float * z, int * info)
 
 
 	*info   = 0;
-	 eps    = mc_lapacke_slamch('P');
-	 safmin = mc_lapacke_slamch('S');
+	 eps    = mc_lapack_slamch('P');
+	 safmin = mc_lapack_slamch('S');
 	 tol    = eps * hundrd;
 	 tol2   = mc_raise2f(tol);
 
@@ -119,7 +119,7 @@ MC_TARGET_PROC void mc_lapacke_slasq2(int n, float * z, int * info)
 		for (k = 2; k <= n; ++k) {
 			mc_blas_vector_at(z, k) = mc_blas_vector_at(z, (2 * k) - 1);
 		}
-		mc_lapacke_slasrt('D', n, z, &iinfo);
+		mc_lapack_slasrt('D', n, z, &iinfo);
 		mc_blas_vector_at(z, (2 * n) - 1) = d;
 		return;
 	}
@@ -289,7 +289,7 @@ F100:
 			goto F150;
 		}
 
-		mc_lapacke_slasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
+		mc_lapack_slasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
 		pp = 1 - pp;
 
 		if (pp == 0 && n0 - i0 >= 3) {
@@ -362,7 +362,7 @@ F170:
 	for (k = 2; k <= n; ++k) {
 		mc_blas_vector_at(z, k) = mc_blas_vector_at(z, (4 * k) - 3);
 	}
-	mc_lapacke_slasrt('D', n, z, &iinfo);
+	mc_lapack_slasrt('D', n, z, &iinfo);
 
 	e = zero;
 	for (k = n; k >= 1; --k) {
@@ -376,9 +376,9 @@ F170:
 	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(float, iter);
 }
 
-#pragma mark - mc_lapacke_dlasq2 -
+#pragma mark - mc_lapack_dlasq2 -
 
-MC_TARGET_PROC void mc_lapacke_dlasq2(int n, double * z, int * info)
+MC_TARGET_PROC void mc_lapack_dlasq2(int n, double * z, int * info)
 {
 	const double hundrd = 100.0, four = 4.0, two = 2.0, one = 1.0, half = 0.5, zero = 0.0;
 	const double cbias = 1.5;
@@ -394,8 +394,8 @@ MC_TARGET_PROC void mc_lapacke_dlasq2(int n, double * z, int * info)
 
 
 	*info   = 0;
-	 eps    = mc_lapacke_dlamch('P');
-	 safmin = mc_lapacke_dlamch('S');
+	 eps    = mc_lapack_dlamch('P');
+	 safmin = mc_lapack_dlamch('S');
 	 tol    = eps * hundrd;
 	 tol2   = mc_raise2(tol);
 
@@ -475,7 +475,7 @@ MC_TARGET_PROC void mc_lapacke_dlasq2(int n, double * z, int * info)
 		for (k = 2; k <= n; ++k) {
 			mc_blas_vector_at(z, k) = mc_blas_vector_at(z, (2 * k) - 1);
 		}
-		mc_lapacke_dlasrt('D', n, z, &iinfo);
+		mc_lapack_dlasrt('D', n, z, &iinfo);
 		mc_blas_vector_at(z, (2 * n) - 1) = d;
 		return;
 	}
@@ -645,7 +645,7 @@ F100:
 			goto F150;
 		}
 
-		mc_lapacke_dlasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
+		mc_lapack_dlasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
 		pp = 1 - pp;
 
 		if (pp == 0 && n0 - i0 >= 3) {
@@ -718,7 +718,7 @@ F170:
 	for (k = 2; k <= n; ++k) {
 		mc_blas_vector_at(z, k) = mc_blas_vector_at(z, (4 * k) - 3);
 	}
-	mc_lapacke_dlasrt('D', n, z, &iinfo);
+	mc_lapack_dlasrt('D', n, z, &iinfo);
 
 	e = zero;
 	for (k = n; k >= 1; --k) {
@@ -732,9 +732,9 @@ F170:
 	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(double, iter);
 }
 
-#pragma mark - mc_lapacke_llasq2 -
+#pragma mark - mc_lapack_llasq2 -
 
-MC_TARGET_PROC void mc_lapacke_llasq2(int n, long double * z, int * info)
+MC_TARGET_PROC void mc_lapack_llasq2(int n, long double * z, int * info)
 {
 	const long double hundrd = 100.0L, four = 4.0L, two = 2.0L, one = 1.0L, half = 0.5L, zero = 0.0L;
 	const long double cbias = 1.5L;
@@ -750,8 +750,8 @@ MC_TARGET_PROC void mc_lapacke_llasq2(int n, long double * z, int * info)
 
 
 	*info   = 0;
-	 eps    = mc_lapacke_llamch('P');
-	 safmin = mc_lapacke_llamch('S');
+	 eps    = mc_lapack_llamch('P');
+	 safmin = mc_lapack_llamch('S');
 	 tol    = eps * hundrd;
 	 tol2   = mc_raise2l(tol);
 
@@ -831,7 +831,7 @@ MC_TARGET_PROC void mc_lapacke_llasq2(int n, long double * z, int * info)
 		for (k = 2; k <= n; ++k) {
 			mc_blas_vector_at(z, k) = mc_blas_vector_at(z, (2 * k) - 1);
 		}
-		mc_lapacke_llasrt('D', n, z, &iinfo);
+		mc_lapack_llasrt('D', n, z, &iinfo);
 		mc_blas_vector_at(z, (2 * n) - 1) = d;
 		return;
 	}
@@ -1001,7 +1001,7 @@ F100:
 			goto F150;
 		}
 
-		mc_lapacke_llasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
+		mc_lapack_llasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
 		pp = 1 - pp;
 
 		if (pp == 0 && n0 - i0 >= 3) {
@@ -1074,7 +1074,7 @@ F170:
 	for (k = 2; k <= n; ++k) {
 		mc_blas_vector_at(z, k) = mc_blas_vector_at(z, (4 * k) - 3);
 	}
-	mc_lapacke_llasrt('D', n, z, &iinfo);
+	mc_lapack_llasrt('D', n, z, &iinfo);
 
 	e = zero;
 	for (k = n; k >= 1; --k) {

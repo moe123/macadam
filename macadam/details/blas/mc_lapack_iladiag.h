@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_lapacke_iladiag.h
+// mc_lapack_iladiag.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -11,9 +11,9 @@
 #ifndef MC_LAPACKE_ILADIAG_H
 #define MC_LAPACKE_ILADIAG_H
 
-#pragma mark - mc_lapacke_iladiag -
+#pragma mark - mc_lapack_iladiag -
 
-MC_TARGET_FUNC int mc_lapacke_iladiag(const char diag)
+MC_TARGET_FUNC int mc_lapack_iladiag(const char diag)
 {
 	int iladiag;
 
