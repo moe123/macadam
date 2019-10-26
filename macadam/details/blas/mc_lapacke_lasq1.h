@@ -93,7 +93,7 @@ MC_TARGET_PROC void mc_lapacke_slasq1(int n, float * d, float * e, float * work,
 		}
 		// TODO TRANSPOSE
 		mc_lapacke_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
-		mc_lapacke_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
+		mc_lapacke_slascl('G', 0, 0, scale, sigmx, n, 1, e, n, &iinfo);
 	}
 }
 
@@ -170,7 +170,7 @@ MC_TARGET_PROC void mc_lapacke_dlasq1(int n, double * d, double * e, double * wo
 		}
 		// TODO TRANSPOSE
 		mc_lapacke_dlascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
-		mc_lapacke_dlascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
+		mc_lapacke_dlascl('G', 0, 0, scale, sigmx, n, 1, e, n, &iinfo);
 	}
 }
 
@@ -247,7 +247,7 @@ MC_TARGET_PROC void mc_lapacke_llasq1(int n, long double * d, long double * e, l
 		}
 		// TODO TRANSPOSE
 		mc_lapacke_llascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
-		mc_lapacke_llascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
+		mc_lapacke_llascl('G', 0, 0, scale, sigmx, n, 1, e, n, &iinfo);
 	}
 }
 
