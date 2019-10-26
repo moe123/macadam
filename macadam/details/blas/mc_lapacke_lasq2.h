@@ -289,7 +289,7 @@ F100:
 			goto F150;
 		}
 
-		//mc_lapacke_slasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
+		mc_lapacke_slasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
 		pp = 1 - pp;
 
 		if (pp == 0 && n0 - i0 >= 3) {
@@ -645,7 +645,7 @@ F100:
 			goto F150;
 		}
 
-		//mc_lapacke_dlasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
+		mc_lapacke_dlasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
 		pp = 1 - pp;
 
 		if (pp == 0 && n0 - i0 >= 3) {
@@ -1001,7 +1001,7 @@ F100:
 			goto F150;
 		}
 
-		//mc_lapacke_llasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
+		mc_lapacke_llasq3(i0, &n0, z, &pp, &dmin, &sigma, &desig, qmax, &nfail, &iter, &ndiv, ieee, &ttype, &dmin1, &dmin2, &dn, &dn1, &dn2, &g, &tau);
 		pp = 1 - pp;
 
 		if (pp == 0 && n0 - i0 >= 3) {
