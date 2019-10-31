@@ -27,7 +27,7 @@
 		int __mc_blas_n = mc_cast_exp(int, ng); \
 		gtp __mc_blas_w; \
 		for (; __mc_blas_i < __mc_blas_n - 2; ++__mc_blas_i) { \
-			for (__mc_blas_j = 0; __mc_blas_j < __mc_blas_n - 1; ++__mc_blas_j) { \
+			for (__mc_blas_j = __mc_blas_i + 1; __mc_blas_j < __mc_blas_n - 1; ++__mc_blas_j) { \
 				__mc_blas_w                                    = g[((__mc_blas_i) * __mc_blas_n) + __mc_blas_j]; \
 				g[((__mc_blas_i) * __mc_blas_n) + __mc_blas_j] = g[((__mc_blas_j) * __mc_blas_n) + __mc_blas_i]; \
 				g[((__mc_blas_j) * __mc_blas_n) + __mc_blas_i] = __mc_blas_w; \
