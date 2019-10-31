@@ -69,6 +69,10 @@
 #	include <macadam/details/blas/mc_lapack_lasrt.h>
 #	include <macadam/details/blas/mc_lapack_lasv2.h>
 #	include <macadam/details/blas/mc_lapack_lsamen.h>
+#	include <macadam/details/blas/mc_nonblas_gbmcv.h>
+#	include <macadam/details/blas/mc_nonblas_rotcv.h>
+#	include <macadam/details/blas/mc_nonblas_trsir.h>
+#	include <macadam/details/blas/mc_nonblas_trsis.h>
 
 #endif /* !MC_BLAS_H */
 

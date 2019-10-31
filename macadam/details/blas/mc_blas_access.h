@@ -17,7 +17,7 @@
 #	define mc_blas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * (ng)) + (gj)]
 #	define mc_blas_matrix_cmj_at(g, mg, ng, gi, gj) g[((gj) * (mg)) + (gi)]
 
-#	define mc_blas_matrix_trss(gtp, g, ng) \
+#	define mc_blas_matrix_trsis(gtp, g, ng) \
 /* //!# Transposing in-place square matrix g. */ \
 /* //!# gtp - literal type of elements.       */ \
 /* //!# g   - memory pointer.                 */ \
@@ -27,7 +27,7 @@
 		int __mc_blas_n = mc_cast_exp(int, ng); \
 		gtp __mc_blas_w; \
 		for (; __mc_blas_i < __mc_blas_n - 2; ++__mc_blas_i) { \
-			for (; __mc_blas_j < __mc_blas_n - 1; ++__mc_blas_j) { \
+			for (__mc_blas_j = 0; __mc_blas_j < __mc_blas_n - 1; ++__mc_blas_j) { \
 				__mc_blas_w                                    = g[((__mc_blas_i) * __mc_blas_n) + __mc_blas_j]; \
 				g[((__mc_blas_i) * __mc_blas_n) + __mc_blas_j] = g[((__mc_blas_j) * __mc_blas_n) + __mc_blas_i]; \
 				g[((__mc_blas_j) * __mc_blas_n) + __mc_blas_i] = __mc_blas_w; \
@@ -35,7 +35,7 @@
 		} \
 	} while (0)
 
-#	define mc_blas_matrix_trsr(gtp, g, mg, ng) \
+#	define mc_blas_matrix_trsir(gtp, g, mg, ng) \
 /* //!# Transposing in-place rectangular matrix g. */ \
 /* //!# gtp - literal type of elements.            */ \
 /* //!# g   - memory pointer.                      */ \

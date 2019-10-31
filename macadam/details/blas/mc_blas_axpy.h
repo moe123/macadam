@@ -18,11 +18,11 @@
  *    ?axpy constant times a vector plus a vector: y=y+(a*x).
  *
  * \parameters
- *    [in] n     - int. Specifies the number of elements in the input vectors x and y.
- *    [in] x     - real-floating array of size at least (1+(n-1)*abs(incx)).
- *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
- *    [in] y     - real-floating arrays of size at least (1+(n-1)*abs(incy)).
- *    [in] incy  - int. Specifies the increment for the elements of y. incy must not be zero.
+ *    [in]  n    - int. Specifies the number of elements in the input vectors x and y.
+ *    [in]  x    - real-floating array of size at least (1+(n-1)*abs(incx)).
+ *    [in]  incx - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [out] y    - real-floating arrays of size at least (1+(n-1)*abs(incy)).
+ *    [in]  incy - int. Specifies the increment for the elements of y. incy must not be zero.
  *
  * \examples
  *
