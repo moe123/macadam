@@ -39,7 +39,7 @@
 /* //!# Transposing in-place rectangular matrix g. */ \
 /* //!# gtp - literal type of elements.            */ \
 /* //!# g   - memory pointer.                      */ \
-/* //!# ng  - number of rows.                      */ \
+/* //!# mg  - number of rows.                      */ \
 /* //!# ng  - number of columns.                   */ \
 	do { \
 		int __mc_blas_i = 0, __mc_blas_j, __mc_blas_k; \
