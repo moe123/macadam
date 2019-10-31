@@ -72,6 +72,7 @@ MC_TARGET_PROC void mc_lapack_slasq1(int n, float * d, float * e, float * work, 
 	scale  = mc_sqrtf(eps / safmin);
 	mc_blas_scopy(n, d, 1, work, 2);
 	mc_blas_scopy(n - 1, e, 1, work + 1, 2);
+
 	mc_lapack_slascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
 
 	for (i = 1; i <= ((2 * n) - 1); ++i) {
@@ -84,14 +85,12 @@ MC_TARGET_PROC void mc_lapack_slasq1(int n, float * d, float * e, float * work, 
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrtf(mc_blas_vector_at(work, i));
 		}
-		// TODO TRANSPOSE
 		mc_lapack_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 	} else if ((*info) == 2) {
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(d, i) = mc_sqrtf(mc_blas_vector_at(work, (2 * i) - 1));
 			mc_blas_vector_at(e, i) = mc_sqrtf(mc_blas_vector_at(work, i * 2));
 		}
-		// TODO TRANSPOSE
 		mc_lapack_slascl('G', 0, 0, scale, sigmx, n, 1, d, n, &iinfo);
 		mc_lapack_slascl('G', 0, 0, scale, sigmx, n, 1, e, n, &iinfo);
 	}
