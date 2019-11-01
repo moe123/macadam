@@ -192,6 +192,8 @@
 #	include <macadam/details/math/mc_xpolyevaln.h>
 #	include <macadam/details/math/mc_zabs.h>
 #	include <macadam/details/math/mc_zadd.h>
+#	include <macadam/details/math/mc_zacos.h>
+#	include <macadam/details/math/mc_zacosh.h>
 #	include <macadam/details/math/mc_zarg.h>
 #	include <macadam/details/math/mc_zasin.h>
 #	include <macadam/details/math/mc_zasinh.h>
