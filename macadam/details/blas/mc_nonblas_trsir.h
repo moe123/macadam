@@ -6,7 +6,7 @@
 //
 
 /* \name
- *    ?trsir transpose rectangle matrix in-place.
+ *    ?trsir transpose rectangular-matrix in-place.
  * 
  * \synopsis
  *    real-floating ?trsir(m, n, x)
@@ -14,11 +14,11 @@
  *    real-floating x(m, n)
  *
  * \purpose
- *    ?trsir transpose rectangle matrix in-place.
+ *    ?trsir transpose rectangular-matrix in-place.
  *
  * \parameters
- *    [in] m - int. Specifies the number of rows  in the input matrix x.
- *    [in] n - int. Specifies the number of columns in the input matrix x.
+ *    [in] m - int. Specifies the number of rows in the  input rectangular-matrix x.
+ *    [in] n - int. Specifies the number of columns in the input rectangular-matrix x.
  *
  * \examples
  *
@@ -35,21 +35,21 @@
 
 MC_TARGET_FUNC void mc_nonblas_strsir(int m, int n, float * x)
 {
-	mc_blas_matrix_trsir(float, x, m, n);
+	mc_nonblas_matrix_trsir(float, x, m, n);
 }
 
 #pragma mark - mc_nonblas_dtrsir -
 
 MC_TARGET_FUNC void mc_nonblas_dtrsir(int m, int n, double * x)
 {
-	mc_blas_matrix_trsir(double, x, m, n);
+	mc_nonblas_matrix_trsir(double, x, m, n);
 }
 
 #pragma mark - mc_nonblas_ltrsir -
 
 MC_TARGET_FUNC void mc_nonblas_ltrsir(int m, int n, long double * x)
 {
-	mc_blas_matrix_trsir(long double, x, m, n);
+	mc_nonblas_matrix_trsir(long double, x, m, n);
 }
 
 #endif /* !MC_NONBLAS_TRSIR_H */

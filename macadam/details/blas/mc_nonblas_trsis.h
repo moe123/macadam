@@ -6,7 +6,7 @@
 //
 
 /* \name
- *    ?trsis transpose square matrix in-place.
+ *    ?trsis transpose square-matrix in-place.
  * 
  * \synopsis
  *    real-floating ?trsis(n, x)
@@ -14,10 +14,10 @@
  *    real-floating x(n, n)
  *
  * \purpose
- *    ?trsis transpose square matrix in-place.
+ *    ?trsis transpose square-matrix in-place.
  *
  * \parameters
- *    [in] n  - int. Specifies the order of the input square matrix x.
+ *    [in] n  - int. Specifies the order of the input square-matrix x.
  *    [out] x - real-floating array of dimension (n, n).
  *
  * \examples
@@ -35,21 +35,21 @@
 
 MC_TARGET_FUNC void mc_nonblas_strsis(int n, float * x)
 {
-	mc_blas_matrix_trsis(float, x, n);
+	mc_nonblas_matrix_trsis(float, x, n);
 }
 
 #pragma mark - mc_nonblas_dtrsis -
 
 MC_TARGET_FUNC void mc_nonblas_dtrsis(int n, double * x)
 {
-	mc_blas_matrix_trsis(double, x, n);
+	mc_nonblas_matrix_trsis(double, x, n);
 }
 
 #pragma mark - mc_nonblas_ltrsis -
 
 MC_TARGET_FUNC void mc_nonblas_ltrsis(int n, long double * x)
 {
-	mc_blas_matrix_trsis(long double, x, n);
+	mc_nonblas_matrix_trsis(long double, x, n);
 }
 
 #endif /* !MC_NONBLAS_TRSIS_H */

@@ -23,34 +23,34 @@
  *    and a is an m by n matrix.
  *
  * \parameters
- *    [in] trans - char. Specifies the operation to be performed as follows:
+ *    [in]  trans - char. Specifies the operation to be performed as follows:
  *    trans= 'N' or 'n' y=alpha*a*x + beta*y.
  *    trans= 'T' or 't' y=alpha*a'*x + beta*y.
  *    trans= 'C' or 'c' y=alpha*a'*x + beta*y.
  *
- *    [in] m     - int. Specifies the number of rows of the matrix a, m must be at least zero.
- *    [in] n     - int. Specifies the number of columns of the matrix a, must be at least zero.
+ *    [in]  m     - int. Specifies the number of rows of the matrix a, m must be at least zero.
+ *    [in]  n     - int. Specifies the number of columns of the matrix a, must be at least zero.
  *
- *    [in] alpha - real-floating. Specifies the scalar alpha.
+ *    [in]  alpha - real-floating. Specifies the scalar alpha.
  *
- *    [in] a     - real-floating array of dimension (lda, n), the leading m by n part of the
+ *    [in]  a     - real-floating array of dimension (lda, n), the leading m by n part of the
  *    array a must contain the matrix of coefficients.
  *
- *    [in] lda   - int. Specifies the first dimension of a, d must be at least max(1, m).
+ *    [in]  lda   - int. Specifies the first dimension of a, d must be at least max(1, m).
  *
- *    [in] x     - real-floating array of dimension at least (1+(n-1)*abs(incx)) when trans='N' or 'n'
+ *    [in]  x     - real-floating array of dimension at least (1+(n-1)*abs(incx)) when trans='N' or 'n'
  *    and at least (1+(m-1)*abs(incx)) otherwise. The incremented array x must contain the vector x.
  *
- *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [in]  incx  - int. Specifies the increment for the elements of x, incx must not be zero.
  *
- *    [in] beta  - real-floating. Specifies the scalar beta. When beta is supplied as zero then y need
+ *    [in]  beta  - real-floating. Specifies the scalar beta. When beta is supplied as zero then y need
  *    not be set on input.
 
- *    [out] y    - real-floating array of dimension at least (1+(m-1)*abs(incy)) when trans='N' or 'n'
- *    and at least (1+(n- 1)*abs(incy) otherwise. With beta non-zero, the incremented array y must contain
+ *    [out] y     - real-floating array of dimension at least (1+(m-1)*abs(incy)) when trans='N' or 'n'
+ *    and at least (1+(n-1)*abs(incy) otherwise. With beta non-zero, the incremented array y must contain
  *    the vector y, y is overwritten by the updated vector y.
  *
- *    [in] incy  - int. Specifies the increment for the elements of y, incy must not be zero.
+ *    [in]  incy  - int. Specifies the increment for the elements of y, incy must not be zero.
  *
  * \examples
  *

@@ -59,8 +59,7 @@
  *    is overwritten by the updated vector y.
  *    [in]  ldy   - int. Specifies the first dimension of x, ldx is at least (1+(m-1)*abs(incy)) when
  *    trans = 'N' or 'n' and at least (1+(n-1)*abs(incy)) otherwise.
- *    [in]  nx    - int. Specifies the second dimension of x, nx must be at least 1.
- *
+ *    [in]  ny    - int. Specifies the second dimension of x, nx must be at least 1.
  *    [in]  incy - int. Specifies the increment for the elements of y. incy must not be zero.
  *
  * \examples
@@ -324,7 +323,7 @@ MC_TARGET_FUNC void mc_nonblas_sgbmcv(const char trans, int m, int n, int kl, in
 
 MC_TARGET_FUNC void mc_nonblas_dgbmcv(const char trans, int m, int n, int kl, int ku, double alpha, const double * a, int lda, const double * x, int ldx, int nx, int indx, int incx, double beta, double * y, int ldy, int ny, int indy, int incy)
 {
-	const double one = 1.0f, zero = 0.0f;
+	const double one = 1.0, zero = 0.0;
 
 	double temp;
 	int i, j, k, ix, iy, jx, jy, kx, ky, kup1, info, lenx, leny;
