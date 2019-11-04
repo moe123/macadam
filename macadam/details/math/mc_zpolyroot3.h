@@ -52,7 +52,7 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 			*i2           = 0.0f;
 			*r3           = *r2;
 			*i3           = *i2;
-			r             = 2;
+			 r            = 2;
 		} else if (s < 0) {
 			const float m = mc_sqrtf(-q);
 			const float h = 2.0f * m;
@@ -68,20 +68,20 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 		} else if (s > 0) {
 			float u, v, w, h, g;
 			const float m = mc_sqrtf(s);
-			u             = t + m;
-			v             = t - m;
-			u             = (u > 0.0f) ? mc_cbrtf(u) : -mc_cbrtf(-u);
-			v             = (v > 0.0f) ? mc_cbrtf(v) : -mc_cbrtf(-v);
-			w             = u + v;
-			h             = MCK_KF(MCK_SQRT3) / 2.0f * (u - v);
-			g             = b / 3.0f;
+			 u            = t + m;
+			 v            = t - m;
+			 u            = (u > 0.0f) ? mc_cbrtf(u) : -mc_cbrtf(-u);
+			 v            = (v > 0.0f) ? mc_cbrtf(v) : -mc_cbrtf(-v);
+			 w            = u + v;
+			 h            = MCK_KF(MCK_SQRT3) / 2.0f * (u - v);
+			 g            = b / 3.0f;
 			*r1           = w - g;
 			*i1           = 0.0f;
 			*r2           = -0.5f * w - g;
 			*i2           = h;
 			*r3           = *r2;
 			*i3           = -(*i2);
-			r             = 5;
+			 r            = 5;
 		}
 	}
 	return r;
@@ -120,7 +120,7 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 			*i2            = 0.0;
 			*r3            = *r2;
 			*i3            = *i2;
-			r              = 2;
+			 r             = 2;
 		} else if (s < 0) {
 			const double m = mc_sqrt(-q);
 			const double h = 2.0 * m;
@@ -132,24 +132,24 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 			*i2            = *i1;
 			*r3            = h * mc_cos((w + MCK_K(MCK_4PI)) / 3.0) - g;
 			*i3            = *i2;
-			r              = 3;
+			 r             = 3;
 		} else if (s > 0) {
 			double u, v, w, h, g;
 			const double m = mc_sqrt(s);
-			u              = t + m;
-			v              = t - m;
-			u              = (u > 0.0) ? mc_cbrt(u) : -mc_cbrt(-u);
-			v              = (v > 0.0) ? mc_cbrt(v) : -mc_cbrt(-v);
-			w              = u + v;
-			h              = MCK_K(MCK_SQRT3) / 2.0 * (u - v);
-			g              = b / 3.0;
+			 u             = t + m;
+			 v             = t - m;
+			 u             = (u > 0.0) ? mc_cbrt(u) : -mc_cbrt(-u);
+			 v             = (v > 0.0) ? mc_cbrt(v) : -mc_cbrt(-v);
+			 w             = u + v;
+			 h             = MCK_K(MCK_SQRT3) / 2.0 * (u - v);
+			 g             = b / 3.0;
 			*r1            = w - g;
 			*i1            = 0.0;
 			*r2            = -0.5 * w - g;
 			*i2            = h;
 			*r3            = *r2;
 			*i3            = -(*i2);
-			r              = 5;
+			 r             = 5;
 		}
 	}
 	return r;
@@ -188,7 +188,7 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 			*i2                 = 0.0L;
 			*r3                 = *r2;
 			*i3                 = *i2;
-			r                   = 2;
+			 r                  = 2;
 		} else if (s < 0) {
 			const long double m = mc_sqrtl(-q);
 			const long double h = 2.0L * m;
@@ -204,20 +204,20 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 		} else if (s > 0) {
 			long double u, v, w, h, g;
 			const long double m = mc_sqrtl(s);
-			u                   = t + m;
-			v                   = t - m;
-			u                   = (u > 0.0L) ? mc_cbrtl(u) : -mc_cbrtl(-u);
-			v                   = (v > 0.0L) ? mc_cbrtl(v) : -mc_cbrtl(-v);
-			w                   = u + v;
-			h                   = MCK_KL(MCK_SQRT3) / 2.0L * (u - v);
-			g                   = b / 3.0L;
+			 u                  = t + m;
+			 v                  = t - m;
+			 u                  = (u > 0.0L) ? mc_cbrtl(u) : -mc_cbrtl(-u);
+			 v                  = (v > 0.0L) ? mc_cbrtl(v) : -mc_cbrtl(-v);
+			 w                  = u + v;
+			 h                  = MCK_KL(MCK_SQRT3) / 2.0L * (u - v);
+			 g                  = b / 3.0L;
 			*r1                 = w - g;
 			*i1                 = 0.0L;
 			*r2                 = -0.5L * w - g;
 			*i2                 = h;
 			*r3                 = *r2;
 			*i3                 = -(*i2);
-			r                   = 5;
+			 r                  = 5;
 		}
 	}
 	return r;

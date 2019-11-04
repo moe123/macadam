@@ -38,25 +38,25 @@ MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
 		*i1 = 0.0f;
 		*r2 = *r1;
 		*i2 = *i1;
-		r   = 1;
+		 r  = 1;
 	} else if (s > 0.0f) {
 		const float q = mc_sqrtf(s);
 		*r1           = (-b + q) * (1.0f / (a * 2.0f));
 		*i1           = 0.0f;
 		*r2           = (-b - q) * (1.0f / (a * 2.0f));
 		*i2           = 0.0f;
-		r             = 2;
+		 r            = 2;
 	} else if (s < 0.0f) {
 		mc_zsqrtf(r1, i1, s, 0.0f);
 		*r2 = *r1;
 		*i2 = *i1;
+		 r  = 4;
 
 		mc_zaddf(r1, i1, -b, 0.0f, *r1, *i1);
 		mc_zfdivf(r1, i1, *r1, *i1, a * 2.0f);
 
 		mc_zsubf(r2, i2, -b, 0.0f, *r2, *i2);
 		mc_zfdivf(r2, i2, *r2, *i2, a * 2.0f);
-		r = 4;
 	}
 	return r;
 }
@@ -80,25 +80,25 @@ MC_TARGET_PROC int mc_zpolyroot2(double a, double b, double c
 		*i1 = 0.0;
 		*r2 = *r1;
 		*i2 = *i1;
-		r   = 1;
+		 r  = 1;
 	} else if (s > 0.0) {
 		const double q = mc_sqrt(s);
 		*r1            = (-b + q) * (1.0 / (a * 2.0));
 		*i1            = 0.0;
 		*r2            = (-b - q) * (1.0 / (a * 2.0));
 		*i2            = 0.0;
-		r              = 2;
+		 r             = 2;
 	} else if (s < 0.0) {
 		mc_zsqrt(r1, i1, s, 0.0);
 		*r2 = *r1;
 		*i2 = *i1;
+		 r  = 4;
 
 		mc_zadd(r1, i1, -b, 0.0, *r1, *i1);
 		mc_zfdiv(r1, i1, *r1, *i1, a * 2.0);
 
 		mc_zsub(r2, i2, -b, 0.0, *r2, *i2);
 		mc_zfdiv(r2, i2, *r2, *i2, a * 2.0);
-		r = 4;
 	}
 	return r;
 }
@@ -122,25 +122,25 @@ MC_TARGET_PROC int mc_zpolyroot2l(long double a, long double b, long double c
 		*i1 = 0.0L;
 		*r2 = *r1;
 		*i2 = *i1;
-		r   = 1;
+		 r  = 1;
 	} else if (s > 0.0L) {
 		const long double q = mc_sqrtl(s);
 		*r1                 = (-b + q) * (1.0L / (a * 2.0L));
 		*i1                 = 0.0L;
 		*r2                 = (-b - q) * (1.0L / (a * 2.0L));
 		*i2                 = 0.0L;
-		r                   = 2;
+		 r                  = 2;
 	} else if (s < 0.0L) {
 		mc_zsqrtl(r1, i1, s, 0.0L);
 		*r2 = *r1;
 		*i2 = *i1;
+		 r  = 4;
 
 		mc_zaddl(r1, i1, -b, 0.0L, *r1, *i1);
 		mc_zfdivl(r1, i1, *r1, *i1, a * 2.0);
 
 		mc_zsubl(r2, i2, -b, 0.0L, *r2, *i2);
 		mc_zfdivl(r2, i2, *r2, *i2, a * 2.0L);
-		r = 4;
 	}
 	return r;
 }
