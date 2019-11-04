@@ -1,7 +1,5 @@
 # BOF
 
-macadam/details/blas/*.h linguist-language=c
-macadam/details/math/*.h linguist-language=c
-macadam/details/rand/*.h linguist-language=c
+*.h linguist-language=c
 
 # EOF
