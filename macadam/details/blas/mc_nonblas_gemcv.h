@@ -48,7 +48,7 @@
  *    [in]  beta  - real-floating. Specifies the scalar beta. When beta is supplied as zero then y need
  *    not be set on input.
 
- *    [out] y     - real-floating array of dimension (ldx, nx). The incremented column of y must contain the
+ *    [out] y     - real-floating array of dimension (ldy, ny). The incremented column of y must contain the
  *    vector y, y column is overwritten by the updated vector y.
  *    is overwritten by the updated vector y.
  *    [in]  ldy   - int. Specifies the first dimension of x, ldx is at least (1+(m-1)*abs(incy)) when
