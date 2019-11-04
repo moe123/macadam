@@ -1,6 +1,5 @@
 # BOF
 
-*.h linguist-language=c
 macadam/details/blas/*.h linguist-language=c
 macadam/details/math/*.h linguist-language=c
 
