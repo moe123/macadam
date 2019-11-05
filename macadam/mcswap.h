@@ -11,6 +11,15 @@
 #ifndef MCSWAP_H
 #define MCSWAP_H
 
+#pragma mark - mcswap_var -
+
+#	define mcswap_var(var, a, b) \
+	mc_scope_begin \
+		(var) = (a);   \
+		(a)   = (b);   \
+		(b)   = (var); \
+	mc_scope_end
+
 #pragma mark - mcswap_type -
 
 #	define mcswap_type(type, a, b) \

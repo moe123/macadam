@@ -11,8 +11,9 @@
  *    y=a*x + beta*y or y=a'*x + beta*y.
  *
  * \synopsis
- *    void ?ugemv(trans, m, n, a, lda, x, beta0, y)
- *    int           beta0, lda, m, n
+ *    void ?ugemv(trans, m, n, a, lda, x, beta, y)
+ *    real-floating beta
+ *    int           beta, lda, m, n
  *    char          trans
  *    real-floating a(lda, *), x(*), y(*)
  *

@@ -6,6 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/mc_target.h>
+
 #ifndef MC_BLAS_ACCESS_H
 #define MC_BLAS_ACCESS_H
 
@@ -21,7 +23,7 @@
 /* //!# gtp - literal type of elements.       */ \
 /* //!# g   - memory pointer.                 */ \
 /* //!# ng  - number of rows and columns.     */ \
-	do { \
+	mc_scope_begin \
 		int __mc_nonblas_i = 0, __mc_nonblas_j; \
 		int __mc_nonblas_n = mc_cast_exp(int, ng); \
 		gtp __mc_nonblas_w; \
@@ -32,7 +34,7 @@
 				g[((__mc_nonblas_j) * __mc_nonblas_n) + __mc_nonblas_i] = __mc_nonblas_w; \
 			} \
 		} \
-	} while (0)
+	mc_scope_end
 
 #	define mc_nonblas_matrix_trsir(gtp, g, mg, ng) \
 /* //!# Transposing in-place rectangular-matrix g. */ \
@@ -40,7 +42,7 @@
 /* //!# g   - memory pointer.                      */ \
 /* //!# mg  - number of rows.                      */ \
 /* //!# ng  - number of columns.                   */ \
-	do { \
+	mc_scope_begin \
 		int __mc_nonblas_i = 0, __mc_nonblas_j, __mc_nonblas_k; \
 		int __mc_nonblas_m = mc_cast_exp(int, mg); \
 		int __mc_nonblas_n = mc_cast_exp(int, ng); \
@@ -62,7 +64,7 @@
 				} while (__mc_nonblas_k > __mc_nonblas_i); \
 			} \
 		} \
-	} while (0)
+	mc_scope_end
 
 #	define mc_blas_vector_at(g, gi) mc_nonblas_vector_at(g, ((gi) - 1))
 
