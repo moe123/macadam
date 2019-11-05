@@ -72,6 +72,7 @@
 #	include <macadam/details/blas/mc_nonblas_gbmcv.h>
 #	include <macadam/details/blas/mc_nonblas_gemcv.h>
 #	include <macadam/details/blas/mc_nonblas_gercv.h>
+#	include <macadam/details/blas/mc_nonblas_nrm2cv.h>
 #	include <macadam/details/blas/mc_nonblas_rotcv.h>
 #	include <macadam/details/blas/mc_nonblas_trsir.h>
 #	include <macadam/details/blas/mc_nonblas_trsis.h>

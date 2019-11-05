@@ -20,9 +20,9 @@
  *    and the transformation is called a Givens plane rotation.
  *
  * \parameters
- *    [in] m     - int. Specifies the number of elements within a column of x and y.
+ *    [in]  m    - int. Specifies the number of elements within a column of x and y.
  *
- *    [out] x    - real-floating array of dimension (ldx, n) where ldx is at least (1+(m-1)*abs(incx)).
+ *    [out] x    - real-floating array of dimension (ldx, nx) where ldx is at least (1+(m-1)*abs(incx)).
  *    [in]  ldx  - int. Specifies the first dimension of x, ldx is at least (1+(m-1)*abs(incx)).
  *    [in]  nx   - int. Specifies the second dimension of x, nx must be at least 1.
  *    [in]  indx - int. Specifies the column vector index of x, indx must be within range [1, nx].
