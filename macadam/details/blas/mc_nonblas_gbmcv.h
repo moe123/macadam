@@ -19,7 +19,7 @@
  *
  * \purpose
  *   ?gbmcv performs one of the matrix-column-vector operations where alpha and beta are scalars, x
- *   and y are column vectors and a is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
+ *   and y are column-vectors and a is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
  *
  * \parameters
  *    [in]  trans - char. Specifies the operation to be performed as follows:
@@ -48,7 +48,7 @@
  *    [in]  ldx   - int. Specifies the first dimension of x, ldx is at least (1+(n-1)*abs(incx)) when
  *    trans = 'N' or 'n' and at least (1+(m-1)*abs(incx)) otherwise.
  *    [in]  nx    - int. Specifies the second dimension of x, nx must be at least 1.
- *    [in]  indx  - int. Specifies the column vector index of x, indx must be within range [1, nx].
+ *    [in]  indx  - int. Specifies the column-vector index of x, indx must be within range [1, nx].
  *    [in]  incx  - int. Specifies the increment for the elements of x, incx must not be zero.
  *
  *    [in]  beta  - real-floating. Specifies the scalar beta. when beta is supplied as zero then y need not
@@ -159,7 +159,7 @@
  *        ,   0
  *     }
  *
- * \level 3 nonblas routine.
+ * \nonblas routine.
  *     \author Moe123.
  */
 

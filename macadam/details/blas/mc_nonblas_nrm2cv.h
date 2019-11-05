@@ -11,28 +11,24 @@
  * \synopsis
  *    real-floating ?nrm2cv(m, x, ldx, nx, indx, incx)
  *    int           indx, incx, ldx, m, nx
- *    real-floating x(*)
+ *    real-floating x(ldx, *)
  *
  * \purpose
- *    ?nrm2cv returns the euclidean norm of a vector: norm2=sqrt(x'*x).
+ *    ?nrm2cv returns the euclidean norm of a column-vector: norm2=sqrt(x'*x).
  *
  * \parameters
- *    [in] m     - int. Specifies the number of elements within a column of x and y.
- *
+ *    [in] m    - int. Specifies the number of elements within a column of x.
+
  *    [in] x    - real-floating array of dimension (ldx, nx) where ldx is at least (1+(m-1)*abs(incx)).
  *    [in] ldx  - int. Specifies the first dimension of x, ldx is at least (1+(m-1)*abs(incx)).
  *    [in] nx   - int. Specifies the second dimension of x, nx must be at least 1.
- *    [in] indx - int. Specifies the column vector index of x, indx must be within range [1, nx].
+ *    [in] indx - int. Specifies the column-vector index of x, indx must be within range [1, nx].
  *    [in] incx - int. Specifies the increment for the elements of x, incx must not be zero.
  *
  * \examples
  *
- * \level 1 blas routine.
- *     \author Univ. of Tennessee.
- *     \author Univ. of California Berkeley.
- *     \author Univ. of Colorado Denver.
- *     \author NAG Ltd.
- *     \author Sven Hammarling, Nag Ltd.
+ * \nonblas routine.
+ *     \author Moe123.
  */
 
 #include <macadam/details/blas/mc_blas_access.h>

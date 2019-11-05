@@ -6,7 +6,7 @@
 //
 
 /* \name
- *    ?rotcv applies a plane rotation to column vectors.
+ *    ?rotcv applies a plane rotation to column-vectors.
  * 
  * \synopsis
  *    real-floating ?rotcv(m, n, x, ldx, nx, indx, incx, y, ldy, ny, indy, incy, c, s)
@@ -25,13 +25,13 @@
  *    [out] x    - real-floating array of dimension (ldx, nx) where ldx is at least (1+(m-1)*abs(incx)).
  *    [in]  ldx  - int. Specifies the first dimension of x, ldx is at least (1+(m-1)*abs(incx)).
  *    [in]  nx   - int. Specifies the second dimension of x, nx must be at least 1.
- *    [in]  indx - int. Specifies the column vector index of x, indx must be within range [1, nx].
+ *    [in]  indx - int. Specifies the column-vector index of x, indx must be within range [1, nx].
  *    [in]  incx - int. Specifies the increment for the elements of x, incx must not be zero.
  *
  *    [out] y    - real-floating array of dimension (ldy, ny) where ldy is at least  (1+(m-1)*abs(incy)).
  *    [in]  ldy  - int. Specifies the first dimension of y, ldx is at least (1+(m-1)*abs(incy)).
  *    [in]  ny   - int. Specifies the second dimension of y, nx must be at least 1.
- *    [in]  indy - int. Specifies the column vector index of y, indy must be within range [1, ny].
+ *    [in]  indy - int. Specifies the column-vector index of y, indy must be within range [1, ny].
  *    [in]  incy - int. Specifies the increment for the elements of y, incy must not be zero.
  *
  *    [in]  c    - float-floating. Specifies the cosine of the angle of rotation.
@@ -39,7 +39,7 @@
  *
  * \examples
  *
- * \level 3 nonblas routine.
+ * \nonblas routine.
  *     \author Moe123.
  */
 

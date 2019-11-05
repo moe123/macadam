@@ -46,7 +46,7 @@
  * 
  * \examples
  *
- * \level 3 nonblas routine.
+ * \nonblas routine.
  *     \author Moe123.
  */
 

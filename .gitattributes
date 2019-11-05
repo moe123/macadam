@@ -1,6 +1,7 @@
 # BOF
 
 *.h linguist-language=C
+#macadam/details/blas/*.h linguist-language=C
 #macadam/details/math/*.h linguist-language=C
 #macadam/details/rand/*.h linguist-language=C
 
