@@ -76,6 +76,7 @@
 #	include <macadam/details/blas/mc_nonblas_rotcv.h>
 #	include <macadam/details/blas/mc_nonblas_trsir.h>
 #	include <macadam/details/blas/mc_nonblas_trsis.h>
+#	include <macadam/details/blas/mc_nonblas_ugemv.h>
 
 #endif /* !MC_BLAS_H */
 

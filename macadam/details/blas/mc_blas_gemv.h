@@ -19,7 +19,7 @@
  *
  * \purpose
  *    ?gemv performs one of the matrix-vector operations: y=alpha*a*x + beta*y or
- *    y=alpha*Aa'*x + beta*y where alpha and beta are scalars, x and y are vectors
+ *    y=alpha*a'*x + beta*y where alpha and beta are scalars, x and y are vectors
  *    and a is an m by n matrix.
  *
  * \parameters
@@ -47,7 +47,7 @@
  *    not be set on input.
 
  *    [out] y     - real-floating array of dimension at least (1+(m-1)*abs(incy)) when trans='N' or 'n'
- *    and at least (1+(n-1)*abs(incy) otherwise. With beta non-zero, the incremented array y must contain
+ *    and at least (1+(n-1)*abs(incy)) otherwise. With beta non-zero, the incremented array y must contain
  *    the vector y, y is overwritten by the updated vector y.
  *
  *    [in]  incy  - int. Specifies the increment for the elements of y, incy must not be zero.
