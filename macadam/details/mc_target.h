@@ -151,6 +151,12 @@
 #		define MC_TARGET_FUNC static MC_TARGET_INLINE
 #	endif
 
+#	if MC_TARGET_C99
+#		define MC_TARGET_NONNULL(p, pn) p[static pn]
+#	else
+#		define MC_TARGET_NONNULL(p, pn) p[pn]
+#	endif
+
 #	if MC_DISABLE_OVERLOADABLE
 #		undef  MC_TARGET_HAVE_OVERLOADABLE
 #		undef  MC_TARGET_OVERLOADABLE

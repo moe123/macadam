@@ -12,6 +12,8 @@
 #	include <macadam/mcconsts.h>
 #	include <macadam/mclimits.h>
 #	include <macadam/mcmath.h>
+#	include <macadam/mcnuma.h>
+#	include <macadam/mcrand.h>
 #	include <macadam/mcswap.h>
 
 #endif /* !MACADAM_H */
