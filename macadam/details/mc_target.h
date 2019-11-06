@@ -152,9 +152,9 @@
 #	endif
 
 #	if MC_TARGET_C99
-#		define MC_TARGET_NONNULL(p, pn) p[static pn]
+#		define MC_TARGET_NONNULL static
 #	else
-#		define MC_TARGET_NONNULL(p, pn) p[pn]
+#		define MC_TARGET_NONNULL
 #	endif
 
 #	if MC_DISABLE_OVERLOADABLE

@@ -14,7 +14,7 @@
 
 #pragma mark - mc_trsi3x3 -
 
-MC_TARGET_FUNC void mc_trsi3x3f(float MC_TARGET_NONNULL(a, 9))
+MC_TARGET_FUNC void mc_trsi3x3f(float a[MC_TARGET_NONNULL 9])
 {
 	float c;
 	mcswap_var(c, a[3], a[1]);
@@ -22,7 +22,7 @@ MC_TARGET_FUNC void mc_trsi3x3f(float MC_TARGET_NONNULL(a, 9))
 	mcswap_var(c, a[7], a[5]);
 }
 
-MC_TARGET_FUNC void mc_trsi3x3(double MC_TARGET_NONNULL(a, 9))
+MC_TARGET_FUNC void mc_trsi3x3(double a[MC_TARGET_NONNULL 9])
 {
 	double c;
 	mcswap_var(c, a[3], a[1]);
@@ -30,7 +30,7 @@ MC_TARGET_FUNC void mc_trsi3x3(double MC_TARGET_NONNULL(a, 9))
 	mcswap_var(c, a[7], a[5]);
 }
 
-MC_TARGET_FUNC void mc_trsi3x3l(long double MC_TARGET_NONNULL(a, 9))
+MC_TARGET_FUNC void mc_trsi3x3l(long double a[MC_TARGET_NONNULL 9])
 {
 	long double c;
 	mcswap_var(c, a[3], a[1]);

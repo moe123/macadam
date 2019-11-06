@@ -26,7 +26,7 @@
 #pragma mark - mc_zreig2x2_approx0 -
 
 MC_TARGET_PROC int mc_zreig2x2f_approx0(
-	  const float MC_TARGET_NONNULL(a, 4)
+	  const float a[MC_TARGET_NONNULL 4]
 	, float * e0_r
 	, float * e0_i
 	, float * e1_r
@@ -233,7 +233,7 @@ MC_TARGET_PROC int mc_zreig2x2f_approx0(
 }
 
 MC_TARGET_PROC int mc_zreig2x2_approx0(
-	  const double MC_TARGET_NONNULL(a, 4)
+	  const double a[MC_TARGET_NONNULL 4]
 	, double * e0_r
 	, double * e0_i
 	, double * e1_r
@@ -440,7 +440,7 @@ MC_TARGET_PROC int mc_zreig2x2_approx0(
 }
 
 MC_TARGET_PROC int mc_zreig2x2l_approx0(
-	  const long double MC_TARGET_NONNULL(a, 4)
+	  const long double a[MC_TARGET_NONNULL 4]
 	, long double * e0_r
 	, long double * e0_i
 	, long double * e1_r
@@ -649,7 +649,7 @@ MC_TARGET_PROC int mc_zreig2x2l_approx0(
 #pragma mark - mc_zreig2x2_approx1 -
 
 MC_TARGET_PROC int mc_zreig2x2f_approx1(
-	  const float MC_TARGET_NONNULL(a, 4)
+	  const float a[MC_TARGET_NONNULL 4]
 	, float * e0_r
 	, float * e0_i
 	, float * e1_r
@@ -716,7 +716,7 @@ MC_TARGET_PROC int mc_zreig2x2f_approx1(
 }
 
 MC_TARGET_PROC int mc_zreig2x2_approx1(
-	  const double MC_TARGET_NONNULL(a, 4)
+	  const double a[MC_TARGET_NONNULL 4]
 	, double * e0_r
 	, double * e0_i
 	, double * e1_r
@@ -783,7 +783,7 @@ MC_TARGET_PROC int mc_zreig2x2_approx1(
 }
 
 MC_TARGET_PROC int mc_zreig2x2l_approx1(
-	  const long double MC_TARGET_NONNULL(a, 4)
+	  const long double a[MC_TARGET_NONNULL 4]
 	, long double * e0_r
 	, long double * e0_i
 	, long double * e1_r
@@ -852,7 +852,7 @@ MC_TARGET_PROC int mc_zreig2x2l_approx1(
 #pragma mark - mc_zreig2x2 -
 
 MC_TARGET_PROC int mc_zreig2x2f(
-	  const float MC_TARGET_NONNULL(a, 4)
+	  const float a[MC_TARGET_NONNULL 4]
 	, float * e0_r
 	, float * e0_i
 	, float * e1_r
@@ -869,7 +869,7 @@ MC_TARGET_PROC int mc_zreig2x2f(
 }
 
 MC_TARGET_PROC int mc_zreig2x2(
-	  const double MC_TARGET_NONNULL(a, 4)
+	  const double a[MC_TARGET_NONNULL 4]
 	, double * e0_r
 	, double * e0_i
 	, double * e1_r
@@ -886,7 +886,7 @@ MC_TARGET_PROC int mc_zreig2x2(
 }
 
 MC_TARGET_PROC int mc_zreig2x2l(
-	  const long double MC_TARGET_NONNULL(a, 4)
+	  const long double a[MC_TARGET_NONNULL 4]
 	, long double * e0_r
 	, long double * e0_i
 	, long double * e1_r
