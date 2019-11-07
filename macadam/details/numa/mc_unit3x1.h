@@ -13,7 +13,7 @@
 
 #pragma mark - mc_unit3x1 -
 
-MC_TARGET_FUNC void mc_unit3x1f(int m, int n, int j, float a[MC_TARGET_NONNULL 3])
+MC_TARGET_FUNC void mc_unit3x1f(int m, int n, int j, float a[3])
 {
 	const float scale = 1.0f / mc_norm3x1f(m, n, j, a);
 	a[j]              = a[j] * scale;
@@ -21,7 +21,7 @@ MC_TARGET_FUNC void mc_unit3x1f(int m, int n, int j, float a[MC_TARGET_NONNULL 3
 	a[(n * 2) + j]    = a[(n * 2) + j] * scale;
 }
 
-MC_TARGET_FUNC void mc_unit3x1(int m, int n, int j, double a[MC_TARGET_NONNULL 3])
+MC_TARGET_FUNC void mc_unit3x1(int m, int n, int j, double a[3])
 {
 	const double scale = 1.0 / mc_norm3x1(m, n, j, a);
 	a[j]               = a[j] * scale;
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_unit3x1(int m, int n, int j, double a[MC_TARGET_NONNULL 3
 	a[(n * 2) + j]     = a[(n * 2) + j] * scale;
 }
 
-MC_TARGET_FUNC void mc_unit3x1l(int m, int n, int j, long double a[MC_TARGET_NONNULL 3])
+MC_TARGET_FUNC void mc_unit3x1l(int m, int n, int j, long double a[3])
 {
 	const long double scale = 1.0L / mc_norm3x1l(m, n, j, a);
 	a[j]                    = a[j] * scale;

@@ -13,17 +13,17 @@
 
 #pragma mark - mc_trace2x2 -
 
-MC_TARGET_FUNC float mc_trace2x2f(const float a[MC_TARGET_NONNULL 4])
+MC_TARGET_FUNC float mc_trace2x2f(const float a[4])
 {
 	return a[0] + a[3];
 }
 
-MC_TARGET_FUNC double mc_trace2x2(const double a[MC_TARGET_NONNULL 4])
+MC_TARGET_FUNC double mc_trace2x2(const double a[4])
 {
 	return a[0] + a[3];
 }
 
-MC_TARGET_FUNC long double mc_trace2x2l(const long double a[MC_TARGET_NONNULL 4])
+MC_TARGET_FUNC long double mc_trace2x2l(const long double a[4])
 {
 	return a[0] + a[3];
 }

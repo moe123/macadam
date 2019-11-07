@@ -14,17 +14,17 @@
 
 #pragma mark - mc_norm1x3 -
 
-MC_TARGET_PROC float mc_norm1x3f(const float x[MC_TARGET_NONNULL 3])
+MC_TARGET_PROC float mc_norm1x3f(const float x[3])
 {
 	return mc_sqrtf(mc_raise2f(x[0]) + mc_raise2f(x[1]) + mc_raise2f(x[2]));
 }
 
-MC_TARGET_PROC double mc_norm1x3(const double x[MC_TARGET_NONNULL 3])
+MC_TARGET_PROC double mc_norm1x3(const double x[3])
 {
 	return mc_sqrt(mc_raise2(x[0]) + mc_raise2(x[1]) + mc_raise2(x[2]));
 }
 
-MC_TARGET_PROC long double mc_norm1x3l(const long double x[MC_TARGET_NONNULL 3])
+MC_TARGET_PROC long double mc_norm1x3l(const long double x[3])
 {
 	return mc_sqrtl(mc_raise2l(x[0]) + mc_raise2l(x[1]) + mc_raise2l(x[2]));
 }

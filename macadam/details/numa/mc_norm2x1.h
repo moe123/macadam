@@ -14,7 +14,7 @@
 
 #pragma mark - mc_norm2x1 -
 
-MC_TARGET_PROC float mc_norm2x1f(int m, int n, int j, const float a[MC_TARGET_NONNULL 2])
+MC_TARGET_PROC float mc_norm2x1f(int m, int n, int j, const float a[2])
 {
 	if (m < 2 || n < 1) {
 		return MCK_NAN;
@@ -22,7 +22,7 @@ MC_TARGET_PROC float mc_norm2x1f(int m, int n, int j, const float a[MC_TARGET_NO
 	return mc_sqrtf(mc_raise2f(a[j]) + mc_raise2f(a[n + j]));
 }
 
-MC_TARGET_PROC double mc_norm2x1(int m, int n, int j, const double a[MC_TARGET_NONNULL 2])
+MC_TARGET_PROC double mc_norm2x1(int m, int n, int j, const double a[2])
 {
 	if (m < 2 || n < 1) {
 		return MCK_NAN;
@@ -30,7 +30,7 @@ MC_TARGET_PROC double mc_norm2x1(int m, int n, int j, const double a[MC_TARGET_N
 	return mc_sqrt(mc_raise2(a[j]) + mc_raise2(a[n + j]));
 }
 
-MC_TARGET_PROC long double mc_norm2x1l(int m, int n, int j, const long double a[MC_TARGET_NONNULL 2])
+MC_TARGET_PROC long double mc_norm2x1l(int m, int n, int j, const long double a[2])
 {
 	if (m < 2 || n < 1) {
 		return MCK_NAN;

@@ -14,19 +14,19 @@
 
 #pragma mark - mc_trsi2x2 -
 
-MC_TARGET_FUNC void mc_trsi2x2f(float a[MC_TARGET_NONNULL 4])
+MC_TARGET_FUNC void mc_trsi2x2f(float a[4])
 {
 	float c;
 	mcswap_var(c, a[1], a[2]);
 }
 
-MC_TARGET_FUNC void mc_trsi2x2(double a[MC_TARGET_NONNULL 4])
+MC_TARGET_FUNC void mc_trsi2x2(double a[4])
 {
 	double c;
 	mcswap_var(c, a[1], a[2]);
 }
 
-MC_TARGET_FUNC void mc_trsi2x2l(long double a[MC_TARGET_NONNULL 4])
+MC_TARGET_FUNC void mc_trsi2x2l(long double a[4])
 {
 	long double c;
 	mcswap_var(c, a[1], a[2]);

@@ -13,21 +13,21 @@
 
 #pragma mark - mc_unit1x2 -
 
-MC_TARGET_FUNC void mc_unit1x2f(float x[MC_TARGET_NONNULL 2])
+MC_TARGET_FUNC void mc_unit1x2f(float x[2])
 {
 	const float scale = 1.0f / mc_norm1x2f(x);
 	x[0] = x[0] * scale;
 	x[1] = x[1] * scale;
 }
 
-MC_TARGET_FUNC void mc_unit1x2(double x[MC_TARGET_NONNULL 2])
+MC_TARGET_FUNC void mc_unit1x2(double x[2])
 {
 	const double scale = 1.0 / mc_norm1x2(x);
 	x[0] = x[0] * scale;
 	x[1] = x[1] * scale;
 }
 
-MC_TARGET_FUNC void mc_unit1x2l(long double x[MC_TARGET_NONNULL 2])
+MC_TARGET_FUNC void mc_unit1x2l(long double x[2])
 {
 	const long double scale = 1.0L / mc_norm1x2l(x);
 	x[0] = x[0] * scale;

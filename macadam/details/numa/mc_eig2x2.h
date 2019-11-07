@@ -15,7 +15,7 @@
 
 #pragma mark - mc_eig2x2 -
 
-MC_TARGET_FUNC int mc_eig2x2f(const float a[MC_TARGET_NONNULL 4], float e[MC_TARGET_NONNULL 2], float * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_eig2x2f(const float a[4], float e[2], float * v)
 {
 	int r, wantv = mc_nonnull(v);
 	float e0_r, e0_i;
@@ -46,7 +46,7 @@ MC_TARGET_FUNC int mc_eig2x2f(const float a[MC_TARGET_NONNULL 4], float e[MC_TAR
 	return r > 0 ? 0 : r - 1;
 }
 
-MC_TARGET_FUNC int mc_eig2x2(const double a[MC_TARGET_NONNULL 4], double e[MC_TARGET_NONNULL 2], double * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_eig2x2(const double a[4], double e[2], double * v)
 {
 	int r, wantv = mc_nonnull(v);
 	double e0_r, e0_i;
@@ -77,7 +77,7 @@ MC_TARGET_FUNC int mc_eig2x2(const double a[MC_TARGET_NONNULL 4], double e[MC_TA
 	return r > 0 ? 0 : r - 1;
 }
 
-MC_TARGET_FUNC int mc_eig2x2l(const long double a[MC_TARGET_NONNULL 4], long double e[MC_TARGET_NONNULL 2], long double * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_eig2x2l(const long double a[4], long double e[2], long double * v)
 {
 	int r, wantv = mc_nonnull(v);
 	long double e0_r, e0_i;
