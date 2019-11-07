@@ -7,7 +7,6 @@
 //
 
 #include <macadam/details/mc_target.h>
-#include <macadam/mcswap.h>
 
 #ifndef MC_EYE2X2_H
 #define MC_EYE2X2_H

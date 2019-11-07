@@ -152,9 +152,11 @@
 #	endif
 
 #	if MC_TARGET_C99
-#		define MC_TARGET_NONNULL static
+#		define MC_TARGET_NONNULL  static
+#		define MC_TARGET_RESTRICT restrict
 #	else
 #		define MC_TARGET_NONNULL
+#		define MC_TARGET_RESTRICT
 #	endif
 
 #	if MC_DISABLE_OVERLOADABLE
