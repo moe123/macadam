@@ -334,7 +334,7 @@ F145:
 
 	if (i1 > 1) {
 		n1 = i1 - 1;
-		while(i1 >= 2 && mc_blas_vector_at(z, (4 * i1) - 5) >= zero) {
+		while (i1 >= 2 && mc_blas_vector_at(z, (4 * i1) - 5) >= zero) {
 			i1 = i1 - 1;
 		}
 		if (i1 >= 1) {
@@ -690,7 +690,7 @@ F145:
 
 	if (i1 > 1) {
 		n1 = i1 - 1;
-		while(i1 >= 2 && mc_blas_vector_at(z, (4 * i1) - 5) >= zero) {
+		while (i1 >= 2 && mc_blas_vector_at(z, (4 * i1) - 5) >= zero) {
 			i1 = i1 - 1;
 		}
 		if (i1 >= 1) {
@@ -1046,7 +1046,7 @@ F145:
 
 	if (i1 > 1) {
 		n1 = i1 - 1;
-		while(i1 >= 2 && mc_blas_vector_at(z, (4 * i1) - 5) >= zero) {
+		while (i1 >= 2 && mc_blas_vector_at(z, (4 * i1) - 5) >= zero) {
 			i1 = i1 - 1;
 		}
 		if (i1 >= 1) {

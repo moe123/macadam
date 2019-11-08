@@ -125,7 +125,7 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, float y1,
 			}
 		}
 		if (*d1 != zero) {
-			while(*d1 <= rgamsq || *d1 >= gamsq) {
+			while (*d1 <= rgamsq || *d1 >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -149,7 +149,7 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, float y1,
 			}
 		}
 		if (*d2 != zero) {
-			while(mc_fabsf(*d2) <= rgamsq || mc_fabsf(*d2) >= gamsq) {
+			while (mc_fabsf(*d2) <= rgamsq || mc_fabsf(*d2) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -251,7 +251,7 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, double
 			}
 		}
 		if (*d1 != zero) {
-			while(*d1 <= rgamsq || *d1 >= gamsq) {
+			while (*d1 <= rgamsq || *d1 >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -275,7 +275,7 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, double
 			}
 		}
 		if (*d2 != zero) {
-			while(mc_fabs(*d2) <= rgamsq || mc_fabs(*d2) >= gamsq) {
+			while (mc_fabs(*d2) <= rgamsq || mc_fabs(*d2) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -383,7 +383,7 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 			}
 		}
 		if (*d1 != zero) {
-			while(*d1 <= rgamsq || *d1 >= gamsq) {
+			while (*d1 <= rgamsq || *d1 >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -407,7 +407,7 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 			}
 		}
 		if (*d2 != zero) {
-			while(mc_fabsl(*d2) <= rgamsq || mc_fabsl(*d2) >= gamsq) {
+			while (mc_fabsl(*d2) <= rgamsq || mc_fabsl(*d2) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;

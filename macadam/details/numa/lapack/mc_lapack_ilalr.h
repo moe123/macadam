@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_lapack_ilaslr(int m, int n, const float * a, int lda)
 		ilalr = 0;
 		for (j = 1; j <= n; ++j) {
 			i = m;
-			while(mc_blas_matrix_at(a, lda, n, mc_maxmag(i, 1), j) == zero && i >= 1) {
+			while (mc_blas_matrix_at(a, lda, n, mc_maxmag(i, 1), j) == zero && i >= 1) {
 				i = i - 1;
 			}
 			ilalr = mc_maxmag(ilalr, i);
@@ -55,7 +55,7 @@ MC_TARGET_FUNC int mc_lapack_iladlr(int m, int n, const double * a, int lda)
 		ilalr = 0;
 		for (j = 1; j <= n; ++j) {
 			i = m;
-			while(mc_blas_matrix_at(a, lda, n, mc_maxmag(i, 1), j) == zero && i >= 1) {
+			while (mc_blas_matrix_at(a, lda, n, mc_maxmag(i, 1), j) == zero && i >= 1) {
 				i = i - 1;
 			}
 			ilalr = mc_maxmag(ilalr, i);
@@ -81,7 +81,7 @@ MC_TARGET_FUNC int mc_lapack_ilallr(int m, int n, const long double * a, int lda
 		ilalr = 0;
 		for (j = 1; j <= n; ++j) {
 			i = m;
-			while(mc_blas_matrix_at(a, lda, n, mc_maxmag(i, 1), j) == zero && i >= 1) {
+			while (mc_blas_matrix_at(a, lda, n, mc_maxmag(i, 1), j) == zero && i >= 1) {
 				i = i - 1;
 			}
 			ilalr = mc_maxmag(ilalr, i);
