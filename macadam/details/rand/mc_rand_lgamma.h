@@ -46,7 +46,7 @@ MC_TARGET_FUNC float mc_rand_lgammaf(float a, float l)
 			break;
 		}
 		u = mc_logf(u);
-	} while(!(u <= 0.5f * r + d * (1.0f - v + mc_logf(v))));
+	} while (!(u <= 0.5f * r + d * (1.0f - v + mc_logf(v))));
 	r = d * v;
 	if (j) {
 		r = r * mc_powf(1.0f -  mc_randuf(), 1.0f / (a - 1.0f));
@@ -81,7 +81,7 @@ MC_TARGET_FUNC double mc_rand_lgamma(double a, double l)
 			break;
 		}
 		u = mc_log(u);
-	} while(!(u <= 0.5 * r + d * (1.0 - v + mc_log(v))));
+	} while (!(u <= 0.5 * r + d * (1.0 - v + mc_log(v))));
 	r = d * v;
 	if (j) {
 		r = r * mc_pow(1.0 -  mc_randu(), 1.0 / (a - 1.0));
@@ -116,7 +116,7 @@ MC_TARGET_FUNC long double mc_rand_lgammal(long double a, long double l)
 			break;
 		}
 		u = mc_logl(u);
-	} while(!(u <= 0.5L * r + d * (1.0L - v + mc_logl(v))));
+	} while (!(u <= 0.5L * r + d * (1.0L - v + mc_logl(v))));
 	r = d * v;
 	if (j) {
 		r = r * mc_powl(1.0L -  mc_randul(), 1.0L / (a - 1.0L));
