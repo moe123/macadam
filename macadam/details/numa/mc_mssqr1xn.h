@@ -76,9 +76,9 @@ MC_TARGET_FUNC void mc_mssqr1xn(int n, const double * x, double * mean, double *
 	int i;
 	double t;
 
-	*scale = 0.0;
-	*mean  = 0.0;
-	*sumsq = 1.0;
+	*scale = 0.0L;
+	*mean  = 0.0L;
+	*sumsq = 1.0L;
 
 	if (n > 0) {
 		if (n == 1) {

@@ -90,13 +90,16 @@
 #	include <macadam/details/numa/mc_eig2x2.h>
 #	include <macadam/details/numa/mc_eye2x2.h>
 #	include <macadam/details/numa/mc_eye3x3.h>
+#	include <macadam/details/numa/mc_l2norm1xn.h>
 #	include <macadam/details/numa/mc_mean1xn.h>
 #	include <macadam/details/numa/mc_mssqr1xn.h>
+#	include <macadam/details/numa/mc_mstdd1xn.h>
 #	include <macadam/details/numa/mc_norm1x2.h>
 #	include <macadam/details/numa/mc_norm1x3.h>
 #	include <macadam/details/numa/mc_norm2x1.h>
 #	include <macadam/details/numa/mc_norm3x1.h>
 #	include <macadam/details/numa/mc_sum1xn.h>
+#	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_trace2x2.h>
 #	include <macadam/details/numa/mc_trace3x3.h>
 #	include <macadam/details/numa/mc_tracemxn.h>
