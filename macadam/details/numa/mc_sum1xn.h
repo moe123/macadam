@@ -7,9 +7,6 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/numa/mc_kahan1xn.h>
-#include <macadam/details/numa/mc_klein1xn.h>
-#include <macadam/details/numa/mc_neumaier1xn.h>
 
 #ifndef MC_SUM1XN_H
 #define MC_SUM1XN_H
@@ -29,14 +26,55 @@ MC_TARGET_FUNC float mc_sum1xnf(int n, const float * x, int f)
 			return s;
 		}
 		case 1:
-			return mc_kahan1xnf(n, x);
-		break;
+		{ //!# Kahan summation.
+			int i   = 0;
+			float s = 0.0f, c = 0.0f;
+			for (; i < n; i++) {
+				const float u = x[i] - c;
+				const float w = s + u;
+				c             = (w - s) - u;
+				s             = w;
+			}
+			return s;
+		}
 		case 2:
-			return mc_neumaier1xnf(n, x);
+		{ //!# Neumaier summation.
+			int i   = 0;
+			float s = 0.0f, c = 0.0f, u, w;
+			for (; i < n; i++) {
+				w = x[i];
+				u = s + w;
+				c = c + (mc_fabsf(s) >= mc_fabsf(w) ? (s - u) + w :  (w - u) + s);
+				s = u;
+			}
+			return s + c;
+		}
 		case 3:
-			return mc_klein1xnf(n, x);
+		{ //!# Klein summation.
+			int i   = 0;
+			float s = 0.0f, c = 0.0f, cs = 0.0f, ccs = 0.0f, cc, t, w;
+			for (; i < n; i++) {
+				w = x[i];
+				t = s + w;
+				if (mc_fabsf(s) >= mc_fabsf(w)) {
+					c = (s - t) + w;
+				} else {
+					c = (w - t) + s;
+				}
+				s = t;
+				t = cs + c;
+				if (mc_fabsf(cs) >= mc_fabsf(c)) {
+					cc = (cs - t) + c;
+				} else {
+					cc = (c - t) + cs;
+				}
+				cs  = t;
+				ccs = ccs + cc;
+			}
+			return s + cs + ccs;
+		}
 		case 4:
-		{
+		{//!# Absolute summation.
 			int i   = 0;
 			float s = 0.0f;
 			for (; i < n; i++) {
@@ -61,14 +99,55 @@ MC_TARGET_FUNC double mc_sum1xnff(int n, const float * x, int f)
 			return s;
 		}
 		case 1:
-			return mc_kahan1xnff(n, x);
-		break;
+		{ //!# Kahan summation.
+			int i    = 0;
+			double s = 0.0, c = 0.0;
+			for (; i < n; i++) {
+				const double u = mc_cast(double, x[i]) - c;
+				const double w = s + u;
+				c              = (w - s) - u;
+				s              = w;
+			}
+			return s;
+		}
 		case 2:
-			return mc_neumaier1xnff(n, x);
+		{ //!# Neumaier summation.
+			int i    = 0;
+			double s = 0.0, c = 0.0, u, w;
+			for (; i < n; i++) {
+				w = mc_cast(double, x[i]);
+				u = s + w;
+				c = c + (mc_fabs(s) >= mc_fabs(w) ? (s - u) + w :  (w - u) + s);
+				s = u;
+			}
+			return s + c;
+		}
 		case 3:
-			return mc_klein1xnff(n, x);
+		{ //!# Klein summation.
+			int i    = 0;
+			double s = 0.0, c = 0.0, cs = 0.0, ccs = 0.0, cc, t, w;
+			for (; i < n; i++) {
+				w = mc_cast(double, x[i]);
+				t = s + w;
+				if (mc_fabs(s) >= mc_fabs(w)) {
+					c = (s - t) + w;
+				} else {
+					c = (w - t) + s;
+				}
+				s = t;
+				t = cs + c;
+				if (mc_fabs(cs) >= mc_fabs(c)) {
+					cc = (cs - t) + c;
+				} else {
+					cc = (c - t) + cs;
+				}
+				cs  = t;
+				ccs = ccs + cc;
+			}
+			return s + cs + ccs;
+		}
 		case 4:
-		{
+		{//!# Absolute summation.
 			int i    = 0;
 			double s = 0.0;
 			for (; i < n; i++) {
@@ -93,14 +172,55 @@ MC_TARGET_FUNC double mc_sum1xn(int n, const double * x, int f)
 			return s;
 		}
 		case 1:
-			return mc_kahan1xn(n, x);
-		break;
+		{ //!# Kahan summation.
+			int i    = 0;
+			double s = 0.0, c = 0.0;
+			for (; i < n; i++) {
+				const double u = x[i] - c;
+				const double w = s + u;
+				c              = (w - s) - u;
+				s              = w;
+			}
+			return s;
+		}
 		case 2:
-			return mc_neumaier1xn(n, x);
+		{ //!# Neumaier summation.
+			int i    = 0;
+			double s = 0.0, c = 0.0, u, w;
+			for (; i < n; i++) {
+				w = x[i];
+				u = s + w;
+				c = c + (mc_fabs(s) >= mc_fabs(w) ? (s - u) + w :  (w - u) + s);
+				s = u;
+			}
+			return s + c;
+		}
 		case 3:
-			return mc_klein1xn(n, x);
+		{ //!# Klein summation.
+			int i    = 0;
+			double s = 0.0, c = 0.0, cs = 0.0, ccs = 0.0, cc, t, w;
+			for (; i < n; i++) {
+				w = x[i];
+				t = s + w;
+				if (mc_fabs(s) >= mc_fabs(w)) {
+					c = (s - t) + w;
+				} else {
+					c = (w - t) + s;
+				}
+				s = t;
+				t = cs + c;
+				if (mc_fabs(cs) >= mc_fabs(c)) {
+					cc = (cs - t) + c;
+				} else {
+					cc = (c - t) + cs;
+				}
+				cs  = t;
+				ccs = ccs + cc;
+			}
+			return s + cs + ccs;
+		}
 		case 4:
-		{
+		{//!# Absolute summation.
 			int i    = 0;
 			double s = 0.0;
 			for (; i < n; i++) {
@@ -114,7 +234,6 @@ MC_TARGET_FUNC double mc_sum1xn(int n, const double * x, int f)
 
 MC_TARGET_FUNC long double mc_sum1xnl(int n, const long double * x, int f)
 {
-	
 	switch (f) {
 		case 0:
 		{
@@ -126,14 +245,55 @@ MC_TARGET_FUNC long double mc_sum1xnl(int n, const long double * x, int f)
 			return s;
 		}
 		case 1:
-			return mc_kahan1xnl(n, x);
-		break;
+		{ //!# Kahan summation.
+			int i         = 0;
+			long double s = 0.0L, c = 0.0L;
+			for (; i < n; i++) {
+				const long double u = x[i] - c;
+				const long double w = s + u;
+				c                   = (w - s) - u;
+				s                   = w;
+			}
+			return s;
+		}
 		case 2:
-			return mc_neumaier1xnl(n, x);
+		{ //!# Neumaier summation.
+			int i         = 0;
+			long double s = 0.0L, c = 0.0L, u, w;
+			for (; i < n; i++) {
+				w = x[i];
+				u = s + w;
+				c = c + (mc_fabsl(s) >= mc_fabsl(w) ? (s - u) + w :  (w - u) + s);
+				s = u;
+			}
+			return s + c;
+		}
 		case 3:
-			return mc_klein1xnl(n, x);
+		{ //!# Klein summation.
+			int i         = 0;
+			long double s = 0.0L, c = 0.0L, cs = 0.0L, ccs = 0.0L, cc, t, w;
+			for (; i < n; i++) {
+				w = x[i];
+				t = s + w;
+				if (mc_fabsl(s) >= mc_fabsl(w)) {
+					c = (s - t) + w;
+				} else {
+					c = (w - t) + s;
+				}
+				s = t;
+				t = cs + c;
+				if (mc_fabsl(cs) >= mc_fabsl(c)) {
+					cc = (cs - t) + c;
+				} else {
+					cc = (c - t) + cs;
+				}
+				cs  = t;
+				ccs = ccs + cc;
+			}
+			return s + cs + ccs;
+		}
 		case 4:
-		{
+		{//!# Absolute summation.
 			int i         = 0;
 			long double s = 0.0L;
 			for (; i < n; i++) {
