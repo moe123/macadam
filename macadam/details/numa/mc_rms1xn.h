@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_l2norm1xn.h
+// mc_rms1xn.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -9,51 +9,51 @@
 #include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/numa/mc_ssqr1xn.h>
 
-#ifndef MC_L2NORM1XN_H
-#define MC_L2NORM1XN_H
+#ifndef MC_RMS1XN_H
+#define MC_RMS1XN_H
 
-#pragma mark - mc_l2norm1xn -
+#pragma mark - mc_rms1xn -
 
-MC_TARGET_FUNC float mc_l2norm1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_rms1xnf(int n, const float * x)
 {
 	float sumsq = 0.0f, scale;
 	if (n > 0) {
 		mc_ssqr1xnf(n, x, &sumsq, &scale);
-		sumsq = scale * mc_sqrtf(sumsq);
+		sumsq = scale * mc_sqrtf(sumsq / mc_cast(float, n));
 	}
 	return sumsq;
 }
 
-MC_TARGET_FUNC double mc_l2norm1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_rms1xnff(int n, const float * x)
 {
 	double sumsq = 0.0, scale;
 	if (n > 0) {
 		mc_ssqr1xnff(n, x, &sumsq, &scale);
-		sumsq = scale * mc_sqrt(sumsq);
+		sumsq = scale * mc_sqrt(sumsq / mc_cast(double, n));
 	}
 	return sumsq;
 }
 
-MC_TARGET_FUNC double mc_l2norm1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_rms1xn(int n, const double * x)
 {
 	double sumsq = 0.0, scale;
 	if (n > 0) {
 		mc_ssqr1xn(n, x, &sumsq, &scale);
-		sumsq = scale * mc_sqrt(sumsq);
+		sumsq = scale * mc_sqrt(sumsq / mc_cast(double, n));
 	}
 	return sumsq;
 }
 
-MC_TARGET_FUNC long double mc_l2norm1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_rms1xnl(int n, const long double * x)
 {
 	long double sumsq = 0.0L, scale;
 	if (n > 0) {
 		mc_ssqr1xnl(n, x, &sumsq, &scale);
-		sumsq = scale * mc_sqrtl(sumsq);
+		sumsq = scale * mc_sqrtl(sumsq / mc_cast(long double, n));
 	}
 	return sumsq;
 }
 
-#endif /* !MC_L2NORM1XN_H */
+#endif /* !MC_RMS1XN_H */
 
 /* EOF */

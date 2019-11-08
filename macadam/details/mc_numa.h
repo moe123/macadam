@@ -98,6 +98,7 @@
 #	include <macadam/details/numa/mc_norm1x3.h>
 #	include <macadam/details/numa/mc_norm2x1.h>
 #	include <macadam/details/numa/mc_norm3x1.h>
+#	include <macadam/details/numa/mc_rms1xn.h>
 #	include <macadam/details/numa/mc_sum1xn.h>
 #	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_trace2x2.h>

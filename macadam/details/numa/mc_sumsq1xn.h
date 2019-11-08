@@ -7,7 +7,7 @@
 //
 
 #include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/numa/mc_mssqr1xn.h>
+#include <macadam/details/numa/mc_ssqr1xn.h>
 
 #ifndef MC_SUMSQ1XN_H
 #define MC_SUMSQ1XN_H
@@ -16,9 +16,9 @@
 
 MC_TARGET_FUNC float mc_sumsq1xnf(int n, const float * x)
 {
-	float mean, sumsq = 0.0f, scale;
+	float sumsq = 0.0f, scale;
 	if (n > 0) {
-		mc_mssqr1xnf(n, x, &mean, &sumsq, &scale);
+		mc_ssqr1xnf(n, x, &sumsq, &scale);
 		sumsq = mc_raise2f(scale) * sumsq;
 	}
 	return sumsq;
@@ -26,9 +26,9 @@ MC_TARGET_FUNC float mc_sumsq1xnf(int n, const float * x)
 
 MC_TARGET_FUNC double mc_sumsq1xnff(int n, const float * x)
 {
-	double mean, sumsq = 0.0, scale;
+	double sumsq = 0.0, scale;
 	if (n > 0) {
-		mc_mssqr1xnff(n, x, &mean, &sumsq, &scale);
+		mc_ssqr1xnff(n, x, &sumsq, &scale);
 		sumsq = mc_raise2(scale) * sumsq;
 	}
 	return sumsq;
@@ -36,9 +36,9 @@ MC_TARGET_FUNC double mc_sumsq1xnff(int n, const float * x)
 
 MC_TARGET_FUNC double mc_sumsq1xn(int n, const double * x)
 {
-	double mean, sumsq = 0.0, scale;
+	double sumsq = 0.0, scale;
 	if (n > 0) {
-		mc_mssqr1xn(n, x, &mean, &sumsq, &scale);
+		mc_ssqr1xn(n, x, &sumsq, &scale);
 		sumsq = mc_raise2(scale) * sumsq;
 	}
 	return sumsq;
@@ -46,9 +46,9 @@ MC_TARGET_FUNC double mc_sumsq1xn(int n, const double * x)
 
 MC_TARGET_FUNC long double mc_sumsq1xnl(int n, const long double * x)
 {
-	long double mean, sumsq = 0.0L, scale;
+	long double sumsq = 0.0L, scale;
 	if (n > 0) {
-		mc_mssqr1xnl(n, x, &mean, &sumsq, &scale);
+		mc_ssqr1xnl(n, x, &sumsq, &scale);
 		sumsq = mc_raise2l(scale) * sumsq;
 	}
 	return sumsq;
