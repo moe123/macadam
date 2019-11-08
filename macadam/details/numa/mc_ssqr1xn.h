@@ -53,7 +53,7 @@ MC_TARGET_FUNC void mc_ssqr1xnff(int n, const float * x, double * sumsq, double 
 			*scale = mc_fabs(x[0]);
 		} else {
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(*mean - mc_cast(double, x[0])))) {
+				if (0.0f != (t = mc_fabs(mc_cast(double, x[0])))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
