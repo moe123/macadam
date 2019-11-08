@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_ssqr1xn.h
+// mc_ssqrmx1.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -9,12 +9,12 @@
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_raise2.h>
 
-#ifndef MC_SSQR1XN_H
-#define MC_SSQR1XN_H
+#ifndef MC_SSQRMX1_H
+#define MC_SSQRMX1_H
 
-#pragma mark - mc_ssqr1xn -
+#pragma mark - mc_ssqrmx1 -
 
-MC_TARGET_FUNC void mc_ssqr1xnf(int n, const float * x, float * sumsq, float * scale)
+MC_TARGET_FUNC void mc_ssqrmx1f(int m, int n, int j, const float * a, float * sumsq, float * scale)
 {
 	int i;
 	float t;
@@ -22,12 +22,12 @@ MC_TARGET_FUNC void mc_ssqr1xnf(int n, const float * x, float * sumsq, float * s
 	*scale = 0.0f;
 	*sumsq = 1.0f;
 
-	if (n > 0) {
-		if (n == 1) {
-			*scale = mc_fabsf(x[0]);
+	if (m > 0) {
+		if (m == 1) {
+			*scale = mc_fabsf(a[j]);
 		} else {
-			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabsf(x[i]))) {
+			for (i = 0; i < m; i++) {
+				if (0.0f != (t = mc_fabsf(a[(n * i) + j]))) {
 					if (*scale < t) {
 						*sumsq = 1.0f + *sumsq * mc_raise2f(*scale / t);
 						*scale = t;
@@ -40,7 +40,7 @@ MC_TARGET_FUNC void mc_ssqr1xnf(int n, const float * x, float * sumsq, float * s
 	}
 }
 
-MC_TARGET_FUNC void mc_ssqr1xnff(int n, const float * x, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_ssqrmx1ff(int m, int n, int j, const float * a, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -48,12 +48,12 @@ MC_TARGET_FUNC void mc_ssqr1xnff(int n, const float * x, double * sumsq, double 
 	*scale = 0.0;
 	*sumsq = 1.0;
 
-	if (n > 0) {
-		if (n == 1) {
-			*scale = mc_fabs(x[0]);
+	if (m > 0) {
+		if (m == 1) {
+			*scale = mc_fabs(a[j]);
 		} else {
-			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(mc_cast(double, x[i])))) {
+			for (i = 0; i < m; i++) {
+				if (0.0f != (t = mc_fabs(mc_cast(double, a[(n * i) + j])))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
@@ -66,7 +66,7 @@ MC_TARGET_FUNC void mc_ssqr1xnff(int n, const float * x, double * sumsq, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_ssqr1xn(int n, const double * x, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_ssqrmx1(int m, int n, int j, const double * a, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -74,12 +74,12 @@ MC_TARGET_FUNC void mc_ssqr1xn(int n, const double * x, double * sumsq, double *
 	*scale = 0.0L;
 	*sumsq = 1.0L;
 
-	if (n > 0) {
-		if (n == 1) {
-			*scale = mc_fabs(x[0]);
+	if (m > 0) {
+		if (m == 1) {
+			*scale = mc_fabs(a[j]);
 		} else {
-			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(x[i]))) {
+			for (i = 0; i < m; i++) {
+				if (0.0f != (t = mc_fabs(a[(n * i) + j]))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
@@ -92,7 +92,7 @@ MC_TARGET_FUNC void mc_ssqr1xn(int n, const double * x, double * sumsq, double *
 	}
 }
 
-MC_TARGET_FUNC void mc_ssqr1xnl(int n, const long double * x, long double * sumsq, long double * scale)
+MC_TARGET_FUNC void mc_ssqrmx1l(int m, int n, int j, const long double * a, long double * sumsq, long double * scale)
 {
 	int i;
 	long double t;
@@ -100,12 +100,12 @@ MC_TARGET_FUNC void mc_ssqr1xnl(int n, const long double * x, long double * sums
 	*scale = 0.0;
 	*sumsq = 1.0;
 
-	if (n > 0) {
-		if (n == 1) {
-			*scale = mc_fabsl(x[0]);
+	if (m > 0) {
+		if (m == 1) {
+			*scale = mc_fabsl(a[j]);
 		} else {
-			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabsl(x[i]))) {
+			for (i = 0; i < m; i++) {
+				if (0.0f != (t = mc_fabsl(a[(n * i) + j]))) {
 					if (*scale < t) {
 						*sumsq = 1.0L + *sumsq * mc_raise2l(*scale / t);
 						*scale = t;
@@ -118,6 +118,6 @@ MC_TARGET_FUNC void mc_ssqr1xnl(int n, const long double * x, long double * sums
 	}
 }
 
-#endif /* !MC_SSQR1XN_H */
+#endif /* !MC_SSQRMX1_H */
 
 /* EOF */

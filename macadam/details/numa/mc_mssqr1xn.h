@@ -30,7 +30,7 @@ MC_TARGET_FUNC void mc_mssqr1xnf(int n, const float * x, float * mean, float * s
 		} else {
 			*mean = mc_mean1xnf(n, x, 0, 1);
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabsf(*mean - x[0]))) {
+				if (0.0f != (t = mc_fabsf(*mean - x[i]))) {
 					if (*scale < t) {
 						*sumsq = 1.0f + *sumsq * mc_raise2f(*scale / t);
 						*scale = t;
@@ -58,7 +58,7 @@ MC_TARGET_FUNC void mc_mssqr1xnff(int n, const float * x, double * mean, double 
 		} else {
 			*mean = mc_mean1xnff(n, x, 0, 1);
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(*mean - mc_cast(double, x[0])))) {
+				if (0.0f != (t = mc_fabs(*mean - mc_cast(double, x[i])))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
@@ -86,7 +86,7 @@ MC_TARGET_FUNC void mc_mssqr1xn(int n, const double * x, double * mean, double *
 		} else {
 			*mean = mc_mean1xn(n, x, 0, 1);
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(*mean - x[0]))) {
+				if (0.0f != (t = mc_fabs(*mean - x[i]))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
@@ -114,7 +114,7 @@ MC_TARGET_FUNC void mc_mssqr1xnl(int n, const long double * x, long double * mea
 		} else {
 			*mean = mc_mean1xnl(n, x, 0, 1);
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabsl(*mean - x[0]))) {
+				if (0.0f != (t = mc_fabsl(*mean - x[i]))) {
 					if (*scale < t) {
 						*sumsq = 1.0L + *sumsq * mc_raise2l(*scale / t);
 						*scale = t;
