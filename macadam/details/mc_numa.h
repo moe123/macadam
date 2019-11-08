@@ -107,6 +107,10 @@
 #	include <macadam/details/numa/mc_tracenxn.h>
 #	include <macadam/details/numa/mc_trsi2x2.h>
 #	include <macadam/details/numa/mc_trsi3x3.h>
+#	include <macadam/details/numa/mc_trsimxn.h>
+#	include <macadam/details/numa/mc_trsinxn.h>
+#	include <macadam/details/numa/mc_trspmxn.h>
+#	include <macadam/details/numa/mc_trspnxn.h>
 #	include <macadam/details/numa/mc_unit1x2.h>
 #	include <macadam/details/numa/mc_unit1x3.h>
 #	include <macadam/details/numa/mc_unit2x1.h>

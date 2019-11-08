@@ -26,7 +26,7 @@
  *     \author Moe123.
  */
 
-#include <macadam/details/numa/lapack/blas/mc_blas_access.h>
+#include <macadam/details/numa/mc_trsinxn.h>
 
 #ifndef MC_NONBLAS_TRSIS_H
 #define MC_NONBLAS_TRSIS_H
@@ -35,21 +35,21 @@
 
 MC_TARGET_FUNC void mc_nonblas_strsis(int n, float * x)
 {
-	mc_nonblas_matrix_trsis(float, x, n);
+	mc_trsinxnf(n, x);
 }
 
 #pragma mark - mc_nonblas_dtrsis -
 
 MC_TARGET_FUNC void mc_nonblas_dtrsis(int n, double * x)
 {
-	mc_nonblas_matrix_trsis(double, x, n);
+	mc_trsinxn(n, x);
 }
 
 #pragma mark - mc_nonblas_ltrsis -
 
 MC_TARGET_FUNC void mc_nonblas_ltrsis(int n, long double * x)
 {
-	mc_nonblas_matrix_trsis(long double, x, n);
+	mc_trsinxnl(n, x);
 }
 
 #endif /* !MC_NONBLAS_TRSIS_H */

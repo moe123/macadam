@@ -18,54 +18,6 @@
 #	define mc_nonblas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * (ng)) + (gj)]
 #	define mc_nonblas_matrix_cmj_at(g, mg, ng, gi, gj) g[((gj) * (mg)) + (gi)]
 
-#	define mc_nonblas_matrix_trsis(gtp, g, ng) \
-/* //!# Transposing in-place square-matrix g. */ \
-/* //!# gtp - literal type of elements.       */ \
-/* //!# g   - memory pointer.                 */ \
-/* //!# ng  - number of rows and columns.     */ \
-	mc_scope_begin \
-		int __mc_nonblas_i = 0, __mc_nonblas_j; \
-		int __mc_nonblas_n = mc_cast_exp(int, ng); \
-		gtp __mc_nonblas_w; \
-		for (; __mc_nonblas_i < __mc_nonblas_n - 2; ++__mc_nonblas_i) { \
-			for (__mc_nonblas_j = __mc_nonblas_i + 1; __mc_nonblas_j < __mc_nonblas_n - 1; ++__mc_nonblas_j) { \
-				__mc_nonblas_w                                          = g[((__mc_nonblas_i) * __mc_nonblas_n) + __mc_nonblas_j]; \
-				g[((__mc_nonblas_i) * __mc_nonblas_n) + __mc_nonblas_j] = g[((__mc_nonblas_j) * __mc_nonblas_n) + __mc_nonblas_i]; \
-				g[((__mc_nonblas_j) * __mc_nonblas_n) + __mc_nonblas_i] = __mc_nonblas_w; \
-			} \
-		} \
-	mc_scope_end
-
-#	define mc_nonblas_matrix_trsir(gtp, g, mg, ng) \
-/* //!# Transposing in-place rectangular-matrix g. */ \
-/* //!# gtp - literal type of elements.            */ \
-/* //!# g   - memory pointer.                      */ \
-/* //!# mg  - number of rows.                      */ \
-/* //!# ng  - number of columns.                   */ \
-	mc_scope_begin \
-		int __mc_nonblas_i = 0, __mc_nonblas_j, __mc_nonblas_k; \
-		int __mc_nonblas_m = mc_cast_exp(int, mg); \
-		int __mc_nonblas_n = mc_cast_exp(int, ng); \
-		gtp __mc_nonblas_w; \
-		for (; __mc_nonblas_i <= __mc_nonblas_m * __mc_nonblas_n - 1; ++__mc_nonblas_i) { \
-			__mc_nonblas_k = __mc_nonblas_i; \
-			__mc_nonblas_j = 0; \
-			do { \
-				++__mc_nonblas_j; \
-				__mc_nonblas_k = (__mc_nonblas_k % __mc_nonblas_m) * __mc_nonblas_n + __mc_nonblas_k / __mc_nonblas_m; \
-			} while (__mc_nonblas_k > __mc_nonblas_i); \
-			if (__mc_nonblas_k >= __mc_nonblas_i && __mc_nonblas_j != 1) { \
-				__mc_nonblas_w = (g)[__mc_nonblas_i]; \
-				__mc_nonblas_k = __mc_nonblas_i; \
-				do { \
-					__mc_nonblas_j      = (__mc_nonblas_k % __mc_nonblas_m) * __mc_nonblas_n + __mc_nonblas_k / __mc_nonblas_m; \
-					(g)[__mc_nonblas_k] = (__mc_nonblas_j == __mc_nonblas_i) ? __mc_nonblas_w : (g)[__mc_nonblas_j]; \
-					__mc_nonblas_k      = __mc_nonblas_j; \
-				} while (__mc_nonblas_k > __mc_nonblas_i); \
-			} \
-		} \
-	mc_scope_end
-
 #	define mc_blas_vector_at(g, gi) mc_nonblas_vector_at(g, ((gi) - 1))
 
 #	if MCTARGET_BLAS_USE_CLAYOUT

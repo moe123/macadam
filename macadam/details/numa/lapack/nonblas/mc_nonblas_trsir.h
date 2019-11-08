@@ -26,7 +26,7 @@
  *     \author Moe123.
  */
 
-#include <macadam/details/numa/lapack/blas/mc_blas_access.h>
+#include <macadam/details/numa/mc_trsimxn.h>
 
 #ifndef MC_NONBLAS_TRSIR_H
 #define MC_NONBLAS_TRSIR_H
@@ -35,21 +35,21 @@
 
 MC_TARGET_FUNC void mc_nonblas_strsir(int m, int n, float * x)
 {
-	mc_nonblas_matrix_trsir(float, x, m, n);
+	mc_trsimxnf(m, n, x);
 }
 
 #pragma mark - mc_nonblas_dtrsir -
 
 MC_TARGET_FUNC void mc_nonblas_dtrsir(int m, int n, double * x)
 {
-	mc_nonblas_matrix_trsir(double, x, m, n);
+	mc_trsimxn(m, n, x);
 }
 
 #pragma mark - mc_nonblas_ltrsir -
 
 MC_TARGET_FUNC void mc_nonblas_ltrsir(int m, int n, long double * x)
 {
-	mc_nonblas_matrix_trsir(long double, x, m, n);
+	mc_trsimxnl(m, n, x);
 }
 
 #endif /* !MC_NONBLAS_TRSIR_H */
