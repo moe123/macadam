@@ -77,7 +77,6 @@
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_nrm2_c.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_rot_c.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swap_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swap_c.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsir.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsis.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv_c.h>

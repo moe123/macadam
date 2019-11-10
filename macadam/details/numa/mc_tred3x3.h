@@ -17,19 +17,23 @@ MC_TARGET_FUNC int mc_tred3x3f(const float a[9], float t[9], float d[3], float u
 {
 	const float tiny = MCLIMITS_TINYF;
 
-	float mag, q, a12 = a[1], a13 = a[2];
+	float mag, q;
+	
+	float a11 = a[0], a12 = a[1], a13 = a[2];
+	float             a22 = a[4], a23 = a[5];
+	float                         a33 = a[8];
 
 	mc_eye3x3f(t);
-	d[0] = a[0]; d[1] = a[4]; d[2] = a[8];
-	u[0] = a12; u[1] = a[5];
+	d[0] = a11; d[1] = a22; d[2] = a33;
+	u[0] = a12; u[1] = a23;
 	if (mc_fabsf(a13) >= tiny && !(a12 == 0.0f && a13 == 0.0f)) {
 		mag = mc_sqrtf(mc_raise2f(a12) + mc_raise2f(a13));
 		if (mag >= tiny) {
 			a12  = a12 / mag;
 			a13  = a13 / mag;
-			q    = 2.0f * a12 * a[5] + a13 * (a[8] - a[4]);
-			d[1] = a[4] + a13 * q; d[2] = a[8] - a13 * q;
-			u[0] = mag; u[1] = a[5] - a12 * q;
+			q    = 2.0f * a12 * a23 + a13 * (a33 - a22);
+			d[1] = a22 + a13 * q; d[2] = a33 - a13 * q;
+			u[0] = mag; u[1] = a23 - a12 * q;
 			t[4] = a12; t[5] = a13;
 			t[7] = a13; t[8] =-a12;
 			return 0;
@@ -42,19 +46,23 @@ MC_TARGET_FUNC int mc_tred3x3(const double a[9], double t[9], double d[3], doubl
 {
 	const double tiny = MCLIMITS_TINY;
 
-	double mag, q, a12 = a[1], a13 = a[2];
+	double mag, q;
+	
+	double a11 = a[0], a12 = a[1], a13 = a[2];
+	double             a22 = a[4], a23 = a[5];
+	double                         a33 = a[8];
 
 	mc_eye3x3(t);
-	d[0] = a[0]; d[1] = a[4]; d[2] = a[8];
-	u[0] = a12; u[1] = a[5];
+	d[0] = a11; d[1] = a22; d[2] = a33;
+	u[0] = a12; u[1] = a23;
 	if (mc_fabs(a13) >= tiny && !(a12 == 0.0 && a13 == 0.0)) {
 		mag = mc_sqrt(mc_raise2(a12) + mc_raise2(a13));
 		if (mag >= tiny) {
 			a12  = a12 / mag;
 			a13  = a13 / mag;
-			q    = 2.0f * a12 * a[5] + a13 * (a[8] - a[4]);
-			d[1] = a[4] + a13 * q; d[2] = a[8] - a13 * q;
-			u[0] = mag; u[1] = a[5] - a12 * q;
+			q    = 2.0 * a12 * a23 + a13 * (a33 - a22);
+			d[1] = a22 + a13 * q; d[2] = a33 - a13 * q;
+			u[0] = mag; u[1] = a23 - a12 * q;
 			t[4] = a12; t[5] = a13;
 			t[7] = a13; t[8] =-a12;
 			return 0;
@@ -67,19 +75,23 @@ MC_TARGET_FUNC int mc_tred3x3l(const long double a[9], long double t[9], long do
 {
 	const long double tiny = MCLIMITS_TINYL;
 
-	long double mag, q, a12 = a[1], a13 = a[2];
+	long double mag, q;
+	
+	long double a11 = a[0], a12 = a[1], a13 = a[2];
+	long double             a22 = a[4], a23 = a[5];
+	long double                         a33 = a[8];
 
 	mc_eye3x3l(t);
-	d[0] = a[0]; d[1] = a[4]; d[2] = a[8];
-	u[0] = a12; u[1] = a[5];
+	d[0] = a11; d[1] = a22; d[2] = a33;
+	u[0] = a12; u[1] = a23;
 	if (mc_fabsl(a13) >= tiny && !(a12 == 0.0L && a13 == 0.0L)) {
 		mag = mc_sqrtl(mc_raise2l(a12) + mc_raise2l(a13));
 		if (mag >= tiny) {
 			a12  = a12 / mag;
 			a13  = a13 / mag;
-			q    = 2.0f * a12 * a[5] + a13 * (a[8] - a[4]);
-			d[1] = a[4] + a13 * q; d[2] = a[8] - a13 * q;
-			u[0] = mag; u[1] = a[5] - a12 * q;
+			q    = 2.0L * a12 * a23 + a13 * (a33 - a22);
+			d[1] = a22 + a13 * q; d[2] = a33 - a13 * q;
+			u[0] = mag; u[1] = a23 - a12 * q;
 			t[4] = a12; t[5] = a13;
 			t[7] = a13; t[8] =-a12;
 			return 0;
