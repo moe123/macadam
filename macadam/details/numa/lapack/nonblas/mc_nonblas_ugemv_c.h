@@ -1,24 +1,24 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_ugecv.h
+// mc_nonblas_ugemv_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?ugecv performs one of the matrix-column-vector operations:
+ *    ?ugemv_c performs one of the matrix-column-vector operations:
  *    y=a*x + beta*y or y=a'*x + beta*y.
  *
  * \synopsis
- *    void ?ugecv(trans, m, n, a, lda, x, ldx, nx, indx, incx, beta, y, ldy, ny, indy, incy)
+ *    void ?ugemv_c(trans, m, n, a, lda, x, ldx, nx, indx, incx, beta, y, ldy, ny, indy, incy)
  *    real-floating alpha, beta
  *    int           indx, indy, incx, incy, lda, ldx, ldy, m, n, nx, ny
  *    char          trans
  *    real-floating a(lda, *), x(ldx, *), y(ldy, *)
  *
  * \purpose
- *    ?ugecv performs one of the matrix-column-vector operations: y=a*x + beta*y or
+ *    ?ugemv_c performs one of the matrix-column-vector operations: y=a*x + beta*y or
  *    y=a'*x + beta*y where alpha and beta are scalars, x and y are vectors
  *    and a is an m by n matrix.
  *
@@ -67,12 +67,12 @@
 #include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
 #include <macadam/details/math/mc_maxmag.h>
 
-#ifndef MC_NONBLAS_UGECV_H
-#define MC_NONBLAS_UGECV_H
+#ifndef MC_NONBLAS_UGEMV_C_H
+#define MC_NONBLAS_UGEMV_C_H
 
-#pragma mark - mc_nonblas_sugecv -
+#pragma mark - mc_nonblas_sugemv_c -
 
-MC_TARGET_FUNC void mc_nonblas_sugecv(const char trans, int m, int n, const float * a, int lda, const float * x, int ldx, int nx, int indx, float beta, float * y, int ldy, int ny, int indy)
+MC_TARGET_FUNC void mc_nonblas_sugemv_c(const char trans, int m, int n, const float * a, int lda, const float * x, int ldx, int nx, int indx, float beta, float * y, int ldy, int ny, int indy)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -90,7 +90,7 @@ MC_TARGET_FUNC void mc_nonblas_sugecv(const char trans, int m, int n, const floa
 		info = 6;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("SUGECV", info);
+		mc_blas_xerbla("SUGEMV_C", info);
 		return;
 	}
 
@@ -144,9 +144,9 @@ MC_TARGET_FUNC void mc_nonblas_sugecv(const char trans, int m, int n, const floa
 	}
 }
 
-#pragma mark - mc_nonblas_dugecv -
+#pragma mark - mc_nonblas_dugemv_c -
 
-MC_TARGET_FUNC void mc_nonblas_dugecv(const char trans, int m, int n, const double * a, int lda, const double * x, int ldx, int nx, int indx, double beta, double * y, int ldy, int ny, int indy)
+MC_TARGET_FUNC void mc_nonblas_dugemv_c(const char trans, int m, int n, const double * a, int lda, const double * x, int ldx, int nx, int indx, double beta, double * y, int ldy, int ny, int indy)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -164,7 +164,7 @@ MC_TARGET_FUNC void mc_nonblas_dugecv(const char trans, int m, int n, const doub
 		info = 6;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("DUGECV", info);
+		mc_blas_xerbla("DUGEMV_C", info);
 		return;
 	}
 
@@ -218,9 +218,9 @@ MC_TARGET_FUNC void mc_nonblas_dugecv(const char trans, int m, int n, const doub
 	}
 }
 
-#pragma mark - mc_nonblas_lugecv -
+#pragma mark - mc_nonblas_lugemv_c -
 
-MC_TARGET_FUNC void mc_nonblas_lugecv(const char trans, int m, int n, const long double * a, int lda, const long double * x, int ldx, int nx, int indx, long double beta, long double * y, int ldy, int ny, int indy)
+MC_TARGET_FUNC void mc_nonblas_lugemv_c(const char trans, int m, int n, const long double * a, int lda, const long double * x, int ldx, int nx, int indx, long double beta, long double * y, int ldy, int ny, int indy)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
@@ -238,7 +238,7 @@ MC_TARGET_FUNC void mc_nonblas_lugecv(const char trans, int m, int n, const long
 		info = 6;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("LUGECV", info);
+		mc_blas_xerbla("LUGEMV_C", info);
 		return;
 	}
 
@@ -292,6 +292,6 @@ MC_TARGET_FUNC void mc_nonblas_lugecv(const char trans, int m, int n, const long
 	}
 }
 
-#endif /* !MC_NONBLAS_UGECV_H */
+#endif /* !MC_NONBLAS_UGEMV_C_H */
 
 /* EOF */

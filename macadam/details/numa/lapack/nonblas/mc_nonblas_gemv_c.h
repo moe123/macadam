@@ -1,24 +1,24 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_gemcv.h
+// mc_nonblas_gemv_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?gemcv performs one of the matrix-column-vector operations:
+ *    ?gemv_c performs one of the matrix-column-vector operations:
  *    y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y.
  *
  * \synopsis
- *    void ?gemcv(trans, m, n, alpha, a, lda, x, ldx, nx, indx, incx, beta, y, ldy, ny, indy, incy)
+ *    void ?gemv_c(trans, m, n, alpha, a, lda, x, ldx, nx, indx, incx, beta, y, ldy, ny, indy, incy)
  *    real-floating alpha, beta
  *    int           indx, indy, incx, incy, lda, ldx, ldy, m, n, nx, ny
  *    char          trans
  *    real-floating a(lda, *), x(ldx, *), y(ldy, *)
  *
  * \purpose
- *    ?gemcv performs one of the matrix-column-vector operations: y=alpha*a*x + beta*y or
+ *    ?gemv_c performs one of the matrix-column-vector operations: y=alpha*a*x + beta*y or
  *    y=alpha*a'*x + beta*y where alpha and beta are scalars, x and y are vectors
  *    and a is an m by n matrix.
  *
@@ -67,12 +67,12 @@
 #include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
 #include <macadam/details/math/mc_maxmag.h>
 
-#ifndef MC_NONBLAS_GEMCV_H
-#define MC_NONBLAS_GEMCV_H
+#ifndef MC_NONBLAS_GEMV_C_H
+#define MC_NONBLAS_GEMV_C_H
 
-#pragma mark - mc_nonblas_sgemcv -
+#pragma mark - mc_nonblas_sgemv_c -
 
-MC_TARGET_FUNC void mc_nonblas_sgemcv(const char trans, int m, int n, float alpha, const float * a, int lda, const float * x, int ldx, int nx, int indx, int incx, float beta, float * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_sgemv_c(const char trans, int m, int n, float alpha, const float * a, int lda, const float * x, int ldx, int nx, int indx, int incx, float beta, float * y, int ldy, int ny, int indy, int incy)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -94,7 +94,7 @@ MC_TARGET_FUNC void mc_nonblas_sgemcv(const char trans, int m, int n, float alph
 		info = 11;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("SGEMCV", info);
+		mc_blas_xerbla("SGEMV_C", info);
 		return;
 	}
 
@@ -202,9 +202,9 @@ MC_TARGET_FUNC void mc_nonblas_sgemcv(const char trans, int m, int n, float alph
 	}
 }
 
-#pragma mark - mc_nonblas_dgemcv -
+#pragma mark - mc_nonblas_dgemv_c -
 
-MC_TARGET_FUNC void mc_nonblas_dgemcv(const char trans, int m, int n, double alpha, const double * a, int lda, const double * x, int ldx, int nx, int indx, int incx, double beta, double * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_dgemv_c(const char trans, int m, int n, double alpha, const double * a, int lda, const double * x, int ldx, int nx, int indx, int incx, double beta, double * y, int ldy, int ny, int indy, int incy)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -226,7 +226,7 @@ MC_TARGET_FUNC void mc_nonblas_dgemcv(const char trans, int m, int n, double alp
 		info = 11;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("DGEMCV", info);
+		mc_blas_xerbla("DGEMV_C", info);
 		return;
 	}
 
@@ -334,9 +334,9 @@ MC_TARGET_FUNC void mc_nonblas_dgemcv(const char trans, int m, int n, double alp
 	}
 }
 
-#pragma mark - mc_nonblas_lgemcv -
+#pragma mark - mc_nonblas_lgemv_c -
 
-MC_TARGET_FUNC void mc_nonblas_lgemcv(const char trans, int m, int n, long double alpha, const long double * a, int lda, const long double * x, int ldx, int nx, int indx, int incx, long double beta, long double * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_lgemv_c(const char trans, int m, int n, long double alpha, const long double * a, int lda, const long double * x, int ldx, int nx, int indx, int incx, long double beta, long double * y, int ldy, int ny, int indy, int incy)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
@@ -358,7 +358,7 @@ MC_TARGET_FUNC void mc_nonblas_lgemcv(const char trans, int m, int n, long doubl
 		info = 11;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("LGEMCV", info);
+		mc_blas_xerbla("LGEMV_C", info);
 		return;
 	}
 
@@ -466,6 +466,6 @@ MC_TARGET_FUNC void mc_nonblas_lgemcv(const char trans, int m, int n, long doubl
 	}
 }
 
-#endif /* !MC_NONBLAS_GEMCV_H */
+#endif /* !MC_NONBLAS_GEMV_C_H */
 
 /* EOF */

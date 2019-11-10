@@ -19,18 +19,30 @@
 
 #	if MC_TARGET_CPP98
 #		if MC_TARGET_CPP11
-		static const float       MCLIMITS_LOWF = ::std::sqrt(MCLIMITS_EPSILONF);
-		static const double      MCLIMITS_LOW  = ::std::sqrt(MCLIMITS_EPSILON);
-		static const long double MCLIMITS_LOWL = ::std::sqrt(MCLIMITS_EPSILONL);
+		static const float       MCLIMITS_LOWF  = ::std::sqrt(MCLIMITS_EPSILONF);
+		static const double      MCLIMITS_LOW   = ::std::sqrt(MCLIMITS_EPSILON);
+		static const long double MCLIMITS_LOWL  = ::std::sqrt(MCLIMITS_EPSILONL);
+
+		static const float       MCLIMITS_TINYF = 0.1f * MCLIMITS_LOWF;
+		static const double      MCLIMITS_TINY  = 0.1  * MCLIMITS_LOW;
+		static const long double MCLIMITS_TINYL = 0.1L * MCLIMITS_LOWL;
 #	else
-#		define MCLIMITS_LOWF (mc_cast(const float      , ::sqrtf(MCLIMITS_EPSILONF)))
-#		define MCLIMITS_LOW  (mc_cast(const double     , ::sqrt (MCLIMITS_EPSILON)))
-#		define MCLIMITS_LOWL (mc_cast(const long double, ::sqrtl(MCLIMITS_EPSILONL)))
+#		define MCLIMITS_LOWF  (mc_cast(const float      , ::sqrtf(MCLIMITS_EPSILONF)))
+#		define MCLIMITS_LOW   (mc_cast(const double     , ::sqrt (MCLIMITS_EPSILON)))
+#		define MCLIMITS_LOWL  (mc_cast(const long double, ::sqrtl(MCLIMITS_EPSILONL)))
+
+#		define MCLIMITS_TINYF (mc_cast_exp(const float      , 0.1f * MCLIMITS_LOWF))
+#		define MCLIMITS_TINY  (mc_cast_exp(const double     , 0.1  * MCLIMITS_LOW))
+#		define MCLIMITS_TINYL (mc_cast_exp(const long double, 0.1L * MCLIMITS_LOWL))
 #	endif
 #	else
-#		define MCLIMITS_LOWF (mc_cast(const float      , sqrtf(MCLIMITS_EPSILONF)))
-#		define MCLIMITS_LOW  (mc_cast(const double     , sqrt (MCLIMITS_EPSILON)))
-#		define MCLIMITS_LOWL (mc_cast(const long double, sqrtl(MCLIMITS_EPSILONL)))
+#		define MCLIMITS_LOWF  (mc_cast(const float      , sqrtf(MCLIMITS_EPSILONF)))
+#		define MCLIMITS_LOW   (mc_cast(const double     , sqrt (MCLIMITS_EPSILON)))
+#		define MCLIMITS_LOWL  (mc_cast(const long double, sqrtl(MCLIMITS_EPSILONL)))
+
+#		define MCLIMITS_TINYF (mc_cast_exp(const float      , 0.1f * MCLIMITS_LOWF))
+#		define MCLIMITS_TINY  (mc_cast_exp(const double     , 0.1  * MCLIMITS_LOW))
+#		define MCLIMITS_TINYL (mc_cast_exp(const long double, 0.1L * MCLIMITS_LOWL))
 #	endif
 
 #	define MCLIMITS_MAXF     FLT_MAX

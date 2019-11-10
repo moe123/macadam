@@ -71,16 +71,16 @@
 #	include <macadam/details/numa/lapack/mc_lapack_lasv2.h>
 #	include <macadam/details/numa/lapack/mc_lapack_lsamen.h>
 
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gbmcv.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gemcv.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gercv.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_nrmcv.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_rotcv.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swpcv.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swpcv.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gbmv_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gemv_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ger_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_nrm2_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_rot_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swap_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swap_c.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsir.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsis.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugecv.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv_c.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv.h>
 
 #	include <macadam/details/numa/mc_amean1xn.h>
@@ -107,6 +107,7 @@
 #	include <macadam/details/numa/mc_trace3x3.h>
 #	include <macadam/details/numa/mc_tracemxn.h>
 #	include <macadam/details/numa/mc_tracenxn.h>
+#	include <macadam/details/numa/mc_tred3x3.h>
 #	include <macadam/details/numa/mc_trsi2x2.h>
 #	include <macadam/details/numa/mc_trsi3x3.h>
 #	include <macadam/details/numa/mc_trsimxn.h>

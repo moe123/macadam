@@ -1,21 +1,21 @@
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_gercv.h
+// mc_nonblas_ger_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?gercv performs the rank 1 operation: a=alpha*x*y' + a.
+ *    ?ger_c performs the rank 1 operation: a=alpha*x*y' + a.
  *
  * \synopsis
- *    void ?gercv(m, n, alpha, x, ldx, nx, indx, incx, y, ldy, ny, indy, incy, a, lda)
+ *    void ?ger_c(m, n, alpha, x, ldx, nx, indx, incx, y, ldy, ny, indy, incy, a, lda)
  *    float-floating alpha
  *    int            incx, incy, indx, indy, lda, ldx, ldy, m, n, nx, ny
  *    float-floating a(lda, *), x(ldx, *), y(ldy, *)
  *
  * \purpose
- *    ?gercv performs the rank 1 operation: a=alpha*x*y' + a where alpha is a scalar,
+ *    ?ger_c performs the rank 1 operation: a=alpha*x*y' + a where alpha is a scalar,
  *    x is an m element column-vector, y is an n element column-vector and a is an m by n matrix.
  *
  * \parameters
@@ -55,12 +55,12 @@
 #include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
 #include <macadam/details/math/mc_maxmag.h>
 
-#ifndef MC_NONLAS_GERCV_H
-#define MC_NONLAS_GERCV_H
+#ifndef MC_NONLAS_GER_V_H
+#define MC_NONLAS_GER_V_H
 
-#pragma mark - mc_nonblas_sgercv -
+#pragma mark - mc_nonblas_sger_c -
 
-MC_TARGET_FUNC void mc_nonblas_sgercv(int m, int n, float alpha, const float * x, int ldx, int nx, int indx, int incx, const float * y, int ldy, int ny, int indy, int incy, float * a, int lda)
+MC_TARGET_FUNC void mc_nonblas_sger_c(int m, int n, float alpha, const float * x, int ldx, int nx, int indx, int incx, const float * y, int ldy, int ny, int indy, int incy, float * a, int lda)
 {
 	const float zero = 0.0f;
 
@@ -80,7 +80,7 @@ MC_TARGET_FUNC void mc_nonblas_sgercv(int m, int n, float alpha, const float * x
 		info = 9;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("SGERCV", info);
+		mc_blas_xerbla("SGER_V", info);
 		return;
 	}
 
@@ -127,9 +127,9 @@ MC_TARGET_FUNC void mc_nonblas_sgercv(int m, int n, float alpha, const float * x
 	}
 }
 
-#pragma mark - mc_nonblas_dgercv -
+#pragma mark - mc_nonblas_dger_c -
 
-MC_TARGET_FUNC void mc_nonblas_dgercv(int m, int n, double alpha, const double * x, int ldx, int nx, int indx, int incx, const double * y, int ldy, int ny, int indy, int incy, double * a, int lda)
+MC_TARGET_FUNC void mc_nonblas_dger_c(int m, int n, double alpha, const double * x, int ldx, int nx, int indx, int incx, const double * y, int ldy, int ny, int indy, int incy, double * a, int lda)
 {
 	const double zero = 0.0;
 
@@ -149,7 +149,7 @@ MC_TARGET_FUNC void mc_nonblas_dgercv(int m, int n, double alpha, const double *
 		info = 9;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("DGERCV", info);
+		mc_blas_xerbla("DGER_V", info);
 		return;
 	}
 
@@ -196,9 +196,9 @@ MC_TARGET_FUNC void mc_nonblas_dgercv(int m, int n, double alpha, const double *
 	}
 }
 
-#pragma mark - mc_nonblas_lgercv -
+#pragma mark - mc_nonblas_lger_c -
 
-MC_TARGET_FUNC void mc_nonblas_lgercv(int m, int n, long double alpha, const long double * x, int ldx, int nx, int indx, int incx, const long double * y, int ldy, int ny, int indy, int incy, long double * a, int lda)
+MC_TARGET_FUNC void mc_nonblas_lger_c(int m, int n, long double alpha, const long double * x, int ldx, int nx, int indx, int incx, const long double * y, int ldy, int ny, int indy, int incy, long double * a, int lda)
 {
 	const long double zero = 0.0L;
 
@@ -218,7 +218,7 @@ MC_TARGET_FUNC void mc_nonblas_lgercv(int m, int n, long double alpha, const lon
 		info = 9;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("LGERCV", info);
+		mc_blas_xerbla("LGER_V", info);
 		return;
 	}
 
@@ -265,6 +265,6 @@ MC_TARGET_FUNC void mc_nonblas_lgercv(int m, int n, long double alpha, const lon
 	}
 }
 
-#endif /* !MC_NONLAS_GERCV_H */
+#endif /* !MC_NONLAS_GER_V_H */
 
 /* EOF */

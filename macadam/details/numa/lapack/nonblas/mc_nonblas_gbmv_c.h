@@ -1,24 +1,24 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_gbmcv.h
+// mc_nonblas_gbmv_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?gbmcv - performs one of the matrix-column-vector operations:
+ *    ?gbmv_c - performs one of the matrix-column-vector operations:
  *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y.
  *
  * \synopsis
- *    void ?gbmcv(trans, m, n, kl, ku, alpha, a, lda, x, ldx, nx, indx, incx, beta, y, ldy, ny, indy, incy)
+ *    void ?gbmv_c(trans, m, n, kl, ku, alpha, a, lda, x, ldx, nx, indx, incx, beta, y, ldy, ny, indy, incy)
  *    real-floating alpha, beta
  *    int           incx, incy, indx, indy, kl, ku, lda, ldx, ldy, m, n, nx, ny
  *    char          trans
  *    real-floating a(lda,*), x(ldx,*), y(ldy,*)
  *
  * \purpose
- *   ?gbmcv performs one of the matrix-column-vector operations where alpha and beta are scalars, x
+ *   ?gbmv_c performs one of the matrix-column-vector operations where alpha and beta are scalars, x
  *   and y are column-vectors and a is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
  *
  * \parameters
@@ -97,7 +97,7 @@
  *        , 0, 0, 5, 0
  *        , 0, 0, 0, 0
  *     };
- *     mc_blas_?gbmcv('N', 5, 4, 3, 2, 2, a, 8, x, 4, 1, 1, 1, 10, y, 10, 4, 3, 2);
+ *     mc_blas_?gbmv_c('N', 5, 4, 3, 2, 2, a, 8, x, 4, 1, 1, 1, 10, y, 10, 4, 3, 2);
  *     on output -> y = {
  *          0, 0,  22, 0
  *        , 0, 0,   0, 0
@@ -147,7 +147,7 @@
  *        , 4
  *        , 0
  *     };
- *     mc_blas_?gbmcv('N', 4, 5, 6, 5, 2, a_band, 12, x, 5, 1, 1, 1, 10, y, 8, 1, 1, 2);
+ *     mc_blas_?gbmv_c('N', 4, 5, 6, 5, 2, a_band, 12, x, 5, 1, 1, 1, 10, y, 8, 1, 1, 2);
  *     on output -> y[] = {
  *           40
  *        ,   0
@@ -169,12 +169,12 @@
 #include <macadam/details/math/mc_maxmag.h>
 #include <macadam/details/math/mc_minmag.h>
 
-#ifndef MC_NONBLAS_GBMCV_H
-#define MC_NONBLAS_GBMCV_H
+#ifndef MC_NONBLAS_GBMV_C_H
+#define MC_NONBLAS_GBMV_C_H
 
-#pragma mark - mc_nonblas_sgbmcv -
+#pragma mark - mc_nonblas_sgbmv_c -
 
-MC_TARGET_FUNC void mc_nonblas_sgbmcv(const char trans, int m, int n, int kl, int ku, float alpha, const float * a, int lda, const float * x, int ldx, int nx, int indx, int incx, float beta, float * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_sgbmv_c(const char trans, int m, int n, int kl, int ku, float alpha, const float * a, int lda, const float * x, int ldx, int nx, int indx, int incx, float beta, float * y, int ldy, int ny, int indy, int incy)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -200,7 +200,7 @@ MC_TARGET_FUNC void mc_nonblas_sgbmcv(const char trans, int m, int n, int kl, in
 		info = 13;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("SGBMCV", info);
+		mc_blas_xerbla("SGBMV_C", info);
 		return;
 	}
 
@@ -319,9 +319,9 @@ MC_TARGET_FUNC void mc_nonblas_sgbmcv(const char trans, int m, int n, int kl, in
 	}
 }
 
-#pragma mark - mc_nonblas_dgbmcv -
+#pragma mark - mc_nonblas_dgbmv_c -
 
-MC_TARGET_FUNC void mc_nonblas_dgbmcv(const char trans, int m, int n, int kl, int ku, double alpha, const double * a, int lda, const double * x, int ldx, int nx, int indx, int incx, double beta, double * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_dgbmv_c(const char trans, int m, int n, int kl, int ku, double alpha, const double * a, int lda, const double * x, int ldx, int nx, int indx, int incx, double beta, double * y, int ldy, int ny, int indy, int incy)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -347,7 +347,7 @@ MC_TARGET_FUNC void mc_nonblas_dgbmcv(const char trans, int m, int n, int kl, in
 		info = 13;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("DGBMCV", info);
+		mc_blas_xerbla("DGBMV_C", info);
 		return;
 	}
 
@@ -466,9 +466,9 @@ MC_TARGET_FUNC void mc_nonblas_dgbmcv(const char trans, int m, int n, int kl, in
 	}
 }
 
-#pragma mark - mc_nonblas_lgbmcv -
+#pragma mark - mc_nonblas_lgbmv_c -
 
-MC_TARGET_FUNC void mc_nonblas_lgbmcv(const char trans, int m, int n, int kl, int ku, long double alpha, const long double * a, int lda, const long double * x, int ldx, int nx, int indx, int incx, long double beta, long double * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_lgbmv_c(const char trans, int m, int n, int kl, int ku, long double alpha, const long double * a, int lda, const long double * x, int ldx, int nx, int indx, int incx, long double beta, long double * y, int ldy, int ny, int indy, int incy)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
@@ -494,7 +494,7 @@ MC_TARGET_FUNC void mc_nonblas_lgbmcv(const char trans, int m, int n, int kl, in
 		info = 13;
 	}
 	if (info != 0) {
-		mc_blas_xerbla("LGBMCV", info);
+		mc_blas_xerbla("LGBMV_C", info);
 		mc_cast(void, ldx);
 		mc_cast(void, ldy);
 		mc_cast(void, nx);
@@ -613,6 +613,6 @@ MC_TARGET_FUNC void mc_nonblas_lgbmcv(const char trans, int m, int n, int kl, in
 	}
 }
 
-#endif /* !MC_NONBLAS_GBMCV_H */
+#endif /* !MC_NONBLAS_GBMV_C_H */
 
 /* EOF */

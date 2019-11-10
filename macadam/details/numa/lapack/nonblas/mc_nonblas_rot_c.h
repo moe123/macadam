@@ -1,21 +1,21 @@
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_rotcv.h
+// mc_nonblas_rot_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?rotcv applies a plane rotation to column-vectors.
+ *    ?rot_c applies a plane rotation to column-vectors.
  * 
  * \synopsis
- *    real-floating ?rotcv(m, n, x, ldx, nx, indx, incx, y, ldy, ny, indy, incy, c, s)
+ *    real-floating ?rot_c(m, n, x, ldx, nx, indx, incx, y, ldy, ny, indy, incy, c, s)
  *    real-floating c, s
  *    int           incx, incy, indx, indy, ldx, ldy, m, n, nx, ny
  *    real-floating x(ldx, *), y(ldy, *)
  *
  * \purpose
- *    ?rotcv applies a plane rotation matrix to a real sequence of ordered pairs.
+ *    ?rot_c applies a plane rotation matrix to a real sequence of ordered pairs.
  *    If coefficients c and s satisfy c+s=1, the rotation matrix is orthogonal,
  *    and the transformation is called a Givens plane rotation.
  *
@@ -45,12 +45,12 @@
 
 #include <macadam/details/numa/lapack/blas/mc_blas_access.h>
 
-#ifndef MC_NONBLAS_ROTCV_H
-#define MC_NONBLAS_ROTCV_H
+#ifndef MC_NONBLAS_ROT_C_H
+#define MC_NONBLAS_ROT_C_H
 
-#pragma mark - mc_nonblas_srotcv -
+#pragma mark - mc_nonblas_srot_c -
 
-MC_TARGET_FUNC void mc_nonblas_srotcv(int m, float * x, int ldx, int nx, int indx, int incx, float * y, int ldy, int ny, int indy, int incy, float c, float s)
+MC_TARGET_FUNC void mc_nonblas_srot_c(int m, float * x, int ldx, int nx, int indx, int incx, float * y, int ldy, int ny, int indy, int incy, float c, float s)
 {
 	float temp;
 	int i, ix, iy;
@@ -87,9 +87,9 @@ MC_TARGET_FUNC void mc_nonblas_srotcv(int m, float * x, int ldx, int nx, int ind
 	}
 }
 
-#pragma mark - mc_nonblas_drotcv -
+#pragma mark - mc_nonblas_drot_c -
 
-MC_TARGET_FUNC void mc_nonblas_drotcv(int m, double * x, int ldx, int nx, int indx, int incx, double * y, int ldy, int ny, int indy, int incy, double c, double s)
+MC_TARGET_FUNC void mc_nonblas_drot_c(int m, double * x, int ldx, int nx, int indx, int incx, double * y, int ldy, int ny, int indy, int incy, double c, double s)
 {
 	double temp;
 	int i, ix, iy;
@@ -126,9 +126,9 @@ MC_TARGET_FUNC void mc_nonblas_drotcv(int m, double * x, int ldx, int nx, int in
 	}
 }
 
-#pragma mark - mc_nonblas_lrotcv -
+#pragma mark - mc_nonblas_lrot_c -
 
-MC_TARGET_FUNC void mc_nonblas_lrotcv(int m, long double * x, int ldx, int nx, int indx, int incx, long double * y, int ldy, int ny, int indy, int incy, long double c, long double s)
+MC_TARGET_FUNC void mc_nonblas_lrot_c(int m, long double * x, int ldx, int nx, int indx, int incx, long double * y, int ldy, int ny, int indy, int incy, long double c, long double s)
 {
 	long double temp;
 	int i, ix, iy;
@@ -165,6 +165,6 @@ MC_TARGET_FUNC void mc_nonblas_lrotcv(int m, long double * x, int ldx, int nx, i
 	}
 }
 
-#endif /* !MC_NONBLAS_ROTCV_H */
+#endif /* !MC_NONBLAS_ROT_C_H */
 
 /* EOF */

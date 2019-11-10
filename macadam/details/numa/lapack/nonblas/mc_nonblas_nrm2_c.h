@@ -1,20 +1,20 @@
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_nrmcv.h
+// mc_nonblas_nrm2_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?nrmcv returns the euclidean norm of a vector.
+ *    ?nrm2_c returns the euclidean norm of a vector.
  * 
  * \synopsis
- *    real-floating ?nrmcv(m, x, ldx, nx, indx, incx)
+ *    real-floating ?nrm2_c(m, x, ldx, nx, indx, incx)
  *    int           indx, incx, ldx, m, nx
  *    real-floating x(ldx, *)
  *
  * \purpose
- *    ?nrmcv returns the euclidean norm of a column-vector: norm2=sqrt(x'*x).
+ *    ?nrm2_c returns the euclidean norm of a column-vector: norm2=sqrt(x'*x).
  *
  * \parameters
  *    [in] m    - int. Specifies the number of elements within a column of x.
@@ -36,12 +36,12 @@
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
 
-#ifndef MC_BLAS_NRMCV_H
-#define MC_BLAS_NRMCV_H
+#ifndef MC_BLAS_NRM2_C_H
+#define MC_BLAS_NRM2_C_H
 
-#pragma mark - mc_blas_snrmcv -
+#pragma mark - mc_blas_snrm2_c -
 
-MC_TARGET_FUNC float mc_blas_snrmcv(int m, const float * x, int ldx, int nx, int indx, int incx)
+MC_TARGET_FUNC float mc_blas_snrm2_c(int m, const float * x, int ldx, int nx, int indx, int incx)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -74,9 +74,9 @@ MC_TARGET_FUNC float mc_blas_snrmcv(int m, const float * x, int ldx, int nx, int
 	return norm;
 }
 
-#pragma mark - mc_blas_sdnrmcv -
+#pragma mark - mc_blas_sdnrm2_c -
 
-MC_TARGET_FUNC double mc_blas_sdnrmcv(int m, const float * x, int ldx, int nx, int indx, int incx)
+MC_TARGET_FUNC double mc_blas_sdnrm2_c(int m, const float * x, int ldx, int nx, int indx, int incx)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -109,9 +109,9 @@ MC_TARGET_FUNC double mc_blas_sdnrmcv(int m, const float * x, int ldx, int nx, i
 	return norm;
 }
 
-#pragma mark - mc_blas_dnrmcv -
+#pragma mark - mc_blas_dnrm2_c -
 
-MC_TARGET_FUNC double mc_blas_dnrmcv(int m, const double * x, int ldx, int nx, int indx, int incx)
+MC_TARGET_FUNC double mc_blas_dnrm2_c(int m, const double * x, int ldx, int nx, int indx, int incx)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -144,9 +144,9 @@ MC_TARGET_FUNC double mc_blas_dnrmcv(int m, const double * x, int ldx, int nx, i
 	return norm;
 }
 
-#pragma mark - mc_blas_lnrmcv -
+#pragma mark - mc_blas_lnrm2_c -
 
-MC_TARGET_FUNC long double mc_blas_lnrmcv(int m, const long double * x, int ldx, int nx, int indx, int incx)
+MC_TARGET_FUNC long double mc_blas_lnrm2_c(int m, const long double * x, int ldx, int nx, int indx, int incx)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
@@ -179,6 +179,6 @@ MC_TARGET_FUNC long double mc_blas_lnrmcv(int m, const long double * x, int ldx,
 	return norm;
 }
 
-#endif /* !MC_BLAS_NRMCV_H */
+#endif /* !MC_BLAS_NRM2_C_H */
 
 /* EOF */

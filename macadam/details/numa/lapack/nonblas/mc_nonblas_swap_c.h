@@ -1,18 +1,18 @@
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_nonblas_swpcv.h
+// mc_nonblas_swap_c.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/numa/lapack/blas/mc_blas_access.h>
 
-#ifndef MC_NONBLAS_SWPCV_H
-#define MC_NONBLAS_SWPCV_H
+#ifndef MC_NONBLAS_SWAP_C_H
+#define MC_NONBLAS_SWAP_C_H
 
-#pragma mark - mc_nonblas_sswpcv -
+#pragma mark - mc_nonblas_sswap_c -
 
-MC_TARGET_FUNC void mc_nonblas_sswpcv(int m, float * x, int ldx, int nx, int indx, int incx, float * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_sswap_c(int m, float * x, int ldx, int nx, int indx, int incx, float * y, int ldy, int ny, int indy, int incy)
 {
 	float temp;
 	int i, ix, iy, n, np1;
@@ -67,9 +67,9 @@ MC_TARGET_FUNC void mc_nonblas_sswpcv(int m, float * x, int ldx, int nx, int ind
 	}
 }
 
-#pragma mark - mc_nonblas_dswpcv -
+#pragma mark - mc_nonblas_dswap_c -
 
-MC_TARGET_FUNC void mc_nonblas_dswpcv(int m, double * x, int ldx, int nx, int indx, int incx, double * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_dswap_c(int m, double * x, int ldx, int nx, int indx, int incx, double * y, int ldy, int ny, int indy, int incy)
 {
 	double temp;
 	int i, ix, iy, n, np1;
@@ -124,9 +124,9 @@ MC_TARGET_FUNC void mc_nonblas_dswpcv(int m, double * x, int ldx, int nx, int in
 	}
 }
 
-#pragma mark - mc_nonblas_lswpcv -
+#pragma mark - mc_nonblas_lswap_c -
 
-MC_TARGET_FUNC void mc_nonblas_lswpcv(int m, long double * x, int ldx, int nx, int indx, int incx, long double * y, int ldy, int ny, int indy, int incy)
+MC_TARGET_FUNC void mc_nonblas_lswap_c(int m, long double * x, int ldx, int nx, int indx, int incx, long double * y, int ldy, int ny, int indy, int incy)
 {
 	long double temp;
 	int i, ix, iy, n, np1;
@@ -181,6 +181,6 @@ MC_TARGET_FUNC void mc_nonblas_lswpcv(int m, long double * x, int ldx, int nx, i
 	}
 }
 
-#endif /* !MC_NONBLAS_SWPCV_H */
+#endif /* !MC_NONBLAS_SWAP_C_H */
 
 /* EOF */
