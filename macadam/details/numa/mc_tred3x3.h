@@ -6,7 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_raise2.h>
+#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/numa/mc_eye3x3.h>
 
 #ifndef MC_TRED3X3_H
 #define MC_TRED3X3_H
@@ -18,7 +21,7 @@ MC_TARGET_FUNC int mc_tred3x3f(const float a[9], float t[9], float d[3], float u
 	const float tiny = MCLIMITS_TINYF;
 
 	float mag, q;
-	
+
 	float a11 = a[0], a12 = a[1], a13 = a[2];
 	float             a22 = a[4], a23 = a[5];
 	float                         a33 = a[8];
@@ -47,7 +50,7 @@ MC_TARGET_FUNC int mc_tred3x3(const double a[9], double t[9], double d[3], doubl
 	const double tiny = MCLIMITS_TINY;
 
 	double mag, q;
-	
+
 	double a11 = a[0], a12 = a[1], a13 = a[2];
 	double             a22 = a[4], a23 = a[5];
 	double                         a33 = a[8];
@@ -76,7 +79,7 @@ MC_TARGET_FUNC int mc_tred3x3l(const long double a[9], long double t[9], long do
 	const long double tiny = MCLIMITS_TINYL;
 
 	long double mag, q;
-	
+
 	long double a11 = a[0], a12 = a[1], a13 = a[2];
 	long double             a22 = a[4], a23 = a[5];
 	long double                         a33 = a[8];
