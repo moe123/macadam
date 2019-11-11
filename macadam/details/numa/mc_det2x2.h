@@ -19,6 +19,11 @@ MC_TARGET_FUNC float mc_det2x2f(const float a[4])
 	return a[0] * a[3] - a[2] * a[1];
 }
 
+MC_TARGET_FUNC double mc_det2x2ff(const float a[4])
+{
+	return mc_cast(double, a[0]) * mc_cast(double, a[3]) - mc_cast(double, a[2]) * mc_cast(double, a[1]);
+}
+
 MC_TARGET_FUNC double mc_det2x2(const double a[4])
 {
 	return a[0] * a[3] - a[2] * a[1];

@@ -80,6 +80,66 @@ MC_TARGET_PROC int mc_eigsy2x2f(const float a[4], float e[2], float * v)
 	return -1;
 }
 
+MC_TARGET_PROC int mc_eigsy2x2ff(const float a[4], double e[2], double * v)
+{
+	int wantv = mc_nonnull(v);
+	double t0 = 0.0, t1, t2;
+
+	if (a[1] == a[2]) {
+		if (mc_fabsf(a[2]) == 0.0f) {
+			e[0] = mc_cast(double, mc_fminf(a[0], a[3]));
+			e[1] = mc_cast(double, mc_fmaxf(a[0], a[3]));
+			if (wantv) {
+				mc_eye2x2(v);
+			}
+			return -3;
+		} else {
+			const double trc = mc_trace2x2ff(a);
+			const double det = mc_det2x2ff(a);
+			t1               = mc_raise2(trc) - 4.0 * det;
+
+			if (t1 >= 0.0) {
+				t1 = mc_sqrt(t1);
+			} else {
+				mc_zsqrt(&t0, &t1, t1, 0.0);
+			}
+			t0 = -trc;
+			t0 = -0.5 * (t0 + (t0 > 0.0 ? 1.0 : -1.0) * t1);
+			t1 = det / t0;
+
+			if (mc_fabs(t0) > mc_fabs(t1)) {
+				t2 = t0;
+				t0 = t1;
+				t1 = t2;
+			}
+			if (mc_fabs(t0) < MCLIMITS_EPSILON || mc_fabs(t1) < MCLIMITS_EPSILON) {
+				e[0] = 1.0; e[1] = 1.0;
+				if (wantv) {
+					mc_eye2x2(v);
+				}
+				return -2;
+			}
+			e[0] = t0; e[1] = t1;
+			if (wantv) {
+				t0 =  a[3] - t0;
+				t1 = -a[2];
+				t2 = mc_sqrt(mc_raise2(t0) + mc_raise2(t1));
+				t0 = t0 / t2;
+				t1 = t1 / t2;
+				v[0] = t0; v[1] =  t1;
+				v[2] = t1; v[3] = -t0;
+			}
+			return 0;
+		}
+	} else {
+		e[0] = 1.0; e[1] = 1.0;
+		if (wantv) {
+			mc_eye2x2(v);
+		}
+	}
+	return -1;
+}
+
 MC_TARGET_PROC int mc_eigsy2x2(const double a[4], double e[2], double * v)
 {
 	int wantv = mc_nonnull(v);

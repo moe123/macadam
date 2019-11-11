@@ -18,6 +18,11 @@ MC_TARGET_FUNC float mc_trace2x2f(const float a[4])
 	return a[0] + a[3];
 }
 
+MC_TARGET_FUNC double mc_trace2x2ff(const float a[4])
+{
+	return mc_cast(double, a[0]) + mc_cast(double, a[3]);
+}
+
 MC_TARGET_FUNC double mc_trace2x2(const double a[4])
 {
 	return a[0] + a[3];

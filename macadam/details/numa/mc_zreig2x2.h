@@ -36,6 +36,7 @@ MC_TARGET_PROC int mc_zreig2x2f(
 	, float * v2_r, float * v2_i, float * v3_r, float * v3_i
 ) {
 	float t0, t1, t2;
+
 	if (a[2] == 0.0f && a[1] == 0.0f) {
 		*e0_r = mc_fminf(a[0], a[3]); *e0_i = 0.0f;
 		*e1_r = mc_fmaxf(a[0], a[3]); *e1_i = 0.0f;
@@ -92,6 +93,74 @@ MC_TARGET_PROC int mc_zreig2x2f(
 	return -1;
 }
 
+MC_TARGET_PROC int mc_zreig2x2ff(
+	  const float a[4]
+	, double * e0_r
+	, double * e0_i
+	, double * e1_r
+	, double * e1_i
+	, int wantv
+	, double * v0_r, double * v0_i, double * v1_r, double * v1_i
+	, double * v2_r, double * v2_i, double * v3_r, double * v3_i
+) {
+	double t0, t1, t2;
+
+	if (a[2] == 0.0f && a[1] == 0.0f) {
+		*e0_r = mc_cast(double, mc_fminf(a[0], a[3])); *e0_i = 0.0;
+		*e1_r = mc_cast(double, mc_fmaxf(a[0], a[3])); *e1_i = 0.0;
+		if (wantv) {
+			mc_zeye2x2(
+				  v0_r, v0_i, v1_r, v1_i
+				, v2_r, v2_i, v3_r, v3_i
+			);
+		}
+		return 2;
+	} else {
+		const double t = mc_trace2x2ff(a);
+		const double d = mc_det2x2ff(a);
+
+		mc_zsqrt(&t0, &t1, mc_raise2(t) / 4.0 - d, 0.0);
+		t2 = t0;
+
+		mc_zadd(e0_r, e0_i, t * 0.5, 0.0, 0.0, t1);
+		mc_zsub(e1_r, e1_i, t * 0.5, 0.0, 0.0, t1);
+
+		if (wantv) {
+			if (a[2] != 0.0f && mc_fabsf(a[2]) > mc_fabsf(a[1])) {
+				mc_zsub(&t0, &t1, *e0_r, *e0_i, mc_cast(double, a[3]), 0.0);
+				*v0_r = t0; *v0_i = t1;
+
+				mc_zsub(&t0, &t1, *e1_r, *e1_i, mc_cast(double, a[3]), 0.0);
+				*v1_r = t0; *v1_i = t1;
+
+				*v2_r = mc_cast(double, a[2]); *v2_i = 0.0; *v3_r = mc_cast(double, a[2]); *v3_i = 0.0;
+				
+				mc_zunit1x2(v0_r, v0_i, v2_r, v2_i);
+				mc_zunit1x2(v1_r, v1_i, v3_r, v3_i);
+
+			} else if (a[1] != 0.0f) {
+				*v0_r = mc_cast(double, a[1]); *v0_i = 0.0; *v1_r = mc_cast(double, a[1]); *v1_i = 0.0;
+
+				mc_zsub(&t0, &t1, *e0_r, *e0_i, mc_cast(double, a[0]), 0.0);
+				*v2_r = t0; *v2_i = t1;
+
+				mc_zsub(&t0, &t1, *e1_r, *e1_i, mc_cast(double, a[0]), 0.0);
+				*v3_r = t0; *v3_i = t1;
+
+				mc_zunit1x2(v0_r, v0_i, v2_r, v2_i);
+				mc_zunit1x2(v1_r, v1_i, v3_r, v3_i);
+			} else {
+				mc_zeye2x2(
+					  v0_r, v0_i, v1_r, v1_i
+					, v2_r, v2_i, v3_r, v3_i
+				);
+			}
+		}
+		return a[2] == a[1] ? 1 : (t2 > 0.0 ? 0 : 1);
+	}
+	return -1;
+}
+
 MC_TARGET_PROC int mc_zreig2x2(
 	  const double a[4]
 	, double * e0_r
@@ -103,6 +172,7 @@ MC_TARGET_PROC int mc_zreig2x2(
 	, double * v2_r, double * v2_i, double * v3_r, double * v3_i
 ) {
 	double t0, t1, t2;
+
 	if (a[2] == 0.0 && a[1] == 0.0) {
 		*e0_r = mc_fmin(a[0], a[3]); *e0_i = 0.0;
 		*e1_r = mc_fmax(a[0], a[3]); *e1_i = 0.0;
@@ -170,6 +240,7 @@ MC_TARGET_PROC int mc_zreig2x2l(
 	, long double * v2_r, long double * v2_i, long double * v3_r, long double * v3_i
 ) {
 	long double t0, t1, t2;
+
 	if (a[2] == 0.0L && a[1] == 0.0L) {
 		*e0_r = mc_fminl(a[0], a[3]); *e0_i = 0.0L;
 		*e1_r = mc_fmaxl(a[0], a[3]); *e1_i = 0.0L;
