@@ -87,6 +87,7 @@
 #	include <macadam/details/numa/mc_det2x2.h>
 #	include <macadam/details/numa/mc_det3x3.h>
 #	include <macadam/details/numa/mc_eig2x2.h>
+#	include <macadam/details/numa/mc_eigsy2x2.h>
 #	include <macadam/details/numa/mc_eye2x2.h>
 #	include <macadam/details/numa/mc_eye3x3.h>
 #	include <macadam/details/numa/mc_l2norm1xn.h>
