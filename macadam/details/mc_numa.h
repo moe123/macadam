@@ -86,6 +86,7 @@
 #	include <macadam/details/numa/mc_asum1xn.h>
 #	include <macadam/details/numa/mc_det2x2.h>
 #	include <macadam/details/numa/mc_det3x3.h>
+#	include <macadam/details/numa/mc_det4x4.h>
 #	include <macadam/details/numa/mc_eig2x2.h>
 #	include <macadam/details/numa/mc_eigsy2x2.h>
 #	include <macadam/details/numa/mc_eye2x2.h>
@@ -96,6 +97,11 @@
 #	include <macadam/details/numa/mc_l2norm2x1.h>
 #	include <macadam/details/numa/mc_l2norm3x1.h>
 #	include <macadam/details/numa/mc_l2normmx1.h>
+#	include <macadam/details/numa/mc_magic2x2.h>
+#	include <macadam/details/numa/mc_magic3x3.h>
+#	include <macadam/details/numa/mc_magic4x4.h>
+#	include <macadam/details/numa/mc_magic5x5.h>
+#	include <macadam/details/numa/mc_magic6x6.h>
 #	include <macadam/details/numa/mc_mean1xn.h>
 #	include <macadam/details/numa/mc_mssqr1xn.h>
 #	include <macadam/details/numa/mc_mstdd1xn.h>
@@ -110,7 +116,7 @@
 #	include <macadam/details/numa/mc_trace3x3.h>
 #	include <macadam/details/numa/mc_tracemxn.h>
 #	include <macadam/details/numa/mc_tracenxn.h>
-#	include <macadam/details/numa/mc_tred3x3.h>
+#	include <macadam/details/numa/mc_tredsy3x3.h>
 #	include <macadam/details/numa/mc_trsi2x2.h>
 #	include <macadam/details/numa/mc_trsi3x3.h>
 #	include <macadam/details/numa/mc_trsimxn.h>
