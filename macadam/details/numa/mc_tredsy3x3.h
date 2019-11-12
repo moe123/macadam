@@ -16,18 +16,21 @@
 
 #pragma mark - mc_tredsy3x3_approx0 -
 
-MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float q[9], float d[3], float e[2])
+MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float * q, float d[3], float e[2])
 {
 //!# Close-formish by RREF.
 	const float tiny = MCLIMITS_TINYF;
 
+	int wantq = mc_nonnull(q);
 	float mag, s;
 
 	float a11 = a[0], a12 = a[1], a13 = a[2];
 	float             a22 = a[4], a23 = a[5];
 	float                         a33 = a[8];
 
-	mc_eye3x3f(q);
+	if (wantq) {
+		mc_eye3x3f(q);
+	}
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
 	e[0] = a12; e[1] = a23;
@@ -42,26 +45,31 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float q[9], float d[3
 			s    = (2.0f * a12 * a23) + a13 * (a33 - a22);
 			d[1] = a22 + a13 * s; d[2] = a33 - a13 * s;
 			e[0] = mag; e[1] = a23 - a12 * s;
-			q[4] = a12; q[5] = a13;
-			q[7] = a13; q[8] =-a12;
+			if (wantq) {
+				q[4] = a12; q[5] = a13;
+				q[7] = a13; q[8] =-a12;
+			}
 			return 0;
 		}
 	}
 	return -1;
 }
 
-MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double q[9], double d[3], double e[2])
+MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double * q, double d[3], double e[2])
 {
 //!# Close-formish by RREF.
 	const double tiny = MCLIMITS_TINY;
 
+	int wantq = mc_nonnull(q);
 	double mag, s;
 
 	double a11 = a[0], a12 = a[1], a13 = a[2];
 	double             a22 = a[4], a23 = a[5];
 	double                         a33 = a[8];
 
-	mc_eye3x3(q);
+	if (wantq) {
+		mc_eye3x3(q);
+	}
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
 	e[0] = a12; e[1] = a23;
@@ -76,26 +84,31 @@ MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double q[9], double d
 			s    = 2.0 * a12 * a23 + a13 * (a33 - a22);
 			d[1] = a22 + a13 * s; d[2] = a33 - a13 * s;
 			e[0] = mag; e[1] = a23 - a12 * s;
-			q[4] = a12; q[5] = a13;
-			q[7] = a13; q[8] =-a12;
+			if (wantq) {
+				q[4] = a12; q[5] = a13;
+				q[7] = a13; q[8] =-a12;
+			}
 			return 0;
 		}
 	}
 	return -1;
 }
 
-MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double q[9], long double d[3], long double e[2])
+MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double * q, long double d[3], long double e[2])
 {
 //!# Close-formish by RREF.
 	const long double tiny = MCLIMITS_TINYL;
 
+	int wantq = mc_nonnull(q);
 	long double mag, s;
 
 	long double a11 = a[0], a12 = a[1], a13 = a[2];
 	long double             a22 = a[4], a23 = a[5];
 	long double                         a33 = a[8];
 
-	mc_eye3x3l(q);
+	if (wantq) {
+		mc_eye3x3l(q);
+	}
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
 	e[0] = a12; e[1] = a23;
@@ -110,8 +123,10 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double q[9
 			s    = 2.0L * a12 * a23 + a13 * (a33 - a22);
 			d[1] = a22 + a13 * s; d[2] = a33 - a13 * s;
 			e[0] = mag; e[1] = a23 - a12 * s;
-			q[4] = a12; q[5] = a13;
-			q[7] = a13; q[8] =-a12;
+			if (wantq) {
+				q[4] = a12; q[5] = a13;
+				q[7] = a13; q[8] =-a12;
+			}
 			return 0;
 		}
 	}
@@ -120,9 +135,10 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double q[9
 
 #pragma mark - mc_tredsy3x3_approx1 -
 
-MC_TARGET_PROC int mc_tredsy3x3f_approx1(const float a[9], float q[9], float d[3], float e[2])
+MC_TARGET_PROC int mc_tredsy3x3f_approx1(const float a[9], float * q, float d[3], float e[2])
 {
 //!# Full Householder transformation.
+	int wantq     = mc_nonnull(q);
 	float w, s, k = 0.0f, h, g, u1, u2, q1, q2;
 
 	float a11 = a[0], a12 = a[1], a13 = a[2];
@@ -136,7 +152,9 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx1(const float a[9], float q[9], float d[3
 	u1   = a12 - g;
 	u2   = a13;
 
-	mc_eye3x3f(q);
+	if (wantq) {
+		mc_eye3x3f(q);
+	}
 
 	w = h - s;
 
@@ -162,22 +180,24 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx1(const float a[9], float q[9], float d[3
 		d[1] = a22 - 2.0f * q1 * u1;
 		d[2] = a23 - 2.0f * q2 * u2;
 
-		s    = w * u1;
-		q[4] = q[4] - s * u1;
-		q[7] = q[7] - s * u2;
-		s    = w * u2;
-		q[5] = q[5] - s * u1;
-		q[8] = q[8] - s * u2;
-
+		if (wantq) {
+			s    = w * u1;
+			q[4] = q[4] - s * u1;
+			q[7] = q[7] - s * u2;
+			s    = w * u2;
+			q[5] = q[5] - s * u1;
+			q[8] = q[8] - s * u2;
+		}
 		e[1] = a23 - q1 * u2 - u1 * q2;
 		return 0;
 	}
 	return -1;
 }
 
-MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double q[9], double d[3], double e[2])
+MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double * q, double d[3], double e[2])
 {
 //!# Full Householder transformation.
+	int wantq      = mc_nonnull(q);
 	double w, s, k = 0.0, h, g, u1, u2, q1, q2;
 
 	double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -191,7 +211,9 @@ MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double q[9], double d
 	u1   = a12 - g;
 	u2   = a13;
 
-	mc_eye3x3(q);
+	if (wantq) {
+		mc_eye3x3(q);
+	}
 
 	w = h - s;
 
@@ -217,13 +239,14 @@ MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double q[9], double d
 		d[1] = a22 - 2.0 * q1 * u1;
 		d[2] = a23 - 2.0 * q2 * u2;
 
-		s    = w * u1;
-		q[4] = q[4] - s * u1;
-		q[7] = q[7] - s * u2;
-		s    = w * u2;
-		q[5] = q[5] - s * u1;
-		q[8] = q[8] - s * u2;
-
+		if (wantq) {
+			s    = w * u1;
+			q[4] = q[4] - s * u1;
+			q[7] = q[7] - s * u2;
+			s    = w * u2;
+			q[5] = q[5] - s * u1;
+			q[8] = q[8] - s * u2;
+		}
 		e[1] = a23 - q1 * u2 - u1 * q2;
 		return 0;
 	}
@@ -233,6 +256,7 @@ MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double q[9], double d
 MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9], long double d[3], long double e[2])
 {
 //!# Full Householder transformation.
+	int wantq           = mc_nonnull(q);
 	long double w, s, k = 0.0L, h, g, u1, u2, q1, q2;
 
 	long double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -246,7 +270,9 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9
 	u1   = a12 - g;
 	u2   = a13;
 
-	mc_eye3x3l(q);
+	if (wantq) {
+		mc_eye3x3l(q);
+	}
 
 	w = h - s;
 
@@ -272,13 +298,14 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9
 		d[1] = a22 - 2.0L * q1 * u1;
 		d[2] = a23 - 2.0L * q2 * u2;
 
-		s    = w * u1;
-		q[4] = q[4] - s * u1;
-		q[7] = q[7] - s * u2;
-		s    = w * u2;
-		q[5] = q[5] - s * u1;
-		q[8] = q[8] - s * u2;
-
+		if (wantq) {
+			s    = w * u1;
+			q[4] = q[4] - s * u1;
+			q[7] = q[7] - s * u2;
+			s    = w * u2;
+			q[5] = q[5] - s * u1;
+			q[8] = q[8] - s * u2;
+		}
 		e[1] = a23 - q1 * u2 - u1 * q2;
 		return 0;
 	}
@@ -287,17 +314,17 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9
 
 #pragma mark - mc_tredsy3x3 -
 
-MC_TARGET_FUNC int mc_tredsy3x3f(const float a[9], float q[9], float d[3], float e[2])
+MC_TARGET_FUNC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float e[2])
 {
 	return mc_tredsy3x3f_approx1(a, q, d, e);
 }
 
-MC_TARGET_FUNC int mc_tredsy3x3(const double a[9], double q[9], double d[3], double e[2])
+MC_TARGET_FUNC int mc_tredsy3x3(const double a[9], double * q, double d[3], double e[2])
 {
 	return mc_tredsy3x3_approx1(a, q, d, e);
 }
 
-MC_TARGET_FUNC int mc_tredsy3x3l(const long double a[9], long double q[9], long double d[3], long double e[2])
+MC_TARGET_FUNC int mc_tredsy3x3l(const long double a[9], long double * q, long double d[3], long double e[2])
 {
 	return mc_tredsy3x3l_approx1(a, q, d, e);
 }
