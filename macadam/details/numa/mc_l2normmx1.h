@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_l2normmx1(int m, int n, int j, const double * a)
 	return sumsq;
 }
 
-MC_TARGET_FUNC long double mc_l2normmx1l(int n, const long double * a)
+MC_TARGET_FUNC long double mc_l2normmx1l(int m, int n, int j, const long double * a)
 {
 	long double sumsq = 0.0L, scale;
 	if (n > 0) {

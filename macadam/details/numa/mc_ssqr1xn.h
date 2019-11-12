@@ -53,7 +53,7 @@ MC_TARGET_FUNC void mc_ssqr1xnff(int n, const float * x, double * sumsq, double 
 			*scale = mc_fabs(x[0]);
 		} else {
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(mc_cast(double, x[i])))) {
+				if (0.0 != (t = mc_fabs(mc_cast(double, x[i])))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
@@ -79,7 +79,7 @@ MC_TARGET_FUNC void mc_ssqr1xn(int n, const double * x, double * sumsq, double *
 			*scale = mc_fabs(x[0]);
 		} else {
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabs(x[i]))) {
+				if (0.0 != (t = mc_fabs(x[i]))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
 						*scale = t;
@@ -105,7 +105,7 @@ MC_TARGET_FUNC void mc_ssqr1xnl(int n, const long double * x, long double * sums
 			*scale = mc_fabsl(x[0]);
 		} else {
 			for (i = 0; i < n; i++) {
-				if (0.0f != (t = mc_fabsl(x[i]))) {
+				if (0.0L != (t = mc_fabsl(x[i]))) {
 					if (*scale < t) {
 						*sumsq = 1.0L + *sumsq * mc_raise2l(*scale / t);
 						*scale = t;
