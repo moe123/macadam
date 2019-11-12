@@ -101,7 +101,7 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double q[9
 	e[0] = a12; e[1] = a23;
 	if (mc_fabsl(a13) >= tiny && !(a12 == 0.0L && a13 == 0.0L)) {
 		mag = mc_sqrtl(mc_raise2l(a12) + mc_raise2l(a13));
-		if (mc_fabs(mag) >= tiny) {
+		if (mc_fabsl(mag) >= tiny) {
 			if (a11 > 0.0) {
 				mag = -mag;
 			}
@@ -144,19 +144,19 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx1(const float a[9], float q[9], float d[3
 	e[1] = a23;
 
 	if (w > 0.0f) {
-		w = 1.0f / w;
+		w    = 1.0f / w;
 
 		s    = a22 * u1 + a23 * u2;
-		q1 = w * s;
+		q1   = w * s;
 		k    = k + u1 * s;
 		s    = a23 * u1 + a33 * u2;
-		q2 = w * s;
+		q2   = w * s;
 		k    = k + u2 * s;
 
 		k    = k * (0.5f * w * w);
 
-		q1 = q1 - k * u1;
-		q2 = q2 - k * u2;
+		q1   = q1 - k * u1;
+		q2   = q2 - k * u2;
 
 		d[0] = a11;
 		d[1] = a22 - 2.0f * q1 * u1;
@@ -202,16 +202,16 @@ MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double q[9], double d
 		w = 1.0 / w;
 
 		s    = a22 * u1 + a23 * u2;
-		q1 = w * s;
+		q1   = w * s;
 		k    = k + u1 * s;
 		s    = a23 * u1 + a33 * u2;
-		q2 = w * s;
+		q2   = w * s;
 		k    = k + u2 * s;
 
 		k    = k * (0.5 * w * w);
 
-		q1 = q1 - k * u1;
-		q2 = q2 - k * u2;
+		q1   = q1 - k * u1;
+		q2   = q2 - k * u2;
 
 		d[0] = a11;
 		d[1] = a22 - 2.0 * q1 * u1;
@@ -257,16 +257,16 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9
 		w = 1.0L / w;
 
 		s    = a22 * u1 + a23 * u2;
-		q1 = w * s;
+		q1   = w * s;
 		k    = k + u1 * s;
 		s    = a23 * u1 + a33 * u2;
-		q2 = w * s;
+		q2   = w * s;
 		k    = k + u2 * s;
 
 		k    = k * (0.5L * w * w);
 
-		q1 = q1 - k * u1;
-		q2 = q2 - k * u2;
+		q1   = q1 - k * u1;
+		q2   = q2 - k * u2;
 
 		d[0] = a11;
 		d[1] = a22 - 2.0L * q1 * u1;
