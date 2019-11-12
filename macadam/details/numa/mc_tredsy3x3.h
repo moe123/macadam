@@ -11,8 +11,8 @@
 #include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/numa/mc_eye3x3.h>
 
-#ifndef MC_TRED3X3_H
-#define MC_TRED3X3_H
+#ifndef MC_TREDSY3X3_H
+#define MC_TREDSY3X3_H
 
 #pragma mark - mc_tredsy3x3_approx0 -
 
@@ -329,6 +329,6 @@ MC_TARGET_FUNC int mc_tredsy3x3l(const long double a[9], long double * q, long d
 	return mc_tredsy3x3l_approx1(a, q, d, e);
 }
 
-#endif /* !MC_TRED3X3_H */
+#endif /* !MC_TREDSY3X3_H */
 
 /* EOF */
