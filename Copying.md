@@ -154,4 +154,30 @@ werden eingehalten:
 ---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 
+---------------------------------------------------------------------------
+EISPACK Fortran subroutines that compute the eigenvalues and eigenvectors.
+Copyright  1972,1973, 1983 by Nelson H. F. Beebe
+Author:         Nelson H. F. Beebe
+Original-site:  http://www.math.utah.edu/software/eispack.html
+Alternate-site: http://www.netlib.org/eispack/
+Platform:       Any
+Copying-policy: Freely distributable
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+LAPACK Fortran provides routines for solving systems of simultaneous linear
+equations, least-squares solutions of linear systems of equations, eigenvalue
+problems, and singular value problems.
+Copyright  1992, 2017 by Jack Dongarra
+Author:         Jack Dongarra
+Original-site:  http://www.math.utah.edu/software/eispack.html
+Alternate-site: http://www.netlib.org/lapack
+Platform:       Any
+Copying-policy: Freely distributable, modified BSD license.
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+
 # EOF
