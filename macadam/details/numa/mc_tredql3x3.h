@@ -15,7 +15,7 @@
 
 #pragma mark - mc_tredql3x3 -
 
-MC_TARGET_PROC int mc_tredql3x3f(float a[9], float d[3], float e[3])
+MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 {
 	int wanta = mc_nonnull(a);
 	float b, c, f, h, p, r, s, t;
@@ -91,7 +91,7 @@ MC_TARGET_PROC int mc_tredql3x3f(float a[9], float d[3], float e[3])
 	return 0;
 }
 
-MC_TARGET_PROC int mc_tredql3x3(double a[9], double d[3], double e[3])
+MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 {
 	int wanta = mc_nonnull(a);
 	double b, c, f, h, p, r, s, t;
@@ -167,7 +167,7 @@ MC_TARGET_PROC int mc_tredql3x3(double a[9], double d[3], double e[3])
 	return 0;
 }
 
-MC_TARGET_PROC int mc_tredql3x3l(long double a[9], long double d[3], long double e[3])
+MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double e[3])
 {
 	int wanta = mc_nonnull(a);
 	long double b, c, f, h, p, r, s, t;
