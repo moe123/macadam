@@ -196,7 +196,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3(const double a[9], double e[3], double * v)
 //!# Number of Jacobi iterations.
 	int i          = 0;
 //!# Too low values guard.
-	const double m = MCLIMITS_TINYF;
+	const double m = MCLIMITS_TINY;
 //!# Max number of iteration for convergence.
 	const int j    = 90;
 
@@ -369,7 +369,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long 
 //!# Number of Jacobi iterations.
 	int i               = 0;
 //!# Too low values guard.
-	const long double m = MCLIMITS_TINYF;
+	const long double m = MCLIMITS_TINYL;
 //!# Max number of iteration for convergence.
 	const int j         = 90;
 
