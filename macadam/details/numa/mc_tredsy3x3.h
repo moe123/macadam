@@ -314,17 +314,17 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9
 
 #pragma mark - mc_tredsy3x3 -
 
-MC_TARGET_FUNC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float e[2])
+MC_TARGET_PROC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float e[2])
 {
 	return mc_tredsy3x3f_approx1(a, q, d, e);
 }
 
-MC_TARGET_FUNC int mc_tredsy3x3(const double a[9], double * q, double d[3], double e[2])
+MC_TARGET_PROC int mc_tredsy3x3(const double a[9], double * q, double d[3], double e[2])
 {
 	return mc_tredsy3x3_approx1(a, q, d, e);
 }
 
-MC_TARGET_FUNC int mc_tredsy3x3l(const long double a[9], long double * q, long double d[3], long double e[2])
+MC_TARGET_PROC int mc_tredsy3x3l(const long double a[9], long double * q, long double d[3], long double e[2])
 {
 	return mc_tredsy3x3l_approx1(a, q, d, e);
 }

@@ -18,7 +18,7 @@
 #	define MCLIMITS_EPSILONL MCK_KL(LDBL_EPSILON)
 
 #	if MC_TARGET_CPP98
-#		if MC_TARGET_CPP11
+#	if MC_TARGET_CPP11
 		static const float       MCLIMITS_LOWF  = ::std::sqrt(MCLIMITS_EPSILONF);
 		static const double      MCLIMITS_LOW   = ::std::sqrt(MCLIMITS_EPSILON);
 		static const long double MCLIMITS_LOWL  = ::std::sqrt(MCLIMITS_EPSILONL);
