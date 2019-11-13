@@ -13,9 +13,9 @@
 #ifndef MC_EIGSYQ3X3_H
 #define MC_EIGSYQ3X3_H
 
-#pragma mark - mc_eigsyq3x3f -
+#pragma mark - mc_eigsyq3x3 -
 
-MC_TARGET_PROC int mc_eigsyq3x3f(const float a[9], float e[3], float * v)
+MC_TARGET_FUNC int mc_eigsyq3x3f(const float a[9], float e[3], float * v)
 {
 	int r;
 	float w[3] = { 0 };
@@ -46,7 +46,7 @@ MC_TARGET_PROC int mc_eigsyq3x3f(const float a[9], float e[3], float * v)
 	return r;
 }
 
-MC_TARGET_PROC int mc_eigsyq3x3(const double a[9], double e[3], double * v)
+MC_TARGET_FUNC int mc_eigsyq3x3(const double a[9], double e[3], double * v)
 {
 	int r;
 	double w[3] = { 0 };
@@ -77,7 +77,7 @@ MC_TARGET_PROC int mc_eigsyq3x3(const double a[9], double e[3], double * v)
 	return r;
 }
 
-MC_TARGET_PROC int mc_eigsyq3x3l(const long double a[9], long double e[3], long double * v)
+MC_TARGET_FUNC int mc_eigsyq3x3l(const long double a[9], long double e[3], long double * v)
 {
 	int r;
 	long double w[3] = { 0 };
