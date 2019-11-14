@@ -159,8 +159,8 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 			d[k] = d[k] - p;
 			e[k] = h;
 			e[j] = 0.0;
-		} while (++n <= 30);
-		if (n >= 30) {
+		} while (++n <= 90);
+		if (n >= 90) {
 			return -1;
 		}
 	}
@@ -235,8 +235,8 @@ MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double 
 			d[k] = d[k] - p;
 			e[k] = h;
 			e[j] = 0.0L;
-		} while (++n <= 30);
-		if (n >= 30) {
+		} while (++n <= 120);
+		if (n >= 120) {
 			return -1;
 		}
 	}

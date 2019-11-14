@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3f(const float a[9], float e[3], float * v)
 //!# Too low values guard.
 	const float m = MCLIMITS_TINYF;
 //!# Max number of iteration for convergence.
-	const int j   = 90;
+	const int j   = 30;
 
 //!# Copying upper triangle of the given symmetric system.
 	float a11 = a[0], a12 = a[1], a13 = a[2];
@@ -63,7 +63,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3f(const float a[9], float e[3], float * v)
 				r = 0.5f * u / a12;
 				t = ((r >= 0.0f) ? 1.0f / (r + mc_sqrtf(1.0f + mc_raise2f(r))) : 1.0f / (r - mc_sqrtf(1.0f + mc_raise2f(r))));
 			}
-			c   = 1.0f / mc_sqrtf(1.0f + t * t);
+			c   = 1.0f / mc_sqrtf(1.0f + mc_raise2f(t));
 			s   = t * c;
 			u   = s/(1.0f + c);
 			r   = t * a12;
@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3f(const float a[9], float e[3], float * v)
 				r = 0.5f * u / a13;
 				t = ((r >= 0.0f) ? 1.0f / (r + mc_sqrtf(1.0f + mc_raise2f(r))) : 1.0f / (r - mc_sqrtf(1.0f + mc_raise2f(r))));
 			}
-			c   = 1.0f / mc_sqrtf(1.0f + t * t);
+			c   = 1.0f / mc_sqrtf(1.0f + mc_raise2f(t));
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a13;
@@ -125,7 +125,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3f(const float a[9], float e[3], float * v)
 				r = 0.5f * u / a23;
 				t = ((r >= 0.0f) ? 1.0f / (r + mc_sqrtf(1.0f + mc_raise2f(r))) : 1.0f / (r - mc_sqrtf(1.0f + mc_raise2f(r))));
 			}
-			c   = 1.0f / mc_sqrtf(1.0f + t * t);
+			c   = 1.0f / mc_sqrtf(1.0f + mc_raise2f(t));
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a23;
@@ -236,7 +236,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3(const double a[9], double e[3], double * v)
 				r = 0.5 * u / a12;
 				t = ((r >= 0.0) ? 1.0 / (r + mc_sqrt(1.0 + mc_raise2(r))) : 1.0 / (r - mc_sqrt(1.0 + mc_raise2(r))));
 			}
-			c   = 1.0 / mc_sqrt(1.0 + t * t);
+			c   = 1.0 / mc_sqrt(1.0 + mc_raise2(t));
 			s   = t * c;
 			u   = s/(1.0 + c);
 			r   = t * a12;
@@ -267,7 +267,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3(const double a[9], double e[3], double * v)
 				r = 0.5 * u / a13;
 				t = ((r >= 0.0) ? 1.0 / (r + mc_sqrt(1.0 + mc_raise2(r))) : 1.0 / (r - mc_sqrt(1.0 + mc_raise2(r))));
 			}
-			c   = 1.0 / mc_sqrt(1.0 + t * t);
+			c   = 1.0 / mc_sqrt(1.0 + mc_raise2(t));
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a13;
@@ -298,7 +298,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3(const double a[9], double e[3], double * v)
 				r = 0.5 * u / a23;
 				t = ((r >= 0.0) ? 1.0 / (r + mc_sqrt(1.0 + mc_raise2(r))) : 1.0 / (r - mc_sqrt(1.0 + mc_raise2(r))));
 			}
-			c   = 1.0 / mc_sqrt(1.0 + t * t);
+			c   = 1.0 / mc_sqrt(1.0 + mc_raise2(t));
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a23;
@@ -371,7 +371,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long 
 //!# Too low values guard.
 	const long double m = MCLIMITS_TINYL;
 //!# Max number of iteration for convergence.
-	const int j         = 90;
+	const int j         = 120;
 
 //!# Copying upper triangle of the given symmetric system.
 	long double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -409,7 +409,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long 
 				r = 0.5L * u / a12;
 				t = ((r >= 0.0L) ? 1.0L / (r + mc_sqrtl(1.0L + mc_raise2l(r))) : 1.0L / (r - mc_sqrtl(1.0L + mc_raise2l(r))));
 			}
-			c   = 1.0L / mc_sqrtl(1.0L + t * t);
+			c   = 1.0L / mc_sqrtl(1.0L + mc_raise2l(t));
 			s   = t * c;
 			u   = s/(1.0L + c);
 			r   = t * a12;
@@ -440,7 +440,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long 
 				r = 0.5L * u / a13;
 				t = ((r >= 0.0L) ? 1.0L / (r + mc_sqrtl(1.0L + mc_raise2l(r))) : 1.0L / (r - mc_sqrtl(1.0L + mc_raise2l(r))));
 			}
-			c   = 1.0L / mc_sqrtl(1.0L + t * t);
+			c   = 1.0L / mc_sqrtl(1.0L + mc_raise2l(t));
 			s   = t * c;
 			u   = s / (1.0L + c);
 			r   = t * a13;
@@ -471,7 +471,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long 
 				r = 0.5L * u / a23;
 				t = ((r >= 0.0L) ? 1.0L / (r + mc_sqrtl(1.0L + mc_raise2l(r))) : 1.0L / (r - mc_sqrtl(1.0L + mc_raise2l(r))));
 			}
-			c   = 1.0L / mc_sqrtl(1.0L + t * t);
+			c   = 1.0L / mc_sqrtl(1.0L + mc_raise2l(t));
 			s   = t * c;
 			u   = s / (1.0L + c);
 			r   = t * a23;

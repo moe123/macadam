@@ -134,6 +134,7 @@
 #	include <macadam/details/math/mc_logp1.h>
 #	include <macadam/details/math/mc_logradix.h>
 #	include <macadam/details/math/mc_logsubexp.h>
+#	include <macadam/details/math/mc_logx2pi.h>
 #	include <macadam/details/math/mc_maxmag.h>
 #	include <macadam/details/math/mc_minmag.h>
 #	include <macadam/details/math/mc_modf.h>
