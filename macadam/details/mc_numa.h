@@ -109,7 +109,7 @@
 #	include <macadam/details/numa/mc_mean1xn.h>
 #	include <macadam/details/numa/mc_mssqr1xn.h>
 #	include <macadam/details/numa/mc_mstdd1xn.h>
-#	include <macadam/details/numa/mc_mul3x3.h>
+#	include <macadam/details/numa/mc_mulab3x3.h>
 #	include <macadam/details/numa/mc_mulabt3x3.h>
 #	include <macadam/details/numa/mc_mulatb3x3.h>
 #	include <macadam/details/numa/mc_rms1xn.h>

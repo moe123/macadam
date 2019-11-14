@@ -1,19 +1,19 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_mul3x3.h
+// mc_mulab3x3.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/mc_target.h>
 
-#ifndef MC_MUL3X3_H
-#define MC_MUL3X3_H
+#ifndef MC_MULAB3X3_H
+#define MC_MULAB3X3_H
 
-#pragma mark - mc_mul3x3 -
+#pragma mark - mc_mulab3x3 -
 
-MC_TARGET_FUNC void mc_mul3x3f(float * c, const float a[9], const float b[9])
+MC_TARGET_FUNC void mc_mulab3x3f(float * c, const float a[9], const float b[9])
 {
 //!# c=a*b
 		c[0] = (a[0] * b[0]) + (a[1] * b[3]) + (a[2] * b[6]);
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_mul3x3f(float * c, const float a[9], const float b[9])
 		c[8] = (a[6] * b[2]) + (a[7] * b[5]) + (a[8] * b[8]);
 }
 
-MC_TARGET_FUNC void mc_mul3x3(double * c, double a[9], double b[9])
+MC_TARGET_FUNC void mc_mulab3x3(double * c, double a[9], double b[9])
 {
 //!# c=a*b
 		c[0] = (a[0] * b[0]) + (a[1] * b[3]) + (a[2] * b[6]);
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_mul3x3(double * c, double a[9], double b[9])
 		c[8] = (a[6] * b[2]) + (a[7] * b[5]) + (a[8] * b[8]);
 }
 
-MC_TARGET_FUNC void mc_mul3x3l(long double * c, long double a[9], long double b[9])
+MC_TARGET_FUNC void mc_mulab3x3l(long double * c, long double a[9], long double b[9])
 {
 //!# c=a*b
 		c[0] = (a[0] * b[0]) + (a[1] * b[3]) + (a[2] * b[6]);
@@ -61,6 +61,6 @@ MC_TARGET_FUNC void mc_mul3x3l(long double * c, long double a[9], long double b[
 		c[8] = (a[6] * b[2]) + (a[7] * b[5]) + (a[8] * b[8]);
 }
 
-#endif /* !MC_MUL3X3_H */
+#endif /* !MC_MULAB3X3_H */
 
 /* EOF */
