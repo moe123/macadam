@@ -129,6 +129,10 @@
 #		endif
 #	endif
 
+#	if !MC_TARGET_C99 || MC_TARGET_CPP98
+#		define restrict
+#	endif
+
 #	if !defined(MC_TARGET_INLINE)
 #	if MC_TARGET_C99 || MC_TARGET_CPP98
 #		if (((defined(__GNUC__) && __GNUC__ >= 4)) || defined(__clang__))

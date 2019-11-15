@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mulab3x3 -
 
-MC_TARGET_FUNC void mc_mulab3x3f(float * c, const float a[9], const float b[9])
+MC_TARGET_FUNC void mc_mulab3x3f(float * restrict c, const float a[9], const float b[9])
 {
 //!# c=a*b
 	c[0] = (a[0] * b[0]) + (a[1] * b[3]) + (a[2] * b[6]);
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_mulab3x3f(float * c, const float a[9], const float b[9])
 	c[8] = (a[6] * b[2]) + (a[7] * b[5]) + (a[8] * b[8]);
 }
 
-MC_TARGET_FUNC void mc_mulab3x3(double * c, double a[9], double b[9])
+MC_TARGET_FUNC void mc_mulab3x3(double * restrict c, double a[9], double b[9])
 {
 //!# c=a*b
 	c[0] = (a[0] * b[0]) + (a[1] * b[3]) + (a[2] * b[6]);
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_mulab3x3(double * c, double a[9], double b[9])
 	c[8] = (a[6] * b[2]) + (a[7] * b[5]) + (a[8] * b[8]);
 }
 
-MC_TARGET_FUNC void mc_mulab3x3l(long double * c, long double a[9], long double b[9])
+MC_TARGET_FUNC void mc_mulab3x3l(long double * restrict c, long double a[9], long double b[9])
 {
 //!# c=a*b
 	c[0] = (a[0] * b[0]) + (a[1] * b[3]) + (a[2] * b[6]);

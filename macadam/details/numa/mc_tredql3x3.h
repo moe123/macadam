@@ -17,7 +17,7 @@
 
 MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 {
-	int wanta = mc_nonnull(a);
+	int z = 0, wanta = mc_nonnull(a);
 	float b, c, f, h, p, r, s, t;
 	int i, j, k, n;
 
@@ -34,6 +34,7 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 			if (j == k) {
 				break;
 			}
+			z = !z;
 
 			h = (d[k + 1] - d[k]) / (e[k] + e[k]);
 			r = mc_sqrtf(mc_raise2f(h) + 1.0f);
@@ -88,12 +89,42 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 			return -1;
 		}
 	}
+	fprintf(stderr, "z=%d\n", z);
+	if (mc_fabsf(d[0]) > mc_fabsf(d[1])) {
+		mcswap_var(e[0], d[0], d[1]);
+		if (wanta) {
+			mcswap_var(e[0], a[0], a[1]);
+			mcswap_var(e[0], a[3], a[4]);
+			mcswap_var(e[0], a[6], a[7]);
+		}
+	}
+	if (mc_fabsf(d[0]) > mc_fabsf(d[2])) {
+		mcswap_var(e[0], d[0], d[2]);
+		if (wanta) {
+			mcswap_var(e[0], a[0], a[2]);
+			mcswap_var(e[0], a[3], a[5]);
+			mcswap_var(e[0], a[6], a[8]);
+		}
+	}
+	if (mc_fabsf(d[1]) > mc_fabsf(d[2])) {
+		mcswap_var(e[0], d[1], d[2]);
+		if (wanta) {
+			mcswap_var(e[0], a[1], a[2]);
+			mcswap_var(e[0], a[4], a[5]);
+			mcswap_var(e[0], a[7], a[8]);
+		}
+	}
+	if (z && wanta) {
+		a[2] = -a[2];
+		a[5] = -a[5];
+		a[8] = -a[8];
+	}
 	return 0;
 }
 
 MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 {
-	int wanta = mc_nonnull(a);
+	int z = 0, wanta = mc_nonnull(a);
 	double b, c, f, h, p, r, s, t;
 	int i, j, k, n;
 
@@ -110,6 +141,7 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 			if (j == k) {
 				break;
 			}
+			z = !z;
 
 			h = (d[k + 1] - d[k]) / (e[k] + e[k]);
 			r = mc_sqrt(mc_raise2(h) + 1.0);
@@ -164,12 +196,42 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 			return -1;
 		}
 	}
+	fprintf(stderr, "z=%d\n", z);
+	if (mc_fabs(d[0]) > mc_fabs(d[1])) {
+		mcswap_var(e[0], d[0], d[1]);
+		if (wanta) {
+			mcswap_var(e[0], a[0], a[1]);
+			mcswap_var(e[0], a[3], a[4]);
+			mcswap_var(e[0], a[6], a[7]);
+		}
+	}
+	if (mc_fabs(d[0]) > mc_fabs(d[2])) {
+		mcswap_var(e[0], d[0], d[2]);
+		if (wanta) {
+			mcswap_var(e[0], a[0], a[2]);
+			mcswap_var(e[0], a[3], a[5]);
+			mcswap_var(e[0], a[6], a[8]);
+		}
+	}
+	if (mc_fabs(d[1]) > mc_fabs(d[2])) {
+		mcswap_var(e[0], d[1], d[2]);
+		if (wanta) {
+			mcswap_var(e[0], a[1], a[2]);
+			mcswap_var(e[0], a[4], a[5]);
+			mcswap_var(e[0], a[7], a[8]);
+		}
+	}
+	if (z && wanta) {
+		a[2] = -a[2];
+		a[5] = -a[5];
+		a[8] = -a[8];
+	}
 	return 0;
 }
 
 MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double e[3])
 {
-	int wanta = mc_nonnull(a);
+	int z = 0, wanta = mc_nonnull(a);
 	long double b, c, f, h, p, r, s, t;
 	int i, j, k, n;
 
@@ -186,6 +248,7 @@ MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double 
 			if (j == k) {
 				break;
 			}
+			z = !z;
 
 			h = (d[k + 1] - d[k]) / (e[k] + e[k]);
 			r = mc_sqrtl(mc_raise2l(h) + 1.0L);
@@ -239,6 +302,36 @@ MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double 
 		if (n >= 120) {
 			return -1;
 		}
+	}
+	fprintf(stderr, "z=%d\n", z);
+	if (mc_fabsl(d[0]) > mc_fabsl(d[1])) {
+		mcswap_var(e[0], d[0], d[1]);
+		if (wanta) {
+			mcswap_var(e[0], a[0], a[1]);
+			mcswap_var(e[0], a[3], a[4]);
+			mcswap_var(e[0], a[6], a[7]);
+		}
+	}
+	if (mc_fabsl(d[0]) > mc_fabsl(d[2])) {
+		mcswap_var(e[0], d[0], d[2]);
+		if (wanta) {
+			mcswap_var(e[0], a[0], a[2]);
+			mcswap_var(e[0], a[3], a[5]);
+			mcswap_var(e[0], a[6], a[8]);
+		}
+	}
+	if (mc_fabsl(d[1]) > mc_fabsl(d[2])) {
+		mcswap_var(e[0], d[1], d[2]);
+		if (wanta) {
+			mcswap_var(e[0], a[1], a[2]);
+			mcswap_var(e[0], a[4], a[5]);
+			mcswap_var(e[0], a[7], a[8]);
+		}
+	}
+	if (z && wanta) {
+		a[2] = -a[2];
+		a[5] = -a[5];
+		a[8] = -a[8];
 	}
 	return 0;
 }
