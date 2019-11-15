@@ -82,6 +82,8 @@
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv_c.h>
 #	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv.h>
 
+#	include <macadam/details/numa/mc_addmulax2x2.h>
+#	include <macadam/details/numa/mc_addmulax3x3.h>
 #	include <macadam/details/numa/mc_amean1xn.h>
 #	include <macadam/details/numa/mc_asum1xn.h>
 #	include <macadam/details/numa/mc_chpoly2x2.h>
