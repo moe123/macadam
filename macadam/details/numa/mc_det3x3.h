@@ -7,7 +7,6 @@
 //
 
 #include <macadam/details/mc_target.h>
-#include <macadam/mcswap.h>
 
 #ifndef MC_DET3X3_H
 #define MC_DET3X3_H
