@@ -65,6 +65,7 @@
 #	include <macadam/details/math/mc_expm1.h>
 #	include <macadam/details/math/mc_fabs.h>
 #	include <macadam/details/math/mc_factorial.h>
+#	include <macadam/details/math/mc_fasttwosum.h>
 #	include <macadam/details/math/mc_ffrac.h>
 #	include <macadam/details/math/mc_fhrt.h>
 #	include <macadam/details/math/mc_fisint.h>
@@ -183,6 +184,8 @@
 #	include <macadam/details/math/mc_tgamma.h>
 #	include <macadam/details/math/mc_trigamma.h>
 #	include <macadam/details/math/mc_trunc.h>
+#	include <macadam/details/math/mc_twoproduct.h>
+#	include <macadam/details/math/mc_twosum.h>
 #	include <macadam/details/math/mc_xchebevaln.h>
 #	include <macadam/details/math/mc_xlog1px.h>
 #	include <macadam/details/math/mc_xlog1py.h>
