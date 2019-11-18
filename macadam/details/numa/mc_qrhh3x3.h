@@ -8,14 +8,13 @@
 
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
-#include <macadam/details/numa/mc_trsi3x3.h>
 
 #ifndef MC_QRHH3X3_H
 #define MC_QRHH3X3_H
 
 #pragma mark - mc_qrhh3x3 -
 
-MC_TARGET_FUNC void mc_qrhh3x3f(const float a[9], float q[9], float r[9])
+MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 {
 //!# A and Q may be the same. Using Householder reflections method.
 	float a11 = a[0], a12 = a[1], a13 = a[2];
@@ -128,11 +127,13 @@ MC_TARGET_FUNC void mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+	return 0;
 }
 
-MC_TARGET_FUNC void mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
+MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 {
-//!# A and Q may be the same. Using Householder reflections method.
+//!# Using Householder reflections method.
 	double a11 = mc_cast(double, a[0]), a12 = mc_cast(double, a[1]), a13 = mc_cast(double, a[2]);
 	double a21 = mc_cast(double, a[3]), a22 = mc_cast(double, a[4]), a23 = mc_cast(double, a[5]);
 	double a31 = mc_cast(double, a[6]), a32 = mc_cast(double, a[7]), a33 = mc_cast(double, a[8]);
@@ -243,9 +244,11 @@ MC_TARGET_FUNC void mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+	return 0;
 }
 
-MC_TARGET_FUNC void mc_qrhh3x3(const double a[9], double q[9], double r[9])
+MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 {
 //!# A and Q may be the same. Using Householder reflections method.
 	double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -358,9 +361,11 @@ MC_TARGET_FUNC void mc_qrhh3x3(const double a[9], double q[9], double r[9])
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+	return 0;
 }
 
-MC_TARGET_FUNC void mc_qrhh3x3l(const long double a[9], long double q[9], long double r[9])
+MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long double r[9])
 {
 //!# A and Q may be the same. Using Householder reflections method.
 	long double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -473,6 +478,8 @@ MC_TARGET_FUNC void mc_qrhh3x3l(const long double a[9], long double q[9], long d
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+	return 0;
 }
 
 #endif /* !MC_QRHH3X3_H */
