@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_qrgs3x3.h
+// mc_qr3x3.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -9,12 +9,12 @@
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
 
-#ifndef MC_QRGS3X3_H
-#define MC_QRGS3X3_H
+#ifndef MC_QR3X3_H
+#define MC_QR3X3_H
 
-#pragma mark - mc_qrgs3x3 -
+#pragma mark - mc_qr3x3 -
 
-MC_TARGET_FUNC int mc_qrgs3x3f(const float a[9], float q[9], float r[9])
+MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 {
 //!# A and Q may be the same. Using Gram-Schmidt method.
 	float w;
@@ -83,7 +83,7 @@ MC_TARGET_FUNC int mc_qrgs3x3f(const float a[9], float q[9], float r[9])
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_qrgs3x3ff(const float a[9], double q[9], double r[9])
+MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 {
 //!# Using Gram-Schmidt method.
 	double w;
@@ -150,7 +150,7 @@ MC_TARGET_FUNC int mc_qrgs3x3ff(const float a[9], double q[9], double r[9])
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_qrgs3x3(const double a[9], double q[9], double r[9])
+MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 {
 //!# A and Q may be the same. Using Gram-Schmidt method.
 	double w;
@@ -219,7 +219,7 @@ MC_TARGET_FUNC int mc_qrgs3x3(const double a[9], double q[9], double r[9])
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_qrgs3x3l(const long double a[9], long double q[9], long double r[9])
+MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long double r[9])
 {
 //!# A and Q may be the same. Using Gram-Schmidt method.
 	long double w;
@@ -288,6 +288,6 @@ MC_TARGET_FUNC int mc_qrgs3x3l(const long double a[9], long double q[9], long do
 	return 0;
 }
 
-#endif /* !MC_QRGS3X3_H */
+#endif /* !MC_QR3X3_H */
 
 /* EOF */
