@@ -16,7 +16,7 @@
 
 MC_TARGET_FUNC int mc_qrgs3x3f(const float a[9], float q[9], float r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmid method.
+//!# A and Q may be the same. Using Gram-Schmidt method.
 	float w;
 
 	if (a != q) {
@@ -35,7 +35,6 @@ MC_TARGET_FUNC int mc_qrgs3x3f(const float a[9], float q[9], float r[9])
 		r[0] = w;
 		w    = 1.0f /w;
 	}
-
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
 	q[6] = q[6] * w;
@@ -53,7 +52,6 @@ MC_TARGET_FUNC int mc_qrgs3x3f(const float a[9], float q[9], float r[9])
 		r[4] = w;
 		w    = 1.0f / w;
 	}
-
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
 	q[7] = q[7] * w;
@@ -87,7 +85,7 @@ MC_TARGET_FUNC int mc_qrgs3x3f(const float a[9], float q[9], float r[9])
 
 MC_TARGET_FUNC int mc_qrgs3x3ff(const float a[9], double q[9], double r[9])
 {
-//!# Using Gram-Schmid method.
+//!# Using Gram-Schmidt method.
 	double w;
 
 	q[0] = mc_cast(double, a[0]); q[1] = mc_cast(double, a[1]); q[2] = mc_cast(double, a[2]);
@@ -104,7 +102,6 @@ MC_TARGET_FUNC int mc_qrgs3x3ff(const float a[9], double q[9], double r[9])
 		r[0] = w;
 		w    = 1.0 /w;
 	}
-
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
 	q[6] = q[6] * w;
@@ -122,7 +119,6 @@ MC_TARGET_FUNC int mc_qrgs3x3ff(const float a[9], double q[9], double r[9])
 		r[4] = w;
 		w    = 1.0 / w;
 	}
-
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
 	q[7] = q[7] * w;
@@ -156,7 +152,7 @@ MC_TARGET_FUNC int mc_qrgs3x3ff(const float a[9], double q[9], double r[9])
 
 MC_TARGET_FUNC int mc_qrgs3x3(const double a[9], double q[9], double r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmid method.
+//!# A and Q may be the same. Using Gram-Schmidt method.
 	double w;
 
 	if (a != q) {
@@ -175,7 +171,6 @@ MC_TARGET_FUNC int mc_qrgs3x3(const double a[9], double q[9], double r[9])
 		r[0] = w;
 		w    = 1.0 /w;
 	}
-
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
 	q[6] = q[6] * w;
@@ -193,7 +188,6 @@ MC_TARGET_FUNC int mc_qrgs3x3(const double a[9], double q[9], double r[9])
 		r[4] = w;
 		w    = 1.0 / w;
 	}
-
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
 	q[7] = q[7] * w;
@@ -227,7 +221,7 @@ MC_TARGET_FUNC int mc_qrgs3x3(const double a[9], double q[9], double r[9])
 
 MC_TARGET_FUNC int mc_qrgs3x3l(const long double a[9], long double q[9], long double r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmid method.
+//!# A and Q may be the same. Using Gram-Schmidt method.
 	long double w;
 
 	if (a != q) {
@@ -246,7 +240,6 @@ MC_TARGET_FUNC int mc_qrgs3x3l(const long double a[9], long double q[9], long do
 		r[0] = w;
 		w    = 1.0L /w;
 	}
-
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
 	q[6] = q[6] * w;
@@ -264,7 +257,6 @@ MC_TARGET_FUNC int mc_qrgs3x3l(const long double a[9], long double q[9], long do
 		r[4] = w;
 		w    = 1.0L / w;
 	}
-
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
 	q[7] = q[7] * w;
