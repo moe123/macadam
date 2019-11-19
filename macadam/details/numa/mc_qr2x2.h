@@ -31,7 +31,7 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 	if (w != 0.0f) {
 		w    = mc_sqrtf(w);
 		r[0] = w;
-		w    = 1.0f /w;
+		w    = 1.0f / w;
 	}
 
 	q[0] = q[0] * w;
@@ -71,7 +71,7 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 	if (w != 0.0) {
 		w    = mc_sqrt(w);
 		r[0] = w;
-		w    = 1.0 /w;
+		w    = 1.0 / w;
 	}
 
 	q[0] = q[0] * w;
@@ -113,7 +113,7 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 	if (w != 0.0) {
 		w    = mc_sqrt(w);
 		r[0] = w;
-		w    = 1.0 /w;
+		w    = 1.0 / w;
 	}
 
 	q[0] = q[0] * w;
@@ -155,7 +155,7 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 	if (w != 0.0L) {
 		w    = mc_sqrtl(w);
 		r[0] = w;
-		w    = 1.0L /w;
+		w    = 1.0L / w;
 	}
 
 	q[0] = q[0] * w;

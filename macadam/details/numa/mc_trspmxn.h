@@ -17,11 +17,7 @@
 MC_TARGET_FUNC void mc_trspmxnf(int m, int n, const float * a, float * b)
 {
 	if (a == b) {
-		if (m == n) {
-			mc_trsinxnf(n, b);
-		} else {
-			mc_trsimxnf(m, n, b);
-		}
+		mc_trsimxnf(m, n, b);
 	} else {
 		int i = 0;
 		for(; i < (n * m); i++) {
@@ -33,11 +29,7 @@ MC_TARGET_FUNC void mc_trspmxnf(int m, int n, const float * a, float * b)
 MC_TARGET_FUNC void mc_trspmxn(int m, int n, const double * a, double * b)
 {
 	if (a == b) {
-		if (m == n) {
-			mc_trsinxn(n, b);
-		} else {
-			mc_trsimxn(m, n, b);
-		}
+		mc_trsimxn(m, n, b);
 	} else {
 		int i = 0;
 		for(; i < (n * m); i++) {
@@ -49,11 +41,7 @@ MC_TARGET_FUNC void mc_trspmxn(int m, int n, const double * a, double * b)
 MC_TARGET_FUNC void mc_trspmxnl(int m, int n, const long double * a, long double * b)
 {
 	if (a == b) {
-		if (m == n) {
-			mc_trsinxnl(n, b);
-		} else {
-			mc_trsimxnl(m, n, b);
-		}
+		mc_trsimxnl(m, n, b);
 	} else {
 		int i = 0;
 		for(; i < (n * m); i++) {
