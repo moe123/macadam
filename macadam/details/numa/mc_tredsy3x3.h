@@ -18,7 +18,7 @@
 
 MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float * q, float d[3], float e[2])
 {
-//!# Close-formish by RREF.
+//!# Close-formish expression by rref.
 	const float tiny = MCLIMITS_TINYF;
 
 	int wantq = mc_nonnull(q);
@@ -57,7 +57,7 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float * q, float d[3]
 
 MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double * q, double d[3], double e[2])
 {
-//!# Close-formish by RREF.
+//!# Close-formish expression by rref.
 	const double tiny = MCLIMITS_TINY;
 
 	int wantq = mc_nonnull(q);
@@ -96,7 +96,7 @@ MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double * q, double d[
 
 MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double * q, long double d[3], long double e[2])
 {
-//!# Close-formish by RREF.
+//!# Close-formish expression by rref.
 	const long double tiny = MCLIMITS_TINYL;
 
 	int wantq = mc_nonnull(q);
