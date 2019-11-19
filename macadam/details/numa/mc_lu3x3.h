@@ -70,7 +70,7 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 
 MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 {
-//!# A and L may be the same. Using a closed-form expression.
+//!# Using a closed-form expression.
 	mc_eye3x3(l);
 	mc_eye3x3(u);
 
