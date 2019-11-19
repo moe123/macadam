@@ -15,11 +15,11 @@
 
 MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 {
-//#!
-//#! @note: Dekker's twoProduct is not a robust fma implementation.
-//#!
+//!#
+//!# @note: Dekker's twoProduct is not a robust fma implementation.
+//!#
 
-//#! 2^12 + 1.
+//!# 2^12 + 1.
 	const float cs = mc_cast_exp(float, 4096 + 1);
 
 	float a1, a2, b1, b2, c;
@@ -40,11 +40,11 @@ MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 
 MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 {
-//#!
-//#! @note: Dekker's twoProduct is not a robust fma implementation.
-//#!
+//!#
+//!# @note: Dekker's twoProduct is not a robust fma implementation.
+//!#
 
-//#! 2^27 + 1.
+//!# 2^27 + 1.
 	const double cs = mc_cast_exp(double, 134217728 + 1);
 
 	double a1, a2, b1, b2, c;
@@ -65,14 +65,14 @@ MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 
 MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x, long double * y)
 {
-//#!
-//#! @note: Dekker's twoProduct is not a robust fma implementation.
-//#!
+//!#
+//!# @note: Dekker's twoProduct is not a robust fma implementation.
+//!#
 #	if !MC_TARGET_MSVC_CPP
-//#! 2^32 + 1.
+//!# 2^32 + 1.
 	const long double cs = mc_cast_exp(long double, 4294967296 + 1);
 #	else
-//#! 2^27 + 1.
+//!# 2^27 + 1.
 	const long double cs = mc_cast_exp(long double, 134217728 + 1);
 #	endif
 	long double a1, a2, b1, b2, c;
