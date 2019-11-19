@@ -20,13 +20,13 @@ MC_TARGET_FUNC void mc_mulax2x2f(float * b, const float a[4], const float x[2])
 	mc_addmulax2x2f(b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulax2x2(double * b, double a[4], double x[2])
+MC_TARGET_FUNC void mc_mulax2x2(double * b, const double a[4], const double x[2])
 {
 //!# b=a*b
 	mc_addmulax2x2(b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulax2x2l(long double * b, long double a[4], long double x[2])
+MC_TARGET_FUNC void mc_mulax2x2l(long double * b, const long double a[4], const long double x[2])
 {
 //!# b=a*b
 	mc_addmulax2x2l(b, a, x);

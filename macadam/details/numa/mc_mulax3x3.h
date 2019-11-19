@@ -20,14 +20,14 @@ MC_TARGET_FUNC void mc_mulax3x3f(float * b, const float a[9], const float x[3])
 	mc_addmulax3x3f(b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulax3x3(double * b, double a[9], double x[3])
+MC_TARGET_FUNC void mc_mulax3x3(double * b, const double a[9], const double x[3])
 {
 //!# b=a*x
 	b[0] = 0.0; b[1] = 0.0; b[2] = 0.0;
 	mc_addmulax3x3(b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulax3x3l(long double * b, long double a[9], long double x[3])
+MC_TARGET_FUNC void mc_mulax3x3l(long double * b, const long double a[9], const long double x[3])
 {
 //!# b=a*x
 	b[0] = 0.0L; b[1] = 0.0L; b[2] = 0.0L;

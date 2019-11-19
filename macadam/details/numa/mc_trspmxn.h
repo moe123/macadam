@@ -7,7 +7,6 @@
 //
 
 #include <macadam/details/numa/mc_trsimxn.h>
-#include <macadam/details/numa/mc_trsinxn.h>
 
 #ifndef MC_TRSPMXN_H
 #define MC_TRSPMXN_H

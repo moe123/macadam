@@ -23,7 +23,7 @@ MC_TARGET_FUNC void mc_mulab2x2f(float * c, const float a[4], const float b[4])
 	c[3] = (a[2] * b[1]) + (a[3] * b[3]);
 }
 
-MC_TARGET_FUNC void mc_mulab2x2(double * c, double a[4], double b[4])
+MC_TARGET_FUNC void mc_mulab2x2(double * c, const double a[4], const double b[4])
 {
 //!# c=a*b
 	c[0] = (a[0] * b[0]) + (a[1] * b[2]);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC void mc_mulab2x2(double * c, double a[4], double b[4])
 	c[3] = (a[2] * b[1]) + (a[3] * b[3]);
 }
 
-MC_TARGET_FUNC void mc_mulab2x2l(long double * c, long double a[4], long double b[4])
+MC_TARGET_FUNC void mc_mulab2x2l(long double * c, const long double a[4], const long double b[4])
 {
 //!# c=a*b
 	c[0] = (a[0] * b[0]) + (a[1] * b[2]);
