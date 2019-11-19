@@ -29,11 +29,11 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 	r[3] = 0.0f; r[4] = 0.0f; r[5] = 0.0f;
 	r[6] = 0.0f; r[7] = 0.0f; r[8] = 0.0f;
 
-	w = mc_raise2f(a[0]) + mc_raise2f(a[3]) + mc_raise2f(a[6]);
+	w = mc_raise2f(q[0]) + mc_raise2f(q[3]) + mc_raise2f(q[6]);
 	if (w != 0.0f) {
 		w    = mc_sqrtf(w);
 		r[0] = w;
-		w    = 1.0f /w;
+		w    = 1.0f / w;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -96,11 +96,11 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 	r[3] = 0.0; r[4] = 0.0; r[5] = 0.0;
 	r[6] = 0.0; r[7] = 0.0; r[8] = 0.0;
 
-	w = mc_raise2(a[0]) + mc_raise2(a[3]) + mc_raise2(a[6]);
+	w = mc_raise2(q[0]) + mc_raise2(q[3]) + mc_raise2(q[6]);
 	if (w != 0.0) {
 		w    = mc_sqrt(w);
 		r[0] = w;
-		w    = 1.0 /w;
+		w    = 1.0 / w;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -165,11 +165,11 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 	r[3] = 0.0; r[4] = 0.0; r[5] = 0.0;
 	r[6] = 0.0; r[7] = 0.0; r[8] = 0.0;
 
-	w = mc_raise2(a[0]) + mc_raise2(a[3]) + mc_raise2(a[6]);
+	w = mc_raise2(q[0]) + mc_raise2(q[3]) + mc_raise2(q[6]);
 	if (w != 0.0) {
 		w    = mc_sqrt(w);
 		r[0] = w;
-		w    = 1.0 /w;
+		w    = 1.0 / w;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -234,11 +234,11 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 	r[3] = 0.0L; r[4] = 0.0L; r[5] = 0.0L;
 	r[6] = 0.0L; r[7] = 0.0L; r[8] = 0.0L;
 
-	w = mc_raise2l(a[0]) + mc_raise2l(a[3]) + mc_raise2l(a[6]);
+	w = mc_raise2l(q[0]) + mc_raise2l(q[3]) + mc_raise2l(q[6]);
 	if (w != 0.0L) {
 		w    = mc_sqrtl(w);
 		r[0] = w;
-		w    = 1.0L /w;
+		w    = 1.0L / w;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
