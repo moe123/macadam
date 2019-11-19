@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_eigsyj3x3.h
+// mc_eigsy3x3.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
@@ -12,12 +12,12 @@
 #include <macadam/details/numa/mc_eye3x3.h>
 #include <macadam/mcswap.h>
 
-#ifndef MC_EIGSYJ3X3_H
-#define MC_EIGSYJ3X3_H
+#ifndef MC_EIGSY3X3_H
+#define MC_EIGSY3X3_H
 
-#pragma mark - mc_eigsyj3x3 -
+#pragma mark - mc_eigsy3x3 -
 
-MC_TARGET_FUNC int mc_eigsyj3x3f(const float a[9], float e[3], float * v)
+MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 {
 	int wantv     = mc_nonnull(v);
 //!# Number of Jacobi iterations.
@@ -190,7 +190,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3f(const float a[9], float e[3], float * v)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_eigsyj3x3(const double a[9], double e[3], double * v)
+MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 {
 	int wantv      = mc_nonnull(v);
 //!# Number of Jacobi iterations.
@@ -363,7 +363,7 @@ MC_TARGET_FUNC int mc_eigsyj3x3(const double a[9], double e[3], double * v)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long double * v)
+MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long double * v)
 {
 	int wantv           = mc_nonnull(v);
 //!# Number of Jacobi iterations.
@@ -536,6 +536,6 @@ MC_TARGET_FUNC int mc_eigsyj3x3l(const long double a[9], long double e[3], long 
 	return -1;
 }
 
-#endif /* !MC_EIGSYJ3X3_H */
+#endif /* !MC_EIGSY3X3_H */
 
 /* EOF */
