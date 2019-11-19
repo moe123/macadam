@@ -6,8 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/numa/mc_eye3x3.h>
 
 #ifndef MC_LU3X3_H
 #define MC_LU3X3_H
