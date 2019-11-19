@@ -30,6 +30,7 @@ MC_TARGET_FUNC int mc_ldu3x3f(const float a[9], float l[9], float d[9], float u[
 			return 0;
 		}
 		mc_eye3x3f(l);
+		mc_eye3x3f(d);
 		mc_eye3x3f(u);
 	}
 	return -1;
@@ -51,6 +52,7 @@ MC_TARGET_FUNC int mc_ldu3x3ff(const float a[9], double l[9], double d[9], doubl
 			return 0;
 		}
 		mc_eye3x3(l);
+		mc_eye3x3(d);
 		mc_eye3x3(u);
 	}
 	return -1;
@@ -72,6 +74,7 @@ MC_TARGET_FUNC int mc_ldu3x3(const double a[9], double l[9], double d[9], double
 			return 0;
 		}
 		mc_eye3x3(l);
+		mc_eye3x3(d);
 		mc_eye3x3(u);
 	}
 	return -1;
@@ -93,6 +96,7 @@ MC_TARGET_FUNC int mc_ldu3x3l(const long double a[9], long double l[9], long dou
 			return 0;
 		}
 		mc_eye3x3l(l);
+		mc_eye3x3l(d);
 		mc_eye3x3l(u);
 	}
 	return -1;
