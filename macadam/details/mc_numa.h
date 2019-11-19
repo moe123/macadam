@@ -135,7 +135,6 @@
 #	include <macadam/details/numa/mc_trace3x3.h>
 #	include <macadam/details/numa/mc_tracemxn.h>
 #	include <macadam/details/numa/mc_tracenxn.h>
-#	include <macadam/details/numa/mc_tredql3x3.h>
 #	include <macadam/details/numa/mc_tredsy3x3.h>
 #	include <macadam/details/numa/mc_trsi2x2.h>
 #	include <macadam/details/numa/mc_trsi3x3.h>
