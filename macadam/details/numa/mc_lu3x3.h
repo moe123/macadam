@@ -43,7 +43,7 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 			float e221 = 0.0f, e222 =  1.0f,            e223 = 0.0f;
 			float e231 = 0.0f, e232 = -(e1a32 / e1a22), e233 = 1.0f;
 
-//!# Computing such as U=e2*e1a;
+//!# Computing U such as U=e2*e1a;
 			u[0] = (e211 * e1a11) + (e212 * e1a21) + (e213 * e1a31);
 			u[1] = (e211 * e1a12) + (e212 * e1a22) + (e213 * e1a32);
 			u[2] = (e211 * e1a13) + (e212 * e1a23) + (e213 * e1a33);
@@ -56,7 +56,7 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L;
+//!# Computing L from e1 and e2.
 			l[0] =  1.0f; l[1] =  0.0f; l[2] = 0.0f;
 			l[3] = -e121; l[4] =  1.0f; l[5] = 0.0f;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0f;
@@ -97,7 +97,7 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 			double e221 = 0.0, e222 =  1.0,             e223 = 0.0;
 			double e231 = 0.0, e232 = -(e1a32 / e1a22), e233 = 1.0;
 
-//!# Computing such as U=e2*e1a;
+//!# Computing U such as U=e2*e1a;
 			u[0] = (e211 * e1a11) + (e212 * e1a21) + (e213 * e1a31);
 			u[1] = (e211 * e1a12) + (e212 * e1a22) + (e213 * e1a32);
 			u[2] = (e211 * e1a13) + (e212 * e1a23) + (e213 * e1a33);
@@ -110,7 +110,7 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L;
+//!# Computing L from e1 and e2.
 			l[0] =  1.0;  l[1] =  0.0;  l[2] = 0.0;
 			l[3] = -e121; l[4] =  1.0;  l[5] = 0.0;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
@@ -151,7 +151,7 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 			double e221 = 0.0, e222 =  1.0,             e223 = 0.0;
 			double e231 = 0.0, e232 = -(e1a32 / e1a22), e233 = 1.0;
 
-//!# Computing such as U=e2*e1a;
+//!# Computing U such as U=e2*e1a;
 			u[0] = (e211 * e1a11) + (e212 * e1a21) + (e213 * e1a31);
 			u[1] = (e211 * e1a12) + (e212 * e1a22) + (e213 * e1a32);
 			u[2] = (e211 * e1a13) + (e212 * e1a23) + (e213 * e1a33);
@@ -164,7 +164,7 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L;
+//!# Computing L from e1 and e2.
 			l[0] =  1.0;  l[1] =  0.0;  l[2] = 0.0;
 			l[3] = -e121; l[4] =  1.0;  l[5] = 0.0;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
@@ -205,7 +205,7 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 			long double e221 = 0.0L, e222 =  1.0L,            e223 = 0.0L;
 			long double e231 = 0.0L, e232 = -(e1a32 / e1a22), e233 = 1.0L;
 
-//!# Computing such as U=e2*e1a;
+//!# Computing U such as U=e2*e1a;
 			u[0] = (e211 * e1a11) + (e212 * e1a21) + (e213 * e1a31);
 			u[1] = (e211 * e1a12) + (e212 * e1a22) + (e213 * e1a32);
 			u[2] = (e211 * e1a13) + (e212 * e1a23) + (e213 * e1a33);
@@ -218,7 +218,7 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L;
+//!# Computing L from e1 and e2.
 			l[0] =  1.0L; l[1] =  0.0L; l[2] = 0.0L;
 			l[3] = -e121; l[4] =  1.0L; l[5] = 0.0L;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0L;
