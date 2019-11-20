@@ -36,7 +36,7 @@ MC_TARGET_FUNC int mc_ldu3x3f(const float a[9], float l[9], float d[9], float u[
 
 MC_TARGET_FUNC int mc_ldu3x3ff(const float a[9], double l[9], double d[9], double u[9])
 {
-//!# A and L may be the same. Using a closed-form expression.
+//!# Using a closed-form expression.
 	mc_eye3x3(d);
 	if (0 == mc_lu3x3ff(a, l, u)) {
 		if (u[0] != 0.0 && u[4] != 0.0) {
