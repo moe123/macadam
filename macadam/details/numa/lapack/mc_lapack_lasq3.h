@@ -28,7 +28,7 @@ MC_TARGET_PROC void mc_lapack_slasq3(int i0, int * n0, float * z
 	, float * dmin
 	, float * sigma
 	, float * desig
-	, float qmax
+	, float * qmax
 	, int * nfail
 	, int * iter
 	, int * ndiv
@@ -143,8 +143,8 @@ F50:
 				  mc_fminf(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
-			 qmax                                        = mc_fmaxf(
-				  mc_fmaxf(qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
+			*qmax                                        = mc_fmaxf(
+				  mc_fmaxf(*qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 1)
 			);
 			*dmin                                        = -zero;
@@ -216,7 +216,7 @@ MC_TARGET_PROC void mc_lapack_dlasq3(int i0, int * n0, double * z
 	, double * dmin
 	, double * sigma
 	, double * desig
-	, double qmax
+	, double * qmax
 	, int * nfail
 	, int * iter
 	, int * ndiv
@@ -331,8 +331,8 @@ F50:
 				  mc_fmin(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
-			 qmax                                        = mc_fmax(
-				  mc_fmax(qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
+			*qmax                                        = mc_fmax(
+				  mc_fmax(*qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 1)
 			);
 			*dmin                                        = -zero;
@@ -404,7 +404,7 @@ MC_TARGET_PROC void mc_lapack_llasq3(int i0, int * n0, long double * z
 	, long double * dmin
 	, long double * sigma
 	, long double * desig
-	, long double qmax
+	, long double * qmax
 	, int * nfail
 	, int * iter
 	, int * ndiv
@@ -519,8 +519,8 @@ F50:
 				  mc_fminl(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
-			 qmax                                        = mc_fmaxl(
-				  mc_fmaxl(qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
+			*qmax                                        = mc_fmaxl(
+				  mc_fmaxl(*qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 1)
 			);
 			*dmin                                        = -zero;

@@ -104,10 +104,12 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 		ka    = k;
 		nrowa = m;
 		ncola = k;
+		mc_cast(void, ncola);
 	} else {
 		ka    = m;
 		nrowa = k;
 		ncola = m;
+		mc_cast(void, ncola);
 	}
 	if (notb) {
 		kb    = n;
@@ -248,10 +250,12 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 		ka    = k;
 		nrowa = m;
 		ncola = k;
+		mc_cast(void, ncola);
 	} else {
 		ka    = m;
 		nrowa = k;
 		ncola = m;
+		mc_cast(void, ncola);
 	}
 	if (notb) {
 		kb    = n;
@@ -392,10 +396,12 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 		ka    = k;
 		nrowa = m;
 		ncola = k;
+		mc_cast(void, ncola);
 	} else {
 		ka    = m;
 		nrowa = k;
 		ncola = m;
+		mc_cast(void, ncola);
 	}
 	if (notb) {
 		kb    = n;
