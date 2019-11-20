@@ -13,19 +13,19 @@
 
 #pragma mark - mc_trspnxn -
 
-MC_TARGET_FUNC void mc_trspnxnf(int n, const float * a, float * b)
+MC_TARGET_FUNC void mc_trspnxnf(int n, float * at, const float * a)
 {
-	mc_trspmxnf(n, n, a, b);
+	mc_trspmxnf(n, n, at, a);
 }
 
-MC_TARGET_FUNC void mc_trspnxn(int n, const double * a, double * b)
+MC_TARGET_FUNC void mc_trspnxn(int n, double * at, const double * a)
 {
-	mc_trspmxn(n, n, a, b);
+	mc_trspmxn(n, n, at, a);
 }
 
-MC_TARGET_FUNC void mc_trspnxnl(int n, const long double * a, long double * b)
+MC_TARGET_FUNC void mc_trspnxnl(int n, long double * at, const long double * a)
 {
-	mc_trspmxnl(n, n, a, b);
+	mc_trspmxnl(n, n, at, a);
 }
 
 #endif /* !MC_TRSPNXN_H */

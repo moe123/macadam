@@ -13,38 +13,38 @@
 
 #pragma mark - mc_trspmxn -
 
-MC_TARGET_FUNC void mc_trspmxnf(int m, int n, const float * a, float * b)
+MC_TARGET_FUNC void mc_trspmxnf(int m, int n, float * at, const float * a)
 {
-	if (a == b) {
-		mc_trsimxnf(m, n, b);
+	if (a == at) {
+		mc_trsimxnf(m, n, at);
 	} else {
 		int i = 0;
 		for(; i < (n * m); i++) {
-			b[i] = a[(m * (i % n)) + (i / n)];
+			at[i] = a[(m * (i % n)) + (i / n)];
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_trspmxn(int m, int n, const double * a, double * b)
+MC_TARGET_FUNC void mc_trspmxn(int m, int n, double * at, const double * a)
 {
-	if (a == b) {
-		mc_trsimxn(m, n, b);
+	if (a == at) {
+		mc_trsimxn(m, n, at);
 	} else {
 		int i = 0;
 		for(; i < (n * m); i++) {
-			b[i] = a[(m * (i % n)) + (i / n)];
+			at[i] = a[(m * (i % n)) + (i / n)];
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_trspmxnl(int m, int n, const long double * a, long double * b)
+MC_TARGET_FUNC void mc_trspmxnl(int m, int n, long double * at, const long double * a)
 {
-	if (a == b) {
-		mc_trsimxnl(m, n, b);
+	if (a == at) {
+		mc_trsimxnl(m, n, at);
 	} else {
 		int i = 0;
 		for(; i < (n * m); i++) {
-			b[i] = a[(m * (i % n)) + (i / n)];
+			at[i] = a[(m * (i % n)) + (i / n)];
 		}
 	}
 }

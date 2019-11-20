@@ -16,7 +16,9 @@
 
 MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmidt method.
+//!# A and Q may be the same. Using Gram-Schmidt method. QT*Q=I for eps 10E-6
+//!# which is better than HH approach for singles. We might use in the future
+//!# a variant to do error correction for the sum^2.
 	float w;
 
 	if (a != q) {
