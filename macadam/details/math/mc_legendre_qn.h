@@ -67,7 +67,7 @@ MC_TARGET_PROC float mc_legendre_q1f(float x)
 	} else if (w < 2.0f) {
 		q1 = 0.5f * mc_log1pf(2.0f / (w - 1.0f)) * w - 1.0f;
 	} else {
-		y = mc_rsqrf(x); w = 1.0f; f = 3.0f; s = 1.0f; k = 5.0f;
+		y = mc_rsqrf(x); f = 3.0f; s = 1.0f; k = 5.0f;
 		do {
 			f = f * y;
 			w = f / k;
@@ -94,7 +94,7 @@ MC_TARGET_PROC double mc_legendre_q1(double x)
 	} else if (w < 2.0) {
 		q1 = 0.5f * mc_log1p(2.0 / (w - 1.0)) * w - 1.0;
 	} else {
-		y = mc_rsqr(x); w = 1.0; f = 3.0; s = 1.0; k = 5.0;
+		y = mc_rsqr(x); f = 3.0; s = 1.0; k = 5.0;
 		do {
 			f = f * y;
 			w = f / k;
@@ -121,7 +121,7 @@ MC_TARGET_PROC long double mc_legendre_q1l(long double x)
 	} else if (w < 2.0L) {
 		q1 = 0.5f * mc_log1pl(2.0L / (w - 1.0L)) * w - 1.0L;
 	} else {
-		y = mc_rsqrl(x); w = 1.0L; f = 3.0L; s = 1.0L; k = 5.0L;
+		y = mc_rsqrl(x); f = 3.0L; s = 1.0L; k = 5.0L;
 		do {
 			f = f * y;
 			w = f / k;

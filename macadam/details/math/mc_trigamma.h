@@ -124,7 +124,6 @@ MC_TARGET_PROC float mc_trigammaf_approx1(float x)
 	r = r + (c6 * (1.0f / w));
 	w = w * y;
 	r = r + (c7 * (1.0f / w));
-	w = w * y;
 
 	return r;
 }
@@ -164,7 +163,6 @@ MC_TARGET_PROC double mc_trigamma_approx1(double x)
 	r = r + (c6 * (1.0 / w));
 	w = w * y;
 	r = r + (c7 * (1.0 / w));
-	w = w * y;
 
 	return r;
 }
@@ -204,7 +202,6 @@ MC_TARGET_PROC long double mc_trigammal_approx1(long double x)
 	r = r + (c6 * (1.0L / w));
 	w = w * y;
 	r = r + (c7 * (1.0L / w));
-	w = w * y;
 
 	return r;
 }

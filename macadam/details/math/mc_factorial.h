@@ -2027,7 +2027,7 @@ MC_TARGET_FUNC long double mc_factoriall(unsigned int x)
 		, +1.128427531416769813628200601039308869195011108345292639302221964E+4927L
 		, +1.979261890105014374264736186732702955353729971145196097870697067E+4930L
 	};
-	long double y = MCLIMITS_MAXL;
+	long double y;
 	if (x < MCLIMITS_UIMAX) {
 		if (x < 1755) {
 			return factorial_table[x];
@@ -2036,7 +2036,6 @@ MC_TARGET_FUNC long double mc_factoriall(unsigned int x)
 		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXL) {
 			return y;
 		}
-		y = MCLIMITS_MAXL;
 	}
 #	else
 	return mc_cast(long double, mc_factorial(x));

@@ -192,7 +192,7 @@ MC_TARGET_PROC float mc_zetapscf(float s, float sc)
 		const float c1 = 6.98659896850585937500000000000000000000E-01f;
 		const float p4 = mc_xpolyeval7f(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
 		const float q4 = mc_xpolyeval8f(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
-		s              = s - 2.0f;
+	// s              = s - 2.0f;
 		y              = p4 / q4 + c1;
 		r              = y - 1.0f / sc;
 	} else if (s <= 7.0f) {
@@ -386,7 +386,7 @@ MC_TARGET_PROC double mc_zetapsc(double s, double sc)
 		const double c1 = 6.9865989685058593750000000000000000000000E-01;
 		const double p4 = mc_xpolyeval7(s, P4[0], P4[1], P4[2], P4[3], P4[4], P4[5], P4[6]);
 		const double q4 = mc_xpolyeval8(s, Q4[0], Q4[1], Q4[2], Q4[3], Q4[4], Q4[5], Q4[6], Q4[7]);
-		s               = s - 2.0;
+	// s               = s - 2.0;
 		y               = p4 / q4 + c1;
 		r               = y - 1.0 / sc;
 	} else if (s <= 7.0) {
