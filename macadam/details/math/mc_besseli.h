@@ -1223,7 +1223,6 @@ MC_TARGET_PROC float mc_besselinf_approx3(int n, float x)
 			p2 = +2.71270000000000000000000000000000000000E-06f;
 			p3 = +3.22900000000000000000000000000000000000E-09f;
 
-			// r = (((w * p1 + p2) * w + p1) * w + p0) * w * w;
 			r = (((w * p3 + p2) * w + p1) * w + p0) * w * w;
 		} else {
 			r = -(48.0f / w + 8.0f) / x * mc_besseli1f_approx3(x) + (24.0f / w + 1.0f) * mc_besseli0f_approx3(x);
@@ -1275,7 +1274,6 @@ MC_TARGET_PROC double mc_besselin_approx3(int n, double x)
 			p2 = +2.7127000000000000000000000000000000000000E-06;
 			p3 = +3.2290000000000000000000000000000000000000E-09;
 
-			//r = (((w * p1 + p2) * w + p1) * w + p0) * w * w;
 			r = (((w * p3 + p2) * w + p1) * w + p0) * w * w;
 		} else {
 			r = -(48.0 / w + 8.0) / x * mc_besseli1_approx3(x) + (24.0 / w + 1.0) * mc_besseli0_approx3(x);
@@ -1327,7 +1325,6 @@ MC_TARGET_PROC long double mc_besselinl_approx3(int n, long double x)
 			p2 = +2.712700000000000000000000000000000000000000000000000000000000000E-06L;
 			p3 = +3.229000000000000000000000000000000000000000000000000000000000000E-09L;
 
-			//r = (((w * p1 + p2) * w + p1) * w + p0) * w * w;
 			r = (((w * p3 + p2) * w + p1) * w + p0) * w * w;
 		} else {
 			r = -(48.0L / w + 8.0L) / x * mc_besseli1l_approx3(x) + (24.0L / w + 1.0L) * mc_besseli0l_approx3(x);
