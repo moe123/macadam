@@ -39,7 +39,7 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 		float e1a33 = (e131 * a[2]) + (e132 * a[5]) + (e133 * a[8]);
 
 		if (e1a22 != 0.0f) {
-//!# Computing e2 holder rref.
+//!# Computing e2 holder  RREF.
 			float e211 = 1.0f, e212 =  0.0f,            e213 = 0.0f;
 			float e221 = 0.0f, e222 =  1.0f,            e223 = 0.0f;
 			float e231 = 0.0f, e232 = -(e1a32 / e1a22), e233 = 1.0f;
@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 		double e1a33 = (e131 * mc_cast(double, a[2])) + (e132 * mc_cast(double, a[5])) + (e133 * mc_cast(double, a[8]));
 
 		if (e1a22 != 0.0) {
-//!# Computing e2 holder rref.
+//!# Computing e2 holder  RREF.
 			double e211 = 1.0, e212 =  0.0,             e213 = 0.0;
 			double e221 = 0.0, e222 =  1.0,             e223 = 0.0;
 			double e231 = 0.0, e232 = -(e1a32 / e1a22), e233 = 1.0;
@@ -149,7 +149,7 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 		double e1a33 = (e131 * a[2]) + (e132 * a[5]) + (e133 * a[8]);
 
 		if (e1a22 != 0.0) {
-//!# Computing e2 holder rref.
+//!# Computing e2 holder  RREF.
 			double e211 = 1.0, e212 =  0.0,             e213 = 0.0;
 			double e221 = 0.0, e222 =  1.0,             e223 = 0.0;
 			double e231 = 0.0, e232 = -(e1a32 / e1a22), e233 = 1.0;
@@ -204,7 +204,7 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 		long double e1a33 = (e131 * a[2]) + (e132 * a[5]) + (e133 * a[8]);
 
 		if (e1a22 != 0.0L) {
-//!# Computing e2 holder rref.
+//!# Computing e2 holder  RREF.
 			long double e211 = 1.0L, e212 =  0.0L,            e213 = 0.0L;
 			long double e221 = 0.0L, e222 =  1.0L,            e223 = 0.0L;
 			long double e231 = 0.0L, e232 = -(e1a32 / e1a22), e233 = 1.0L;
