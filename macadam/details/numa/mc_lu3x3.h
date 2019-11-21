@@ -64,6 +64,9 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0f;
 
 			return 0;
+		} else {
+			mc_eye3x3f(l);
+			mc_eye3x3f(u);
 		}
 	}
 	return -1;
@@ -120,6 +123,9 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
 
 			return 0;
+		} else {
+			mc_eye3x3(l);
+			mc_eye3x3(u);
 		}
 	}
 	return -1;
@@ -176,6 +182,9 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
 
 			return 0;
+		} else {
+			mc_eye3x3(l);
+			mc_eye3x3(u);
 		}
 	}
 	return -1;
@@ -232,6 +241,9 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0L;
 
 			return 0;
+		} else {
+			mc_eye3x3l(l);
+			mc_eye3x3l(u);
 		}
 	}
 	return -1;

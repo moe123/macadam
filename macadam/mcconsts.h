@@ -11,21 +11,21 @@
 #ifndef MCCONSTS_H
 #define MCCONSTS_H
 
-#	if MCTRAGET_CPP98
-#	if MCTRAGET_CPP11
-#		define MCK_NAN ::std::NAN
-#		define MCK_INF ::std::INFINITY
-#	else
-#		define MCK_NAN ::NAN
-#		define MCK_INF ::INFINITY
-#	endif
+#	if MCTARGET_CPP98
+#		if MCTARGET_CPP11
+#			define MCK_NAN ::std::NAN
+#			define MCK_INF ::std::INFINITY
+#		else
+#			define MCK_NAN ::NAN
+#			define MCK_INF ::INFINITY
+#		endif
 #	else
 #		define MCK_NAN NAN
 #		define MCK_INF INFINITY
 #	endif
 
-#	define MCK_INFP +MCK_INF
-#	define MCK_INFN -MCK_INF
+#	define MCK_INFP (+(MCK_INF))
+#	define MCK_INFN (-(MCK_INF))
 
 //!# Value of Euler's number e=exp(1).
 #	ifndef M_E
