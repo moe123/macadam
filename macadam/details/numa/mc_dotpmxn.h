@@ -17,12 +17,14 @@ MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, int p, float * restrict c, const f
 {
 //!# Returns c[m x p]=a[m x n]*b[n x p] where m=ma, n=na=mb and p=nb.
 	int i = 0, j, k;
+	float s;
 	for (; i < m; i++) {
 	 	for (j = 0; j < p; j++) {
-			c[(p * i) + j] = 0.0f;
+			s = 0.0f;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * b[(p * k) + j]);
+				s = s + (a[(n * i) + k] * b[(p * k) + j]);
 			}
+			c[(p * i) + j] = s;
 		}
 	}
 }
@@ -31,12 +33,14 @@ MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, int p, double * c, const float * 
 {
 //!# Returns c[m x p]=a[m x n]*b[n x p] where m=ma, n=na=mb and p=nb.
 	int i = 0, j, k;
+	double s;
 	for (; i < m; i++) {
 	 	for (j = 0; j < p; j++) {
-			c[(p * i) + j] = 0.0;
+			s = 0.0;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] = c[(p * i) + j] + (mc_cast(double, a[(n * i) + k]) * mc_cast(double, b[(p * k) + j]));
+				s = s + (mc_cast(double, a[(n * i) + k]) * mc_cast(double, b[(p * k) + j]));
 			}
+			c[(p * i) + j] = s;
 		}
 	}
 }
@@ -45,12 +49,14 @@ MC_TARGET_FUNC void mc_dotpmxn(int m, int n, int p, double * restrict c, const d
 {
 //!# Returns c[m x p]=a[m x n]*b[n x p] where m=ma, n=na=mb and p=nb.
 	int i = 0, j, k;
+	double s;
 	for (; i < m; i++) {
 	 	for (j = 0; j < p; j++) {
-			c[(p * i) + j] = 0.0;
+			s = 0.0;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * b[(p * k) + j]);
+				s = s + (a[(n * i) + k] * b[(p * k) + j]);
 			}
+			c[(p * i) + j] = s;
 		}
 	}
 }
@@ -59,12 +65,14 @@ MC_TARGET_FUNC void mc_dotpmxnl(int m, int n, int p, long double * restrict c, c
 {
 //!# Returns c[m x p]=a[m x n]*b[n x p] where m=ma, n=na=mb and p=nb.
 	int i = 0, j, k;
+	long double s;
 	for (; i < m; i++) {
 	 	for (j = 0; j < p; j++) {
-			c[(p * i) + j] = 0.0L;
+			s = 0.0L;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * b[(p * k) + j]);
+				s = s + (a[(n * i) + k] * b[(p * k) + j]);
 			}
+			c[(p * i) + j] = s;
 		}
 	}
 }
