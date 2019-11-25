@@ -66,7 +66,7 @@ MC_TARGET_PROC int mc_zreig2x2f(
 				*v1_r = t0; *v1_i = t1;
 
 				*v2_r = a[2]; *v2_i = 0.0f; *v3_r = a[2]; *v3_i = 0.0f;
-				
+
 				mc_zunit1x2f(v0_r, v0_i, v2_r, v2_i);
 				mc_zunit1x2f(v1_r, v1_i, v3_r, v3_i);
 
@@ -134,7 +134,7 @@ MC_TARGET_PROC int mc_zreig2x2ff(
 				*v1_r = t0; *v1_i = t1;
 
 				*v2_r = mc_cast(double, a[2]); *v2_i = 0.0; *v3_r = mc_cast(double, a[2]); *v3_i = 0.0;
-				
+
 				mc_zunit1x2(v0_r, v0_i, v2_r, v2_i);
 				mc_zunit1x2(v1_r, v1_i, v3_r, v3_i);
 
@@ -202,7 +202,7 @@ MC_TARGET_PROC int mc_zreig2x2(
 				*v1_r = t0; *v1_i = t1;
 
 				*v2_r = a[2]; *v2_i = 0.0; *v3_r = a[2]; *v3_i = 0.0;
-				
+
 				mc_zunit1x2(v0_r, v0_i, v2_r, v2_i);
 				mc_zunit1x2(v1_r, v1_i, v3_r, v3_i);
 
@@ -270,7 +270,7 @@ MC_TARGET_PROC int mc_zreig2x2l(
 				*v1_r = t0; *v1_i = t1;
 
 				*v2_r = a[2]; *v2_i = 0.0L; *v3_r = a[2]; *v3_i = 0.0L;
-				
+
 				mc_zunit1x2l(v0_r, v0_i, v2_r, v2_i);
 				mc_zunit1x2l(v1_r, v1_i, v3_r, v3_i);
 

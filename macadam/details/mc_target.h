@@ -404,7 +404,7 @@
 			: __builtin_ctz(mc_cast(unsigned int, x))
 		);
 	}
-	
+
 	MC_TARGET_FUNC int __builtin_clz(unsigned int x)
 	{
 		unsigned long ret;

@@ -20,7 +20,7 @@ MC_TARGET_FUNC float mc_lapack_slamch(const char cmach)
 	const float one = 1.0f, zero = 0.0f;
 
 	float lamch, safmin, small;
-	
+
 	switch (cmach)
 	{
 		case 'B':
@@ -82,7 +82,7 @@ MC_TARGET_FUNC double mc_lapack_dlamch(const char cmach)
 	const double one = 1.0, zero = 0.0;
 
 	double lamch, safmin, small;
-	
+
 	switch (cmach)
 	{
 		case 'B':
@@ -144,7 +144,7 @@ MC_TARGET_FUNC long double mc_lapack_llamch(const char cmach)
 	const long double one = 1.0L, zero = 0.0L;
 
 	long double lamch, safmin, small;
-	
+
 	switch (cmach)
 	{
 		case 'B':

@@ -128,7 +128,7 @@ F20:
 				return;
 			}
 			a2 = mc_blas_vector_at(z, np - 8) / b2 * (mc_blas_vector_at(z, np - 4) / b1 + one);
-			
+
 			if (n0 - i0 > 2) {
 				b2 = mc_blas_vector_at(z, nn - 13) / mc_blas_vector_at(z, nn - 15);
 				a2 = a2 + b2;
@@ -357,7 +357,7 @@ F20:
 				return;
 			}
 			a2 = mc_blas_vector_at(z, np - 8) / b2 * (mc_blas_vector_at(z, np - 4) / b1 + one);
-			
+
 			if (n0 - i0 > 2) {
 				b2 = mc_blas_vector_at(z, nn - 13) / mc_blas_vector_at(z, nn - 15);
 				a2 = a2 + b2;
@@ -586,7 +586,7 @@ F20:
 				return;
 			}
 			a2 = mc_blas_vector_at(z, np - 8) / b2 * (mc_blas_vector_at(z, np - 4) / b1 + one);
-			
+
 			if (n0 - i0 > 2) {
 				b2 = mc_blas_vector_at(z, nn - 13) / mc_blas_vector_at(z, nn - 15);
 				a2 = a2 + b2;

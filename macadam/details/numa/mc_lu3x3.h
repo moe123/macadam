@@ -17,16 +17,13 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	mc_eye3x3f(l);
-	mc_eye3x3f(u);
-
 	if (a[0] != 0.0f) {
-//!#  Computing e1 holder.
+//!# Forming first elementary matrix e1.
 		float e111 =  1.0f,          e112 = 0.0f, e113 = 0.0f;
 		float e121 = -(a[3] / a[0]), e122 = 1.0f, e123 = 0.0f;
 		float e131 = -(a[6] / a[0]), e132 = 0.0f, e133 = 1.0f;
 
-//!#  e1a=e1*a
+//!# Computing e1a=e1*a
 		float e1a11 = (e111 * a[0]) + (e112 * a[3]) + (e113 * a[6]);
 		float e1a12 = (e111 * a[1]) + (e112 * a[4]) + (e113 * a[7]);
 		float e1a13 = (e111 * a[2]) + (e112 * a[5]) + (e113 * a[8]);
@@ -40,7 +37,7 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 		float e1a33 = (e131 * a[2]) + (e132 * a[5]) + (e133 * a[8]);
 
 		if (e1a22 != 0.0f) {
-//!# Computing e2 holder  RREF.
+//!# Forming second elementary matrix e2.
 			float e211 = 1.0f, e212 =  0.0f,            e213 = 0.0f;
 			float e221 = 0.0f, e222 =  1.0f,            e223 = 0.0f;
 			float e231 = 0.0f, e232 = -(e1a32 / e1a22), e233 = 1.0f;
@@ -58,17 +55,16 @@ MC_TARGET_FUNC int mc_lu3x3f(const float a[9], float l[9], float u[9])
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L from e1 and e2.
+//!# Computing L from e1 and e2 such as e1^-1*e2^-1.
 			l[0] =  1.0f; l[1] =  0.0f; l[2] = 0.0f;
 			l[3] = -e121; l[4] =  1.0f; l[5] = 0.0f;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0f;
 
 			return 0;
-		} else {
-			mc_eye3x3f(l);
-			mc_eye3x3f(u);
 		}
 	}
+	mc_eye3x3f(l);
+	mc_eye3x3f(u);
 	return -1;
 }
 
@@ -76,16 +72,13 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 {
 //!# Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	mc_eye3x3(l);
-	mc_eye3x3(u);
-
 	if (mc_cast(double, a[0]) != 0.0) {
-//!#  Computing e1 holder.
+//!# Forming first elementary matrix e1.
 		double e111 =  1.0,                                             e112 = 0.0, e113 = 0.0;
 		double e121 = -(mc_cast(double, a[3]) / mc_cast(double, a[0])), e122 = 1.0, e123 = 0.0;
 		double e131 = -(mc_cast(double, a[6]) / mc_cast(double, a[0])), e132 = 0.0, e133 = 1.0;
 
-//!#  e1a=e1*a
+//!# Computing e1a=e1*a
 		double e1a11 = (e111 * mc_cast(double, a[0])) + (e112 * mc_cast(double, a[3])) + (e113 * mc_cast(double, a[6]));
 		double e1a12 = (e111 * mc_cast(double, a[1])) + (e112 * mc_cast(double, a[4])) + (e113 * mc_cast(double, a[7]));
 		double e1a13 = (e111 * mc_cast(double, a[2])) + (e112 * mc_cast(double, a[5])) + (e113 * mc_cast(double, a[8]));
@@ -99,7 +92,7 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 		double e1a33 = (e131 * mc_cast(double, a[2])) + (e132 * mc_cast(double, a[5])) + (e133 * mc_cast(double, a[8]));
 
 		if (e1a22 != 0.0) {
-//!# Computing e2 holder  RREF.
+//!# Forming second elementary matrix e2.
 			double e211 = 1.0, e212 =  0.0,             e213 = 0.0;
 			double e221 = 0.0, e222 =  1.0,             e223 = 0.0;
 			double e231 = 0.0, e232 = -(e1a32 / e1a22), e233 = 1.0;
@@ -117,17 +110,16 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L from e1 and e2.
+//!# Computing L from e1 and e2 such as e1^-1*e2^-1.
 			l[0] =  1.0;  l[1] =  0.0;  l[2] = 0.0;
 			l[3] = -e121; l[4] =  1.0;  l[5] = 0.0;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
 
 			return 0;
-		} else {
-			mc_eye3x3(l);
-			mc_eye3x3(u);
 		}
 	}
+	mc_eye3x3(l);
+	mc_eye3x3(u);
 	return -1;
 }
 
@@ -135,16 +127,13 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	mc_eye3x3(l);
-	mc_eye3x3(u);
-
 	if (a[0] != 0.0) {
-//!#  Computing e1 holder.
+//!# Forming first elementary matrix e1.
 		double e111 =  1.0,           e112 = 0.0, e113 = 0.0;
 		double e121 = -(a[3] / a[0]), e122 = 1.0, e123 = 0.0;
 		double e131 = -(a[6] / a[0]), e132 = 0.0, e133 = 1.0;
 
-//!#  e1a=e1*a
+//!# Computing e1a=e1*a
 		double e1a11 = (e111 * a[0]) + (e112 * a[3]) + (e113 * a[6]);
 		double e1a12 = (e111 * a[1]) + (e112 * a[4]) + (e113 * a[7]);
 		double e1a13 = (e111 * a[2]) + (e112 * a[5]) + (e113 * a[8]);
@@ -158,7 +147,7 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 		double e1a33 = (e131 * a[2]) + (e132 * a[5]) + (e133 * a[8]);
 
 		if (e1a22 != 0.0) {
-//!# Computing e2 holder  RREF.
+//!# Forming second elementary matrix e2.
 			double e211 = 1.0, e212 =  0.0,             e213 = 0.0;
 			double e221 = 0.0, e222 =  1.0,             e223 = 0.0;
 			double e231 = 0.0, e232 = -(e1a32 / e1a22), e233 = 1.0;
@@ -176,17 +165,16 @@ MC_TARGET_FUNC int mc_lu3x3(const double a[9], double l[9], double u[9])
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L from e1 and e2.
+//!# Computing L from e1 and e2 such as e1^-1*e2^-1.
 			l[0] =  1.0;  l[1] =  0.0;  l[2] = 0.0;
 			l[3] = -e121; l[4] =  1.0;  l[5] = 0.0;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
 
 			return 0;
-		} else {
-			mc_eye3x3(l);
-			mc_eye3x3(u);
 		}
 	}
+	mc_eye3x3(l);
+	mc_eye3x3(u);
 	return -1;
 }
 
@@ -194,16 +182,13 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	mc_eye3x3l(l);
-	mc_eye3x3l(u);
-
 	if (a[0] != 0.0L) {
-//!#  Computing e1 holder.
+//!# Forming first elementary matrix e1.
 		long double e111 =  1.0L,          e112 = 0.0L, e113 = 0.0L;
 		long double e121 = -(a[3] / a[0]), e122 = 1.0L, e123 = 0.0L;
 		long double e131 = -(a[6] / a[0]), e132 = 0.0L, e133 = 1.0L;
 
-//!#  e1a=e1*a
+//!# Computing e1a=e1*a
 		long double e1a11 = (e111 * a[0]) + (e112 * a[3]) + (e113 * a[6]);
 		long double e1a12 = (e111 * a[1]) + (e112 * a[4]) + (e113 * a[7]);
 		long double e1a13 = (e111 * a[2]) + (e112 * a[5]) + (e113 * a[8]);
@@ -217,7 +202,7 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 		long double e1a33 = (e131 * a[2]) + (e132 * a[5]) + (e133 * a[8]);
 
 		if (e1a22 != 0.0L) {
-//!# Computing e2 holder  RREF.
+//!# Forming second elementary matrix e2.
 			long double e211 = 1.0L, e212 =  0.0L,            e213 = 0.0L;
 			long double e221 = 0.0L, e222 =  1.0L,            e223 = 0.0L;
 			long double e231 = 0.0L, e232 = -(e1a32 / e1a22), e233 = 1.0L;
@@ -235,17 +220,16 @@ MC_TARGET_FUNC int mc_lu3x3l(const long double a[9], long double l[9], long doub
 			u[7] = (e231 * e1a12) + (e232 * e1a22) + (e233 * e1a32);
 			u[8] = (e231 * e1a13) + (e232 * e1a23) + (e233 * e1a33);
 
-//!# Computing L from e1 and e2.
+//!# Computing L from e1 and e2 such as e1^-1*e2^-1.
 			l[0] =  1.0L; l[1] =  0.0L; l[2] = 0.0L;
 			l[3] = -e121; l[4] =  1.0L; l[5] = 0.0L;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0L;
 
 			return 0;
-		} else {
-			mc_eye3x3l(l);
-			mc_eye3x3l(u);
 		}
 	}
+	mc_eye3x3l(l);
+	mc_eye3x3l(u);
 	return -1;
 }
 

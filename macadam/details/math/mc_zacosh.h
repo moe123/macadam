@@ -59,7 +59,7 @@ MC_TARGET_PROC void mc_zacoshf(float * c_r, float * c_i
 		mc_zaddf(c_r, c_i, a_r, a_i, *c_r, *c_i);
 		mc_zsubf(c_r, c_i, *c_r, *c_i, 1.0f, 0.0f);
 		mc_zlogf(c_r, c_i, *c_r, *c_i);
-		
+
 		*c_r = mc_copysignf(*c_r, 0.0f);
 		*c_i = mc_copysignf(*c_i, a_i);
 	}
@@ -104,7 +104,7 @@ MC_TARGET_PROC void mc_zacosh(double * c_r, double * c_i
 		mc_zadd(c_r, c_i, a_r, a_i, *c_r, *c_i);
 		mc_zsub(c_r, c_i, *c_r, *c_i, 1.0, 0.0);
 		mc_zlog(c_r, c_i, *c_r, *c_i);
-		
+
 		*c_r = mc_copysign(*c_r, 0.0);
 		*c_i = mc_copysign(*c_i, a_i);
 	}
@@ -149,7 +149,7 @@ MC_TARGET_PROC void mc_zacoshl(long double * c_r, long double * c_i
 		mc_zaddl(c_r, c_i, a_r, a_i, *c_r, *c_i);
 		mc_zsubl(c_r, c_i, *c_r, *c_i, 1.0L, 0.0L);
 		mc_zlogl(c_r, c_i, *c_r, *c_i);
-		
+
 		*c_r = mc_copysignl(*c_r, 0.0L);
 		*c_i = mc_copysignl(*c_i, a_i);
 	}
