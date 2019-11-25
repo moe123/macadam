@@ -27,6 +27,20 @@ MC_TARGET_FUNC float mc_sumtwo1xnf(int n, const float * x)
 	return s + e;
 }
 
+MC_TARGET_FUNC double mc_sumtwo1xnff(int n, const float * x)
+{
+	int i    = 1;
+	double e = 0.0, s = 0.0, y;
+	if (n > 0) {
+		s = mc_cast(double, x[0]);
+		for (; i < n; i++) {
+			mc_twosum(s, mc_cast(double, x[i]), &s, &y);
+			e = e + y;
+		}
+	}
+	return s + e;
+}
+
 MC_TARGET_FUNC double mc_sumtwo1xn(int n, const double * x)
 {
 	int i    = 1;
