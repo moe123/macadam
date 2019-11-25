@@ -32,7 +32,7 @@ MC_TARGET_FUNC double mc_covar1xnff(int n, const float * x, const float * y, int
 {
 	double s = 0.0, mux, muy;
 	int i    = 0;
-	if (n > 0) {
+	if (n > 1) {
 		mux = mc_sumtwo1xnff(n, x) / mc_cast(double, (b ? n - 1 : n));
 		muy = mc_sumtwo1xnff(n, y) / mc_cast(double, (b ? n - 1 : n));
 		for (; i < n; i++) {
