@@ -13,22 +13,22 @@
 
 #pragma mark - mc_randn -
 
-MC_TARGET_FUNC float mc_randnf(float mu, float std1)
+MC_TARGET_FUNC float mc_randnf(float mu, float stdd)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
-	return mu + std1 * mc_randgf();
+	return mu + stdd * mc_randgf();
 }
 
-MC_TARGET_FUNC double mc_randn(double mu, double std1)
+MC_TARGET_FUNC double mc_randn(double mu, double stdd)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
-	return mu + std1 * mc_randg();
+	return mu + stdd * mc_randg();
 }
 
-MC_TARGET_FUNC long double mc_randnl(long double mu, long double std1)
+MC_TARGET_FUNC long double mc_randnl(long double mu, long double stdd)
 {
 //!# Random number from Gaussian (normal) distribution with given mean and stddev.
-	return mu + std1 * mc_randgl();
+	return mu + stdd * mc_randgl();
 }
 
 #endif /* !MC_RANDN_H */

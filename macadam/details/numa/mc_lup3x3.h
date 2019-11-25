@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/numa/mc_eye3x3.h>
 
 #ifndef MC_LUP3X3_H
