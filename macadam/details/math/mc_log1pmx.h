@@ -21,7 +21,7 @@ MC_TARGET_FUNC float mc_log1pmxf(float x)
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
 	const double tol = 1E-07f;
 
-	float y , z, r = MCK_INFP;
+	float y , z, r = MCK_INFN;
 
 	if (x != 1.0f) {
 		if (x < -0.525f || x > 1.05f) {
@@ -45,7 +45,7 @@ MC_TARGET_FUNC double mc_log1pmx(double x)
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
 	const double tol = 1E-15;
 
-	double y , z, r = MCK_INFP;
+	double y , z, r = MCK_INFN;
 	if (x != 1.0) {
 		if (x < -0.525 || x > 1.05) {
 			r = mc_log1p(x) - x;
@@ -72,7 +72,7 @@ MC_TARGET_FUNC long double mc_log1pmxl(long double x)
 	const long double tol = 1E-15L;
 #	endif
 
-	long double y , z, r = MCK_INFP;
+	long double y , z, r = MCK_INFN;
 	if (x != 1.0L) {
 		if (x < -0.525L || x > 1.05L) {
 			r = mc_log1pl(x) - x;
