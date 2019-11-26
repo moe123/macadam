@@ -8,6 +8,7 @@
 
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/numa/mc_eye3x3.h>
+#include <macadam/mcswap.h>
 
 #ifndef MC_LUP3X3_H
 #define MC_LUP3X3_H

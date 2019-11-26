@@ -109,6 +109,7 @@
 #	include <macadam/details/numa/mc_lu3x3.h>
 #	include <macadam/details/numa/mc_lup3x3.h>
 #	include <macadam/details/numa/mc_lupnxn.h>
+#	include <macadam/details/numa/mc_lusolvenxn.h>
 #	include <macadam/details/numa/mc_magic2x2.h>
 #	include <macadam/details/numa/mc_magic3x3.h>
 #	include <macadam/details/numa/mc_magic4x4.h>
