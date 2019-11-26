@@ -13,6 +13,7 @@
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_raise3.h>
 #include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/math/mc_zsqrt.h>
 
 #ifndef MC_ZPOLYROOT3_H
 #define MC_ZPOLYROOT3_H
@@ -54,7 +55,13 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 			*i3           = *i2;
 			 r            = 2;
 		} else if (s < 0) {
-			const float m = mc_sqrtf(-q);
+			*r1 = -q;
+			if (*r1 < 0.0f) {
+				mc_zsqrtf(r1, i1, *r1, 0.0f);
+			} else {
+				*i1 = mc_sqrtf(*r1);
+			}
+			const float m = *i1;
 			const float h = 2.0f * m;
 			const float g = b / 3.0f;
 			const float w = mc_acosf(t / (m * mc_fabsf(q)));
@@ -122,7 +129,13 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 			*i3            = *i2;
 			 r             = 2;
 		} else if (s < 0) {
-			const double m = mc_sqrt(-q);
+			*r1 = -q;
+			if (*r1 < 0.0) {
+				mc_zsqrt(r1, i1, *r1, 0.0);
+			} else {
+				*i1 = mc_sqrt(*r1);
+			}
+			const double m = *i1;
 			const double h = 2.0 * m;
 			const double g = b / 3.0;
 			const double w = mc_acos(t / (m * mc_fabs(q)));
@@ -190,7 +203,13 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 			*i3                 = *i2;
 			 r                  = 2;
 		} else if (s < 0) {
-			const long double m = mc_sqrtl(-q);
+			*r1 = -q;
+			if (*r1 < 0.0L) {
+				mc_zsqrtl(r1, i1, *r1, 0.0L);
+			} else {
+				*i1 = mc_sqrtl(*r1);
+			}
+			const long double m = *i1;
 			const long double h = 2.0L * m;
 			const long double g = b / 3.0L;
 			const long double w = mc_acosl(t / (m * mc_fabsl(q)));
