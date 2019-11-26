@@ -106,6 +106,7 @@
 #	include <macadam/details/numa/mc_l2norm3x1.h>
 #	include <macadam/details/numa/mc_l2normmx1.h>
 #	include <macadam/details/numa/mc_ldu3x3.h>
+#	include <macadam/details/numa/mc_ldup3x3.h>
 #	include <macadam/details/numa/mc_lu3x3.h>
 #	include <macadam/details/numa/mc_lup3x3.h>
 #	include <macadam/details/numa/mc_lupnxn.h>
