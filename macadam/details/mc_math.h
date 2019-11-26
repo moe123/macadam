@@ -124,9 +124,11 @@
 #	include <macadam/details/math/mc_log1me.h>
 #	include <macadam/details/math/mc_log1p.h>
 #	include <macadam/details/math/mc_log1pe.h>
+#	include <macadam/details/math/mc_log1pmx.h>
 #	include <macadam/details/math/mc_log2.h>
 #	include <macadam/details/math/mc_log2p1.h>
 #	include <macadam/details/math/mc_logaddexp.h>
+#	include <macadam/details/math/mc_logcf.h>
 #	include <macadam/details/math/mc_logdiffexp.h>
 #	include <macadam/details/math/mc_logistic.h>
 #	include <macadam/details/math/mc_logit.h>
