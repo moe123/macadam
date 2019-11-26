@@ -13,7 +13,7 @@
 
 #pragma mark - mc_logcf -
 
-MC_TARGET_FUNC float mc_logcff(float x, float i, float d, float esp)
+MC_TARGET_FUNC float mc_logcff(float x, float i, float d, float tol)
 {
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).
@@ -56,13 +56,13 @@ MC_TARGET_FUNC float mc_logcff(float x, float i, float d, float esp)
 				a2 = a2 * huge;
 				b2 = b2 * huge;
 			}
-		} while (mc_fabsf(a2 * b1 - a1 * b2) > mc_fabsf(esp * b1 * b2));
+		} while (mc_fabsf(a2 * b1 - a1 * b2) > mc_fabsf(tol * b1 * b2));
 		r = a2 / b2;
 	}
 	return r;
 }
 
-MC_TARGET_FUNC double mc_logcf(double x, double i, double d, double esp)
+MC_TARGET_FUNC double mc_logcf(double x, double i, double d, double tol)
 {
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).
@@ -105,13 +105,13 @@ MC_TARGET_FUNC double mc_logcf(double x, double i, double d, double esp)
 				a2 = a2 * huge;
 				b2 = b2 * huge;
 			}
-		} while (mc_fabs(a2 * b1 - a1 * b2) > mc_fabs(esp * b1 * b2));
+		} while (mc_fabs(a2 * b1 - a1 * b2) > mc_fabs(tol * b1 * b2));
 		r = a2 / b2;
 	}
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_logcfl(long double x, long double i, long double d, long double esp)
+MC_TARGET_FUNC long double mc_logcfl(long double x, long double i, long double d, long double tol)
 {
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).
@@ -159,7 +159,7 @@ MC_TARGET_FUNC long double mc_logcfl(long double x, long double i, long double d
 				a2 = a2 * huge;
 				b2 = b2 * huge;
 			}
-		} while (mc_fabsl(a2 * b1 - a1 * b2) > mc_fabsl(esp * b1 * b2));
+		} while (mc_fabsl(a2 * b1 - a1 * b2) > mc_fabsl(tol * b1 * b2));
 		r = a2 / b2;
 	}
 	return r;

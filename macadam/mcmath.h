@@ -216,9 +216,9 @@ MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl (x); }
 #	else
 #	define mcmath_acos(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_acosf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_acos  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_acosl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_acosf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_acos  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_acosl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -245,9 +245,9 @@ MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl (x); }
 #	else
 #	define mcmath_asin(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_asinf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_asin  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_asinl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_asinf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_asin  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_asinl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -274,9 +274,9 @@ MC_TARGET_ALIAS long double mcmath_atan (long double x) { return mc_atanl (x); }
 #	else
 #	define mcmath_atan(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_atanf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_atan  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_atanl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_atanf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_atan  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_atanl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -299,13 +299,13 @@ MC_TARGET_ALIAS long double mcmath_atan2 (long double y, long double x) { return
 	, float       : mc_atan2f \
 	, double      : mc_atan2  \
 	, long double : mc_atan2l \
-) (y, mc_cast_exp(MC_TARGET_TYPEOF(y), x))
+) (y, mc_cast_expr(MC_TARGET_TYPEOF(y), x))
 #	else
 #	define mcmath_atan2(y, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_atan2f (mc_cast_exp(float, y), mc_cast_exp(float, x))             \
-		: sizeof(x) == sizeof(double)      ? mc_atan2  (mc_cast_exp(double, y), mc_cast_exp(double, x))           \
-		: sizeof(x) == sizeof(long double) ? mc_atan2l (mc_cast_exp(long double, y), mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_atan2f (mc_cast_expr(float, y), mc_cast_expr(float, x))             \
+		: sizeof(x) == sizeof(double)      ? mc_atan2  (mc_cast_expr(double, y), mc_cast_expr(double, x))           \
+		: sizeof(x) == sizeof(long double) ? mc_atan2l (mc_cast_expr(long double, y), mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -332,9 +332,9 @@ MC_TARGET_ALIAS long double mcmath_cos (long double x) { return mc_cosl (x); }
 #	else
 #	define mcmath_cos(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_cosf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_cos  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_cosl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_cosf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_cos  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_cosl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -361,9 +361,9 @@ MC_TARGET_ALIAS long double mcmath_sin (long double x) { return mc_sinl (x); }
 #	else
 #	define mcmath_sin(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_sinf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_sin  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_sinl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_sinf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_sin  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_sinl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -390,9 +390,9 @@ MC_TARGET_ALIAS long double mcmath_tan (long double x) { return mc_tanl (x); }
 #	else
 #	define mcmath_tan(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_tanf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_tan  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_tanl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_tanf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_tan  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_tanl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -419,9 +419,9 @@ MC_TARGET_ALIAS long double mcmath_acosh (long double x) { return mc_acoshl (x);
 #	else
 #	define mcmath_acosh(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_acoshf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_acosh  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_acoshl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_acoshf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_acosh  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_acoshl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -448,9 +448,9 @@ MC_TARGET_ALIAS long double mcmath_asinh (long double x) { return mc_asinhl (x);
 #	else
 #	define mcmath_asinh(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_asinhf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_asinh  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_asinhl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_asinhf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_asinh  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_asinhl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -477,9 +477,9 @@ MC_TARGET_ALIAS long double mcmath_atanh (long double x) { return mc_atanhl (x);
 #	else
 #	define mcmath_atanh(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_atanhf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_atanh  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_atanhl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_atanhf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_atanh  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_atanhl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -506,9 +506,9 @@ MC_TARGET_ALIAS long double mcmath_cosh (long double x) { return mc_coshl (x); }
 #	else
 #	define mcmath_cosh(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_coshf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_cosh  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_coshl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_coshf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_cosh  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_coshl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -535,9 +535,9 @@ MC_TARGET_ALIAS long double mcmath_sinh (long double x) { return mc_sinhl (x); }
 #	else
 #	define mcmath_sinh(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_sinhf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_sinh  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_sinhl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_sinhf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_sinh  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_sinhl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -564,9 +564,9 @@ MC_TARGET_ALIAS long double mcmath_tanh (long double x) { return mc_tanhl (x); }
 #	else
 #	define mcmath_tanh(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_tanhf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_tanh  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_tanhl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_tanhf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_tanh  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_tanhl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -593,9 +593,9 @@ MC_TARGET_ALIAS long double mcmath_exp (long double x) { return mc_expl (x); }
 #	else
 #	define mcmath_exp(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_expf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_exp  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_expl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_expf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_exp  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_expl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -622,9 +622,9 @@ MC_TARGET_ALIAS long double mcmath_exp2 (long double x) { return mc_exp2l (x); }
 #	else
 #	define mcmath_exp2(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_exp2f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_exp2  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_exp2l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_exp2f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_exp2  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_exp2l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -652,17 +652,17 @@ MC_TARGET_ALIAS long double mcmath_exp10 (long double x) { return mc_exp10l (x);
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_exp10(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_exp10f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_exp10  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_exp10l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_exp10f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_exp10  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_exp10l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_exp10(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_exp10f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_exp10  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_exp10l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_exp10f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_exp10  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_exp10l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -689,9 +689,9 @@ MC_TARGET_ALIAS long double mcmath_expm1 (long double x) { return mc_expm1l (x);
 #	else
 #	define mcmath_expm1(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_expm1f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_expm1  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_expm1l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_expm1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_expm1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_expm1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -718,9 +718,9 @@ MC_TARGET_ALIAS long double mcmath_log (long double x) { return mc_logl (x); }
 #	else
 #	define mcmath_log(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_logf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_logl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_logf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -747,9 +747,9 @@ MC_TARGET_ALIAS long double mcmath_log10 (long double x) { return mc_log10l (x);
 #	else
 #	define mcmath_log10(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log10f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log10  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log10l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log10f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log10  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log10l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -776,9 +776,9 @@ MC_TARGET_ALIAS long double mcmath_log2 (long double x) { return mc_log2l (x); }
 #	else
 #	define mcmath_log2(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log2f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log2  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log2l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log2f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log2  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log2l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -805,9 +805,9 @@ MC_TARGET_ALIAS long double mcmath_log1p (long double x) { return mc_log1pl (x);
 #	else
 #	define mcmath_log1p(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log1pf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log1p  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log1pl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log1pf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1p  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1pl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -834,9 +834,9 @@ MC_TARGET_ALIAS long double mcmath_logp1 (long double x) { return mc_logp1l (x);
 #	else
 #	define mcmath_logp1(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_logp1f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_logp1  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_logp1l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_logp1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_logp1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logp1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -863,9 +863,9 @@ MC_TARGET_ALIAS long double mcmath_log1m (long double x) { return mc_log1ml (x);
 #	else
 #	define mcmath_log1m(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log1mf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log1m  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log1ml (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log1mf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1m  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1ml (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -892,9 +892,9 @@ MC_TARGET_ALIAS long double mcmath_log1pe (long double x) { return mc_log1pel (x
 #	else
 #	define mcmath_log1pe(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log1pef (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log1pe  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log1pel (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log1pef (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1pe  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1pel (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -919,9 +919,9 @@ MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel (x
 #	else
 #	define mcmath_log1me(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log1mef (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log1me  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log1mel (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_log1mef (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1me  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1mel (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -948,9 +948,9 @@ MC_TARGET_ALIAS long double mcmath_logb (long double x) { return logbl (x); }
 #	else
 #	define mcmath_logb(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? logbf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? logb  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? logbl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? logbf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? logb  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? logbl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -973,13 +973,13 @@ MC_TARGET_ALIAS long double mcmath_modf (long double x, long double * y) { retur
 	, float       : mc_modff \
 	, double      : mc_modf  \
 	, long double : mc_modfl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x) *, y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x) *, y))
 #	else
 #	define mcmath_modf(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_modff (mc_cast_exp(float, x), mc_cast_exp(float *, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_modf  (mc_cast_exp(double, x), mc_cast_exp(double *, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_modfl (mc_cast_exp(long double, x), mc_cast_exp(long double *, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_modff (mc_cast_expr(float, x), mc_cast_expr(float *, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_modf  (mc_cast_expr(double, x), mc_cast_expr(double *, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_modfl (mc_cast_expr(long double, x), mc_cast_expr(long double *, y)) \
 		: 0 \
 	)
 #	endif
@@ -1002,13 +1002,13 @@ MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldex
 	, float       : mc_ldexpf \
 	, double      : mc_ldexp  \
 	, long double : mc_ldexpl \
-) (x, mc_cast_exp(int, n))
+) (x, mc_cast_expr(int, n))
 #	else
 #	define mcmath_ldexp(x, n) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_ldexpf (mc_cast_exp(float, x), mc_cast_exp(int, n))       \
-		: sizeof(x) == sizeof(double)      ? mc_ldexp  (mc_cast_exp(double, x), mc_cast_exp(int, n))      \
-		: sizeof(x) == sizeof(long double) ? mc_ldexpl (mc_cast_exp(long double, x), mc_cast_exp(int, n)) \
+		  sizeof(x) == sizeof(float)       ? mc_ldexpf (mc_cast_expr(float, x), mc_cast_expr(int, n))       \
+		: sizeof(x) == sizeof(double)      ? mc_ldexp  (mc_cast_expr(double, x), mc_cast_expr(int, n))      \
+		: sizeof(x) == sizeof(long double) ? mc_ldexpl (mc_cast_expr(long double, x), mc_cast_expr(int, n)) \
 		: 0 \
 	)
 #	endif
@@ -1019,9 +1019,9 @@ MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldex
 #	ifndef mcmath_frexp
 #	define mcmath_frexp(x, e) \
 	( \
-		  sizeof(x) == sizeof(float)       ? frexpf (mc_cast_exp(float, x), mc_cast_exp(int *, e))       \
-		: sizeof(x) == sizeof(double)      ? frexp  (mc_cast_exp(double, x), mc_cast_exp(int *, e))      \
-		: sizeof(x) == sizeof(long double) ? frexpl (mc_cast_exp(long double, x), mc_cast_exp(int *, e)) \
+		  sizeof(x) == sizeof(float)       ? frexpf (mc_cast_expr(float, x), mc_cast_expr(int *, e))       \
+		: sizeof(x) == sizeof(double)      ? frexp  (mc_cast_expr(double, x), mc_cast_expr(int *, e))      \
+		: sizeof(x) == sizeof(long double) ? frexpl (mc_cast_expr(long double, x), mc_cast_expr(int *, e)) \
 		: 0 \
 	)
 #	endif
@@ -1047,9 +1047,9 @@ MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl (x); }
 #	else
 #	define mcmath_ilogb(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? ilogbf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? ilogb  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? ilogbl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? ilogbf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? ilogb  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? ilogbl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1060,9 +1060,9 @@ MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl (x); }
 #	ifndef mcmath_scalbn
 #	define mcmath_scalbn(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? scalbnf (mc_cast_exp(float, x), mc_cast_exp(int, y))       \
-		: sizeof(x) == sizeof(double)      ? scalbn  (mc_cast_exp(double, x), mc_cast_exp(int, y))      \
-		: sizeof(x) == sizeof(long double) ? scalbnl (mc_cast_exp(long double, x), mc_cast_exp(int, y)) \
+		  sizeof(x) == sizeof(float)       ? scalbnf (mc_cast_expr(float, x), mc_cast_expr(int, y))       \
+		: sizeof(x) == sizeof(double)      ? scalbn  (mc_cast_expr(double, x), mc_cast_expr(int, y))      \
+		: sizeof(x) == sizeof(long double) ? scalbnl (mc_cast_expr(long double, x), mc_cast_expr(int, y)) \
 		: 0 \
 	)
 #	endif
@@ -1072,9 +1072,9 @@ MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl (x); }
 #	ifndef mcmath_scalbln
 #	define mcmath_scalbln(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? scalblnf (mc_cast_exp(float, x), mc_cast_exp(long, y))       \
-		: sizeof(x) == sizeof(double)      ? scalbln  (mc_cast_exp(double, x), mc_cast_exp(long, y))      \
-		: sizeof(x) == sizeof(long double) ? scalblnl (mc_cast_exp(long double, x), mc_cast_exp(long, y)) \
+		  sizeof(x) == sizeof(float)       ? scalblnf (mc_cast_expr(float, x), mc_cast_expr(long, y))       \
+		: sizeof(x) == sizeof(double)      ? scalbln  (mc_cast_expr(double, x), mc_cast_expr(long, y))      \
+		: sizeof(x) == sizeof(long double) ? scalblnl (mc_cast_expr(long double, x), mc_cast_expr(long, y)) \
 		: 0 \
 	)
 #	endif
@@ -1100,9 +1100,9 @@ MC_TARGET_ALIAS long double mcmath_fabs (long double x) { return mc_fabsl (x); }
 #	else
 #	define mcmath_fabs(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_fabsf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_fabs  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_fabsl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_fabsf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_fabs  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_fabsl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1129,9 +1129,9 @@ MC_TARGET_ALIAS long double mcmath_cbrt (long double x) { return mc_cbrtl (x); }
 #	else
 #	define mcmath_cbrt(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_cbrtf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_cbrt  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_cbrtl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_cbrtf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_cbrt  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_cbrtl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1158,9 +1158,9 @@ MC_TARGET_ALIAS long double mcmath_fhrt (long double x) { return mc_fhrtl (x); }
 #	else
 #	define mcmath_fhrt(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_fhrtf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_fhrt  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_fhrtl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_fhrtf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_fhrt  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_fhrtl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1183,13 +1183,13 @@ MC_TARGET_ALIAS long double mcmath_rootn (unsigned int n, long double x) { retur
 	, float       : mc_rootnf \
 	, double      : mc_rootn  \
 	, long double : mc_rootnl \
-) (mc_cast_exp(unsigned int, n), x)
+) (mc_cast_expr(unsigned int, n), x)
 #	else
 #	define mcmath_rootn(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_rootnf (mc_cast_exp(unsigned int, n), mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_rootn  (mc_cast_exp(unsigned int, n), mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_rootnl (mc_cast_exp(unsigned int, n), mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_rootnf (mc_cast_expr(unsigned int, n), mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_rootn  (mc_cast_expr(unsigned int, n), mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_rootnl (mc_cast_expr(unsigned int, n), mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1212,13 +1212,13 @@ MC_TARGET_ALIAS long double mcmath_hypot (long double x, long double y) { return
 	, float       : mc_hypotf \
 	, double      : mc_hypot  \
 	, long double : mc_hypotl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	else
 #	define mcmath_hypot(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_hypotf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_hypot  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_hypotl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_hypotf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_hypot  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_hypotl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -1246,13 +1246,13 @@ MC_TARGET_ALIAS long double mcmath_hypotc (long double x, long double y, long do
 	, float       : mc_hypotcf \
 	, double      : mc_hypotc  \
 	, long double : mc_hypotcl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y), mc_cast_exp(MC_TARGET_TYPEOF(x), z))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
 #	else
 #	define mcmath_hypotc(x, y, z) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_hypotcf (mc_cast_exp(float, x), mc_cast_exp(float, y), mc_cast_exp(float, z))                   \
-		: sizeof(x) == sizeof(double)      ? mc_hypotc  (mc_cast_exp(double, x), mc_cast_exp(double, y), mc_cast_exp(double, z))                \
-		: sizeof(x) == sizeof(long double) ? mc_hypotcl (mc_cast_exp(long double, x), mc_cast_exp(long double, y), mc_cast_exp(long double, z)) \
+		  sizeof(x) == sizeof(float)       ? mc_hypotcf (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
+		: sizeof(x) == sizeof(double)      ? mc_hypotc  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
+		: sizeof(x) == sizeof(long double) ? mc_hypotcl (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
 		: 0 \
 	)
 #	endif
@@ -1273,13 +1273,13 @@ MC_TARGET_ALIAS long double mcmath_hypotq (long double x, long double y) { retur
 	, float       : mc_hypotqf \
 	, double      : mc_hypotq  \
 	, long double : mc_hypotql \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	else
 #	define mcmath_hypotq(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_hypotqf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_hypotq  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_hypotql (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_hypotqf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_hypotq  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_hypotql (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -1302,13 +1302,13 @@ MC_TARGET_ALIAS long double mcmath_pow (long double x, long double y) { return m
 	, float       : mc_powf \
 	, double      : mc_pow  \
 	, long double : mc_powl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	else
 #	define mcmath_pow(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_powf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_pow  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_powl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_powf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_pow  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_powl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -1333,17 +1333,17 @@ MC_TARGET_ALIAS long double mcmath_pow2 (long double x) { return mc_pow2l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_pow2(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_pow2f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_pow2  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_pow2l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_pow2f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_pow2  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_pow2l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_pow2(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_pow2f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_pow2  (mc_cast_exp(double, x))       \
-		: sizeof(x) == sizeof(long double) ? mc_pow2l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_pow2f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_pow2  (mc_cast_expr(double, x))       \
+		: sizeof(x) == sizeof(long double) ? mc_pow2l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1370,17 +1370,17 @@ MC_TARGET_ALIAS long double mcmath_sqrt (long double x) { return mc_sqrtl (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_sqrt(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sqrtf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sqrt  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sqrtl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sqrtf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sqrt  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sqrtl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_sqrt(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_sqrtf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_sqrt  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_sqrtl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_sqrtf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_sqrt  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_sqrtl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1407,17 +1407,17 @@ MC_TARGET_ALIAS long double mcmath_sqrt1pm1 (long double x) { return mc_sqrt1pm1
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_sqrt1pm1(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sqrt1pm1f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sqrt1pm1  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sqrt1pm1l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sqrt1pm1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sqrt1pm1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sqrt1pm1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_sqrt1pm1(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_sqrt1pm1f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_sqrt1pm1  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_sqrt1pm1l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_sqrt1pm1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_sqrt1pm1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_sqrt1pm1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1444,17 +1444,17 @@ MC_TARGET_ALIAS long double mcmath_rsqrt (long double x) { return mc_rsqrtl (x);
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_rsqrt(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_rsqrtf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_rsqrt  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_rsqrtl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_rsqrtf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_rsqrt  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_rsqrtl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_rsqrt(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_rsqrtf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_rsqrt  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_rsqrtl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_rsqrtf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_rsqrt  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_rsqrtl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1481,17 +1481,17 @@ MC_TARGET_ALIAS long double mcmath_erf (long double x) { return mc_erfl (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_erf(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_erff (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_erf  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_erfl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_erff (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_erf  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_erfl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_erf(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_erff (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_erf  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_erfl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_erff (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_erf  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_erfl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1518,17 +1518,17 @@ MC_TARGET_ALIAS long double mcmath_erfc (long double x) { return mc_erfcl (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_erfc(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_erfcf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_erfc  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_erfcl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_erfcf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_erfc  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_erfcl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_erfc(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_erfcf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_erfc  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_erfcl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_erfcf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_erfc  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_erfcl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1555,17 +1555,17 @@ MC_TARGET_ALIAS long double mcmath_lgamma (long double x) { return mc_lgammal (x
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lgamma(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mcmath_lgammaf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mcmath_lgamma  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mcmath_lgammal (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mcmath_lgammaf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mcmath_lgamma  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mcmath_lgammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_lgamma(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_lgammaf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_lgamma  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_lgammal (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_lgammaf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_lgamma  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_lgammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1592,17 +1592,17 @@ MC_TARGET_ALIAS long double mcmath_tgamma (long double x) { return mc_tgammal (x
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_tgamma(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_tgammaf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_tgamma  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_tgammal (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_tgammaf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_tgamma  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_tgammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_tgamma(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_tgammaf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_tgamma  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_tgammal (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_tgammaf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_tgamma  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_tgammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1629,17 +1629,17 @@ MC_TARGET_ALIAS long double mcmath_digamma (long double x) { return mc_digammal 
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_digamma(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_digammaf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_digamma  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_digammal (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_digammaf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_digamma  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_digammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_digamma(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_digammaf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_digamma  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_digammal (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_digammaf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_digamma  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_digammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1666,17 +1666,17 @@ MC_TARGET_ALIAS long double mcmath_trigamma (long double x) { return mc_trigamma
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_trigamma(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_trigammaf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_trigamma  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_trigammal (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_trigammaf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_trigamma  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_trigammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_trigamma(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_trigammaf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_trigamma  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_trigammal (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_trigammaf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_trigamma  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_trigammal (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1706,17 +1706,17 @@ MC_TARGET_ALIAS long double mcmath_ceil (long double x) { return mc_ceill (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_ceil(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_ceilf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_ceil  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_ceill (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_ceilf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_ceil  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_ceill (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_ceil(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_ceilf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_ceil  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_ceill (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_ceilf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_ceil  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_ceill (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1743,17 +1743,17 @@ MC_TARGET_ALIAS long double mcmath_floor (long double x) { return mc_floorl (x);
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_floor(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_floorf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_floor  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_floorl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_floorf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_floor  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_floorl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_floor(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_floorf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_floor  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_floorl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_floorf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_floor  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_floorl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1780,17 +1780,17 @@ MC_TARGET_ALIAS long double mcmath_nearbyint (long double x) { return mc_nearbyi
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_nearbyint(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_nearbyintf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_nearbyint  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_nearbyintl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_nearbyintf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_nearbyint  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_nearbyintl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_nearbyint(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_nearbyintf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_nearbyint  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_nearbyintl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_nearbyintf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_nearbyint  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_nearbyintl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1817,17 +1817,17 @@ MC_TARGET_ALIAS long double mcmath_rint (long double x) { return mc_rintl (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_rint(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_rintf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_rint  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_rintl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_rintf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_rint  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_rintl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_rint(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_rintf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_rint  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_rintl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_rintf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_rint  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_rintl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1845,9 +1845,9 @@ MC_TARGET_ALIAS long double mcmath_rint (long double x) { return mc_rintl (x); }
 #	else
 #	define mcmath_lrint(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? lrintf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? lrint  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? lrintl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? lrintf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? lrint  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? lrintl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1866,9 +1866,9 @@ MC_TARGET_ALIAS long double mcmath_rint (long double x) { return mc_rintl (x); }
 #	else
 #	define mcmath_llrint(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? llrintf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? llrint  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? llrintl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? llrintf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? llrint  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? llrintl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1898,17 +1898,17 @@ MC_TARGET_ALIAS long double mcmath_round (long double x) { return mc_roundl (x);
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_round(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_roundf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_round  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_roundl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_roundf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_round  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_roundl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_round(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_roundf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_round  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_roundl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_roundf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_round  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_roundl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1926,9 +1926,9 @@ MC_TARGET_ALIAS long double mcmath_round (long double x) { return mc_roundl (x);
 #	else
 #	define mcmath_lround(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? lroundf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? lround  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? lroundl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? lroundf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? lround  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? lroundl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1947,9 +1947,9 @@ MC_TARGET_ALIAS long double mcmath_round (long double x) { return mc_roundl (x);
 #	else
 #	define mcmath_llround(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? llroundf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? llround  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? llroundl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? llroundf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? llround  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? llroundl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1979,17 +1979,17 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_trunc(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_truncf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_trunc  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_truncl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_truncf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_trunc  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_truncl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_trunc(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_truncf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_trunc  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_truncl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_truncf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_trunc  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_truncl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2000,9 +2000,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fmod
 #	define mcmath_fmod(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_fmodf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_fmod  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_fmodl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_fmodf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_fmod  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_fmodl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2012,9 +2012,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_remainder
 #	define mcmath_remainder(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? remainderf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? remainder  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? remainderl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? remainderf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? remainder  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? remainderl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2024,9 +2024,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_remquo
 #	define mcmath_remquo(x, y, z) \
 	( \
-		  sizeof(x) == sizeof(float)       ? remquof (mc_cast_exp(float, x), mc_cast_exp(float, y), mc_cast_exp(int *, z))             \
-		: sizeof(x) == sizeof(double)      ? remquo  (mc_cast_exp(double, x), mc_cast_exp(double, y), mc_cast_exp(int *, z))           \
-		: sizeof(x) == sizeof(long double) ? remquol (mc_cast_exp(long double, x), mc_cast_exp(long double, y), mc_cast_exp(int *, z)) \
+		  sizeof(x) == sizeof(float)       ? remquof (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(int *, z))             \
+		: sizeof(x) == sizeof(double)      ? remquo  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(int *, z))           \
+		: sizeof(x) == sizeof(long double) ? remquol (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(int *, z)) \
 		: 0 \
 	)
 #	endif
@@ -2036,9 +2036,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_copysign
 #	define mcmath_copysign(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? copysignf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? copysign  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? copysignl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? copysignf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? copysign  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? copysignl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2048,9 +2048,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_nan
 #	define mcmath_nan(x, p) \
 	(x) = ( \
-		  sizeof(x) == sizeof(float)       ? nanf (mc_cast_exp(const char *, p)) \
-		: sizeof(x) == sizeof(double)      ? nan  (mc_cast_exp(const char *, p)) \
-		: sizeof(x) == sizeof(long double) ? nanl (mc_cast_exp(const char *, p)) \
+		  sizeof(x) == sizeof(float)       ? nanf (mc_cast_expr(const char *, p)) \
+		: sizeof(x) == sizeof(double)      ? nan  (mc_cast_expr(const char *, p)) \
+		: sizeof(x) == sizeof(long double) ? nanl (mc_cast_expr(const char *, p)) \
 		: 0 \
 	)
 #	endif
@@ -2060,9 +2060,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_nextafter
 #	define mcmath_nextafter(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? nextafterf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? nextafter  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? nextafterl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? nextafterf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? nextafter  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? nextafterl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2072,9 +2072,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_nexttoward
 #	define mcmath_nexttoward(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? nexttowardf (mc_cast_exp(float, x), mc_cast_exp(long double, y))       \
-		: sizeof(x) == sizeof(double)      ? nexttoward  (mc_cast_exp(double, x), mc_cast_exp(long double, y))      \
-		: sizeof(x) == sizeof(long double) ? nexttowardl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? nexttowardf (mc_cast_expr(float, x), mc_cast_expr(long double, y))       \
+		: sizeof(x) == sizeof(double)      ? nexttoward  (mc_cast_expr(double, x), mc_cast_expr(long double, y))      \
+		: sizeof(x) == sizeof(long double) ? nexttowardl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2084,9 +2084,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fdim
 #	define mcmath_fdim(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fdimf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? fdim  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? fdiml (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? fdimf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? fdim  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? fdiml (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2096,9 +2096,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fmax
 #	define mcmath_fmax(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fmaxf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? fmax  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? fmaxl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? fmaxf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? fmax  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? fmaxl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2108,9 +2108,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fmin
 #	define mcmath_fmin(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fminf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? fmin  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? fminl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? fminf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? fmin  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? fminl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2120,9 +2120,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fma
 #	define mcmath_fma(x, y, z) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fmaf (mc_cast_exp(float, x), mc_cast_exp(float, y), mc_cast_exp(float, z))                   \
-		: sizeof(x) == sizeof(double)      ? fma  (mc_cast_exp(double, x), mc_cast_exp(double, y), mc_cast_exp(double, z))                \
-		: sizeof(x) == sizeof(long double) ? fmal (mc_cast_exp(long double, x), mc_cast_exp(long double, y), mc_cast_exp(long double, z)) \
+		  sizeof(x) == sizeof(float)       ? fmaf (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
+		: sizeof(x) == sizeof(double)      ? fma  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
+		: sizeof(x) == sizeof(long double) ? fmal (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
 		: 0 \
 	)
 #	endif
@@ -2173,14 +2173,14 @@ template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  lo
 #		if MC_TARGET_C99
 #		define mcmath_abs(x) mc_cast(MC_TARGET_TYPEOF(x), \
 		( \
-			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? mc_fabsf (mc_cast_exp(float, x))       \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? mc_fabs  (mc_cast_exp(double, x))      \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? mc_fabsl (mc_cast_exp(long double, x)) \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs  (mc_cast_exp(signed char, x)) \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs  (mc_cast_exp(short, x))       \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs  (mc_cast_exp(int,x))          \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs  (mc_cast_exp(long, x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)          ? mc_llabs (mc_cast_exp(long long, x))   \
+			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? mc_fabsf (mc_cast_expr(float, x))       \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? mc_fabs  (mc_cast_expr(double, x))      \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? mc_fabsl (mc_cast_expr(long double, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs  (mc_cast_expr(signed char, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs  (mc_cast_expr(short, x))       \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs  (mc_cast_expr(int,x))          \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs  (mc_cast_expr(long, x))        \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)          ? mc_llabs (mc_cast_expr(long long, x))   \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? (x)                                    \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? (x)                                    \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? (x)                                    \
@@ -2191,13 +2191,13 @@ template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  lo
 #		else
 #		define mcmath_abs(x) mc_cast(MC_TARGET_TYPEOF(x), \
 		( \
-			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? mc_fabsf (mc_cast_exp(float, x))       \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? mc_fabs  (mc_cast_exp(double, x))      \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? mc_fabsl (mc_cast_exp(long double, x)) \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs  (mc_cast_exp(signed char, x)) \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs  (mc_cast_exp(short, x))       \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs  (mc_cast_exp(int,x))          \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs  (mc_cast_exp(long, x))        \
+			  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? mc_fabsf (mc_cast_expr(float, x))       \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? mc_fabs  (mc_cast_expr(double, x))      \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? mc_fabsl (mc_cast_expr(long double, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? mc_babs  (mc_cast_expr(signed char, x)) \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs  (mc_cast_expr(short, x))       \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs  (mc_cast_expr(int,x))          \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs  (mc_cast_expr(long, x))        \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? (x)                                    \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? (x)                                    \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? (x)                                    \
@@ -2348,17 +2348,17 @@ MC_TARGET_ALIAS long double mcmath_i0 (long double x) { return mc_i0l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_i0(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_i0f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_i0  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_i0l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_i0f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_i0  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_i0l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_i0(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_i0f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_i0  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_i0l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_i0f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_i0  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_i0l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2385,17 +2385,17 @@ MC_TARGET_ALIAS long double mcmath_i1 (long double x) { return mc_i1l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_i1(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_i1f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_i1  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_i1l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_i1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_i1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_i1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_i1(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_i1f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_i1  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_i1l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_i1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_i1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_i1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2416,17 +2416,17 @@ MC_TARGET_ALIAS long double mcmath_in (int n, long double x) { return mc_inl (n,
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_in(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_inf (mc_cast_exp(int, n), mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_in  (mc_cast_exp(int, n), mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_inl (mc_cast_exp(int, n), mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_inf (mc_cast_expr(int, n), mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_in  (mc_cast_expr(int, n), mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_inl (mc_cast_expr(int, n), mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_in(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_inf (mc_cast_exp(int, n), mc_cast_exp(float, x)))       \
-		: sizeof(x) == sizeof(double)      ? mc_in  (mc_cast_exp(int, n), mc_cast_exp(double, x))       \
-		: sizeof(x) == sizeof(long double) ? mc_inl (mc_cast_exp(int, n), mc_cast_exp(long double, x))) \
+		  sizeof(x) == sizeof(float)       ? mc_inf (mc_cast_expr(int, n), mc_cast_expr(float, x)))       \
+		: sizeof(x) == sizeof(double)      ? mc_in  (mc_cast_expr(int, n), mc_cast_expr(double, x))       \
+		: sizeof(x) == sizeof(long double) ? mc_inl (mc_cast_expr(int, n), mc_cast_expr(long double, x))) \
 		: 0 \
 	)
 #	endif
@@ -2455,17 +2455,17 @@ MC_TARGET_ALIAS long double mcmath_j0 (long double x) { return mc_j0l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_j0(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_j0f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_j0  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_j0l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_j0f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_j0  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_j0l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_j0(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_j0f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_j0  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_j0l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_j0f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_j0  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_j0l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2494,17 +2494,17 @@ MC_TARGET_ALIAS long double mcmath_j1 (long double x) { return mc_j1l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_j1(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_j1f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_j1  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_j1l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_j1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_j1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_j1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_j1(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_j1f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_j1  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_j1l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_j1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_j1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_j1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2527,17 +2527,17 @@ MC_TARGET_ALIAS long double mcmath_jn (int n, long double x) { return mc_jnl (n,
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_jn(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_jnf (mc_cast_exp(int, n), mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_jn  (mc_cast_exp(int, n), mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_jnl (mc_cast_exp(int, n), mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_jnf (mc_cast_expr(int, n), mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_jn  (mc_cast_expr(int, n), mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_jnl (mc_cast_expr(int, n), mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_jn(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_jnf (mc_cast_exp(int, n), mc_cast_exp(float, x)))       \
-		: sizeof(x) == sizeof(double)      ? mc_jn  (mc_cast_exp(int, n), mc_cast_exp(double, x))       \
-		: sizeof(x) == sizeof(long double) ? mc_jnl (mc_cast_exp(int, n), mc_cast_exp(long double, x))) \
+		  sizeof(x) == sizeof(float)       ? mc_jnf (mc_cast_expr(int, n), mc_cast_expr(float, x)))       \
+		: sizeof(x) == sizeof(double)      ? mc_jn  (mc_cast_expr(int, n), mc_cast_expr(double, x))       \
+		: sizeof(x) == sizeof(long double) ? mc_jnl (mc_cast_expr(int, n), mc_cast_expr(long double, x))) \
 		: 0 \
 	)
 #	endif
@@ -2566,17 +2566,17 @@ MC_TARGET_ALIAS long double mcmath_y0 (long double x) { return mc_y0l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_y0(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_y0f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_y0  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_y0l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_y0f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_y0  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_y0l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_y0(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_y0f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_y0  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_y0l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_y0f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_y0  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_y0l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2605,17 +2605,17 @@ MC_TARGET_ALIAS long double mcmath_y1 (long double x) { return mc_y1l (x); }
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_y1(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_y1f (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_y1  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_y1l (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_y1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_y1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_y1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_y1(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_y1f (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_y1  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_y1l (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_y1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_y1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_y1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2638,17 +2638,17 @@ MC_TARGET_ALIAS long double mcmath_yn (int n, long double x) { return mc_ynl (n,
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_yn(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_ynf (mc_cast_exp(int, n), mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_yn  (mc_cast_exp(int, n), mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_ynl (mc_cast_exp(int, n), mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_ynf (mc_cast_expr(int, n), mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_yn  (mc_cast_expr(int, n), mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_ynl (mc_cast_expr(int, n), mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_yn(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_ynf (mc_cast_exp(int, n), mc_cast_exp(float, x)))       \
-		: sizeof(x) == sizeof(double)      ? mc_yn  (mc_cast_exp(int, n), mc_cast_exp(double, x))       \
-		: sizeof(x) == sizeof(long double) ? mc_ynl (mc_cast_exp(int, n), mc_cast_exp(long double, x))) \
+		  sizeof(x) == sizeof(float)       ? mc_ynf (mc_cast_expr(int, n), mc_cast_expr(float, x)))       \
+		: sizeof(x) == sizeof(double)      ? mc_yn  (mc_cast_expr(int, n), mc_cast_expr(double, x))       \
+		: sizeof(x) == sizeof(long double) ? mc_ynl (mc_cast_expr(int, n), mc_cast_expr(long double, x))) \
 		: 0 \
 	)
 #	endif
@@ -2673,21 +2673,21 @@ MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return
 	, float       : mc_scalbf \
 	, double      : mc_scalb  \
 	, long double : mc_scalbl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_scalb(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_scalbf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_scalb  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_scalbl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_scalbf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_scalb  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_scalbl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_scalb(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_scalbf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_scalb  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_scalbl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_scalbf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_scalb  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_scalbl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2712,21 +2712,21 @@ MC_TARGET_ALIAS long double mcmath_ibeta (long double a, long double b, long dou
 	, float       : mc_ibetaf \
 	, double      : mc_ibeta  \
 	, long double : mc_ibetal \
-) (a, mc_cast_exp(MC_TARGET_TYPEOF(a), b), mc_cast_exp(MC_TARGET_TYPEOF(a), x))
+) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b), mc_cast_expr(MC_TARGET_TYPEOF(a), x))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_ibeta(a, b, x) mc_cast(MC_TARGET_TYPEOF(a), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), float)       ? mc_ibetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), double)      ? mc_ibeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), long double) ? mc_ibetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), float)       ? mc_ibetaf (mc_cast_expr(float, a), mc_cast_expr(float, b), mc_cast_expr(float, x))                   \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), double)      ? mc_ibeta  (mc_cast_expr(double, a), mc_cast_expr(double, b), mc_cast_expr(double, x))                \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), long double) ? mc_ibetal (mc_cast_expr(long double, a), mc_cast_expr(long double, b), mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_ibeta(a, b, x) \
 	( \
-		  sizeof(a) == sizeof(float)       ? mc_ibetaf (mc_cast_exp(float, a), mc_cast_exp(float, b), mc_cast_exp(float, x))                   \
-		: sizeof(a) == sizeof(double)      ? mc_ibeta  (mc_cast_exp(double, a), mc_cast_exp(double, b), mc_cast_exp(double, x))                \
-		: sizeof(a) == sizeof(long double) ? mc_ibetal (mc_cast_exp(long double, a), mc_cast_exp(long double, b), mc_cast_exp(long double, x)) \
+		  sizeof(a) == sizeof(float)       ? mc_ibetaf (mc_cast_expr(float, a), mc_cast_expr(float, b), mc_cast_expr(float, x))                   \
+		: sizeof(a) == sizeof(double)      ? mc_ibeta  (mc_cast_expr(double, a), mc_cast_expr(double, b), mc_cast_expr(double, x))                \
+		: sizeof(a) == sizeof(long double) ? mc_ibetal (mc_cast_expr(long double, a), mc_cast_expr(long double, b), mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2749,21 +2749,21 @@ MC_TARGET_ALIAS long double mcmath_lbeta (long double x, long double y) { return
 	, float       : mc_lbetaf \
 	, double      : mc_lbeta  \
 	, long double : mc_lbetal \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lbeta(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_lbetaf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_lbeta  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_lbetal (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_lbetaf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_lbeta  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_lbetal (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_lbeta(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_lbetaf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_lbeta  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_lbetal (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_lbetaf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_lbeta  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_lbetal (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2791,21 +2791,21 @@ MC_TARGET_ALIAS long double mcmath_beta (long double x, long double y) { return 
 	, float       : mc_betaf \
 	, double      : mc_beta  \
 	, long double : mc_betal \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_beta(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_betaf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_beta  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_betal (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_betaf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_beta  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_betal (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_beta(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_betaf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_beta  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_betal (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_betaf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_beta  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_betal (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2832,13 +2832,13 @@ MC_TARGET_ALIAS long double mcmath_xlogy (long double x, long double y) { return
 	, float       : mc_xlogyf \
 	, double      : mc_xlogy  \
 	, long double : mc_xlogyl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	else
 #	define mcmath_xlogy(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_xlogyf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_xlogy  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_xlogyl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_xlogyf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_xlogy  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_xlogyl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2861,13 +2861,13 @@ MC_TARGET_ALIAS long double mcmath_xlog1py (long double x, long double y) { retu
 	, float       : mc_xlog1pyf \
 	, double      : mc_xlog1py  \
 	, long double : mc_xlog1pyl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
 #	else
 #	define mcmath_xlog1py(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_xlog1pyf (mc_cast_exp(float, x), mc_cast_exp(float, y))             \
-		: sizeof(x) == sizeof(double)      ? mc_xlog1py  (mc_cast_exp(double, x), mc_cast_exp(double, y))           \
-		: sizeof(x) == sizeof(long double) ? mc_xlog1pyl (mc_cast_exp(long double, x), mc_cast_exp(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_xlog1pyf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_xlog1py  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_xlog1pyl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2894,17 +2894,17 @@ MC_TARGET_ALIAS long double mcmath_xlog1px (long double x) { return mc_xlog1pxl 
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_xlog1px(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_xlog1pxf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_xlog1px  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_xlog1pxl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_xlog1pxf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_xlog1px  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_xlog1pxl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_xlog1px(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_xlog1pxf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_xlog1px  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_xlog1pxl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_xlog1pxf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_xlog1px  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_xlog1pxl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2931,17 +2931,17 @@ MC_TARGET_ALIAS long double mcmath_xlogx (long double x) { return mc_xlogxl (x);
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_xlogx(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_xlogxf (mc_cast_exp(float, x))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_xlogx  (mc_cast_exp(double, x))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_xlogxl (mc_cast_exp(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_xlogxf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_xlogx  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_xlogxl (mc_cast_expr(long double, x)) \
 		: 0 \
 	))
 #	else
 #	define mcmath_xlogx(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_xlogxf (mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_xlogx  (mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_xlogxl (mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_xlogxf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_xlogx  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_xlogxl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2962,13 +2962,13 @@ MC_TARGET_ALIAS long double mcmath_logradix (unsigned int n, long double x) { re
 	, float       : mc_logradixf \
 	, double      : mc_logradix  \
 	, long double : mc_logradixl \
-) (mc_cast_exp(unsigned int, n), x)
+) (mc_cast_expr(unsigned int, n), x)
 #	else
 #	define mcmath_logradix(n, x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_logradixf (mc_cast_exp(unsigned int, n), mc_cast_exp(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_logradix  (mc_cast_exp(unsigned int, n), mc_cast_exp(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_logradixl (mc_cast_exp(unsigned int, n), mc_cast_exp(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_logradixf (mc_cast_expr(unsigned int, n), mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_logradix  (mc_cast_expr(unsigned int, n), mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logradixl (mc_cast_expr(unsigned int, n), mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2996,13 +2996,13 @@ MC_TARGET_ALIAS long double mcmath_lerp (long double x, long double y, long doub
 	, float       : mc_lerpf \
 	, double      : mc_lerp  \
 	, long double : mc_lerpl \
-) (x, mc_cast_exp(MC_TARGET_TYPEOF(x), y), mc_cast_exp(MC_TARGET_TYPEOF(x), z))
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
 #	else
 #	define mcmath_lerp(x, y, z) \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_lerpf (mc_cast_exp(float, x), mc_cast_exp(float, y), mc_cast_exp(float, z))                   \
-		: sizeof(x) == sizeof(double)      ? mc_lerp  (mc_cast_exp(double, x), mc_cast_exp(double, y), mc_cast_exp(double, z))                \
-		: sizeof(x) == sizeof(long double) ? mc_lerpl (mc_cast_exp(long double, x), mc_cast_exp(long double, y), mc_cast_exp(long double, z)) \
+		  sizeof(x) == sizeof(float)       ? mc_lerpf (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
+		: sizeof(x) == sizeof(double)      ? mc_lerp  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
+		: sizeof(x) == sizeof(long double) ? mc_lerpl (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
 		: 0 \
 	)
 #	endif

@@ -389,7 +389,7 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 			return -1;
 		}
 	}
-	fprintf(stderr, "z=%d\n", z);
+
 	if (mc_fabsf(d[0]) > mc_fabsf(d[1])) {
 		mcswap_var(e[0], d[0], d[1]);
 		if (wanta) {
@@ -496,7 +496,7 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 			return -1;
 		}
 	}
-	fprintf(stderr, "z=%d\n", z);
+
 	if (mc_fabs(d[0]) > mc_fabs(d[1])) {
 		mcswap_var(e[0], d[0], d[1]);
 		if (wanta) {
@@ -603,6 +603,7 @@ MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double 
 			return -1;
 		}
 	}
+
 	if (mc_fabsl(d[0]) > mc_fabsl(d[1])) {
 		mcswap_var(e[0], d[0], d[1]);
 		if (wanta) {

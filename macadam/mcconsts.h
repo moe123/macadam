@@ -505,9 +505,9 @@
 //!# Value ~zeta(-11).
 #	define MCK_ZETA_N11   (+(MCK_691_32760))
 
-#define MCK_KF(K) (mc_cast_exp(const float, K))
-#define MCK_K(K)  (mc_cast_exp(const double, K))
-#define MCK_KL(K) (mc_cast_exp(const long double, K))
+#define MCK_KF(K) (mc_cast_expr(const float, K))
+#define MCK_K(K)  (mc_cast_expr(const double, K))
+#define MCK_KL(K) (mc_cast_expr(const long double, K))
 
 #endif /* !MCCONSTS_H */
 

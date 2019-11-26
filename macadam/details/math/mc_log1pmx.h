@@ -19,7 +19,7 @@
 MC_TARGET_FUNC float mc_log1pmxf(float x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
-	const double tol = 1E-07f;
+	const float tol = MCLIMITS_TINYF;
 
 	float y , z, r = MCK_INFN;
 
@@ -43,7 +43,7 @@ MC_TARGET_FUNC float mc_log1pmxf(float x)
 MC_TARGET_FUNC double mc_log1pmx(double x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
-	const double tol = 1E-15;
+	const double tol = MCLIMITS_TINY;
 
 	double y , z, r = MCK_INFN;
 	if (x != 1.0) {
@@ -67,9 +67,9 @@ MC_TARGET_FUNC long double mc_log1pmxl(long double x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
 #	if MC_TARGET_MSVC_CPP
-	const long double tol = 1E-30L;
+	const long double tol = MCK_KL(MCLIMITS_TINY);
 #	else
-	const long double tol = 1E-15L;
+	const long double tol = MCLIMITS_TINYL;
 #	endif
 
 	long double y , z, r = MCK_INFN;

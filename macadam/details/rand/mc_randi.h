@@ -83,9 +83,9 @@ MC_TARGET_PROC void mc_ssrandi()
 #	else
 	clck0 = clock();
 #	endif
-	x     = mc_cast_exp(unsigned long, clck0 * CLOCKS_PER_SEC);
-	s2    = s2 + mc_cast_exp(unsigned int, x >> 3 & 0xFF);
-	s1    = s1 + mc_cast_exp(unsigned int, x >> 1 & 0xFF);
+	x     = mc_cast_expr(unsigned long, clck0 * CLOCKS_PER_SEC);
+	s2    = s2 + mc_cast_expr(unsigned int, x >> 3 & 0xFF);
+	s1    = s1 + mc_cast_expr(unsigned int, x >> 1 & 0xFF);
 //!# Consuming CPU cycles (guard).
 	while (s1 < 16) { ++s1; ++s2; ++s3; ++s4; ++s5; }
 //!# Fetching clock approximation.
@@ -94,11 +94,11 @@ MC_TARGET_PROC void mc_ssrandi()
 #	else
 	clck1 = clock();
 #	endif
-	x     = mc_cast_exp(unsigned long, clck1 * CLOCKS_PER_SEC);
+	x     = mc_cast_expr(unsigned long, clck1 * CLOCKS_PER_SEC);
 //!# Building seeds from whatever is there.
-	s5    = s5 + mc_cast_exp(unsigned int, x >> 9 & 0xFF);
-	s4    = s4 + mc_cast_exp(unsigned int, x >> 7 & 0xFF);
-	s3    = s3 + mc_cast_exp(unsigned int, x >> 5 & 0xFF);
+	s5    = s5 + mc_cast_expr(unsigned int, x >> 9 & 0xFF);
+	s4    = s4 + mc_cast_expr(unsigned int, x >> 7 & 0xFF);
+	s3    = s3 + mc_cast_expr(unsigned int, x >> 5 & 0xFF);
 	s2    = s2 + s4;
 	s1    = s1 + s3;
 //!# Assigning new seeds.

@@ -31,18 +31,18 @@
 #		define MCLIMITS_LOW   (mc_cast(const double     , ::sqrt (MCLIMITS_EPSILON)))
 #		define MCLIMITS_LOWL  (mc_cast(const long double, ::sqrtl(MCLIMITS_EPSILONL)))
 
-#		define MCLIMITS_TINYF (mc_cast_exp(const float      , 1E-06f * MCLIMITS_LOWF))
-#		define MCLIMITS_TINY  (mc_cast_exp(const double     , 1E-06  * MCLIMITS_LOW))
-#		define MCLIMITS_TINYL (mc_cast_exp(const long double, 1E-06L * MCLIMITS_LOWL))
+#		define MCLIMITS_TINYF (mc_cast_expr(const float      , 1E-06f * MCLIMITS_LOWF))
+#		define MCLIMITS_TINY  (mc_cast_expr(const double     , 1E-06  * MCLIMITS_LOW))
+#		define MCLIMITS_TINYL (mc_cast_expr(const long double, 1E-06L * MCLIMITS_LOWL))
 #	endif
 #	else
 #		define MCLIMITS_LOWF  (mc_cast(const float      , sqrtf(MCLIMITS_EPSILONF)))
 #		define MCLIMITS_LOW   (mc_cast(const double     , sqrt (MCLIMITS_EPSILON)))
 #		define MCLIMITS_LOWL  (mc_cast(const long double, sqrtl(MCLIMITS_EPSILONL)))
 
-#		define MCLIMITS_TINYF (mc_cast_exp(const float      , 1E-06f * MCLIMITS_LOWF))
-#		define MCLIMITS_TINY  (mc_cast_exp(const double     , 1E-06  * MCLIMITS_LOW))
-#		define MCLIMITS_TINYL (mc_cast_exp(const long double, 1E-06L * MCLIMITS_LOWL))
+#		define MCLIMITS_TINYF (mc_cast_expr(const float      , 1E-06f * MCLIMITS_LOWF))
+#		define MCLIMITS_TINY  (mc_cast_expr(const double     , 1E-06  * MCLIMITS_LOW))
+#		define MCLIMITS_TINYL (mc_cast_expr(const long double, 1E-06L * MCLIMITS_LOWL))
 #	endif
 
 #	define MCLIMITS_MAXF     FLT_MAX

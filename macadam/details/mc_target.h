@@ -295,7 +295,7 @@
 #	endif
 
 #	define mc_cast(t, x) (t)x
-#	define mc_cast_exp(t, x) mc_cast(t, (x))
+#	define mc_cast_expr(t, x) mc_cast(t, (x))
 #	define mc_nonnull(p) ((p) != NULL)
 
 #	define mc_scope_begin do {

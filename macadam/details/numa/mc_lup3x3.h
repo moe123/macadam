@@ -109,8 +109,6 @@ MC_TARGET_FUNC int mc_lup3x3f(const float a[9], float l[9], float u[9], float p[
 			l[3] = -e121; l[4] =  1.0f; l[5] = 0.0f;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0f;
 
-			fprintf(stderr, "p0, p1, p2 %d, %d, %d\n", p0, p1, p2);
-
 //!# Computing P from pivot indeces.
 			p[0] = p0 == 0 ? 1.0f : 0.0f; p[1] = p0 == 1 ? 1.0f : 0.0f; p[2] = p0 == 2 ? 1.0f : 0.0f;
 			p[3] = p1 == 0 ? 1.0f : 0.0f; p[4] = p1 == 1 ? 1.0f : 0.0f; p[5] = p1 == 2 ? 1.0f : 0.0f;
