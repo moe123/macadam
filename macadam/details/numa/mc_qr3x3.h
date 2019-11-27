@@ -6,6 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
 
@@ -31,6 +33,31 @@ MC_TARGET_PROC void mc_gvrotf(float a1, float a2, float tol, float * ch, float *
 
 //!# Normalizing ch and sh by r.
 	 w  =  1.0f / mc_sqrtf(mc_raise2f(*ch) + mc_raise2f(*sh));
+	*ch = *ch * w;
+	*sh = *sh * w;
+}
+
+MC_TARGET_PROC void mc_gvrotff(float a1, float a2, float tol, double * ch, double * sh)
+{
+//!# Givens rotation.
+	double w, a1d, a2d, told;
+
+	a1d  = mc_cast(double, a1);
+	a2d  = mc_cast(double, a2);
+	told = mc_cast(double, tol);
+
+//!# Sanity check.
+	 w  = mc_sqrt(mc_raise2(a1d) + mc_raise2(a2d));
+	*sh = w > told ? a2d : 0.0;
+	*ch = mc_fabs(a1d) + mc_fmax(w, told);
+
+//!# Sign check; -0 not handled.
+	 w  = *sh;
+	*sh =  a1d < 0.0 ? *ch : *sh;
+	*ch =  a1d < 0.0 ?  w  : *ch;
+
+//!# Normalizing ch and sh by r.
+	 w  =  1.0 / mc_sqrt(mc_raise2(*ch) + mc_raise2(*sh));
 	*ch = *ch * w;
 	*sh = *sh * w;
 }
