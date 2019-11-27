@@ -42,9 +42,9 @@ MC_TARGET_FUNC int mc_lusolvenxnf(int n, const float * restrict lu, const float 
 
 //!# Solving l*y=b
 	for (j = 0; j < n; j++) {
-		 for (i = (j + 1); i < n; i++) {
-			 x[i] =  x[i] - (x[j] * lu[(n * i) + j]);
-		 }
+		for (i = (j + 1); i < n; i++) {
+			x[i] = x[i] - (x[j] * lu[(n * i) + j]);
+		}
 	}
 
 //!# Solving u*x=y;
@@ -90,8 +90,8 @@ MC_TARGET_FUNC int mc_lusolvenxnff(int n, const float * restrict lu, const float
 //!# Solving l*y=b
 	for (j = 0; j < n; j++) {
 		for (i = (j + 1); i < n; i++) {
-			 x[i] =  x[i] - (x[j] * mc_cast(double, lu[(n * i) + j]));
-		 }
+			x[i] = x[i] - (x[j] * mc_cast(double, lu[(n * i) + j]));
+		}
 	}
 
 //!# Solving u*x=y;
@@ -136,9 +136,9 @@ MC_TARGET_FUNC int mc_lusolvenxn(int n, const double * restrict lu, const double
 
 //!# Solving l*y=b
 	for (j = 0; j < n; j++) {
-		 for (i = (j + 1); i < n; i++) {
-			 x[i] =  x[i] - (x[j] * lu[(n * i) + j]);
-		 }
+		for (i = (j + 1); i < n; i++) {
+			x[i] = x[i] - (x[j] * lu[(n * i) + j]);
+		}
 	}
 
 //!# Solving u*x=y;
@@ -183,9 +183,9 @@ MC_TARGET_FUNC int mc_lusolvenxnl(int n, const long double * restrict lu, const 
 
 //!# Solving l*y=b
 	for (j = 0; j < n; j++) {
-		 for (i = (j + 1); i < n; i++) {
-			 x[i] =  x[i] - (x[j] * lu[(n * i) + j]);
-		 }
+		for (i = (j + 1); i < n; i++) {
+			x[i] = x[i] - (x[j] * lu[(n * i) + j]);
+		}
 	}
 
 //!# Solving u*x=y;

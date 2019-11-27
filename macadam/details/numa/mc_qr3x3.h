@@ -6,103 +6,12 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/numa/mc_gvrot.h>
 
 #ifndef MC_QR3X3_H
 #define MC_QR3X3_H
-
-#pragma mark - mc_gvrot -
-
-MC_TARGET_PROC void mc_gvrotf(float a1, float a2, float tol, float * ch, float * sh)
-{
-//!# Givens rotation.
-	float w;
-
-//!# Sanity check.
-	 w  = mc_sqrtf(mc_raise2f(a1) + mc_raise2f(a2));
-	*sh = w > tol ? a2 : 0.0f;
-	*ch = mc_fabsf(a1) + mc_fmaxf(w, tol);
-
-//!# Sign check; -0 not handled.
-	 w  = *sh;
-	*sh =  a1 < 0.0f ? *ch : *sh;
-	*ch =  a1 < 0.0f ?  w  : *ch;
-
-//!# Normalizing ch and sh by r.
-	 w  =  1.0f / mc_sqrtf(mc_raise2f(*ch) + mc_raise2f(*sh));
-	*ch = *ch * w;
-	*sh = *sh * w;
-}
-
-MC_TARGET_PROC void mc_gvrotff(float a1, float a2, float tol, double * ch, double * sh)
-{
-//!# Givens rotation.
-	double w, a1d, a2d, told;
-
-	a1d  = mc_cast(double, a1);
-	a2d  = mc_cast(double, a2);
-	told = mc_cast(double, tol);
-
-//!# Sanity check.
-	 w  = mc_sqrt(mc_raise2(a1d) + mc_raise2(a2d));
-	*sh = w > told ? a2d : 0.0;
-	*ch = mc_fabs(a1d) + mc_fmax(w, told);
-
-//!# Sign check; -0 not handled.
-	 w  = *sh;
-	*sh =  a1d < 0.0 ? *ch : *sh;
-	*ch =  a1d < 0.0 ?  w  : *ch;
-
-//!# Normalizing ch and sh by r.
-	 w  =  1.0 / mc_sqrt(mc_raise2(*ch) + mc_raise2(*sh));
-	*ch = *ch * w;
-	*sh = *sh * w;
-}
-
-MC_TARGET_PROC void mc_gvrot(double a1, double a2, double tol, double * ch, double * sh)
-{
-//!# Givens rotation.
-	double w;
-
-//!# Sanity check.
-	 w  = mc_sqrt(mc_raise2(a1) + mc_raise2(a2));
-	*sh = w > tol ? a2 : 0.0;
-	*ch = mc_fabs(a1) + mc_fmax(w, tol);
-
-//!# Sign check; -0 not handled.
-	 w  = *sh;
-	*sh =  a1 < 0.0 ? *ch : *sh;
-	*ch =  a1 < 0.0 ?  w  : *ch;
-
-//!# Normalizing ch and sh by r.
-	 w  =  1.0 / mc_sqrt(mc_raise2(*ch) + mc_raise2(*sh));
-	*ch = *ch * w;
-	*sh = *sh * w;
-}
-
-MC_TARGET_PROC void mc_gvrotl(long double a1, long double a2, long double tol, long double * ch, long double * sh)
-{
-//!# Givens rotation.
-	long double w;
-
-//!# Sanity check.
-	 w  = mc_sqrtl(mc_raise2l(a1) + mc_raise2l(a2));
-	*sh = w > tol ? a2 : 0.0L;
-	*ch = mc_fabsl(a1) + mc_fmaxl(w, tol);
-
-//!# Sign check; -0 not handled.
-	 w  = *sh;
-	*sh =  a1 < 0.0L ? *ch : *sh;
-	*ch =  a1 < 0.0L ?  w  : *ch;
-
-//!# Normalizing ch and sh by r.
-	 w  =  1.0L / mc_sqrtl(mc_raise2l(*ch) + mc_raise2l(*sh));
-	*ch = *ch * w;
-	*sh = *sh * w;
-}
 
 #pragma mark - mc_qrgv3x3 -
 
@@ -122,7 +31,7 @@ MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 	a0 = 1.0f - 2.0f * sh1 * sh1;
 	b0 = 2.0f        * ch1 * sh1;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	r[0] =  a0 * a11 + b0 * a21; r[1] =  a0 * a12 + b0 * a22; r[2] =  a0 * a13 + b0 * a23;
 	r[3] = -b0 * a11 + a0 * a21; r[4] = -b0 * a12 + a0 * a22; r[5] = -b0 * a13 + a0 * a23;
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
@@ -132,7 +41,7 @@ MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 	a0 = 1.0f - 2.0f * sh2 * sh2;
 	b0 = 2.0f        * ch2 * sh2;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	a11 =  a0 * r[0] + b0 * r[6]; a12 =  a0 * r[1] + b0 * r[7]; a13 =  a0 * r[2] + b0 * r[8];
 	a21 =  r[3];                  a22 =  r[4];                  a23 =  r[5];
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
@@ -183,7 +92,7 @@ MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 	a0 = 1.0 - 2.0 * sh1 * sh1;
 	b0 = 2.0       * ch1 * sh1;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	r[0] =  a0 * a11 + b0 * a21; r[1] =  a0 * a12 + b0 * a22; r[2] =  a0 * a13 + b0 * a23;
 	r[3] = -b0 * a11 + a0 * a21; r[4] = -b0 * a12 + a0 * a22; r[5] = -b0 * a13 + a0 * a23;
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
@@ -193,7 +102,7 @@ MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 	a0 = 1.0 - 2.0 * sh2 * sh2;
 	b0 = 2.0       * ch2 * sh2;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	a11 =  a0 * r[0] + b0 * r[6]; a12 =  a0 * r[1] + b0 * r[7]; a13 =  a0 * r[2] + b0 * r[8];
 	a21 =  r[3];                  a22 =  r[4];                  a23 =  r[5];
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
@@ -244,7 +153,7 @@ MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 	a0 = 1.0 - 2.0 * sh1 * sh1;
 	b0 = 2.0       * ch1 * sh1;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	r[0] =  a0 * a11 + b0 * a21; r[1] =  a0 * a12 + b0 * a22; r[2] =  a0 * a13 + b0 * a23;
 	r[3] = -b0 * a11 + a0 * a21; r[4] = -b0 * a12 + a0 * a22; r[5] = -b0 * a13 + a0 * a23;
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
@@ -254,7 +163,7 @@ MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 	a0 = 1.0 - 2.0 * sh2 * sh2;
 	b0 = 2.0       * ch2 * sh2;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	a11 =  a0 * r[0] + b0 * r[6]; a12 =  a0 * r[1] + b0 * r[7]; a13 =  a0 * r[2] + b0 * r[8];
 	a21 =  r[3];                  a22 =  r[4];                  a23 =  r[5];
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
@@ -305,7 +214,7 @@ MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long do
 	a0 = 1.0L - 2.0L * sh1 * sh1;
 	b0 = 2.0L        * ch1 * sh1;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	r[0] =  a0 * a11 + b0 * a21; r[1] =  a0 * a12 + b0 * a22; r[2] =  a0 * a13 + b0 * a23;
 	r[3] = -b0 * a11 + a0 * a21; r[4] = -b0 * a12 + a0 * a22; r[5] = -b0 * a13 + a0 * a23;
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
@@ -315,7 +224,7 @@ MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long do
 	a0 = 1.0L - 2.0L * sh2 * sh2;
 	b0 = 2.0L        * ch2 * sh2;
 
-//!# Computiting B=Q'*B
+//!# Computing B=Q'*B
 	a11 =  a0 * r[0] + b0 * r[6]; a12 =  a0 * r[1] + b0 * r[7]; a13 =  a0 * r[2] + b0 * r[8];
 	a21 =  r[3];                  a22 =  r[4];                  a23 =  r[5];
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];

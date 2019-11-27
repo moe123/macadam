@@ -99,6 +99,7 @@
 #	include <macadam/details/numa/mc_eigsy3x3.h>
 #	include <macadam/details/numa/mc_eye2x2.h>
 #	include <macadam/details/numa/mc_eye3x3.h>
+#	include <macadam/details/numa/mc_gvrot.h>
 #	include <macadam/details/numa/mc_l2norm1x2.h>
 #	include <macadam/details/numa/mc_l2norm1x3.h>
 #	include <macadam/details/numa/mc_l2norm1xn.h>
@@ -110,6 +111,7 @@
 #	include <macadam/details/numa/mc_lu3x3.h>
 #	include <macadam/details/numa/mc_lup3x3.h>
 #	include <macadam/details/numa/mc_lupnxn.h>
+#	include <macadam/details/numa/mc_lusolve3x3.h>
 #	include <macadam/details/numa/mc_lusolvenxn.h>
 #	include <macadam/details/numa/mc_magic2x2.h>
 #	include <macadam/details/numa/mc_magic3x3.h>
