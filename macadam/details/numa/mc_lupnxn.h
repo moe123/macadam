@@ -15,10 +15,13 @@
 
 #pragma mark - mc_lupnxn -
 
-MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restrict p)
+MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restrict p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	int pv = 0, i, j, k, m, r;
 	float w, h;
 	if (a != lu) {
@@ -26,7 +29,13 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 			lu[i] = a[i];
 		}
 	}
-	mc_eyenxnf(n, p);
+	if (wantpvi) {
+		for (i = 0; i < n; i++) { 
+			pvi[i] = i;
+		}
+	} else if (wantp) {
+		mc_eyenxnf(n, p);
+	}
 
 	for (i = 0; i < n; i++) { 
 		w = 0.0f;
@@ -44,7 +53,11 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 		if (i != r) {
 			++pv;
 			for (k = 0; k < n; k++) {
-				mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (wantpvi) {
+
+				} else if (wantp) {
+					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
 		}
@@ -62,7 +75,13 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 			w = lu[(n * i) + i];
 			if (w == 0.0f) {
 				mc_eyenxnf(n, lu);
-				mc_eyenxnf(n, p);
+				if (wantpvi) {
+					for (i = 0; i < n; i++) { 
+						pvi[i] = i;
+					}
+				} else if (wantp) {
+					mc_eyenxnf(n, p);
+				}
 				return -1;
 			}
 			lu[(n * j) + i] = lu[(n * j) + i] / w;
@@ -71,17 +90,26 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 	return pv;
 }
 
-MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * restrict p)
+MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * restrict p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	int pv = 0, i, j, k, m, r;
 	double w, h;
 
 	for (i = 0; i < (n * n); i++) { 
 		lu[i] = mc_cast(double, a[i]);
 	}
-	mc_eyenxn(n, p);
+	if (wantpvi) {
+		for (i = 0; i < n; i++) { 
+			pvi[i] = i;
+		}
+	} else if (wantp) {
+		mc_eyenxn(n, p);
+	}
 
 	for (i = 0; i < n; i++) { 
 		w = 0.0;
@@ -99,7 +127,11 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 		if (i != r) {
 			++pv;
 			for (k = 0; k < n; k++) {
-				mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (wantpvi) {
+					
+				} else if (wantp) {
+					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
 		}
@@ -117,7 +149,13 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 			w = lu[(n * i) + i];
 			if (w == 0.0) {
 				mc_eyenxn(n, lu);
-				mc_eyenxn(n, p);
+				if (wantpvi) {
+					for (i = 0; i < n; i++) { 
+						pvi[i] = i;
+					}
+				} else if (wantp) {
+					mc_eyenxn(n, p);
+				}
 				return -1;
 			}
 			lu[(n * j) + i] = lu[(n * j) + i] / w;
@@ -126,10 +164,13 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 	return pv;
 }
 
-MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * restrict p)
+MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * restrict p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	int pv = 0, i, j, k, m, r;
 	double w, h;
 
@@ -138,7 +179,13 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 			lu[i] = a[i];
 		}
 	}
-	mc_eyenxn(n, p);
+	if (wantpvi) {
+		for (i = 0; i < n; i++) { 
+			pvi[i] = i;
+		}
+	} else if (wantp) {
+		mc_eyenxn(n, p);
+	}
 
 	for (i = 0; i < n; i++) { 
 		w = 0.0;
@@ -156,7 +203,11 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 		if (i != r) {
 			++pv;
 			for (k = 0; k < n; k++) {
-				mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (wantpvi) {
+					
+				} else if (wantp) {
+					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
 		}
@@ -174,7 +225,13 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 			w = lu[(n * i) + i];
 			if (w == 0.0) {
 				mc_eyenxn(n, lu);
-				mc_eyenxn(n, p);
+				if (wantpvi) {
+					for (i = 0; i < n; i++) { 
+						pvi[i] = i;
+					}
+				} else if (wantp) {
+					mc_eyenxn(n, p);
+				}
 				return -1;
 			}
 			lu[(n * j) + i] = lu[(n * j) + i] / w;
@@ -183,9 +240,13 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 	return pv;
 }
 
-MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, long double * restrict p)
+MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, long double * restrict p, int * pvi)
 {
 //!# A and LU may be the same.
+//!# Returns A=(LU)P, L and U being combined.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	int pv = 0, i, j, k, m, r;
 	long double w, h;
 
@@ -194,7 +255,13 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 			lu[i] = a[i];
 		}
 	}
-	mc_eyenxnl(n, p);
+	if (wantpvi) {
+		for (i = 0; i < n; i++) { 
+			pvi[i] = i;
+		}
+	} else if (wantp) {
+		mc_eyenxnl(n, p);
+	}
 
 	for (i = 0; i < n; i++) { 
 		w = 0.0L;
@@ -212,7 +279,11 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 		if (i != r) {
 			++pv;
 			for (k = 0; k < n; k++) {
-				mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (wantpvi) {
+					
+				} else if (wantp) {
+					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
 		}
@@ -230,7 +301,13 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 			w = lu[(n * i) + i];
 			if (w == 0.0L) {
 				mc_eyenxnl(n, lu);
-				mc_eyenxnl(n, p);
+				if (wantpvi) {
+					for (i = 0; i < n; i++) { 
+						pvi[i] = i;
+					}
+				} else if (wantp) {
+					mc_eyenxnl(n, p);
+				}
 				return -1;
 			}
 			lu[(n * j) + i] = lu[(n * j) + i] / w;

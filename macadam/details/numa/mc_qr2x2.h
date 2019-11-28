@@ -6,8 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/math/mc_hypot2.h>
 
 #ifndef MC_QR2X2_H
 #define MC_QR2X2_H
@@ -27,11 +26,12 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 	r[0] = 0.0f; r[1] = 0.0f;
 	r[2] = 0.0f; r[3] = 0.0f;
 
-	w = mc_raise2f(q[0]) + mc_raise2f(q[2]);
+	w = mc_hypot2f(q[0], q[2]);
 	if (w != 0.0f) {
-		w    = mc_sqrtf(w);
 		r[0] = w;
 		w    = 1.0f / w;
+	} else {
+		return -1;
 	}
 
 	q[0] = q[0] * w;
@@ -43,11 +43,12 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_raise2f(q[1]) + mc_raise2f(q[3]);
+	w = mc_hypot2f(q[1], q[3]);
 	if (w != 0.0f) {
-		w    = mc_sqrtf(w);
 		r[3] = w;
 		w    = 1.0f / w;
+	} else {
+		return -1;
 	}
 
 	q[1] = q[1] * w;
@@ -67,11 +68,12 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 	r[0] = 0.0; r[1] = 0.0;
 	r[2] = 0.0; r[3] = 0.0;
 
-	w = mc_raise2(q[0]) + mc_raise2(q[2]);
+	w = mc_hypot2(q[0], q[2]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[0] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 
 	q[0] = q[0] * w;
@@ -83,11 +85,12 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_raise2(q[1]) + mc_raise2(q[3]);
+	w = mc_hypot2(q[1], q[3]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[3] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 
 	q[1] = q[1] * w;
@@ -109,11 +112,12 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 	r[0] = 0.0; r[1] = 0.0;
 	r[2] = 0.0; r[3] = 0.0;
 
-	w = mc_raise2(q[0]) + mc_raise2(q[2]);
+	w = mc_hypot2(q[0], q[2]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[0] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 
 	q[0] = q[0] * w;
@@ -125,11 +129,12 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_raise2(q[1]) + mc_raise2(q[3]);
+	w = mc_hypot2(q[1], q[3]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[3] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 
 	q[1] = q[1] * w;
@@ -151,11 +156,12 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 	r[0] = 0.0L; r[1] = 0.0L;
 	r[2] = 0.0L; r[3] = 0.0L;
 
-	w = mc_raise2l(q[0]) + mc_raise2l(q[2]);
+	w = mc_hypot2l(q[0], q[2]);
 	if (w != 0.0L) {
-		w    = mc_sqrtl(w);
 		r[0] = w;
 		w    = 1.0L / w;
+	} else {
+		return -1;
 	}
 
 	q[0] = q[0] * w;
@@ -167,11 +173,12 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_raise2l(q[1]) + mc_raise2l(q[3]);
+	w = mc_hypot2l(q[1], q[3]);
 	if (w != 0.0L) {
-		w    = mc_sqrtl(w);
 		r[3] = w;
 		w    = 1.0L / w;
+	} else {
+		return -1;
 	}
 
 	q[1] = q[1] * w;

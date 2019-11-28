@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_hypot3.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/numa/mc_gvrot.h>
@@ -286,7 +287,7 @@ MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 
 	float magx, magu, alpha;
 
-//!# HH Step 1: computing Q1=I-2vvT.
+//!# HH Step 1: computing Q1=I-2vv'.
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
@@ -324,7 +325,7 @@ MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 	e1a32 = e131 * a12 + e132 * a22 + e133 * a32;
 	e1a33 = e131 * a13 + e132 * a23 + e133 * a33;
 
-//!# HH Step 2: computing Q2=I-2vvT.
+//!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
 	magx  = mc_raise2f(x0) + mc_raise2f(x1);
@@ -403,7 +404,7 @@ MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 
 	double magx, magu, alpha;
 
-//!# HH Step 1: computing Q1=I-2vvT.
+//!# HH Step 1: computing Q1=I-2vv'.
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
@@ -441,7 +442,7 @@ MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 	e1a32 = e131 * a12 + e132 * a22 + e133 * a32;
 	e1a33 = e131 * a13 + e132 * a23 + e133 * a33;
 
-//!# HH Step 2: computing Q2=I-2vvT.
+//!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
 	magx  = mc_raise2(x0) + mc_raise2(x1);
@@ -520,7 +521,7 @@ MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 
 	double magx, magu, alpha;
 
-//!# HH Step 1: computing Q1=I-2vvT.
+//!# HH Step 1: computing Q1=I-2vv'.
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
@@ -558,7 +559,7 @@ MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 	e1a32 = e131 * a12 + e132 * a22 + e133 * a32;
 	e1a33 = e131 * a13 + e132 * a23 + e133 * a33;
 
-//!# HH Step 2: computing Q2=I-2vvT.
+//!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
 	magx  = mc_raise2(x0) + mc_raise2(x1);
@@ -637,7 +638,7 @@ MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long do
 
 	long double magx, magu, alpha;
 
-//!# HH Step 1: computing Q1=I-2vvT.
+//!# HH Step 1: computing Q1=I-2vv'.
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
@@ -675,7 +676,7 @@ MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long do
 	e1a32 = e131 * a12 + e132 * a22 + e133 * a32;
 	e1a33 = e131 * a13 + e132 * a23 + e133 * a33;
 
-//!# HH Step 2: computing Q2=I-2vvT.
+//!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
 	magx  = mc_raise2l(x0) + mc_raise2l(x1);
@@ -748,11 +749,12 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 	r[3] = 0.0f; r[4] = 0.0f; r[5] = 0.0f;
 	r[6] = 0.0f; r[7] = 0.0f; r[8] = 0.0f;
 
-	w = mc_raise2f(q[0]) + mc_raise2f(q[3]) + mc_raise2f(q[6]);
+	w = mc_hypot3f(q[0], q[3], q[6]);
 	if (w != 0.0f) {
-		w    = mc_sqrtf(w);
 		r[0] = w;
 		w    = 1.0f / w;
+	} else {
+		return -1;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -765,11 +767,12 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 	q[4] = q[4] - w * q[3];
 	q[7] = q[7] - w * q[6];
 
-	w = mc_raise2f(q[1]) + mc_raise2f(q[4]) + mc_raise2f(q[7]);
+	w = mc_hypot3f(q[1], q[4], q[7]);
 	if (w != 0.0f) {
-		w    = mc_sqrtf(w);
 		r[4] = w;
 		w    = 1.0f / w;
+	} else {
+		return -1;
 	}
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
@@ -789,11 +792,12 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 	q[5] = q[5] - w * q[4];
 	q[8] = q[8] - w * q[7];
 
-	w = mc_raise2f(q[2]) + mc_raise2f(q[5]) + mc_raise2f(q[8]);
+	w = mc_hypot3f(q[2], q[5], q[8]);
 	if (w != 0.0f) {
-		w    = mc_sqrtf(w);
 		r[8] = w;
 		w    = 1.0f / w;
+	} else {
+		return -1;
 	}
 	q[2] = q[2] * w;
 	q[5] = q[5] * w;
@@ -815,11 +819,12 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 	r[3] = 0.0; r[4] = 0.0; r[5] = 0.0;
 	r[6] = 0.0; r[7] = 0.0; r[8] = 0.0;
 
-	w = mc_raise2(q[0]) + mc_raise2(q[3]) + mc_raise2(q[6]);
+	w = mc_hypot3(q[0], q[3], q[6]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[0] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -832,11 +837,12 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 	q[4] = q[4] - w * q[3];
 	q[7] = q[7] - w * q[6];
 
-	w = mc_raise2(q[1]) + mc_raise2(q[4]) + mc_raise2(q[7]);
+	w = mc_hypot3(q[1], q[4], q[7]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[4] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
@@ -856,11 +862,12 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 	q[5] = q[5] - w * q[4];
 	q[8] = q[8] - w * q[7];
 
-	w = mc_raise2(q[2]) + mc_raise2(q[5]) + mc_raise2(q[8]);
+	w = mc_hypot3(q[2], q[5], q[8]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[8] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 	q[2] = q[2] * w;
 	q[5] = q[5] * w;
@@ -884,11 +891,12 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 	r[3] = 0.0; r[4] = 0.0; r[5] = 0.0;
 	r[6] = 0.0; r[7] = 0.0; r[8] = 0.0;
 
-	w = mc_raise2(q[0]) + mc_raise2(q[3]) + mc_raise2(q[6]);
+	w = mc_hypot3(q[0], q[3], q[6]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[0] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -901,11 +909,12 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 	q[4] = q[4] - w * q[3];
 	q[7] = q[7] - w * q[6];
 
-	w = mc_raise2(q[1]) + mc_raise2(q[4]) + mc_raise2(q[7]);
+	w = mc_hypot3(q[1], q[4], q[7]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[4] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
@@ -925,11 +934,12 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 	q[5] = q[5] - w * q[4];
 	q[8] = q[8] - w * q[7];
 
-	w = mc_raise2(q[2]) + mc_raise2(q[5]) + mc_raise2(q[8]);
+	w = mc_hypot3(q[2], q[5], q[8]);
 	if (w != 0.0) {
-		w    = mc_sqrt(w);
 		r[8] = w;
 		w    = 1.0 / w;
+	} else {
+		return -1;
 	}
 	q[2] = q[2] * w;
 	q[5] = q[5] * w;
@@ -953,11 +963,12 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 	r[3] = 0.0L; r[4] = 0.0L; r[5] = 0.0L;
 	r[6] = 0.0L; r[7] = 0.0L; r[8] = 0.0L;
 
-	w = mc_raise2l(q[0]) + mc_raise2l(q[3]) + mc_raise2l(q[6]);
+	w = mc_hypot3l(q[0], q[3], q[6]);
 	if (w != 0.0L) {
-		w    = mc_sqrtl(w);
 		r[0] = w;
 		w    = 1.0L / w;
+	} else {
+		return -1;
 	}
 	q[0] = q[0] * w;
 	q[3] = q[3] * w;
@@ -970,11 +981,12 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 	q[4] = q[4] - w * q[3];
 	q[7] = q[7] - w * q[6];
 
-	w = mc_raise2l(q[1]) + mc_raise2l(q[4]) + mc_raise2l(q[7]);
+	w = mc_hypot3l(q[1], q[4], q[7]);
 	if (w != 0.0L) {
-		w    = mc_sqrtl(w);
 		r[4] = w;
 		w    = 1.0L / w;
+	} else {
+		return -1;
 	}
 	q[1] = q[1] * w;
 	q[4] = q[4] * w;
@@ -994,11 +1006,12 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 	q[5] = q[5] - w * q[4];
 	q[8] = q[8] - w * q[7];
 
-	w = mc_raise2l(q[2]) + mc_raise2l(q[5]) + mc_raise2l(q[8]);
+	w = mc_hypot3l(q[2], q[5], q[8]);
 	if (w != 0.0L) {
-		w    = mc_sqrtl(w);
 		r[8] = w;
 		w    = 1.0L / w;
+	} else {
+		return -1;
 	}
 	q[2] = q[2] * w;
 	q[5] = q[5] * w;

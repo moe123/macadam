@@ -38,12 +38,12 @@ MC_TARGET_FUNC int mc_lusolve3x3f(const float l[9], const float u[9], const floa
 		x[2] = b[2];
 	}
 
-//!# Solving l*y=b.
+//!# Solving L*y=b.
 	x[1] = x[1] - (x[0] * l[3]);
 	x[2] = x[2] - (x[0] * l[6]);
 	x[2] = x[2] - (x[1] * l[7]);
 
-//!# Solving u*x=y.
+//!# Solving U*x=y.
 	w = u[8];
 	if (w == 0.0f) {
 		return -1;
@@ -92,12 +92,12 @@ MC_TARGET_FUNC int mc_lusolve3x3ff(const float l[9], const float u[9], const flo
 		x[2] = mc_cast(double, b[2]);
 	}
 
-//!# Solving l*y=b.
+//!# Solving L*y=b.
 	x[1] = x[1] - (x[0] * mc_cast(double, l[3]));
 	x[2] = x[2] - (x[0] * mc_cast(double, l[6]));
 	x[2] = x[2] - (x[1] * mc_cast(double, l[7]));
 
-//!# Solving u*x=y.
+//!# Solving U*x=y.
 	w = mc_cast(double, u[8]);
 	if (w == 0.0f) {
 		return -1;
@@ -146,12 +146,12 @@ MC_TARGET_FUNC int mc_lusolve3x3(const double l[9], const double u[9], const dou
 		x[2] = b[2];
 	}
 
-//!# Solving l*y=b.
+//!# Solving L*y=b.
 	x[1] = x[1] - (x[0] * l[3]);
 	x[2] = x[2] - (x[0] * l[6]);
 	x[2] = x[2] - (x[1] * l[7]);
 
-//!# Solving u*x=y.
+//!# Solving U*x=y.
 	w = u[8];
 	if (w == 0.0f) {
 		return -1;
@@ -200,12 +200,12 @@ MC_TARGET_FUNC int mc_lusolve3x3l(const long double l[9], const long double u[9]
 		x[2] = b[2];
 	}
 
-//!# Solving l*y=b.
+//!# Solving L*y=b.
 	x[1] = x[1] - (x[0] * l[3]);
 	x[2] = x[2] - (x[0] * l[6]);
 	x[2] = x[2] - (x[1] * l[7]);
 
-//!# Solving u*x=y.
+//!# Solving U*x=y.
 	w = u[8];
 	if (w == 0.0f) {
 		return -1;

@@ -317,7 +317,8 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9
 
 MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 {
-	int z = 0, wanta = mc_nonnull(a);
+	const int wanta = mc_nonnull(a);
+	int z           = 0;
 	float b, c, f, h, p, r, s, t;
 	int i, j, k, n;
 
@@ -424,7 +425,8 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 
 MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 {
-	int z = 0, wanta = mc_nonnull(a);
+	const int wanta = mc_nonnull(a);
+	int z           = 0;
 	double b, c, f, h, p, r, s, t;
 	int i, j, k, n;
 
@@ -531,7 +533,8 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 
 MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double e[3])
 {
-	int z = 0, wanta = mc_nonnull(a);
+	const int wanta = mc_nonnull(a);
+	int z           = 0;
 	long double b, c, f, h, p, r, s, t;
 	int i, j, k, n;
 
@@ -672,13 +675,13 @@ MC_TARGET_FUNC int mc_eigsyq3x3l(const long double a[9], long double e[3], long 
 
 MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 {
-	int wantv     = mc_nonnull(v);
+	const int wantv = mc_nonnull(v);
 //!# Number of Jacobi iterations.
-	int i         = 0;
+	int i           = 0;
 //!# Too low values guard.
-	const float m = MCLIMITS_TINYF;
+	const float m   = MCLIMITS_TINYF;
 //!# Max number of iteration for convergence.
-	const int j   = 30;
+	const int j     = 30;
 
 //!# Copying upper triangle of the given symmetric system.
 	float a11 = a[0], a12 = a[1], a13 = a[2];
@@ -845,13 +848,13 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 
 MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 {
-	int wantv      = mc_nonnull(v);
+	const int wantv = mc_nonnull(v);
 //!# Number of Jacobi iterations.
-	int i          = 0;
+	int i           = 0;
 //!# Too low values guard.
-	const double m = MCLIMITS_TINY;
+	const double m  = MCLIMITS_TINY;
 //!# Max number of iteration for convergence.
-	const int j    = 90;
+	const int j     = 90;
 
 //!# Copying upper triangle of the given symmetric system.
 	double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -1018,7 +1021,7 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 
 MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long double * v)
 {
-	int wantv           = mc_nonnull(v);
+	const int wantv     = mc_nonnull(v);
 //!# Number of Jacobi iterations.
 	int i               = 0;
 //!# Too low values guard.

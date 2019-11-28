@@ -22,8 +22,8 @@
 
 MC_TARGET_FUNC int mc_eigsy2x2f(const float a[4], float e[2], float * v)
 {
-	int wantv = mc_nonnull(v);
-	float t0  = 0.0f, t1, t2;
+	const int wantv = mc_nonnull(v);
+	float t0        = 0.0f, t1, t2;
 
 	if (a[1] == a[2]) {
 		if (mc_fabsf(a[2]) == 0.0f) {
@@ -82,8 +82,8 @@ MC_TARGET_FUNC int mc_eigsy2x2f(const float a[4], float e[2], float * v)
 
 MC_TARGET_FUNC int mc_eigsy2x2ff(const float a[4], double e[2], double * v)
 {
-	int wantv = mc_nonnull(v);
-	double t0 = 0.0, t1, t2;
+	const int wantv = mc_nonnull(v);
+	double t0       = 0.0, t1, t2;
 
 	if (a[1] == a[2]) {
 		if (mc_fabsf(a[2]) == 0.0f) {
@@ -142,8 +142,8 @@ MC_TARGET_FUNC int mc_eigsy2x2ff(const float a[4], double e[2], double * v)
 
 MC_TARGET_FUNC int mc_eigsy2x2(const double a[4], double e[2], double * v)
 {
-	int wantv = mc_nonnull(v);
-	double t0 = 0.0, t1, t2;
+	const int wantv = mc_nonnull(v);
+	double t0       = 0.0, t1, t2;
 
 	if (a[1] == a[2]) {
 		if (mc_fabs(a[2]) == 0.0) {
@@ -202,8 +202,8 @@ MC_TARGET_FUNC int mc_eigsy2x2(const double a[4], double e[2], double * v)
 
 MC_TARGET_FUNC int mc_eigsy2x2l(const long double a[4], long double e[2], long double * v)
 {
-	int wantv      = mc_nonnull(v);
-	long double t0 = 0.0L, t1, t2;
+	const int wantv      = mc_nonnull(v);
+	long double t0       = 0.0L, t1, t2;
 
 	if (a[1] == a[2]) {
 		if (mc_fabsl(a[2]) == 0.0L) {

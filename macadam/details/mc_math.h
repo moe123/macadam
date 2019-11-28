@@ -88,8 +88,8 @@
 #	include <macadam/details/math/mc_huber_rho.h>
 #	include <macadam/details/math/mc_huber_weight.h>
 #	include <macadam/details/math/mc_hypot.h>
-#	include <macadam/details/math/mc_hypotc.h>
-#	include <macadam/details/math/mc_hypotq.h>
+#	include <macadam/details/math/mc_hypot3.h>
+#	include <macadam/details/math/mc_hypot2.h>
 #	include <macadam/details/math/mc_hzeta.h>
 #	include <macadam/details/math/mc_ibeta.h>
 #	include <macadam/details/math/mc_iexp2.h>

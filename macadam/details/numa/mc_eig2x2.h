@@ -17,7 +17,8 @@
 
 MC_TARGET_FUNC int mc_eig2x2f(const float a[4], float e[2], float * v)
 {
-	int r, wantv = mc_nonnull(v);
+	const int wantv = mc_nonnull(v);
+	int r;
 	float e0_r, e0_i;
 	float e1_r, e1_i;
 
@@ -48,7 +49,8 @@ MC_TARGET_FUNC int mc_eig2x2f(const float a[4], float e[2], float * v)
 
 MC_TARGET_FUNC int mc_eig2x2ff(const float a[4], double e[2], double * v)
 {
-	int r, wantv = mc_nonnull(v);
+	const int wantv = mc_nonnull(v);
+	int r;
 	double e0_r, e0_i;
 	double e1_r, e1_i;
 
@@ -79,7 +81,8 @@ MC_TARGET_FUNC int mc_eig2x2ff(const float a[4], double e[2], double * v)
 
 MC_TARGET_FUNC int mc_eig2x2(const double a[4], double e[2], double * v)
 {
-	int r, wantv = mc_nonnull(v);
+	const int wantv = mc_nonnull(v);
+	int r;
 	double e0_r, e0_i;
 	double e1_r, e1_i;
 
@@ -110,7 +113,8 @@ MC_TARGET_FUNC int mc_eig2x2(const double a[4], double e[2], double * v)
 
 MC_TARGET_FUNC int mc_eig2x2l(const long double a[4], long double e[2], long double * v)
 {
-	int r, wantv = mc_nonnull(v);
+	const int wantv = mc_nonnull(v);
+	int r;
 	long double e0_r, e0_i;
 	long double e1_r, e1_i;
 
