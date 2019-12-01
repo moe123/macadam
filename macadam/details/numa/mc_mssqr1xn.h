@@ -15,7 +15,7 @@
 
 #pragma mark - mc_mssqr1xn -
 
-MC_TARGET_FUNC void mc_mssqr1xnf(int n, const float * x, float * mean, float * sumsq, float * scale)
+MC_TARGET_FUNC void mc_mssqr1xnf(int n, const float * x, int b, float * mean, float * sumsq, float * scale)
 {
 	int i;
 	float t;
@@ -28,7 +28,7 @@ MC_TARGET_FUNC void mc_mssqr1xnf(int n, const float * x, float * mean, float * s
 		if (n == 1) {
 			*mean = x[0];
 		} else {
-			*mean = mc_mean1xnf(n, x, 0, 1);
+			*mean = mc_mean1xnf(n, x, b, 1);
 			for (i = 0; i < n; i++) {
 				if (0.0f != (t = mc_fabsf(*mean - x[i]))) {
 					if (*scale < t) {
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mssqr1xnf(int n, const float * x, float * mean, float * s
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqr1xnff(int n, const float * x, double * mean, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_mssqr1xnff(int n, const float * x, int b, double * mean, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -56,7 +56,7 @@ MC_TARGET_FUNC void mc_mssqr1xnff(int n, const float * x, double * mean, double 
 		if (n == 1) {
 			*mean = x[0];
 		} else {
-			*mean = mc_mean1xnff(n, x, 0, 1);
+			*mean = mc_mean1xnff(n, x, b, 1);
 			for (i = 0; i < n; i++) {
 				if (0.0f != (t = mc_fabs(*mean - mc_cast(double, x[i])))) {
 					if (*scale < t) {
@@ -71,7 +71,7 @@ MC_TARGET_FUNC void mc_mssqr1xnff(int n, const float * x, double * mean, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqr1xn(int n, const double * x, double * mean, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_mssqr1xn(int n, const double * x, int b, double * mean, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -84,7 +84,7 @@ MC_TARGET_FUNC void mc_mssqr1xn(int n, const double * x, double * mean, double *
 		if (n == 1) {
 			*mean = x[0];
 		} else {
-			*mean = mc_mean1xn(n, x, 0, 1);
+			*mean = mc_mean1xn(n, x, b, 1);
 			for (i = 0; i < n; i++) {
 				if (0.0f != (t = mc_fabs(*mean - x[i]))) {
 					if (*scale < t) {
@@ -99,7 +99,7 @@ MC_TARGET_FUNC void mc_mssqr1xn(int n, const double * x, double * mean, double *
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqr1xnl(int n, const long double * x, long double * mean, long double * sumsq, long double * scale)
+MC_TARGET_FUNC void mc_mssqr1xnl(int n, const long double * x, int b, long double * mean, long double * sumsq, long double * scale)
 {
 	int i;
 	long double t;
@@ -112,7 +112,7 @@ MC_TARGET_FUNC void mc_mssqr1xnl(int n, const long double * x, long double * mea
 		if (n == 1) {
 			*mean = x[0];
 		} else {
-			*mean = mc_mean1xnl(n, x, 0, 1);
+			*mean = mc_mean1xnl(n, x, b, 1);
 			for (i = 0; i < n; i++) {
 				if (0.0f != (t = mc_fabsl(*mean - x[i]))) {
 					if (*scale < t) {

@@ -28,10 +28,10 @@ MC_TARGET_FUNC void mc_moment1xnf(int n, const float * x, float * m1, float * m2
 	*kurtosis = 0.0f;
 
 	if (n > 0) {
-		mc_mssqr1xnf(n, x, m1, &sumsq, &scale);
-		*m2 = mc_raise2f(scale) * (sumsq / n);
+		mc_mssqr1xnf(n, x, 0, m1, &sumsq, &scale);
+		*m2 = mc_raise2f(scale) * (sumsq / mc_cast(float, n));
 		if (n > 1) {
-			q = scale * mc_sqrtf(sumsq / n);
+			q = scale * mc_sqrtf(sumsq / mc_cast(float, n));
 			for (; i <= n; i++) {
 				 d  = x[i - 1] - *m1;
 				*m3 = *m3 + (mc_raise2f(d) * d - *m3) / mc_cast(float, i);
@@ -59,10 +59,10 @@ MC_TARGET_FUNC void mc_moment1xnff(int n, const float * x, double * m1, double *
 	*kurtosis = 0.0;
 
 	if (n > 0) {
-		mc_mssqr1xnff(n, x, m1, &sumsq, &scale);
-		*m2 = mc_raise2(scale) * (sumsq / n);
+		mc_mssqr1xnff(n, x, 0, m1, &sumsq, &scale);
+		*m2 = mc_raise2(scale) * (sumsq / mc_cast(double, n));
 		if (n > 1) {
-			q = scale * mc_sqrt(sumsq / n);
+			q = scale * mc_sqrt(sumsq / mc_cast(double, n));
 			for (; i <= n; i++) {
 				 d  = mc_cast(double, x[i - 1]) - *m1;
 				*m3 = *m3 + (mc_raise2(d) * d - *m3) / mc_cast(double, i);
@@ -90,10 +90,10 @@ MC_TARGET_FUNC void mc_moment1xn(int n, const double * x, double * m1, double * 
 	*kurtosis = 0.0;
 
 	if (n > 0) {
-		mc_mssqr1xn(n, x, m1, &sumsq, &scale);
-		*m2 = mc_raise2(scale) * (sumsq / n);
+		mc_mssqr1xn(n, x, 0, m1, &sumsq, &scale);
+		*m2 = mc_raise2(scale) * (sumsq / mc_cast(double, n));
 		if (n > 1) {
-			q = scale * mc_sqrt(sumsq / n);
+			q = scale * mc_sqrt(sumsq / mc_cast(double, n));
 			for (; i <= n; i++) {
 				 d  = x[i - 1] - *m1;
 				*m3 = *m3 + (mc_raise2(d) * d - *m3) / mc_cast(double, i);
@@ -121,10 +121,10 @@ MC_TARGET_FUNC void mc_moment1xnl(int n, const long double * x, long double * m1
 	*kurtosis = 0.0L;
 
 	if (n > 0) {
-		mc_mssqr1xnl(n, x, m1, &sumsq, &scale);
-		*m2 = mc_raise2l(scale) * (sumsq / n);
+		mc_mssqr1xnl(n, x, 0, m1, &sumsq, &scale);
+		*m2 = mc_raise2l(scale) * (sumsq / mc_cast(long double, n));
 		if (n > 1) {
-			q = scale * mc_sqrtl(sumsq / n);
+			q = scale * mc_sqrtl(sumsq / mc_cast(long double, n));
 			for (; i <= n; i++) {
 				 d  = x[i - 1] - *m1;
 				*m3 = *m3 + (mc_raise2l(d) * d - *m3) / mc_cast(long double, i);

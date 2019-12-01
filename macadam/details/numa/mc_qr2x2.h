@@ -7,6 +7,8 @@
 //
 
 #include <macadam/details/math/mc_hypot2.h>
+#include <macadam/details/numa/mc_eye2x2.h>
+#include <macadam/details/numa/mc_zeros2x2.h>
 
 #ifndef MC_QR2X2_H
 #define MC_QR2X2_H
@@ -22,15 +24,15 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 		q[0] = a[0]; q[1] = a[1];
 		q[2] = a[2]; q[3] = a[3];
 	}
-
-	r[0] = 0.0f; r[1] = 0.0f;
-	r[2] = 0.0f; r[3] = 0.0f;
+	mc_zeros2x2f(r);
 
 	w = mc_hypot2f(q[0], q[2]);
 	if (w != 0.0f) {
 		r[0] = w;
 		w    = 1.0f / w;
 	} else {
+		mc_eye2x2f(q);
+		mc_eye2x2f(r);
 		return -1;
 	}
 
@@ -48,6 +50,8 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 		r[3] = w;
 		w    = 1.0f / w;
 	} else {
+		mc_eye2x2f(q);
+		mc_eye2x2f(r);
 		return -1;
 	}
 
@@ -65,14 +69,15 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 	q[0] = mc_cast(double, a[0]); q[1] =  mc_cast(double, a[1]);
 	q[2] = mc_cast(double, a[2]); q[3] =  mc_cast(double, a[3]);
 
-	r[0] = 0.0; r[1] = 0.0;
-	r[2] = 0.0; r[3] = 0.0;
+	mc_zeros2x2(r);
 
 	w = mc_hypot2(q[0], q[2]);
 	if (w != 0.0) {
 		r[0] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye2x2(q);
+		mc_eye2x2(r);
 		return -1;
 	}
 
@@ -90,6 +95,8 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 		r[3] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye2x2(q);
+		mc_eye2x2(r);
 		return -1;
 	}
 
@@ -109,14 +116,15 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 		q[2] = a[2]; q[3] = a[3];
 	}
 
-	r[0] = 0.0; r[1] = 0.0;
-	r[2] = 0.0; r[3] = 0.0;
+	mc_zeros2x2(r);
 
 	w = mc_hypot2(q[0], q[2]);
 	if (w != 0.0) {
 		r[0] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye2x2(q);
+		mc_eye2x2(r);
 		return -1;
 	}
 
@@ -134,6 +142,8 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 		r[3] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye2x2(q);
+		mc_eye2x2(r);
 		return -1;
 	}
 
@@ -153,14 +163,15 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 		q[2] = a[2]; q[3] = a[3];
 	}
 
-	r[0] = 0.0L; r[1] = 0.0L;
-	r[2] = 0.0L; r[3] = 0.0L;
+	mc_zeros2x2l(r);
 
 	w = mc_hypot2l(q[0], q[2]);
 	if (w != 0.0L) {
 		r[0] = w;
 		w    = 1.0L / w;
 	} else {
+		mc_eye2x2l(q);
+		mc_eye2x2l(r);
 		return -1;
 	}
 
@@ -178,6 +189,8 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 		r[3] = w;
 		w    = 1.0L / w;
 	} else {
+		mc_eye2x2l(q);
+		mc_eye2x2l(r);
 		return -1;
 	}
 

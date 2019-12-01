@@ -9,7 +9,9 @@
 #include <macadam/details/math/mc_hypot3.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/numa/mc_eye3x3.h>
 #include <macadam/details/numa/mc_gvrot.h>
+#include <macadam/details/numa/mc_zeros3x3.h>
 
 #ifndef MC_QR3X3_H
 #define MC_QR3X3_H
@@ -745,15 +747,15 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 		q[6] = a[6]; q[7] = a[7]; q[8] = a[8];
 	}
 
-	r[0] = 0.0f; r[1] = 0.0f; r[2] = 0.0f;
-	r[3] = 0.0f; r[4] = 0.0f; r[5] = 0.0f;
-	r[6] = 0.0f; r[7] = 0.0f; r[8] = 0.0f;
+	mc_zeros3x3f(r);
 
 	w = mc_hypot3f(q[0], q[3], q[6]);
 	if (w != 0.0f) {
 		r[0] = w;
 		w    = 1.0f / w;
 	} else {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
 		return -1;
 	}
 	q[0] = q[0] * w;
@@ -772,6 +774,8 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 		r[4] = w;
 		w    = 1.0f / w;
 	} else {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
 		return -1;
 	}
 	q[1] = q[1] * w;
@@ -797,6 +801,8 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 		r[8] = w;
 		w    = 1.0f / w;
 	} else {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
 		return -1;
 	}
 	q[2] = q[2] * w;
@@ -815,15 +821,15 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 	q[3] = mc_cast(double, a[3]); q[4] = mc_cast(double, a[4]); q[5] = mc_cast(double, a[5]);
 	q[6] = mc_cast(double, a[6]); q[7] = mc_cast(double, a[7]); q[8] = mc_cast(double, a[8]);
 
-	r[0] = 0.0; r[1] = 0.0; r[2] = 0.0;
-	r[3] = 0.0; r[4] = 0.0; r[5] = 0.0;
-	r[6] = 0.0; r[7] = 0.0; r[8] = 0.0;
+	mc_zeros3x3(r);
 
 	w = mc_hypot3(q[0], q[3], q[6]);
 	if (w != 0.0) {
 		r[0] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
 		return -1;
 	}
 	q[0] = q[0] * w;
@@ -842,6 +848,8 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 		r[4] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
 		return -1;
 	}
 	q[1] = q[1] * w;
@@ -867,6 +875,8 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 		r[8] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
 		return -1;
 	}
 	q[2] = q[2] * w;
@@ -887,15 +897,15 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 		q[6] = a[6]; q[7] = a[7]; q[8] = a[8];
 	}
 
-	r[0] = 0.0; r[1] = 0.0; r[2] = 0.0;
-	r[3] = 0.0; r[4] = 0.0; r[5] = 0.0;
-	r[6] = 0.0; r[7] = 0.0; r[8] = 0.0;
+	mc_zeros3x3(r);
 
 	w = mc_hypot3(q[0], q[3], q[6]);
 	if (w != 0.0) {
 		r[0] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
 		return -1;
 	}
 	q[0] = q[0] * w;
@@ -914,6 +924,8 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 		r[4] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
 		return -1;
 	}
 	q[1] = q[1] * w;
@@ -939,6 +951,8 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 		r[8] = w;
 		w    = 1.0 / w;
 	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
 		return -1;
 	}
 	q[2] = q[2] * w;
@@ -959,15 +973,15 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 		q[6] = a[6]; q[7] = a[7]; q[8] = a[8];
 	}
 
-	r[0] = 0.0L; r[1] = 0.0L; r[2] = 0.0L;
-	r[3] = 0.0L; r[4] = 0.0L; r[5] = 0.0L;
-	r[6] = 0.0L; r[7] = 0.0L; r[8] = 0.0L;
+	mc_zeros3x3l(r);
 
 	w = mc_hypot3l(q[0], q[3], q[6]);
 	if (w != 0.0L) {
 		r[0] = w;
 		w    = 1.0L / w;
 	} else {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
 		return -1;
 	}
 	q[0] = q[0] * w;
@@ -986,6 +1000,8 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 		r[4] = w;
 		w    = 1.0L / w;
 	} else {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
 		return -1;
 	}
 	q[1] = q[1] * w;
@@ -1011,6 +1027,8 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 		r[8] = w;
 		w    = 1.0L / w;
 	} else {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
 		return -1;
 	}
 	q[2] = q[2] * w;
