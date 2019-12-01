@@ -6,9 +6,8 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_hypot2.h>
 #include <macadam/details/math/mc_hypot3.h>
-#include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/numa/mc_eye3x3.h>
 #include <macadam/details/numa/mc_gvrot.h>
 #include <macadam/details/numa/mc_zeros3x3.h>
@@ -293,18 +292,24 @@ MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
-	magx  = mc_raise2f(x0) + mc_raise2f(x1) + mc_raise2f(x2);
-	if (magx > 0.0f) {
-		magx = mc_sqrtf(magx);
+	magx  = mc_hypot3f(x0, x1, x2);
+	if (magx == 0.0f) {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
+		return -1;
 	}
 	alpha = magx * -1.0f * ((x0 > 0.0f) ? -1.0f : (x0 < 0.0f) ? 1.0f : 0.0f);
 	u0    = x0 + alpha;
 	u1    = x1;
 	u2    = x2;
 
-	magu  = mc_raise2f(u0) + mc_raise2f(u1) + mc_raise2f(u2);
-	if (magu > 0.0f) {
-		magu = 1.0f / mc_sqrtf(magu);
+	magu  = mc_hypot3f(u0, u1, u2);
+	if (magu != 0.0f) {
+		magu = 1.0f / magu;
+	} else {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -330,17 +335,23 @@ MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 //!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
-	magx  = mc_raise2f(x0) + mc_raise2f(x1);
-	if (magx > 0.0f) {
-		magx = mc_sqrtf(magx);
+	magx  = mc_hypot2f(x0, x1);
+	if (magx == 0.0f) {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
+		return -1;
 	}
 	alpha = magx * -1.0f * ((x0 > 0.0f) ? -1.0f : (x0 < 0.0f) ? 1.0f : 0.0f);
 	u0    = x0 + alpha;
 	u1    = x1;
 
-	magu  = mc_raise2f(u0) + mc_raise2f(u1);
-	if (magu > 0.0f) {
-		magu = 1.0f / mc_sqrtf(magu);
+	magu  = mc_hypot2f(u0, u1);
+	if (magu != 0.0f) {
+		magu = 1.0f / magu;
+	} else {
+		mc_eye3x3f(q);
+		mc_eye3x3f(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -351,19 +362,6 @@ MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 	e231  = 0.0f; e232 = -2.0f * v0 * v1;        e233 =  1.0f - 2.0f * v1 * v1;
 
 //!# HH Step 3: computing Q and R.
-
-//!# Computing R such as R=e2*e1a.
-	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
-	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
-	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
-
-	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
-	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
-	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
-
-	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
-	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
-	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 //!# Computing Q such as Q=e1'*e2'=(e1*e2)'.
 	q[0]  = e111 * e211 + e121 * e212 + e131 * e213;
@@ -377,6 +375,19 @@ MC_TARGET_FUNC int mc_qrhh3x3f(const float a[9], float q[9], float r[9])
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+//!# Computing R such as R=e2*e1a.
+	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
+	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
+	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
+
+	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
+	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
+	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
+
+	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
+	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
+	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 	return 0;
 }
@@ -410,18 +421,24 @@ MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
-	magx  = mc_raise2(x0) + mc_raise2(x1) + mc_raise2(x2);
-	if (magx > 0.0) {
-		magx = mc_sqrt(magx);
+	magx  = mc_hypot3(x0, x1, x2);
+	if (magx == 0.0) {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	alpha = magx * -1.0 * ((x0 > 0.0) ? -1.0 : (x0 < 0.0) ? 1.0 : 0.0);
 	u0    = x0 + alpha;
 	u1    = x1;
 	u2    = x2;
 
-	magu  = mc_raise2(u0) + mc_raise2(u1) + mc_raise2(u2);
-	if (magu > 0.0) {
-		magu = 1.0 / mc_sqrt(magu);
+	magu  = mc_hypot3(u0, u1, u2);
+	if (magu != 0.0) {
+		magu = 1.0 / magu;
+	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -447,17 +464,23 @@ MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 //!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
-	magx  = mc_raise2(x0) + mc_raise2(x1);
-	if (magx > 0.0) {
-		magx = mc_sqrt(magx);
+	magx  = mc_hypot2(x0, x1);
+	if (magx == 0.0) {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	alpha = magx * -1.0 * ((x0 > 0.0) ? -1.0 : (x0 < 0.0) ? 1.0 : 0.0);
 	u0    = x0 + alpha;
 	u1    = x1;
 
-	magu  = mc_raise2(u0) + mc_raise2(u1);
-	if (magu > 0.0) {
-		magu = 1.0 / mc_sqrt(magu);
+	magu  = mc_hypot2(u0, u1);
+	if (magu != 0.0) {
+		magu = 1.0 / magu;
+	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -468,19 +491,6 @@ MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 	e231  = 0.0; e232 = -2.0 * v0 * v1;       e233 =  1.0 - 2.0 * v1 * v1;
 
 //!# HH Step 3: computing Q and R.
-
-//!# Computing R such as R=e2*e1a.
-	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
-	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
-	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
-
-	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
-	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
-	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
-
-	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
-	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
-	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 //!# Computing Q such as Q=e1'*e2'=(e1*e2)'.
 	q[0]  = e111 * e211 + e121 * e212 + e131 * e213;
@@ -494,6 +504,19 @@ MC_TARGET_FUNC int mc_qrhh3x3ff(const float a[9], double q[9], double r[9])
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+//!# Computing R such as R=e2*e1a.
+	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
+	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
+	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
+
+	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
+	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
+	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
+
+	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
+	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
+	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 	return 0;
 }
@@ -527,18 +550,24 @@ MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
-	magx  = mc_raise2(x0) + mc_raise2(x1) + mc_raise2(x2);
-	if (magx > 0.0) {
-		magx = mc_sqrt(magx);
+	magx  = mc_hypot3(x0, x1, x2);
+	if (magx == 0.0) {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	alpha = magx * -1.0 * ((x0 > 0.0) ? -1.0 : (x0 < 0.0) ? 1.0 : 0.0);
 	u0    = x0 + alpha;
 	u1    = x1;
 	u2    = x2;
 
-	magu  = mc_raise2(u0) + mc_raise2(u1) + mc_raise2(u2);
-	if (magu > 0.0) {
-		magu = 1.0 / mc_sqrt(magu);
+	magu  = mc_hypot3(u0, u1, u2);
+	if (magu != 0.0) {
+		magu = 1.0 / magu;
+	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -564,17 +593,23 @@ MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 //!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
-	magx  = mc_raise2(x0) + mc_raise2(x1);
-	if (magx > 0.0) {
-		magx = mc_sqrt(magx);
+	magx  = mc_hypot2(x0, x1);
+	if (magx == 0.0) {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	alpha = magx * -1.0 * ((x0 > 0.0) ? -1.0 : (x0 < 0.0) ? 1.0 : 0.0);
 	u0    = x0 + alpha;
 	u1    = x1;
 
-	magu  = mc_raise2(u0) + mc_raise2(u1);
-	if (magu > 0.0) {
-		magu = 1.0 / mc_sqrt(magu);
+	magu  = mc_hypot2(u0, u1);
+	if (magu != 0.0) {
+		magu = 1.0 / magu;
+	} else {
+		mc_eye3x3(q);
+		mc_eye3x3(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -585,19 +620,6 @@ MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 	e231  = 0.0; e232 = -2.0 * v0 * v1;       e233 =  1.0 - 2.0 * v1 * v1;
 
 //!# HH Step 3: computing Q and R.
-
-//!# Computing R such as R=e2*e1a.
-	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
-	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
-	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
-
-	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
-	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
-	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
-
-	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
-	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
-	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 //!# Computing Q such as Q=e1'*e2'=(e1*e2)'.
 	q[0]  = e111 * e211 + e121 * e212 + e131 * e213;
@@ -611,6 +633,19 @@ MC_TARGET_FUNC int mc_qrhh3x3(const double a[9], double q[9], double r[9])
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+//!# Computing R such as R=e2*e1a.
+	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
+	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
+	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
+
+	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
+	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
+	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
+
+	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
+	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
+	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 	return 0;
 }
@@ -644,18 +679,24 @@ MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long do
 	x0    = a11;
 	x1    = a21;
 	x2    = a31;
-	magx  = mc_raise2l(x0) + mc_raise2l(x1) + mc_raise2l(x2);
-	if (magx > 0.0L) {
-		magx = mc_sqrtl(magx);
+	magx  = mc_hypot3l(x0, x1, x2);
+	if (magx == 0.0L) {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
+		return -1;
 	}
 	alpha = magx * -1.0L * ((x0 > 0.0L) ? -1.0L : (x0 < 0.0L) ? 1.0L : 0.0L);
 	u0    = x0 + alpha;
 	u1    = x1;
 	u2    = x2;
 
-	magu  = mc_raise2l(u0) + mc_raise2l(u1) + mc_raise2l(u2);
-	if (magu > 0.0L) {
-		magu = 1.0L / mc_sqrtl(magu);
+	magu  = mc_hypot3l(u0, u1, u2);
+	if (magu != 0.0L) {
+		magu = 1.0L / magu;
+	} else {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -681,17 +722,23 @@ MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long do
 //!# HH Step 2: computing Q2=I-2vv'.
 	x0    = a22;
 	x1    = a32;
-	magx  = mc_raise2l(x0) + mc_raise2l(x1);
-	if (magx > 0.0L) {
-		magx = mc_sqrtl(magx);
+	magx  = mc_hypot2l(x0, x1);
+	if (magx == 0.0L) {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
+		return -1;
 	}
 	alpha = magx * -1.0L * ((x0 > 0.0L) ? -1.0L : (x0 < 0.0L) ? 1.0L : 0.0L);
 	u0    = x0 + alpha;
 	u1    = x1;
 
-	magu  = mc_raise2l(u0) + mc_raise2l(u1);
-	if (magu > 0.0L) {
-		magu = 1.0L / mc_sqrtl(magu);
+	magu  = mc_hypot2l(u0, u1);
+	if (magu != 0.0L) {
+		magu = 1.0L / magu;
+	} else {
+		mc_eye3x3l(q);
+		mc_eye3x3l(r);
+		return -1;
 	}
 	v0    = u0 * magu;
 	v1    = u1 * magu;
@@ -702,19 +749,6 @@ MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long do
 	e231  = 0.0L; e232 = -2.0L * v0 * v1;        e233 =  1.0L - 2.0L * v1 * v1;
 
 //!# HH Step 3: computing Q and R.
-
-//!# Computing R such as R=e2*e1a.
-	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
-	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
-	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
-
-	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
-	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
-	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
-
-	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
-	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
-	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 //!# Computing Q such as Q=e1'*e2'=(e1*e2)'.
 	q[0]  = e111 * e211 + e121 * e212 + e131 * e213;
@@ -728,6 +762,19 @@ MC_TARGET_FUNC int mc_qrhh3x3l(const long double a[9], long double q[9], long do
 	q[6]  = e113 * e211 + e123 * e212 + e133 * e213;
 	q[7]  = e113 * e221 + e123 * e222 + e133 * e223;
 	q[8]  = e113 * e231 + e123 * e232 + e133 * e233;
+
+//!# Computing R such as R=e2*e1a.
+	r[0]  = e211 * e1a11 + e212 * e1a21 + e213 * e1a31;
+	r[1]  = e211 * e1a12 + e212 * e1a22 + e213 * e1a32;
+	r[2]  = e211 * e1a13 + e212 * e1a23 + e213 * e1a33;
+
+	r[3]  = e221 * e1a11 + e222 * e1a21 + e223 * e1a31;
+	r[4]  = e221 * e1a12 + e222 * e1a22 + e223 * e1a32;
+	r[5]  = e221 * e1a13 + e222 * e1a23 + e223 * e1a33;
+
+	r[6]  = e231 * e1a11 + e232 * e1a21 + e233 * e1a31;
+	r[7]  = e231 * e1a12 + e232 * e1a22 + e233 * e1a32;
+	r[8]  = e231 * e1a13 + e232 * e1a23 + e233 * e1a33;
 
 	return 0;
 }
