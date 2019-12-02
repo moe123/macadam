@@ -31,7 +31,7 @@ MC_TARGET_FUNC int mc_lusolvenxnf(int n, const float * restrict lu, const float 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
 		x[i] = b[pvi[i]];
-	 } else if (wantp) {
+	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < n; j++) {
 				if (p[n * i + j] != 0.0f) {
@@ -84,7 +84,7 @@ MC_TARGET_FUNC int mc_lusolvenxnff(int n, const float * restrict lu, const float
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
 		x[i] = b[pvi[i]];
-	 } else if (wantp) {
+	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < n; j++) {
 				if (p[n * i + j] != 0.0f) {
@@ -137,7 +137,7 @@ MC_TARGET_FUNC int mc_lusolvenxn(int n, const double * restrict lu, const double
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
 		x[i] = b[pvi[i]];
-	 } else if (wantp) {
+	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; i < n; i++) {
 				if (p[n * i + j] != 0.0) {
@@ -190,7 +190,7 @@ MC_TARGET_FUNC int mc_lusolvenxnl(int n, const long double * restrict lu, const 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
 		x[i] = b[pvi[i]];
-	 } else if (wantp) {
+	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; i < n; i++) {
 				if (p[n * i + j] != 0.0L) {

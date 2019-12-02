@@ -19,7 +19,7 @@ MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, int p, float * restrict c, const f
 	int i = 0, j, k;
 	float s;
 	for (; i < m; i++) {
-	 	for (j = 0; j < p; j++) {
+		for (j = 0; j < p; j++) {
 			s = 0.0f;
 			for (k = 0; k < n; k++) {
 				s = s + (a[(n * i) + k] * b[(p * k) + j]);
@@ -35,7 +35,7 @@ MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, int p, double * c, const float * 
 	int i = 0, j, k;
 	double s;
 	for (; i < m; i++) {
-	 	for (j = 0; j < p; j++) {
+		for (j = 0; j < p; j++) {
 			s = 0.0;
 			for (k = 0; k < n; k++) {
 				s = s + (mc_cast(double, a[(n * i) + k]) * mc_cast(double, b[(p * k) + j]));
@@ -51,7 +51,7 @@ MC_TARGET_FUNC void mc_dotpmxn(int m, int n, int p, double * restrict c, const d
 	int i = 0, j, k;
 	double s;
 	for (; i < m; i++) {
-	 	for (j = 0; j < p; j++) {
+		for (j = 0; j < p; j++) {
 			s = 0.0;
 			for (k = 0; k < n; k++) {
 				s = s + (a[(n * i) + k] * b[(p * k) + j]);
@@ -67,7 +67,7 @@ MC_TARGET_FUNC void mc_dotpmxnl(int m, int n, int p, long double * restrict c, c
 	int i = 0, j, k;
 	long double s;
 	for (; i < m; i++) {
-	 	for (j = 0; j < p; j++) {
+		for (j = 0; j < p; j++) {
 			s = 0.0L;
 			for (k = 0; k < n; k++) {
 				s = s + (a[(n * i) + k] * b[(p * k) + j]);

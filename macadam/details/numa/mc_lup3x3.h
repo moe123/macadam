@@ -15,10 +15,13 @@
 
 #pragma mark - mc_lup3x3 -
 
-MC_TARGET_FUNC int mc_lup3x3f(const float a[9], float l[9], float u[9], float p[9])
+MC_TARGET_FUNC int mc_lup3x3f(const float a[9], float l[9], float u[9], float p[9], int pvi[3])
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	float w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
 
@@ -110,11 +113,14 @@ MC_TARGET_FUNC int mc_lup3x3f(const float a[9], float l[9], float u[9], float p[
 			l[3] = -e121; l[4] =  1.0f; l[5] = 0.0f;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0f;
 
-//!# Computing P from pivot indeces.
-			p[0] = p0 == 0 ? 1.0f : 0.0f; p[1] = p0 == 1 ? 1.0f : 0.0f; p[2] = p0 == 2 ? 1.0f : 0.0f;
-			p[3] = p1 == 0 ? 1.0f : 0.0f; p[4] = p1 == 1 ? 1.0f : 0.0f; p[5] = p1 == 2 ? 1.0f : 0.0f;
-			p[6] = p2 == 0 ? 1.0f : 0.0f; p[7] = p2 == 1 ? 1.0f : 0.0f; p[8] = p2 == 2 ? 1.0f : 0.0f;
-
+//!# Computing P or assigning pivot indeces.
+			if (wantpvi) {
+				pvi[0] = p0; pvi[1] = p1; pvi[2] = p2; 
+			} else if (wantp) {
+				p[0] = p0 == 0 ? 1.0f : 0.0f; p[1] = p0 == 1 ? 1.0f : 0.0f; p[2] = p0 == 2 ? 1.0f : 0.0f;
+				p[3] = p1 == 0 ? 1.0f : 0.0f; p[4] = p1 == 1 ? 1.0f : 0.0f; p[5] = p1 == 2 ? 1.0f : 0.0f;
+				p[6] = p2 == 0 ? 1.0f : 0.0f; p[7] = p2 == 1 ? 1.0f : 0.0f; p[8] = p2 == 2 ? 1.0f : 0.0f;
+			}
 			return pv;
 		}
 	}
@@ -124,10 +130,13 @@ MC_TARGET_FUNC int mc_lup3x3f(const float a[9], float l[9], float u[9], float p[
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_lup3x3ff(const float a[9], double l[9], double u[9], double p[9])
+MC_TARGET_FUNC int mc_lup3x3ff(const float a[9], double l[9], double u[9], double p[9], int pvi[3])
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	double w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
 
@@ -219,11 +228,14 @@ MC_TARGET_FUNC int mc_lup3x3ff(const float a[9], double l[9], double u[9], doubl
 			l[3] = -e121; l[4] =  1.0;  l[5] = 0.0;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
 
-//!# Computing P from pivot indeces.
-			p[0] = p0 == 0 ? 1.0 : 0.0; p[1] = p0 == 1 ? 1.0 : 0.0; p[2] = p0 == 2 ? 1.0 : 0.0;
-			p[3] = p1 == 0 ? 1.0 : 0.0; p[4] = p1 == 1 ? 1.0 : 0.0; p[5] = p1 == 2 ? 1.0 : 0.0;
-			p[6] = p2 == 0 ? 1.0 : 0.0; p[7] = p2 == 1 ? 1.0 : 0.0; p[8] = p2 == 2 ? 1.0 : 0.0;
-
+//!# Computing P or assigning pivot indeces.
+			if (wantpvi) {
+				pvi[0] = p0; pvi[1] = p1; pvi[2] = p2; 
+			} else if (wantp) {
+				p[0] = p0 == 0 ? 1.0 : 0.0; p[1] = p0 == 1 ? 1.0 : 0.0; p[2] = p0 == 2 ? 1.0 : 0.0;
+				p[3] = p1 == 0 ? 1.0 : 0.0; p[4] = p1 == 1 ? 1.0 : 0.0; p[5] = p1 == 2 ? 1.0 : 0.0;
+				p[6] = p2 == 0 ? 1.0 : 0.0; p[7] = p2 == 1 ? 1.0 : 0.0; p[8] = p2 == 2 ? 1.0 : 0.0;
+			}
 			return pv;
 		}
 	}
@@ -233,10 +245,13 @@ MC_TARGET_FUNC int mc_lup3x3ff(const float a[9], double l[9], double u[9], doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_lup3x3(const double a[9], double l[9], double u[9], double p[9])
+MC_TARGET_FUNC int mc_lup3x3(const double a[9], double l[9], double u[9], double p[9], int pvi[3])
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	double w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
 
@@ -328,10 +343,14 @@ MC_TARGET_FUNC int mc_lup3x3(const double a[9], double l[9], double u[9], double
 			l[3] = -e121; l[4] =  1.0;  l[5] = 0.0;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0;
 
-//!# Computing P from pivot indeces.
-			p[0] = p0 == 0 ? 1.0 : 0.0; p[1] = p0 == 1 ? 1.0 : 0.0; p[2] = p0 == 2 ? 1.0 : 0.0;
-			p[3] = p1 == 0 ? 1.0 : 0.0; p[4] = p1 == 1 ? 1.0 : 0.0; p[5] = p1 == 2 ? 1.0 : 0.0;
-			p[6] = p2 == 0 ? 1.0 : 0.0; p[7] = p2 == 1 ? 1.0 : 0.0; p[8] = p2 == 2 ? 1.0 : 0.0;
+//!# Computing P or assigning pivot indeces.
+			if (wantpvi) {
+				pvi[0] = p0; pvi[1] = p1; pvi[2] = p2; 
+			} else if (wantp) {
+				p[0] = p0 == 0 ? 1.0 : 0.0; p[1] = p0 == 1 ? 1.0 : 0.0; p[2] = p0 == 2 ? 1.0 : 0.0;
+				p[3] = p1 == 0 ? 1.0 : 0.0; p[4] = p1 == 1 ? 1.0 : 0.0; p[5] = p1 == 2 ? 1.0 : 0.0;
+				p[6] = p2 == 0 ? 1.0 : 0.0; p[7] = p2 == 1 ? 1.0 : 0.0; p[8] = p2 == 2 ? 1.0 : 0.0;
+			}
 
 			return pv;
 		}
@@ -342,10 +361,13 @@ MC_TARGET_FUNC int mc_lup3x3(const double a[9], double l[9], double u[9], double
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_lup3x3l(const long double a[9], long double l[9], long double u[9], long double p[9])
+MC_TARGET_FUNC int mc_lup3x3l(const long double a[9], long double l[9], long double u[9], long double p[9], int pvi[3])
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
+	const int wantpvi = mc_nonnull(pvi);
+	const int wantp   = mc_nonnull(p);
+
 	long double w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
 
@@ -437,11 +459,14 @@ MC_TARGET_FUNC int mc_lup3x3l(const long double a[9], long double l[9], long dou
 			l[3] = -e121; l[4] =  1.0L; l[5] = 0.0L;
 			l[6] = -e131; l[7] = -e232; l[8] = 1.0L;
 
-//!# Computing P from pivot indeces.
-			p[0] = p0 == 0 ? 1.0L : 0.0L; p[1] = p0 == 1 ? 1.0L : 0.0L; p[2] = p0 == 2 ? 1.0L : 0.0L;
-			p[3] = p1 == 0 ? 1.0L : 0.0L; p[4] = p1 == 1 ? 1.0L : 0.0L; p[5] = p1 == 2 ? 1.0L : 0.0L;
-			p[6] = p2 == 0 ? 1.0L : 0.0L; p[7] = p2 == 1 ? 1.0L : 0.0L; p[7] = p2 == 2 ? 1.0L : 0.0L;
-
+//!# Computing P or assigning pivot indeces.
+			if (wantpvi) {
+				pvi[0] = p0; pvi[1] = p1; pvi[2] = p2; 
+			} else if (wantp) {
+				p[0] = p0 == 0 ? 1.0L : 0.0L; p[1] = p0 == 1 ? 1.0L : 0.0L; p[2] = p0 == 2 ? 1.0L : 0.0L;
+				p[3] = p1 == 0 ? 1.0L : 0.0L; p[4] = p1 == 1 ? 1.0L : 0.0L; p[5] = p1 == 2 ? 1.0L : 0.0L;
+				p[6] = p2 == 0 ? 1.0L : 0.0L; p[7] = p2 == 1 ? 1.0L : 0.0L; p[7] = p2 == 2 ? 1.0L : 0.0L;
+			}
 			return pv;
 		}
 	}
