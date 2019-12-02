@@ -46,6 +46,17 @@
 #	include <macadam/details/numa/lapack/blas/mc_blas_trsv.h>
 #	include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
 
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gbmv_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gemv_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ger_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_nrm2_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_rot_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swap_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsir.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsis.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv_c.h>
+#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv.h>
+
 #	include <macadam/details/numa/lapack/mc_lapack_iladiag.h>
 #	include <macadam/details/numa/lapack/mc_lapack_ilalc.h>
 #	include <macadam/details/numa/lapack/mc_lapack_ilalr.h>
@@ -70,17 +81,6 @@
 #	include <macadam/details/numa/lapack/mc_lapack_lasrt.h>
 #	include <macadam/details/numa/lapack/mc_lapack_lasv2.h>
 #	include <macadam/details/numa/lapack/mc_lapack_lsamen.h>
-
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gbmv_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_gemv_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ger_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_nrm2_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_rot_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_swap_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsir.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_trsis.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv_c.h>
-#	include <macadam/details/numa/lapack/nonblas/mc_nonblas_ugemv.h>
 
 #	include <macadam/details/numa/mc_addmulax2x2.h>
 #	include <macadam/details/numa/mc_addmulax3x3.h>
@@ -131,6 +131,12 @@
 #	include <macadam/details/numa/mc_mulatb3x3.h>
 #	include <macadam/details/numa/mc_mulax2x2.h>
 #	include <macadam/details/numa/mc_mulax3x3.h>
+#	include <macadam/details/numa/mc_ones1xn.h>
+#	include <macadam/details/numa/mc_ones2x2.h>
+#	include <macadam/details/numa/mc_ones3x3.h>
+#	include <macadam/details/numa/mc_onesmx1.h>
+#	include <macadam/details/numa/mc_onesmxn.h>
+#	include <macadam/details/numa/mc_onesnxn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>
 #	include <macadam/details/numa/mc_rms1xn.h>
@@ -161,8 +167,12 @@
 #	include <macadam/details/numa/mc_unit2x1.h>
 #	include <macadam/details/numa/mc_unit3x1.h>
 #	include <macadam/details/numa/mc_var1xn.h>
+#	include <macadam/details/numa/mc_zeros1xn.h>
 #	include <macadam/details/numa/mc_zeros2x2.h>
 #	include <macadam/details/numa/mc_zeros3x3.h>
+#	include <macadam/details/numa/mc_zerosmx1.h>
+#	include <macadam/details/numa/mc_zerosmxn.h>
+#	include <macadam/details/numa/mc_zerosnxn.h>
 #	include <macadam/details/numa/mc_zeye2x2.h>
 #	include <macadam/details/numa/mc_zeye3x3.h>
 #	include <macadam/details/numa/mc_znorm1x2.h>

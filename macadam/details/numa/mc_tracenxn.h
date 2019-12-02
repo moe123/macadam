@@ -18,7 +18,17 @@ MC_TARGET_FUNC float mc_tracenxnf(int n, const float * a)
 	int i      = 0;
 	float diag = 0.0f;
 	for (; i < n; i++) {
-		diag = diag + (a[(n * i) + i]);
+		diag = diag + a[(n * i) + i];
+	}
+	return diag;
+}
+
+MC_TARGET_FUNC double mc_tracenxnff(int n, const float * a)
+{
+	int i       = 0;
+	double diag = 0.0;
+	for (; i < n; i++) {
+		diag = diag + mc_cast(double, a[(n * i) + i]);
 	}
 	return diag;
 }
@@ -28,7 +38,7 @@ MC_TARGET_FUNC double mc_tracenxn(int n, const double * a)
 	int i       = 0;
 	double diag = 0.0;
 	for (; i < n; i++) {
-		diag = diag + (a[(n * i) + i]);
+		diag = diag + a[(n * i) + i];
 	}
 	return diag;
 }
@@ -38,7 +48,7 @@ MC_TARGET_FUNC long double mc_tracenxnl(int n, const long double * a)
 	int i            = 0;
 	long double diag = 0.0;
 	for (; i < n; i++) {
-		diag = diag + (a[(n * i) + i]);
+		diag = diag + a[(n * i) + i];
 	}
 	return diag;
 }

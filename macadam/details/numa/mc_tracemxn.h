@@ -16,17 +16,34 @@
 
 MC_TARGET_FUNC float mc_tracemxnf(int m, int n, const float * a)
 {
-	return mc_tracenxnf(mc_minmag(m, n), a);
+	if (m >= n) {
+		return mc_tracenxnf(n, a);
+	}
+	return 0.0f;
+}
+
+MC_TARGET_FUNC double mc_tracemxnff(int m, int n, const float * a)
+{
+	if (m >= n) {
+		return mc_tracenxnff(n, a);
+	}
+	return 0.0;
 }
 
 MC_TARGET_FUNC double mc_tracemxn(int m, int n, const double * a)
 {
-	return mc_tracenxn(mc_minmag(m, n), a);
+	if (m >= n) {
+		return mc_tracenxn(n, a);
+	}
+	return 0.0;
 }
 
 MC_TARGET_FUNC long double mc_tracemxnl(int m, int n, const long double * a)
 {
-	return mc_tracenxnl(mc_minmag(m, n), a);
+	if (m >= n) {
+		return mc_tracenxnl(n, a);
+	}
+	return 0.0L;
 }
 
 #endif /* !MC_TRACEMXN_H */
