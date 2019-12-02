@@ -22,7 +22,7 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int pv = 0, i, j, k, m, r;
+	int pv = 0, i, j, k, m, r, q;
 	float w, h;
 	if (a != lu) {
 		for (i = 0; i < (n * n); i++) { 
@@ -42,24 +42,26 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
 			for (k = 0; k < i; k++) {
-				 h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
+				h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
 			}
 			if (mc_fabsf(h) > w) {
-				 w = mc_fabsf(h);
-				 r = m;
+				w = mc_fabsf(h);
+				r = m;
 			}
 		}
 
 		if (i != r) {
 			++pv;
+			if (wantpvi) {
+				mcswap_var(q, pvi[i], pvi[r]);
+			}
 			for (k = 0; k < n; k++) {
-				if (wantpvi) {
-
-				} else if (wantp) {
-					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (!wantpvi && wantp) {
+					mcswap_var(w, p[(n * i) + k], p[(n * r) + k]);
 				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
+			fprintf(stderr, "\n");
 		}
 
 		for (j = i; j < n; j++) {
@@ -97,7 +99,7 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int pv = 0, i, j, k, m, r;
+	int pv = 0, i, j, k, m, r, q;
 	double w, h;
 
 	for (i = 0; i < (n * n); i++) { 
@@ -116,21 +118,22 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
 			for (k = 0; k < i; k++) {
-				 h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
+				h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
 			}
 			if (mc_fabs(h) > w) {
-				 w = mc_fabs(h);
-				 r = m;
+				w = mc_fabs(h);
+				r = m;
 			}
 		}
 
 		if (i != r) {
 			++pv;
+			if (wantpvi) {
+				mcswap_var(q, pvi[i], pvi[r]);
+			}
 			for (k = 0; k < n; k++) {
-				if (wantpvi) {
-					
-				} else if (wantp) {
-					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (!wantpvi && wantp) {
+					mcswap_var(w, p[(n * i) + k], p[(n * r) + k]);
 				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
@@ -138,7 +141,7 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 
 		for (j = i; j < n; j++) {
 			for (k = 0; k < i; k++) {
-				 lu[(n * i) + j] = lu[(n * i) + j] - (lu[(n * i) + k] * lu[(n * k) + j]);
+				lu[(n * i) + j] = lu[(n * i) + j] - (lu[(n * i) + k] * lu[(n * k) + j]);
 			}
 		}
 
@@ -171,7 +174,7 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int pv = 0, i, j, k, m, r;
+	int pv = 0, i, j, k, m, r, q;
 	double w, h;
 
 	if (a != lu) {
@@ -192,21 +195,24 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
 			for (k = 0; k < i; k++) {
-				 h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
+				h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
 			}
 			if (mc_fabs(h) > w) {
-				 w = mc_fabs(h);
-				 r = m;
+				w = mc_fabs(h);
+				r = m;
 			}
 		}
 
 		if (i != r) {
 			++pv;
+			if (wantpvi) {
+				mcswap_var(q, pvi[i], pvi[r]);
+			}
 			for (k = 0; k < n; k++) {
 				if (wantpvi) {
 					
 				} else if (wantp) {
-					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+					mcswap_var(w, p[(n * i) + k], p[(n * r) + k]);
 				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
@@ -214,7 +220,7 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 
 		for (j = i; j < n; j++) {
 			for (k = 0; k < i; k++) {
-				 lu[(n * i) + j] = lu[(n * i) + j] - (lu[(n * i) + k] * lu[(n * k) + j]);
+				lu[(n * i) + j] = lu[(n * i) + j] - (lu[(n * i) + k] * lu[(n * k) + j]);
 			}
 		}
 
@@ -247,7 +253,7 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int pv = 0, i, j, k, m, r;
+	int pv = 0, i, j, k, m, r, q;
 	long double w, h;
 
 	if (a != lu) {
@@ -268,21 +274,22 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
 			for (k = 0; k < i; k++) {
-				 h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
+				h = h - (lu[(n * m) + k] * lu[(n * k) + m]);
 			}
 			if (mc_fabsl(h) > w) {
-				 w = mc_fabsl(h);
-				 r = m;
+				w = mc_fabsl(h);
+				r = m;
 			}
 		}
 
 		if (i != r) {
 			++pv;
+			if (wantpvi) {
+				mcswap_var(q, pvi[i], pvi[r]);
+			}
 			for (k = 0; k < n; k++) {
-				if (wantpvi) {
-					
-				} else if (wantp) {
-					mcswap_var(w,  p[(n * i) + k],  p[(n * r) + k]);
+				if (!wantpvi && wantp) {
+					mcswap_var(w, p[(n * i) + k], p[(n * r) + k]);
 				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
@@ -290,7 +297,7 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 
 		for (j = i; j < n; j++) {
 			for (k = 0; k < i; k++) {
-				 lu[(n * i) + j] = lu[(n * i) + j] - (lu[(n * i) + k] * lu[(n * k) + j]);
+				lu[(n * i) + j] = lu[(n * i) + j] - (lu[(n * i) + k] * lu[(n * k) + j]);
 			}
 		}
 
