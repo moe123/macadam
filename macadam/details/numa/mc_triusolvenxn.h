@@ -9,7 +9,7 @@
 #include <macadam/details/numa/mc_zeros1xn.h>
 
 #ifndef MC_TRIUSOLVENXN_H
-#define MC_NORM3X1_H
+#define MC_TRIUSOLVENXN_H
 
 #pragma mark - MC_TRIUSOLVENXN_H -
 
