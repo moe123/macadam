@@ -25,19 +25,19 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 	int pv = 0, i, j, k, m, r, q;
 	float w, h;
 	if (a != lu) {
-		for (i = 0; i < (n * n); i++) { 
+		for (i = 0; i < (n * n); i++) {
 			lu[i] = a[i];
 		}
 	}
 	if (wantpvi) {
-		for (i = 0; i < n; i++) { 
+		for (i = 0; i < n; i++) {
 			pvi[i] = i;
 		}
 	} else if (wantp) {
 		mc_eyenxnf(n, p);
 	}
 
-	for (i = 0; i < n; i++) { 
+	for (i = 0; i < n; i++) {
 		w = 0.0f;
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
@@ -78,7 +78,7 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 			if (w == 0.0f) {
 				mc_eyenxnf(n, lu);
 				if (wantpvi) {
-					for (i = 0; i < n; i++) { 
+					for (i = 0; i < n; i++) {
 						pvi[i] = i;
 					}
 				} else if (wantp) {
@@ -102,18 +102,18 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 	int pv = 0, i, j, k, m, r, q;
 	double w, h;
 
-	for (i = 0; i < (n * n); i++) { 
+	for (i = 0; i < (n * n); i++) {
 		lu[i] = mc_cast(double, a[i]);
 	}
 	if (wantpvi) {
-		for (i = 0; i < n; i++) { 
+		for (i = 0; i < n; i++) {
 			pvi[i] = i;
 		}
 	} else if (wantp) {
 		mc_eyenxn(n, p);
 	}
 
-	for (i = 0; i < n; i++) { 
+	for (i = 0; i < n; i++) {
 		w = 0.0;
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
@@ -153,7 +153,7 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 			if (w == 0.0) {
 				mc_eyenxn(n, lu);
 				if (wantpvi) {
-					for (i = 0; i < n; i++) { 
+					for (i = 0; i < n; i++) {
 						pvi[i] = i;
 					}
 				} else if (wantp) {
@@ -178,19 +178,19 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 	double w, h;
 
 	if (a != lu) {
-		for (i = 0; i < (n * n); i++) { 
+		for (i = 0; i < (n * n); i++) {
 			lu[i] = a[i];
 		}
 	}
 	if (wantpvi) {
-		for (i = 0; i < n; i++) { 
+		for (i = 0; i < n; i++) {
 			pvi[i] = i;
 		}
 	} else if (wantp) {
 		mc_eyenxn(n, p);
 	}
 
-	for (i = 0; i < n; i++) { 
+	for (i = 0; i < n; i++) {
 		w = 0.0;
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
@@ -232,7 +232,7 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 			if (w == 0.0) {
 				mc_eyenxn(n, lu);
 				if (wantpvi) {
-					for (i = 0; i < n; i++) { 
+					for (i = 0; i < n; i++) {
 						pvi[i] = i;
 					}
 				} else if (wantp) {
@@ -257,19 +257,19 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 	long double w, h;
 
 	if (a != lu) {
-		for (i = 0; i < (n * n); i++) { 
+		for (i = 0; i < (n * n); i++) {
 			lu[i] = a[i];
 		}
 	}
 	if (wantpvi) {
-		for (i = 0; i < n; i++) { 
+		for (i = 0; i < n; i++) {
 			pvi[i] = i;
 		}
 	} else if (wantp) {
 		mc_eyenxnl(n, p);
 	}
 
-	for (i = 0; i < n; i++) { 
+	for (i = 0; i < n; i++) {
 		w = 0.0L;
 		for (m = i; m < n; m++) {
 			h = lu[(n * m) + i];
@@ -309,7 +309,7 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 			if (w == 0.0L) {
 				mc_eyenxnl(n, lu);
 				if (wantpvi) {
-					for (i = 0; i < n; i++) { 
+					for (i = 0; i < n; i++) {
 						pvi[i] = i;
 					}
 				} else if (wantp) {

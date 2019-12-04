@@ -72,7 +72,7 @@ MC_TARGET_PROC double mc_besseli1_approx0(double x)
 	double r  = 0.5 * x;
 	int    t  = 0.0;
 	double i1 = 0.0;
-	do { 
+	do {
 		i1 = i1  + r; ++t; r = r * (mc_raise2(x) / (4.0 * t * (t + 1.0)));
 	} while (r > MCLIMITS_EPSILON * i1);
 	return i1;

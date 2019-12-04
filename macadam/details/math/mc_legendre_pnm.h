@@ -41,7 +41,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 	}
 	if (m < 0) {
 		k = n + m;
-		if (!(k < 0)) { 
+		if (!(k < 0)) {
 			p1 = mc_legendre_pnmf(n, -m, x);
 			n  = n - m;
 			p0 = (n < max_factorial
@@ -54,7 +54,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 			);
 		}
 		return p1;
-	} else if (m > n) { 
+	} else if (m > n) {
 		return p1;
 	} else if (m == 0) {
 		return mc_legendre_pnf(mc_cast(unsigned int, n), x);
@@ -104,7 +104,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 	}
 	if (m < 0) {
 		k = n + m;
-		if (!(k < 0)) { 
+		if (!(k < 0)) {
 			p1 = mc_legendre_pnm(n, -m, x);
 			n  = n - m;
 			p0 = (n < max_factorial
@@ -117,7 +117,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 			);
 		}
 		return p1;
-	} else if (m > n) { 
+	} else if (m > n) {
 		return p1;
 	} else if (m == 0) {
 		return mc_legendre_pn(mc_cast(unsigned int, n), x);
@@ -171,7 +171,7 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 	}
 	if (m < 0) {
 		k = n + m;
-		if (!(k < 0)) { 
+		if (!(k < 0)) {
 			p1 = mc_legendre_pnml(n, -m, x);
 			n  = n - m;
 			p0 = (n < max_factorial
@@ -184,7 +184,7 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 			);
 		}
 		return p1;
-	} else if (m > n) { 
+	} else if (m > n) {
 		return p1;
 	} else if (m == 0) {
 		return mc_legendre_pnl(mc_cast(unsigned int, n), x);

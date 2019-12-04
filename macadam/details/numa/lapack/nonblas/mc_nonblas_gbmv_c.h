@@ -130,14 +130,14 @@
  *        , 0, 0, 0, 0, 0
  *        , 0, 0, 0, 0, 0
  *     };
- *     const real-floating x[] = { 
+ *     const real-floating x[] = {
  *          1
  *        , 2
  *        , 3
  *        , 4
  *        , 5
  *     };
- *           real-floating y[] = { 
+ *           real-floating y[] = {
  *          1
  *        , 0
  *        , 2
