@@ -17,7 +17,7 @@
 MC_TARGET_FUNC int mc_lusolve3x3f(const float l[9], const float u[9], const float d[9], const float p[9], const int pvi[3], const float b[3], float x[3]) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n=3.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
@@ -88,7 +88,7 @@ MC_TARGET_FUNC int mc_lusolve3x3f(const float l[9], const float u[9], const floa
 MC_TARGET_FUNC int mc_lusolve3x3ff(const float l[9], const float u[9], const float d[9], const float p[9], const int pvi[3], const float b[3], double x[3]) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n=3.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
@@ -159,7 +159,7 @@ MC_TARGET_FUNC int mc_lusolve3x3ff(const float l[9], const float u[9], const flo
 MC_TARGET_FUNC int mc_lusolve3x3(const double l[9], const double u[9], const double d[9], const double p[9], const int pvi[3], const double b[3], double x[3]) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n=3.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
@@ -230,7 +230,7 @@ MC_TARGET_FUNC int mc_lusolve3x3(const double l[9], const double u[9], const dou
 MC_TARGET_FUNC int mc_lusolve3x3l(const long double l[9], const long double u[9], const long double d[9], const long double p[9], const int pvi[3], const long double b[3], long double x[3]) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n=3.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);

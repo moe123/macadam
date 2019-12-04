@@ -17,7 +17,7 @@
 MC_TARGET_FUNC int mc_lusolvenxnf(int n, const float * restrict lu, const float * restrict d, const float * restrict p, const int * pvi, const float * restrict b, float * restrict x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
@@ -70,7 +70,7 @@ MC_TARGET_FUNC int mc_lusolvenxnf(int n, const float * restrict lu, const float 
 MC_TARGET_FUNC int mc_lusolvenxnff(int n, const float * restrict lu, const float * restrict d, const float * restrict p, const int * pvi, const float * restrict b, double * restrict x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
@@ -123,7 +123,7 @@ MC_TARGET_FUNC int mc_lusolvenxnff(int n, const float * restrict lu, const float
 MC_TARGET_FUNC int mc_lusolvenxn(int n, const double * restrict lu, const double * restrict d, const double * restrict p, const int * pvi, const double * restrict b, double * restrict x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
@@ -176,7 +176,7 @@ MC_TARGET_FUNC int mc_lusolvenxn(int n, const double * restrict lu, const double
 MC_TARGET_FUNC int mc_lusolvenxnl(int n, const long double * restrict lu, const long double * restrict d, const long double * restrict p, const int * pvi, const long double * restrict b, long double * restrict x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
-//!# lu[m x n], d[m x n], p[m x n], pvi[1 x m] x[1 x m] and b[1 x m] where m=n.
+//!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n.
 //!# d and p can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 	const int wantpvi = mc_nonnull(pvi);
