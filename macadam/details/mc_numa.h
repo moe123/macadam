@@ -94,6 +94,7 @@
 #	include <macadam/details/numa/mc_det4x4.h>
 #	include <macadam/details/numa/mc_dotp1xn.h>
 #	include <macadam/details/numa/mc_dotpmxn.h>
+#	include <macadam/details/numa/mc_dotpnxn.h>
 #	include <macadam/details/numa/mc_eig2x2.h>
 #	include <macadam/details/numa/mc_eigsy2x2.h>
 #	include <macadam/details/numa/mc_eigsy3x3.h>
