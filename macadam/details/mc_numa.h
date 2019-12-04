@@ -82,6 +82,8 @@
 #	include <macadam/details/numa/lapack/mc_lapack_lasv2.h>
 #	include <macadam/details/numa/lapack/mc_lapack_lsamen.h>
 
+#	include <macadam/details/numa/mc_addmulatx2x2.h>
+#	include <macadam/details/numa/mc_addmulatx3x3.h>
 #	include <macadam/details/numa/mc_addmulax2x2.h>
 #	include <macadam/details/numa/mc_addmulax3x3.h>
 #	include <macadam/details/numa/mc_amean1xn.h>
@@ -130,6 +132,8 @@
 #	include <macadam/details/numa/mc_mulabnxn.h>
 #	include <macadam/details/numa/mc_mulabt3x3.h>
 #	include <macadam/details/numa/mc_mulatb3x3.h>
+#	include <macadam/details/numa/mc_mulatx2x2.h>
+#	include <macadam/details/numa/mc_mulatx3x3.h>
 #	include <macadam/details/numa/mc_mulax2x2.h>
 #	include <macadam/details/numa/mc_mulax3x3.h>
 #	include <macadam/details/numa/mc_ones1xn.h>
