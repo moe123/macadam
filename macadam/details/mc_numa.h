@@ -142,6 +142,7 @@
 #	include <macadam/details/numa/mc_onesmx1.h>
 #	include <macadam/details/numa/mc_onesmxn.h>
 #	include <macadam/details/numa/mc_onesnxn.h>
+#	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>
 #	include <macadam/details/numa/mc_qrsolve3x3.h>

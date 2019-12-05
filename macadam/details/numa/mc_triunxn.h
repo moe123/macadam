@@ -6,9 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/numa/mc_eyenxn.h>
-#include <macadam/mcswap.h>
+#include <macadam/details/mc_target.h>
 
 #ifndef MC_TRIUNXN_H
 #define MC_TRIUNXN_H
