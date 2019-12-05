@@ -144,6 +144,7 @@
 #	include <macadam/details/numa/mc_onesnxn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>
+#	include <macadam/details/numa/mc_qrsolve3x3.h>
 #	include <macadam/details/numa/mc_rms1xn.h>
 #	include <macadam/details/numa/mc_ssqr1x2.h>
 #	include <macadam/details/numa/mc_ssqr1x3.h>
@@ -160,6 +161,7 @@
 #	include <macadam/details/numa/mc_trilnxn.h>
 #	include <macadam/details/numa/mc_trilsolvenxn.h>
 #	include <macadam/details/numa/mc_triunxn.h>
+#	include <macadam/details/numa/mc_triusolve3x3.h>
 #	include <macadam/details/numa/mc_triusolvenxn.h>
 #	include <macadam/details/numa/mc_trsi2x2.h>
 #	include <macadam/details/numa/mc_trsi3x3.h>
