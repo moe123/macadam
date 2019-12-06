@@ -122,6 +122,7 @@
 #	include <macadam/details/numa/mc_magic5x5.h>
 #	include <macadam/details/numa/mc_magic6x6.h>
 #	include <macadam/details/numa/mc_mean1xn.h>
+#	include <macadam/details/numa/mc_minormxn.h>
 #	include <macadam/details/numa/mc_moment1xn.h>
 #	include <macadam/details/numa/mc_mssqr1xn.h>
 #	include <macadam/details/numa/mc_mstdd1xn.h>

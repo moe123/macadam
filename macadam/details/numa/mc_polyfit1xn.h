@@ -13,7 +13,7 @@
 
 #pragma mark - mc_polyfit1xn -
 
-MC_TARGET_PROC int mc_polyfit1xnf(int n, int d, const float * x, const float * y, float * restrict w, float * restrict c)
+MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y, float * restrict w, float * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
@@ -56,7 +56,7 @@ MC_TARGET_PROC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
-		sumpx = 1;
+		sumpx = 1.0f;
 		for (j = 0; j < e; j++) {
 			b[j]  = b[j] + (yi * sumpx);
 			sumpx = sumpx * xi;
@@ -114,7 +114,7 @@ MC_TARGET_PROC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 	return 0;
 }
 
-MC_TARGET_PROC int mc_polyfit1xnff(int n, int d, const float * x, const float * y, double * restrict w, double * restrict c)
+MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * y, double * restrict w, double * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!# n - Number of query points and fitted values i.e x and y respectively.
@@ -157,7 +157,7 @@ MC_TARGET_PROC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 	for (; i < n; i++) {
 		xi    = mc_cast(double, x[i]);
 		yi    = mc_cast(double, y[i]);
-		sumpx = 1;
+		sumpx = 1.0;
 		for (j = 0; j < e; j++) {
 			b[j]  = b[j] + (yi * sumpx);
 			sumpx = sumpx * xi;
@@ -215,7 +215,7 @@ MC_TARGET_PROC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 	return 0;
 }
 
-MC_TARGET_PROC int mc_polyfit1xn(int n, int d, const double * x, const double * y, double * restrict w, double * restrict c)
+MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * y, double * restrict w, double * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!# n - Number of query points and fitted values i.e x and y respectively.
@@ -258,7 +258,7 @@ MC_TARGET_PROC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
-		sumpx = 1;
+		sumpx = 1.0;
 		for (j = 0; j < e; j++) {
 			b[j]  = b[j] + (yi * sumpx);
 			sumpx = sumpx * xi;
@@ -316,7 +316,7 @@ MC_TARGET_PROC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 	return 0;
 }
 
-MC_TARGET_PROC int mc_polyfit1xnl(int n, int d, const long double * x, const long double * y, long double * restrict w, long double * restrict c)
+MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const long double * y, long double * restrict w, long double * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!# n - Number of query points and fitted values i.e x and y respectively.
@@ -359,7 +359,7 @@ MC_TARGET_PROC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
-		sumpx = 1;
+		sumpx = 1.0L;
 		for (j = 0; j < e; j++) {
 			b[j]  = b[j] + (yi * sumpx);
 			sumpx = sumpx * xi;
