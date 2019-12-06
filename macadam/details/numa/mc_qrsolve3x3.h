@@ -64,7 +64,11 @@ MC_TARGET_FUNC int mc_qrsolve3x3ff(const float q[9], const float r[9], const flo
 	x[0] = x[0] - x[2] * mc_cast(double, r[2]);
 	x[1] = x[1] - x[2] * mc_cast(double, r[5]);
 
-	w    = mc_cast(double, r[4]);
+	w = mc_cast(double, r[4]);
+	if (w == 0.0) {
+		mc_zeros1x3(x);
+		return -1;
+	}
 	x[1] = x[1] / w;
 	x[0] = x[0] - x[1] * mc_cast(double, r[1]);
 

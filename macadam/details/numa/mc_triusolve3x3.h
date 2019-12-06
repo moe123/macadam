@@ -32,7 +32,11 @@ MC_TARGET_FUNC int mc_triusolve3x3f(const float u[9], const float b[3], float x[
 	x[0] = x[0] - x[2] * u[2];
 	x[1] = x[1] - x[2] * u[5];
 
-	w    = u[4];
+	w = u[4];
+	if (w == 0.0f) {
+		mc_zeros1x3f(x);
+		return -1;
+	}
 	x[1] = x[1] / w;
 	x[0] = x[0] - x[1] * u[1];
 
@@ -62,7 +66,11 @@ MC_TARGET_FUNC int mc_triusolve3x3ff(const float u[9], const float b[3], double 
 	x[0] = x[0] - x[2] * mc_cast(double, u[2]);
 	x[1] = x[1] - x[2] * mc_cast(double, u[5]);
 
-	w    = mc_cast(double, u[4]);
+	w = mc_cast(double, u[4]);
+	if (w == 0.0) {
+		mc_zeros1x3(x);
+		return -1;
+	}
 	x[1] = x[1] / w;
 	x[0] = x[0] - x[1] * mc_cast(double, u[1]);
 
@@ -94,7 +102,11 @@ MC_TARGET_FUNC int mc_triusolve3x3(const double u[9], const double b[3], double 
 	x[0] = x[0] - x[2] * u[2];
 	x[1] = x[1] - x[2] * u[5];
 
-	w    = u[4];
+	w = u[4];
+	if (w == 0.0) {
+		mc_zeros1x3(x);
+		return -1;
+	}
 	x[1] = x[1] / w;
 	x[0] = x[0] - x[1] * u[1];
 
@@ -126,7 +138,11 @@ MC_TARGET_FUNC int mc_triusolve3x3l(const long double u[9], const long double b[
 	x[0] = x[0] - x[2] * u[2];
 	x[1] = x[1] - x[2] * u[5];
 
-	w    = u[4];
+	w = u[4];
+	if (w == 0.0L) {
+		mc_zeros1x3l(x);
+		return -1;
+	}
 	x[1] = x[1] / w;
 	x[0] = x[0] - x[1] * u[1];
 

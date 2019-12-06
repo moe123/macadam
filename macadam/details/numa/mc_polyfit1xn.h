@@ -19,12 +19,12 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 //!#     n - Number of query points and fitted values i.e x and y respectively.
 //!#     x - The query points.
 //!#     y - Fitted values at query points.
-//!#     d - Order or degree of polynomial fit specified as a positive integer scalar.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#         Specifies the polynomial power of the right-most coefficient in vector c.
-//!#     w - Working buffer being of size w[6 * d].
+//!#     w - Working buffer being of size w[d * 6].
 //!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
-//!#         contains the polynomial coefficients in ascending powers, with the highest
-//!#         power being the degree. Octave yield results in descending power order.
+//!#         contains the polynomial coefficients in ascending powers, the highest power
+//!#         being the last index. Octave yield results in descending powers order.
 //!# \note: based on Nate Domin redux approach polyfit function. Todo: full QR based.
 
 	const int e = d + 1;
@@ -52,7 +52,7 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors.
+//!# Building column vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
@@ -63,7 +63,7 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 		}
 	}
 
-//!# Sum of power of x.
+//!# Sum of power of x, under/overflow unsafe.
 	for (i = 0; i < n; i++) {
 		xi    = x[i];
 		sumpx = xi;
@@ -117,15 +117,15 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * y, double * restrict w, double * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
-//!# n - Number of query points and fitted values i.e x and y respectively.
-//!# x - The query points.
-//!# y - Fitted values at query points.
-//!# d - Order or degree of polynomial fit specified as a positive integer scalar.
-//!#     Specifies the polynomial power of the right-most coefficient in vector c.
-//!# w - Working buffer being of size w[6 * d].
-//!# c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
-//!#     contains the polynomial coefficients in ascending powers, with the highest
-//!#     power being the degree. Octave yield results in descending power order.
+//!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     x - The query points.
+//!#     y - Fitted values at query points.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
+//!#         Specifies the polynomial power of the right-most coefficient in vector c.
+//!#     w - Working buffer being of size w[d * 6].
+//!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
+//!#         contains the polynomial coefficients in ascending powers, the highest power
+//!#         being the last index. Octave yield results in descending powers order.
 //!# \note: based on Nate Domin redux approach polyfit function. Todo: full QR based.
 
 	const int e = d + 1;
@@ -153,7 +153,7 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors.
+//!# Building column vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = mc_cast(double, x[i]);
 		yi    = mc_cast(double, y[i]);
@@ -164,7 +164,7 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 		}
 	}
 
-//!# Sum of power of x.
+//!# Sum of power of x, under/overflow unsafe.
 	for (i = 0; i < n; i++) {
 		xi    = mc_cast(double, x[i]);
 		sumpx = xi;
@@ -218,15 +218,15 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * y, double * restrict w, double * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
-//!# n - Number of query points and fitted values i.e x and y respectively.
-//!# x - The query points.
-//!# y - Fitted values at query points.
-//!# d - Order or degree of polynomial fit specified as a positive integer scalar.
-//!#     Specifies the polynomial power of the right-most coefficient in vector c.
-//!# w - Working buffer being of size w[6 * d].
-//!# c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
-//!#     contains the polynomial coefficients in ascending powers, with the highest
-//!#     power being the degree. Octave yield results in descending power order.
+//!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     x - The query points.
+//!#     y - Fitted values at query points.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
+//!#         Specifies the polynomial power of the right-most coefficient in vector c.
+//!#     w - Working buffer being of size w[d * 6].
+//!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
+//!#         contains the polynomial coefficients in ascending powers, the highest power
+//!#         being the last index. Octave yield results in descending powers order.
 //!# \note: based on Nate Domin redux approach polyfit function. Todo: full QR based.
 
 	const int e = d + 1;
@@ -254,7 +254,7 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors.
+//!# Building column vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
@@ -265,7 +265,7 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 		}
 	}
 
-//!# Sum of power of x.
+//!# Sum of power of x, under/overflow unsafe.
 	for (i = 0; i < n; i++) {
 		xi    = x[i];
 		sumpx = xi;
@@ -319,15 +319,15 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const long double * y, long double * restrict w, long double * restrict c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
-//!# n - Number of query points and fitted values i.e x and y respectively.
-//!# x - The query points.
-//!# y - Fitted values at query points.
-//!# d - Order or degree of polynomial fit specified as a positive integer scalar.
-//!#     Specifies the polynomial power of the right-most coefficient in vector c.
-//!# w - Working buffer being of size w[6 * d].
-//!# c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
-//!#     contains the polynomial coefficients in ascending powers, with the highest
-//!#     power being the degree. Octave yield results in descending power order.
+//!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     x - The query points.
+//!#     y - Fitted values at query points.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
+//!#         Specifies the polynomial power of the right-most coefficient in vector c.
+//!#     w - Working buffer being of size w[d * 6].
+//!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
+//!#         contains the polynomial coefficients in ascending powers, the highest power
+//!#         being the last index. Octave yield results in descending powers order.
 //!# \note: based on Nate Domin redux approach polyfit function. Todo: full QR based.
 
 	const int e = d + 1;
@@ -355,7 +355,7 @@ MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors.
+//!# Building column vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
@@ -366,7 +366,7 @@ MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 		}
 	}
 
-//!# Sum of power of x.
+//!# Sum of power of x, under/overflow unsafe.
 	for (i = 0; i < n; i++) {
 		xi    = x[i];
 		sumpx = xi;

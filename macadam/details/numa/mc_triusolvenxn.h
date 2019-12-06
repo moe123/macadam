@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_triusolvenxnf(int n, const float * u, const float * b, flo
 		}
 	}
 	for (j = (n - 1); j > 0; j--) {
-		w    = u[(n * j) + j];
+		w = u[(n * j) + j];
 		if (w == 0.0f) {
 			mc_zeros1xnf(n, x);
 			return -1;
@@ -54,7 +54,7 @@ MC_TARGET_FUNC int mc_triusolvenxnff(int n, const float * u, const float * b, do
 		x[i] = mc_cast(double, b[i]);
 	}
 	for (j = (n - 1); j > 0; j--) {
-		w    = mc_cast(double, u[(n * j) + j]);
+		w = mc_cast(double, u[(n * j) + j]);
 		if (w == 0.0) {
 			mc_zeros1xn(n, x);
 			return -1;
@@ -85,7 +85,7 @@ MC_TARGET_FUNC int mc_triusolvenxn(int n, const double * u, const double * b, do
 		}
 	}
 	for (j = (n - 1); j > 0; j--) {
-		w    = u[(n * j) + j];
+		w = u[(n * j) + j];
 		if (w == 0.0) {
 			mc_zeros1xn(n, x);
 			return -1;
@@ -116,7 +116,7 @@ MC_TARGET_FUNC int mc_triusolvenxnl(int n, const long double * u, const long dou
 		}
 	}
 	for (j = (n - 1); j > 0; j--) {
-		w    = u[(n * j) + j];
+		w = u[(n * j) + j];
 		if (w == 0.0L) {
 			mc_zeros1xnl(n, x);
 			return -1;
