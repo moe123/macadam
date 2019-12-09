@@ -158,6 +158,7 @@
 #	include <macadam/details/numa/mc_sum1xn.h>
 #	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_sumtwo1xn.h>
+#	include <macadam/details/numa/mc_svd3x3.h>
 #	include <macadam/details/numa/mc_trace2x2.h>
 #	include <macadam/details/numa/mc_trace3x3.h>
 #	include <macadam/details/numa/mc_tracemxn.h>

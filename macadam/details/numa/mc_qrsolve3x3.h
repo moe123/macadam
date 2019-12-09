@@ -18,7 +18,7 @@ MC_TARGET_FUNC int mc_qrsolve3x3f(const float q[9], const float r[9], const floa
 {
 //!# Solving linear system Ax=b for QR family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
-//!# d and p can be null; for now d should always be, obviously null.
+//!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
 	mc_cast(void, pvi);
@@ -33,60 +33,21 @@ MC_TARGET_FUNC int mc_qrsolve3x3ff(const float q[9], const float r[9], const flo
 {
 //!# Solving linear system Ax=b for QR family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
-//!# d and p can be null; for now d should always be, obviously null.
+//!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
-	double w;
-
 	mc_cast(void, pvi);
 	mc_cast(void, p);
 	mc_cast(void, d);
 
-//!# Computing d=Q'*b, storing d into x vector.
-	x[0] = mc_cast(double, q[0]) * mc_cast(double, b[0]);
-	x[0] = x[0] + (mc_cast(double, q[3]) * mc_cast(double, b[1]));
-	x[0] = x[0] + (mc_cast(double, q[6]) * mc_cast(double, b[2]));
-
-	x[1] = mc_cast(double, q[1]) * mc_cast(double, b[0]);
-	x[1] = x[1] + (mc_cast(double, q[4]) * mc_cast(double, b[1]));
-	x[1] = x[1] + (mc_cast(double, q[7]) * mc_cast(double, b[2]));
-
-	x[2] = mc_cast(double, q[2]) * mc_cast(double, b[0]);
-	x[2] = x[2] + (mc_cast(double, q[5]) * mc_cast(double, b[1]));
-	x[2] = x[2] + (mc_cast(double, q[8]) * mc_cast(double, b[2]));
-
-//!# Solving Rx=d.
-	w = mc_cast(double, r[8]);
-	if (w == 0.0) {
-		mc_zeros1x3(x);
-		return -1;
-	}
-	x[2] = x[2] / w;
-	x[0] = x[0] - x[2] * mc_cast(double, r[2]);
-	x[1] = x[1] - x[2] * mc_cast(double, r[5]);
-
-	w = mc_cast(double, r[4]);
-	if (w == 0.0) {
-		mc_zeros1x3(x);
-		return -1;
-	}
-	x[1] = x[1] / w;
-	x[0] = x[0] - x[1] * mc_cast(double, r[1]);
-
-	w = mc_cast(double, r[0]);
-	if (w == 0.0) {
-		mc_zeros1x3(x);
-		return -1;
-	}
-	x[0] = x[0] / w;
-
-	return 0;
+	mc_mulatx3x3ff(x, q, b);
+	return mc_triusolve3x3fd(r, x, x);
 }
 
 MC_TARGET_FUNC int mc_qrsolve3x3(const double q[9], const double r[9], const double d[9], const double p[9], const int pvi[3], const double b[3], double x[3]) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
-//!# d and p can be null; for now d should always be, obviously null.
+//!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
 	mc_cast(void, pvi);
@@ -101,7 +62,7 @@ MC_TARGET_FUNC int mc_qrsolve3x3l(const long double q[9], const long double r[9]
 {
 //!# Solving linear system Ax=b for LU family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1] x[m x 1] and b[m x 1] where m=n=3.
-//!# d and p can be null; for now d should always be, obviously null.
+//!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
 	mc_cast(void, pvi);

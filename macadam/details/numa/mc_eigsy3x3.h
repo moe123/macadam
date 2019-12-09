@@ -810,7 +810,7 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 		aa23 = mc_fabsf(a23);
 	}
 	if (i < j) {
-//!# Reordering eigenvalues and eigenvectors (ascending i.e smaller first).
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 		if (mc_fabsf(a11) > mc_fabsf(a22)) {
 			mcswap_var(t, a11, a22);
 			if (wantv) {
@@ -983,7 +983,7 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 		aa23 = mc_fabs(a23);
 	}
 	if (i < j) {
-//!# Reordering eigenvalues and eigenvectors (ascending i.e smaller first).
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 		if (mc_fabs(a11) > mc_fabs(a22)) {
 			mcswap_var(t, a11, a22);
 			if (wantv) {
@@ -1156,7 +1156,7 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 		aa23 = mc_fabsl(a23);
 	}
 	if (i < j) {
-//!# Reordering eigenvalues and eigenvectors (ascending i.e smaller first).
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 		if (mc_fabsl(a11) > mc_fabsl(a22)) {
 			mcswap_var(t, a11, a22);
 			if (wantv) {
