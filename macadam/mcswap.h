@@ -14,11 +14,9 @@
 #pragma mark - mcswap_var -
 
 #	define mcswap_var(var, a, b) \
-	mc_scope_begin \
 		(var) = (a);   \
 		(a)   = (b);   \
-		(b)   = (var); \
-	mc_scope_end
+		(b)   = (var)
 
 #pragma mark - mcswap_type -
 
