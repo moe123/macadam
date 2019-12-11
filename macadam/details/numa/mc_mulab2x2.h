@@ -23,6 +23,36 @@ MC_TARGET_FUNC void mc_mulab2x2f(float * c, const float a[4], const float b[4])
 	c[3] = (a[2] * b[1]) + (a[3] * b[3]);
 }
 
+MC_TARGET_FUNC void mc_mulab2x2ff(double * c, const float a[4], const float b[4])
+{
+//!# c=a*b
+	c[0] = (mc_cast(double, a[0]) * mc_cast(double, b[0])) + (mc_cast(double, a[1]) * mc_cast(double, b[2]));
+	c[1] = (mc_cast(double, a[0]) * mc_cast(double, b[1])) + (mc_cast(double, a[1]) * mc_cast(double, b[3]));
+
+	c[2] = (mc_cast(double, a[2]) * mc_cast(double, b[0])) + (mc_cast(double, a[3]) * mc_cast(double, b[2]));
+	c[3] = (mc_cast(double, a[2]) * mc_cast(double, b[1])) + (mc_cast(double, a[3]) * mc_cast(double, b[3]));
+}
+
+MC_TARGET_FUNC void mc_mulab2x2fd(double * restrict c, const float a[4], const double b[4])
+{
+//!# c=a*b
+	c[0] = (mc_cast(double, a[0]) * b[0]) + (mc_cast(double, a[1]) * b[2]);
+	c[1] = (mc_cast(double, a[0]) * b[1]) + (mc_cast(double, a[1]) * b[3]);
+
+	c[2] = (mc_cast(double, a[2]) * b[0]) + (mc_cast(double, a[3]) * b[2]);
+	c[3] = (mc_cast(double, a[2]) * b[1]) + (mc_cast(double, a[3]) * b[3]);
+}
+
+MC_TARGET_FUNC void mc_mulab2x2df(double * restrict c, const double a[4], const float b[4])
+{
+//!# c=a*b
+	c[0] = (a[0] * mc_cast(double, b[0])) + (a[1] * mc_cast(double, b[2]));
+	c[1] = (a[0] * mc_cast(double, b[1])) + (a[1] * mc_cast(double, b[3]));
+
+	c[2] = (a[2] * mc_cast(double, b[0])) + (a[3] * mc_cast(double, b[2]));
+	c[3] = (a[2] * mc_cast(double, b[1])) + (a[3] * mc_cast(double, b[3]));
+}
+
 MC_TARGET_FUNC void mc_mulab2x2(double * c, const double a[4], const double b[4])
 {
 //!# c=a*b

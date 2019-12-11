@@ -95,6 +95,7 @@
 #	include <macadam/details/numa/mc_det3x3.h>
 #	include <macadam/details/numa/mc_det4x4.h>
 #	include <macadam/details/numa/mc_dotp1xn.h>
+#	include <macadam/details/numa/mc_dotpmx1.h>
 #	include <macadam/details/numa/mc_dotpmxn.h>
 #	include <macadam/details/numa/mc_dotpnxn.h>
 #	include <macadam/details/numa/mc_eig2x2.h>
@@ -132,6 +133,7 @@
 #	include <macadam/details/numa/mc_mulabmxn.h>
 #	include <macadam/details/numa/mc_mulabnxn.h>
 #	include <macadam/details/numa/mc_mulabt3x3.h>
+#	include <macadam/details/numa/mc_mulab2x2.h>
 #	include <macadam/details/numa/mc_mulatb3x3.h>
 #	include <macadam/details/numa/mc_mulatx2x2.h>
 #	include <macadam/details/numa/mc_mulatx3x3.h>
@@ -145,6 +147,7 @@
 #	include <macadam/details/numa/mc_onesmx1.h>
 #	include <macadam/details/numa/mc_onesmxn.h>
 #	include <macadam/details/numa/mc_onesnxn.h>
+#	include <macadam/details/numa/mc_orthomxn.h>
 #	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>
@@ -158,8 +161,9 @@
 #	include <macadam/details/numa/mc_sum1xn.h>
 #	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_sumtwo1xn.h>
+#	include <macadam/details/numa/mc_svd2x2.h>
 #	include <macadam/details/numa/mc_svd3x3.h>
-#	include <macadam/details/numa/mc_svdgrmxn.h>
+#	include <macadam/details/numa/mc_svdmxn.h>
 #	include <macadam/details/numa/mc_trace2x2.h>
 #	include <macadam/details/numa/mc_trace3x3.h>
 #	include <macadam/details/numa/mc_tracemxn.h>

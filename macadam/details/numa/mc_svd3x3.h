@@ -10,7 +10,6 @@
 #include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/numa/mc_mulab3x3.h>
 #include <macadam/details/numa/mc_mulatb3x3.h>
-#include <macadam/details/numa/mc_mulatb3x3.h>
 #include <macadam/details/numa/mc_qr3x3.h>
 #include <macadam/mcswap.h>
 
@@ -129,9 +128,9 @@ MC_TARGET_FUNC int mc_svd3x3ff(const float a[9], double u[9], double s[9], doubl
 	mcswap_var(w, v[6], v[8]);
 
 //!# Step 5: Initializing S to diagonal matrix.
-	s[0] = s0;   s[1] = 0.0f; s[2] = 0.0f;
-	s[3] = 0.0f; s[4] = s1;   s[5] = 0.0f;
-	s[6] = 0.0f; s[7] = 0.0f; s[8] = s2;
+	s[0] = s0;  s[1] = 0.0; s[2] = 0.0;
+	s[3] = 0.0; s[4] = s1;  s[5] = 0.0;
+	s[6] = 0.0; s[7] = 0.0; s[8] = s2;
 
 //!# Step 6: Computing U i.e left-singular vectors. Forming
 //!# left-hand i.e `U-unscaled` by multiplying A per V.
@@ -202,8 +201,8 @@ MC_TARGET_FUNC int mc_svd3x3(const double a[9], double u[9], double s[9], double
 	mcswap_var(w, v[6], v[8]);
 
 //!# Step 5: Initializing S to diagonal matrix.
-	s[0] = s0;   s[1] = 0.0; s[2] = 0.0;
-	s[3] = 0.0; s[4] = s1;   s[5] = 0.0;
+	s[0] = s0;  s[1] = 0.0; s[2] = 0.0;
+	s[3] = 0.0; s[4] = s1;  s[5] = 0.0;
 	s[6] = 0.0; s[7] = 0.0; s[8] = s2;
 
 //!# Step 6: Computing U i.e left-singular vectors. Forming
