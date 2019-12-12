@@ -6,8 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/numa/mc_mulab2x2.h>
 #include <macadam/details/numa/mc_mulatb2x2.h>
 #include <macadam/details/numa/mc_qr2x2.h>
@@ -27,57 +26,39 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
-	float s0, s1, w;
+	float w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2f(u, a, a);
 
 //!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
 //!# storing temporarily eigenvalues into S first three entries.
-	mc_eigsy2x2f(u, s, v);
-
-//!# Step 3: extracting eigenvalues for clarity and make them singular-values.
-//!# a'a is a symmetric normal matrix, hence the singular-values are equal to 
-//!# the absolute eigenvalues. Being paranoid; they should be all semi-positive definite.
-	s0 = mc_fabsf(s[0]);
-	s1 = mc_fabsf(s[1]);
-
-//!# Step 4: Sorting singular-values and V in descending order (i.e largest first).
-//!# \note: eigsy2x2 guarantees eigenvalues to be given in ascending order regardless
-//!# the sign i.e smallest first.
-	mcswap_var(w, s0, s1);
-	mcswap_var(w, v[0], v[1]);
-	mcswap_var(w, v[2], v[3]);
-
-//!# Step 5: Initializing S to diagonal matrix.
-	s[0] = s0;   s[1] = 0.0f;
-	s[2] = 0.0f; s[3] = s1;
-
-//!# Step 6: Computing U i.e left-singular vectors. Forming
-//!# left-hand i.e `U-unscaled` by multiplying A per V.
-	mc_mulab2x2f(u, a, v);
-
-//!# Step 7: Using QR, used to verify error rate.
-	//mc_qrgv2x2f(u, u, s);
-
-//!# Step 7: Computing the square-root singular-values of and `scaling` U such as U=A*V*S^-1.
-	if (s[0] != 0.0f) {
-		s[0] = mc_sqrtf(s[0]);
-		s0   = 1.0f / s[0];
-		u[0] = u[0] * s0;
-		u[2] = u[2] * s0;
-	} else {
-		return -1;
+	if (0 == mc_eigsy2x2f(u, s, v)) {
+		mc_eye2x2f(s);
+		mc_mulab2x2f(u, a, v);
+//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+		if (0 == mc_qr2x2f(u, u, s)) {
+//!# Step 4: Changing sign.
+			if (mc_copysignf(1.0f, s[0]) < 0.0f) {
+				s[0] = -s[0];
+				v[0] = -v[0];
+				v[2] = -v[2];
+			}
+			if (mc_copysignf(1.0f, s[3]) < 0.0f) {
+				s[3] = -s[3];
+				v[1] = -v[1];
+				v[3] = -v[3];
+			}
+//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+			if (s[0] < s[3]) {
+				mcswap_var(w, s[0], s[3]);
+				mcswap_var(w, v[0], v[1]);
+				mcswap_var(w, v[2], v[3]);
+			}
+			return 0;
+		}
 	}
-	if (s[3] != 0.0f) {
-		s[3] = mc_sqrtf(s[3]);
-		s1   = 1.0f / s[3];
-		u[1] = u[1] * s1;
-		u[3] = u[3] * s1;
-	} else {
-		return -1;
-	}
-	return 0;
+	return -1;
 }
 
 MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], double v[4])
@@ -89,57 +70,39 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
-	double s0, s1, w;
+	double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2ff(u, a, a);
 
 //!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
 //!# storing temporarily eigenvalues into S first three entries.
-	mc_eigsy2x2(u, s, v);
-
-//!# Step 3: extracting eigenvalues for clarity and make them singular-values.
-//!# a'a is a symmetric normal matrix, hence the singular-values are equal to 
-//!# the absolute eigenvalues. Being paranoid; they should be all semi-positive definite.
-	s0 = mc_fabs(s[0]);
-	s1 = mc_fabs(s[1]);
-
-//!# Step 4: Sorting singular-values and V in descending order (i.e largest first).
-//!# \note: eigsy2x2 guarantees eigenvalues to be given in ascending order regardless
-//!# the sign i.e smallest first.
-	mcswap_var(w, s0, s1);
-	mcswap_var(w, v[0], v[1]);
-	mcswap_var(w, v[2], v[3]);
-
-//!# Step 5: Initializing S to diagonal matrix.
-	s[0] = s0;  s[1] = 0.0;
-	s[2] = 0.0; s[3] = s1;
-
-//!# Step 6: Computing U i.e left-singular vectors. Forming
-//!# left-hand i.e `U-unscaled` by multiplying A per V.
-	mc_mulab2x2fd(u, a, v);
-
-//!# Step 7: Using QR, used to verify error rate.
-	//mc_qrgv2x2f(u, u, s);
-
-//!# Step 7: Computing the square-root singular-values of and `scaling` U such as U=A*V*S^-1.
-	if (s[0] != 0.0) {
-		s[0] = mc_sqrt(s[0]);
-		s0   = 1.0 / s[0];
-		u[0] = u[0] * s0;
-		u[2] = u[2] * s0;
-	} else {
-		return -1;
+	if (0 == mc_eigsy2x2(u, s, v)) {
+		mc_eye2x2(s);
+		mc_mulab2x2fd(u, a, v);
+//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+		if (0 == mc_qr2x2(u, u, s)) {
+//!# Step 4: Changing sign.
+			if (mc_copysign(1.0, s[0]) < 0.0) {
+				s[0] = -s[0];
+				v[0] = -v[0];
+				v[2] = -v[2];
+			}
+			if (mc_copysign(1.0, s[3]) < 0.0) {
+				s[3] = -s[3];
+				v[1] = -v[1];
+				v[3] = -v[3];
+			}
+//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+			if (s[0] < s[3]) {
+				mcswap_var(w, s[0], s[3]);
+				mcswap_var(w, v[0], v[1]);
+				mcswap_var(w, v[2], v[3]);
+			}
+			return 0;
+		}
 	}
-	if (s[3] != 0.0) {
-		s[3] = mc_sqrt(s[3]);
-		s1   = 1.0 / s[3];
-		u[1] = u[1] * s1;
-		u[3] = u[3] * s1;
-	} else {
-		return -1;
-	}
-	return 0;
+	return -1;
 }
 
 MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double v[4])
@@ -151,57 +114,39 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
-	double s0, s1, w;
+	double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2(u, a, a);
 
 //!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
 //!# storing temporarily eigenvalues into S first three entries.
-	mc_eigsy2x2(u, s, v);
-
-//!# Step 3: extracting eigenvalues for clarity and make them singular-values.
-//!# a'a is a symmetric normal matrix, hence the singular-values are equal to 
-//!# the absolute eigenvalues. Being paranoid; they should be all semi-positive definite.
-	s0 = mc_fabs(s[0]);
-	s1 = mc_fabs(s[1]);
-
-//!# Step 4: Sorting singular-values and V in descending order (i.e largest first).
-//!# \note: eigsy2x2 guarantees eigenvalues to be given in ascending order regardless
-//!# the sign i.e smallest first.
-	mcswap_var(w, s0, s1);
-	mcswap_var(w, v[0], v[1]);
-	mcswap_var(w, v[2], v[3]);
-
-//!# Step 5: Initializing S to diagonal matrix.
-	s[0] = s0;  s[1] = 0.0;
-	s[2] = 0.0; s[3] = s1;
-
-//!# Step 6: Computing U i.e left-singular vectors. Forming
-//!# left-hand i.e `U-unscaled` by multiplying A per V.
-	mc_mulab2x2(u, a, v);
-
-//!# Step 7: Using QR, used to verify error rate.
-	//mc_qrgv2x2f(u, u, s);
-
-//!# Step 7: Computing the square-root singular-values of and `scaling` U such as U=A*V*S^-1.
-	if (s[0] != 0.0) {
-		s[0] = mc_sqrt(s[0]);
-		s0   = 1.0 / s[0];
-		u[0] = u[0] * s0;
-		u[2] = u[2] * s0;
-	} else {
-		return -1;
+	if (0 == mc_eigsy2x2(u, s, v)) {
+		mc_eye2x2(s);
+		mc_mulab2x2(u, a, v);
+//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+		if (0 == mc_qr2x2(u, u, s)) {
+//!# Step 4: Changing sign.
+			if (mc_copysign(1.0, s[0]) < 0.0) {
+				s[0] = -s[0];
+				v[0] = -v[0];
+				v[2] = -v[2];
+			}
+			if (mc_copysign(1.0, s[3]) < 0.0) {
+				s[3] = -s[3];
+				v[1] = -v[1];
+				v[3] = -v[3];
+			}
+//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+			if (s[0] < s[3]) {
+				mcswap_var(w, s[0], s[3]);
+				mcswap_var(w, v[0], v[1]);
+				mcswap_var(w, v[2], v[3]);
+			}
+			return 0;
+		}
 	}
-	if (s[3] != 0.0) {
-		s[3] = mc_sqrt(s[3]);
-		s1   = 1.0 / s[3];
-		u[1] = u[1] * s1;
-		u[3] = u[3] * s1;
-	} else {
-		return -1;
-	}
-	return 0;
+	return -1;
 }
 
 MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long double s[4], long double v[4])
@@ -213,57 +158,39 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
-	long double s0, s1, w;
+	long double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2l(u, a, a);
 
 //!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
 //!# storing temporarily eigenvalues into S first three entries.
-	mc_eigsy2x2l(u, s, v);
-
-//!# Step 3: extracting eigenvalues for clarity and make them singular-values.
-//!# a'a is a symmetric normal matrix, hence the singular-values are equal to 
-//!# the absolute eigenvalues. Being paranoid; they should be all semi-positive definite.
-	s0 = mc_fabsl(s[0]);
-	s1 = mc_fabsl(s[1]);
-
-//!# Step 4: Sorting singular-values and V in descending order (i.e largest first).
-//!# \note: eigsy2x2 guarantees eigenvalues to be given in ascending order regardless
-//!# the sign i.e smallest first.
-	mcswap_var(w, s0, s1);
-	mcswap_var(w, v[0], v[1]);
-	mcswap_var(w, v[2], v[3]);
-
-//!# Step 5: Initializing S to diagonal matrix.
-	s[0] = s0;   s[1] = 0.0L;
-	s[2] = 0.0L; s[3] = s1;
-
-//!# Step 6: Computing U i.e left-singular vectors. Forming
-//!# left-hand i.e `U-unscaled` by multiplying A per V.
-	mc_mulab2x2l(u, a, v);
-
-//!# Step 7: Using QR, used to verify error rate.
-	//mc_qrgv2x2f(u, u, s);
-
-//!# Step 7: Computing the square-root singular-values of and `scaling` U such as U=A*V*S^-1.
-	if (s[0] != 0.0L) {
-		s[0] = mc_sqrtl(s[0]);
-		s0   = 1.0L / s[0];
-		u[0] = u[0] * s0;
-		u[2] = u[2] * s0;
-	} else {
-		return -1;
+	if (0 == mc_eigsy2x2l(u, s, v)) {
+		mc_eye2x2l(s);
+		mc_mulab2x2l(u, a, v);
+//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+		if (0 == mc_qr2x2l(u, u, s)) {
+//!# Step 4: Changing sign.
+			if (mc_copysignl(1.0L, s[0]) < 0.0L) {
+				s[0] = -s[0];
+				v[0] = -v[0];
+				v[2] = -v[2];
+			}
+			if (mc_copysignl(1.0L, s[3]) < 0.0L) {
+				s[3] = -s[3];
+				v[1] = -v[1];
+				v[3] = -v[3];
+			}
+//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+			if (s[0] < s[3]) {
+				mcswap_var(w, s[0], s[3]);
+				mcswap_var(w, v[0], v[1]);
+				mcswap_var(w, v[2], v[3]);
+			}
+			return 0;
+		}
 	}
-	if (s[3] != 0.0L) {
-		s[3] = mc_sqrtl(s[3]);
-		s1   = 1.0L / s[3];
-		u[1] = u[1] * s1;
-		u[3] = u[3] * s1;
-	} else {
-		return -1;
-	}
-	return 0;
+	return -1;
 }
 
 #endif /* !MC_SVD2X2_H */

@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_hypot2.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/numa/mc_eye3x3.h>
@@ -15,12 +16,12 @@
 #ifndef MC_EIGSY3X3_H
 #define MC_EIGSY3X3_H
 
-#pragma mark - mc_tredsy3x3_approx0 -
+#pragma mark - mc_tredsy3x3 -
 
-MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float * q, float d[3], float e[2])
+MC_TARGET_PROC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float e[2])
 {
 //!# Close-formish expression by rref.
-	const float tiny = MCLIMITS_TINYF;
+	const float tol = 2.0f * MCLIMITS_EPSILONF;
 
 	int wantq = mc_nonnull(q);
 	float mag, s;
@@ -35,9 +36,9 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float * q, float d[3]
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
 	e[0] = a12; e[1] = a23;
-	if (mc_fabsf(a13) >= tiny && !(a12 == 0.0f && a13 == 0.0f)) {
-		mag = mc_sqrtf(mc_raise2f(a12) + mc_raise2f(a13));
-		if (mc_fabsf(mag) >= tiny) {
+	if (mc_fabsf(a13) >= tol && !(a12 == 0.0f && a13 == 0.0f)) {
+		mag = mc_hypot2f(a12, a13);
+		if (mc_fabsf(mag) >= tol) {
 			if (a11 > 0.0f) {
 				mag = -mag;
 			}
@@ -56,10 +57,10 @@ MC_TARGET_PROC int mc_tredsy3x3f_approx0(const float a[9], float * q, float d[3]
 	return -1;
 }
 
-MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double * q, double d[3], double e[2])
+MC_TARGET_PROC int mc_tredsy3x3(const double a[9], double * q, double d[3], double e[2])
 {
 //!# Close-formish expression by rref.
-	const double tiny = MCLIMITS_TINY;
+	const double tol = 2.0 * MCLIMITS_EPSILON;
 
 	int wantq = mc_nonnull(q);
 	double mag, s;
@@ -74,9 +75,9 @@ MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double * q, double d[
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
 	e[0] = a12; e[1] = a23;
-	if (mc_fabs(a13) >= tiny && !(a12 == 0.0 && a13 == 0.0)) {
+	if (mc_fabs(a13) >= tol && !(a12 == 0.0 && a13 == 0.0)) {
 		mag = mc_sqrt(mc_raise2(a12) + mc_raise2(a13));
-		if (mc_fabs(mag) >= tiny) {
+		if (mc_fabs(mag) >= tol) {
 			if (a11 > 0.0) {
 				mag = -mag;
 			}
@@ -95,10 +96,10 @@ MC_TARGET_PROC int mc_tredsy3x3_approx0(const double a[9], double * q, double d[
 	return -1;
 }
 
-MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double * q, long double d[3], long double e[2])
+MC_TARGET_PROC int mc_tredsy3x3l(const long double a[9], long double * q, long double d[3], long double e[2])
 {
 //!# Close-formish expression by rref.
-	const long double tiny = MCLIMITS_TINYL;
+	const long double tol = 2.0L * MCLIMITS_EPSILONL;
 
 	int wantq = mc_nonnull(q);
 	long double mag, s;
@@ -113,9 +114,9 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double * q
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
 	e[0] = a12; e[1] = a23;
-	if (mc_fabsl(a13) >= tiny && !(a12 == 0.0L && a13 == 0.0L)) {
+	if (mc_fabsl(a13) >= tol && !(a12 == 0.0L && a13 == 0.0L)) {
 		mag = mc_sqrtl(mc_raise2l(a12) + mc_raise2l(a13));
-		if (mc_fabsl(mag) >= tiny) {
+		if (mc_fabsl(mag) >= tol) {
 			if (a11 > 0.0) {
 				mag = -mag;
 			}
@@ -130,185 +131,6 @@ MC_TARGET_PROC int mc_tredsy3x3l_approx0(const long double a[9], long double * q
 			}
 			return 0;
 		}
-	}
-	return -1;
-}
-
-#pragma mark - mc_tredsy3x3_approx1 -
-
-MC_TARGET_PROC int mc_tredsy3x3f_approx1(const float a[9], float * q, float d[3], float e[2])
-{
-//!# Full Householder transformation.
-	int wantq     = mc_nonnull(q);
-	float w, s, k = 0.0f, h, g, u1, u2, q1, q2;
-
-	float a11 = a[0], a12 = a[1], a13 = a[2];
-	float             a22 = a[4], a23 = a[5];
-	float                         a33 = a[8];
-
-	h    = mc_raise2f(a12) + mc_raise2f(a13);
-	g    = a12 > 0.0f ? -mc_sqrtf(h) : mc_sqrtf(h);
-	e[0] = g;
-	s    = g * a12;
-	u1   = a12 - g;
-	u2   = a13;
-
-	if (wantq) {
-		mc_eye3x3f(q);
-	}
-
-	w = h - s;
-
-	d[0] = a11; d[1] = a22; d[2] = a33;
-	e[1] = a23;
-
-	if (w > 0.0f) {
-		w    = 1.0f / w;
-
-		s    = a22 * u1 + a23 * u2;
-		q1   = w * s;
-		k    = k + u1 * s;
-		s    = a23 * u1 + a33 * u2;
-		q2   = w * s;
-		k    = k + u2 * s;
-
-		k    = k * (0.5f * w * w);
-
-		q1   = q1 - k * u1;
-		q2   = q2 - k * u2;
-
-		d[0] = a11;
-		d[1] = a22 - 2.0f * q1 * u1;
-		d[2] = a23 - 2.0f * q2 * u2;
-
-		if (wantq) {
-			s    = w * u1;
-			q[4] = q[4] - s * u1;
-			q[7] = q[7] - s * u2;
-			s    = w * u2;
-			q[5] = q[5] - s * u1;
-			q[8] = q[8] - s * u2;
-		}
-		e[1] = a23 - q1 * u2 - u1 * q2;
-		return 0;
-	}
-	return -1;
-}
-
-MC_TARGET_PROC int mc_tredsy3x3_approx1(const double a[9], double * q, double d[3], double e[2])
-{
-//!# Full Householder transformation.
-	int wantq      = mc_nonnull(q);
-	double w, s, k = 0.0, h, g, u1, u2, q1, q2;
-
-	double a11 = a[0], a12 = a[1], a13 = a[2];
-	double             a22 = a[4], a23 = a[5];
-	double                         a33 = a[8];
-
-	h    = mc_raise2(a12) + mc_raise2(a13);
-	g    = a12 > 0.0 ? -mc_sqrt(h) : mc_sqrt(h);
-	e[0] = g;
-	s    = g * a12;
-	u1   = a12 - g;
-	u2   = a13;
-
-	if (wantq) {
-		mc_eye3x3(q);
-	}
-
-	w = h - s;
-
-	d[0] = a11; d[1] = a22; d[2] = a33;
-	e[1] = a23;
-
-	if (w > 0.0) {
-		w = 1.0 / w;
-
-		s    = a22 * u1 + a23 * u2;
-		q1   = w * s;
-		k    = k + u1 * s;
-		s    = a23 * u1 + a33 * u2;
-		q2   = w * s;
-		k    = k + u2 * s;
-
-		k    = k * (0.5 * w * w);
-
-		q1   = q1 - k * u1;
-		q2   = q2 - k * u2;
-
-		d[0] = a11;
-		d[1] = a22 - 2.0 * q1 * u1;
-		d[2] = a23 - 2.0 * q2 * u2;
-
-		if (wantq) {
-			s    = w * u1;
-			q[4] = q[4] - s * u1;
-			q[7] = q[7] - s * u2;
-			s    = w * u2;
-			q[5] = q[5] - s * u1;
-			q[8] = q[8] - s * u2;
-		}
-		e[1] = a23 - q1 * u2 - u1 * q2;
-		return 0;
-	}
-	return -1;
-}
-
-MC_TARGET_PROC int mc_tredsy3x3l_approx1(const long double a[9], long double q[9], long double d[3], long double e[2])
-{
-//!# Full Householder transformation.
-	int wantq           = mc_nonnull(q);
-	long double w, s, k = 0.0L, h, g, u1, u2, q1, q2;
-
-	long double a11 = a[0], a12 = a[1], a13 = a[2];
-	long double             a22 = a[4], a23 = a[5];
-	long double                         a33 = a[8];
-
-	h    = mc_raise2l(a12) + mc_raise2l(a13);
-	g    = a12 > 0.0L ? -mc_sqrtl(h) : mc_sqrtl(h);
-	e[0] = g;
-	s    = g * a12;
-	u1   = a12 - g;
-	u2   = a13;
-
-	if (wantq) {
-		mc_eye3x3l(q);
-	}
-
-	w = h - s;
-
-	d[0] = a11; d[1] = a22; d[2] = a33;
-	e[1] = a23;
-
-	if (w > 0.0L) {
-		w = 1.0L / w;
-
-		s    = a22 * u1 + a23 * u2;
-		q1   = w * s;
-		k    = k + u1 * s;
-		s    = a23 * u1 + a33 * u2;
-		q2   = w * s;
-		k    = k + u2 * s;
-
-		k    = k * (0.5L * w * w);
-
-		q1   = q1 - k * u1;
-		q2   = q2 - k * u2;
-
-		d[0] = a11;
-		d[1] = a22 - 2.0L * q1 * u1;
-		d[2] = a23 - 2.0L * q2 * u2;
-
-		if (wantq) {
-			s    = w * u1;
-			q[4] = q[4] - s * u1;
-			q[7] = q[7] - s * u2;
-			s    = w * u2;
-			q[5] = q[5] - s * u1;
-			q[8] = q[8] - s * u2;
-		}
-		e[1] = a23 - q1 * u2 - u1 * q2;
-		return 0;
 	}
 	return -1;
 }
@@ -338,7 +160,7 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 			z = !z;
 
 			h = (d[k + 1] - d[k]) / (e[k] + e[k]);
-			r = mc_sqrtf(mc_raise2f(h) + 1.0f);
+			r = mc_hypot2f(1.0f, h);
 			h = h > 0.0f ? (d[j] - d[k] + e[k] / (h + r)) : (d[j] - d[k] + e[k] / (h - r));
 
 			c = 1.0f;
@@ -350,13 +172,13 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 				b = c * e[i];
 				if (mc_fabsf(f) > mc_fabsf(h)) {
 					c        = h / f;
-					r        = mc_sqrtf(mc_raise2f(c) + 1.0f);
+					r        = mc_hypot2f(1.0f, c);
 					e[i + 1] = f * r;
 					s        = 1.0f / r;
 					c        = c * s;
 				} else {
 					s        = f / h;
-					r        = mc_sqrtf(mc_raise2f(s) + 1.0f);
+					r        = mc_hypot2f(1.0f, s);
 					e[i + 1] = h * r;
 					c        = 1.0f / r;
 					s        = s * c;
@@ -446,7 +268,7 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 			z = !z;
 
 			h = (d[k + 1] - d[k]) / (e[k] + e[k]);
-			r = mc_sqrt(mc_raise2(h) + 1.0);
+			r = mc_hypot2(1.0, h);
 			h = h > 0.0 ? (d[j] - d[k] + e[k] / (h + r)) : (d[j] - d[k] + e[k] / (h - r));
 
 			c = 1.0;
@@ -458,13 +280,13 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 				b = c * e[i];
 				if (mc_fabs(f) > mc_fabs(h)) {
 					c        = h / f;
-					r        = mc_sqrt(mc_raise2(c) + 1.0);
+					r        = mc_hypot2(1.0, c);
 					e[i + 1] = f * r;
 					s        = 1.0 / r;
 					c        = c * s;
 				} else {
 					s        = f / h;
-					r        = mc_sqrt(mc_raise2(s) + 1.0);
+					r        = mc_hypot2(1.0, s);
 					e[i + 1] = h * r;
 					c        = 1.0 / r;
 					s        = s * c;
@@ -554,7 +376,7 @@ MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double 
 			z = !z;
 
 			h = (d[k + 1] - d[k]) / (e[k] + e[k]);
-			r = mc_sqrtl(mc_raise2l(h) + 1.0L);
+			r = mc_hypot2l(1.0L, h);
 			h = h > 0.0L ? (d[j] - d[k] + e[k] / (h + r)) : (d[j] - d[k] + e[k] / (h - r));
 
 			c = 1.0L;
@@ -566,13 +388,13 @@ MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double 
 				b = c * e[i];
 				if (mc_fabsl(f) > mc_fabsl(h)) {
 					c        = h / f;
-					r        = mc_sqrtl(mc_raise2l(c) + 1.0L);
+					r        = mc_hypot2l(1.0L, c);
 					e[i + 1] = f * r;
 					s        = 1.0L / r;
 					c        = c * s;
 				} else {
 					s        = f / h;
-					r        = mc_sqrtl(mc_raise2l(s) + 1.0L);
+					r        = mc_hypot2l(1.0L, s);
 					e[i + 1] = h * r;
 					c        = 1.0L / r;
 					s        = s * c;
@@ -645,7 +467,7 @@ MC_TARGET_FUNC int mc_eigsyq3x3f(const float a[9], float e[3], float * v)
 {
 	int r;
 	float w[3] = { 0 };
-	if (0 == (r = mc_tredsy3x3f_approx1(a, v, e, w))) {
+	if (0 == (r = mc_tredsy3x3f(a, v, e, w))) {
 		r = mc_tredql3x3f(v, e, w);
 	}
 	return r;
@@ -655,7 +477,7 @@ MC_TARGET_FUNC int mc_eigsyq3x3(const double a[9], double e[3], double * v)
 {
 	int r;
 	double w[3] = { 0 };
-	if (0 == (r = mc_tredsy3x3_approx1(a, v, e, w))) {
+	if (0 == (r = mc_tredsy3x3(a, v, e, w))) {
 		r = mc_tredql3x3(v, e, w);
 	}
 	return r;
@@ -665,7 +487,7 @@ MC_TARGET_FUNC int mc_eigsyq3x3l(const long double a[9], long double e[3], long 
 {
 	int r;
 	long double w[3] = { 0 };
-	if (0 == (r = mc_tredsy3x3l_approx1(a, v, e, w))) {
+	if (0 == (r = mc_tredsy3x3l(a, v, e, w))) {
 		r = mc_tredql3x3l(v, e, w);
 	}
 	return r;
@@ -717,11 +539,11 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 				t = a12 / u;
 			} else {
 				r = 0.5f * u / a12;
-				t = ((r >= 0.0f) ? 1.0f / (r + mc_sqrtf(1.0f + mc_raise2f(r))) : 1.0f / (r - mc_sqrtf(1.0f + mc_raise2f(r))));
+				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f,  r)) : 1.0f / (r - mc_hypot2f(1.0f,  r)));
 			}
-			c   = 1.0f / mc_sqrtf(1.0f + mc_raise2f(t));
+			c   = 1.0f / mc_hypot2f(1.0f,  t);
 			s   = t * c;
-			u   = s/(1.0f + c);
+			u   = s / (1.0f + c);
 			r   = t * a12;
 			a11 = a11 - r;
 			a22 = a22 + r;
@@ -748,9 +570,9 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 				t = a13 / u;
 			} else {
 				r = 0.5f * u / a13;
-				t = ((r >= 0.0f) ? 1.0f / (r + mc_sqrtf(1.0f + mc_raise2f(r))) : 1.0f / (r - mc_sqrtf(1.0f + mc_raise2f(r))));
+				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f,  r)) : 1.0f / (r - mc_hypot2f(1.0f,  r)));
 			}
-			c   = 1.0f / mc_sqrtf(1.0f + mc_raise2f(t));
+			c   = 1.0f / mc_hypot2f(1.0f,  t);
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a13;
@@ -779,9 +601,9 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 				t = a23 / u;
 			} else {
 				r = 0.5f * u / a23;
-				t = ((r >= 0.0f) ? 1.0f / (r + mc_sqrtf(1.0f + mc_raise2f(r))) : 1.0f / (r - mc_sqrtf(1.0f + mc_raise2f(r))));
+				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f,  r)) : 1.0f / (r - mc_hypot2f(1.0f,  r)));
 			}
-			c   = 1.0f / mc_sqrtf(1.0f + mc_raise2f(t));
+			c   = 1.0f / mc_hypot2f(1.0f,  t);
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a23;
@@ -805,9 +627,45 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 			v32 = vpr - s * (vqr + vpr * u);
 			v33 = vqr + s * (vpr - vqr * u);
 		}
+		if (mc_fabsf(v11) < MCLIMITS_EPSILONF) {
+			v11 = 0.0f;
+		}
+		if (mc_fabsf(v12) < MCLIMITS_EPSILONF) {
+			v12 = 0.0f;
+		}
+		if (mc_fabsf(v13) < MCLIMITS_EPSILONF) {
+			v13 = 0.0f;
+		}
+		if (mc_fabsf(v21) < MCLIMITS_EPSILONF) {
+			v21 = 0.0f;
+		}
+		if (mc_fabsf(v22) < MCLIMITS_EPSILONF) {
+			v22 = 0.0f;
+		}
+		if (mc_fabsf(v23) < MCLIMITS_EPSILONF) {
+			v23 = 0.0f;
+		}
+		if (mc_fabsf(v31) < MCLIMITS_EPSILONF) {
+			v31 = 0.0f;
+		}
+		if (mc_fabsf(v32) < MCLIMITS_EPSILONF) {
+			v32 = 0.0f;
+		}
+		if (mc_fabsf(v33) < MCLIMITS_EPSILONF) {
+			v33 = 0.0f;
+		}
 		aa12 = mc_fabsf(a12);
 		aa13 = mc_fabsf(a13);
 		aa23 = mc_fabsf(a23);
+		if (aa12 < MCLIMITS_EPSILONF) {
+			aa12 = 0.0f;
+		}
+		if (aa13 < MCLIMITS_EPSILONF) {
+			aa13 = 0.0f;
+		}
+		if (aa23 < MCLIMITS_EPSILONF) {
+			aa23 = 0.0f;
+		}
 	}
 	if (i < j) {
 //!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
@@ -890,11 +748,11 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 				t = a12 / u;
 			} else {
 				r = 0.5 * u / a12;
-				t = ((r >= 0.0) ? 1.0 / (r + mc_sqrt(1.0 + mc_raise2(r))) : 1.0 / (r - mc_sqrt(1.0 + mc_raise2(r))));
+				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0,  r)) : 1.0 / (r - mc_hypot2(1.0,  r)));
 			}
-			c   = 1.0 / mc_sqrt(1.0 + mc_raise2(t));
+			c   = 1.0 / mc_hypot2(1.0,  t);
 			s   = t * c;
-			u   = s/(1.0 + c);
+			u   = s / (1.0 + c);
 			r   = t * a12;
 			a11 = a11 - r;
 			a22 = a22 + r;
@@ -921,9 +779,9 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 				t = a13 / u;
 			} else {
 				r = 0.5 * u / a13;
-				t = ((r >= 0.0) ? 1.0 / (r + mc_sqrt(1.0 + mc_raise2(r))) : 1.0 / (r - mc_sqrt(1.0 + mc_raise2(r))));
+				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0,  r)) : 1.0 / (r - mc_hypot2(1.0,  r)));
 			}
-			c   = 1.0 / mc_sqrt(1.0 + mc_raise2(t));
+			c   = 1.0 / mc_hypot2(1.0,  t);
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a13;
@@ -952,9 +810,9 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 				t = a23 / u;
 			} else {
 				r = 0.5 * u / a23;
-				t = ((r >= 0.0) ? 1.0 / (r + mc_sqrt(1.0 + mc_raise2(r))) : 1.0 / (r - mc_sqrt(1.0 + mc_raise2(r))));
+				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0,  r)) : 1.0 / (r - mc_hypot2(1.0,  r)));
 			}
-			c   = 1.0 / mc_sqrt(1.0 + mc_raise2(t));
+			c   = 1.0 / mc_hypot2(1.0,  t);
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a23;
@@ -978,9 +836,45 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 			v32 = vpr - s * (vqr + vpr * u);
 			v33 = vqr + s * (vpr - vqr * u);
 		}
+		if (mc_fabs(v11) < MCLIMITS_EPSILON) {
+			v11 = 0.0;
+		}
+		if (mc_fabs(v12) < MCLIMITS_EPSILON) {
+			v12 = 0.0;
+		}
+		if (mc_fabs(v13) < MCLIMITS_EPSILON) {
+			v13 = 0.0;
+		}
+		if (mc_fabs(v21) < MCLIMITS_EPSILON) {
+			v21 = 0.0;
+		}
+		if (mc_fabs(v22) < MCLIMITS_EPSILON) {
+			v22 = 0.0;
+		}
+		if (mc_fabs(v23) < MCLIMITS_EPSILON) {
+			v23 = 0.0;
+		}
+		if (mc_fabs(v31) < MCLIMITS_EPSILON) {
+			v31 = 0.0;
+		}
+		if (mc_fabs(v32) < MCLIMITS_EPSILON) {
+			v32 = 0.0;
+		}
+		if (mc_fabs(v33) < MCLIMITS_EPSILON) {
+			v33 = 0.0;
+		}
 		aa12 = mc_fabs(a12);
 		aa13 = mc_fabs(a13);
 		aa23 = mc_fabs(a23);
+		if (aa12 < MCLIMITS_EPSILON) {
+			aa12 = 0.0;
+		}
+		if (aa13 < MCLIMITS_EPSILON) {
+			aa13 = 0.0;
+		}
+		if (aa23 < MCLIMITS_EPSILON) {
+			aa23 = 0.0;
+		}
 	}
 	if (i < j) {
 //!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
@@ -1063,11 +957,11 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 				t = a12 / u;
 			} else {
 				r = 0.5L * u / a12;
-				t = ((r >= 0.0L) ? 1.0L / (r + mc_sqrtl(1.0L + mc_raise2l(r))) : 1.0L / (r - mc_sqrtl(1.0L + mc_raise2l(r))));
+				t = ((r >= 0.0L) ? 1.0L / (r + mc_hypot2l(1.0L, r)) : 1.0L / (r - mc_hypot2l(1.0L, r)));
 			}
-			c   = 1.0L / mc_sqrtl(1.0L + mc_raise2l(t));
+			c   = 1.0L / mc_hypot2l(1.0L, t);
 			s   = t * c;
-			u   = s/(1.0L + c);
+			u   = s / (1.0L + c);
 			r   = t * a12;
 			a11 = a11 - r;
 			a22 = a22 + r;
@@ -1094,9 +988,9 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 				t = a13 / u;
 			} else {
 				r = 0.5L * u / a13;
-				t = ((r >= 0.0L) ? 1.0L / (r + mc_sqrtl(1.0L + mc_raise2l(r))) : 1.0L / (r - mc_sqrtl(1.0L + mc_raise2l(r))));
+				t = ((r >= 0.0L) ? 1.0L / (r + mc_hypot2l(1.0L, r)) : 1.0L / (r - mc_hypot2l(1.0L, r)));
 			}
-			c   = 1.0L / mc_sqrtl(1.0L + mc_raise2l(t));
+			c   = 1.0L / mc_hypot2l(1.0L, t);
 			s   = t * c;
 			u   = s / (1.0L + c);
 			r   = t * a13;
@@ -1125,9 +1019,9 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 				t = a23 / u;
 			} else {
 				r = 0.5L * u / a23;
-				t = ((r >= 0.0L) ? 1.0L / (r + mc_sqrtl(1.0L + mc_raise2l(r))) : 1.0L / (r - mc_sqrtl(1.0L + mc_raise2l(r))));
+				t = ((r >= 0.0L) ? 1.0L / (r + mc_hypot2l(1.0L, r)) : 1.0L / (r - mc_hypot2l(1.0L, r)));
 			}
-			c   = 1.0L / mc_sqrtl(1.0L + mc_raise2l(t));
+			c   = 1.0L / mc_hypot2l(1.0L, t);
 			s   = t * c;
 			u   = s / (1.0L + c);
 			r   = t * a23;
@@ -1151,9 +1045,45 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 			v32 = vpr - s * (vqr + vpr * u);
 			v33 = vqr + s * (vpr - vqr * u);
 		}
+		if (mc_fabsl(v11) < MCLIMITS_EPSILONL) {
+			v11 = 0.0L;
+		}
+		if (mc_fabsl(v12) < MCLIMITS_EPSILONL) {
+			v12 = 0.0L;
+		}
+		if (mc_fabsl(v13) < MCLIMITS_EPSILONL) {
+			v13 = 0.0L;
+		}
+		if (mc_fabsl(v21) < MCLIMITS_EPSILONL) {
+			v21 = 0.0L;
+		}
+		if (mc_fabsl(v22) < MCLIMITS_EPSILONL) {
+			v22 = 0.0L;
+		}
+		if (mc_fabsl(v23) < MCLIMITS_EPSILONL) {
+			v23 = 0.0L;
+		}
+		if (mc_fabsl(v31) < MCLIMITS_EPSILONL) {
+			v31 = 0.0L;
+		}
+		if (mc_fabsl(v32) < MCLIMITS_EPSILONL) {
+			v32 = 0.0L;
+		}
+		if (mc_fabsl(v33) < MCLIMITS_EPSILONL) {
+			v33 = 0.0L;
+		}
 		aa12 = mc_fabsl(a12);
 		aa13 = mc_fabsl(a13);
 		aa23 = mc_fabsl(a23);
+		if (aa12 < MCLIMITS_EPSILONL) {
+			aa12 = 0.0L;
+		}
+		if (aa13 < MCLIMITS_EPSILONL) {
+			aa13 = 0.0L;
+		}
+		if (aa23 < MCLIMITS_EPSILONL) {
+			aa23 = 0.0L;
+		}
 	}
 	if (i < j) {
 //!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).

@@ -103,6 +103,7 @@
 #	include <macadam/details/numa/mc_eigsy3x3.h>
 #	include <macadam/details/numa/mc_eye2x2.h>
 #	include <macadam/details/numa/mc_eye3x3.h>
+#	include <macadam/details/numa/mc_eyenxn.h>
 #	include <macadam/details/numa/mc_gvrot.h>
 #	include <macadam/details/numa/mc_l2norm1x2.h>
 #	include <macadam/details/numa/mc_l2norm1x3.h>

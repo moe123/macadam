@@ -332,7 +332,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 			goto lnext;
 	l30:
 //!# Convergence, changing sign if necessary.
-			if (z < 0.0f) {
+			if (mc_copysignf(1.0f, z) < 0.0f) {
 				s[k] = -z;
 				if (withv) {
 					for (j = 0; j  <n; j++) {
@@ -679,7 +679,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 			goto lnext;
 	l30:
 //!# Convergence, changing sign if necessary.
-			if (z < 0.0) {
+			if (mc_copysign(1.0, z) < 0.0) {
 				s[k] = -z;
 				if (withv) {
 					for (j = 0; j  <n; j++) {
@@ -1028,7 +1028,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 			goto lnext;
 	l30:
 //!# Convergence, changing sign if necessary.
-			if (z < 0.0) {
+			if (mc_copysign(1.0, z) < 0.0) {
 				s[k] = -z;
 				if (withv) {
 					for (j = 0; j  <n; j++) {
@@ -1377,7 +1377,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 			goto lnext;
 	l30:
 //!# Convergence, changing sign if necessary.
-			if (z < 0.0L) {
+			if (mc_copysignl(1.0L, z) < 0.0L) {
 				s[k] = -z;
 				if (withv) {
 					for (j = 0; j  <n; j++) {

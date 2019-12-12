@@ -20,7 +20,7 @@
 MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 {
 //!# A and Q may be the same. Using Givens rotations method.
-	const float tol = 1E-06f;
+	const float tol = 2.0f * MCLIMITS_EPSILONF;
 
 	float a0, b0, ch1, sh1, ch2, sh2, ch3, sh3, sh12, sh22, sh32;
 
@@ -81,7 +81,7 @@ MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 {
 //!# Using Givens rotations method.
-	const double tol = 1E-15;
+	const double tol = 2.0 * MCLIMITS_EPSILON;
 
 	double a0, b0, ch1, sh1, ch2, sh2, ch3, sh3, sh12, sh22, sh32;
 
@@ -142,7 +142,7 @@ MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 {
 //!# A and Q may be the same. Using Givens rotations method.
-	const double tol = 1E-15;
+	const double tol = 2.0 * MCLIMITS_EPSILON;
 
 	double a0, b0, ch1, sh1, ch2, sh2, ch3, sh3, sh12, sh22, sh32;
 
@@ -203,7 +203,7 @@ MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long double r[9])
 {
 //!# A and Q may be the same. Using Givens rotations method.
-	const long double tol = 1E-30L;
+	const long double tol = 2.0L * MCLIMITS_EPSILONL;
 
 	long double a0, b0, ch1, sh1, ch2, sh2, ch3, sh3, sh12, sh22, sh32;
 
