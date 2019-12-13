@@ -6,6 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_hypot2.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
@@ -25,13 +26,13 @@ MC_TARGET_FUNC void mc_gvrotf(float a1, float a2, float tol, float * ch, float *
 	*sh = w > tol ? a2 : 0.0f;
 	*ch = mc_fabsf(a1) + mc_fmaxf(w, tol);
 
-//!# Sign check; -0 not handled.
+//!# Sign check.
 	 w  = *sh;
-	*sh =  a1 < 0.0f ? *ch : *sh;
-	*ch =  a1 < 0.0f ?  w  : *ch;
+	*sh = mc_copysignf(1.0f, a1) < 0.0f ? *ch : *sh;
+	*ch = mc_copysignf(1.0f, a1) < 0.0f ?  w  : *ch;
 
 //!# Normalizing ch and sh by r.
-	 w  =  1.0f /  mc_hypot2f(*ch, *sh);
+	 w  =  1.0f / mc_hypot2f(*ch, *sh);
 	*ch = *ch * w;
 	*sh = *sh * w;
 }
@@ -50,10 +51,10 @@ MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, doubl
 	*sh = w > told ? a2d : 0.0;
 	*ch = mc_fabs(a1d) + mc_fmax(w, told);
 
-//!# Sign check; -0 not handled.
+//!# Sign check.
 	 w  = *sh;
-	*sh =  a1d < 0.0 ? *ch : *sh;
-	*ch =  a1d < 0.0 ?  w  : *ch;
+	*sh = mc_copysign(1.0, a1d) < 0.0 ? *ch : *sh;
+	*ch = mc_copysign(1.0, a1d) < 0.0 ?  w  : *ch;
 
 //!# Normalizing ch and sh by r.
 	 w  =  1.0 / mc_hypot2(*ch, *sh);
@@ -71,10 +72,10 @@ MC_TARGET_FUNC void mc_gvrot(double a1, double a2, double tol, double * ch, doub
 	*sh = w > tol ? a2 : 0.0;
 	*ch = mc_fabs(a1) + mc_fmax(w, tol);
 
-//!# Sign check; -0 not handled.
+//!# Sign check.
 	 w  = *sh;
-	*sh =  a1 < 0.0 ? *ch : *sh;
-	*ch =  a1 < 0.0 ?  w  : *ch;
+	*sh = mc_copysign(1.0, a1) < 0.0 ? *ch : *sh;
+	*ch = mc_copysign(1.0, a1) < 0.0 ?  w  : *ch;
 
 //!# Normalizing ch and sh by r.
 	 w  =  1.0 / mc_hypot2(*ch, *sh);
@@ -92,10 +93,10 @@ MC_TARGET_FUNC void mc_gvrotl(long double a1, long double a2, long double tol, l
 	*sh = w > tol ? a2 : 0.0L;
 	*ch = mc_fabsl(a1) + mc_fmaxl(w, tol);
 
-//!# Sign check; -0 not handled.
+//!# Sign check.
 	 w  = *sh;
-	*sh =  a1 < 0.0L ? *ch : *sh;
-	*ch =  a1 < 0.0L ?  w  : *ch;
+	*sh = mc_copysignl(1.0L, a1) < 0.0L ? *ch : *sh;
+	*ch = mc_copysignl(1.0L, a1) < 0.0L ?  w  : *ch;
 
 //!# Normalizing ch and sh by r.
 	 w  =  1.0L / mc_hypot2l(*ch, *sh);

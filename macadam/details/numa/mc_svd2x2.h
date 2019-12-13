@@ -31,14 +31,15 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2f(u, a, a);
 
-//!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
-//!# storing temporarily eigenvalues into S first three entries.
+//!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2f(u, s, v)) {
 		mc_eye2x2f(s);
 		mc_mulab2x2f(u, a, v);
-//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+//!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2f(u, u, s)) {
-//!# Step 4: Changing sign.
+//!# Step 4: Decimeting off-diagonal residual elements.
+			s[1] = 0.0f; s[2] = 0.0f;
+//!# Step 5: Changing sign if required.
 			if (mc_copysignf(1.0f, s[0]) < 0.0f) {
 				s[0] = -s[0];
 				v[0] = -v[0];
@@ -49,7 +50,7 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
-//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+//!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
 				mcswap_var(w, v[0], v[1]);
@@ -75,14 +76,15 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2ff(u, a, a);
 
-//!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
-//!# storing temporarily eigenvalues into S first three entries.
+//!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2(u, s, v)) {
 		mc_eye2x2(s);
 		mc_mulab2x2fd(u, a, v);
-//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+//!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2(u, u, s)) {
-//!# Step 4: Changing sign.
+//!# Step 4: Decimeting off-diagonal residual elements.
+			s[1] = 0.0; s[2] = 0.0;
+//!# Step 5: Changing sign if required.
 			if (mc_copysign(1.0, s[0]) < 0.0) {
 				s[0] = -s[0];
 				v[0] = -v[0];
@@ -93,7 +95,7 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
-//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+//!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
 				mcswap_var(w, v[0], v[1]);
@@ -119,14 +121,15 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2(u, a, a);
 
-//!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
-//!# storing temporarily eigenvalues into S first three entries.
+//!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2(u, s, v)) {
 		mc_eye2x2(s);
 		mc_mulab2x2(u, a, v);
-//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+//!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2(u, u, s)) {
-//!# Step 4: Changing sign.
+//!# Step 4: Decimeting off-diagonal residual elements.
+			s[1] = 0.0; s[2] = 0.0;
+//!# Step 5: Changing sign if required.
 			if (mc_copysign(1.0, s[0]) < 0.0) {
 				s[0] = -s[0];
 				v[0] = -v[0];
@@ -137,7 +140,7 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
-//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+//!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
 				mcswap_var(w, v[0], v[1]);
@@ -163,14 +166,15 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 //!# Step 1: Forming A'*A storing temporarily result into U.
 	mc_mulatb2x2l(u, a, a);
 
-//!# Step 2: Computing V i.e right-singular vectors and eigenvalues associated
-//!# storing temporarily eigenvalues into S first three entries.
+//!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2l(u, s, v)) {
 		mc_eye2x2l(s);
 		mc_mulab2x2l(u, a, v);
-//!# Step 3: Computing singular-values of and `scaling` U such as U=A*V*S^-1.
+//!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2l(u, u, s)) {
-//!# Step 4: Changing sign.
+//!# Step 4: Decimeting off-diagonal residual elements.
+			s[1] = 0.0L; s[2] = 0.0L;
+//!# Step 5: Changing sign if required.
 			if (mc_copysignl(1.0L, s[0]) < 0.0L) {
 				s[0] = -s[0];
 				v[0] = -v[0];
@@ -181,7 +185,7 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
-//!# Step 5: Reordering singular-values and basis (descending i.e largest first).
+//!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
 				mcswap_var(w, v[0], v[1]);

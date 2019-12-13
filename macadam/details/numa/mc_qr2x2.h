@@ -26,18 +26,13 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 	}
 	mc_zeros2x2f(r);
 
-	w = mc_hypot2f(q[0], q[2]);
+	w    = mc_hypot2f(q[0], q[2]);
+	r[0] = w;
 	if (w != 0.0f) {
-		r[0] = w;
 		w    = 1.0f / w;
-	} else {
-		mc_eye2x2f(q);
-		mc_eye2x2f(r);
-		return -1;
+		q[0] = q[0] * w;
+		q[2] = q[2] * w;
 	}
-
-	q[0] = q[0] * w;
-	q[2] = q[2] * w;
 
 	w    = q[0] * q[1] + q[2] * q[3];
 	r[1] = w;
@@ -45,18 +40,13 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_hypot2f(q[1], q[3]);
+	w    = mc_hypot2f(q[1], q[3]);
+	r[3] = w;
 	if (w != 0.0f) {
-		r[3] = w;
 		w    = 1.0f / w;
-	} else {
-		mc_eye2x2f(q);
-		mc_eye2x2f(r);
-		return -1;
+		q[1] = q[1] * w;
+		q[3] = q[3] * w;
 	}
-
-	q[1] = q[1] * w;
-	q[3] = q[3] * w;
 
 	return 0;
 }
@@ -71,18 +61,13 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 
 	mc_zeros2x2(r);
 
-	w = mc_hypot2(q[0], q[2]);
+	w    = mc_hypot2(q[0], q[2]);
+	r[0] = w;
 	if (w != 0.0) {
-		r[0] = w;
 		w    = 1.0 / w;
-	} else {
-		mc_eye2x2(q);
-		mc_eye2x2(r);
-		return -1;
+		q[0] = q[0] * w;
+		q[2] = q[2] * w;
 	}
-
-	q[0] = q[0] * w;
-	q[2] = q[2] * w;
 
 	w    = q[0] * q[1] + q[2] * q[3];
 	r[1] = w;
@@ -90,18 +75,13 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_hypot2(q[1], q[3]);
+	w    = mc_hypot2(q[1], q[3]);
+	r[3] = w;
 	if (w != 0.0) {
-		r[3] = w;
 		w    = 1.0 / w;
-	} else {
-		mc_eye2x2(q);
-		mc_eye2x2(r);
-		return -1;
+		q[1] = q[1] * w;
+		q[3] = q[3] * w;
 	}
-
-	q[1] = q[1] * w;
-	q[3] = q[3] * w;
 
 	return 0;
 }
@@ -118,18 +98,13 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 
 	mc_zeros2x2(r);
 
-	w = mc_hypot2(q[0], q[2]);
+	w    = mc_hypot2(q[0], q[2]);
+	r[0] = w;
 	if (w != 0.0) {
-		r[0] = w;
 		w    = 1.0 / w;
-	} else {
-		mc_eye2x2(q);
-		mc_eye2x2(r);
-		return -1;
+		q[0] = q[0] * w;
+		q[2] = q[2] * w;
 	}
-
-	q[0] = q[0] * w;
-	q[2] = q[2] * w;
 
 	w    = q[0] * q[1] + q[2] * q[3];
 	r[1] = w;
@@ -137,18 +112,13 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_hypot2(q[1], q[3]);
+	w    = mc_hypot2(q[1], q[3]);
+	r[3] = w;
 	if (w != 0.0) {
-		r[3] = w;
 		w    = 1.0 / w;
-	} else {
-		mc_eye2x2(q);
-		mc_eye2x2(r);
-		return -1;
+		q[1] = q[1] * w;
+		q[3] = q[3] * w;
 	}
-
-	q[1] = q[1] * w;
-	q[3] = q[3] * w;
 
 	return 0;
 }
@@ -165,18 +135,13 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 
 	mc_zeros2x2l(r);
 
-	w = mc_hypot2l(q[0], q[2]);
+	w    = mc_hypot2l(q[0], q[2]);
+	r[0] = w;
 	if (w != 0.0L) {
-		r[0] = w;
 		w    = 1.0L / w;
-	} else {
-		mc_eye2x2l(q);
-		mc_eye2x2l(r);
-		return -1;
+		q[0] = q[0] * w;
+		q[2] = q[2] * w;
 	}
-
-	q[0] = q[0] * w;
-	q[2] = q[2] * w;
 
 	w    = q[0] * q[1] + q[2] * q[3];
 	r[1] = w;
@@ -184,18 +149,13 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 	q[1] = q[1] - w * q[0];
 	q[3] = q[3] - w * q[2];
 
-	w = mc_hypot2l(q[1], q[3]);
+	w    = mc_hypot2l(q[1], q[3]);
+	r[3] = w;
 	if (w != 0.0L) {
-		r[3] = w;
 		w    = 1.0L / w;
-	} else {
-		mc_eye2x2l(q);
-		mc_eye2x2l(r);
-		return -1;
+		q[1] = q[1] * w;
+		q[3] = q[3] * w;
 	}
-
-	q[1] = q[1] * w;
-	q[3] = q[3] * w;
 
 	return 0;
 }
