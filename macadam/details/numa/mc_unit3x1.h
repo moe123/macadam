@@ -13,28 +13,43 @@
 
 #pragma mark - mc_unit3x1 -
 
-MC_TARGET_FUNC void mc_unit3x1f(int m, int n, int j, float a[3])
+MC_TARGET_FUNC void mc_unit3x1f(int n, int j, float * a)
 {
-	const float scale = 1.0f / mc_l2norm3x1f(m, n, j, a);
-	a[j]              = a[j] * scale;
-	a[n + j]          = a[n + j] * scale;
-	a[(n * 2) + j]    = a[(n * 2) + j] * scale;
+	const float norm = mc_l2norm3x1f(n, j, a);
+	if (norm != 0.0f) {
+		const float scale = 1.0f / norm;
+		a[j]              = a[j] * scale;
+		a[n + j]          = a[n + j] * scale;
+		a[(n * 2) + j]    = a[(n * 2) + j] * scale;
+	} else {
+		a[j] = 1.0f;
+	}
 }
 
-MC_TARGET_FUNC void mc_unit3x1(int m, int n, int j, double a[3])
+MC_TARGET_FUNC void mc_unit3x1(int n, int j, double * a)
 {
-	const double scale = 1.0 / mc_l2norm3x1(m, n, j, a);
-	a[j]               = a[j] * scale;
-	a[n + j]           = a[n + j] * scale;
-	a[(n * 2) + j]     = a[(n * 2) + j] * scale;
+	const double norm = mc_l2norm3x1(n, j, a);
+	if (norm != 0.0) {
+		const double scale = 1.0 / norm;
+		a[j]               = a[j] * scale;
+		a[n + j]           = a[n + j] * scale;
+		a[(n * 2) + j]     = a[(n * 2) + j] * scale;
+	} else {
+		a[j] = 1.0;
+	}
 }
 
-MC_TARGET_FUNC void mc_unit3x1l(int m, int n, int j, long double a[3])
+MC_TARGET_FUNC void mc_unit3x1l(int n, int j, long double * a)
 {
-	const long double scale = 1.0L / mc_l2norm3x1l(m, n, j, a);
-	a[j]                    = a[j] * scale;
-	a[n + j]                = a[n + j] * scale;
-	a[(n * 2) + j]          = a[(n * 2) + j] * scale;
+	const long double norm = mc_l2norm3x1l(n, j, a);
+	if (norm != 0.0L) {
+		const long double scale = 1.0L / norm;
+		a[j]                    = a[j] * scale;
+		a[n + j]                = a[n + j] * scale;
+		a[(n * 2) + j]          = a[(n * 2) + j] * scale;
+	} else {
+		a[j] = 1.0L;
+	}
 }
 
 #endif /* !MC_UNIT3X1_H */

@@ -6,10 +6,10 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_hypot2.h>
 #include <macadam/details/math/mc_hypot3.h>
 #include <macadam/details/numa/mc_eye3x3.h>
 #include <macadam/details/numa/mc_gvrot.h>
+#include <macadam/details/numa/mc_unit3x1.h>
 #include <macadam/details/numa/mc_zeros3x3.h>
 
 #ifndef MC_QR3X3_H
@@ -285,6 +285,8 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 		q[0] = q[0] * w;
 		q[3] = q[3] * w;
 		q[6] = q[6] * w;
+	} else {
+		mc_unit3x1f(3, 0, q);
 	}
 
 	w    = q[0] * q[1] + q[3] * q[4] + q[6] * q[7];
@@ -301,6 +303,8 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 		q[1] = q[1] * w;
 		q[4] = q[4] * w;
 		q[7] = q[7] * w;
+	} else {
+		mc_unit3x1f(3, 1, q);
 	}
 
 	w    = q[0] * q[2] + q[3] * q[5] + q[6] * q[8];
@@ -324,6 +328,8 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 		q[2] = q[2] * w;
 		q[5] = q[5] * w;
 		q[8] = q[8] * w;
+	} else {
+		mc_unit3x1f(3, 2, q);
 	}
 
 	return 0;
@@ -347,6 +353,8 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 		q[0] = q[0] * w;
 		q[3] = q[3] * w;
 		q[6] = q[6] * w;
+	} else {
+		mc_unit3x1(3, 0, q);
 	}
 
 	w    = q[0] * q[1] + q[3] * q[4] + q[6] * q[7];
@@ -363,6 +371,8 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 		q[1] = q[1] * w;
 		q[4] = q[4] * w;
 		q[7] = q[7] * w;
+	} else {
+		mc_unit3x1(3, 1, q);
 	}
 
 	w    = q[0] * q[2] + q[3] * q[5] + q[6] * q[8];
@@ -386,6 +396,8 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 		q[2] = q[2] * w;
 		q[5] = q[5] * w;
 		q[8] = q[8] * w;
+	} else {
+		mc_unit3x1(3, 2, q);
 	}
 
 	return 0;
@@ -404,18 +416,16 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 
 	mc_zeros3x3(r);
 
-	w = mc_hypot3(q[0], q[3], q[6]);
+	w    = mc_hypot3(q[0], q[3], q[6]);
+	r[0] = w;
 	if (w != 0.0) {
-		r[0] = w;
 		w    = 1.0 / w;
+		q[0] = q[0] * w;
+		q[3] = q[3] * w;
+		q[6] = q[6] * w;
 	} else {
-		mc_eye3x3(q);
-		mc_eye3x3(r);
-		return -1;
+		mc_unit3x1(3, 0, q);
 	}
-	q[0] = q[0] * w;
-	q[3] = q[3] * w;
-	q[6] = q[6] * w;
 
 	w    = q[0] * q[1] + q[3] * q[4] + q[6] * q[7];
 	r[1] = w;
@@ -424,18 +434,16 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 	q[4] = q[4] - w * q[3];
 	q[7] = q[7] - w * q[6];
 
-	w = mc_hypot3(q[1], q[4], q[7]);
+	w    = mc_hypot3(q[1], q[4], q[7]);
+	r[4] = w;
 	if (w != 0.0) {
-		r[4] = w;
 		w    = 1.0 / w;
+		q[1] = q[1] * w;
+		q[4] = q[4] * w;
+		q[7] = q[7] * w;
 	} else {
-		mc_eye3x3(q);
-		mc_eye3x3(r);
-		return -1;
+		mc_unit3x1(3, 1, q);
 	}
-	q[1] = q[1] * w;
-	q[4] = q[4] * w;
-	q[7] = q[7] * w;
 
 	w    = q[0] * q[2] + q[3] * q[5] + q[6] * q[8];
 	r[2] = w;
@@ -451,18 +459,16 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 	q[5] = q[5] - w * q[4];
 	q[8] = q[8] - w * q[7];
 
-	w = mc_hypot3(q[2], q[5], q[8]);
+	w    = mc_hypot3(q[2], q[5], q[8]);
+	r[8] = w;
 	if (w != 0.0) {
-		r[8] = w;
 		w    = 1.0 / w;
+		q[2] = q[2] * w;
+		q[5] = q[5] * w;
+		q[8] = q[8] * w;
 	} else {
-		mc_eye3x3(q);
-		mc_eye3x3(r);
-		return -1;
+		mc_unit3x1(3, 2, q);
 	}
-	q[2] = q[2] * w;
-	q[5] = q[5] * w;
-	q[8] = q[8] * w;
 
 	return 0;
 }
@@ -480,18 +486,16 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 
 	mc_zeros3x3l(r);
 
-	w = mc_hypot3l(q[0], q[3], q[6]);
+	w    = mc_hypot3l(q[0], q[3], q[6]);
+	r[0] = w;
 	if (w != 0.0L) {
-		r[0] = w;
 		w    = 1.0L / w;
+		q[0] = q[0] * w;
+		q[3] = q[3] * w;
+		q[6] = q[6] * w;
 	} else {
-		mc_eye3x3l(q);
-		mc_eye3x3l(r);
-		return -1;
+		mc_unit3x1l(3, 0, q);
 	}
-	q[0] = q[0] * w;
-	q[3] = q[3] * w;
-	q[6] = q[6] * w;
 
 	w    = q[0] * q[1] + q[3] * q[4] + q[6] * q[7];
 	r[1] = w;
@@ -500,18 +504,16 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 	q[4] = q[4] - w * q[3];
 	q[7] = q[7] - w * q[6];
 
-	w = mc_hypot3l(q[1], q[4], q[7]);
+	w    = mc_hypot3l(q[1], q[4], q[7]);
+	r[4] = w;
 	if (w != 0.0L) {
-		r[4] = w;
 		w    = 1.0L / w;
+		q[1] = q[1] * w;
+		q[4] = q[4] * w;
+		q[7] = q[7] * w;
 	} else {
-		mc_eye3x3l(q);
-		mc_eye3x3l(r);
-		return -1;
+		mc_unit3x1l(3, 1, q);
 	}
-	q[1] = q[1] * w;
-	q[4] = q[4] * w;
-	q[7] = q[7] * w;
 
 	w    = q[0] * q[2] + q[3] * q[5] + q[6] * q[8];
 	r[2] = w;
@@ -527,18 +529,16 @@ MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long doub
 	q[5] = q[5] - w * q[4];
 	q[8] = q[8] - w * q[7];
 
-	w = mc_hypot3l(q[2], q[5], q[8]);
+	w    = mc_hypot3l(q[2], q[5], q[8]);
+	r[8] = w;
 	if (w != 0.0L) {
-		r[8] = w;
 		w    = 1.0L / w;
+		q[2] = q[2] * w;
+		q[5] = q[5] * w;
+		q[8] = q[8] * w;
 	} else {
-		mc_eye3x3l(q);
-		mc_eye3x3l(r);
-		return -1;
+		mc_unit3x1l(3, 2, q);
 	}
-	q[2] = q[2] * w;
-	q[5] = q[5] * w;
-	q[8] = q[8] * w;
 
 	return 0;
 }

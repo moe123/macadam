@@ -15,28 +15,43 @@
 
 MC_TARGET_FUNC void mc_unitmx1f(int m, int n, int j, float * a)
 {
-	const float scale = 1.0f / mc_l2normmx1f(m, n, j, a);
-	int i             = 0;
-	for (; i < m; i++) {
-		a[(n * i) + j] = a[(n * i) + j] * scale;
+	const float norm = mc_l2normmx1f(m, n, j, a);
+	if (norm != 0.0f) {
+		const float scale = 1.0f / norm;
+		int i             = 0;
+		for (; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] * scale;
+		}
+	} else {
+		a[j] = 1.0f;
 	}
 }
 
 MC_TARGET_FUNC void mc_unitmx1(int m, int n, int j, double * a)
 {
-	const double scale = 1.0 / mc_l2normmx1(m, n, j, a);
-	int i              = 0;
-	for (; i < m; i++) {
-		a[(n * i) + j] = a[(n * i) + j] * scale;
+	const double norm = mc_l2normmx1(m, n, j, a);
+	if (norm != 0.0) {
+		const double scale = 1.0 / norm;
+		int i              = 0;
+		for (; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] * scale;
+		}
+	} else {
+		a[j] = 1.0;
 	}
 }
 
 MC_TARGET_FUNC void mc_unitmx1l(int m, int n, int j, long double * a)
 {
-	const long double scale = 1.0L / mc_l2normmx1l(m, n, j, a);
-	int i                   = 0;
-	for (; i < m; i++) {
-		a[(n * i) + j] = a[(n * i) + j] * scale;
+	const long double norm = mc_l2normmx1l(m, n, j, a);
+	if (norm != 0.0L) {
+		const long double scale = 1.0L / norm;
+		int i                   = 0;
+		for (; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] * scale;
+		}
+	} else {
+		a[j] = 1.0L;
 	}
 }
 
