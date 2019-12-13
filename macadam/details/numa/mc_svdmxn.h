@@ -78,9 +78,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
 					if (mc_fabsf(h) == 0.0f) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					f = e / h;
 					for (k = i; k < m; k++) {
@@ -100,9 +98,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				g = -mc_copysignf(1.0f, f) * mc_sqrtf(e);
 				h = f * g - e;
 				if (mc_fabsf(h) == 0.0f) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
 				for (j = l; j < n; j++) {
@@ -130,9 +126,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				if (g != 0.0f) {
 					h = u[(n * i) + (i + 1)] * g;
 					if (mc_fabsf(h) == 0.0f) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < n; j++) {
 						v[(n * j) + i] = u[(n * i) + j] / h;
@@ -168,9 +162,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				l = i + 1;
 				g = s[i];
 				if (mc_fabsf(g) == 0.0f) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				for (j = l; j < m; j++) {
 					u[(n * i) + j] = 0.0f;
@@ -178,9 +170,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				if (g != 0.0f) {
 					h = u[(n * i) + i] * g;
 					if (mc_fabsf(h) == 0.0f) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < m; j++) {
 						e = 0.0f;
@@ -233,9 +223,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				g  = s[i];
 				h  = s[i] = mc_hypot2f(f, g);
 				if (h == 0.0f) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				c  = g / h;
 				e = -f / h;
@@ -268,9 +256,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 			g = w[k - 1];
 			h = w[k];
 			if (mc_fabsf(y) == 0.0f || mc_fabsf(h) == 0.0f) {
-				r = -1;
-				goto l40;
-				break;
+				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0f * h * y);
 			g = mc_hypot2f(f, 1.0f);
@@ -286,9 +272,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				g        = g * c;
 				z        = mc_hypot2f(f, h);
 				if (z == 0.0f) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				w[i - 1] = z;
 				c        = f / z;
@@ -307,9 +291,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 				}
 				z        = mc_hypot2f(f, h);
 				if (z == 0.0f) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				s[i - 1] = z;
 				c        = f / z;
@@ -425,9 +407,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
 					if (mc_fabs(h) == 0.0) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					f = e / h;
 					for (k = i; k < m; k++) {
@@ -447,9 +427,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				g = -mc_copysign(1.0, f) * mc_sqrt(e);
 				h = f * g - e;
 				if (mc_fabs(h) == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
 				for (j = l; j < n; j++) {
@@ -477,9 +455,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				if (g != 0.0) {
 					h = u[(n * i) + (i + 1)] * g;
 					if (mc_fabs(h) == 0.0) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < n; j++) {
 						v[(n * j) + i] = u[(n * i) + j] / h;
@@ -515,9 +491,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				l = i + 1;
 				g = s[i];
 				if (mc_fabs(g) == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				for (j = l; j < m; j++) {
 					u[(n * i) + j] = 0.0;
@@ -525,9 +499,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				if (g != 0.0) {
 					h = u[(n * i) + i] * g;
 					if (mc_fabs(h) == 0.0) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < m; j++) {
 						e = 0.0;
@@ -580,9 +552,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				g  = s[i];
 				h  = s[i] = mc_hypot2(f, g);
 				if (h == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				c  = g / h;
 				e = -f / h;
@@ -615,9 +585,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 			g = w[k - 1];
 			h = w[k];
 			if (mc_fabs(y) == 0.0 || mc_fabs(h) == 0.0) {
-				r = -1;
-				goto l40;
-				break;
+				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0 * h * y);
 			g = mc_hypot2(f, 1.0);
@@ -633,9 +601,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				g        = g * c;
 				z        = mc_hypot2(f, h);
 				if (z == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				w[i - 1] = z;
 				c        = f / z;
@@ -654,9 +620,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 				}
 				z        = mc_hypot2(f, h);
 				if (z == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				s[i - 1] = z;
 				c        = f / z;
@@ -774,9 +738,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
 					if (mc_fabs(h) == 0.0) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					f = e / h;
 					for (k = i; k < m; k++) {
@@ -796,9 +758,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				g = -mc_copysign(1.0, f) * mc_sqrt(e);
 				h = f * g - e;
 				if (mc_fabs(h) == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
 				for (j = l; j < n; j++) {
@@ -826,9 +786,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				if (g != 0.0) {
 					h = u[(n * i) + (i + 1)] * g;
 					if (mc_fabs(h) == 0.0) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < n; j++) {
 						v[(n * j) + i] = u[(n * i) + j] / h;
@@ -864,9 +822,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				l = i + 1;
 				g = s[i];
 				if (mc_fabs(g) == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				for (j = l; j < m; j++) {
 					u[(n * i) + j] = 0.0;
@@ -874,9 +830,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				if (g != 0.0) {
 					h = u[(n * i) + i] * g;
 					if (mc_fabs(h) == 0.0) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < m; j++) {
 						e = 0.0;
@@ -929,9 +883,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				g  = s[i];
 				h  = s[i] = mc_hypot2(f, g);
 				if (h == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				c  = g / h;
 				e = -f / h;
@@ -964,9 +916,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 			g = w[k - 1];
 			h = w[k];
 			if (mc_fabs(y) == 0.0 || mc_fabs(h) == 0.0) {
-				r = -1;
-				goto l40;
-				break;
+				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0 * h * y);
 			g = mc_hypot2(f, 1.0);
@@ -982,9 +932,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				g        = g * c;
 				z        = mc_hypot2(f, h);
 				if (z == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				w[i - 1] = z;
 				c        = f / z;
@@ -1003,9 +951,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 				}
 				z        = mc_hypot2(f, h);
 				if (z == 0.0) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				s[i - 1] = z;
 				c        = f / z;
@@ -1123,9 +1069,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
 					if (mc_fabsl(h) == 0.0L) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					f = e / h;
 					for (k = i; k < m; k++) {
@@ -1145,9 +1089,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				g = -mc_copysignl(1.0L, f) * mc_sqrtl(e);
 				h = f * g - e;
 				if (mc_fabsl(h) == 0.0L) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
 				for (j = l; j < n; j++) {
@@ -1175,9 +1117,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				if (g != 0.0L) {
 					h = u[(n * i) + (i + 1)] * g;
 					if (mc_fabsl(h) == 0.0L) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < n; j++) {
 						v[(n * j) + i] = u[(n * i) + j] / h;
@@ -1213,9 +1153,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				l = i + 1;
 				g = s[i];
 				if (mc_fabsl(g) == 0.0L) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				for (j = l; j < m; j++) {
 					u[(n * i) + j] = 0.0L;
@@ -1223,9 +1161,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				if (g != 0.0L) {
 					h = u[(n * i) + i] * g;
 					if (mc_fabsl(h) == 0.0L) {
-						r = -1;
-						goto l40;
-						break;
+						continue;
 					}
 					for (j = l; j < m; j++) {
 						e = 0.0L;
@@ -1278,9 +1214,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				g  = s[i];
 				h  = s[i] = mc_hypot2l(f, g);
 				if (h == 0.0L) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				c  = g / h;
 				e = -f / h;
@@ -1313,9 +1247,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 			g = w[k - 1];
 			h = w[k];
 			if (mc_fabsl(y) == 0.0L || mc_fabsl(h) == 0.0L) {
-				r = -1;
-				goto l40;
-				break;
+				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0L * h * y);
 			g = mc_hypot2l(f, 1.0L);
@@ -1331,9 +1263,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				g        = g * c;
 				z        = mc_hypot2l(f, h);
 				if (z == 0.0L) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				w[i - 1] = z;
 				c        = f / z;
@@ -1352,9 +1282,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 				}
 				z        = mc_hypot2l(f, h);
 				if (z == 0.0L) {
-					r = -1;
-					goto l40;
-					break;
+					continue;
 				}
 				s[i - 1] = z;
 				c        = f / z;
