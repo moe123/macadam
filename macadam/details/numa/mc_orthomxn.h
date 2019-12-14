@@ -49,6 +49,7 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q)
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0f;
 					}
+					q[j] = 1.0f;
 				} else {
 					bnorm = mc_fmaxf(bnorm, cnorm);
 					cnorm = 1.0f / cnorm;
@@ -56,6 +57,8 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q)
 						q[(n * i) + j] = q[(n * i) + j] * cnorm;
 					}
 				}
+			} else {
+				q[j] = 1.0f;
 			}
 		}
 		return 0;
@@ -95,6 +98,7 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q)
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0;
 					}
+					q[j] = 1.0;
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
 					cnorm = 1.0 / cnorm;
@@ -102,6 +106,8 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q)
 						q[(n * i) + j] = q[(n * i) + j] * cnorm;
 					}
 				}
+			} else {
+				q[j] = 1.0;
 			}
 		}
 		return 0;
@@ -142,6 +148,7 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q)
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0;
 					}
+					q[j] = 1.0;
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
 					cnorm = 1.0 / cnorm;
@@ -149,6 +156,8 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q)
 						q[(n * i) + j] = q[(n * i) + j] * cnorm;
 					}
 				}
+			} else {
+				q[j] = 1.0;
 			}
 		}
 		return 0;
@@ -189,6 +198,7 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0L;
 					}
+					q[j] = 1.0L;
 				} else {
 					bnorm = mc_fmaxl(bnorm, cnorm);
 					cnorm = 1.0L / cnorm;
@@ -196,6 +206,8 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 						q[(n * i) + j] = q[(n * i) + j] * cnorm;
 					}
 				}
+			} else {
+				q[j] = 1.0L;
 			}
 		}
 		return 0;
