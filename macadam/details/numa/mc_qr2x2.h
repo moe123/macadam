@@ -8,7 +8,6 @@
 
 #include <macadam/details/math/mc_hypot2.h>
 #include <macadam/details/numa/mc_eye2x2.h>
-#include <macadam/details/numa/mc_unit2x1.h>
 #include <macadam/details/numa/mc_zeros2x2.h>
 
 #ifndef MC_QR2X2_H
@@ -34,7 +33,7 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 		q[0] = q[0] * w;
 		q[2] = q[2] * w;
 	} else {
-		mc_unit2x1f(2, 0, q);
+		q[0] = 1.0f;
 	}
 
 	w    = q[0] * q[1] + q[2] * q[3];
@@ -50,7 +49,7 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 		q[1] = q[1] * w;
 		q[3] = q[3] * w;
 	} else {
-		mc_unit2x1f(2, 1, q);
+		q[1] = 1.0f;
 	}
 
 	return 0;
@@ -73,7 +72,7 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 		q[0] = q[0] * w;
 		q[2] = q[2] * w;
 	} else {
-		mc_unit2x1(2, 0, q);
+		q[0] = 1.0;
 	}
 
 	w    = q[0] * q[1] + q[2] * q[3];
@@ -89,7 +88,7 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 		q[1] = q[1] * w;
 		q[3] = q[3] * w;
 	} else {
-		mc_unit2x1(2, 1, q);
+		q[1] = 1.0;
 	}
 
 	return 0;
@@ -114,7 +113,7 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 		q[0] = q[0] * w;
 		q[2] = q[2] * w;
 	} else {
-		mc_unit2x1(2, 0, q);
+		q[0] = 1.0;
 	}
 
 	w    = q[0] * q[1] + q[2] * q[3];
@@ -130,7 +129,7 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 		q[1] = q[1] * w;
 		q[3] = q[3] * w;
 	} else {
-		mc_unit2x1(2, 1, q);
+		q[1] = 1.0;
 	}
 
 	return 0;
@@ -155,7 +154,7 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 		q[0] = q[0] * w;
 		q[2] = q[2] * w;
 	} else {
-		mc_unit2x1l(2, 0, q);
+		q[0] = 1.0L;
 	}
 
 	w    = q[0] * q[1] + q[2] * q[3];
@@ -171,7 +170,7 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 		q[1] = q[1] * w;
 		q[3] = q[3] * w;
 	} else {
-		mc_unit2x1l(2, 1, q);
+		q[1] = 1.0L;
 	}
 
 	return 0;

@@ -61,7 +61,6 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 				}
 				mcswap_var(w, lu[(n * i) + k], lu[(n * r) + k]);
 			}
-			fprintf(stderr, "\n");
 		}
 
 		for (j = i; j < n; j++) {
