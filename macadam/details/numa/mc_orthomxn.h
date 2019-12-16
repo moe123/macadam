@@ -16,10 +16,12 @@
 
 #pragma mark - mc_orthomxn -
 
-int mc_orthomxnf(int m, int n, const float * a, float tol, float * q)
+int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
 {
 //!# A and Q may be the same. Forming a ortho-normalized
 //!# basis Q using Modified Gram-Schmidt method.
+	const int wantr = mc_nonnull(r);
+
 	int i, j, k;
 	float bnorm, cnorm, dot;
 	if (m >= n) {
@@ -31,25 +33,32 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q)
 		if (tol <= 0.0f) {
 			tol = mc_fabsf(tol);
 		}
-		if (tol < MCLIMITS_TINYF) {
-			tol = MCLIMITS_TINYF;
-		}
 		bnorm = 0.0f;
 		for (j = 0; j < n; j++) {
+			if (wantr) {
+				cnorm          = mc_l2normmx1f(m, n, j, q);
+				r[(n * j) + j] = cnorm;
+			}
 			for (k = 0; k < j; k++) {
 				dot = mc_dotpmx1f(m, n, k, j, q, 1);
+				if (wantr) {
+					r[(n * k) + j] = dot;
+				}
 				for (i = 0; i < m; i++) {
 					q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 				}
 			}
-			cnorm = mc_l2normmx1f(m, n, j, q);
+			if (j > 0 || !wantr) {
+				cnorm = mc_l2normmx1f(m, n, j, q);
+			}
 			if (cnorm != 0.0f) {
 				if (cnorm < tol * bnorm) {
 //!# Norm is closed to zero, decimeting column.
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0f;
 					}
-					q[j] = 1.0f;
+					q[j]           = 1.0f;
+					r[(n * j) + j] = 1.0f;
 				} else {
 					bnorm = mc_fmaxf(bnorm, cnorm);
 					cnorm = 1.0f / cnorm;
@@ -66,10 +75,12 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q)
 	return -1;
 }
 
-int mc_orthomxnff(int m, int n, const float * a, float tol, double * q)
+int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
 {
 //!# Forming a ortho-normalized basis Q
 //!# using Modified Gram-Schmidt method.
+	const int wantr = mc_nonnull(r);
+
 	int i, j, k;
 	double bnorm, cnorm, dot, told;
 	if (m >= n) {
@@ -80,25 +91,32 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q)
 		if (told <= 0.0) {
 			told = mc_fabs(told);
 		}
-		if (told < MCLIMITS_TINY) {
-			told = MCLIMITS_TINY;
-		}
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
+			if (wantr) {
+				cnorm          = mc_l2normmx1(m, n, j, q);
+				r[(n * j) + j] = cnorm;
+			}
 			for (k = 0; k < j; k++) {
 				dot = mc_dotpmx1(m, n, k, j, q, 1);
+				if (wantr) {
+					r[(n * k) + j] = dot;
+				}
 				for (i = 0; i < m; i++) {
 					q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 				}
 			}
-			cnorm = mc_l2normmx1(m, n, j, q);
+			if (j > 0 || !wantr) {
+				cnorm = mc_l2normmx1(m, n, j, q);
+			}
 			if (cnorm != 0.0) {
 				if (cnorm < told * bnorm) {
 //!# Norm is closed to zero, decimeting column.
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0;
 					}
-					q[j] = 1.0;
+					q[j]           = 1.0;
+					r[(n * j) + j] = 1.0;
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
 					cnorm = 1.0 / cnorm;
@@ -115,10 +133,12 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q)
 	return -1;
 }
 
-int mc_orthomxn(int m, int n, const double * a, double tol, double * q)
+int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
 {
 //!# A and Q may be the same. Forming a ortho-normalized
 //!# basis Q using Modified Gram-Schmidt method.
+	const int wantr = mc_nonnull(r);
+
 	int i, j, k;
 	double bnorm, cnorm, dot;
 	if (m >= n) {
@@ -130,25 +150,32 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q)
 		if (tol <= 0.0) {
 			tol = mc_fabs(tol);
 		}
-		if (tol < MCLIMITS_TINY) {
-			tol = MCLIMITS_TINY;
-		}
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
+			if (wantr) {
+				cnorm          = mc_l2normmx1(m, n, j, q);
+				r[(n * j) + j] = cnorm;
+			}
 			for (k = 0; k < j; k++) {
 				dot = mc_dotpmx1(m, n, k, j, q, 1);
+				if (wantr) {
+					r[(n * k) + j] = dot;
+				}
 				for (i = 0; i < m; i++) {
 					q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 				}
 			}
-			cnorm = mc_l2normmx1(m, n, j, q);
+			if (j > 0 || !wantr) {
+				cnorm = mc_l2normmx1(m, n, j, q);
+			}
 			if (cnorm != 0.0) {
 				if (cnorm < tol * bnorm) {
 //!# Norm is closed to zero, decimeting column.
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0;
 					}
-					q[j] = 1.0;
+					q[j]           = 1.0;
+					r[(n * j) + j] = 1.0;
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
 					cnorm = 1.0 / cnorm;
@@ -165,10 +192,12 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q)
 	return -1;
 }
 
-int mc_orthomxnl(int m, int n, const long double * a, long double tol, long double * q)
+int mc_orthomxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
 {
 //!# A and Q may be the same. Forming a ortho-normalized
 //!# basis Q using Modified Gram-Schmidt method.
+	const int wantr = mc_nonnull(r);
+
 	int i, j, k;
 	long double bnorm, cnorm, dot;
 	if (m >= n) {
@@ -180,25 +209,32 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 		if (tol <= 0.0L) {
 			tol = mc_fabsl(tol);
 		}
-		if (tol < MCLIMITS_TINYL) {
-			tol = MCLIMITS_TINYL;
-		}
 		bnorm = 0.0L;
 		for (j = 0; j < n; j++) {
+			if (wantr) {
+				cnorm          = mc_l2normmx1l(m, n, j, q);
+				r[(n * j) + j] = cnorm;
+			}
 			for (k = 0; k < j; k++) {
 				dot = mc_dotpmx1l(m, n, k, j, q, 1);
+				if (wantr) {
+					r[(n * k) + j] = dot;
+				}
 				for (i = 0; i < m; i++) {
 					q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 				}
 			}
-			cnorm = mc_l2normmx1l(m, n, j, q);
+			if (j > 0 || !wantr) {
+				cnorm = mc_l2normmx1l(m, n, j, q);
+			}
 			if (cnorm != 0.0L) {
 				if (cnorm < tol * bnorm) {
 //!# Norm is closed to zero, decimeting column.
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0L;
 					}
-					q[j] = 1.0L;
+					q[j]           = 1.0L;
+					r[(n * j) + j] = 1.0L;
 				} else {
 					bnorm = mc_fmaxl(bnorm, cnorm);
 					cnorm = 1.0L / cnorm;

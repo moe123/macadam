@@ -29,7 +29,7 @@ MC_TARGET_PROC float mc_xpolyevalnef(float x, const float * p, unsigned int n, f
 				s = s * x + p[i];
 				e = e * z + mc_fabsf(s);
 			}
-			e    = MCLIMITS_EPSILONF * mc_fabsf(2.0f * e - mc_fabsf(s));
+			 e   = MCLIMITS_EPSILONF * mc_fabsf(2.0f * e - mc_fabsf(s));
 			*err = e;
 		} else {
 			for (i = m - 2; i >= 0; i--) {
@@ -56,7 +56,7 @@ MC_TARGET_PROC double mc_xpolyevalne(double x, const double * p, unsigned int n,
 				s = s * x + p[i];
 				e = e * z + mc_fabs(s);
 			}
-			e    = MCLIMITS_EPSILON * mc_fabs(2.0 * e - mc_fabs(s));
+			 e   = MCLIMITS_EPSILON * mc_fabs(2.0 * e - mc_fabs(s));
 			*err = e;
 		} else {
 			for (i = m - 2; i >= 0; i--) {
@@ -83,7 +83,7 @@ MC_TARGET_PROC long double mc_xpolyevalnel(long double x, const long double * p,
 				s = s * x + p[i];
 				e = e * z + mc_fabsl(s);
 			}
-			e    = MCLIMITS_EPSILONL * mc_fabsl(2.0L * e - mc_fabsl(s));
+			 e   = MCLIMITS_EPSILONL * mc_fabsl(2.0L * e - mc_fabsl(s));
 			*err = e;
 		} else {
 			for (i = m - 2; i >= 0; i--) {

@@ -28,7 +28,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m >= n then p=n; S is stored as a vector diagonal of size [1 x p].
@@ -317,7 +317,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 			if (mc_copysignf(1.0f, z) < 0.0f) {
 				s[k] = -z;
 				if (withv) {
-					for (j = 0; j  <n; j++) {
+					for (j = 0; j < n; j++) {
 						v[(n * j) + k] = -v[(n * j) + k];
 					}
 				}
@@ -359,7 +359,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m >= n then p=n; S is stored as a vector diagonal of size [1 x p].
@@ -646,7 +646,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 			if (mc_copysign(1.0, z) < 0.0) {
 				s[k] = -z;
 				if (withv) {
-					for (j = 0; j  <n; j++) {
+					for (j = 0; j < n; j++) {
 						v[(n * j) + k] = -v[(n * j) + k];
 					}
 				}
@@ -688,7 +688,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m >= n then p=n; S is stored as a vector diagonal of size [1 x p].
@@ -977,7 +977,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 			if (mc_copysign(1.0, z) < 0.0) {
 				s[k] = -z;
 				if (withv) {
-					for (j = 0; j  <n; j++) {
+					for (j = 0; j < n; j++) {
 						v[(n * j) + k] = -v[(n * j) + k];
 					}
 				}
@@ -1019,7 +1019,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m >= n then p=n; S is stored as a vector diagonal of size [1 x p].
@@ -1308,7 +1308,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 			if (mc_copysignl(1.0L, z) < 0.0L) {
 				s[k] = -z;
 				if (withv) {
-					for (j = 0; j  <n; j++) {
+					for (j = 0; j < n; j++) {
 						v[(n * j) + k] = -v[(n * j) + k];
 					}
 				}

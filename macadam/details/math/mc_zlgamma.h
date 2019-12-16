@@ -50,7 +50,7 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 	const float a10 = -1.39243221690590000000000000000000000000E-00f;
 
 	float a, b, c, d;
-	int n = 0, i = 0;
+	int n = 0, i;
 
 	*r_r = -MCLIMITS_MAXF;
 	*r_i = +0.0f;
@@ -103,7 +103,7 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 		*r_r = *r_r + (a8 * d * mc_cosf(15.0f * b));
 		*r_i = *r_i - (a8 * d * mc_sinf(15.0f * b));
 
-		 d   = mc_powf(a, 17.0f);
+		 d   = mc_powf(a, -17.0f);
 		*r_r = *r_r + (a9 * d * mc_cosf(17.0f * b));
 		*r_i = *r_i - (a9 * d * mc_sinf(17.0f * b));
 
@@ -114,11 +114,11 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 		if (x_r <= 7.0f) {
 			b = 0.0f;
 			a = 0.0f;
-			for (; i <= (n - 1); i++) {
+			for (i = 0 ; i <= (n - 1); i++) {
 				d = x_r + mc_cast(float, i);
 				b = b + (0.5f * mc_logf(mc_znormf(d, x_i))); 
 				a = a + (mc_atanf(x_i / (x_r + mc_cast(float, i))));
-			} 
+			}
 			*r_r = *r_r - b;
 			*r_i = *r_i - a;
 		}
@@ -161,7 +161,7 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 	const double a10 = -1.3924322169059000000000000000000000000000E-00;
 
 	double a, b, c, d;
-	int n = 0, i = 0;
+	int n = 0, i;
 
 	*r_r = -MCLIMITS_MAX;
 	*r_i = +0.0;
@@ -214,7 +214,7 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 		*r_r = *r_r + (a8 * d * mc_cos(15.0 * b));
 		*r_i = *r_i - (a8 * d * mc_sin(15.0 * b));
 
-		 d   = mc_pow(a, 17.0);
+		 d   = mc_pow(a, -17.0);
 		*r_r = *r_r + (a9 * d * mc_cos(17.0 * b));
 		*r_i = *r_i - (a9 * d * mc_sin(17.0 * b));
 
@@ -225,7 +225,7 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 		if (x_r <= 7.0) {
 			b = 0.0;
 			a = 0.0;
-			for (; i <= (n - 1); i++) {
+			for (i = 0; i <= (n - 1); i++) {
 				d = x_r + mc_cast(double, i);
 				b = b + (0.5 * mc_log(mc_znorm(d, x_i))); 
 				a = a + (mc_atan(x_i / (x_r + mc_cast(double, i))));
@@ -272,7 +272,7 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 	const long double a10 = -1.392432216905900000000000000000000000000000000000000000000000000E-00L;
 
 	long double a, b, c, d;
-	int n = 0, i = 0;
+	int n = 0, i;
 
 	*r_r = -MCLIMITS_MAXL;
 	*r_i = +0.0L;
@@ -325,7 +325,7 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 		*r_r = *r_r + (a8 * d * mc_cosl(15.0L * b));
 		*r_i = *r_i - (a8 * d * mc_sinl(15.0L * b));
 
-		 d   = mc_powl(a, 17.0L);
+		 d   = mc_powl(a, -17.0L);
 		*r_r = *r_r + (a9 * d * mc_cosl(17.0L * b));
 		*r_i = *r_i - (a9 * d * mc_sinl(17.0L * b));
 
@@ -336,7 +336,7 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 		if (x_r <= 7.0L) {
 			b = 0.0L;
 			a = 0.0L;
-			for (; i <= (n - 1); i++) {
+			for (i = 0; i <= (n - 1); i++) {
 				d = x_r + mc_cast(long double, i);
 				b = b + (0.5L * mc_logl(mc_znorml(d, x_i))); 
 				a = a + (mc_atanl(x_i / (x_r + mc_cast(long double, i))));

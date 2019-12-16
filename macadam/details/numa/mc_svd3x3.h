@@ -22,7 +22,7 @@ MC_TARGET_FUNC int mc_svd3x3f(const float a[9], float u[9], float s[9], float v[
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
@@ -105,7 +105,7 @@ MC_TARGET_FUNC int mc_svd3x3ff(const float a[9], double u[9], double s[9], doubl
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
@@ -188,7 +188,7 @@ MC_TARGET_FUNC int mc_svd3x3(const double a[9], double u[9], double s[9], double
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
@@ -271,7 +271,7 @@ MC_TARGET_FUNC int mc_svd3x3l(const long double a[9], long double u[9], long dou
 //!# The main result SVD provides is that we can write an m by n matrix A
 //!# such as U'*A=S*V' with:
 //!#     - U is an [m x p] orthogonal matrix. The left-singular vectors of A are a set of orthonormal eigenvectors of AA'.
-//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of M (found on the diagonal entries of Σ) are
+//!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
 //!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
