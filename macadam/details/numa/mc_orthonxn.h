@@ -15,21 +15,29 @@
 
 int mc_orthonxnf(int n, const float * a, float tol, float * q, float * restrict r)
 {
+//!# A and Q may be the same. Forming a ortho-normalized basis Q
+//!# of a square matrix using Modified Gram-Schmidt method.
 	return mc_orthomxnf(n, n, a, tol, q, r);
 }
 
 int mc_orthonxnff(int n, const float * a, float tol, double * q, double * restrict r)
 {
+//!# Forming a ortho-normalized basis Q of a square
+//!# matrix using Modified Gram-Schmidt method.
 	return mc_orthomxnff(n, n, a, tol, q, r);
 }
 
 int mc_orthonxn(int n, const double * a, double tol, double * q, double * restrict r)
 {
+//!# A and Q may be the same. Forming a ortho-normalized basis Q
+//!# of a square matrix using Modified Gram-Schmidt method.
 	return mc_orthomxn(n, n, a, tol, q, r);
 }
 
 int mc_orthonxnl(int n, const long double * a, long double tol, long double * q, long double * restrict r)
 {
+//!# A and Q may be the same. Forming a ortho-normalized basis Q
+//!# of a square matrix using Modified Gram-Schmidt method.
 	return mc_orthomxnl(n, n, a, tol, q, r);
 }
 

@@ -18,8 +18,10 @@
 
 int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
 {
-//!# A and Q may be the same. Forming a ortho-normalized
-//!# basis Q using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# A and Q may be the same. Forming a ortho-normalized basis Q using
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# If R is not null upper-triangle is computed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -34,7 +36,7 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 			tol = mc_fabsf(tol);
 		}
 		if (tol == 0.0f) {
-			tol == MCLIMITS_EPSILONF;
+			tol = MCLIMITS_EPSILONF;
 		}
 		bnorm = 0.0f;
 		for (j = 0; j < n; j++) {
@@ -82,8 +84,10 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 
 int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
 {
-//!# Forming a ortho-normalized basis Q
-//!# using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt
+//!# method + a decimeting column step if norm < tol. If R is not null
+//!# upper-triangle is computed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -97,7 +101,7 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 			tol = mc_fabsf(tol);
 		}
 		if (tol == 0.0f) {
-			tol == MCLIMITS_EPSILONF;
+			tol = MCLIMITS_EPSILONF;
 		}
 		told  = mc_cast(double, tol);
 		bnorm = 0.0;
@@ -146,8 +150,10 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 
 int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
 {
-//!# A and Q may be the same. Forming a ortho-normalized
-//!# basis Q using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# A and Q may be the same. Forming a ortho-normalized basis Q using
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# If R is not null upper-triangle is computed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -162,7 +168,7 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 			tol = mc_fabs(tol);
 		}
 		if (tol == 0.0) {
-			tol == MCLIMITS_EPSILON;
+			tol = MCLIMITS_EPSILON;
 		}
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
@@ -210,8 +216,10 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 
 int mc_orthomxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
 {
-//!# A and Q may be the same. Forming a ortho-normalized
-//!# basis Q using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# A and Q may be the same. Forming a ortho-normalized basis Q using
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# If R is not null upper-triangle is computed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -226,7 +234,7 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 			tol = mc_fabsl(tol);
 		}
 		if (tol == 0.0) {
-			tol == MCLIMITS_EPSILONL;
+			tol = MCLIMITS_EPSILONL;
 		}
 		bnorm = 0.0L;
 		for (j = 0; j < n; j++) {
