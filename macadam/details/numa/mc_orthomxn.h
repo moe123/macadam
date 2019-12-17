@@ -10,6 +10,7 @@
 #include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/numa/mc_dotpmx1.h>
 #include <macadam/details/numa/mc_l2normmx1.h>
+#include <macadam/details/numa/mc_zerosnxn.h>
 
 #ifndef MC_ORTHOMXN_H
 #define MC_ORTHOMXN_H
@@ -32,6 +33,10 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 				q[i] = a[i];
 			}
 		}
+		if (wantr) {
+			mc_zerosnxnf(n, r);
+		}
+
 		if (tol <= 0.0f) {
 			tol = mc_fabsf(tol);
 		}
@@ -96,7 +101,10 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 		for (i = 0; i < (m * n); i++) {
 			q[i] = mc_cast(double, a[i]);
 		}
-		
+		if (wantr) {
+			mc_zerosnxn(n, r);
+		}
+
 		if (tol <= 0.0f) {
 			tol = mc_fabsf(tol);
 		}
@@ -164,6 +172,10 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 				q[i] = a[i];
 			}
 		}
+		if (wantr) {
+			mc_zerosnxn(n, r);
+		}
+
 		if (tol <= 0.0) {
 			tol = mc_fabs(tol);
 		}
@@ -230,6 +242,10 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 				q[i] = a[i];
 			}
 		}
+		if (wantr) {
+			mc_zerosnxnl(n, r);
+		}
+
 		if (tol <= 0.0L) {
 			tol = mc_fabsl(tol);
 		}
