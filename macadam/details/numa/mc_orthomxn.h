@@ -33,6 +33,9 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 		if (tol <= 0.0f) {
 			tol = mc_fabsf(tol);
 		}
+		if (tol == 0.0f) {
+			tol == MCLIMITS_EPSILONF;
+		}
 		bnorm = 0.0f;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
@@ -51,8 +54,10 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0f;
 					}
-					q[j]           = 1.0f;
-					r[(n * j) + j] = 1.0f;
+					q[j] = 1.0f;
+					if (wantr) {
+						r[(n * j) + j] = 1.0f;
+					}
 				} else {
 					bnorm = mc_fmaxf(bnorm, cnorm);
 					if (wantr) {
@@ -64,8 +69,10 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 					}
 				}
 			} else {
-				q[j]           = 1.0f;
-				r[(n * j) + j] = 1.0f;
+				q[j] = 1.0f;
+				if (wantr) {
+					r[(n * j) + j] = 1.0f;
+				}
 			}
 		}
 		return 0;
@@ -85,10 +92,14 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 		for (i = 0; i < (m * n); i++) {
 			q[i] = mc_cast(double, a[i]);
 		}
-		told = mc_cast(double, tol);
-		if (told <= 0.0) {
-			told = mc_fabs(told);
+		
+		if (tol <= 0.0f) {
+			tol = mc_fabsf(tol);
 		}
+		if (tol == 0.0f) {
+			tol == MCLIMITS_EPSILONF;
+		}
+		told  = mc_cast(double, tol);
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
@@ -107,8 +118,10 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0;
 					}
-					q[j]           = 1.0;
-					r[(n * j) + j] = 1.0;
+					q[j] = 1.0;
+					if (wantr) {
+						r[(n * j) + j] = 1.0;
+					}
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
 					if (wantr) {
@@ -120,8 +133,10 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 					}
 				}
 			} else {
-				q[j]           = 1.0;
-				r[(n * j) + j] = 1.0;
+				q[j] = 1.0;
+				if (wantr) {
+					r[(n * j) + j] = 1.0;
+				}
 			}
 		}
 		return 0;
@@ -146,6 +161,9 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 		if (tol <= 0.0) {
 			tol = mc_fabs(tol);
 		}
+		if (tol == 0.0) {
+			tol == MCLIMITS_EPSILON;
+		}
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
@@ -164,8 +182,10 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0;
 					}
-					q[j]           = 1.0;
-					r[(n * j) + j] = 1.0;
+					q[j] = 1.0;
+					if (wantr) {
+						r[(n * j) + j] = 1.0;
+					}
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
 					if (wantr) {
@@ -177,8 +197,10 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 					}
 				}
 			} else {
-				q[j]           = 1.0;
-				r[(n * j) + j] = 1.0;
+				q[j] = 1.0;
+				if (wantr) {
+					r[(n * j) + j] = 1.0;
+				}
 			}
 		}
 		return 0;
@@ -203,6 +225,9 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 		if (tol <= 0.0L) {
 			tol = mc_fabsl(tol);
 		}
+		if (tol == 0.0) {
+			tol == MCLIMITS_EPSILONL;
+		}
 		bnorm = 0.0L;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
@@ -221,8 +246,10 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = 0.0L;
 					}
-					q[j]           = 1.0L;
-					r[(n * j) + j] = 1.0L;
+					q[j] = 1.0L;
+					if (wantr) {
+						r[(n * j) + j] = 1.0L;
+					}
 				} else {
 					bnorm = mc_fmaxl(bnorm, cnorm);
 					if (wantr) {
@@ -234,8 +261,10 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 					}
 				}
 			} else {
-				q[j]           = 1.0L;
-				r[(n * j) + j] = 1.0L;
+				q[j] = 1.0L;
+				if (wantr) {
+					r[(n * j) + j] = 1.0L;
+				}
 			}
 		}
 		return 0;
