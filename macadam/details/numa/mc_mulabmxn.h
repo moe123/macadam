@@ -22,7 +22,7 @@ MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const 
 		for (j = 0; j < p; j++) {
 			c[(p * i) + j] = 0.0f;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] += a[(n * i) + k] * b[(p * k) + j];
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * b[(p * k) + j]);
 			}
 		}
 	}
@@ -36,7 +36,7 @@ MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const 
 		for (j = 0; j < p; j++) {
 			c[(p * i) + j] = 0.0;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] += a[(n * i) + k] * b[(p * k) + j];
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * b[(p * k) + j]);
 			}
 		}
 	}
@@ -50,7 +50,7 @@ MC_TARGET_FUNC void mc_mulabmxnl(int m, int n, int p, long double * restrict c, 
 		for (j = 0; j < p; j++) {
 			c[(p * i) + j] = 0.0L;
 			for (k = 0; k < n; k++) {
-				c[(p * i) + j] += a[(n * i) + k] * b[(p * k) + j];
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * b[(p * k) + j]);
 			}
 		}
 	}
