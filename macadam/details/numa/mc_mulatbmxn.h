@@ -30,10 +30,10 @@ MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLONE
 	if (p == n) {
-		mc_blas_dgemm('T', 'N', n, m, m, 1.0f, a, m, b, m, 0.0f, c, n);
+		mc_blas_dgemm('T', 'N', n, m, m, 1.0, a, m, b, m, 0.0, c, n);
 	}
 #	else
-	mc_blas_dgemm('T', 'N', m, p, n, 1.0f, a, m, b, m, 0.0f, c, n);
+	mc_blas_dgemm('T', 'N', m, p, n, 1.0, a, m, b, m, 0.0, c, n);
 #	endif
 }
 
@@ -42,10 +42,10 @@ MC_TARGET_FUNC void mc_mulatbmxnl(int m, int n, int p, long double * restrict c,
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLONE
 	if (p == n) {
-		mc_blas_lgemm('T', 'N', n, m, m, 1.0f, a, m, b, m, 0.0f, c, n);
+		mc_blas_lgemm('T', 'N', n, m, m, 1.0L, a, m, b, m, 0.0L, c, n);
 	}
 #	else
-	mc_blas_lgemm('T', 'N', m, p, n, 1.0f, a, m, b, m, 0.0f, c, n);
+	mc_blas_lgemm('T', 'N', m, p, n, 1.0L, a, m, b, m, 0.0L, c, n);
 #	endif
 }
 

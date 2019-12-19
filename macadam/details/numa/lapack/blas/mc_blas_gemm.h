@@ -102,20 +102,21 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 	notb = mc_blas_lsame(transb, 'N');
 
 # if MCTARGET_BLAS_USE_CLAYOUT
-# if MCTARGET_BLAS_USE_CLONE
-	mcswap_var(i, m, n);
-	k   = n;
-//# ldc is set to wrong value in row-major @see info = 13.
-	ldc = m;
-# endif
 	if (nota) {
-		ka    = m;
-		nrowa = k;
-		ncola = m;
-		mc_cast(void, ncola);
-
-	} else {
+		ldc   = m;
 		ka    = k;
+
+		nrowa = m;
+		ncola = k;
+		mc_cast(void, ncola);
+	} else {
+# if MCTARGET_BLAS_USE_CLONE
+		mcswap_var(i, m, n);
+#	endif
+		k     = n;
+		ldc   = m;
+		ka    = k;
+
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
@@ -278,20 +279,21 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 	notb = mc_blas_lsame(transb, 'N');
 
 # if MCTARGET_BLAS_USE_CLAYOUT
-# if MCTARGET_BLAS_USE_CLONE
-	mcswap_var(i, m, n);
-	k   = n;
-//# ldc is set to wrong value in row-major @see info = 13.
-	ldc = m;
-# endif
 	if (nota) {
-		ka    = m;
-		nrowa = k;
-		ncola = m;
-		mc_cast(void, ncola);
-
-	} else {
+		ldc   = m;
 		ka    = k;
+
+		nrowa = m;
+		ncola = k;
+		mc_cast(void, ncola);
+	} else {
+# if MCTARGET_BLAS_USE_CLONE
+		mcswap_var(i, m, n);
+#	endif
+		k     = n;
+		ldc   = m;
+		ka    = k;
+
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
@@ -454,20 +456,21 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 	notb = mc_blas_lsame(transb, 'N');
 
 # if MCTARGET_BLAS_USE_CLAYOUT
-# if MCTARGET_BLAS_USE_CLONE
-	mcswap_var(i, m, n);
-	k   = n;
-//# ldc is set to wrong value in row-major @see info = 13.
-	ldc = m;
-# endif
 	if (nota) {
-		ka    = m;
-		nrowa = k;
-		ncola = m;
-		mc_cast(void, ncola);
-
-	} else {
+		ldc   = m;
 		ka    = k;
+
+		nrowa = m;
+		ncola = k;
+		mc_cast(void, ncola);
+	} else {
+# if MCTARGET_BLAS_USE_CLONE
+		mcswap_var(i, m, n);
+#	endif
+		k     = n;
+		ldc   = m;
+		ka    = k;
+
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
