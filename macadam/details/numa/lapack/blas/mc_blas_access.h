@@ -7,12 +7,16 @@
 //
 
 #include <macadam/details/mc_target.h>
+#include <macadam/mcswap.h>
 
 #ifndef MC_BLAS_ACCESS_H
 #define MC_BLAS_ACCESS_H
 
 #	undef  MCTARGET_BLAS_USE_CLAYOUT
 #	define MCTARGET_BLAS_USE_CLAYOUT 1
+
+#	undef  MCTARGET_BLAS_USE_CLONE
+#	define MCTARGET_BLAS_USE_CLONE 1
 
 #	define mc_nonblas_vector_at(g, gi) g[(gi)]
 #	define mc_nonblas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * (ng)) + (gj)]

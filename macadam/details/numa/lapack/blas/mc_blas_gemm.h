@@ -33,39 +33,39 @@
  *    transb='T' or 't', op(b)=b'.
  *    transb='C' or 'c', op(b)=b'.
  *
- *    [in] m     - int. Specifies the number of rows of the matrix op(a) and of the matrix c, m must be
+ *    [in] m      - int. Specifies the number of rows of the matrix op(a) and of the matrix c, m must be
  *    at least zero.
  *
- *    [in] n     - int. Specifies the number of columns of the matrix op(b) and the number of columns of
+ *    [in] n      - int. Specifies the number of columns of the matrix op(b) and the number of columns of
  *    the matrix c, n must be at least zero.
  *
- *    [in] k     - int. Specifies  the number of columns of the matrix op(a) and the number of rows of
+ *    [in] k      - int. Specifies  the number of columns of the matrix op(a) and the number of rows of
  *    the matrix op(b), k must be at least zero.
  *
- *    [in] alpha - real-floating. Specifies the scalar alpha.
+ *    [in] alpha  - real-floating. Specifies the scalar alpha.
  *
- *    [in] a     - real-floating array of dimension (lda, ka), where ka is k when transa='N' or 'n' and
+ *    [in] a      - real-floating array of dimension (lda, ka), where ka is k when transa='N' or 'n' and
  *    is m otherwise. Prior entry with transa='N' or 'n', the leading m by k part of the array a must
  *    contain the matrix a, otherwise the leading k by m part of the array a must contain the matrix a.
  *
- *    [in] lda   - int. Specifies the first dimension of a. When transa='N' or 'n' then
+ *    [in] lda    - int. Specifies the first dimension of a. When transa='N' or 'n' then
  *    lda must be at least max(1, m), otherwise lda must be at least max(1, k).
  *
- *    [in] b     - real-floating array of dimension (ldb, kb), where kb is n when transb='N' or 'n' and
+ *    [in] b      - real-floating array of dimension (ldb, kb), where kb is n when transb='N' or 'n' and
  *    is k otherwise. Prior entry with transb='N' or 'n', the leading k by n part of the array b must
  *    contain the matrix b, otherwise the leading n by k part of the array b must contain the matrix b.
  *
- *    [in] ldb   - int. Specifies the first dimension of b. When transb='N' or 'n' then
+ *    [in] ldb    - int. Specifies the first dimension of b. When transb='N' or 'n' then
  *    ldb must be at least max(1, k), otherwise ldb must be at least max(1, n).
  *
- *    [in] beta  - real-floating. Specifies the scalar beta. When beta is supplied as zero then c need
+ *    [in] beta   - real-floating. Specifies the scalar beta. When beta is supplied as zero then c need
  *    not be set on input.
  *
- *    [out] c    - real-floating array of dimension (ldc, n). Prior entry the leading  m by n part of the
+ *    [out] c     - real-floating array of dimension (ldc, n). Prior entry the leading  m by n part of the
  *    array c must contain the matrix c, except when beta is set to zero, in which case c need not be set
  *    on entry, c is overwritten by the m by n matrix (alpha*op(a)*op(b) + beta*c).
  *
- *    [in] ldc   - int. Specifies the first dimension of c, ldc must be at least max(1, m).
+ *    [in] ldc    - int. Specifies the first dimension of c, ldc must be at least max(1, m).
  *
  * \examples
  *
@@ -100,24 +100,54 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 
 	nota = mc_blas_lsame(transa, 'N');
 	notb = mc_blas_lsame(transb, 'N');
+
+# if MCTARGET_BLAS_USE_CLAYOUT
+# if MCTARGET_BLAS_USE_CLONE
+	mcswap_var(i, m, n);
+	k   = n;
+//# ldc is set to wrong value in row-major @see info = 13.
+	ldc = m;
+# endif
+	if (nota) {
+		ka    = m;
+		nrowa = k;
+		ncola = m;
+		mc_cast(void, ncola);
+
+	} else {
+		ka    = k;
+		nrowa = m;
+		ncola = k;
+		mc_cast(void, ncola);
+	}
+	if (notb) {
+		kb    = n;
+		nrowb = n;
+	} else {
+		kb    = k;
+		nrowb = k;
+	}
+#	else
 	if (nota) {
 		ka    = k;
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
+
 	} else {
-		ka    = k;
+		ka    = m;
 		nrowa = k;
 		ncola = m;
 		mc_cast(void, ncola);
 	}
 	if (notb) {
-		kb    = n;
+		kb    = k;
 		nrowb = k;
 	} else {
 		kb    = n;
 		nrowb = n;
 	}
+#	endif
 
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
@@ -246,24 +276,54 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 
 	nota = mc_blas_lsame(transa, 'N');
 	notb = mc_blas_lsame(transb, 'N');
+
+# if MCTARGET_BLAS_USE_CLAYOUT
+# if MCTARGET_BLAS_USE_CLONE
+	mcswap_var(i, m, n);
+	k   = n;
+//# ldc is set to wrong value in row-major @see info = 13.
+	ldc = m;
+# endif
+	if (nota) {
+		ka    = m;
+		nrowa = k;
+		ncola = m;
+		mc_cast(void, ncola);
+
+	} else {
+		ka    = k;
+		nrowa = m;
+		ncola = k;
+		mc_cast(void, ncola);
+	}
+	if (notb) {
+		kb    = n;
+		nrowb = n;
+	} else {
+		kb    = k;
+		nrowb = k;
+	}
+#	else
 	if (nota) {
 		ka    = k;
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
+
 	} else {
-		ka    = k;
+		ka    = m;
 		nrowa = k;
 		ncola = m;
 		mc_cast(void, ncola);
 	}
 	if (notb) {
-		kb    = n;
+		kb    = k;
 		nrowb = k;
 	} else {
 		kb    = n;
 		nrowb = n;
 	}
+#	endif
 
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
@@ -392,24 +452,54 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 
 	nota = mc_blas_lsame(transa, 'N');
 	notb = mc_blas_lsame(transb, 'N');
+
+# if MCTARGET_BLAS_USE_CLAYOUT
+# if MCTARGET_BLAS_USE_CLONE
+	mcswap_var(i, m, n);
+	k   = n;
+//# ldc is set to wrong value in row-major @see info = 13.
+	ldc = m;
+# endif
+	if (nota) {
+		ka    = m;
+		nrowa = k;
+		ncola = m;
+		mc_cast(void, ncola);
+
+	} else {
+		ka    = k;
+		nrowa = m;
+		ncola = k;
+		mc_cast(void, ncola);
+	}
+	if (notb) {
+		kb    = n;
+		nrowb = n;
+	} else {
+		kb    = k;
+		nrowb = k;
+	}
+#	else
 	if (nota) {
 		ka    = k;
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
+
 	} else {
-		ka    = k;
+		ka    = m;
 		nrowa = k;
 		ncola = m;
 		mc_cast(void, ncola);
 	}
 	if (notb) {
-		kb    = n;
+		kb    = k;
 		nrowb = k;
 	} else {
 		kb    = n;
 		nrowb = n;
 	}
+#	endif
 
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
