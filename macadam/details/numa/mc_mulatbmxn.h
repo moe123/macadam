@@ -16,37 +16,46 @@
 MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const float * restrict a, const float * restrict b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_BLAS_USE_CLONE
-	if (p == n) {
-		mc_blas_sgemm('T', 'N', n, m, m, 1.0f, a, m, b, m, 0.0f, c, n);
-	}
-#	else
-	mc_blas_sgemm('T', 'N', m, p, n, 1.0f, a, m, b, m, 0.0f, c, m);
-#	endif
+	int mm            = n;
+	int nn            = p;
+	int kk            = m;
+	int lda           = m;
+	int ldb           = m;
+	int ldc           = n;
+	const float alpha = 1.0f;
+	const float beta  = 0.0f;
+
+	mc_blas_sgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 }
 
 MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const double * restrict a, const double * restrict b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_BLAS_USE_CLONE
-	if (p == n) {
-		mc_blas_dgemm('T', 'N', n, m, m, 1.0, a, m, b, m, 0.0, c, n);
-	}
-#	else
-	mc_blas_dgemm('T', 'N', m, p, n, 1.0, a, m, b, m, 0.0, c, n);
-#	endif
+	int mm             = n;
+	int nn             = p;
+	int kk             = m;
+	int lda            = m;
+	int ldb            = m;
+	int ldc            = n;
+	const double alpha = 1.0;
+	const double beta  = 0.0;
+
+	mc_blas_dgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 }
 
 MC_TARGET_FUNC void mc_mulatbmxnl(int m, int n, int p, long double * restrict c, const long double * restrict a, const long double * restrict b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_BLAS_USE_CLONE
-	if (p == n) {
-		mc_blas_lgemm('T', 'N', n, m, m, 1.0L, a, m, b, m, 0.0L, c, n);
-	}
-#	else
-	mc_blas_lgemm('T', 'N', m, p, n, 1.0L, a, m, b, m, 0.0L, c, n);
-#	endif
+	int mm                  = n;
+	int nn                  = p;
+	int kk                  = m;
+	int lda                 = m;
+	int ldb                 = m;
+	int ldc                 = n;
+	const long double alpha = 1.0;
+	const long double beta  = 0.0;
+
+	mc_blas_lgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 }
 
 #endif /* !MC_MULATBMXN_H */

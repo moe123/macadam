@@ -14,12 +14,24 @@
 
 #pragma mark - mc_mulabmxn -
 
+#	define MCTARGET_USE_BLAS 1
+
 MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const float * restrict a, const float * restrict b)
 {
-#	if MCTARGET_USE_BLAS
-	mc_blas_sgemm('N', 'N', m, p, n, 1.0f, a, m, b, n, 0.0f, c, n);
-#	else
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+#	if MCTARGET_USE_BLAS
+
+	int mm            = m;
+	int nn            = p;
+	int kk            = n;
+	int lda           = m;
+	int ldb           = n;
+	int ldc           = m;
+	const float alpha = 1.0f;
+	const float beta  = 0.0f;
+
+	mc_blas_sgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
 	int i = 0, j, k;
 	for (; i < m; i++) {
 		for (j = 0; j < p; j++) {
@@ -34,10 +46,20 @@ MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const 
 
 MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const double * restrict a, const double * restrict b)
 {
-#	if MCTARGET_USE_BLAS
-	mc_blas_dgemm('N', 'N', m, p, n, 1.0, a, m, b, n, 0.0, c, n);
-#	else
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+#	if MCTARGET_USE_BLAS
+
+	int mm             = m;
+	int nn             = p;
+	int kk             = n;
+	int lda            = m;
+	int ldb            = n;
+	int ldc            = m;
+	const double alpha = 1.0;
+	const double beta  = 0.0;
+
+	mc_blas_dgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
 	int i = 0, j, k;
 	for (; i < m; i++) {
 		for (j = 0; j < p; j++) {
@@ -52,10 +74,20 @@ MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const 
 
 MC_TARGET_FUNC void mc_mulabmxnl(int m, int n, int p, long double * restrict c, const long double * restrict a, const long double * restrict b)
 {
-#	if MCTARGET_USE_BLAS
-	mc_blas_lgemm('N', 'N', m, p, n, 1.0L, a, m, b, n, 0.0L, c, n);
-#	else
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+#	if MCTARGET_USE_BLAS
+
+	int mm                  = m;
+	int nn                  = p;
+	int kk                  = n;
+	int lda                 = m;
+	int ldb                 = n;
+	int ldc                 = m;
+	const long double alpha = 1.0L;
+	const long double beta  = 0.0L;
+
+	mc_blas_lgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
 	int i = 0, j, k;
 	for (; i < m; i++) {
 		for (j = 0; j < p; j++) {
