@@ -62,25 +62,22 @@ MC_TARGET_FUNC int mc_lusolve3x3f(const float l[9], const float u[9], const floa
 
 //!# Solving U*x=y.
 	w = u[8];
-	if (w == 0.0f) {
-		return -1;
+	if (w != 0.0f) {
+		x[2] = x[2] / w;
 	}
-	x[2] = x[2] / w;
 	x[0] = x[0] - (x[2] * u[2]);
 	x[1] = x[1] - (x[2] * u[5]);
 
 	w = u[4];
-	if (w == 0.0f) {
-		return -1;
+	if (w != 0.0f) {
+		x[1] = x[1] / w;
 	}
-	x[1] = x[1] / w;
 	x[0] = x[0] - (x[1] * u[1]);
 
 	w = u[0];
-	if (w == 0.0f) {
-		return -1;
+	if (w != 0.0f) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
 
 	return 0;
 }
@@ -133,25 +130,22 @@ MC_TARGET_FUNC int mc_lusolve3x3ff(const float l[9], const float u[9], const flo
 
 //!# Solving U*x=y.
 	w = mc_cast(double, u[8]);
-	if (w == 0.0f) {
-		return -1;
+	if (w != 0.0) {
+		x[2] = x[2] / w;
 	}
-	x[2] = x[2] / w;
 	x[0] = x[0] - (x[2] * mc_cast(double, u[2]));
 	x[1] = x[1] - (x[2] * mc_cast(double, u[5]));
 
 	w = mc_cast(double, u[4]);
-	if (w == 0.0) {
-		return -1;
+	if (w != 0.0) {
+		x[1] = x[1] / w;
 	}
-	x[1] = x[1] / w;
 	x[0] = x[0] - (x[1] * mc_cast(double, u[1]));
 
 	w = mc_cast(double, u[0]);
-	if (w == 0.0) {
-		return -1;
+	if (w != 0.0) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
 
 	return 0;
 }
@@ -204,25 +198,22 @@ MC_TARGET_FUNC int mc_lusolve3x3(const double l[9], const double u[9], const dou
 
 //!# Solving U*x=y.
 	w = u[8];
-	if (w == 0.0f) {
-		return -1;
+	if (w != 0.0) {
+		x[2] = x[2] / w;
 	}
-	x[2] = x[2] / w;
 	x[0] = x[0] - (x[2] * u[2]);
 	x[1] = x[1] - (x[2] * u[5]);
 
 	w = u[4];
-	if (w == 0.0) {
-		return -1;
+	if (w != 0.0) {
+		x[1] = x[1] / w;
 	}
-	x[1] = x[1] / w;
 	x[0] = x[0] - (x[1] * u[1]);
 
 	w = u[0];
-	if (w == 0.0) {
-		return -1;
+	if (w != 0.0) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
 
 	return 0;
 }
@@ -275,25 +266,22 @@ MC_TARGET_FUNC int mc_lusolve3x3l(const long double l[9], const long double u[9]
 
 //!# Solving U*x=y.
 	w = u[8];
-	if (w == 0.0f) {
-		return -1;
+	if (w != 0.0L) {
+		x[2] = x[2] / w;
 	}
-	x[2] = x[2] / w;
 	x[0] = x[0] - (x[2] * u[2]);
 	x[1] = x[1] - (x[2] * u[5]);
 
 	w = u[4];
-	if (w == 0.0L) {
-		return -1;
+	if (w != 0.0L) {
+		x[1] = x[1] / w;
 	}
-	x[1] = x[1] / w;
 	x[0] = x[0] - (x[1] * u[1]);
 
 	w = u[0];
-	if (w == 0.0L) {
-		return -1;
+	if (w != 0.0L) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
 
 	return 0;
 }
