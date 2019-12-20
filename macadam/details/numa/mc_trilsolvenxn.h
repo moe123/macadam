@@ -26,21 +26,17 @@ MC_TARGET_FUNC int mc_trilsolvenxnf(int n, const float * l, const float * b, flo
 	}
 	for (j = 0; j < (n - 1); j++) {
 		w    = l[(n * j) + j];
-		if (w == 0.0f) {
-			mc_zeros1xnf(n, x);
-			return -1;
+		if (w != 0.0f) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = j + 1; i < n; i++) {
 			x[i] = x[i] - l[(n * i) + j] * x[j];
 		}
 	}
 	w = l[(n * n) - 1];
-	if (w == 0.0f) {
-		mc_zeros1xnf(n, x);
-		return -1;
+	if (w != 0.0f) {
+		x[n - 1] = x[n - 1] / w;
 	}
-	x[n - 1] = x[n - 1] / w;
 	return 0;
 }
 
@@ -55,21 +51,18 @@ MC_TARGET_FUNC int mc_trilsolvenxnff(int n, const float * l, const float * b, do
 	}
 	for (j = 0; j < (n - 1); j++) {
 		w    = mc_cast(double, l[(n * j) + j]);
-		if (w == 0.0) {
-			mc_zeros1xn(n, x);
-			return -1;
+		if (w != 0.0) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = j + 1; i < n; i++) {
 			x[i] = x[i] - l[(n * i) + j] * x[j];
 		}
 	}
 	w = mc_cast(double, l[(n * n) - 1]);
-	if (w == 0.0) {
-		mc_zeros1xn(n, x);
-		return -1;
+	if (w != 0.0) {
+		x[n - 1] = x[n - 1] / w;
 	}
-	x[n - 1] = x[n - 1] / w;
+
 	return 0;
 }
 
@@ -86,21 +79,18 @@ MC_TARGET_FUNC int mc_trilsolvenxn(int n, const double * l, const double * b, do
 	}
 	for (j = 0; j < (n - 1); j++) {
 		w    = l[(n * j) + j];
-		if (w == 0.0) {
-			mc_zeros1xn(n, x);
-			return -1;
+		if (w != 0.0) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = j + 1; i < n; i++) {
 			x[i] = x[i] - l[(n * i) + j] * x[j];
 		}
 	}
 	w = l[(n * n) - 1];
-	if (w == 0.0) {
-		mc_zeros1xn(n, x);
-		return -1;
+	if (w != 0.0) {
+		x[n - 1] = x[n - 1] / w;
 	}
-	x[n - 1] = x[n - 1] / w;
+
 	return 0;
 }
 
@@ -117,21 +107,18 @@ MC_TARGET_FUNC int mc_trilsolvenxnl(int n, const long double * l, const long dou
 	}
 	for (j = 0; j < (n - 1); j++) {
 		w    = l[(n * j) + j];
-		if (w == 0.0L) {
-			mc_zeros1xnl(n, x);
-			return -1;
+		if (w != 0.0L) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = j + 1; i < n; i++) {
 			x[i] = x[i] - l[(n * i) + j] * x[j];
 		}
 	}
 	w = l[(n * n) - 1];
-	if (w == 0.0L) {
-		mc_zeros1xnl(n, x);
-		return -1;
+	if (w != 0.0L) {
+		x[n - 1] = x[n - 1] / w;
 	}
-	x[n - 1] = x[n - 1] / w;
+
 	return 0;
 }
 

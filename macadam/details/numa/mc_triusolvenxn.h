@@ -26,21 +26,17 @@ MC_TARGET_FUNC int mc_triusolvenxnf(int n, const float * u, const float * b, flo
 	}
 	for (j = (n - 1); j > 0; j--) {
 		w = u[(n * j) + j];
-		if (w == 0.0f) {
-			mc_zeros1xnf(n, x);
-			return -1;
+		if (w != 0.0f) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = 0; i < j; i++) {
 			x[i] = x[i] - x[j] * u[(n * i) + j];
 		}
 	}
 	w = u[0];
-	if (w == 0.0f) {
-		mc_zeros1xnf(n, x);
-		return -1;
+	if (w != 0.0f) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
 	return 0;
 }
 
@@ -55,21 +51,18 @@ MC_TARGET_FUNC int mc_triusolvenxnff(int n, const float * u, const float * b, do
 	}
 	for (j = (n - 1); j > 0; j--) {
 		w = mc_cast(double, u[(n * j) + j]);
-		if (w == 0.0) {
-			mc_zeros1xn(n, x);
-			return -1;
+		if (w != 0.0) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = 0; i < j; i++) {
 			x[i] = x[i] - x[j] * mc_cast(double, u[(n * i) + j]);
 		}
 	}
 	w = mc_cast(double, u[0]);
-	if (w == 0.0) {
-		mc_zeros1xn(n, x);
-		return -1;
+	if (w != 0.0) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
+
 	return 0;
 }
 
@@ -86,21 +79,18 @@ MC_TARGET_FUNC int mc_triusolvenxn(int n, const double * u, const double * b, do
 	}
 	for (j = (n - 1); j > 0; j--) {
 		w = u[(n * j) + j];
-		if (w == 0.0) {
-			mc_zeros1xn(n, x);
-			return -1;
+		if (w != 0.0) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = 0; i < j; i++) {
 			x[i] = x[i] - x[j] * u[(n * i) + j];
 		}
 	}
 	w = u[0];
-	if (w == 0.0) {
-		mc_zeros1xn(n, x);
-		return -1;
+	if (w != 0.0) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
+
 	return 0;
 }
 
@@ -117,21 +107,18 @@ MC_TARGET_FUNC int mc_triusolvenxnl(int n, const long double * u, const long dou
 	}
 	for (j = (n - 1); j > 0; j--) {
 		w = u[(n * j) + j];
-		if (w == 0.0L) {
-			mc_zeros1xnl(n, x);
-			return -1;
+		if (w != 0.0L) {
+			x[j] = x[j] / w;
 		}
-		x[j] = x[j] / w;
 		for (i = 0; i < j; i++) {
 			x[i] = x[i] - x[j] * u[(n * i) + j];
 		}
 	}
 	w = u[0];
-	if (w == 0.0L) {
-		mc_zeros1xnl(n, x);
-		return -1;
+	if (w != 0.0L) {
+		x[0] = x[0] / w;
 	}
-	x[0] = x[0] / w;
+
 	return 0;
 }
 
