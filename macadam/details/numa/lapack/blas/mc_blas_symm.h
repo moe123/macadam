@@ -24,10 +24,10 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, int m, int n
 	int upper;
 
 	if (mc_blas_lsame(side, 'L')) {
-		ka    = m;
+		ka    = n;
 		nrowa = m;
 	} else {
-		ka    = n;
+		ka    = m;
 		nrowa = n;
 	}
 	upper = mc_blas_lsame(uplo, 'U');
@@ -155,10 +155,10 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, int m, int n
 	int upper;
 
 	if (mc_blas_lsame(side, 'L')) {
-		ka    = m;
+		ka    = n;
 		nrowa = m;
 	} else {
-		ka    = n;
+		ka    = m;
 		nrowa = n;
 	}
 	upper = mc_blas_lsame(uplo, 'U');
@@ -286,10 +286,10 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, int m, int n
 	int upper;
 
 	if (mc_blas_lsame(side, 'L')) {
-		ka    = m;
+		ka    = n;
 		nrowa = m;
 	} else {
-		ka    = n;
+		ka    = m;
 		nrowa = n;
 	}
 	upper = mc_blas_lsame(uplo, 'U');

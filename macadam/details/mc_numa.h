@@ -134,6 +134,7 @@
 #	include <macadam/details/numa/mc_mulabmxn.h>
 #	include <macadam/details/numa/mc_mulabnxn.h>
 #	include <macadam/details/numa/mc_mulabt3x3.h>
+#	include <macadam/details/numa/mc_mulabtmxn.h>
 #	include <macadam/details/numa/mc_mulab2x2.h>
 #	include <macadam/details/numa/mc_mulatb2x2.h>
 #	include <macadam/details/numa/mc_mulatb3x3.h>

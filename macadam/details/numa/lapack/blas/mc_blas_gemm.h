@@ -106,7 +106,6 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
-
 	} else {
 		ka    = m;
 		nrowa = k;
@@ -120,21 +119,6 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 		kb    = k;
 		nrowb = n;
 	}
-
-#	if MADNESS
-	fprintf(stderr,
-		"m=%d, n=%d k=%d       \n"
-		"ka=%d, kb=%d          \n"
-		"nrowa=%d, ncola=%d    \n"
-		"nrowb=%d, ncolb=%d    \n"
-		"lda=%d, ldb=%d ldc=%d \n"
-		, m, n, k
-		, ka, kb
-		, nrowa, ncola
-		, nrowb, n
-		, lda, ldb, ldc
-	);
-#	endif
 
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
@@ -287,21 +271,6 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 		nrowb = n;
 	}
 
-#	if MADNESS
-	fprintf(stderr,
-		"m=%d, n=%d k=%d       \n"
-		"ka=%d, kb=%d          \n"
-		"nrowa=%d, ncola=%d    \n"
-		"nrowb=%d, ncolb=%d    \n"
-		"lda=%d, ldb=%d ldc=%d \n"
-		, m, n, k
-		, ka, kb
-		, nrowa, ncola
-		, nrowb, n
-		, lda, ldb, ldc
-	);
-#	endif
-
 	info = 0;
 	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
 		info = 1;
@@ -438,158 +407,6 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, i
 		nrowa = m;
 		ncola = k;
 		mc_cast(void, ncola);
-
-	} else {
-		ka    = m;
-		nrowa = k;
-		ncola = m;
-		mc_cast(void, ncola);
-	}
-	if (notb) {
-		kb    = n;
-		nrowb = k;
-	} else {
-		kb    = k;
-		nrowb = n;
-	}
-
-#	if MADNESS
-	fprintf(stderr,
-		"m=%d, n=%d k=%d       \n"
-		"ka=%d, kb=%d          \n"
-		"nrowa=%d, ncola=%d    \n"
-		"nrowb=%d, ncolb=%d    \n"
-		"lda=%d, ldb=%d ldc=%d \n"
-		, m, n, k
-		, ka, kb
-		, nrowa, ncola
-		, nrowb, n
-		, lda, ldb, ldc
-	);
-#	endif
-
-	info = 0;
-	if (!nota && !mc_blas_lsame(transa, 'C') && !mc_blas_lsame(transa, 'T')) {
-		info = 1;
-	} else if (!notb && !mc_blas_lsame(transb, 'C') && !mc_blas_lsame(transb, 'T')) {
-		info = 2;
-	} else if (m < 0) {
-		info = 3;
-	} else if (n < 0) {
-		info = 4;
-	} else if (k < 0) {
-		info = 5;
-	} else if (lda < mc_maxmag(1, nrowa)) {
-		info = 8;
-	} else if (ldb < mc_maxmag(1, nrowb)) {
-		info = 10;
-	} else if (ldc < mc_maxmag(1, m)) {
-		info = 13;
-	}
-	if (info != 0) {
-		mc_blas_xerbla("LGEMM ", info);
-		return;
-	}
-
-	if (m == 0 || n == 0 || ((alpha == zero || k == 0) && beta == one)) {
-		return;
-	}
-
-	if (alpha == zero) {
-		if (beta == zero) {
-			for (j = 1; j <= n; ++j) {
-				for (i = 1; i <= m; ++i) {
-					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
-				}
-			}
-		} else {
-			for (j = 1; j <= n; ++j) {
-				for (i = 1; i <= m; ++i) {
-					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
-				}
-			}
-		}
-		return;
-	}
-
-	if (notb) {
-		if (nota) {
-			for (j = 1; j <= n; ++j) {
-				if (beta == zero) {
-					for (i = 1; i <= m; ++i) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
-					}
-				} else if (beta != one) {
-					for (i = 1; i <= m; ++i) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
-					}
-				}
-				for (l = 1; l <= k; ++l) {
-					temp = alpha * mc_blas_matrix_at(b, ldb, kb, l, j);
-					for (i = 1; i <= m; ++i) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
-					}
-				}
-			}
-		} else {
-#	if MCTARGET_BLAS_USE_CLAYOUT
-			mcswap_var(i, m, k);
-#	endif
-			for (j = 1; j <= n; ++j) {
-				for (i = 1; i <= m; ++i) {
-					temp = zero;
-					for (l = 1; l <= m; ++l) {
-						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, l, j));
-					}
-					if (beta == zero) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
-					} else {
-						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
-					}
-				}
-			}
-		}
-	} else {
-		if (nota) {
-			for (j = 1; j <= n; ++j) {
-				if (beta == zero) {
-					for (i = 1; i <= m; ++i) {
-						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
-					}
-				} else if (beta != one) {
-					for (i = 1; i <= m; ++i) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
-					}
-				}
-				for (l = 1; l <= k; ++l) {
-					temp = alpha * mc_blas_matrix_at(b, ldb, kb, j, l);
-					for (i = 1; i <= m; ++i) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = mc_blas_matrix_at(c, ldc, n, i, j) + (temp * mc_blas_matrix_at(a, lda, ka, i, l));
-					}
-				}
-			}
-		} else {
-			for (j = 1; j <= n; ++j) {
-				for (i = 1; i <= m; ++i) {
-					temp = zero;
-					for (l = 1; l <= k; ++l) {
-						temp = temp + (mc_blas_matrix_at(a, lda, ka, l, i) * mc_blas_matrix_at(b, ldb, kb, j, l));
-					}
-					if (beta == zero) {
-						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp;
-					} else {
-						mc_blas_matrix_at(c, ldc, n, i, j) = alpha * temp + beta * mc_blas_matrix_at(c, ldc, n, i, j);
-					}
-				}
-			}
-		}
-	}
-	if (nota) {
-		ka    = k;
-		nrowa = m;
-		ncola = k;
-		mc_cast(void, ncola);
-
 	} else {
 		ka    = m;
 		nrowa = k;

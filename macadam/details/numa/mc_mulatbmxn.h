@@ -16,46 +16,61 @@
 MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const float * restrict a, const float * restrict b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-	int mm            = n;
-	int nn            = p;
-	int kk            = m;
-	int lda           = m;
-	int ldb           = m;
-	int ldc           = n;
+#	if MCTARGET_BLAS_USE_CLAYOUT
+
+	const int mm      = n;
+	const int nn      = p;
+	const int kk      = m;
+	const int lda     = m;
+	const int ldb     = m;
+	const int ldc     = n;
 	const float alpha = 1.0f;
 	const float beta  = 0.0f;
 
 	mc_blas_sgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
+
+#	endif
 }
 
 MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const double * restrict a, const double * restrict b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-	int mm             = n;
-	int nn             = p;
-	int kk             = m;
-	int lda            = m;
-	int ldb            = m;
-	int ldc            = n;
+#	if MCTARGET_BLAS_USE_CLAYOUT
+
+	const int mm       = n;
+	const int nn       = p;
+	const int kk       = m;
+	const int lda      = m;
+	const int ldb      = m;
+	const int ldc      = n;
 	const double alpha = 1.0;
 	const double beta  = 0.0;
 
 	mc_blas_dgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
+
+#	endif
 }
 
 MC_TARGET_FUNC void mc_mulatbmxnl(int m, int n, int p, long double * restrict c, const long double * restrict a, const long double * restrict b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-	int mm                  = n;
-	int nn                  = p;
-	int kk                  = m;
-	int lda                 = m;
-	int ldb                 = m;
-	int ldc                 = n;
+#	if MCTARGET_BLAS_USE_CLAYOUT
+
+	const int mm            = n;
+	const int nn            = p;
+	const int kk            = m;
+	const int lda           = m;
+	const int ldb           = m;
+	const int ldc           = n;
 	const long double alpha = 1.0;
 	const long double beta  = 0.0;
 
 	mc_blas_lgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
+
+#	endif
 }
 
 #endif /* !MC_MULATBMXN_H */

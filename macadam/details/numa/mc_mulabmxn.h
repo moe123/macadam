@@ -14,19 +14,17 @@
 
 #pragma mark - mc_mulabmxn -
 
-#	define MCTARGET_USE_BLAS 1
-
 MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const float * restrict a, const float * restrict b)
 {
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_USE_BLAS
+#	if MCTARGET_BLAS_USE_CLAYOUT
 
-	int mm            = m;
-	int nn            = p;
-	int kk            = n;
-	int lda           = m;
-	int ldb           = n;
-	int ldc           = m;
+	const int mm      = m;
+	const int nn      = p;
+	const int kk      = n;
+	const int lda     = m;
+	const int ldb     = n;
+	const int ldc     = m;
 	const float alpha = 1.0f;
 	const float beta  = 0.0f;
 
@@ -47,14 +45,14 @@ MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const 
 MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const double * restrict a, const double * restrict b)
 {
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_USE_BLAS
+#	if MCTARGET_BLAS_USE_CLAYOUT
 
-	int mm             = m;
-	int nn             = p;
-	int kk             = n;
-	int lda            = m;
-	int ldb            = n;
-	int ldc            = m;
+	const int mm       = m;
+	const int nn       = p;
+	const int kk       = n;
+	const int lda      = m;
+	const int ldb      = n;
+	const int ldc      = m;
 	const double alpha = 1.0;
 	const double beta  = 0.0;
 
@@ -75,14 +73,14 @@ MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const 
 MC_TARGET_FUNC void mc_mulabmxnl(int m, int n, int p, long double * restrict c, const long double * restrict a, const long double * restrict b)
 {
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_USE_BLAS
+#	if MCTARGET_BLAS_USE_CLAYOUT
 
-	int mm                  = m;
-	int nn                  = p;
-	int kk                  = n;
-	int lda                 = m;
-	int ldb                 = n;
-	int ldc                 = m;
+	const int mm            = m;
+	const int nn            = p;
+	const int kk            = n;
+	const int lda           = m;
+	const int ldb           = n;
+	const int ldc           = m;
 	const long double alpha = 1.0L;
 	const long double beta  = 0.0L;
 

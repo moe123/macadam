@@ -25,10 +25,10 @@ MC_TARGET_FUNC void mc_blas_strmm(const char side, const char uplo, const char t
 
 	lside = mc_blas_lsame(side, 'L');
 	if (lside) {
-		ka    = m;
+		ka    = n;
 		nrowa = m;
 	} else {
-		ka    = n;
+		ka    = m;
 		nrowa = n;
 	}
 	nounit = mc_blas_lsame(diag, 'N');
@@ -229,10 +229,10 @@ MC_TARGET_FUNC void mc_blas_dtrmm(const char side, const char uplo, const char t
 
 	lside = mc_blas_lsame(side, 'L');
 	if (lside) {
-		ka    = m;
+		ka    = n;
 		nrowa = m;
 	} else {
-		ka    = n;
+		ka    = m;
 		nrowa = n;
 	}
 	nounit = mc_blas_lsame(diag, 'N');
@@ -433,10 +433,10 @@ MC_TARGET_FUNC void mc_blas_ltrmm(const char side, const char uplo, const char t
 
 	lside = mc_blas_lsame(side, 'L');
 	if (lside) {
-		ka    = m;
+		ka    = n;
 		nrowa = m;
 	} else {
-		ka    = n;
+		ka    = m;
 		nrowa = n;
 	}
 	nounit = mc_blas_lsame(diag, 'N');
