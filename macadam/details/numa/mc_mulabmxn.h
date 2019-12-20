@@ -14,7 +14,7 @@
 
 #pragma mark - mc_mulabmxn -
 
-MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const float * restrict a, const float * restrict b)
+MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b)
 {
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLAYOUT
@@ -42,7 +42,49 @@ MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const double * restrict a, const double * restrict b)
+MC_TARGET_FUNC void mc_mulabmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b)
+{
+//!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+	int i = 0, j, k;
+	for (; i < m; i++) {
+		for (j = 0; j < p; j++) {
+			c[(p * i) + j] = 0.0f;
+			for (k = 0; k < n; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (mc_cast(double, a[(n * i) + k]) * mc_cast(double, b[(p * k) + j]));
+			}
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_mulabmxnfd(int m, int n, int p, double * restrict c, const float * a, const double * b)
+{
+//!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+	int i = 0, j, k;
+	for (; i < m; i++) {
+		for (j = 0; j < p; j++) {
+			c[(p * i) + j] = 0.0f;
+			for (k = 0; k < n; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (mc_cast(double, a[(n * i) + k]) * b[(p * k) + j]);
+			}
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_mulabmxndf(int m, int n, int p, double * restrict c, const double * a, const float * b)
+{
+//!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+	int i = 0, j, k;
+	for (; i < m; i++) {
+		for (j = 0; j < p; j++) {
+			c[(p * i) + j] = 0.0f;
+			for (k = 0; k < n; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * i) + k] * mc_cast(double, b[(p * k) + j]));
+			}
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
 {
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLAYOUT
@@ -70,7 +112,7 @@ MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabmxnl(int m, int n, int p, long double * restrict c, const long double * restrict a, const long double * restrict b)
+MC_TARGET_FUNC void mc_mulabmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b)
 {
 //!# c=a*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLAYOUT
