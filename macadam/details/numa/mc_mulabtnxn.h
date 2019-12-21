@@ -17,7 +17,7 @@
 
 MC_TARGET_FUNC void mc_mulabtnxnf(int n, float * restrict c, const float * a, const float * b)
 {
-//!# c=a'*b
+//!# c=a*b'
 	if (n == 1) {
 		c[0] = a[0] * b[0];
 	} else if (n == 2) {
@@ -31,7 +31,7 @@ MC_TARGET_FUNC void mc_mulabtnxnf(int n, float * restrict c, const float * a, co
 
 MC_TARGET_FUNC void mc_mulabtnxn(int n, double * restrict c, const double * a, const double * b)
 {
-//!# c=a'*b
+//!# c=a*b'
 	if (n == 1) {
 		c[0] = a[0] * b[0];
 	} else if (n == 2) {
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_mulabtnxn(int n, double * restrict c, const double * a, c
 
 MC_TARGET_FUNC void mc_mulabtnxnl(int n, long double * restrict c, const long double * a, const long double * b)
 {
-//!# c=a'*b
+//!# c=a*b'
 	if (n == 1) {
 		c[0] = a[0] * b[0];
 	} else if (n == 2) {
