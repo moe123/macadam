@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 //!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
-//!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
+//!#     - p=min(m, n) and in this particular case we have m=2, n=2 hence p=2.
 	float w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
@@ -42,19 +42,25 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 //!# Step 5: Changing sign if required.
 			if (mc_copysignf(1.0f, s[0]) < 0.0f) {
 				s[0] = -s[0];
+
 				v[0] = -v[0];
 				v[2] = -v[2];
 			}
 			if (mc_copysignf(1.0f, s[3]) < 0.0f) {
 				s[3] = -s[3];
+
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
 //!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
+
 				mcswap_var(w, v[0], v[1]);
 				mcswap_var(w, v[2], v[3]);
+
+				mcswap_var(w, u[0], u[1]);
+				mcswap_var(w, u[2], u[3]);
 			}
 			return 0;
 		}
@@ -70,7 +76,7 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 //!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
-//!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
+//!#     - p=min(m, n) and in this particular case we have m=2, n=2 hence p=2.
 	double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
@@ -87,19 +93,25 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 //!# Step 5: Changing sign if required.
 			if (mc_copysign(1.0, s[0]) < 0.0) {
 				s[0] = -s[0];
+
 				v[0] = -v[0];
 				v[2] = -v[2];
 			}
 			if (mc_copysign(1.0, s[3]) < 0.0) {
 				s[3] = -s[3];
+
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
 //!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
+
 				mcswap_var(w, v[0], v[1]);
 				mcswap_var(w, v[2], v[3]);
+
+				mcswap_var(w, u[0], u[1]);
+				mcswap_var(w, u[2], u[3]);
 			}
 			return 0;
 		}
@@ -115,7 +127,7 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 //!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
-//!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
+//!#     - p=min(m, n) and in this particular case we have m=2, n=2 hence p=2.
 	double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
@@ -132,19 +144,25 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 //!# Step 5: Changing sign if required.
 			if (mc_copysign(1.0, s[0]) < 0.0) {
 				s[0] = -s[0];
+
 				v[0] = -v[0];
 				v[2] = -v[2];
 			}
 			if (mc_copysign(1.0, s[3]) < 0.0) {
 				s[3] = -s[3];
+
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
 //!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
+
 				mcswap_var(w, v[0], v[1]);
 				mcswap_var(w, v[2], v[3]);
+
+				mcswap_var(w, u[0], u[1]);
+				mcswap_var(w, u[2], u[3]);
 			}
 			return 0;
 		}
@@ -160,7 +178,7 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 //!#     - S is an [n x p] diagonal matrix. The non-negative singular values of A (found on the diagonal entries of S) are
 //!#       the square roots of the non-negative eigenvalues of both AA' and A'A.
 //!#     - V is an [p x p] orthogonal matrix. The right-singular vectors of A are a set of orthonormal eigenvectors of A'A.
-//!#     - p=min(m, n) and in this particular case we have m=3, n=3 hence p=3.
+//!#     - p=min(m, n) and in this particular case we have m=2, n=2 hence p=2.
 	long double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
@@ -177,19 +195,25 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 //!# Step 5: Changing sign if required.
 			if (mc_copysignl(1.0L, s[0]) < 0.0L) {
 				s[0] = -s[0];
+
 				v[0] = -v[0];
 				v[2] = -v[2];
 			}
 			if (mc_copysignl(1.0L, s[3]) < 0.0L) {
 				s[3] = -s[3];
+
 				v[1] = -v[1];
 				v[3] = -v[3];
 			}
 //!# Step 6: Reordering singular-values and basis (descending i.e largest first).
 			if (s[0] < s[3]) {
 				mcswap_var(w, s[0], s[3]);
+
 				mcswap_var(w, v[0], v[1]);
 				mcswap_var(w, v[2], v[3]);
+
+				mcswap_var(w, u[0], u[1]);
+				mcswap_var(w, u[2], u[3]);
 			}
 			return 0;
 		}
