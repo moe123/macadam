@@ -16,7 +16,7 @@
 MC_TARGET_FUNC int mc_triusolvenxnf(int n, const float * u, const float * b, float * x)
 {
 //!# B and X may be the same. Solving the non-singular upper
-//!# triangular system Ux=b, where u[n x n], b[n x 1], and x[n x 1].
+//!# triangular system Ux=b, where u[n x n], b[n x 1], and x[1 x n].
 	int i, j;
 	float w;
 	if (x != b) {
@@ -43,7 +43,7 @@ MC_TARGET_FUNC int mc_triusolvenxnf(int n, const float * u, const float * b, flo
 MC_TARGET_FUNC int mc_triusolvenxnff(int n, const float * u, const float * b, double * x)
 {
 //!# Solving the non-singular upper triangular system
-//!# Ux=b, where u[n x n], b[n x 1], and x[n x 1].
+//!# Ux=b, where u[n x n], b[n x 1], and x[1 x n].
 	int i, j;
 	double w;
 	for (i = 0; i < n; i++) {
@@ -69,7 +69,7 @@ MC_TARGET_FUNC int mc_triusolvenxnff(int n, const float * u, const float * b, do
 MC_TARGET_FUNC int mc_triusolvenxn(int n, const double * u, const double * b, double * x)
 {
 //!# B and X may be the same. Solving the non-singular upper
-//!# triangular system Ux=b, where u[n x n], b[n x 1], and x[n x 1].
+//!# triangular system Ux=b, where u[n x n], b[n x 1], and x[1 x n].
 	int i, j;
 	double w;
 	if (x != b) {
@@ -97,7 +97,7 @@ MC_TARGET_FUNC int mc_triusolvenxn(int n, const double * u, const double * b, do
 MC_TARGET_FUNC int mc_triusolvenxnl(int n, const long double * u, const long double * b, long double * x)
 {
 //!# B and X may be the same. Solving the non-singular upper
-//!# triangular system Ux=b, where u[n x n], b[n x 1], and x[n x 1].
+//!# triangular system Ux=b, where u[n x n], b[n x 1], and x[1 x n].
 	int i, j;
 	long double w;
 	if (x != b) {

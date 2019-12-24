@@ -64,8 +64,8 @@ MC_TARGET_FUNC void mc_mulabtmxnl(int m, int n, int p, long double * restrict c,
 	const int lda           = m;
 	const int ldb           = m;
 	const int ldc           = m;
-	const long double alpha = 1.0;
-	const long double beta  = 0.0;
+	const long double alpha = 1.0L;
+	const long double beta  = 0.0L;
 
 	mc_blas_lgemm('N', 'T', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else

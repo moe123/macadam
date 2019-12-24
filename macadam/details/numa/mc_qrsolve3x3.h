@@ -35,6 +35,7 @@ MC_TARGET_FUNC int mc_qrsolve3x3ff(const float q[9], const float r[9], const flo
 //!# q[m x n], r[n x n], d[n x n], p[n x n], pvi[n x 1], x[m x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
+
 	mc_cast(void, pvi);
 	mc_cast(void, p);
 	mc_cast(void, d);
