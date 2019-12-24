@@ -26,7 +26,7 @@ MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
 		switch (f) {
 			case 0:
 				for (; i < n; i++) {
-					s = s + x[i] * y[i];
+					s = s + (x[i] * y[i]);
 				}
 			break;
 			case 1:
@@ -78,6 +78,71 @@ MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
 	return p + s;
 }
 
+MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int f)
+{
+//!# TwoProduct split factor @see mc_twoproduct.
+	const double cs = mc_cast_expr(double, 134217728 + 1);
+
+	int i    = 0;
+	double p = 0.0, s = 0.0;
+	double h, q, r, x1, x2, y1, y2;
+
+	if (n > 0) {
+		switch (f) {
+			case 0:
+				for (; i < n; i++) {
+					s = s + (mc_cast(double, x[i]) * mc_cast(double, y[i]));
+				}
+			break;
+			case 1:
+				for (; i < n; i++) {
+//!# Accurate dot product sum(x[i] * y[i], i=0...n-1) of two vectors.
+//!# Accurate Sum and Dot Product, Takeshi Ogita, Siegfried M. Rump
+//!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
+//!# Computing (SISC), 26(6):1955-1988, 2005.
+
+//!# TwoProduct(x[i],y[i],h,r).
+					q  = mc_cast(double, x[i]);
+//!# split x[i] into x1,x2.
+					r  = cs * q;
+					x2 = r - q;
+					x1 = r - x2;
+					x2 = q - x1;
+					r  = mc_cast(double, y[i]);
+//!# h=x[i]*y[i].
+					h  = q * r;
+//!# split y into y1,y2.
+					q  = cs * r;
+					y2 = q - r;
+					y1 = q - y2;
+					y2 = r - y1;
+//!# r=x2*y2-(((h-x1*y1) - x2*y1) - x1*y2
+					q  = x1 * y1;
+					q  = h - q;
+					y1 = y1 * x2;
+					q  = q - y1;
+					x1 = x1 * y2;
+					q  = q - x1;
+					x2 = x2 * y2;
+					r  = x2 - q;
+//!# (p,q)=TwoSum(p,h).
+					x1 = p + h;
+					x2 = x1 - p;
+					y1 = x1 - x2;
+					y2 = h - x2;
+					q  = p - y1;
+					q  = q + y2;
+					p  = x1;
+//!# s=s+(q+r).
+					q = q + r;
+					s = s + q;
+				}
+			break;
+		}
+	}
+	return p + s;
+}
+
 MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int f)
 {
 //!# TwoProduct split factor @see mc_twoproduct.
@@ -91,7 +156,7 @@ MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int 
 		switch (f) {
 			case 0:
 				for (; i < n; i++) {
-					s = s + x[i] * y[i];
+					s = s + (x[i] * y[i]);
 				}
 			break;
 			case 1:
@@ -160,7 +225,7 @@ MC_TARGET_FUNC long double mc_dotp1xnl(int n, const long double * x, const long 
 		switch (f) {
 			case 0:
 				for (; i < n; i++) {
-					s = s + x[i] * y[i];
+					s = s + (x[i] * y[i]);
 				}
 			break;
 			case 1:
