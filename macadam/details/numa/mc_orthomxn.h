@@ -8,8 +8,10 @@
 
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fmax.h>
+#include <macadam/details/numa/mc_copymxn.h>
 #include <macadam/details/numa/mc_dotpmx1.h>
 #include <macadam/details/numa/mc_l2normmx1.h>
+#include <macadam/details/numa/mc_zerosmx1.h>
 #include <macadam/details/numa/mc_zerosnxn.h>
 
 #ifndef MC_ORTHOMXN_H
@@ -29,9 +31,7 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 	float bnorm, cnorm, dot;
 	if (m >= n) {
 		if (a != q) {
-			for (i = 0; i < (m * n); i++) {
-				q[i] = a[i];
-			}
+			mc_copymxnf(m, n, q, a);
 		}
 		if (wantr) {
 			mc_zerosnxnf(n, r);
@@ -58,9 +58,8 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 			if (cnorm != 0.0f) {
 				if (cnorm < tol * bnorm) {
 //!# Norm is closed to zero, decimeting column.
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = 0.0f;
-					}
+//!# Borrowed from Mikhail Pak RSVD project.
+					mc_zerosmx1f(m, n, j, q);
 					q[j] = 1.0f;
 					if (wantr) {
 						r[(n * j) + j] = 1.0f;
@@ -98,9 +97,8 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 	int i, j, k;
 	double bnorm, cnorm, dot, told;
 	if (m >= n) {
-		for (i = 0; i < (m * n); i++) {
-			q[i] = mc_cast(double, a[i]);
-		}
+		mc_copymxnff(m, n, q, a);
+
 		if (wantr) {
 			mc_zerosnxn(n, r);
 		}
@@ -127,9 +125,8 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 			if (cnorm != 0.0) {
 				if (cnorm < told * bnorm) {
 //!# Norm is closed to zero, decimeting column.
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = 0.0;
-					}
+//!# Borrowed from Mikhail Pak RSVD project.
+					mc_zerosmx1(m, n, j, q);
 					q[j] = 1.0;
 					if (wantr) {
 						r[(n * j) + j] = 1.0;
@@ -168,9 +165,7 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 	double bnorm, cnorm, dot;
 	if (m >= n) {
 		if (a != q) {
-			for (i = 0; i < (m * n); i++) {
-				q[i] = a[i];
-			}
+			mc_copymxn(m, n, q, a);
 		}
 		if (wantr) {
 			mc_zerosnxn(n, r);
@@ -197,9 +192,8 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 			if (cnorm != 0.0) {
 				if (cnorm < tol * bnorm) {
 //!# Norm is closed to zero, decimeting column.
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = 0.0;
-					}
+//!# Borrowed from Mikhail Pak RSVD project.
+					mc_zerosmx1(m, n, j, q);
 					q[j] = 1.0;
 					if (wantr) {
 						r[(n * j) + j] = 1.0;
@@ -238,9 +232,7 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 	long double bnorm, cnorm, dot;
 	if (m >= n) {
 		if (a != q) {
-			for (i = 0; i < (m * n); i++) {
-				q[i] = a[i];
-			}
+			mc_copymxnl(m, n, q, a);
 		}
 		if (wantr) {
 			mc_zerosnxnl(n, r);
@@ -267,9 +259,8 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 			if (cnorm != 0.0L) {
 				if (cnorm < tol * bnorm) {
 //!# Norm is closed to zero, decimeting column.
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = 0.0L;
-					}
+//!# Borrowed from Mikhail Pak RSVD project.
+					mc_zerosmx1l(m, n, j, q);
 					q[j] = 1.0L;
 					if (wantr) {
 						r[(n * j) + j] = 1.0L;

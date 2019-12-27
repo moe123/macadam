@@ -16,7 +16,7 @@
 
 MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, float * restrict c, const float * a, const float * b, int d, int f)
 {
-//!# Returns dotp of A and B such as C[1 x p] = sum(Aij.*Bij) where p=m when d=0 p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 p=n when d=1.
 	int i = 0;
 	switch (d)
 	{
@@ -37,7 +37,7 @@ MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, float * restrict c, const float * 
 
 MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, double * restrict c, const float * a, const float * b, int d, int f)
 {
-//!# Returns dotp of A and B such as C[1 x p] = sum(Aij.*Bij) where p=m when d=0 p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 p=n when d=1.
 	int i = 0;
 	switch (d)
 	{
@@ -58,7 +58,7 @@ MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, double * restrict c, const float 
 
 MC_TARGET_FUNC void mc_dotpmxn(int m, int n, double * restrict c, const double * a, const double * b, int d, int f)
 {
-//!# Returns dotp of A and B such as C[1 x p] = sum(Aij.*Bij) where p=m when d=0 p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 p=n when d=1.
 	int i = 0;
 	switch (d)
 	{
@@ -79,7 +79,7 @@ MC_TARGET_FUNC void mc_dotpmxn(int m, int n, double * restrict c, const double *
 
 MC_TARGET_FUNC void mc_dotpmxnl(int m, int n, long double * restrict c, const long double * a, const long double * b, int d, int f)
 {
-//!# Returns dotp of A and B such as C[1 x p] = sum(Aij.*Bij) where p=m when d=0 p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 p=n when d=1.
 	int i = 0;
 	switch (d)
 	{

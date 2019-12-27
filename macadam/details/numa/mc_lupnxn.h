@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/numa/mc_copynxn.h>
 #include <macadam/details/numa/mc_eyenxn.h>
 #include <macadam/mcswap.h>
 
@@ -25,9 +26,7 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 	int pv = 0, i, j, k, m, r, q;
 	float w, h;
 	if (a != lu) {
-		for (i = 0; i < (n * n); i++) {
-			lu[i] = a[i];
-		}
+		mc_copynxnf(n, lu, a);
 	}
 	if (wantpvi) {
 		for (i = 0; i < n; i++) {
@@ -101,9 +100,8 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 	int pv = 0, i, j, k, m, r, q;
 	double w, h;
 
-	for (i = 0; i < (n * n); i++) {
-		lu[i] = mc_cast(double, a[i]);
-	}
+	mc_copynxnff(n, lu, a);
+
 	if (wantpvi) {
 		for (i = 0; i < n; i++) {
 			pvi[i] = i;
@@ -177,9 +175,7 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 	double w, h;
 
 	if (a != lu) {
-		for (i = 0; i < (n * n); i++) {
-			lu[i] = a[i];
-		}
+		mc_copynxn(n, lu, a);
 	}
 	if (wantpvi) {
 		for (i = 0; i < n; i++) {
@@ -256,9 +252,7 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 	long double w, h;
 
 	if (a != lu) {
-		for (i = 0; i < (n * n); i++) {
-			lu[i] = a[i];
-		}
+		mc_copynxnl(n, lu, a);
 	}
 	if (wantpvi) {
 		for (i = 0; i < n; i++) {
