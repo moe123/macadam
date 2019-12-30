@@ -6,7 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/mc_mulxv1xn.h>
+#include <macadam/details/mc_target.h>
 
 #ifndef MC_DIVXV1XN_H
 #define MC_DIVXV1XN_H
@@ -17,28 +17,44 @@ MC_TARGET_FUNC void mc_divxv1xnf(int n, float * u, const float * x, float v)
 {
 //!# u_i=x_i/v
 	const float w = 1.0f / v;
-	mc_mulxv1xnf(n, u, x, w);
+
+	int i = 0;
+	for (; i < n; i++) {
+		u[i] = x[i] * w;
+	}
 }
 
 MC_TARGET_FUNC void mc_divxv1xnff(int n, double * u, const float * x, float v)
 {
 //!# u_i=x_i/v
 	const float w = 1.0f / v;
-	mc_mulxv1xnff(n, u, x, w);
+
+	int i = 0;
+	for (; i < n; i++) {
+		u[i] = mc_cast(double, x[i]) * mc_cast(double, w);
+	}
 }
 
 MC_TARGET_FUNC void mc_divxv1xn(int n, double * u, const double * x, double v)
 {
 //!# u_i=x_i/v
 	const double w = 1.0 / v;
-	mc_mulxv1xn(n, u, x, w);
+
+	int i = 0;
+	for (; i < n; i++) {
+		u[i] = x[i] * w;
+	}
 }
 
 MC_TARGET_FUNC void mc_divxv1xnl(int n, long double * u, const long double * x, long double v)
 {
 //!# u_i=x_i/v
 	const long double w = 1.0L / v;
-	mc_mulxv1xnl(n, u, x, w);
+
+	int i = 0;
+	for (; i < n; i++) {
+		u[i] = x[i] * w;
+	}
 }
 
 #endif /* !MC_DIVXV1XN_H */

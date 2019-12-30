@@ -86,6 +86,8 @@
 #	include <macadam/details/numa/mc_addmulatx3x3.h>
 #	include <macadam/details/numa/mc_addmulax2x2.h>
 #	include <macadam/details/numa/mc_addmulax3x3.h>
+#	include <macadam/details/numa/mc_addxv1xn.h>
+#	include <macadam/details/numa/mc_addxy1xn.h>
 #	include <macadam/details/numa/mc_amean1xn.h>
 #	include <macadam/details/numa/mc_asum1xn.h>
 #	include <macadam/details/numa/mc_chpoly2x2.h>
@@ -98,6 +100,7 @@
 #	include <macadam/details/numa/mc_det3x3.h>
 #	include <macadam/details/numa/mc_det4x4.h>
 #	include <macadam/details/numa/mc_divxv1xn.h>
+#	include <macadam/details/numa/mc_divxy1xn.h>
 #	include <macadam/details/numa/mc_dotp1xn.h>
 #	include <macadam/details/numa/mc_dotpmx1.h>
 #	include <macadam/details/numa/mc_dotpmxn.h>
@@ -173,6 +176,8 @@
 #	include <macadam/details/numa/mc_ssqr1xn.h>
 #	include <macadam/details/numa/mc_ssqrmx1.h>
 #	include <macadam/details/numa/mc_stdd1xn.h>
+#	include <macadam/details/numa/mc_subxv1xn.h>
+#	include <macadam/details/numa/mc_subxy1xn.h>
 #	include <macadam/details/numa/mc_sum1xn.h>
 #	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_sumtwo1xn.h>
