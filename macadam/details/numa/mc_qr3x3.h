@@ -28,7 +28,7 @@ MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 	float a31 = a[6], a32 = a[7], a33 = a[8];
 
 //!# First givens rotation (ch, 0, 0, sh)
-	mc_gvrotf(a11, a21, tol, &ch1, &sh1);
+	mc_gvrotf(a11, a21, tol, &ch1, &sh1, NULL);
 	a0 = 1.0f - 2.0f * sh1 * sh1;
 	b0 = 2.0f        * ch1 * sh1;
 
@@ -38,7 +38,7 @@ MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
 
 //!# Second givens rotation (ch, 0, -sh, 0)
-	mc_gvrotf(r[0], r[6], tol, &ch2, &sh2);
+	mc_gvrotf(r[0], r[6], tol, &ch2, &sh2, NULL);
 	a0 = 1.0f - 2.0f * sh2 * sh2;
 	b0 = 2.0f        * ch2 * sh2;
 
@@ -48,7 +48,7 @@ MC_TARGET_FUNC int mc_qrgv3x3f(const float a[9], float q[9], float r[9])
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
 
 //!# Third givens rotation (ch, sh, 0, 0)
-	mc_gvrotf(a22, a32, tol, &ch3, &sh3);
+	mc_gvrotf(a22, a32, tol, &ch3, &sh3, NULL);
 	a0 = 1.0f - 2.0f * sh3 * sh3;
 	b0 = 2.0f        * ch3 * sh3;
 
@@ -89,7 +89,7 @@ MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 	double a31 = mc_cast(double, a[6]), a32 = mc_cast(double, a[7]), a33 = mc_cast(double, a[8]);
 
 //!# First givens rotation (ch, 0, 0, sh)
-	mc_gvrot(a11, a21, tol, &ch1, &sh1);
+	mc_gvrot(a11, a21, tol, &ch1, &sh1, NULL);
 	a0 = 1.0 - 2.0 * sh1 * sh1;
 	b0 = 2.0       * ch1 * sh1;
 
@@ -99,7 +99,7 @@ MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
 
 //!# Second givens rotation (ch, 0, -sh, 0)
-	mc_gvrot(r[0], r[6], tol, &ch2, &sh2);
+	mc_gvrot(r[0], r[6], tol, &ch2, &sh2, NULL);
 	a0 = 1.0 - 2.0 * sh2 * sh2;
 	b0 = 2.0       * ch2 * sh2;
 
@@ -109,7 +109,7 @@ MC_TARGET_PROC int mc_qrgv3x3ff(const float a[9], double q[9], double r[9])
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
 
 //!# Third givens rotation (ch, sh, 0, 0)
-	mc_gvrot(a22, a32, tol, &ch3, &sh3);
+	mc_gvrot(a22, a32, tol, &ch3, &sh3, NULL);
 	a0 = 1.0 - 2.0 * sh3 * sh3;
 	b0 = 2.0       * ch3 * sh3;
 
@@ -150,7 +150,7 @@ MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 	double a31 = a[6], a32 = a[7], a33 = a[8];
 
 //!# First givens rotation (ch, 0, 0, sh)
-	mc_gvrot(a11, a21, tol, &ch1, &sh1);
+	mc_gvrot(a11, a21, tol, &ch1, &sh1, NULL);
 	a0 = 1.0 - 2.0 * sh1 * sh1;
 	b0 = 2.0       * ch1 * sh1;
 
@@ -160,7 +160,7 @@ MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
 
 //!# Second givens rotation (ch, 0, -sh, 0)
-	mc_gvrot(r[0], r[6], tol, &ch2, &sh2);
+	mc_gvrot(r[0], r[6], tol, &ch2, &sh2, NULL);
 	a0 = 1.0 - 2.0 * sh2 * sh2;
 	b0 = 2.0       * ch2 * sh2;
 
@@ -170,7 +170,7 @@ MC_TARGET_PROC int mc_qrgv3x3(const double a[9], double q[9], double r[9])
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
 
 //!# Third givens rotation (ch, sh, 0, 0)
-	mc_gvrot(a22, a32, tol, &ch3, &sh3);
+	mc_gvrot(a22, a32, tol, &ch3, &sh3, NULL);
 	a0 = 1.0 - 2.0 * sh3 * sh3;
 	b0 = 2.0       * ch3 * sh3;
 
@@ -211,7 +211,7 @@ MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long do
 	long double a31 = a[6], a32 = a[7], a33 = a[8];
 
 //!# First givens rotation (ch, 0, 0, sh)
-	mc_gvrotl(a11, a21, tol, &ch1, &sh1);
+	mc_gvrotl(a11, a21, tol, &ch1, &sh1, NULL);
 	a0 = 1.0L - 2.0L * sh1 * sh1;
 	b0 = 2.0L        * ch1 * sh1;
 
@@ -221,7 +221,7 @@ MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long do
 	r[6] =  a31;                 r[7] =  a32;                 r[8] =  a33;
 
 //!# Second givens rotation (ch, 0, -sh, 0)
-	mc_gvrotl(r[0], r[6], tol, &ch2, &sh2);
+	mc_gvrotl(r[0], r[6], tol, &ch2, &sh2, NULL);
 	a0 = 1.0L - 2.0L * sh2 * sh2;
 	b0 = 2.0L        * ch2 * sh2;
 
@@ -231,7 +231,7 @@ MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long do
 	a31 = -b0 * r[0] + a0 * r[6]; a32 = -b0 * r[1] + a0 * r[7]; a33 = -b0 * r[2] + a0 * r[8];
 
 //!# Third givens rotation (ch, sh, 0, 0)
-	mc_gvrotl(a22, a32, tol, &ch3, &sh3);
+	mc_gvrotl(a22, a32, tol, &ch3, &sh3, NULL);
 	a0 = 1.0L - 2.0L * sh3 * sh3;
 	b0 = 2.0L        * ch3 * sh3;
 

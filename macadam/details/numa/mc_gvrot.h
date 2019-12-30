@@ -16,9 +16,10 @@
 
 #pragma mark - mc_gvrot -
 
-MC_TARGET_FUNC void mc_gvrotf(float a1, float a2, float tol, float * ch, float * sh)
+MC_TARGET_FUNC void mc_gvrotf(float a1, float a2, float tol, float * ch, float * sh, float * r)
 {
 //!# Givens rotation.
+	const int wantr = mc_nonnull(r);
 	float w;
 
 //!# Sanity check.
@@ -31,18 +32,24 @@ MC_TARGET_FUNC void mc_gvrotf(float a1, float a2, float tol, float * ch, float *
 	*sh = mc_copysignf(1.0f, a1) < 0.0f ? *ch : *sh;
 	*ch = mc_copysignf(1.0f, a1) < 0.0f ?  w  : *ch;
 
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2f(*ch, *sh);
+	} else {
 //!# Normalizing ch and sh by r.
-	w  =  mc_hypot2f(*ch, *sh);
-	if(w != 0.0f) {
-		 w  =  1.0f / w;
-		*ch = *ch * w;
-		*sh = *sh * w;
+		w = mc_hypot2f(*ch, *sh);
+		if(w != 0.0f) {
+			 w  =  1.0f / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
 	}
 }
 
-MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, double * sh)
+MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, double * sh, double * r)
 {
 //!# Givens rotation.
+	const int wantr = mc_nonnull(r);
 	double w, a1d, a2d, told;
 
 	a1d  = mc_cast(double, a1);
@@ -59,18 +66,24 @@ MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, doubl
 	*sh = mc_copysign(1.0, a1d) < 0.0 ? *ch : *sh;
 	*ch = mc_copysign(1.0, a1d) < 0.0 ?  w  : *ch;
 
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2(*ch, *sh);
+	} else {
 //!# Normalizing ch and sh by r.
-	w  =  mc_hypot2(*ch, *sh);
-	if(w != 0.0) {
-		 w  =  1.0 / w;
-		*ch = *ch * w;
-		*sh = *sh * w;
+		w = mc_hypot2(*ch, *sh);
+		if(w != 0.0) {
+			 w  =  1.0 / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
 	}
 }
 
-MC_TARGET_FUNC void mc_gvrot(double a1, double a2, double tol, double * ch, double * sh)
+MC_TARGET_FUNC void mc_gvrot(double a1, double a2, double tol, double * ch, double * sh, double * r)
 {
 //!# Givens rotation.
+	const int wantr = mc_nonnull(r);
 	double w;
 
 //!# Sanity check.
@@ -83,18 +96,24 @@ MC_TARGET_FUNC void mc_gvrot(double a1, double a2, double tol, double * ch, doub
 	*sh = mc_copysign(1.0, a1) < 0.0 ? *ch : *sh;
 	*ch = mc_copysign(1.0, a1) < 0.0 ?  w  : *ch;
 
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2(*ch, *sh);
+	} else {
 //!# Normalizing ch and sh by r.
-	w  =  mc_hypot2(*ch, *sh);
-	if(w != 0.0) {
-		 w  =  1.0 / w;
-		*ch = *ch * w;
-		*sh = *sh * w;
+		w = mc_hypot2(*ch, *sh);
+		if(w != 0.0) {
+			 w  =  1.0 / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
 	}
 }
 
-MC_TARGET_FUNC void mc_gvrotl(long double a1, long double a2, long double tol, long double * ch, long double * sh)
+MC_TARGET_FUNC void mc_gvrotl(long double a1, long double a2, long double tol, long double * ch, long double * sh, long double * r)
 {
 //!# Givens rotation.
+	const int wantr = mc_nonnull(r);
 	long double w;
 
 //!# Sanity check.
@@ -107,12 +126,17 @@ MC_TARGET_FUNC void mc_gvrotl(long double a1, long double a2, long double tol, l
 	*sh = mc_copysignl(1.0L, a1) < 0.0L ? *ch : *sh;
 	*ch = mc_copysignl(1.0L, a1) < 0.0L ?  w  : *ch;
 
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2l(*ch, *sh);
+	} else {
 //!# Normalizing ch and sh by r.
-	w  =  mc_hypot2l(*ch, *sh);
-	if(w != 0.0L) {
-		 w  =  1.0L / w;
-		*ch = *ch * w;
-		*sh = *sh * w;
+		w = mc_hypot2l(*ch, *sh);
+		if(w != 0.0L) {
+			 w  =  1.0L / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
 	}
 }
 
