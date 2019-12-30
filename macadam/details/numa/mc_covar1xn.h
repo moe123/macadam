@@ -25,7 +25,7 @@ MC_TARGET_FUNC float mc_covar1xnf(int n, const float * x, const float * y, int b
 			const float mux = mc_sumtwo1xnf(n, x) / mc_cast(float, (b ? n - 1 : n));
 			const float muy = mc_sumtwo1xnf(n, y) / mc_cast(float, (b ? n - 1 : n));
 			for (i = 0; i < n; i++) {
-				s = s + (x[i] - mux) * (y[i] - muy);
+				s = s + ((x[i] - mux) * (y[i] - muy));
 			}
 			s = s / mc_cast(float, (b ? n - 1 : n));
 		}
@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_covar1xnff(int n, const float * x, const float * y, int
 			const double mux = mc_sumtwo1xnff(n, x) / mc_cast(double, (b ? n - 1 : n));
 			const double muy = mc_sumtwo1xnff(n, y) / mc_cast(double, (b ? n - 1 : n));
 			for (i = 0; i < n; i++) {
-				s = s + (x[i] - mux) * (y[i] - muy);
+				s = s + ((x[i] - mux) * (y[i] - muy));
 			}
 			s = s / mc_cast(double, (b ? n - 1 : n));
 		}
@@ -63,7 +63,7 @@ MC_TARGET_FUNC double mc_covar1xn(int n, const double * x, const double * y, int
 			const double mux = mc_sumtwo1xn(n, x) / mc_cast(double, (b ? n - 1 : n));
 			const double muy = mc_sumtwo1xn(n, y) / mc_cast(double, (b ? n - 1 : n));
 			for (i = 0; i < n; i++) {
-				s = s + (x[i] - mux) * (y[i] - muy);
+				s = s + ((x[i] - mux) * (y[i] - muy));
 			}
 			s = s / mc_cast(double, (b ? n - 1 : n));
 		}
@@ -82,7 +82,7 @@ MC_TARGET_FUNC long double mc_covar1xnl(int n, const long double * x, const long
 			const long double mux = mc_sumtwo1xnl(n, x) / mc_cast(long double, (b ? n - 1 : n));
 			const long double muy = mc_sumtwo1xnl(n, y) / mc_cast(long double, (b ? n - 1 : n));
 			for (i = 0; i < n; i++) {
-				s = s + (x[i] - mux) * (y[i] - muy);
+				s = s + ((x[i] - mux) * (y[i] - muy));
 			}
 			s = s / mc_cast(long double, (b ? n - 1 : n));
 		}
