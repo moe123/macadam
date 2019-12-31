@@ -19,12 +19,12 @@
 
 #pragma mark - mc_orthomxn -
 
-int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
+MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
-//!# If R is not null upper-triangle is computed.
+//!# If R is not null upper-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -60,7 +60,7 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 //!# Norm is closed to zero, decimeting column.
 //!# Borrowed from Mikhail Pak RSVD project.
 					mc_zerosmx1f(m, n, j, q);
-					q[j] = 1.0f;
+					q[(n * j) + j] = 1.0f;
 					if (wantr) {
 						r[(n * j) + j] = 1.0f;
 					}
@@ -75,7 +75,7 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 					}
 				}
 			} else {
-				q[j] = 1.0f;
+				q[(n * j) + j] = 1.0f;
 				if (wantr) {
 					r[(n * j) + j] = 1.0f;
 				}
@@ -86,12 +86,12 @@ int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * re
 	return -1;
 }
 
-int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt
 //!# method + a decimeting column step if norm < tol. If R is not null
-//!# upper-triangle is computed.
+//!# upper-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -127,7 +127,7 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 //!# Norm is closed to zero, decimeting column.
 //!# Borrowed from Mikhail Pak RSVD project.
 					mc_zerosmx1(m, n, j, q);
-					q[j] = 1.0;
+					q[(n * j) + j] = 1.0;
 					if (wantr) {
 						r[(n * j) + j] = 1.0;
 					}
@@ -142,7 +142,7 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 					}
 				}
 			} else {
-				q[j] = 1.0;
+				q[(n * j) + j] = 1.0;
 				if (wantr) {
 					r[(n * j) + j] = 1.0;
 				}
@@ -153,12 +153,12 @@ int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double *
 	return -1;
 }
 
-int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
-//!# If R is not null upper-triangle is computed.
+//!# If R is not null upper-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -194,7 +194,7 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 //!# Norm is closed to zero, decimeting column.
 //!# Borrowed from Mikhail Pak RSVD project.
 					mc_zerosmx1(m, n, j, q);
-					q[j] = 1.0;
+					q[(n * j) + j] = 1.0;
 					if (wantr) {
 						r[(n * j) + j] = 1.0;
 					}
@@ -209,7 +209,7 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 					}
 				}
 			} else {
-				q[j] = 1.0;
+				q[(n * j) + j] = 1.0;
 				if (wantr) {
 					r[(n * j) + j] = 1.0;
 				}
@@ -220,12 +220,12 @@ int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double *
 	return -1;
 }
 
-int mc_orthomxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
+MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
-//!# If R is not null upper-triangle is computed.
+//!# If R is not null upper-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -261,7 +261,7 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 //!# Norm is closed to zero, decimeting column.
 //!# Borrowed from Mikhail Pak RSVD project.
 					mc_zerosmx1l(m, n, j, q);
-					q[j] = 1.0L;
+					q[(n * j) + j] = 1.0L;
 					if (wantr) {
 						r[(n * j) + j] = 1.0L;
 					}
@@ -276,7 +276,7 @@ int mc_orthomxnl(int m, int n, const long double * a, long double tol, long doub
 					}
 				}
 			} else {
-				q[j] = 1.0L;
+				q[(n * j) + j] = 1.0L;
 				if (wantr) {
 					r[(n * j) + j] = 1.0L;
 				}

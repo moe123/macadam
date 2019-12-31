@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mgsmxn -
 
-int mc_mgsmxnf(int m, int n, const float * a, float * q, float * restrict r)
+MC_TARGET_FUNC int mc_mgsmxnf(int m, int n, const float * a, float * q, float * restrict r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
 //!# A and Q may be the same. Performing a QR decomposition
@@ -21,14 +21,14 @@ int mc_mgsmxnf(int m, int n, const float * a, float * q, float * restrict r)
 	return mc_orthomxnf(m, n, a, MCLIMITS_TINYF, q, r);
 }
 
-int mc_mgsmxnff(int m, int n, const float * a, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_mgsmxnff(int m, int n, const float * a, double * q, double * restrict r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
 //!# Performing a QR decomposition using Modified Gram-Schmidt method.
 	return mc_orthomxnff(m, n, a, MCLIMITS_TINYF, q, r);
 }
 
-int mc_mgsmxn(int m, int n, const double * a, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_mgsmxn(int m, int n, const double * a, double * q, double * restrict r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
 //!# A and Q may be the same. Performing a QR decomposition
@@ -36,7 +36,7 @@ int mc_mgsmxn(int m, int n, const double * a, double * q, double * restrict r)
 	return mc_orthomxn(m, n, a, MCLIMITS_TINY, q, r);
 }
 
-int mc_mgsmxnl(int m, int n, const long double * a, long double * q, long double * restrict r)
+MC_TARGET_FUNC int mc_mgsmxnl(int m, int n, const long double * a, long double * q, long double * restrict r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < m < n.
 //!# A and Q may be the same. Performing a QR decomposition

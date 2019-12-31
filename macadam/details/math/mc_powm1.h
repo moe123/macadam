@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_powm1f(float x, float y)
 			r = mc_xlogyf(y, x);
 			return r < 0.5f ? mc_expm1f(r) : MCK_INFP;
 		}
-	} else if (mc_fisintf(y / 2.0f)) {
+	} else if (mc_fisintf(y * 0.5f)) {
 		return mc_powm1f(-x, y);
 	}
 	return mc_powf(x, y) - 1.0f;
@@ -45,7 +45,7 @@ MC_TARGET_FUNC double mc_powm1(double x, double y)
 			r = mc_xlogy(y, x);
 			return r < 0.5 ? mc_expm1(r) : MCK_INFP;
 		}
-	} else if (mc_fisint(y / 2.0)) {
+	} else if (mc_fisint(y * 0.5)) {
 		return mc_powm1(-x, y);
 	}
 	return mc_pow(x, y) - 1.0;
@@ -62,7 +62,7 @@ MC_TARGET_FUNC long double mc_powm1l(long double x, long double y)
 			r = mc_xlogyl(y, x);
 			return r < 0.5L ? mc_expm1l(r) : MCK_INFP;
 		}
-	} else if (mc_fisintl(y / 2.0L)) {
+	} else if (mc_fisintl(y * 0.5L)) {
 		return mc_powm1l(-x, y);
 	}
 	return mc_powl(x, y) - 1.0L;
