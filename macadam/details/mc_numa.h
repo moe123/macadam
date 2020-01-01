@@ -99,6 +99,7 @@
 #	include <macadam/details/numa/mc_det2x2.h>
 #	include <macadam/details/numa/mc_det3x3.h>
 #	include <macadam/details/numa/mc_det4x4.h>
+#	include <macadam/details/numa/mc_diag1xn.h>
 #	include <macadam/details/numa/mc_divxv1xn.h>
 #	include <macadam/details/numa/mc_divxy1xn.h>
 #	include <macadam/details/numa/mc_dotp1xn.h>
