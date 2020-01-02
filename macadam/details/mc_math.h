@@ -71,6 +71,7 @@
 #	include <macadam/details/math/mc_fisint.h>
 #	include <macadam/details/math/mc_fisodd.h>
 #	include <macadam/details/math/mc_fisval.h>
+#	include <macadam/details/math/mc_fix.h>
 #	include <macadam/details/math/mc_floor.h>
 #	include <macadam/details/math/mc_fmax.h>
 #	include <macadam/details/math/mc_fmin.h>
@@ -155,6 +156,7 @@
 #	include <macadam/details/math/mc_raise4.h>
 #	include <macadam/details/math/mc_raise5.h>
 #	include <macadam/details/math/mc_raise6.h>
+#	include <macadam/details/math/mc_remainder.h>
 #	include <macadam/details/math/mc_rempio2_cw.h>
 #	include <macadam/details/math/mc_remzpi.h>
 #	include <macadam/details/math/mc_rgamma.h>
