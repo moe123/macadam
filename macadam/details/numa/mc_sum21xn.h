@@ -1,19 +1,19 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_sumtwo1xn.h
+// mc_sum21xn.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/math/mc_twosum.h>
 
-#ifndef MC_SUMTWO1XN_H
-#define MC_SUMTWO1XN_H
+#ifndef MC_SUM21XN_H
+#define MC_SUM21XN_H
 
-#pragma mark - mc_sumtwo1xn -
+#pragma mark - mc_sum21xn -
 
-MC_TARGET_FUNC float mc_sumtwo1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_sum21xnf(int n, const float * x)
 {
 	int i   = 1;
 	float e = 0.0f, s = 0.0f, y;
@@ -27,7 +27,7 @@ MC_TARGET_FUNC float mc_sumtwo1xnf(int n, const float * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_sumtwo1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_sum21xnff(int n, const float * x)
 {
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
@@ -41,7 +41,7 @@ MC_TARGET_FUNC double mc_sumtwo1xnff(int n, const float * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_sumtwo1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_sum21xn(int n, const double * x)
 {
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
@@ -55,7 +55,7 @@ MC_TARGET_FUNC double mc_sumtwo1xn(int n, const double * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC long double mc_sumtwo1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_sum21xnl(int n, const long double * x)
 {
 	int i         = 1;
 	long double e = 0.0L, s = 0.0L, y;
@@ -69,6 +69,6 @@ MC_TARGET_FUNC long double mc_sumtwo1xnl(int n, const long double * x)
 	return s + e;
 }
 
-#endif /* !MC_SUMTWO1XN_H */
+#endif /* !MC_SUM21XN_H */
 
 /* EOF */
