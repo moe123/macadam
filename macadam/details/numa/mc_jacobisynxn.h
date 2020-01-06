@@ -6,7 +6,13 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_copysign.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_hypot2.h>
+#include <macadam/details/math/mc_sqrt.h>
+#include <macadam/details/numa/mc_copynxn.h>
+#include <macadam/details/numa/mc_eyenxn.h>
+#include <macadam/details/numa/mc_triussqrnxn.h>
 
 #ifndef MC_JACOBISYNXN_H
 #define MC_JACOBISYNXN_H
@@ -41,20 +47,9 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 	}
 
 	while (1) {
-		scale = 0.0f;
-		sumsq = 1.0f;
-		for (i = 0; i < (n - 1); i++) {
-			for (j = (i + 1); j < n; j++) {
-				if (0.0f != (t = mc_fabsf(e[(n * i) + j]))) {
-					if (scale < t) {
-						sumsq = 1.0f + sumsq * mc_raise2f(scale / t);
-						scale = t;
-					} else {
-						sumsq = sumsq + mc_raise2f(t / scale);
-					}
-				}
-			}
-		}
+//!# Computing the partial Frobenius norm, iterating the
+//!# upper-triangle excluding the main-diagonal elements.
+		mc_triussqrnxnf(n, e, &sumsq, &scale, 1);
 		if (scale * mc_sqrtf(sumsq * 2.0f) < eps) {
 			break;
 		}
@@ -152,20 +147,9 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 	told = mc_cast(double, tol);
 
 	while (1) {
-		scale = 0.0;
-		sumsq = 1.0;
-		for (i = 0; i < (n - 1); i++) {
-			for (j = (i + 1); j < n; j++) {
-				if (0.0f != (t = mc_fabs(e[(n * i) + j]))) {
-					if (scale < t) {
-						sumsq = 1.0f + sumsq * mc_raise2(scale / t);
-						scale = t;
-					} else {
-						sumsq = sumsq + mc_raise2(t / scale);
-					}
-				}
-			}
-		}
+//!# Computing the partial Frobenius norm, iterating the
+//!# upper-triangle excluding the main-diagonal elements.
+		mc_triussqrnxn(n, e, &sumsq, &scale, 1);
 		if (scale * mc_sqrt(sumsq * 2.0) < eps) {
 			break;
 		}
@@ -264,20 +248,9 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 	}
 
 	while (1) {
-		scale = 0.0;
-		sumsq = 1.0;
-		for (i = 0; i < (n - 1); i++) {
-			for (j = (i + 1); j < n; j++) {
-				if (0.0f != (t = mc_fabs(e[(n * i) + j]))) {
-					if (scale < t) {
-						sumsq = 1.0f + sumsq * mc_raise2(scale / t);
-						scale = t;
-					} else {
-						sumsq = sumsq + mc_raise2(t / scale);
-					}
-				}
-			}
-		}
+//!# Computing the partial Frobenius norm, iterating the
+//!# upper-triangle excluding the main-diagonal elements.
+		mc_triussqrnxn(n, e, &sumsq, &scale, 1);
 		if (scale * mc_sqrt(sumsq * 2.0) < eps) {
 			break;
 		}
@@ -376,20 +349,9 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 	}
 
 	while (1) {
-		scale = 0.0L;
-		sumsq = 1.0L;
-		for (i = 0; i < (n - 1); i++) {
-			for (j = (i + 1); j < n; j++) {
-				if (0.0f != (t = mc_fabsl(e[(n * i) + j]))) {
-					if (scale < t) {
-						sumsq = 1.0f + sumsq * mc_raise2l(scale / t);
-						scale = t;
-					} else {
-						sumsq = sumsq + mc_raise2l(t / scale);
-					}
-				}
-			}
-		}
+//!# Computing the partial Frobenius norm, iterating the
+//!# upper-triangle excluding the main-diagonal elements.
+		mc_triussqrnxnl(n, e, &sumsq, &scale, 1);
 		if (scale * mc_sqrtl(sumsq * 2.0L) < eps) {
 			break;
 		}

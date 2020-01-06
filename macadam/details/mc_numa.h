@@ -195,6 +195,7 @@
 #	include <macadam/details/numa/mc_triunxn.h>
 #	include <macadam/details/numa/mc_triusolve3x3.h>
 #	include <macadam/details/numa/mc_triusolvenxn.h>
+#	include <macadam/details/numa/mc_triussqrnxn.h>
 #	include <macadam/details/numa/mc_trsi2x2.h>
 #	include <macadam/details/numa/mc_trsi3x3.h>
 #	include <macadam/details/numa/mc_trsimxn.h>
