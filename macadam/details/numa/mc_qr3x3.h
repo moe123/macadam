@@ -6,13 +6,142 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_copysign.h>
+#include <macadam/details/math/mc_hypot2.h>
 #include <macadam/details/math/mc_hypot3.h>
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/numa/mc_eye3x3.h>
-#include <macadam/details/numa/mc_gvrot.h>
 #include <macadam/details/numa/mc_zeros3x3.h>
 
 #ifndef MC_QR3X3_H
 #define MC_QR3X3_H
+
+#pragma mark - mc_gvrot -
+
+MC_TARGET_FUNC void mc_gvrotf(float a1, float a2, float tol, float * ch, float * sh, float * r)
+{
+//!# Givens rotation.
+	const int wantr = mc_nonnull(r);
+	float w;
+
+//!# Sanity check.
+	 w  = mc_hypot2f(a1, a2);
+	*sh = w > tol ? a2 : 0.0f;
+	*ch = mc_fabsf(a1) + mc_fmaxf(w, tol);
+
+//!# Sign check.
+	 w  = *sh;
+	*sh = mc_copysignf(1.0f, a1) < 0.0f ? *ch : *sh;
+	*ch = mc_copysignf(1.0f, a1) < 0.0f ?  w  : *ch;
+
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2f(*ch, *sh);
+	} else {
+//!# Normalizing ch and sh by r.
+		w = mc_hypot2f(*ch, *sh);
+		if(w != 0.0f) {
+			 w  =  1.0f / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, double * sh, double * r)
+{
+//!# Givens rotation.
+	const int wantr = mc_nonnull(r);
+	double w, a1d, a2d, told;
+
+	a1d  = mc_cast(double, a1);
+	a2d  = mc_cast(double, a2);
+	told = mc_cast(double, tol);
+
+//!# Sanity check.
+	 w  = mc_hypot2(a1d, a2d);
+	*sh = w > told ? a2d : 0.0;
+	*ch = mc_fabs(a1d) + mc_fmax(w, told);
+
+//!# Sign check.
+	 w  = *sh;
+	*sh = mc_copysign(1.0, a1d) < 0.0 ? *ch : *sh;
+	*ch = mc_copysign(1.0, a1d) < 0.0 ?  w  : *ch;
+
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2(*ch, *sh);
+	} else {
+//!# Normalizing ch and sh by r.
+		w = mc_hypot2(*ch, *sh);
+		if(w != 0.0) {
+			 w  =  1.0 / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_gvrot(double a1, double a2, double tol, double * ch, double * sh, double * r)
+{
+//!# Givens rotation.
+	const int wantr = mc_nonnull(r);
+	double w;
+
+//!# Sanity check.
+	 w  = mc_hypot2(a1, a2);
+	*sh = w > tol ? a2 : 0.0;
+	*ch = mc_fabs(a1) + mc_fmax(w, tol);
+
+//!# Sign check.
+	 w  = *sh;
+	*sh = mc_copysign(1.0, a1) < 0.0 ? *ch : *sh;
+	*ch = mc_copysign(1.0, a1) < 0.0 ?  w  : *ch;
+
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2(*ch, *sh);
+	} else {
+//!# Normalizing ch and sh by r.
+		w = mc_hypot2(*ch, *sh);
+		if(w != 0.0) {
+			 w  =  1.0 / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_gvrotl(long double a1, long double a2, long double tol, long double * ch, long double * sh, long double * r)
+{
+//!# Givens rotation.
+	const int wantr = mc_nonnull(r);
+	long double w;
+
+//!# Sanity check.
+	 w  = mc_hypot2l(a1, a2);
+	*sh = w > tol ? a2 : 0.0L;
+	*ch = mc_fabsl(a1) + mc_fmaxl(w, tol);
+
+//!# Sign check.
+	 w  = *sh;
+	*sh = mc_copysignl(1.0L, a1) < 0.0L ? *ch : *sh;
+	*ch = mc_copysignl(1.0L, a1) < 0.0L ?  w  : *ch;
+
+//!# Assigning r without normalization.
+	if (wantr) {
+		*r = mc_hypot2l(*ch, *sh);
+	} else {
+//!# Normalizing ch and sh by r.
+		w = mc_hypot2l(*ch, *sh);
+		if(w != 0.0L) {
+			 w  =  1.0L / w;
+			*ch = *ch * w;
+			*sh = *sh * w;
+		}
+	}
+}
 
 #pragma mark - mc_qrgv3x3 -
 
