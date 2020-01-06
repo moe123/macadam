@@ -192,6 +192,7 @@
 #	include <macadam/details/numa/mc_tracenxn.h>
 #	include <macadam/details/numa/mc_trilnxn.h>
 #	include <macadam/details/numa/mc_trilsolvenxn.h>
+#	include <macadam/details/numa/mc_trilssqrnxn.h>
 #	include <macadam/details/numa/mc_triunxn.h>
 #	include <macadam/details/numa/mc_triusolve3x3.h>
 #	include <macadam/details/numa/mc_triusolvenxn.h>
