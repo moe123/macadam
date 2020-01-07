@@ -29,19 +29,30 @@ MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const
 
 	mc_blas_sgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-
+	int i, j = 0, k;
+	for (; j < p; j++) {
+		for (i = 0; i < n; i++) {
+			c[(p * i) + j] = 0.0f;
+			for (k = 0; k < m; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * k) + i] * b[(p * k) + j]);
+			}
+		}
+	}
 #	endif
 }
 
 MC_TARGET_FUNC void mc_mulatbmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
-	mc_cast(void, m);
-	mc_cast(void, n);
-	mc_cast(void, p);
-	mc_cast(void, c);
-	mc_cast(void, a);
-	mc_cast(void, b);
+	int i, j = 0, k;
+	for (; j < p; j++) {
+		for (i = 0; i < n; i++) {
+			c[(p * i) + j] = 0.0;
+			for (k = 0; k < m; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (mc_cast(double, a[(n * k) + i]) * mc_cast(double, b[(p * k) + j]));
+			}
+		}
+	}
 }
 
 MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
@@ -60,7 +71,15 @@ MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const
 
 	mc_blas_dgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-
+	int i, j = 0, k;
+	for (; j < p; j++) {
+		for (i = 0; i < n; i++) {
+			c[(p * i) + j] = 0.0;
+			for (k = 0; k < m; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * k) + i] * b[(p * k) + j]);
+			}
+		}
+	}
 #	endif
 }
 
@@ -80,7 +99,15 @@ MC_TARGET_FUNC void mc_mulatbmxnl(int m, int n, int p, long double * restrict c,
 
 	mc_blas_lgemm('T', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-
+	int i, j = 0, k;
+	for (; j < p; j++) {
+		for (i = 0; i < n; i++) {
+			c[(p * i) + j] = 0.0L;
+			for (k = 0; k < m; k++) {
+				c[(p * i) + j] = c[(p * i) + j] + (a[(n * k) + i] * b[(p * k) + j]);
+			}
+		}
+	}
 #	endif
 }
 
