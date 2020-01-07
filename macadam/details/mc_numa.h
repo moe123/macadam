@@ -188,8 +188,9 @@
 #	include <macadam/details/numa/mc_subxv1xn.h>
 #	include <macadam/details/numa/mc_subxy1xn.h>
 #	include <macadam/details/numa/mc_sum1xn.h>
- #	include <macadam/details/numa/mc_sum2mx1.h>
+#	include <macadam/details/numa/mc_sum2mx1.h>
 #	include <macadam/details/numa/mc_sum21xn.h>
+#	include <macadam/details/numa/mc_summx1.h>
 #	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_svd2x2.h>
 #	include <macadam/details/numa/mc_svd3x3.h>
