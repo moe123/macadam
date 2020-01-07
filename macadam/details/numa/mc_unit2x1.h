@@ -21,7 +21,7 @@ MC_TARGET_FUNC void mc_unit2x1f(int n, int j, float * a)
 		a[j]              = a[j] * scale;
 		a[n + j]          = a[n + j] * scale;
 	} else {
-		a[j] = 1.0f;
+		a[(n * j) + j] = 1.0f;
 	}
 }
 
@@ -33,7 +33,7 @@ MC_TARGET_FUNC void mc_unit2x1(int n, int j, double * a)
 		a[j]              = a[j] * scale;
 		a[n + j]          = a[n + j] * scale;
 	} else {
-		a[j] = 1.0;
+		a[(n * j) + j] = 1.0;
 	}
 }
 
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_unit2x1l(int n, int j, long double * a)
 		a[j]                    = a[j] * scale;
 		a[n + j]                = a[n + j] * scale;
 	} else {
-		a[j] = 1.0L;
+		a[(n * j) + j] = 1.0L;
 	}
 }
 

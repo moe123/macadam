@@ -16,7 +16,7 @@
 
 MC_TARGET_FUNC void mc_trilssqrnxnf(int n, const float * a, float * sumsq, float * scale, int f)
 {
-//!# Computing the sum of squares of the lower-triangle of A.
+//!# Computing the scaled sum of squares of the lower-triangle of A.
 //!# f=0: including main diagonal.
 //!# f=1: excluding main diagonal.
 	int i, j = 0;
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_trilssqrnxnf(int n, const float * a, float * sumsq, float
 
 MC_TARGET_FUNC void mc_trilssqrnxnff(int n, const float * a, double * sumsq, double * scale, int f)
 {
-//!# Computing the sum of squares of the lower-triangle of A.
+//!# Computing the scaled sum of squares of the lower-triangle of A.
 //!# f=0: including main diagonal.
 //!# f=1: excluding main diagonal.
 	int i, j = 0;
@@ -70,7 +70,7 @@ MC_TARGET_FUNC void mc_trilssqrnxnff(int n, const float * a, double * sumsq, dou
 
 MC_TARGET_FUNC void mc_trilssqrnxn(int n, const double * a, double * sumsq, double * scale, int f)
 {
-//!# Computing the sum of squares of the lower-triangle of A.
+//!# Computing the scaled sum of squares of the lower-triangle of A.
 //!# f=0: including main diagonal.
 //!# f=1: excluding main diagonal.
 	int i, j = 0;
@@ -97,7 +97,7 @@ MC_TARGET_FUNC void mc_trilssqrnxn(int n, const double * a, double * sumsq, doub
 
 MC_TARGET_FUNC void mc_trilssqrnxnl(int n, const long double * a, long double * sumsq, long double * scale, int f)
 {
-//!# Computing the sum of squares of the lower-triangle of A.
+//!# Computing the scaled sum of squares of the lower-triangle of A.
 //!# f=0: including main diagonal.
 //!# f=1: excluding main diagonal.
 	int i, j = 0;

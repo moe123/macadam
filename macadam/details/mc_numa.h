@@ -177,6 +177,7 @@
 #	include <macadam/details/numa/mc_mgsmxn.h>
 #	include <macadam/details/numa/mc_mgsnxn.h>
 #	include <macadam/details/numa/mc_qrsolve3x3.h>
+#	include <macadam/details/numa/mc_rescale1xn.h>
 #	include <macadam/details/numa/mc_rms1xn.h>
 #	include <macadam/details/numa/mc_ssqr1x2.h>
 #	include <macadam/details/numa/mc_ssqr1x3.h>

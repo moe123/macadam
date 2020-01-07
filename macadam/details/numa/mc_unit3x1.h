@@ -22,7 +22,7 @@ MC_TARGET_FUNC void mc_unit3x1f(int n, int j, float * a)
 		a[n + j]          = a[n + j] * scale;
 		a[(n * 2) + j]    = a[(n * 2) + j] * scale;
 	} else {
-		a[j] = 1.0f;
+		a[(n * j) + j] = 1.0f;
 	}
 }
 
@@ -35,7 +35,7 @@ MC_TARGET_FUNC void mc_unit3x1(int n, int j, double * a)
 		a[n + j]           = a[n + j] * scale;
 		a[(n * 2) + j]     = a[(n * 2) + j] * scale;
 	} else {
-		a[j] = 1.0;
+		a[(n * j) + j] = 1.0;
 	}
 }
 
@@ -48,7 +48,7 @@ MC_TARGET_FUNC void mc_unit3x1l(int n, int j, long double * a)
 		a[n + j]                = a[n + j] * scale;
 		a[(n * 2) + j]          = a[(n * 2) + j] * scale;
 	} else {
-		a[j] = 1.0L;
+		a[(n * j) + j] = 1.0L;
 	}
 }
 
