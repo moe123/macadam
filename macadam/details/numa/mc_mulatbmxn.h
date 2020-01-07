@@ -33,6 +33,17 @@ MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const
 #	endif
 }
 
+MC_TARGET_FUNC void mc_mulatbmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b)
+{
+//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+	mc_cast(void, m);
+	mc_cast(void, n);
+	mc_cast(void, p);
+	mc_cast(void, c);
+	mc_cast(void, a);
+	mc_cast(void, b);
+}
+
 MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
 {
 //!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].

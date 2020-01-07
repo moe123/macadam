@@ -7,8 +7,8 @@
 //
 
 #include <macadam/details/math/mc_copysign.h>
-#include <macadam/details/numa/mc_mulab3x3.h>
 #include <macadam/details/numa/mc_mulabmxn.h>
+#include <macadam/details/numa/mc_mulatbmxn.h>
 #include <macadam/details/numa/mc_mgsmxn.h>
 #include <macadam/mcswap.h>
 
@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_svdmx3f(int m, const float * a, float * u, float s[9], flo
 	float w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
-	mc_mulatb3x3f(u, a, a);
+	mc_mulatbmxnf(m, 3, 3, u, a, a);
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy3x3f(u, s, v)) {
@@ -114,7 +114,7 @@ MC_TARGET_FUNC int mc_svdmx3ff(int m, const float * a, double * u, double s[9], 
 	double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
-	mc_mulatb3x3ff(u, a, a);
+	mc_mulatbmxnff(m, 3, 3, u, a, a);
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy3x3(u, s, v)) {
@@ -230,7 +230,7 @@ MC_TARGET_FUNC int mc_svdmx3(int m, const double * a, double * u, double s[9], d
 	double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
-	mc_mulatb3x3(u, a, a);
+	mc_mulatbmxn(m, 3, 3, u, a, a);
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy3x3(u, s, v)) {
@@ -314,7 +314,7 @@ MC_TARGET_FUNC int mc_svdmx3l(int m, const long double * a, long double * u, lon
 	long double w;
 
 //!# Step 1: Forming A'*A storing temporarily result into U.
-	mc_mulatb3x3l(u, a, a);
+	mc_mulatbmxnl(m, 3, 3,u, a, a);
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy3x3l(u, s, v)) {
