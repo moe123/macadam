@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_trilssqrnxnf(int n, const float * a, float * sumsq, float
 
 	if (n > 0) {
 		for (; j < ((f == 1) ? (n - 1) : n); j++) {
-			for (i = (j + ((f == 1) ? 0 : 1)); i < n; i++) {
+			for (i = (j + ((f == 1) ? 1 : 0)); i < n; i++) {
 				if (0.0f != (t = mc_fabsf(a[(n * i) + j]))) {
 					if (*scale < t) {
 						*sumsq = 1.0f + *sumsq * mc_raise2f(*scale / t);
@@ -54,7 +54,7 @@ MC_TARGET_FUNC void mc_trilssqrnxnff(int n, const float * a, double * sumsq, dou
 
 	if (n > 0) {
 		for (; j < ((f == 1) ? (n - 1) : n); j++) {
-			for (i = (j + ((f == 1) ? 0 : 1)); i < n; i++) {
+			for (i = (j + ((f == 1) ? 1 : 0)); i < n; i++) {
 				if (0.0 != (t = mc_fabs(mc_cast(double, a[(n * i) + j])))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
@@ -81,7 +81,7 @@ MC_TARGET_FUNC void mc_trilssqrnxn(int n, const double * a, double * sumsq, doub
 
 	if (n > 0) {
 		for (; j < ((f == 1) ? (n - 1) : n); j++) {
-			for (i = (j + ((f == 1) ? 0 : 1)); i < n; i++) {
+			for (i = (j + ((f == 1) ? 1 : 0)); i < n; i++) {
 				if (0.0 != (t = mc_fabs(a[(n * i) + j]))) {
 					if (*scale < t) {
 						*sumsq = 1.0 + *sumsq * mc_raise2(*scale / t);
@@ -108,7 +108,7 @@ MC_TARGET_FUNC void mc_trilssqrnxnl(int n, const long double * a, long double * 
 
 	if (n > 0) {
 		for (; j < ((f == 1) ? (n - 1) : n); j++) {
-			for (i = (j + ((f == 1) ? 0 : 1)); i < n; i++) {
+			for (i = (j + ((f == 1) ? 1 : 0)); i < n; i++) {
 				if (0.0L != (t = mc_fabsl(a[(n * i) + j]))) {
 					if (*scale < t) {
 						*sumsq = 1.0L + *sumsq * mc_raise2l(*scale / t);
