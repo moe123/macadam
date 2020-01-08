@@ -64,6 +64,7 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }
@@ -115,6 +116,7 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }
@@ -166,6 +168,7 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }
@@ -217,6 +220,7 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }

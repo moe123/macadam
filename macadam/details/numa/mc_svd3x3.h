@@ -96,6 +96,7 @@ MC_TARGET_FUNC int mc_svd3x3f(const float a[9], float u[9], float s[9], float v[
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }
@@ -179,6 +180,7 @@ MC_TARGET_FUNC int mc_svd3x3ff(const float a[9], double u[9], double s[9], doubl
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }
@@ -262,6 +264,7 @@ MC_TARGET_FUNC int mc_svd3x3(const double a[9], double u[9], double s[9], double
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }
@@ -345,6 +348,7 @@ MC_TARGET_FUNC int mc_svd3x3l(const long double a[9], long double u[9], long dou
 			}
 			return 0;
 		}
+		return -2;
 	}
 	return -1;
 }

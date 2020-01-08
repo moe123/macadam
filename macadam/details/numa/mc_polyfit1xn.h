@@ -104,7 +104,7 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 //!# Solving, assigning coefficients.
 	for (i = 0; i < e; i++) {
 		for (j = 0; j < e; j++) {
-			xi = 0;
+			xi = 0.0f;
 			for (k = 0; k < e; k++) {
 				xi = xi + (a[(g * i) + (k + e)] * b[k]);
 			}
@@ -205,7 +205,7 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 //!# Solving, assigning coefficients.
 	for (i = 0; i < e; i++) {
 		for (j = 0; j < e; j++) {
-			xi = 0;
+			xi = 0.0;
 			for (k = 0; k < e; k++) {
 				xi = xi + (a[(g * i) + (k + e)] * b[k]);
 			}
@@ -306,7 +306,7 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 //!# Solving, assigning coefficients.
 	for (i = 0; i < e; i++) {
 		for (j = 0; j < e; j++) {
-			xi = 0;
+			xi = 0.0;
 			for (k = 0; k < e; k++) {
 				xi = xi + (a[(g * i) + (k + e)] * b[k]);
 			}
@@ -407,7 +407,7 @@ MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 //!# Solving, assigning coefficients.
 	for (i = 0; i < e; i++) {
 		for (j = 0; j < e; j++) {
-			xi = 0;
+			xi = 0.0L;
 			for (k = 0; k < e; k++) {
 				xi = xi + (a[(g * i) + (k + e)] * b[k]);
 			}
