@@ -36,7 +36,7 @@ MC_TARGET_FUNC int mc_svdmx3f(int m, const float * a, float * u, float s[9], flo
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 		if (0 == mc_eigsy3x3f(u, s, v)) {
-			mc_eye3x3f(s);
+			mc_eye3x3f(s, 0);
 			mc_mulabmxnf(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 			if (0 == mc_mgsmxnf(m, 3, u, u, s)) {
@@ -125,7 +125,7 @@ MC_TARGET_FUNC int mc_svdmx3ff(int m, const float * a, double * u, double s[9], 
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 		if (0 == mc_eigsy3x3(u, s, v)) {
-			mc_eye3x3(s);
+			mc_eye3x3(s, 0);
 			mc_mulabmxnfd(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 			if (0 == mc_mgsmxn(m, 3, u, u, s)) {
@@ -246,7 +246,7 @@ MC_TARGET_FUNC int mc_svdmx3(int m, const double * a, double * u, double s[9], d
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 		if (0 == mc_eigsy3x3(u, s, v)) {
-			mc_eye3x3(s);
+			mc_eye3x3(s, 0);
 			mc_mulabmxn(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 			if (0 == mc_mgsmxn(m, 3, u, u, s)) {
@@ -335,7 +335,7 @@ MC_TARGET_FUNC int mc_svdmx3l(int m, const long double * a, long double * u, lon
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 		if (0 == mc_eigsy3x3l(u, s, v)) {
-			mc_eye3x3l(s);
+			mc_eye3x3l(s, 0);
 			mc_mulabmxnl(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 			if (0 == mc_mgsmxnl(m, 3, u, u, s)) {

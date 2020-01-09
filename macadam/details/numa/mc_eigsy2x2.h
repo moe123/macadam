@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_eigsy2x2f(const float a[4], float e[2], float * v)
 			e[0] = mc_fminf(a[0], a[3]);
 			e[1] = mc_fmaxf(a[0], a[3]);
 			if (wantv) {
-				mc_eye2x2f(v);
+				mc_eye2x2f(v, 0);
 			}
 			return -3;
 		} else {
@@ -55,7 +55,7 @@ MC_TARGET_FUNC int mc_eigsy2x2f(const float a[4], float e[2], float * v)
 			if (mc_fabsf(t0) < MCLIMITS_EPSILONF || mc_fabsf(t1) < MCLIMITS_EPSILONF) {
 				e[0] = 1.0f; e[1] = 1.0f;
 				if (wantv) {
-					mc_eye2x2f(v);
+					mc_eye2x2f(v, 0);
 				}
 				return -2;
 			}
@@ -74,7 +74,7 @@ MC_TARGET_FUNC int mc_eigsy2x2f(const float a[4], float e[2], float * v)
 	} else {
 		e[0] = 1.0f; e[1] = 1.0f;
 		if (wantv) {
-			mc_eye2x2f(v);
+			mc_eye2x2f(v, 0);
 		}
 	}
 	return -1;
@@ -90,7 +90,7 @@ MC_TARGET_FUNC int mc_eigsy2x2ff(const float a[4], double e[2], double * v)
 			e[0] = mc_cast(double, mc_fminf(a[0], a[3]));
 			e[1] = mc_cast(double, mc_fmaxf(a[0], a[3]));
 			if (wantv) {
-				mc_eye2x2(v);
+				mc_eye2x2(v, 0);
 			}
 			return -3;
 		} else {
@@ -115,7 +115,7 @@ MC_TARGET_FUNC int mc_eigsy2x2ff(const float a[4], double e[2], double * v)
 			if (mc_fabs(t0) < MCLIMITS_EPSILON || mc_fabs(t1) < MCLIMITS_EPSILON) {
 				e[0] = 1.0; e[1] = 1.0;
 				if (wantv) {
-					mc_eye2x2(v);
+					mc_eye2x2(v, 0);
 				}
 				return -2;
 			}
@@ -134,7 +134,7 @@ MC_TARGET_FUNC int mc_eigsy2x2ff(const float a[4], double e[2], double * v)
 	} else {
 		e[0] = 1.0; e[1] = 1.0;
 		if (wantv) {
-			mc_eye2x2(v);
+			mc_eye2x2(v, 0);
 		}
 	}
 	return -1;
@@ -150,7 +150,7 @@ MC_TARGET_FUNC int mc_eigsy2x2(const double a[4], double e[2], double * v)
 			e[0] = mc_fmin(a[0], a[3]);
 			e[1] = mc_fmax(a[0], a[3]);
 			if (wantv) {
-				mc_eye2x2(v);
+				mc_eye2x2(v, 0);
 			}
 			return -3;
 		} else {
@@ -175,7 +175,7 @@ MC_TARGET_FUNC int mc_eigsy2x2(const double a[4], double e[2], double * v)
 			if (mc_fabs(t0) < MCLIMITS_EPSILON || mc_fabs(t1) < MCLIMITS_EPSILON) {
 				e[0] = 1.0; e[1] = 1.0;
 				if (wantv) {
-					mc_eye2x2(v);
+					mc_eye2x2(v, 0);
 				}
 				return -2;
 			}
@@ -194,7 +194,7 @@ MC_TARGET_FUNC int mc_eigsy2x2(const double a[4], double e[2], double * v)
 	} else {
 		e[0] = 1.0; e[1] = 1.0;
 		if (wantv) {
-			mc_eye2x2(v);
+			mc_eye2x2(v, 0);
 		}
 	}
 	return -1;
@@ -210,7 +210,7 @@ MC_TARGET_FUNC int mc_eigsy2x2l(const long double a[4], long double e[2], long d
 			e[0] = mc_fminl(a[0], a[3]);
 			e[1] = mc_fmaxl(a[0], a[3]);
 			if (wantv) {
-				mc_eye2x2l(v);
+				mc_eye2x2l(v, 0);
 			}
 			return -3;
 		} else {
@@ -235,7 +235,7 @@ MC_TARGET_FUNC int mc_eigsy2x2l(const long double a[4], long double e[2], long d
 			if (mc_fabsl(t0) < MCLIMITS_EPSILONL || mc_fabsl(t1) < MCLIMITS_EPSILONL) {
 				e[0] = 1.0L; e[1] = 1.0L;
 				if (wantv) {
-					mc_eye2x2l(v);
+					mc_eye2x2l(v, 0);
 				}
 				return -2;
 			}
@@ -254,7 +254,7 @@ MC_TARGET_FUNC int mc_eigsy2x2l(const long double a[4], long double e[2], long d
 	} else {
 		e[0] = 1.0L; e[1] = 1.0L;
 		if (wantv) {
-			mc_eye2x2l(v);
+			mc_eye2x2l(v, 0);
 		}
 	}
 	return -1;

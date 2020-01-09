@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_eig2x2f(const float a[4], float e[2], float * v)
 		, &v2_r, &v2_i, &v3_r, &v3_i
 	);
 	if (wantv) {
-		mc_eye2x2f(v);
+		mc_eye2x2f(v, 0);
 	}
 	r = mc_zreig2x2f(a, &e0_r, &e0_i, &e1_r, &e1_i
 		, wantv
@@ -62,7 +62,7 @@ MC_TARGET_FUNC int mc_eig2x2ff(const float a[4], double e[2], double * v)
 		, &v2_r, &v2_i, &v3_r, &v3_i
 	);
 	if (wantv) {
-		mc_eye2x2(v);
+		mc_eye2x2(v, 0);
 	}
 	r = mc_zreig2x2ff(a, &e0_r, &e0_i, &e1_r, &e1_i
 		, wantv
@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_eig2x2(const double a[4], double e[2], double * v)
 		, &v2_r, &v2_i, &v3_r, &v3_i
 	);
 	if (wantv) {
-		mc_eye2x2(v);
+		mc_eye2x2(v, 0);
 	}
 	r = mc_zreig2x2(a, &e0_r, &e0_i, &e1_r, &e1_i
 		, wantv
@@ -126,7 +126,7 @@ MC_TARGET_FUNC int mc_eig2x2l(const long double a[4], long double e[2], long dou
 		, &v2_r, &v2_i, &v3_r, &v3_i
 	);
 	if (wantv) {
-		mc_eye2x2l(v);
+		mc_eye2x2l(v, 0);
 	}
 	r = mc_zreig2x2l(a, &e0_r, &e0_i, &e1_r, &e1_i
 		, wantv

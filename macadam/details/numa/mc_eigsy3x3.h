@@ -31,7 +31,7 @@ MC_TARGET_PROC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float 
 	float                         a33 = a[8];
 
 	if (wantq) {
-		mc_eye3x3f(q);
+		mc_eye3x3f(q, 0);
 	}
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
@@ -70,7 +70,7 @@ MC_TARGET_PROC int mc_tredsy3x3(const double a[9], double * q, double d[3], doub
 	double                         a33 = a[8];
 
 	if (wantq) {
-		mc_eye3x3(q);
+		mc_eye3x3(q, 0);
 	}
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
@@ -109,7 +109,7 @@ MC_TARGET_PROC int mc_tredsy3x3l(const long double a[9], long double * q, long d
 	long double                         a33 = a[8];
 
 	if (wantq) {
-		mc_eye3x3l(q);
+		mc_eye3x3l(q, 0);
 	}
 
 	d[0] = a11; d[1] = a22; d[2] = a33;
@@ -529,7 +529,7 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 		if (i >= j) {
 			e[0] = 1.0f, e[1] = 1.0f, e[2] = 1.0f;
 			if (wantv) {
-				mc_eye3x3f(v);
+				mc_eye3x3f(v, 0);
 			}
 			break;
 		}
@@ -738,7 +738,7 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 		if (i >= j) {
 			e[0] = 1.0, e[1] = 1.0, e[2] = 1.0;
 			if (wantv) {
-				mc_eye3x3(v);
+				mc_eye3x3(v, 0);
 			}
 			break;
 		}
@@ -947,7 +947,7 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 		if (i >= j) {
 			e[0] = 1.0L, e[1] = 1.0L, e[2] = 1.0L;
 			if (wantv) {
-				mc_eye3x3l(v);
+				mc_eye3x3l(v, 0);
 			}
 			break;
 		}

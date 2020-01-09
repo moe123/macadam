@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 			pvi[i] = i;
 		}
 	} else if (wantp) {
-		mc_eyenxnf(n, p);
+		mc_eyenxnf(n, p, 0);
 	}
 
 	for (i = 0; i < n; i++) {
@@ -99,7 +99,7 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 			pvi[i] = i;
 		}
 	} else if (wantp) {
-		mc_eyenxn(n, p);
+		mc_eyenxn(n, p, 0);
 	}
 
 	for (i = 0; i < n; i++) {
@@ -166,7 +166,7 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 			pvi[i] = i;
 		}
 	} else if (wantp) {
-		mc_eyenxn(n, p);
+		mc_eyenxn(n, p, 0);
 	}
 
 	for (i = 0; i < n; i++) {
@@ -235,7 +235,7 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 			pvi[i] = i;
 		}
 	} else if (wantp) {
-		mc_eyenxnl(n, p);
+		mc_eyenxnl(n, p, 0);
 	}
 
 	for (i = 0; i < n; i++) {

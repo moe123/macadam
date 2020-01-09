@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_svd2x2f(const float a[4], float u[4], float s[4], float v[
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2f(u, s, v)) {
-		mc_eye2x2f(s);
+		mc_eye2x2f(s, 0);
 		mc_mulab2x2f(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2f(u, u, s)) {
@@ -85,7 +85,7 @@ MC_TARGET_FUNC int mc_svd2x2ff(const float a[4], double u[4], double s[4], doubl
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2(u, s, v)) {
-		mc_eye2x2(s);
+		mc_eye2x2(s, 0);
 		mc_mulab2x2fd(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2(u, u, s)) {
@@ -137,7 +137,7 @@ MC_TARGET_FUNC int mc_svd2x2(const double a[4], double u[4], double s[4], double
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2(u, s, v)) {
-		mc_eye2x2(s);
+		mc_eye2x2(s, 0);
 		mc_mulab2x2(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2(u, u, s)) {
@@ -189,7 +189,7 @@ MC_TARGET_FUNC int mc_svd2x2l(const long double a[4], long double u[4], long dou
 
 //!# Step 2: Computing V of A'*A i.e right-singular vectors.
 	if (0 == mc_eigsy2x2l(u, s, v)) {
-		mc_eye2x2l(s);
+		mc_eye2x2l(s, 0);
 		mc_mulab2x2l(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
 		if (0 == mc_qr2x2l(u, u, s)) {
