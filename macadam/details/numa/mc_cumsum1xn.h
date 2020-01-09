@@ -13,60 +13,80 @@
 
 #pragma mark - mc_cumsum1xn -
 
-MC_TARGET_FUNC int mc_cumsum1xnf(int n, float * u, const float * x)
+MC_TARGET_FUNC int mc_cumsum1xnf(int n, float * u, const float * x, int f)
 {
+//!# Requires u[n] and x[n] where 1 < n. U and X may be the
+//!# same. Returning the cumulative sum of the elements.
+//!# f=0: forward cumulative sum.
+//!# f=1: bacward cumulative sum.
 	int i = 1;
 	float a, b;
 	if (n > 0) {
-		u[0] = x[0];
+		u[(f == 1) ? 0 : (n - 1)] = x[(f == 1) ? 0 : (n - 1)];
 		for (; i < n; i++) {
-			mc_twosumf(u[i - 1], x[i], &a, &b);
-			u[i] = a + b;
+			const int k = (f == 1) ? (n - i - 1) : i;
+			mc_twosumf(u[k - 1], x[k], &a, &b);
+			u[k]        = a + b;
 		}
 		return 0;
 	}
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_cumsum1xnff(int n, double * u, const float * x)
+MC_TARGET_FUNC int mc_cumsum1xnff(int n, double * u, const float * x, int f)
 {
+//!# Requires u[n] and x[n] where 1 < n. Returning
+//!# the cumulative sum of the elements.
+//!# f=0: forward cumulative sum.
+//!# f=1: bacward cumulative sum.
 	int i = 1;
 	double a, b;
 	if (n > 0) {
-		u[0] = x[0];
+		u[(f == 1) ? 0 : (n - 1)] = x[(f == 1) ? 0 : (n - 1)];
 		for (; i < n; i++) {
-			mc_twosum(u[i - 1], mc_cast(double, x[i]), &a, &b);
-			u[i] = a + b;
+			const int k = (f == 1) ? (n - i - 1) : i;
+			mc_twosum(u[k - 1], mc_cast(double, x[k]), &a, &b);
+			u[k]        = a + b;
 		}
 		return 0;
 	}
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_cumsum1xn(int n, double * u, const double * x)
+MC_TARGET_FUNC int mc_cumsum1xn(int n, double * u, const double * x, int f)
 {
+//!# Requires u[n] and x[n] where 1 < n. U and X may be the
+//!# same. Returning the cumulative sum of the elements.
+//!# f=0: forward cumulative sum.
+//!# f=1: bacward cumulative sum.
 	int i = 1;
 	double a, b;
 	if (n > 0) {
-		u[0] = x[0];
+		u[(f == 1) ? 0 : (n - 1)] = x[(f == 1) ? 0 : (n - 1)];
 		for (; i < n; i++) {
-			mc_twosum(u[i - 1], x[i], &a, &b);
-			u[i] = a + b;
+			const int k = (f == 1) ? (n - i - 1) : i;
+			mc_twosum(u[k - 1], x[k], &a, &b);
+			u[k]        = a + b;
 		}
 		return 0;
 	}
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_cumsum1xnl(int n, long double * u, const long double * x)
+MC_TARGET_FUNC int mc_cumsum1xnl(int n, long double * u, const long double * x, int f)
 {
+//!# Requires u[n] and x[n] where 1 < n. U and X may be the
+//!# same. Returning the cumulative sum of the elements.
+//!# f=0: forward cumulative sum.
+//!# f=1: bacward cumulative sum.
 	int i = 1;
 	long double a, b;
 	if (n > 0) {
-		u[0] = x[0];
+		u[(f == 1) ? 0 : (n - 1)] = x[(f == 1) ? 0 : (n - 1)];
 		for (; i < n; i++) {
-			mc_twosuml(u[i - 1], x[i], &a, &b);
-			u[i] = a + b;
+			const int k = (f == 1) ? (n - i - 1) : i;
+			mc_twosuml(u[k - 1], x[k], &a, &b);
+			u[k]        = a + b;
 		}
 		return 0;
 	}

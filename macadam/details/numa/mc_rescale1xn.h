@@ -7,7 +7,6 @@
 //
 
 #include <macadam/details/numa/mc_minmax1xn.h>
-#include <macadam/details/numa/mc_subxv1xn.h>
 
 #ifndef MC_RESCALE1XN_H
 #define MC_RESCALE1XN_H

@@ -95,6 +95,7 @@
 #	include <macadam/details/numa/mc_copy1xn.h>
 #	include <macadam/details/numa/mc_copy2x2.h>
 #	include <macadam/details/numa/mc_copy3x3.h>
+#	include <macadam/details/numa/mc_copy4x4.h>
 #	include <macadam/details/numa/mc_copymxn.h>
 #	include <macadam/details/numa/mc_copynxn.h>
 #	include <macadam/details/numa/mc_covar1xn.h>
@@ -141,6 +142,7 @@
 #	include <macadam/details/numa/mc_mgsnxn.h>
 #	include <macadam/details/numa/mc_min1xn.h>
 #	include <macadam/details/numa/mc_minmax1xn.h>
+#	include <macadam/details/numa/mc_minmaxmx1.h>
 #	include <macadam/details/numa/mc_minormxn.h>
 #	include <macadam/details/numa/mc_moment1xn.h>
 #	include <macadam/details/numa/mc_mssqr1xn.h>
@@ -181,6 +183,9 @@
 #	include <macadam/details/numa/mc_mgsnxn.h>
 #	include <macadam/details/numa/mc_qrsolve3x3.h>
 #	include <macadam/details/numa/mc_rescale1xn.h>
+#	include <macadam/details/numa/mc_rescalemx1.h>
+#	include <macadam/details/numa/mc_rescalemxn.h>
+#	include <macadam/details/numa/mc_rescalenxn.h>
 #	include <macadam/details/numa/mc_rms1xn.h>
 #	include <macadam/details/numa/mc_ssqr1x2.h>
 #	include <macadam/details/numa/mc_ssqr1x3.h>

@@ -36,7 +36,7 @@
  *    [in]  a     - real-floating array of dimension (lda, n), the leading m by n part of the
  *    array a must contain the matrix of coefficients.
  *
- *    [in]  lda   - int. Specifies the first dimension of a, d must be at least max(1, m).
+ *    [in]  lda   - int. Specifies the first dimension of a, lda must be at least max(1, m).
  *
  *    [in]  x     - real-floating array of dimension at least (1+(n-1)*abs(incx)) when trans='N' or 'n'
  *    and at least (1+(m-1)*abs(incx)) otherwise. The incremented array x must contain the vector x.

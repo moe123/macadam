@@ -1,19 +1,19 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_minmax1xn.h
+// mc_minmaxmx1.h
 //
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
 #include <macadam/details/mc_target.h>
 
-#ifndef MC_MINMAX1XN_H
-#define MC_MINMAX1XN_H
+#ifndef MC_MINMAXMX1_H
+#define MC_MINMAXMX1_H
 
-#pragma mark - mc_minmax1xn -
+#pragma mark - mc_minmaxmx1 -
 
-MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmaxmx1f(int m, int n, int j, const float * a, float * min, float * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
@@ -22,13 +22,13 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 
 	int i = 2;
 
-	if (n > 0) {
-		if (n == 1) {
+	if (m > 0) {
+		if (m == 1) {
 			if (wantmin) {
-				*min = x[0];
+				*min = a[j];
 			}
 			if (wantmax) {
-				*max = x[0];
+				*max = a[j];
 			}
 			if (wantp) {
 				*p = 0;
@@ -37,12 +37,12 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 				*q = 0;
 			}
 		} else {
-			if (x[0] > x[1]) {
+			if (a[j] > a[n + j]) {
 				if (wantmin) {
-					*min = x[1];
+					*min = a[n + j];
 				}
 				if (wantmax) {
-					*max = x[0];
+					*max = a[j];
 				}
 				if (wantp) {
 					*p = 1;
@@ -52,10 +52,10 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 				}
 			} else {
 				if (wantmin) {
-					*min = x[0];
+					*min = a[j];
 				}
 				if (wantmax) {
-					*max = x[1];
+					*max = a[n + j];
 				}
 				if (wantp) {
 					*p = 0;
@@ -64,17 +64,17 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 					*q = 1;
 				}
 			}
-			for (; i < n; i++) {
-				if (x[i] < *min) {
+			for (; i < m; i++) {
+				if (a[(n *i) + j] < *min) {
 					if (wantmin) {
-						*min = x[i];
+						*min = a[(n *i) + j];
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				} else if (a[(n *i) + j] > *max) {
 					if (wantmax) {
-						*max = x[i];
+						*max = a[(n *i) + j];
 					}
 					if (wantq) {
 						*q = i;
@@ -85,7 +85,7 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 	}
 }
 
-MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmaxmx1ff(int m, int n, int j, const float * a, double * min, double * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
@@ -94,13 +94,13 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 
 	int i = 2;
 
-	if (n > 0) {
-		if (n == 1) {
+	if (m > 0) {
+		if (m == 1) {
 			if (wantmin) {
-				*min = mc_cast(double, x[0]);
+				*min = mc_cast(double, a[j]);
 			}
 			if (wantmax) {
-				*max = mc_cast(double, x[0]);
+				*max = mc_cast(double, a[j]);
 			}
 			if (wantp) {
 				*p = 0;
@@ -109,12 +109,12 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 				*q = 0;
 			}
 		} else {
-			if (x[0] > x[1]) {
+			if (a[j] > a[n + j]) {
 				if (wantmin) {
-					*min = mc_cast(double, x[1]);
+					*min = mc_cast(double, a[n + j]);
 				}
 				if (wantmax) {
-					*max = mc_cast(double, x[0]);
+					*max = mc_cast(double, a[j]);
 				}
 				if (wantp) {
 					*p = 1;
@@ -124,10 +124,10 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 				}
 			} else {
 				if (wantmin) {
-					*min = mc_cast(double, x[0]);
+					*min = mc_cast(double, a[j]);
 				}
 				if (wantmax) {
-					*max = mc_cast(double, x[1]);
+					*max = mc_cast(double, a[n + j]);
 				}
 				if (wantp) {
 					*p = 0;
@@ -136,17 +136,17 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 					*q = 1;
 				}
 			}
-			for (; i < n; i++) {
-				if (x[i] < *min) {
+			for (; i < m; i++) {
+				if (a[(n *i) + j] < *min) {
 					if (wantmin) {
-						*min =  mc_cast(double, x[i]);
+						*min =  mc_cast(double, a[(n *i) + j]);
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				} else if (a[(n *i) + j] > *max) {
 					if (wantmax) {
-						*max =  mc_cast(double, x[i]);
+						*max =  mc_cast(double, a[(n *i) + j]);
 					}
 					if (wantq) {
 						*q = i;
@@ -157,7 +157,7 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmaxmx1(int m, int n, int j, const double * a, double * min, double * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
@@ -166,13 +166,13 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 
 	int i = 2;
 
-	if (n > 0) {
-		if (n == 1) {
+	if (m > 0) {
+		if (m == 1) {
 			if (wantmin) {
-				*min = x[0];
+				*min = a[j];
 			}
 			if (wantmax) {
-				*max = x[0];
+				*max = a[j];
 			}
 			if (wantp) {
 				*p = 0;
@@ -181,12 +181,12 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 				*q = 0;
 			}
 		} else {
-			if (x[0] > x[1]) {
+			if (a[j] > a[n + j]) {
 				if (wantmin) {
-					*min = x[1];
+					*min = a[n + j];
 				}
 				if (wantmax) {
-					*max = x[0];
+					*max = a[j];
 				}
 				if (wantp) {
 					*p = 1;
@@ -196,10 +196,10 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 				}
 			} else {
 				if (wantmin) {
-					*min = x[0];
+					*min = a[j];
 				}
 				if (wantmax) {
-					*max = x[1];
+					*max = a[n + j];
 				}
 				if (wantp) {
 					*p = 0;
@@ -208,17 +208,17 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 					*q = 1;
 				}
 			}
-			for (; i < n; i++) {
-				if (x[i] < *min) {
+			for (; i < m; i++) {
+				if (a[(n *i) + j] < *min) {
 					if (wantmin) {
-						*min = x[i];
+						*min = a[(n *i) + j];
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				} else if (a[(n *i) + j] > *max) {
 					if (wantmax) {
-						*max = x[i];
+						*max = a[(n *i) + j];
 					}
 					if (wantq) {
 						*q = i;
@@ -229,7 +229,7 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 	}
 }
 
-MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * min, long double * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmaxmx1l(int m, int n, int j, const long double * a, long double * min, long double * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
@@ -238,13 +238,13 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 
 	int i = 2;
 
-	if (n > 0) {
-		if (n == 1) {
+	if (m > 0) {
+		if (m == 1) {
 			if (wantmin) {
-				*min = x[0];
+				*min = a[j];
 			}
 			if (wantmax) {
-				*max = x[0];
+				*max = a[j];
 			}
 			if (wantp) {
 				*p = 0;
@@ -253,12 +253,12 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 				*q = 0;
 			}
 		} else {
-			if (x[0] > x[1]) {
+			if (a[j] > a[n + j]) {
 				if (wantmin) {
-					*min = x[1];
+					*min = a[n + j];
 				}
 				if (wantmax) {
-					*max = x[0];
+					*max = a[j];
 				}
 				if (wantp) {
 					*p = 1;
@@ -268,10 +268,10 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 				}
 			} else {
 				if (wantmin) {
-					*min = x[0];
+					*min = a[j];
 				}
 				if (wantmax) {
-					*max = x[1];
+					*max = a[n + j];
 				}
 				if (wantp) {
 					*p = 0;
@@ -280,17 +280,17 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 					*q = 1;
 				}
 			}
-			for (; i < n; i++) {
-				if (x[i] < *min) {
+			for (; i < m; i++) {
+				if (a[(n *i) + j] < *min) {
 					if (wantmin) {
-						*min = x[i];
+						*min = a[(n *i) + j];
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				} else if (a[(n *i) + j] > *max) {
 					if (wantmax) {
-						*max = x[i];
+						*max = a[(n *i) + j];
 					}
 					if (wantq) {
 						*q = i;
@@ -301,6 +301,6 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 	}
 }
 
-#endif /* !MC_MINMAX1XN_H */
+#endif /* !MC_MINMAXMX1_H */
 
 /* EOF */

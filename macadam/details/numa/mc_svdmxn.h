@@ -94,9 +94,9 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 			if (mc_fabsf(e) < tol) {
 				g = 0.0f;
 			} else {
-				f = u[(n * i) + (i + 1)];
+				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysignf(1.0f, f) * mc_sqrtf(e);
-				h = f * g - e;
+				h =  f * g - e;
 				if (mc_fabsf(h) == 0.0f) {
 					continue;
 				}
@@ -372,7 +372,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 //!#
 
 //!# Max iteration allowed for convergence.
-	const int max = 90;
+	const int max = 120;
 
 	int i, j, k, l, q, iter, r = -1;
 	double c, e, f, g = 0.0, h, x, y, z;
@@ -423,9 +423,9 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 			if (mc_fabs(e) < tol) {
 				g = 0.0;
 			} else {
-				f = u[(n * i) + (i + 1)];
+				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysign(1.0, f) * mc_sqrt(e);
-				h = f * g - e;
+				h =  f * g - e;
 				if (mc_fabs(h) == 0.0) {
 					continue;
 				}
@@ -701,7 +701,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 //!#
 
 //!# Max iteration allowed for convergence.
-	const int max = 90;
+	const int max = 120;
 
 	int i, j, k, l, q, iter, r = -1;
 	double c, e, f, g = 0.0, h, x, y, z;
@@ -754,9 +754,9 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 			if (mc_fabs(e) < tol) {
 				g = 0.0;
 			} else {
-				f = u[(n * i) + (i + 1)];
+				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysign(1.0, f) * mc_sqrt(e);
-				h = f * g - e;
+				h =  f * g - e;
 				if (mc_fabs(h) == 0.0) {
 					continue;
 				}
@@ -1032,7 +1032,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 //!#
 
 //!# Max iteration allowed for convergence.
-	const int max = 90;
+	const int max = 180;
 
 	int i, j, k, l, q, iter, r = -1;
 	long double c, e, f, g = 0.0L, h, x, y, z;
@@ -1085,9 +1085,9 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 			if (mc_fabsl(e) < tol) {
 				g = 0.0L;
 			} else {
-				f = u[(n * i) + (i + 1)];
+				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysignl(1.0L, f) * mc_sqrtl(e);
-				h = f * g - e;
+				h =  f * g - e;
 				if (mc_fabsl(h) == 0.0L) {
 					continue;
 				}
