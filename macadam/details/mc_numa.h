@@ -93,6 +93,8 @@
 #	include <macadam/details/numa/mc_chpoly2x2.h>
 #	include <macadam/details/numa/mc_chpoly3x3.h>
 #	include <macadam/details/numa/mc_copy1xn.h>
+#	include <macadam/details/numa/mc_copy2x2.h>
+#	include <macadam/details/numa/mc_copy3x3.h>
 #	include <macadam/details/numa/mc_copymxn.h>
 #	include <macadam/details/numa/mc_copynxn.h>
 #	include <macadam/details/numa/mc_covar1xn.h>
@@ -196,6 +198,8 @@
 #	include <macadam/details/numa/mc_svd3x3.h>
 #	include <macadam/details/numa/mc_svdmx3.h>
 #	include <macadam/details/numa/mc_svdmxn.h>
+#	include <macadam/details/numa/mc_sytrize2x2.h>
+#	include <macadam/details/numa/mc_sytrize3x3.h>
 #	include <macadam/details/numa/mc_sytrizenxn.h>
 #	include <macadam/details/numa/mc_trace2x2.h>
 #	include <macadam/details/numa/mc_trace3x3.h>
