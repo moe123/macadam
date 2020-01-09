@@ -99,6 +99,7 @@
 #	include <macadam/details/numa/mc_copymxn.h>
 #	include <macadam/details/numa/mc_copynxn.h>
 #	include <macadam/details/numa/mc_covar1xn.h>
+#	include <macadam/details/numa/mc_cumprod1xn.h>
 #	include <macadam/details/numa/mc_cumsum1xn.h>
 #	include <macadam/details/numa/mc_det2x2.h>
 #	include <macadam/details/numa/mc_det3x3.h>
