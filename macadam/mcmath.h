@@ -2024,9 +2024,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_remquo
 #	define mcmath_remquo(x, y, z) \
 	( \
-		  sizeof(x) == sizeof(float)       ? remquof (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(int *, z))             \
-		: sizeof(x) == sizeof(double)      ? remquo  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(int *, z))           \
-		: sizeof(x) == sizeof(long double) ? remquol (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(int *, z)) \
+		  sizeof(x) == sizeof(float)       ? mc_remquof (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(int *, z))             \
+		: sizeof(x) == sizeof(double)      ? mc_remquo  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(int *, z))           \
+		: sizeof(x) == sizeof(long double) ? mc_remquol (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(int *, z)) \
 		: 0 \
 	)
 #	endif
@@ -2084,9 +2084,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fdim
 #	define mcmath_fdim(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fdimf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
-		: sizeof(x) == sizeof(double)      ? fdim  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
-		: sizeof(x) == sizeof(long double) ? fdiml (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_fdimf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_fdim  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_fdiml (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2096,9 +2096,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fmax
 #	define mcmath_fmax(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fmaxf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
-		: sizeof(x) == sizeof(double)      ? fmax  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
-		: sizeof(x) == sizeof(long double) ? fmaxl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_fmaxf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_fmax  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_fmaxl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2108,9 +2108,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fmin
 #	define mcmath_fmin(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fminf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
-		: sizeof(x) == sizeof(double)      ? fmin  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
-		: sizeof(x) == sizeof(long double) ? fminl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_fminf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_fmin  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_fminl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2120,9 +2120,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_fma
 #	define mcmath_fma(x, y, z) \
 	( \
-		  sizeof(x) == sizeof(float)       ? fmaf (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
-		: sizeof(x) == sizeof(double)      ? fma  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
-		: sizeof(x) == sizeof(long double) ? fmal (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
+		  sizeof(x) == sizeof(float)       ? mc_fmaf (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
+		: sizeof(x) == sizeof(double)      ? mc_fma  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
+		: sizeof(x) == sizeof(long double) ? mc_fmal (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
 		: 0 \
 	)
 #	endif

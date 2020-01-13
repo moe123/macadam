@@ -66,6 +66,7 @@
 #	include <macadam/details/math/mc_fabs.h>
 #	include <macadam/details/math/mc_factorial.h>
 #	include <macadam/details/math/mc_fasttwosum.h>
+#	include <macadam/details/math/mc_fdim.h>
 #	include <macadam/details/math/mc_ffrac.h>
 #	include <macadam/details/math/mc_fhrt.h>
 #	include <macadam/details/math/mc_fisint.h>
@@ -161,6 +162,7 @@
 #	include <macadam/details/math/mc_raise6.h>
 #	include <macadam/details/math/mc_remainder.h>
 #	include <macadam/details/math/mc_rempio2_cw.h>
+#	include <macadam/details/math/mc_remquo.h>
 #	include <macadam/details/math/mc_remzpi.h>
 #	include <macadam/details/math/mc_rgamma.h>
 #	include <macadam/details/math/mc_rint.h>
