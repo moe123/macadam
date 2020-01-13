@@ -341,6 +341,37 @@
 #		include <math.h>
 #	endif
 
+#	if MC_TARGET_BUILTIN_COMPLEX
+#		define MC_TARGET_C99_COMPLEX 0
+#	endif
+
+#	if !MC_TARGET_CPP98 && !MC_TARGET_BUILTIN_COMPLEX
+#		if MC_TARGET_C99 && (defined(__STDC_IEC_559_COMPLEX__) || defined(_Imaginary_I))
+#			undef  MC_TARGET_C99_COMPLEX
+#			define MC_TARGET_C99_COMPLEX 1
+			typedef float       _Complex mc_complex_float_t;
+			typedef double      _Complex mc_complex_double_t;
+			typedef long double _Complex mc_complex_long_double_t;
+#			if !MC_TARGET_C11
+#				define CMPLXF(re, im) ((float _Complex)      ((float)(re)       + _Imaginary_I * (float)(im)))
+#				define CMPLX(re, im)  ((double _Complex)     ((double)(re)      + _Imaginary_I * (double)(im)))
+#				define CMPLXL(re, im) ((long double _Complex)((long double)(re) + _Imaginary_I * (long double)(im)))
+#			endif
+#			define mc_cmplxf(re, im) CMPLXF(re, im)
+#			define mc_cmplx(re, im)  CMPLX(re, im)
+#			define mc_cmplxl(re, im) CMPLXL(re, im)
+#		endif
+#	endif
+
+#	if !MC_TARGET_C99_COMPLEX
+	typedef struct { float       u_re; float  u_im; } mc_complex_float_t;
+	typedef struct { double      u_re; double u_im; } mc_complex_double_t;
+	typedef struct { long double u_re; double u_im; } mc_complex_long_double_t;
+#	define mc_cmplxf(re, im) { (float)re       , (float)im       }
+#	define mc_cmplx(re, im)  { (double)re      , (double)im      }
+#	define mc_cmplxl(re, im) { (long double)re , (long double)im }
+#	endif
+
 #	if defined(__SSE__) && __SSE__
 #		undef  MC_TARGET_HAVE_SSE
 #		define MC_TARGET_HAVE_SSE 1
@@ -351,14 +382,6 @@
 #		undef  MC_TARGET_HAVE_NEON
 #		define MC_TARGET_HAVE_NEON 1
 #		include <arm_neon.h>
-#	endif
-
-#	if 0
-#	if !defined(_MSC_VER)
-#	if !__STDC_IEC_559__ || !__STDC_IEC_559_COMPLEX__
-#		error "IEC_559 required."
-#	endif
-#	endif
 #	endif
 
 #	if defined(__APPLE__) && (!defined(__DARWIN_C_LEVEL) || __DARWIN_C_LEVEL < 199506L)

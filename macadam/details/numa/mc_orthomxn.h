@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fisnear.h>
 #include <macadam/details/math/mc_fmax.h>
 #include <macadam/details/numa/mc_copymxn.h>
 #include <macadam/details/numa/mc_dotpmx1.h>
@@ -69,9 +70,11 @@ MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float 
 					if (wantr) {
 						r[(n * j) + j] = cnorm;
 					}
-					cnorm = 1.0f / cnorm;
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = q[(n * i) + j] * cnorm;
+					if (!mc_fisnearf(cnorm, 1.0f, 1)) {
+						cnorm = 1.0f / cnorm;
+						for (i = 0; i < m; i++) {
+							q[(n * i) + j] = q[(n * i) + j] * cnorm;
+						}
 					}
 				}
 			} else {
@@ -136,9 +139,11 @@ MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, doubl
 					if (wantr) {
 						r[(n * j) + j] = cnorm;
 					}
-					cnorm = 1.0 / cnorm;
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = q[(n * i) + j] * cnorm;
+					if (!mc_fisnear(cnorm, 1.0, 1)) {
+						cnorm = 1.0 / cnorm;
+						for (i = 0; i < m; i++) {
+							q[(n * i) + j] = q[(n * i) + j] * cnorm;
+						}
 					}
 				}
 			} else {
@@ -203,9 +208,11 @@ MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, doubl
 					if (wantr) {
 						r[(n * j) + j] = cnorm;
 					}
-					cnorm = 1.0 / cnorm;
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = q[(n * i) + j] * cnorm;
+					if (!mc_fisnear(cnorm, 1.0, 1)) {
+						cnorm = 1.0 / cnorm;
+						for (i = 0; i < m; i++) {
+							q[(n * i) + j] = q[(n * i) + j] * cnorm;
+						}
 					}
 				}
 			} else {
@@ -270,9 +277,11 @@ MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double
 					if (wantr) {
 						r[(n * j) + j] = cnorm;
 					}
-					cnorm = 1.0L / cnorm;
-					for (i = 0; i < m; i++) {
-						q[(n * i) + j] = q[(n * i) + j] * cnorm;
+					if (!mc_fisnearl(cnorm, 1.0L, 1)) {
+						cnorm = 1.0L / cnorm;
+						for (i = 0; i < m; i++) {
+							q[(n * i) + j] = q[(n * i) + j] * cnorm;
+						}
 					}
 				}
 			} else {

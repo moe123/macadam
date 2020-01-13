@@ -239,7 +239,7 @@ MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_asin(x) _Generic(x \
 	, float       : mc_asinf \
-	, double      : asin  \
+	, double      : mc_asin  \
 	, long double : mc_asinl \
 ) (x)
 #	else
@@ -2012,9 +2012,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_remainder
 #	define mcmath_remainder(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? remainderf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
-		: sizeof(x) == sizeof(double)      ? remainder  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
-		: sizeof(x) == sizeof(long double) ? remainderl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_remainderf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_remainder  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_remainderl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2036,9 +2036,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_copysign
 #	define mcmath_copysign(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? copysignf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
-		: sizeof(x) == sizeof(double)      ? copysign  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
-		: sizeof(x) == sizeof(long double) ? copysignl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_copysignf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_copysign  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_copysignl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2060,9 +2060,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_nextafter
 #	define mcmath_nextafter(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? nextafterf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
-		: sizeof(x) == sizeof(double)      ? nextafter  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
-		: sizeof(x) == sizeof(long double) ? nextafterl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_nextafterf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: sizeof(x) == sizeof(double)      ? mc_nextafter  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: sizeof(x) == sizeof(long double) ? mc_nextafterl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif
@@ -2072,9 +2072,9 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 #	ifndef mcmath_nexttoward
 #	define mcmath_nexttoward(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? nexttowardf (mc_cast_expr(float, x), mc_cast_expr(long double, y))       \
-		: sizeof(x) == sizeof(double)      ? nexttoward  (mc_cast_expr(double, x), mc_cast_expr(long double, y))      \
-		: sizeof(x) == sizeof(long double) ? nexttowardl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_nexttowardf (mc_cast_expr(float, x), mc_cast_expr(long double, y))       \
+		: sizeof(x) == sizeof(double)      ? mc_nexttoward  (mc_cast_expr(double, x), mc_cast_expr(long double, y))      \
+		: sizeof(x) == sizeof(long double) ? mc_nexttowardl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
 		: 0 \
 	)
 #	endif

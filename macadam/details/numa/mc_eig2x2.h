@@ -28,6 +28,7 @@ MC_TARGET_FUNC int mc_eig2x2f(const float a[4], float e[2], float * v)
 	mc_zeye2x2f(
 		  &v0_r, &v0_i, &v1_r, &v1_i
 		, &v2_r, &v2_i, &v3_r, &v3_i
+		, 0
 	);
 	if (wantv) {
 		mc_eye2x2f(v, 0);
@@ -60,6 +61,7 @@ MC_TARGET_FUNC int mc_eig2x2ff(const float a[4], double e[2], double * v)
 	mc_zeye2x2(
 		  &v0_r, &v0_i, &v1_r, &v1_i
 		, &v2_r, &v2_i, &v3_r, &v3_i
+		, 0
 	);
 	if (wantv) {
 		mc_eye2x2(v, 0);
@@ -92,6 +94,7 @@ MC_TARGET_FUNC int mc_eig2x2(const double a[4], double e[2], double * v)
 	mc_zeye2x2(
 		  &v0_r, &v0_i, &v1_r, &v1_i
 		, &v2_r, &v2_i, &v3_r, &v3_i
+		, 0
 	);
 	if (wantv) {
 		mc_eye2x2(v, 0);
@@ -124,6 +127,7 @@ MC_TARGET_FUNC int mc_eig2x2l(const long double a[4], long double e[2], long dou
 	mc_zeye2x2l(
 		  &v0_r, &v0_i, &v1_r, &v1_i
 		, &v2_r, &v2_i, &v3_r, &v3_i
+		, 0
 	);
 	if (wantv) {
 		mc_eye2x2l(v, 0);

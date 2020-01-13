@@ -15,6 +15,7 @@
 
 MC_TARGET_FUNC void mc_mulax3x3f(float * b, const float a[9], const float x[3])
 {
+//!# Requires b[3 x 1], a[3 * 3] and x[1 x 3].
 //!# b=a*x
 	const float x0 = x[0];
 	const float x1 = x[1];
@@ -35,13 +36,15 @@ MC_TARGET_FUNC void mc_mulax3x3f(float * b, const float a[9], const float x[3])
 
 MC_TARGET_FUNC void mc_mulax3x3ff(double * b, const float a[9], const float x[3])
 {
-//!# b=a*b
+//!# Requires b[3 x 1], a[3 * 3] and x[1 x 3].
+//!# b=a*x
 	b[0] = 0.0; b[1] = 0.0; b[2] = 0.0;
 	mc_addmulax3x3ff(b, a, x);
 }
 
 MC_TARGET_FUNC void mc_mulax3x3(double * b, const double a[9], const double x[3])
 {
+//!# Requires b[3 x 1], a[3 * 3] and x[1 x 3].
 //!# b=a*x
 	const double x0 = x[0];
 	const double x1 = x[1];
@@ -62,6 +65,7 @@ MC_TARGET_FUNC void mc_mulax3x3(double * b, const double a[9], const double x[3]
 
 MC_TARGET_FUNC void mc_mulax3x3l(long double * b, const long double a[9], const long double x[3])
 {
+//!# Requires b[3 x 1], a[3 * 3] and x[1 x 3].
 //!# b=a*x
 	const long double x0 = x[0];
 	const long double x1 = x[1];

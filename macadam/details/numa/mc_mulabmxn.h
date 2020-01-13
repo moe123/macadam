@@ -6,8 +6,7 @@
 // Copyright (C) 2019 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/mc_mulab2x2.h>
-#include <macadam/details/numa/mc_mulab3x3.h>
+#include <macadam/details/numa/lapack/blas/mc_blas_gemm.h>
 
 #ifndef MC_MULABMXN_H
 #define MC_MULABMXN_H

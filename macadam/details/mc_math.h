@@ -69,6 +69,7 @@
 #	include <macadam/details/math/mc_ffrac.h>
 #	include <macadam/details/math/mc_fhrt.h>
 #	include <macadam/details/math/mc_fisint.h>
+#	include <macadam/details/math/mc_fisnear.h>
 #	include <macadam/details/math/mc_fisodd.h>
 #	include <macadam/details/math/mc_fisval.h>
 #	include <macadam/details/math/mc_fix.h>
@@ -144,6 +145,8 @@
 #	include <macadam/details/math/mc_modf.h>
 #	include <macadam/details/math/mc_nchoosek.h>
 #	include <macadam/details/math/mc_nearbyint.h>
+#	include <macadam/details/math/mc_nextafter.h>
+#	include <macadam/details/math/mc_nexttoward.h>
 #	include <macadam/details/math/mc_nthroot.h>
 #	include <macadam/details/math/mc_polyroot2.h>
 #	include <macadam/details/math/mc_polyroot3.h>

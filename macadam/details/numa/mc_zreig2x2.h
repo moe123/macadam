@@ -44,6 +44,7 @@ MC_TARGET_PROC int mc_zreig2x2f(
 			mc_zeye2x2f(
 				  v0_r, v0_i, v1_r, v1_i
 				, v2_r, v2_i, v3_r, v3_i
+				, 0
 			);
 		}
 		return 2;
@@ -85,6 +86,7 @@ MC_TARGET_PROC int mc_zreig2x2f(
 				mc_zeye2x2f(
 					  v0_r, v0_i, v1_r, v1_i
 					, v2_r, v2_i, v3_r, v3_i
+					, 0
 				);
 			}
 		}
@@ -112,6 +114,7 @@ MC_TARGET_PROC int mc_zreig2x2ff(
 			mc_zeye2x2(
 				  v0_r, v0_i, v1_r, v1_i
 				, v2_r, v2_i, v3_r, v3_i
+				, 0
 			);
 		}
 		return 2;
@@ -153,6 +156,7 @@ MC_TARGET_PROC int mc_zreig2x2ff(
 				mc_zeye2x2(
 					  v0_r, v0_i, v1_r, v1_i
 					, v2_r, v2_i, v3_r, v3_i
+					, 0
 				);
 			}
 		}
@@ -180,6 +184,7 @@ MC_TARGET_PROC int mc_zreig2x2(
 			mc_zeye2x2(
 				  v0_r, v0_i, v1_r, v1_i
 				, v2_r, v2_i, v3_r, v3_i
+				, 0
 			);
 		}
 		return 2;
@@ -221,6 +226,7 @@ MC_TARGET_PROC int mc_zreig2x2(
 				mc_zeye2x2(
 					  v0_r, v0_i, v1_r, v1_i
 					, v2_r, v2_i, v3_r, v3_i
+					, 0
 				);
 			}
 		}
@@ -248,6 +254,7 @@ MC_TARGET_PROC int mc_zreig2x2l(
 			mc_zeye2x2l(
 				  v0_r, v0_i, v1_r, v1_i
 				, v2_r, v2_i, v3_r, v3_i
+				, 0
 			);
 		}
 		return 2;
@@ -289,6 +296,7 @@ MC_TARGET_PROC int mc_zreig2x2l(
 				mc_zeye2x2l(
 					  v0_r, v0_i, v1_r, v1_i
 					, v2_r, v2_i, v3_r, v3_i
+					, 0
 				);
 			}
 		}

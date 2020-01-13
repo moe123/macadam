@@ -71,7 +71,7 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 			*i2           = *i1;
 			*r3           = h * mc_cosf((w + MCK_KF(MCK_4PI)) / 3.0f) - g;
 			*i3           = *i2;
-			r             = 3;
+			 r            = 3;
 		} else if (s > 0) {
 			float u, v, w, h, g;
 			const float m = mc_sqrtf(s);
@@ -219,7 +219,7 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 			*i2                 = *i1;
 			*r3                 = h * mc_cosl((w + MCK_KL(MCK_4PI)) / 3.0L) - g;
 			*i3                 = *i2;
-			r                   = 3;
+			 r                  = 3;
 		} else if (s > 0) {
 			long double u, v, w, h, g;
 			const long double m = mc_sqrtl(s);
