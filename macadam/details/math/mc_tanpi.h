@@ -3,7 +3,7 @@
 
 // mc_tanpi.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/math/mc_copysign.h>

@@ -3,7 +3,7 @@
 
 // mc_blas_dot.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 /* \name

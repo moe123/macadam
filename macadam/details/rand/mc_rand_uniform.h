@@ -3,7 +3,7 @@
 
 // mc_rand_uniform.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/rand/mc_randu.h>

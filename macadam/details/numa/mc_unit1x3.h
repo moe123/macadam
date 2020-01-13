@@ -3,7 +3,7 @@
 
 // mc_unit1x3.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/numa/mc_l2norm1x3.h>

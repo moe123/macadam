@@ -2,7 +2,7 @@
 
 // mc_blas_trmm.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/numa/lapack/blas/mc_blas_access.h>

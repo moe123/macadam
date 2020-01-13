@@ -1,6 +1,6 @@
 // mc_tanh.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/mc_target.h>

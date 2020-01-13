@@ -3,10 +3,10 @@
 
 // mc_mulaxnxn.h
 //
-// Copyright (C) 2019 Moe123. All rights reserved.
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_mulaxmxn.h>
+#include <macadam/details/numa/mc_mulaxmxn.h>
 
 #ifndef MC_MULAXNXN_H
 #define MC_MULAXNXN_H
