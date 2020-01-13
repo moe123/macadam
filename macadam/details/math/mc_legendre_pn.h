@@ -165,7 +165,7 @@ MC_TARGET_FUNC float mc_legendre_pnf(unsigned int n, float x)
 		} else {
 			p0 = 1.0f;
 			p1 = x;
-			for (; i <= n; ++i) {
+			for (; i <= n; i++) {
 				pi = ((2.0f * mc_cast(float, i) - 1.0f) * x * p1 - mc_cast(float, (i - 1)) * p0) / mc_cast(float, i);
 				p0 = p1;
 				p1 = pi;
@@ -200,7 +200,7 @@ MC_TARGET_FUNC double mc_legendre_pn(unsigned int n, double x)
 		} else {
 			p0 = 1.0;
 			p1 = x;
-			for (; i <= n; ++i) {
+			for (; i <= n; i++) {
 				pi = ((2.0 * mc_cast(double, i) - 1.0) * x * p1 - mc_cast(double, (i - 1)) * p0) / mc_cast(double, i);
 				p0 = p1;
 				p1 = pi;
@@ -235,7 +235,7 @@ MC_TARGET_FUNC long double mc_legendre_pnl(unsigned int n, long double x)
 		} else {
 			p0 = 1.0L;
 			p1 = x;
-			for (; i <= n; ++i) {
+			for (; i <= n; i++) {
 				pi = ((2.0L * mc_cast(long double, i) - 1.0L) * x * p1 - mc_cast(long double, (i - 1)) * p0) / mc_cast(long double, i);
 				p0 = p1;
 				p1 = pi;

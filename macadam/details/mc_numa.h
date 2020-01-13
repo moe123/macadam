@@ -163,6 +163,8 @@
 #	include <macadam/details/numa/mc_mulatbmxn.h>
 #	include <macadam/details/numa/mc_mulatx2x2.h>
 #	include <macadam/details/numa/mc_mulatx3x3.h>
+#	include <macadam/details/numa/mc_mulatxmxn.h>
+#	include <macadam/details/numa/mc_mulatxnxn.h>
 #	include <macadam/details/numa/mc_mulax2x2.h>
 #	include <macadam/details/numa/mc_mulax3x3.h>
 #	include <macadam/details/numa/mc_mulaxmxn.h>

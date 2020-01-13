@@ -47,7 +47,7 @@ MC_TARGET_FUNC float mc_ibetaf(float a, float b, float x)
 	g = mc_lbetaf(a, b);
 	k = mc_expf(mc_logf(x) * a + mc_logf(1.0f - x) * b - g) / a;
 //!# Reducing, converging.
-	for (; i < 256; ++i) {
+	for (; i < 256; i++) {
 		j = i / 2;
 		if (i == 0) {
 		//!# First iteration.
@@ -108,7 +108,7 @@ MC_TARGET_FUNC double mc_ibeta(double a, double b, double x)
 	g = mc_lbeta(a, b);
 	k = mc_exp(mc_log(x) * a + mc_log(1.0 - x) * b - g) / a;
 //!# Reducing, converging.
-	for (; i < 256; ++i) {
+	for (; i < 256; i++) {
 		j = i / 2;
 		if (i == 0) {
 		//!# First iteration.
@@ -169,7 +169,7 @@ MC_TARGET_FUNC long double mc_ibetal(long double a, long double b, long double x
 	g = mc_lbetal(a, b);
 	k = mc_expl(mc_logl(x) * a + mc_logl(1.0L - x) * b - g) / a;
 //!# Reducing, converging.
-	for (; i < 256; ++i) {
+	for (; i < 256; i++) {
 		j = i / 2;
 		if (i == 0) {
 		//!# First iteration.

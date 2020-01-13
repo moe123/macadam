@@ -26,9 +26,11 @@ MC_TARGET_FUNC void mc_blas_ssyrk(const char uplo, const char trans, int n, int 
 	if (mc_blas_lsame(trans, 'N')) {
 		ka    = k;
 		nrowa = n;
+		mc_cast(void, ka);
 	} else {
 		ka    = n;
 		nrowa = k;
+		mc_cast(void, ka);
 	}
 	upper = mc_blas_lsame(uplo, 'U');
 
@@ -176,9 +178,11 @@ MC_TARGET_FUNC void mc_blas_dsyrk(const char uplo, const char trans, int n, int 
 	if (mc_blas_lsame(trans, 'N')) {
 		ka    = k;
 		nrowa = n;
+		mc_cast(void, ka);
 	} else {
 		ka    = n;
 		nrowa = k;
+		mc_cast(void, ka);
 	}
 	upper = mc_blas_lsame(uplo, 'U');
 
@@ -326,9 +330,11 @@ MC_TARGET_FUNC void mc_blas_lsyrk(const char uplo, const char trans, int n, int 
 	if (mc_blas_lsame(trans, 'N')) {
 		ka    = k;
 		nrowa = n;
+		mc_cast(void, ka);
 	} else {
 		ka    = n;
 		nrowa = k;
+		mc_cast(void, ka);
 	}
 	upper = mc_blas_lsame(uplo, 'U');
 

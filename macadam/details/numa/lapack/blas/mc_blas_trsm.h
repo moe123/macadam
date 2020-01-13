@@ -27,9 +27,11 @@ MC_TARGET_FUNC void mc_blas_strsm(const char side, const char uplo, const char t
 	if (lside) {
 		ka    = n;
 		nrowa = m;
+		mc_cast(void, ka);
 	} else {
 		ka    = m;
 		nrowa = n;
+		mc_cast(void, ka);
 	}
 	nounit = mc_blas_lsame(diag, 'N');
 	upper  = mc_blas_lsame(uplo, 'U');
@@ -247,9 +249,11 @@ MC_TARGET_FUNC void mc_blas_dtrsm(const char side, const char uplo, const char t
 	if (lside) {
 		ka    = n;
 		nrowa = m;
+		mc_cast(void, ka);
 	} else {
 		ka    = m;
 		nrowa = n;
+		mc_cast(void, ka);
 	}
 	nounit = mc_blas_lsame(diag, 'N');
 	upper  = mc_blas_lsame(uplo, 'U');
@@ -467,9 +471,11 @@ MC_TARGET_FUNC void mc_blas_ltrsm(const char side, const char uplo, const char t
 	if (lside) {
 		ka    = n;
 		nrowa = m;
+		mc_cast(void, ka);
 	} else {
 		ka    = m;
 		nrowa = n;
+		mc_cast(void, ka);
 	}
 	nounit = mc_blas_lsame(diag, 'N');
 	upper  = mc_blas_lsame(uplo, 'U');

@@ -17,8 +17,8 @@ MC_TARGET_FUNC void mc_trsinxnf(int n, float * a)
 {
 	int i = 0, j;
 	float w;
-	for (; i < (n - 2); ++i) {
-		for (j = (i + 1); j < (n - 1); ++j) {
+	for (; i < (n - 2); i++) {
+		for (j = (i + 1); j < (n - 1); j++) {
 			w                = a[((i) * n) + j];
 			a[((i) * n) + j] = a[((j) * n) + i];
 			a[((j) * n) + i] = w;
@@ -30,8 +30,8 @@ MC_TARGET_FUNC void mc_trsinxn(int n, double * a)
 {
 	int i = 0, j;
 	double w;
-	for (; i < (n - 2); ++i) {
-		for (j = (i + 1); j < (n - 1); ++j) {
+	for (; i < (n - 2); i++) {
+		for (j = (i + 1); j < (n - 1); j++) {
 			w                = a[((i) * n) + j];
 			a[((i) * n) + j] = a[((j) * n) + i];
 			a[((j) * n) + i] = w;
@@ -43,8 +43,8 @@ MC_TARGET_FUNC void mc_trsinxnl(int n, long double * a)
 {
 	int i = 0, j;
 	long double w;
-	for (; i < (n - 2); ++i) {
-		for (j = (i + 1); j < (n - 1); ++j) {
+	for (; i < (n - 2); i++) {
+		for (j = (i + 1); j < (n - 1); j++) {
 			w                = a[((i) * n) + j];
 			a[((i) * n) + j] = a[((j) * n) + i];
 			a[((j) * n) + i] = w;

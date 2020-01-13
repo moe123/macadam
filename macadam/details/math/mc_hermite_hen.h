@@ -27,7 +27,7 @@ MC_TARGET_FUNC float mc_hermite_henf(unsigned int n, float x)
 	if (n >= 1 && n < MCLIMITS_IMAX) {
 		h0 = 1.0f;
 		h1 = x;
-		for (; i < n; ++i) {
+		for (; i < n; i++) {
 			hi = x * h1 - mc_cast(float, i) * h0;
 			h0 = h1;
 			h1 = hi;
@@ -49,7 +49,7 @@ MC_TARGET_FUNC double mc_hermite_hen(unsigned int n, double x)
 	if (n >= 1 && n < MCLIMITS_IMAX) {
 		h0 = 1.0;
 		h1 = x;
-		for (; i < n; ++i) {
+		for (; i < n; i++) {
 			hi = x * h1 - mc_cast(double, i) * h0;
 			h0 = h1;
 			h1 = hi;
@@ -71,7 +71,7 @@ MC_TARGET_FUNC long double mc_hermite_henl(unsigned int n, long double x)
 	if (n >= 1 && n < MCLIMITS_IMAX) {
 		h0 = 1.0L;
 		h1 = x;
-		for (; i < n; ++i) {
+		for (; i < n; i++) {
 			hi = x * h1 - mc_cast(long double, i) * h0;
 			h0 = h1;
 			h1 = hi;

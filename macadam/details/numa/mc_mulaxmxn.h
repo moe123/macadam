@@ -31,9 +31,9 @@ MC_TARGET_FUNC void mc_mulaxmxnf(int m, int n, float * restrict b, const float *
 #	else
 	int i, j = 0;
 	mc_zeros1xnf(m, b);
-	for (j = 0; j < n; ++j) {
+	for (j = 0; j < n; j++) {
 		const float w = x[j];
-		for (i = 0; i < m; ++i) {
+		for (i = 0; i < m; i++) {
 			b[i] = b[i] + (w * a[(n * i) + j]);
 		}
 	}
@@ -46,9 +46,9 @@ MC_TARGET_FUNC void mc_mulaxmxnff(int m, int n, double * restrict b, const float
 //!# b=a*x
 	int i, j = 0;
 	mc_zeros1xn(m, b);
-	for (j = 0; j < n; ++j) {
+	for (j = 0; j < n; j++) {
 		const double w = mc_cast(double, x[j]);
-		for (i = 0; i < m; ++i) {
+		for (i = 0; i < m; i++) {
 			b[i] = b[i] + (w * mc_cast(double, a[(n * i) + j]));
 		}
 	}
@@ -60,9 +60,9 @@ MC_TARGET_FUNC void mc_mulaxmxnfd(int m, int n, double * restrict b, const float
 //!# b=a*x
 	int i, j = 0;
 	mc_zeros1xn(m, b);
-	for (j = 0; j < n; ++j) {
+	for (j = 0; j < n; j++) {
 		const double w = x[j];
-		for (i = 0; i < m; ++i) {
+		for (i = 0; i < m; i++) {
 			b[i] = b[i] + (w * mc_cast(double, a[(n * i) + j]));
 		}
 	}
@@ -74,9 +74,9 @@ MC_TARGET_FUNC void mc_mulaxmxndf(int m, int n, double * restrict b, const doubl
 //!# b=a*x
 	int i, j = 0;
 	mc_zeros1xn(m, b);
-	for (j = 0; j < n; ++j) {
+	for (j = 0; j < n; j++) {
 		const double w = mc_cast(double, x[j]);
-		for (i = 0; i < m; ++i) {
+		for (i = 0; i < m; i++) {
 			b[i] = b[i] + (w * a[(n * i) + j]);
 		}
 	}
@@ -100,9 +100,9 @@ MC_TARGET_FUNC void mc_mulaxmxn(int m, int n, double * restrict b, const double 
 #	else
 	int i, j = 0;
 	mc_zeros1xn(m, b);
-	for (j = 0; j < n; ++j) {
+	for (j = 0; j < n; j++) {
 		const double w = x[j];
-		for (i = 0; i < m; ++i) {
+		for (i = 0; i < m; i++) {
 			b[i] = b[i] + (w * a[(n * i) + j]);
 		}
 	}
@@ -127,9 +127,9 @@ MC_TARGET_FUNC void mc_mulaxmxnl(int m, int n, long double * restrict b, const l
 #	else
 	int i, j = 0;
 	mc_zeros1xnl(m, b);
-	for (j = 0; j < n; ++j) {
+	for (j = 0; j < n; j++) {
 		const long double w = x[j];
-		for (i = 0; i < m; ++i) {
+		for (i = 0; i < m; i++) {
 			b[i] = b[i] + (w * a[(n * i) + j]);
 		}
 	}

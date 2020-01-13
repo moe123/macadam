@@ -20,7 +20,7 @@ MC_TARGET_FUNC void mc_trsimxnf(int m, int n, float * a)
 	} else {
 		int i = 0, j, k;
 		float w;
-		for (; i <= (m * n - 1); ++i) {
+		for (; i <= (m * n - 1); i++) {
 			k = i;
 			j = 0;
 			do {
@@ -47,7 +47,7 @@ MC_TARGET_FUNC void mc_trsimxn(int m, int n, double * a)
 	} else {
 		int i = 0, j, k;
 		double w;
-		for (; i <= (m * n - 1); ++i) {
+		for (; i <= (m * n - 1); i++) {
 			k = i;
 			j = 0;
 			do {
@@ -74,7 +74,7 @@ MC_TARGET_FUNC void mc_trsimxnl(int m, int n, long double * a)
 	} else {
 		int i = 0, j, k;
 		long double w;
-		for (; i <= (m * n - 1); ++i) {
+		for (; i <= (m * n - 1); i++) {
 			k = i;
 			j = 0;
 			do {

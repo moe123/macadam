@@ -38,10 +38,10 @@ MC_TARGET_FUNC float mc_hzetaf(float s, float q)
 	if (q == 1.0f) {
 		return mc_zetaf(s);
 	}
-	for (; i < 10000; ++i) {
+	for (; i < 10000; i++) {
 		sign = 1.0f;
 		term = 0.0f;
-		for (j = 0; j <= i; ++j) {
+		for (j = 0; j <= i; j++) {
 			if (w < (c = mc_lchoosef(mc_cast(float, i), mc_cast(float, j)))) {
 				c    = sign * mc_expf(c);
 				sign = sign * -1.0f;
@@ -79,10 +79,10 @@ MC_TARGET_FUNC double mc_hzeta(double s, double q)
 	if (q == 1.0) {
 		return mc_zeta(s);
 	}
-	for (; i < 10000; ++i) {
+	for (; i < 10000; i++) {
 		sign = 1.0;
 		term = 0.0;
-		for (j = 0; j <= i; ++j) {
+		for (j = 0; j <= i; j++) {
 			if (w < (c = mc_lchoose(mc_cast(double, i), mc_cast(double, j)))) {
 				c    = sign * mc_exp(c);
 				sign = sign * -1.0;
@@ -120,10 +120,10 @@ MC_TARGET_FUNC long double mc_hzetal(long double s, long double q)
 	if (q == 1.0L) {
 		return mc_zetal(s);
 	}
-	for (; i < 10000; ++i) {
+	for (; i < 10000; i++) {
 		sign = 1.0L;
 		term = 0.0L;
-		for (j = 0; j <= i; ++j) {
+		for (j = 0; j <= i; j++) {
 			if (w < (c = mc_lchoosel(mc_cast(long double, i), mc_cast(long double, j)))) {
 				c    = sign * mc_expl(c);
 				sign = sign * -1.0L;

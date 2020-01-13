@@ -525,7 +525,7 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 	float apr, aqr, vpr, vqr;
 
 //!# Applying Jacobi rotations until all off-diagonal items are 0.
-	for (; aa12 + aa13 + aa23 > 0.0f; ++i) {
+	for (; aa12 + aa13 + aa23 > 0.0f; i++) {
 		if (i >= j) {
 			e[0] = 1.0f, e[1] = 1.0f, e[2] = 1.0f;
 			if (wantv) {
@@ -734,7 +734,7 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 	double apr, aqr, vpr, vqr;
 
 //!# Applying Jacobi rotations until all off-diagonal items are 0.
-	for (; aa12 + aa13 + aa23 > 0.0; ++i) {
+	for (; aa12 + aa13 + aa23 > 0.0; i++) {
 		if (i >= j) {
 			e[0] = 1.0, e[1] = 1.0, e[2] = 1.0;
 			if (wantv) {
@@ -943,7 +943,7 @@ MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long d
 	long double apr, aqr, vpr, vqr;
 
 //!# Applying Jacobi rotations until all off-diagonal items are 0.
-	for (; aa12 + aa13 + aa23 > 0.0L; ++i) {
+	for (; aa12 + aa13 + aa23 > 0.0L; i++) {
 		if (i >= j) {
 			e[0] = 1.0L, e[1] = 1.0L, e[2] = 1.0L;
 			if (wantv) {

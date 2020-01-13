@@ -117,7 +117,7 @@ MC_TARGET_FUNC void mc_mulabtmxn(int m, int n, int p, double * restrict c, const
 			c[(m * i) + j] = 0.0;
 		}
 		for (k = 0; k < p; k++) {
-			const float w = b[(p * j) + k];
+			const double w = b[(p * j) + k];
 			for (i = 0; i < m; i++) {
 				c[(m * i) + j] = c[(m * i) + j] + (w * a[(n * i) + k]);
 			}
@@ -148,7 +148,7 @@ MC_TARGET_FUNC void mc_mulabtmxnl(int m, int n, int p, long double * restrict c,
 			c[(m * i) + j] = 0.0L;
 		}
 		for (k = 0; k < p; k++) {
-			const float w = b[(p * j) + k];
+			const long double w = b[(p * j) + k];
 			for (i = 0; i < m; i++) {
 				c[(m * i) + j] = c[(m * i) + j] + (w * a[(n * i) + k]);
 			}
