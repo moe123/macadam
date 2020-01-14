@@ -213,6 +213,14 @@ MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl (x); }
 	, double      : mc_acos  \
 	, long double : mc_acosl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_acos(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_acosf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_acos  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_acosl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_acos(x) \
 	( \
@@ -242,6 +250,14 @@ MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl (x); }
 	, double      : mc_asin  \
 	, long double : mc_asinl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_asin(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_asinf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_asin  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_asinl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_asin(x) \
 	( \
@@ -271,6 +287,14 @@ MC_TARGET_ALIAS long double mcmath_atan (long double x) { return mc_atanl (x); }
 	, double      : mc_atan  \
 	, long double : mc_atanl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_atan(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_atanf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_atan  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_atanl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_atan(x) \
 	( \
@@ -300,6 +324,14 @@ MC_TARGET_ALIAS long double mcmath_atan2 (long double y, long double x) { return
 	, double      : mc_atan2  \
 	, long double : mc_atan2l \
 ) (y, mc_cast_expr(MC_TARGET_TYPEOF(y), x))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_atan2(y, x) mc_cast(MC_TARGET_TYPEOF(y), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(y), float)       ? mc_atan2f (mc_cast_expr(float, y), mc_cast_expr(float, x))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(y), double)      ? mc_atan2  (mc_cast_expr(double, y), mc_cast_expr(double, x))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(y), long double) ? mc_atan2l (mc_cast_expr(long double, y), mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_atan2(y, x) \
 	( \
@@ -329,6 +361,14 @@ MC_TARGET_ALIAS long double mcmath_cos (long double x) { return mc_cosl (x); }
 	, double      : mc_cos  \
 	, long double : mc_cosl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cos(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_cosf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_cos  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_cosl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_cos(x) \
 	( \
@@ -358,6 +398,14 @@ MC_TARGET_ALIAS long double mcmath_sin (long double x) { return mc_sinl (x); }
 	, double      : mc_sin  \
 	, long double : mc_sinl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_sin(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sinf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sin  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sinl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_sin(x) \
 	( \
@@ -387,6 +435,14 @@ MC_TARGET_ALIAS long double mcmath_tan (long double x) { return mc_tanl (x); }
 	, double      : mc_tan  \
 	, long double : mc_tanl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_tan(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_tanf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_tan  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_tanl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_tan(x) \
 	( \
@@ -416,6 +472,14 @@ MC_TARGET_ALIAS long double mcmath_acosh (long double x) { return mc_acoshl (x);
 	, double      : mc_acosh  \
 	, long double : mc_acoshl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_acosh(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_acoshf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_acosh  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_acoshl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_acosh(x) \
 	( \
@@ -445,6 +509,14 @@ MC_TARGET_ALIAS long double mcmath_asinh (long double x) { return mc_asinhl (x);
 	, double      : mc_asinh  \
 	, long double : mc_asinhl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_asinh(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_asinhf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_asinh  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_asinhl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_asinh(x) \
 	( \
@@ -474,6 +546,14 @@ MC_TARGET_ALIAS long double mcmath_atanh (long double x) { return mc_atanhl (x);
 	, double      : mc_atanh  \
 	, long double : mc_atanhl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_atanh(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_atanhf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_atanh  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_atanhl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_atanh(x) \
 	( \
@@ -503,6 +583,14 @@ MC_TARGET_ALIAS long double mcmath_cosh (long double x) { return mc_coshl (x); }
 	, double      : mc_cosh  \
 	, long double : mc_coshl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cosh(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_coshf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_cosh  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_coshl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_cosh(x) \
 	( \
@@ -532,6 +620,14 @@ MC_TARGET_ALIAS long double mcmath_sinh (long double x) { return mc_sinhl (x); }
 	, double      : mc_sinh  \
 	, long double : mc_sinhl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_sinh(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_sinhf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_sinh  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_sinhl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_sinh(x) \
 	( \
@@ -561,6 +657,14 @@ MC_TARGET_ALIAS long double mcmath_tanh (long double x) { return mc_tanhl (x); }
 	, double      : mc_tanh  \
 	, long double : mc_tanhl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_tanh(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_tanhf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_tanh  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_tanhl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_tanh(x) \
 	( \
@@ -590,6 +694,14 @@ MC_TARGET_ALIAS long double mcmath_exp (long double x) { return mc_expl (x); }
 	, double      : mc_exp  \
 	, long double : mc_expl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_exp(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_expf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_exp  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_expl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_exp(x) \
 	( \
@@ -619,6 +731,14 @@ MC_TARGET_ALIAS long double mcmath_exp2 (long double x) { return mc_exp2l (x); }
 	, double      : mc_exp2  \
 	, long double : mc_exp2l \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_exp2(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_exp2f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_exp2  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_exp2l (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_exp2(x) \
 	( \
@@ -1279,7 +1399,7 @@ MC_TARGET_ALIAS int mcmath_ilogb (long double x) { return mc_ilogbl (x); }
 
 #	ifndef mcmath_scalbn
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_scalbn              (const T& x, T * y)           { mc_cast(void, x); mc_cast(void, y); return 0; }
+template <class T> MC_TARGET_INLINE T           mcmath_scalbn              (const T& x, int y)           { mc_cast(void, x); mc_cast(void, y); return 0; }
 template <>        MC_TARGET_INLINE float       mcmath_scalbn<float>       (const float& x, int y)       { return mc_scalbnf (x, y);                     }
 template <>        MC_TARGET_INLINE double      mcmath_scalbn<double>      (const double& x, int y)      { return mc_scalbn  (x, y);                     }
 template <>        MC_TARGET_INLINE long double mcmath_scalbn<long double> (const long double& x, int y) { return mc_scalbnl (x, y);                     }
@@ -1308,7 +1428,7 @@ MC_TARGET_ALIAS long double mcmath_scalbn (long double x, int y) { return mc_sca
 
 #	ifndef mcmath_scalbln
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_scalbln              (const T& x, T * y)            { mc_cast(void, x); mc_cast(void, y); return 0; }
+template <class T> MC_TARGET_INLINE T           mcmath_scalbln              (const T& x, long y)           { mc_cast(void, x); mc_cast(void, y); return 0; }
 template <>        MC_TARGET_INLINE float       mcmath_scalbln<float>       (const float& x, long y)       { return mc_scalblnf (x, y);                    }
 template <>        MC_TARGET_INLINE double      mcmath_scalbln<double>      (const double& x, long y)      { return mc_scalbln  (x, y);                    }
 template <>        MC_TARGET_INLINE long double mcmath_scalbln<long double> (const long double& x, long y) { return mc_scalblnl (x, y);                    }
