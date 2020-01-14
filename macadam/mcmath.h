@@ -668,6 +668,82 @@ MC_TARGET_ALIAS long double mcmath_exp10 (long double x) { return mc_exp10l (x);
 #	endif
 #	endif
 
+#pragma mark - mcmath_exp10m1 -
+
+#	ifndef mcmath_exp10m1
+#	if MC_TARGET_CPP98
+
+template <class T> MC_TARGET_INLINE T           mcmath_exp10m1              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_exp10m1<float>       (const float& x)       { return mc_exp10m1f (x);     }
+template <>        MC_TARGET_INLINE double      mcmath_exp10m1<double>      (const double& x)      { return mc_exp10m1  (x);     }
+template <>        MC_TARGET_INLINE long double mcmath_exp10m1<long double> (const long double& x) { return mc_exp10m1l (x);     }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_exp10m1 (float x)       { return mc_exp10m1f (x); }
+MC_TARGET_ALIAS double      mcmath_exp10m1 (double x)      { return mc_exp10m1  (x); }
+MC_TARGET_ALIAS long double mcmath_exp10m1 (long double x) { return mc_exp10m1l (x); }
+#	elif MC_TARGET_C11
+#	define mcmath_exp10m1(x) _Generic(x \
+	, float       : mc_exp10m1f \
+	, double      : mc_exp10m1  \
+	, long double : mc_exp10m1l \
+) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_exp10m1(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_exp10m1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_exp10m1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_exp10m1l (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_exp10m1(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_exp10m1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_exp10m1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_exp10m1l (mc_cast_expr(long double, x)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_expit -
+
+#	ifndef mcmath_expit
+#	if MC_TARGET_CPP98
+
+template <class T> MC_TARGET_INLINE T           mcmath_expit              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_expit<float>       (const float& x)       { return mc_expitf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_expit<double>      (const double& x)      { return mc_expit  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_expit<long double> (const long double& x) { return mc_expitl (x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_expit (float x)       { return mc_expitf (x); }
+MC_TARGET_ALIAS double      mcmath_expit (double x)      { return mc_expit  (x); }
+MC_TARGET_ALIAS long double mcmath_expit (long double x) { return mc_expitl (x); }
+#	elif MC_TARGET_C11
+#	define mcmath_expit(x) _Generic(x \
+	, float       : mc_expitf \
+	, double      : mc_expit  \
+	, long double : mc_expitl \
+) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_expit(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_expitf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_expit  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_expitl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_expit(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_expitf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_expit  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_expitl (mc_cast_expr(long double, x)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
 #pragma mark - mcmath_expm1 -
 
 #	ifndef mcmath_expm1
@@ -686,6 +762,14 @@ MC_TARGET_ALIAS long double mcmath_expm1 (long double x) { return mc_expm1l (x);
 	, double      : mc_expm1  \
 	, long double : mc_expm1l \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_expm1(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_expm1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_expm1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_expm1l (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_expm1(x) \
 	( \
@@ -715,6 +799,14 @@ MC_TARGET_ALIAS long double mcmath_log (long double x) { return mc_logl (x); }
 	, double      : mc_log  \
 	, long double : mc_logl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_logf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_logl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_log(x) \
 	( \
@@ -744,6 +836,14 @@ MC_TARGET_ALIAS long double mcmath_log10 (long double x) { return mc_log10l (x);
 	, double      : mc_log10  \
 	, long double : mc_log10l \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log10(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log10f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log10  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log10l (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_log10(x) \
 	( \
@@ -773,70 +873,20 @@ MC_TARGET_ALIAS long double mcmath_log2 (long double x) { return mc_log2l (x); }
 	, double      : mc_log2  \
 	, long double : mc_log2l \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log2(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log2f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log2  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log2l (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_log2(x) \
 	( \
 		  sizeof(x) == sizeof(float)       ? mc_log2f (mc_cast_expr(float, x))       \
 		: sizeof(x) == sizeof(double)      ? mc_log2  (mc_cast_expr(double, x))      \
 		: sizeof(x) == sizeof(long double) ? mc_log2l (mc_cast_expr(long double, x)) \
-		: 0 \
-	)
-#	endif
-#	endif
-
-#pragma mark - mcmath_log1p -
-
-#	ifndef mcmath_log1p
-#	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_log1p              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log1p<float>       (const float& x)       { return mc_log1pf (x);       }
-template <>        MC_TARGET_INLINE double      mcmath_log1p<double>      (const double& x)      { return mc_log1p  (x);       }
-template <>        MC_TARGET_INLINE long double mcmath_log1p<long double> (const long double& x) { return mc_log1pl (x);       }
-#	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log1p (float x)       { return mc_log1pf (x); }
-MC_TARGET_ALIAS double      mcmath_log1p (double x)      { return mc_log1p  (x); }
-MC_TARGET_ALIAS long double mcmath_log1p (long double x) { return mc_log1pl (x); }
-#	elif MC_TARGET_C11
-#	define mcmath_log1p(x) _Generic(x \
-	, float       : mc_log1pf \
-	, double      : mc_log1p  \
-	, long double : mc_log1pl \
-) (x)
-#	else
-#	define mcmath_log1p(x) \
-	( \
-		  sizeof(x) == sizeof(float)       ? mc_log1pf (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log1p  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log1pl (mc_cast_expr(long double, x)) \
-		: 0 \
-	)
-#	endif
-#	endif
-
-#pragma mark - mcmath_logp1 -
-
-#	ifndef mcmath_logp1
-#	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_logp1              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_logp1<float>       (const float& x)       { return mc_logp1f (x);       }
-template <>        MC_TARGET_INLINE double      mcmath_logp1<double>      (const double& x)      { return mc_logp1  (x);       }
-template <>        MC_TARGET_INLINE long double mcmath_logp1<long double> (const long double& x) { return mc_logp1l (x);       }
-#	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_logp1 (float x)       { return mc_logp1f (x); }
-MC_TARGET_ALIAS double      mcmath_logp1 (double x)      { return mc_logp1  (x); }
-MC_TARGET_ALIAS long double mcmath_logp1 (long double x) { return mc_logp1l (x); }
-#	elif MC_TARGET_C11
-#	define mcmath_logp1(x) _Generic(x \
-	, float       : mc_logp1f \
-	, double      : mc_logp1  \
-	, long double : mc_logp1l \
-) (x)
-#	else
-#	define mcmath_logp1(x) \
-	( \
-		  sizeof(x) == sizeof(float)       ? mc_logp1f (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_logp1  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_logp1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -860,12 +910,94 @@ MC_TARGET_ALIAS long double mcmath_log1m (long double x) { return mc_log1ml (x);
 	, double      : mc_log1m  \
 	, long double : mc_log1ml \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log1m(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log1mf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log1m  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log1ml (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_log1m(x) \
 	( \
 		  sizeof(x) == sizeof(float)       ? mc_log1mf (mc_cast_expr(float, x))       \
 		: sizeof(x) == sizeof(double)      ? mc_log1m  (mc_cast_expr(double, x))      \
 		: sizeof(x) == sizeof(long double) ? mc_log1ml (mc_cast_expr(long double, x)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_log1me -
+
+#	ifndef mcmath_log1me
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_log1me              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_log1me<float>       (const float& x)       { return mc_log1mef (x);      }
+template <>        MC_TARGET_INLINE double      mcmath_log1me<double>      (const double& x)      { return mc_log1me  (x);      }
+template <>        MC_TARGET_INLINE long double mcmath_log1me<long double> (const long double& x) { return mc_log1mel (x);      }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_log1me (float x)       { return mc_log1mef (x); }
+MC_TARGET_ALIAS double      mcmath_log1me (double x)      { return mc_log1me  (x); }
+MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel (x); }
+#	elif MC_TARGET_C11
+#	define mcmath_log1me(x) _Generic(x \
+	, float       : mc_log1mef \
+	, double      : mc_log1me  \
+	, long double : mc_log1mel \
+) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log1me(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log1mef (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log1me  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log1mel (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_log1me(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_log1mef (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1me  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1mel (mc_cast_expr(long double, x)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_log1p -
+
+#	ifndef mcmath_log1p
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_log1p              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_log1p<float>       (const float& x)       { return mc_log1pf (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_log1p<double>      (const double& x)      { return mc_log1p  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_log1p<long double> (const long double& x) { return mc_log1pl (x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_log1p (float x)       { return mc_log1pf (x); }
+MC_TARGET_ALIAS double      mcmath_log1p (double x)      { return mc_log1p  (x); }
+MC_TARGET_ALIAS long double mcmath_log1p (long double x) { return mc_log1pl (x); }
+#	elif MC_TARGET_C11
+#	define mcmath_log1p(x) _Generic(x \
+	, float       : mc_log1pf \
+	, double      : mc_log1p  \
+	, long double : mc_log1pl \
+) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log1p(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log1pf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log1p  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log1pl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_log1p(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_log1pf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1p  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1pl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -889,6 +1021,14 @@ MC_TARGET_ALIAS long double mcmath_log1pe (long double x) { return mc_log1pel (x
 	, double      : mc_log1pe  \
 	, long double : mc_log1pel \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log1pe(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log1pef (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log1pe  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log1pel (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_log1pe(x) \
 	( \
@@ -900,28 +1040,75 @@ MC_TARGET_ALIAS long double mcmath_log1pe (long double x) { return mc_log1pel (x
 #	endif
 #	endif
 
-#	ifndef mcmath_log1me
+#pragma mark - mcmath_log1pmx -
+
+#	ifndef mcmath_log1pmx
 #	if MC_TARGET_CPP98
-template <class T> MC_TARGET_INLINE T           mcmath_log1me              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_log1me<float>       (const float& x)       { return mc_log1mef (x);      }
-template <>        MC_TARGET_INLINE double      mcmath_log1me<double>      (const double& x)      { return mc_log1me  (x);      }
-template <>        MC_TARGET_INLINE long double mcmath_log1me<long double> (const long double& x) { return mc_log1mel (x);      }
+template <class T> MC_TARGET_INLINE T           mcmath_log1pmx              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_log1pmx<float>       (const float& x)       { return mc_log1pmxf (x);     }
+template <>        MC_TARGET_INLINE double      mcmath_log1pmx<double>      (const double& x)      { return mc_log1pmx  (x);     }
+template <>        MC_TARGET_INLINE long double mcmath_log1pmx<long double> (const long double& x) { return mc_log1pmxl (x);     }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_log1me (float x)       { return mc_log1mef (x); }
-MC_TARGET_ALIAS double      mcmath_log1me (double x)      { return mc_log1me  (x); }
-MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel (x); }
+MC_TARGET_ALIAS float       mcmath_log1pmx (float x)       { return mc_log1pmxf (x); }
+MC_TARGET_ALIAS double      mcmath_log1pmx (double x)      { return mc_log1pmx  (x); }
+MC_TARGET_ALIAS long double mcmath_log1pmx (long double x) { return mc_log1pmxl (x); }
 #	elif MC_TARGET_C11
-#	define mcmath_log1me(x) _Generic(x \
-	, float       : mc_log1mef \
-	, double      : mc_log1me  \
-	, long double : mc_log1mel \
+#	define mcmath_log1pmx(x) _Generic(x \
+	, float       : mc_log1pmxf \
+	, double      : mc_log1pmx  \
+	, long double : mc_log1pmxl \
 ) (x)
-#	else
-#	define mcmath_log1me(x) \
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_log1pmx(x) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
-		  sizeof(x) == sizeof(float)       ? mc_log1mef (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? mc_log1me  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? mc_log1mel (mc_cast_expr(long double, x)) \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_log1pmxf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_log1pmx  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_log1pmxl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_log1pmx(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_log1pmxf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_log1pmx  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_log1pmxl (mc_cast_expr(long double, x)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_logp1 -
+
+#	ifndef mcmath_logp1
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_logp1              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_logp1<float>       (const float& x)       { return mc_logp1f (x);       }
+template <>        MC_TARGET_INLINE double      mcmath_logp1<double>      (const double& x)      { return mc_logp1  (x);       }
+template <>        MC_TARGET_INLINE long double mcmath_logp1<long double> (const long double& x) { return mc_logp1l (x);       }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_logp1 (float x)       { return mc_logp1f (x); }
+MC_TARGET_ALIAS double      mcmath_logp1 (double x)      { return mc_logp1  (x); }
+MC_TARGET_ALIAS long double mcmath_logp1 (long double x) { return mc_logp1l (x); }
+#	elif MC_TARGET_C11
+#	define mcmath_logp1(x) _Generic(x \
+	, float       : mc_logp1f \
+	, double      : mc_logp1  \
+	, long double : mc_logp1l \
+) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_logp1(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_logp1f (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_logp1  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_logp1l (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_logp1(x) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_logp1f (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_logp1  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logp1l (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -932,25 +1119,33 @@ MC_TARGET_ALIAS long double mcmath_log1me (long double x) { return mc_log1mel (x
 #	ifndef mcmath_logb
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_logb              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_logb<float>       (const float& x)       { return ::logbf (x);         }
-template <>        MC_TARGET_INLINE double      mcmath_logb<double>      (const double& x)      { return ::logb  (x);         }
-template <>        MC_TARGET_INLINE long double mcmath_logb<long double> (const long double& x) { return ::logbl (x);         }
+template <>        MC_TARGET_INLINE float       mcmath_logb<float>       (const float& x)       { return mc_logbf (x);        }
+template <>        MC_TARGET_INLINE double      mcmath_logb<double>      (const double& x)      { return mc_logb  (x);        }
+template <>        MC_TARGET_INLINE long double mcmath_logb<long double> (const long double& x) { return mc_logbl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_logb (float x)       { return logbf (x); }
-MC_TARGET_ALIAS double      mcmath_logb (double x)      { return logb  (x); }
-MC_TARGET_ALIAS long double mcmath_logb (long double x) { return logbl (x); }
+MC_TARGET_ALIAS float       mcmath_logb (float x)       { return mc_logbf (x); }
+MC_TARGET_ALIAS double      mcmath_logb (double x)      { return mc_logb  (x); }
+MC_TARGET_ALIAS long double mcmath_logb (long double x) { return mc_logbl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_logb(x) _Generic(x \
-	, float       : logbf \
-	, double      : logb  \
-	, long double : logbl \
+	, float       : mc_logbf \
+	, double      : mc_logb  \
+	, long double : mc_logbl \
 ) (x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_logb(x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_logbf (mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_logb  (mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_logbl (mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_logb(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? logbf (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? logb  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? logbl (mc_cast_expr(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_logbf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_logb  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_logbl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -968,12 +1163,20 @@ template <>        MC_TARGET_INLINE long double mcmath_modf<long double> (const 
 MC_TARGET_ALIAS float       mcmath_modf (float x, float * y)             { return mc_modff (x, y); }
 MC_TARGET_ALIAS double      mcmath_modf (double x, double * y)           { return mc_modf  (x, y); }
 MC_TARGET_ALIAS long double mcmath_modf (long double x, long double * y) { return mc_modfl (x, y); }
-#	elif MC_TARGET_C11  && MC_TARGET_HAVE_TYPEOF
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_modf(x, y) _Generic(x \
 	, float       : mc_modff \
 	, double      : mc_modf  \
 	, long double : mc_modfl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x) *, y))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_modf(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_modff (mc_cast_expr(float, x), mc_cast_expr(float *, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_modf  (mc_cast_expr(double, x), mc_cast_expr(double *, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_modfl (mc_cast_expr(long double, x), mc_cast_expr(long double *, y)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_modf(x, y) \
 	( \
@@ -1017,13 +1220,30 @@ MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldex
 #pragma mark - mcmath_frexp -
 
 #	ifndef mcmath_frexp
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_frexp              (const T& x, int * e)           { mc_cast(void, x); mc_cast(void, e); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_frexp<float>       (const float& x, int * e)       { return mc_frexpf (x, e);                      }
+template <>        MC_TARGET_INLINE double      mcmath_frexp<double>      (const double& x, int * e)      { return mc_frexp  (x, e);                      }
+template <>        MC_TARGET_INLINE long double mcmath_frexp<long double> (const long double& x, int * e) { return mc_frexpl (x, e);                      }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_frexp (float x, int * e)       { return mc_frexpf (x, e); }
+MC_TARGET_ALIAS double      mcmath_frexp (double x, int * e)      { return mc_frexp  (x, e); }
+MC_TARGET_ALIAS long double mcmath_frexp (long double x, int * e) { return mc_frexpl (x, e); }
+#	elif MC_TARGET_C11
+#	define mcmath_frexp(x, e) _Generic(x \
+	, float       : mc_frexpf \
+	, double      : mc_frexp  \
+	, long double : mc_frexpl \
+) (x, mc_cast_expr(int *, e))
+#	else
 #	define mcmath_frexp(x, e) \
 	( \
-		  sizeof(x) == sizeof(float)       ? frexpf (mc_cast_expr(float, x), mc_cast_expr(int *, e))       \
-		: sizeof(x) == sizeof(double)      ? frexp  (mc_cast_expr(double, x), mc_cast_expr(int *, e))      \
-		: sizeof(x) == sizeof(long double) ? frexpl (mc_cast_expr(long double, x), mc_cast_expr(int *, e)) \
+		  sizeof(x) == sizeof(float)       ? mc_frexpf (mc_cast_expr(float, x), mc_cast_expr(int *, e))       \
+		: sizeof(x) == sizeof(double)      ? mc_frexp  (mc_cast_expr(double, x), mc_cast_expr(int *, e))      \
+		: sizeof(x) == sizeof(long double) ? mc_frexpl (mc_cast_expr(long double, x), mc_cast_expr(int *, e)) \
 		: 0 \
 	)
+#	endif
 #	endif
 
 #pragma mark - mcmath_ilogb -
@@ -1031,25 +1251,25 @@ MC_TARGET_ALIAS long double mcmath_ldexp (long double x, int n) { return mc_ldex
 #	ifndef mcmath_ilogb
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE int mcmath_ilogb              (const T& x)           { mc_cast(void, x); return 0; }
-template <>        MC_TARGET_INLINE int mcmath_ilogb<float>       (const float& x)       { return ::ilogbf (x);        }
-template <>        MC_TARGET_INLINE int mcmath_ilogb<double>      (const double& x)      { return ::ilogb  (x);        }
-template <>        MC_TARGET_INLINE int mcmath_ilogb<long double> (const long double& x) { return ::ilogbl (x);        }
+template <>        MC_TARGET_INLINE int mcmath_ilogb<float>       (const float& x)       { return mc_ilogbf (x);        }
+template <>        MC_TARGET_INLINE int mcmath_ilogb<double>      (const double& x)      { return mc_ilogb  (x);        }
+template <>        MC_TARGET_INLINE int mcmath_ilogb<long double> (const long double& x) { return mc_ilogbl (x);        }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_ilogb (float x)       { return ilogbf (x); }
-MC_TARGET_ALIAS double      mcmath_ilogb (double x)      { return ilogb  (x); }
-MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl (x); }
+MC_TARGET_ALIAS int mcmath_ilogb (float x)       { return mc_ilogbf (x); }
+MC_TARGET_ALIAS int mcmath_ilogb (double x)      { return mc_ilogb  (x); }
+MC_TARGET_ALIAS int mcmath_ilogb (long double x) { return mc_ilogbl (x); }
 #	elif MC_TARGET_C11
 #	define mcmath_ilogb(x) _Generic(x \
-	, float       : ilogbf \
-	, double      : ilogb  \
-	, long double : ilogbl \
+	, float       : mc_ilogbf \
+	, double      : mc_ilogb  \
+	, long double : mc_ilogbl \
 ) (x)
 #	else
 #	define mcmath_ilogb(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? ilogbf (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? ilogb  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? ilogbl (mc_cast_expr(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_ilogbf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_ilogb  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_ilogbl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -1058,25 +1278,59 @@ MC_TARGET_ALIAS long double mcmath_ilogb (long double x) { return ilogbl (x); }
 #pragma mark - mcmath_scalbn -
 
 #	ifndef mcmath_scalbn
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_scalbn              (const T& x, T * y)           { mc_cast(void, x); mc_cast(void, y); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_scalbn<float>       (const float& x, int y)       { return mc_scalbnf (x, y);                     }
+template <>        MC_TARGET_INLINE double      mcmath_scalbn<double>      (const double& x, int y)      { return mc_scalbn  (x, y);                     }
+template <>        MC_TARGET_INLINE long double mcmath_scalbn<long double> (const long double& x, int y) { return mc_scalbnl (x, y);                     }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_scalbn (float x, int y)       { return mc_scalbnf (x, y); }
+MC_TARGET_ALIAS double      mcmath_scalbn (double x, int y)      { return mc_scalbn  (x, y); }
+MC_TARGET_ALIAS long double mcmath_scalbn (long double x, int y) { return mc_scalbnl (x, y); }
+#	elif MC_TARGET_C11
+#	define mcmath_scalbn(x, y) _Generic(x \
+	, float       : mc_scalbnf \
+	, double      : mc_scalbn  \
+	, long double : mc_scalbnl \
+) (x, mc_cast_expr(int, y))
+#	else
 #	define mcmath_scalbn(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? scalbnf (mc_cast_expr(float, x), mc_cast_expr(int, y))       \
-		: sizeof(x) == sizeof(double)      ? scalbn  (mc_cast_expr(double, x), mc_cast_expr(int, y))      \
-		: sizeof(x) == sizeof(long double) ? scalbnl (mc_cast_expr(long double, x), mc_cast_expr(int, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_scalbnf (mc_cast_expr(float, x), mc_cast_expr(int, y))       \
+		: sizeof(x) == sizeof(double)      ? mc_scalbn  (mc_cast_expr(double, x), mc_cast_expr(int, y))      \
+		: sizeof(x) == sizeof(long double) ? mc_scalbnl (mc_cast_expr(long double, x), mc_cast_expr(int, y)) \
 		: 0 \
 	)
+#	endif
 #	endif
 
 #pragma mark - mcmath_scalbln -
 
 #	ifndef mcmath_scalbln
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_scalbln              (const T& x, T * y)            { mc_cast(void, x); mc_cast(void, y); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_scalbln<float>       (const float& x, long y)       { return mc_scalblnf (x, y);                    }
+template <>        MC_TARGET_INLINE double      mcmath_scalbln<double>      (const double& x, long y)      { return mc_scalbln  (x, y);                    }
+template <>        MC_TARGET_INLINE long double mcmath_scalbln<long double> (const long double& x, long y) { return mc_scalblnl (x, y);                    }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_scalbln (float x, long y)       { return mc_scalblnf (x, y); }
+MC_TARGET_ALIAS double      mcmath_scalbln (double x, long y)      { return mc_scalbln  (x, y); }
+MC_TARGET_ALIAS long double mcmath_scalbln (long double x, long y) { return mc_scalblnl (x, y); }
+#	elif MC_TARGET_C11
+#	define mcmath_scalbln(x, y) _Generic(x \
+	, float       : mc_scalblnf \
+	, double      : mc_scalbln  \
+	, long double : mc_scalblnl \
+) (x, mc_cast_expr(long, y))
+#	else
 #	define mcmath_scalbln(x, y) \
 	( \
-		  sizeof(x) == sizeof(float)       ? scalblnf (mc_cast_expr(float, x), mc_cast_expr(long, y))       \
-		: sizeof(x) == sizeof(double)      ? scalbln  (mc_cast_expr(double, x), mc_cast_expr(long, y))      \
-		: sizeof(x) == sizeof(long double) ? scalblnl (mc_cast_expr(long double, x), mc_cast_expr(long, y)) \
+		  sizeof(x) == sizeof(float)       ? mc_scalblnf (mc_cast_expr(float, x), mc_cast_expr(long, y))       \
+		: sizeof(x) == sizeof(double)      ? mc_scalbln  (mc_cast_expr(double, x), mc_cast_expr(long, y))      \
+		: sizeof(x) == sizeof(long double) ? mc_scalblnl (mc_cast_expr(long double, x), mc_cast_expr(long, y)) \
 		: 0 \
 	)
+#	endif
 #	endif
 
 #pragma mark - mcmath_fabs -
@@ -1313,6 +1567,8 @@ MC_TARGET_ALIAS long double mcmath_pow (long double x, long double y) { return m
 	)
 #	endif
 #	endif
+
+#pragma mark - mcmath_pow2 -
 
 #	ifndef mcmath_pow2
 #	if MC_TARGET_CPP98
@@ -2181,11 +2437,11 @@ template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  lo
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs  (mc_cast_expr(int,x))          \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs  (mc_cast_expr(long, x))        \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)          ? mc_llabs (mc_cast_expr(long long, x))   \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? (x)                                    \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? (x)                                     \
 			: 0 \
 		))
 #		else
@@ -2198,10 +2454,10 @@ template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  lo
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? mc_sabs  (mc_cast_expr(short, x))       \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? mc_iabs  (mc_cast_expr(int,x))          \
 			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? mc_labs  (mc_cast_expr(long, x))        \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? (x)                                    \
-			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? (x)                                    \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? (x)                                     \
+			: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? (x)                                     \
 			: 0 \
 		))
 #		endif
@@ -2833,6 +3089,14 @@ MC_TARGET_ALIAS long double mcmath_xlogy (long double x, long double y) { return
 	, double      : mc_xlogy  \
 	, long double : mc_xlogyl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_xlogy(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_xlogyf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_xlogy  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_xlogyl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_xlogy(x, y) \
 	( \
@@ -2862,6 +3126,14 @@ MC_TARGET_ALIAS long double mcmath_xlog1py (long double x, long double y) { retu
 	, double      : mc_xlog1py  \
 	, long double : mc_xlog1pyl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_xlog1py(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_xlog1pyf (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_xlog1py  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_xlog1pyl (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_xlog1py(x, y) \
 	( \
@@ -2963,6 +3235,14 @@ MC_TARGET_ALIAS long double mcmath_logradix (unsigned int n, long double x) { re
 	, double      : mc_logradix  \
 	, long double : mc_logradixl \
 ) (mc_cast_expr(unsigned int, n), x)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_logradix(n, x) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_logradixf (mc_cast_expr(unsigned int, n), mc_cast_expr(float, x))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_logradix  (mc_cast_expr(unsigned int, n), mc_cast_expr(double, x))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_logradixl (mc_cast_expr(unsigned int, n), mc_cast_expr(long double, x)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_logradix(n, x) \
 	( \
@@ -2997,6 +3277,14 @@ MC_TARGET_ALIAS long double mcmath_lerp (long double x, long double y, long doub
 	, double      : mc_lerp  \
 	, long double : mc_lerpl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_lerp(x, y, z) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_lerpf (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_lerp  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_lerpl (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_lerp(x, y, z) \
 	( \

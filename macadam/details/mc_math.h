@@ -78,6 +78,7 @@
 #	include <macadam/details/math/mc_fmax.h>
 #	include <macadam/details/math/mc_fmin.h>
 #	include <macadam/details/math/mc_fmod.h>
+#	include <macadam/details/math/mc_frexp.h>
 #	include <macadam/details/math/mc_gamma.h>
 #	include <macadam/details/math/mc_gammap.h>
 #	include <macadam/details/math/mc_gammaq.h>
@@ -98,6 +99,7 @@
 #	include <macadam/details/math/mc_iexp2.h>
 #	include <macadam/details/math/mc_igamma.h>
 #	include <macadam/details/math/mc_ilog2.h>
+#	include <macadam/details/math/mc_ilogb.h>
 #	include <macadam/details/math/mc_inverf.h>
 #	include <macadam/details/math/mc_invlogit.h>
 #	include <macadam/details/math/mc_invprobit.h>
@@ -131,6 +133,7 @@
 #	include <macadam/details/math/mc_log2.h>
 #	include <macadam/details/math/mc_log2p1.h>
 #	include <macadam/details/math/mc_logaddexp.h>
+#	include <macadam/details/math/mc_logb.h>
 #	include <macadam/details/math/mc_logcf.h>
 #	include <macadam/details/math/mc_logdiffexp.h>
 #	include <macadam/details/math/mc_logistic.h>
