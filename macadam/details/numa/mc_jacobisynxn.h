@@ -58,6 +58,7 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 				t = e[(n * i) + j];
 				c = 1.0f;
 				s = 0.0f;
+//!# Forming symmetric Schur.
 				if (mc_fabsf(t) > tol) {
 					diff = (e[(n * j) + j] - e[(n * i) + i]) / (2.0f * t);
 					t    = (mc_copysignf(1.0f, diff) > 0.0f
@@ -68,12 +69,14 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 					c = w;
 					s = t * w;
 				}
+//!# Rotating left.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * i) + k];
 					w              = e[(n * j) + k];
 					e[(n * i) + k] = t * c - w * s;
 					e[(n * j) + k] = t * s + w * c;
 				}
+//!# Rotating right.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * k) + i];
 					w              = e[(n * k) + j];
@@ -94,6 +97,7 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 		}
 	}
 
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 	for (i = 0; i < (n - 1); i++) {
 		k = i;
 		w = e[(n * k) + k];
@@ -158,6 +162,7 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 				t = e[(n * i) + j];
 				c = 1.0;
 				s = 0.0;
+//!# Forming symmetric Schur.
 				if (mc_fabs(t) > told) {
 					diff = (e[(n * j) + j] - e[(n * i) + i]) / (2.0 * t);
 					t    = (mc_copysign(1.0, diff) > 0.0
@@ -168,12 +173,14 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 					c = w;
 					s = t * w;
 				}
+//!# Rotating left.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * i) + k];
 					w              = e[(n * j) + k];
 					e[(n * i) + k] = t * c - w * s;
 					e[(n * j) + k] = t * s + w * c;
 				}
+//!# Rotating right.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * k) + i];
 					w              = e[(n * k) + j];
@@ -194,6 +201,7 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 		}
 	}
 
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 	for (i = 0; i < (n - 1); i++) {
 		k = i;
 		w = e[(n * k) + k];
@@ -259,6 +267,7 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 				t = e[(n * i) + j];
 				c = 1.0;
 				s = 0.0;
+//!# Forming symmetric Schur.
 				if (mc_fabs(t) > tol) {
 					diff = (e[(n * j) + j] - e[(n * i) + i]) / (2.0 * t);
 					t    = (mc_copysign(1.0, diff) > 0.0
@@ -269,12 +278,14 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 					c = w;
 					s = t * w;
 				}
+//!# Rotating left.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * i) + k];
 					w              = e[(n * j) + k];
 					e[(n * i) + k] = t * c - w * s;
 					e[(n * j) + k] = t * s + w * c;
 				}
+//!# Rotating right.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * k) + i];
 					w              = e[(n * k) + j];
@@ -295,6 +306,7 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 		}
 	}
 
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 	for (i = 0; i < (n - 1); i++) {
 		k = i;
 		w = e[(n * k) + k];
@@ -360,9 +372,10 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 				t = e[(n * i) + j];
 				c = 1.0L;
 				s = 0.0L;
+//!# Forming symmetric Schur.
 				if (mc_fabsl(t) > tol) {
 					diff = (e[(n * j) + j] - e[(n * i) + i]) / (2.0L * t);
-					t    = (mc_copysignl(1.0L, diff) > 0.0
+					t    = (mc_copysignl(1.0L, diff) > 0.0L
 						? ( 1.0L / ( diff + mc_hypot2l(1.0L, diff)))
 						: (-1.0L / (-diff + mc_hypot2l(1.0L, diff)))
 					);
@@ -370,12 +383,14 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 					c = w;
 					s = t * w;
 				}
+//!# Rotating left.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * i) + k];
 					w              = e[(n * j) + k];
 					e[(n * i) + k] = t * c - w * s;
 					e[(n * j) + k] = t * s + w * c;
 				}
+//!# Rotating right.
 				for (k = 0; k < n; k++) {
 					t              = e[(n * k) + i];
 					w              = e[(n * k) + j];
@@ -396,6 +411,7 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 		}
 	}
 
+//!# Reordering eigenvalues and eigenvectors (absolute ascending i.e smaller first).
 	for (i = 0; i < (n - 1); i++) {
 		k = i;
 		w = e[(n * k) + k];

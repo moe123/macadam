@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_gvrotf(float a1, float a2, float tol, float * ch, float *
 	} else {
 //!# Normalizing ch and sh by r.
 		w = mc_hypot2f(*ch, *sh);
-		if(w != 0.0f) {
+		if (w != 0.0f) {
 			 w  =  1.0f / w;
 			*ch = *ch * w;
 			*sh = *sh * w;
@@ -75,7 +75,7 @@ MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, doubl
 	} else {
 //!# Normalizing ch and sh by r.
 		w = mc_hypot2(*ch, *sh);
-		if(w != 0.0) {
+		if (w != 0.0) {
 			 w  =  1.0 / w;
 			*ch = *ch * w;
 			*sh = *sh * w;
@@ -105,7 +105,7 @@ MC_TARGET_FUNC void mc_gvrot(double a1, double a2, double tol, double * ch, doub
 	} else {
 //!# Normalizing ch and sh by r.
 		w = mc_hypot2(*ch, *sh);
-		if(w != 0.0) {
+		if (w != 0.0) {
 			 w  =  1.0 / w;
 			*ch = *ch * w;
 			*sh = *sh * w;
@@ -135,7 +135,7 @@ MC_TARGET_FUNC void mc_gvrotl(long double a1, long double a2, long double tol, l
 	} else {
 //!# Normalizing ch and sh by r.
 		w = mc_hypot2l(*ch, *sh);
-		if(w != 0.0L) {
+		if (w != 0.0L) {
 			 w  =  1.0L / w;
 			*ch = *ch * w;
 			*sh = *sh * w;

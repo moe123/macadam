@@ -52,7 +52,7 @@
 #		define mcmath_signbit(x)    0
 #	endif
 
-#	ifdef MC_TARGET_CPP98
+#	if MC_TARGET_CPP98 && MC_TARGET_ALLOW_CPP_CMATH
 #		define mcmath_acos(x)          ::std::acos(x)
 #		define mcmath_asin(x)          ::std::asin(x)
 #		define mcmath_atan(x)          ::std::atan(x)
