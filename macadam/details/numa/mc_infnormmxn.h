@@ -21,7 +21,7 @@ MC_TARGET_FUNC float mc_infnormmxnf(int m, int n, const float * a, int f)
 	int i = 0;
 	float nrm = 0.0f, sum;
 	for (; i < m ; i++) {
-		const float * x = a +(n * i);
+		const float * x = a + (n * i);
 		sum             = mc_asum21xnf(n, x);
 		nrm             = (f == 1) ? ((nrm > sum) ? sum : nrm) : ((nrm > sum) ? nrm : sum);
 	}
@@ -36,7 +36,7 @@ MC_TARGET_FUNC double mc_infnormmxnff(int m, int n, const float * a, int f)
 	int i = 0;
 	double nrm = 0.0, sum;
 	for (; i < m ; i++) {
-		const float * x = a +(n * i);
+		const float * x = a + (n * i);
 		sum             = mc_asum21xnff(n, x);
 		nrm             = (f == 1) ? ((nrm > sum) ? sum : nrm) : ((nrm > sum) ? nrm : sum);
 	}
@@ -51,7 +51,7 @@ MC_TARGET_FUNC double mc_infnormmxn(int m, int n, const double * a, int f)
 	int i = 0;
 	double nrm = 0.0, sum;
 	for (; i < m ; i++) {
-		const double * x = a +(n * i);
+		const double * x = a + (n * i);
 		sum              = mc_asum21xn(n, x);
 		nrm              = (f == 1) ? ((nrm > sum) ? sum : nrm) : ((nrm > sum) ? nrm : sum);
 	}
@@ -66,7 +66,7 @@ MC_TARGET_FUNC long double mc_infnormmxnl(int m, int n, const long double * a, i
 	int i = 0;
 	long double nrm = 0.0L, sum;
 	for (; i < m ; i++) {
-		const long double * x = a +(n * i);
+		const long double * x = a + (n * i);
 		sum                   = mc_asum21xnl(n, x);
 		nrm                   = (f == 1) ? ((nrm > sum) ? sum : nrm) : ((nrm > sum) ? nrm : sum);
 	}
