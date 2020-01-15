@@ -19,7 +19,7 @@ MC_TARGET_FUNC void mc_trspmxnf(int m, int n, float * at, const float * a)
 		mc_trsimxnf(m, n, at);
 	} else {
 		int i = 0;
-		for(; i < (m * n); i++) {
+		for (; i < (m * n); i++) {
 			at[i] = a[(n * (i % m)) + (i / m)];
 		}
 	}
@@ -31,7 +31,7 @@ MC_TARGET_FUNC void mc_trspmxn(int m, int n, double * at, const double * a)
 		mc_trsimxn(m, n, at);
 	} else {
 		int i = 0;
-		for(; i < (m * n); i++) {
+		for (; i < (m * n); i++) {
 			at[i] = a[(n * (i % m)) + (i / m)];
 		}
 	}
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_trspmxnl(int m, int n, long double * at, const long doubl
 		mc_trsimxnl(m, n, at);
 	} else {
 		int i = 0;
-		for(; i < (m * n); i++) {
+		for (; i < (m * n); i++) {
 			at[i] = a[(n * (i % m)) + (i / m)];
 		}
 	}

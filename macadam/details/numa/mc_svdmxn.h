@@ -49,7 +49,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int wi
 	if (m > 1 && m >= n) {
 		r = 0;
 		if (a != u) {
-			for(i = 0; i < (m * n); i++) {
+			for (i = 0; i < (m * n); i++) {
 				if (i < n) {
 					w[i] = 0.0f;
 				}
@@ -379,7 +379,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int 
 
 	if (m > 1 && m >= n) {
 		r = 0;
-		for(i = 0; i < (m * n); i++) {
+		for (i = 0; i < (m * n); i++) {
 			if (i < n) {
 				w[i] = 0.0;
 			}
@@ -709,7 +709,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int w
 	if (m > 1 && m >= n) {
 		r = 0;
 		if (a != u) {
-			for(i = 0; i < (m * n); i++) {
+			for (i = 0; i < (m * n); i++) {
 				if (i < n) {
 					w[i] = 0.0;
 				}
@@ -1040,7 +1040,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double
 	if (m > 1 && m >= n) {
 		r = 0;
 		if (a != u) {
-			for(i = 0; i < (m * n); i++) {
+			for (i = 0; i < (m * n); i++) {
 				if (i < n) {
 					w[i] = 0.0L;
 				}

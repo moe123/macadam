@@ -97,7 +97,7 @@ MC_TARGET_FUNC void mc_lapack_slasv2(float f, float g, float h, float * ssmin, f
 			} else {
 				t = (m / (s + t) + m / (r + l)) * (a + one);
 			}
-			l = mc_sqrtf(t * t + four);
+			l   = mc_sqrtf(t * t + four);
 			crt = two / l;
 			srt = t / l;
 			clt = (crt + srt * m) / a;
@@ -211,7 +211,7 @@ MC_TARGET_FUNC void mc_lapack_dlasv2(double f, double g, double h, double * ssmi
 			} else {
 				t = (m / (s + t) + m / (r + l)) * (a + one);
 			}
-			l = mc_sqrt(t * t + four);
+			l   = mc_sqrt(t * t + four);
 			crt = two / l;
 			srt = t / l;
 			clt = (crt + srt * m) / a;
@@ -325,7 +325,7 @@ MC_TARGET_FUNC void mc_lapack_llasv2(long double f, long double g, long double h
 			} else {
 				t = (m / (s + t) + m / (r + l)) * (a + one);
 			}
-			l = mc_sqrtl(t * t + four);
+			l   = mc_sqrtl(t * t + four);
 			crt = two / l;
 			srt = t / l;
 			clt = (crt + srt * m) / a;

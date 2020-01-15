@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 		for (j = 0; j < e; j++) {
 			if ((j - i) != 0) {
 				yi = a[(g * i) + i];
-				for (k = 0; k < g; k++){
+				for (k = 0; k < g; k++) {
 					a[(g * i) + k] = a[(g * i) + k] - (yi * a[(g * i) + k]);
 				}
 			}
@@ -195,7 +195,7 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 		for (j = 0; j < e; j++) {
 			if ((j - i) != 0) {
 				yi = a[(g * i) + i];
-				for (k = 0; k < g; k++){
+				for (k = 0; k < g; k++) {
 					a[(g * i) + k] = a[(g * i) + k] - (yi * a[(g * i) + k]);
 				}
 			}
@@ -296,7 +296,7 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 		for (j = 0; j < e; j++) {
 			if ((j - i) != 0) {
 				yi = a[(g * i) + i];
-				for (k = 0; k < g; k++){
+				for (k = 0; k < g; k++) {
 					a[(g * i) + k] = a[(g * i) + k] - (yi * a[(g * i) + k]);
 				}
 			}
@@ -397,7 +397,7 @@ MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 		for (j = 0; j < e; j++) {
 			if ((j - i) != 0) {
 				yi = a[(g * i) + i];
-				for (k = 0; k < g; k++){
+				for (k = 0; k < g; k++) {
 					a[(g * i) + k] = a[(g * i) + k] - (yi * a[(g * i) + k]);
 				}
 			}
