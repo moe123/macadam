@@ -1,0 +1,141 @@
+//
+// # -*- coding: utf-8, tab-width: 3 -*-
+
+// mc_outpmxn.h
+//
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
+//
+
+#include <macadam/details/numa/mc_zerosmxn.h>
+
+#ifndef MC_OUTPMXN_H
+#define MC_OUTPMXN_H
+
+#pragma mark - mc_outpmxn -
+
+MC_TARGET_FUNC void mc_outpmxnf(int m, int n, float * a, const float * x, const float * y)
+{
+//!# Requires a[m x n], x[m x 1] and y[n x 1].
+//!# c=x*y' i.e outer product of two vectors.
+#	if MCTARGET_BLAS_USE_CLAYOUT
+
+	const int mm      = m;
+	const int nn      = n;
+	const int lda     = m;
+	const int incx    = 1;
+	const int incy    = 1;
+	const float alpha = 1.0f;
+
+	mc_zerosmxnf(m, n, a);
+	mc_blas_sger(mm, nn, alpha, x, incx, y, incy, a, lda);
+#	else
+	int j = 0, i;
+	float w;
+	for (; j < n; j++) {
+		w = y[j];
+		for (i = 0; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] + (x[i] * w);
+		}
+	}
+#	endif
+}
+
+MC_TARGET_FUNC void mc_outpmxnff(int m, int n, double * a, const float * x, const float * y)
+{
+//!# Requires a[m x n], x[m x 1] and y[n x 1].
+//!# c=x*y' i.e outer product of two vectors.
+	int j = 0, i;
+	double w;
+	for (; j < n; j++) {
+		w = mc_cast(double, y[j]);
+		for (i = 0; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] + (mc_cast(double, x[i]) * w);
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_outpmxnfd(int m, int n, double * a, const float * x, const double * y)
+{
+//!# Requires a[m x n], x[m x 1] and y[n x 1].
+//!# c=x*y' i.e outer product of two vectors.
+	int j = 0, i;
+	double w;
+	for (; j < n; j++) {
+		w = y[j];
+		for (i = 0; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] + (mc_cast(double, x[i]) * w);
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_outpmxndf(int m, int n, double * a, const double * x, const float * y)
+{
+//!# Requires a[m x n], x[m x 1] and y[n x 1].
+//!# c=x*y' i.e outer product of two vectors.
+	int j = 0, i;
+	double w;
+	for (; j < n; j++) {
+		w = mc_cast(double, y[j]);
+		for (i = 0; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] + (x[i] * w);
+		}
+	}
+}
+
+MC_TARGET_FUNC void mc_outpmxn(int m, int n, double * a, const double * x, const double * y)
+{
+//!# Requires a[m x n], x[m x 1] and y[n x 1].
+//!# c=x*y' i.e outer product of two vectors.
+#	if MCTARGET_BLAS_USE_CLAYOUT
+
+	const int mm       = m;
+	const int nn       = n;
+	const int lda      = m;
+	const int incx     = 1;
+	const int incy     = 1;
+	const double alpha = 1.0;
+
+	mc_zerosmxn(m, n, a);
+	mc_blas_dger(mm, nn, alpha, x, incx, y, incy, a, lda);
+#	else
+	int j = 0, i;
+	double w;
+	for (; j < n; j++) {
+		w = y[j];
+		for (i = 0; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] + (x[i] * w);
+		}
+	}
+#	endif
+}
+
+MC_TARGET_FUNC void mc_outpmxnl(int m, int n, long double * a, const long double * x, const long double * y)
+{
+//!# Requires a[m x n], x[m x 1] and y[n x 1].
+//!# c=x*y' i.e outer product of two vectors.
+#	if MCTARGET_BLAS_USE_CLAYOUT
+
+	const int mm            = m;
+	const int nn            = n;
+	const int lda           = m;
+	const int incx          = 1;
+	const int incy          = 1;
+	const long double alpha = 1.0L;
+
+	mc_zerosmxnl(m, n, a);
+	mc_blas_lger(mm, nn, alpha, x, incx, y, incy, a, lda);
+#	else
+	int j = 0, i;
+	long double w;
+	for (; j < n; j++) {
+		w = y[j];
+		for (i = 0; i < m; i++) {
+			a[(n * i) + j] = a[(n * i) + j] + (x[i] * w);
+		}
+	}
+#	endif
+}
+
+#endif /* !MC_OUTPMXN_H */
+
+/* EOF */

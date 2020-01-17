@@ -96,13 +96,13 @@ MC_TARGET_FUNC void mc_mulatxmxn(int m, int n, double * restrict b, const double
 //!# b=a'*x
 #	if MCTARGET_BLAS_USE_CLAYOUT
 
-	const int mm      = m;
-	const int nn      = n;
-	const int lda     = m;
-	const int incx    = 1;
-	const int incy    = 1;
-	const float alpha = 1.0f;
-	const float beta  = 0.0f;
+	const int mm       = m;
+	const int nn       = n;
+	const int lda      = m;
+	const int incx     = 1;
+	const int incy     = 1;
+	const double alpha = 1.0;
+	const double beta  = 0.0;
 
 	mc_blas_dgemv('T', mm, nn, alpha, a, lda, x, incx, beta, b, incy);
 #	else
@@ -125,13 +125,13 @@ MC_TARGET_FUNC void mc_mulatxmxnl(int m, int n, long double * restrict b, const 
 //!# b=a'*x
 #	if MCTARGET_BLAS_USE_CLAYOUT
 
-	const int mm      = m;
-	const int nn      = n;
-	const int lda     = m;
-	const int incx    = 1;
-	const int incy    = 1;
-	const float alpha = 1.0f;
-	const float beta  = 0.0f;
+	const int mm            = m;
+	const int nn            = n;
+	const int lda           = m;
+	const int incx          = 1;
+	const int incy          = 1;
+	const long double alpha = 1.0L;
+	const long double beta  = 0.0L;
 
 	mc_blas_lgemv('T', mm, nn, alpha, a, lda, x, incx, beta, b, incy);
 #	else

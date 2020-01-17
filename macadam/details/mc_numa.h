@@ -124,6 +124,7 @@
 #	include <macadam/details/numa/mc_infnormmxn.h>
 #	include <macadam/details/numa/mc_infnormnxn.h>
 #	include <macadam/details/numa/mc_jacobisynxn.h>
+#	include <macadam/details/numa/mc_kronabmxn.h>
 #	include <macadam/details/numa/mc_l1norm1xn.h>
 #	include <macadam/details/numa/mc_l2norm1x2.h>
 #	include <macadam/details/numa/mc_l2norm1x3.h>
@@ -190,6 +191,7 @@
 #	include <macadam/details/numa/mc_onesnxn.h>
 #	include <macadam/details/numa/mc_orthomxn.h>
 #	include <macadam/details/numa/mc_orthonxn.h>
+#	include <macadam/details/numa/mc_outpmxn.h>
 #	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>

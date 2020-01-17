@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_nextafter.h>
+#include <macadam/details/math/mc_fabs.h>
 
 #ifndef MC_FISNEAR_H
 #define MC_FISNEAR_H
@@ -19,9 +19,10 @@ MC_TARGET_FUNC int mc_fisnearf(float x, float y, int n)
 	if (n < 1) {
 		return -1;
 	}
-	const float a0 = x - (x - mc_nextafterf(x, -MCLIMITS_MAXF)) * mc_cast(float, n);
-	const float a1 = x + (mc_nextafterf(x, MCLIMITS_MAXF) - x)  * mc_cast(float, n);
-	return a0 <= y && a1 >= y ? 1 : 0;
+	if (x == y) {
+		return 1;
+	}
+	return mc_fabsf(y - x) < (mc_cast(float, n) * MCLIMITS_EPSILONF) ? 1 : 0;
 }
 
 MC_TARGET_FUNC int mc_fisnear(double x, double y, int n)
@@ -30,9 +31,10 @@ MC_TARGET_FUNC int mc_fisnear(double x, double y, int n)
 	if (n < 1) {
 		return -1;
 	}
-	const double a0 = x - (x - mc_nextafter(x, -MCLIMITS_MAX)) * mc_cast(double, n);
-	const double a1 = x + (mc_nextafter(x, MCLIMITS_MAX) - x)  * mc_cast(double, n);
-	return a0 <= y && a1 >= y ? 1 : 0;
+	if (x == y) {
+		return 1;
+	}
+	return mc_fabs(y - x) < (mc_cast(double, n) * MCLIMITS_EPSILON) ? 1 : 0;
 }
 
 MC_TARGET_FUNC int mc_fisnearl(long double x, long double y, int n)
@@ -41,9 +43,10 @@ MC_TARGET_FUNC int mc_fisnearl(long double x, long double y, int n)
 	if (n < 1) {
 		return -1;
 	}
-	const long double a0 = x - (x - mc_nextafterl(x, -MCLIMITS_MAXL)) * mc_cast(long double, n);
-	const long double a1 = x + (mc_nextafterl(x, MCLIMITS_MAXL) - x)  * mc_cast(long double, n);
-	return a0 <= y && a1 >= y ? 1 : 0;
+	if (x == y) {
+		return 1;
+	}
+	return mc_fabsl(y - x) < (mc_cast(long double, n) * MCLIMITS_EPSILONL) ? 1 : 0;
 }
 
 #endif /* !MC_FISNEAR_H */

@@ -15,7 +15,7 @@
 
 MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b)
 {
-//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+//!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = n;
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const
 
 MC_TARGET_FUNC void mc_mulatbmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b)
 {
-//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+//!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
 	for (; j < p; j++) {
 		for (i = 0; i < n; i++) {
@@ -57,7 +57,7 @@ MC_TARGET_FUNC void mc_mulatbmxnff(int m, int n, int p, double * restrict c, con
 
 MC_TARGET_FUNC void mc_mulatbmxnfd(int m, int n, int p, double * restrict c, const float * a, const double * b)
 {
-//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+//!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
 	for (; j < p; j++) {
 		for (i = 0; i < n; i++) {
@@ -71,7 +71,7 @@ MC_TARGET_FUNC void mc_mulatbmxnfd(int m, int n, int p, double * restrict c, con
 
 MC_TARGET_FUNC void mc_mulatbmxndf(int m, int n, int p, double * restrict c, const double * a, const float * b)
 {
-//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+//!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
 	for (; j < p; j++) {
 		for (i = 0; i < n; i++) {
@@ -85,7 +85,7 @@ MC_TARGET_FUNC void mc_mulatbmxndf(int m, int n, int p, double * restrict c, con
 
 MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
 {
-//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+//!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLAYOUT
 
 	const int mm       = n;
@@ -113,7 +113,7 @@ MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const
 
 MC_TARGET_FUNC void mc_mulatbmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b)
 {
-//!# c=a'*b. Asumming m=ma, n=na, mb=na and nb=p, produces c[m x p]=a[m x n] * b[n x p].
+//!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if MCTARGET_BLAS_USE_CLAYOUT
 
 	const int mm            = n;

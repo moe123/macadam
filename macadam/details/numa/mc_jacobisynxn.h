@@ -24,8 +24,6 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# A and E may be the same. Computing eigenvalues and right-hand
 //!# side eigenvectors of a real symmetric matrix by Jacobi method.
-	const float eps = MCLIMITS_EPSILONF;
-
 	int i, j, k, l = 0;
 	float c, s, scale, sumsq, diff, w, t;
 
@@ -50,7 +48,7 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 //!# Computing the partial Frobenius norm, iterating the
 //!# upper-triangle excluding the main-diagonal elements.
 		mc_triussqrnxnf(n, e, &sumsq, &scale, 1);
-		if (scale * mc_sqrtf(sumsq * 2.0f) < eps) {
+		if (mc_fisnearf(scale * mc_sqrtf(sumsq * 2.0f), 0.0f, 1)) {
 			break;
 		}
 		for (i = 0; i < n; i++) {
@@ -128,8 +126,6 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# Computing eigenvalues and right-hand side eigenvectors of a
 //!# real symmetric matrix by Jacobi method.
-	const double eps = MCLIMITS_EPSILON;
-
 	int i, j, k, l = 0;
 	double c, s, scale, sumsq, diff, w, t, told;
 
@@ -154,7 +150,7 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 //!# Computing the partial Frobenius norm, iterating the
 //!# upper-triangle excluding the main-diagonal elements.
 		mc_triussqrnxn(n, e, &sumsq, &scale, 1);
-		if (scale * mc_sqrt(sumsq * 2.0) < eps) {
+		if (mc_fisnear(scale * mc_sqrt(sumsq * 2.0), 0.0, 1)) {
 			break;
 		}
 		for (i = 0; i < n; i++) {
@@ -232,8 +228,6 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# A and E may be the same. Computing eigenvalues and right-hand
 //!# side eigenvectors of a real symmetric matrix by Jacobi method.
-	const double eps = MCLIMITS_EPSILON;
-
 	int i, j, k, l = 0;
 	double c, s, scale, sumsq, diff, w, t;
 
@@ -259,7 +253,7 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 //!# Computing the partial Frobenius norm, iterating the
 //!# upper-triangle excluding the main-diagonal elements.
 		mc_triussqrnxn(n, e, &sumsq, &scale, 1);
-		if (scale * mc_sqrt(sumsq * 2.0) < eps) {
+		if (mc_fisnear(scale * mc_sqrt(sumsq * 2.0), 0.0, 1)) {
 			break;
 		}
 		for (i = 0; i < n; i++) {
@@ -337,8 +331,6 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# A and E may be the same. Computing eigenvalues and right-hand
 //!# side eigenvectors of a real symmetric matrix by Jacobi method.
-	const long double eps = MCLIMITS_EPSILONL;
-
 	int i, j, k, l = 0;
 	long double c, s, scale, sumsq, diff, w, t;
 
@@ -364,7 +356,7 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 //!# Computing the partial Frobenius norm, iterating the
 //!# upper-triangle excluding the main-diagonal elements.
 		mc_triussqrnxnl(n, e, &sumsq, &scale, 1);
-		if (scale * mc_sqrtl(sumsq * 2.0L) < eps) {
+		if (mc_fisnearl(scale * mc_sqrtl(sumsq * 2.0L), 0.0L, 1)) {
 			break;
 		}
 		for (i = 0; i < n; i++) {
