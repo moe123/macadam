@@ -16,7 +16,7 @@
 MC_TARGET_FUNC void mc_mulabmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = m;
 	const int nn      = p;
@@ -86,7 +86,7 @@ MC_TARGET_FUNC void mc_mulabmxndf(int m, int n, int p, double * restrict c, cons
 MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
 
 	const int mm       = m;
 	const int nn       = p;
@@ -114,7 +114,7 @@ MC_TARGET_FUNC void mc_mulabmxn(int m, int n, int p, double * restrict c, const 
 MC_TARGET_FUNC void mc_mulabmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
-#	if MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
 
 	const int mm            = m;
 	const int nn            = p;
