@@ -179,6 +179,7 @@
 #	include <macadam/details/numa/mc_mulaxmxn.h>
 #	include <macadam/details/numa/mc_mulaxnxn.h>
 #	include <macadam/details/numa/mc_muleabmxn.h>
+#	include <macadam/details/numa/mc_muleabnxn.h>
 #	include <macadam/details/numa/mc_mulxv1xn.h>
 #	include <macadam/details/numa/mc_mulxy1xn.h>
 #	include <macadam/details/numa/mc_nnz1xn.h>
@@ -211,6 +212,8 @@
 #	include <macadam/details/numa/mc_ssqr1x2.h>
 #	include <macadam/details/numa/mc_ssqr1x3.h>
 #	include <macadam/details/numa/mc_ssqr1xn.h>
+#	include <macadam/details/numa/mc_ssqr2x1.h>
+#	include <macadam/details/numa/mc_ssqr3x1.h>
 #	include <macadam/details/numa/mc_ssqrmx1.h>
 #	include <macadam/details/numa/mc_stdd1xn.h>
 #	include <macadam/details/numa/mc_subxv1xn.h>

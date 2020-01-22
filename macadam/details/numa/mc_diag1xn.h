@@ -13,100 +13,144 @@
 
 #pragma mark - mc_diag1xn -
 
-MC_TARGET_FUNC void mc_diag1xnf(int n, float * a, const float * d, int k)
+MC_TARGET_FUNC void mc_diag1xnf(int n, float * a, const float * d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
+//!# k=0: d elements are placed on the main diagonal.
+//!# k>0: d elements are placed on the +kth superdiagonal.
+//!# k<0: d elements are placed on the -kth subdiagonal.
+//!# f=0: set main diagonal to d elements and zeroing other elements.
+//!# f=1: only set main diagonal to d elements.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
-		mc_zerosnxnf(m, a);
+		if (f != 1) { 
+			mc_zerosnxnf(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + (i + k)] = d[i];
 		}
 	} else if (k < 0 ) {
 		m = n - k;
-		mc_zerosnxnf(m, a);
+		if (f != 1) { 
+			mc_zerosnxnf(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * (i - k)) + i] = d[i];
 		}
 	} else {
 		m = n;
-		mc_zerosnxnf(m, a);
+		if (f != 1) { 
+			mc_zerosnxnf(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + i] = d[i];
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xnff(int n, double * a, const float * d, int k)
+MC_TARGET_FUNC void mc_diag1xnff(int n, double * a, const float * d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
+//!# k=0: d elements are placed on the main diagonal.
+//!# k>0: d elements are placed on the +kth superdiagonal.
+//!# k<0: d elements are placed on the -kth subdiagonal.
+//!# f=0: set main diagonal to d elements and zeroing other elements.
+//!# f=1: only set main diagonal to d elements.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
-		mc_zerosnxn(m, a);
+		if (f != 1) { 
+			mc_zerosnxn(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + (i + k)] = mc_cast(double, d[i]);
 		}
 	} else if (k < 0 ) {
 		m = n - k;
-		mc_zerosnxn(m, a);
+		if (f != 1) { 
+			mc_zerosnxn(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * (i - k)) + i] = mc_cast(double, d[i]);
 		}
 	} else {
 		m = n;
-		mc_zerosnxn(m, a);
+		if (f != 1) { 
+			mc_zerosnxn(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + i] = mc_cast(double, d[i]);
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xn(int n, double * a, const double * d, int k)
+MC_TARGET_FUNC void mc_diag1xn(int n, double * a, const double * d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
+//!# k=0: d elements are placed on the main diagonal.
+//!# k>0: d elements are placed on the +kth superdiagonal.
+//!# k<0: d elements are placed on the -kth subdiagonal.
+//!# f=0: set main diagonal to d elements and zeroing other elements.
+//!# f=1: only set main diagonal to d elements.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
-		mc_zerosnxn(m, a);
+		if (f != 1) { 
+			mc_zerosnxn(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + (i + k)] = d[i];
 		}
 	} else if (k < 0 ) {
 		m = n - k;
-		mc_zerosnxn(m, a);
+		if (f != 1) { 
+			mc_zerosnxn(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * (i - k)) + i] = d[i];
 		}
 	} else {
 		m = n;
-		mc_zerosnxn(m, a);
+		if (f != 1) { 
+			mc_zerosnxn(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + i] = d[i];
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xnl(int n, long double * a, const long double * d, int k)
+MC_TARGET_FUNC void mc_diag1xnl(int n, long double * a, const long double * d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
+//!# k=0: d elements are placed on the main diagonal.
+//!# k>0: d elements are placed on the +kth superdiagonal.
+//!# k<0: d elements are placed on the -kth subdiagonal.
+//!# f=0: set main diagonal to d elements and zeroing other elements.
+//!# f=1: only set main diagonal to d elements.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
-		mc_zerosnxnl(m, a);
+		if (f != 1) { 
+			mc_zerosnxnl(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + (i + k)] = d[i];
 		}
 	} else if (k < 0 ) {
 		m = n - k;
-		mc_zerosnxnl(m, a);
+		if (f != 1) { 
+			mc_zerosnxnl(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * (i - k)) + i] = d[i];
 		}
 	} else {
 		m = n;
-		mc_zerosnxnl(m, a);
+		if (f != 1) { 
+			mc_zerosnxnl(m, a);
+		}
 		for (; i < n; i++) {
 			a[(m * i) + i] = d[i];
 		}
