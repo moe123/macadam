@@ -18,7 +18,7 @@ MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, float * restrict c, const float * 
 {
 //!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
 //!# f=0 computing the dot product of each rows.
-//!# f=0 computing the dot product of each columns i.e the Hadamard product.
+//!# f=0 computing the dot product of each columns.
 	int i = 0;
 	switch (d)
 	{
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, double * restrict c, const float 
 {
 //!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
 //!# f=0 computing the dot product of each rows.
-//!# f=0 computing the dot product of each columns i.e the Hadamard product.
+//!# f=0 computing the dot product of each columns.
 	int i = 0;
 	switch (d)
 	{
@@ -64,7 +64,7 @@ MC_TARGET_FUNC void mc_dotpmxn(int m, int n, double * restrict c, const double *
 {
 //!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
 //!# f=0 computing the dot product of each rows.
-//!# f=0 computing the dot product of each columns i.e the Hadamard product.
+//!# f=0 computing the dot product of each columns.
 	int i = 0;
 	switch (d)
 	{

@@ -6,6 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_twosum.h>
 
 #ifndef MC_ASUM21XN_H
