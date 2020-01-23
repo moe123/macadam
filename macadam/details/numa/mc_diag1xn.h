@@ -13,146 +13,222 @@
 
 #pragma mark - mc_diag1xn -
 
-MC_TARGET_FUNC void mc_diag1xnf(int n, float * a, const float * d, int k, int f)
+MC_TARGET_FUNC void mc_diag1xnf(int n, float * restrict a, float * restrict d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
 //!# k>0: d elements are placed on the +kth superdiagonal.
 //!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set main diagonal to d elements and zeroing other elements.
-//!# f=1: only set main diagonal to d elements.
+//!# f=0: set kth diagonal to d elements and zeroing other elements.
+//!# f=1: only set kth diagonal to d elements.
+//!# f=2: copy kth diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
 		if (f != 1) { 
 			mc_zerosnxnf(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + (i + k)] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * i) + (i + k)];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + (i + k)] = d[i];
+			}
 		}
 	} else if (k < 0 ) {
 		m = n - k;
 		if (f != 1) { 
 			mc_zerosnxnf(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * (i - k)) + i] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * (i - k)) + i];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * (i - k)) + i] = d[i];
+			}
 		}
 	} else {
 		m = n;
 		if (f != 1) { 
 			mc_zerosnxnf(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + i] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * i) + i];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + i] = d[i];
+			}
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xnff(int n, double * a, const float * d, int k, int f)
+MC_TARGET_FUNC void mc_diag1xnff(int n, double * restrict a, float * restrict d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
 //!# k>0: d elements are placed on the +kth superdiagonal.
 //!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set main diagonal to d elements and zeroing other elements.
-//!# f=1: only set main diagonal to d elements.
+//!# f=0: set kth diagonal to d elements and zeroing other elements.
+//!# f=1: only set kth diagonal to d elements.
+//!# f=2: copy kth diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
 		if (f != 1) { 
 			mc_zerosnxn(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + (i + k)] = mc_cast(double, d[i]);
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = mc_cast(float, a[(m * i) + (i + k)]);
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + (i + k)] = mc_cast(double, d[i]);
+			}
 		}
 	} else if (k < 0 ) {
 		m = n - k;
 		if (f != 1) { 
 			mc_zerosnxn(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * (i - k)) + i] = mc_cast(double, d[i]);
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = mc_cast(float, a[(m * (i - k)) + i]);
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * (i - k)) + i] = mc_cast(double, d[i]);
+			}
 		}
 	} else {
 		m = n;
 		if (f != 1) { 
 			mc_zerosnxn(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + i] = mc_cast(double, d[i]);
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = mc_cast(float, a[(m * i) + i]);
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + i] = mc_cast(double, d[i]);
+			}
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xn(int n, double * a, const double * d, int k, int f)
+MC_TARGET_FUNC void mc_diag1xn(int n, double * restrict a, double * restrict d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
 //!# k>0: d elements are placed on the +kth superdiagonal.
 //!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set main diagonal to d elements and zeroing other elements.
-//!# f=1: only set main diagonal to d elements.
+//!# f=0: set kth diagonal to d elements and zeroing other elements.
+//!# f=1: only set kth diagonal to d elements.
+//!# f=2: copy kth diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
 		if (f != 1) { 
 			mc_zerosnxn(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + (i + k)] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * i) + (i + k)];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + (i + k)] = d[i];
+			}
 		}
 	} else if (k < 0 ) {
 		m = n - k;
 		if (f != 1) { 
 			mc_zerosnxn(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * (i - k)) + i] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * (i - k)) + i];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * (i - k)) + i] = d[i];
+			}
 		}
 	} else {
 		m = n;
 		if (f != 1) { 
 			mc_zerosnxn(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + i] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * i) + i];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + i] = d[i];
+			}
 		}
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xnl(int n, long double * a, const long double * d, int k, int f)
+MC_TARGET_FUNC void mc_diag1xnl(int n, long double * restrict a, long double * restrict d, int k, int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
 //!# k>0: d elements are placed on the +kth superdiagonal.
 //!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set main diagonal to d elements and zeroing other elements.
-//!# f=1: only set main diagonal to d elements.
+//!# f=0: set kth diagonal to d elements and zeroing other elements.
+//!# f=1: only set kth diagonal to d elements.
+//!# f=2: copy kth diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
 		if (f != 1) { 
 			mc_zerosnxnl(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + (i + k)] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * i) + (i + k)];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + (i + k)] = d[i];
+			}
 		}
 	} else if (k < 0 ) {
 		m = n - k;
 		if (f != 1) { 
 			mc_zerosnxnl(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * (i - k)) + i] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * (i - k)) + i];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * (i - k)) + i] = d[i];
+			}
 		}
 	} else {
 		m = n;
 		if (f != 1) { 
 			mc_zerosnxnl(m, a);
 		}
-		for (; i < n; i++) {
-			a[(m * i) + i] = d[i];
+		if (f == 2) {
+			for (; i < n; i++) {
+				d[i] = a[(m * i) + i];
+			}
+		} else {
+			for (; i < n; i++) {
+				a[(m * i) + i] = d[i];
+			}
 		}
 	}
 }
