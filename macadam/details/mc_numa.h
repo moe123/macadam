@@ -149,6 +149,7 @@
 #	include <macadam/details/numa/mc_max1xn.h>
 #	include <macadam/details/numa/mc_mean1xn.h>
 #	include <macadam/details/numa/mc_meanmx1.h>
+#	include <macadam/details/numa/mc_mgs3x3.h>
 #	include <macadam/details/numa/mc_mgsmxn.h>
 #	include <macadam/details/numa/mc_mgsnxn.h>
 #	include <macadam/details/numa/mc_min1xn.h>
@@ -193,6 +194,7 @@
 #	include <macadam/details/numa/mc_onesmx1.h>
 #	include <macadam/details/numa/mc_onesmxn.h>
 #	include <macadam/details/numa/mc_onesnxn.h>
+#	include <macadam/details/numa/mc_ortho3x3.h>
 #	include <macadam/details/numa/mc_orthomxn.h>
 #	include <macadam/details/numa/mc_orthonxn.h>
 #	include <macadam/details/numa/mc_outp2x2.h>
@@ -202,8 +204,6 @@
 #	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>
-#	include <macadam/details/numa/mc_mgsmxn.h>
-#	include <macadam/details/numa/mc_mgsnxn.h>
 #	include <macadam/details/numa/mc_qrsolve3x3.h>
 #	include <macadam/details/numa/mc_rescale1xn.h>
 #	include <macadam/details/numa/mc_rescalemx1.h>
@@ -261,6 +261,7 @@
 #	include <macadam/details/numa/mc_zeros1x3.h>
 #	include <macadam/details/numa/mc_zeros1xn.h>
 #	include <macadam/details/numa/mc_zeros2x2.h>
+#	include <macadam/details/numa/mc_zeros3x1.h>
 #	include <macadam/details/numa/mc_zeros3x3.h>
 #	include <macadam/details/numa/mc_zerosmx1.h>
 #	include <macadam/details/numa/mc_zerosmxn.h>
