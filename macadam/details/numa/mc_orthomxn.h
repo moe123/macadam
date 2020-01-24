@@ -63,7 +63,7 @@ MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float 
 					mc_zerosmx1f(m, n, j, q);
 					q[(n * j) + j] = 1.0f;
 					if (wantr) {
-						r[(n * j) + j] = 1.0f;
+						r[(n * j) + j] = 0.0f;
 					}
 				} else {
 					bnorm = mc_fmaxf(bnorm, cnorm);
@@ -80,7 +80,7 @@ MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float 
 			} else {
 				q[(n * j) + j] = 1.0f;
 				if (wantr) {
-					r[(n * j) + j] = 1.0f;
+					r[(n * j) + j] = 0.0f;
 				}
 			}
 		}
@@ -132,7 +132,7 @@ MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, doubl
 					mc_zerosmx1(m, n, j, q);
 					q[(n * j) + j] = 1.0;
 					if (wantr) {
-						r[(n * j) + j] = 1.0;
+						r[(n * j) + j] = 0.0;
 					}
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
@@ -149,7 +149,7 @@ MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, doubl
 			} else {
 				q[(n * j) + j] = 1.0;
 				if (wantr) {
-					r[(n * j) + j] = 1.0;
+					r[(n * j) + j] = 0.0;
 				}
 			}
 		}
@@ -201,7 +201,7 @@ MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, doubl
 					mc_zerosmx1(m, n, j, q);
 					q[(n * j) + j] = 1.0;
 					if (wantr) {
-						r[(n * j) + j] = 1.0;
+						r[(n * j) + j] = 0.0;
 					}
 				} else {
 					bnorm = mc_fmax(bnorm, cnorm);
@@ -218,7 +218,7 @@ MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, doubl
 			} else {
 				q[(n * j) + j] = 1.0;
 				if (wantr) {
-					r[(n * j) + j] = 1.0;
+					r[(n * j) + j] = 0.0;
 				}
 			}
 		}
@@ -270,7 +270,7 @@ MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double
 					mc_zerosmx1l(m, n, j, q);
 					q[(n * j) + j] = 1.0L;
 					if (wantr) {
-						r[(n * j) + j] = 1.0L;
+						r[(n * j) + j] = 0.0L;
 					}
 				} else {
 					bnorm = mc_fmaxl(bnorm, cnorm);
@@ -287,7 +287,7 @@ MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double
 			} else {
 				q[(n * j) + j] = 1.0L;
 				if (wantr) {
-					r[(n * j) + j] = 1.0L;
+					r[(n * j) + j] = 0.0L;
 				}
 			}
 		}
