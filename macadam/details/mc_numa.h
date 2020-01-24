@@ -110,6 +110,7 @@
 #	include <macadam/details/numa/mc_divxv1xn.h>
 #	include <macadam/details/numa/mc_divxy1xn.h>
 #	include <macadam/details/numa/mc_dotp1xn.h>
+#	include <macadam/details/numa/mc_dotp3x1.h>
 #	include <macadam/details/numa/mc_dotpmx1.h>
 #	include <macadam/details/numa/mc_dotpmxn.h>
 #	include <macadam/details/numa/mc_dotpnxn.h>
