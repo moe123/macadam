@@ -115,7 +115,7 @@ F50:
 
 	if (*dmin <= zero || *n0 < n0in) {
 		if (mc_blas_vector_at(z, (4 * i0) + (*pp) - 3) * cbias < mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 3)) {
-			ipn4 = 4 * (i0 + (*n0));
+			 ipn4                                        = 4 * (i0 + (*n0));
 			for (j4 = (4 * i0); j4 <= (2 * (i0 + (*n0) - 1 )); j4 += 4) {
 				temp                                = mc_blas_vector_at(z, j4 - 3);
 				mc_blas_vector_at(z, j4 - 3)        = mc_blas_vector_at(z, ipn4 - j4 - 3);
@@ -139,15 +139,15 @@ F50:
 				  mc_fminf(mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1), mc_blas_vector_at(z, (4 * i0) + (*pp) - 1))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 3)
 			);
-			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))    = mc_fminf(
+			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))     = mc_fminf(
 				  mc_fminf(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
-			*qmax                                        = mc_fmaxf(
+			*qmax                                         = mc_fmaxf(
 				  mc_fmaxf(*qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 1)
 			);
-			*dmin                                        = -zero;
+			*dmin                                         = -zero;
 		}
 	}
 
@@ -303,7 +303,7 @@ F50:
 
 	if (*dmin <= zero || *n0 < n0in) {
 		if (mc_blas_vector_at(z, (4 * i0) + (*pp) - 3) * cbias < mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 3)) {
-			ipn4 = 4 * (i0 + (*n0));
+			 ipn4                                        = 4 * (i0 + (*n0));
 			for (j4 = (4 * i0); j4 <= (2 * (i0 + (*n0) - 1 )); j4 += 4) {
 				temp                                = mc_blas_vector_at(z, j4 - 3);
 				mc_blas_vector_at(z, j4 - 3)        = mc_blas_vector_at(z, ipn4 - j4 - 3);
@@ -327,15 +327,15 @@ F50:
 				  mc_fmin(mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1), mc_blas_vector_at(z, (4 * i0) + (*pp) - 1))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 3)
 			);
-			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))    = mc_fmin(
+			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))     = mc_fmin(
 				  mc_fmin(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
-			*qmax                                        = mc_fmax(
+			*qmax                                         = mc_fmax(
 				  mc_fmax(*qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 1)
 			);
-			*dmin                                        = -zero;
+			*dmin                                         = -zero;
 		}
 	}
 
@@ -491,7 +491,7 @@ F50:
 
 	if (*dmin <= zero || *n0 < n0in) {
 		if (mc_blas_vector_at(z, (4 * i0) + (*pp) - 3) * cbias < mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 3)) {
-			ipn4 = 4 * (i0 + (*n0));
+			 ipn4                                        = 4 * (i0 + (*n0));
 			for (j4 = (4 * i0); j4 <= (2 * (i0 + (*n0) - 1 )); j4 += 4) {
 				temp                                = mc_blas_vector_at(z, j4 - 3);
 				mc_blas_vector_at(z, j4 - 3)        = mc_blas_vector_at(z, ipn4 - j4 - 3);
@@ -515,15 +515,15 @@ F50:
 				  mc_fminl(mc_blas_vector_at(z, (4 * (*n0)) + (*pp) - 1), mc_blas_vector_at(z, (4 * i0) + (*pp) - 1))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 3)
 			);
-			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))    = mc_fminl(
+			mc_blas_vector_at(z, (4 * (*n0)) - (*pp))     = mc_fminl(
 				  mc_fminl(mc_blas_vector_at(z, (4 * (*n0)) - (*pp)) , mc_blas_vector_at(z, (4 * i0) - *pp))
 				, mc_blas_vector_at(z, (4 * i0) - (*pp) + 4)
 			);
-			*qmax                                        = mc_fmaxl(
+			*qmax                                         = mc_fmaxl(
 				  mc_fmaxl(*qmax, mc_blas_vector_at(z, (4 * i0) + (*pp) - 3))
 				, mc_blas_vector_at(z, (4 * i0) + (*pp) + 1)
 			);
-			*dmin                                        = -zero;
+			*dmin                                         = -zero;
 		}
 	}
 

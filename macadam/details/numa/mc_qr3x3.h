@@ -60,14 +60,14 @@ MC_TARGET_FUNC void mc_gvrotff(float a1, float a2, float tol, double * ch, doubl
 	told = mc_cast(double, tol);
 
 //!# Sanity check.
-	 w  = mc_hypot2(a1d, a2d);
-	*sh = w > told ? a2d : 0.0;
-	*ch = mc_fabs(a1d) + mc_fmax(w, told);
+	 w   = mc_hypot2(a1d, a2d);
+	*sh  = w > told ? a2d : 0.0;
+	*ch  = mc_fabs(a1d) + mc_fmax(w, told);
 
 //!# Sign check.
-	 w  = *sh;
-	*sh = mc_copysign(1.0, a1d) < 0.0 ? *ch : *sh;
-	*ch = mc_copysign(1.0, a1d) < 0.0 ?  w  : *ch;
+	 w   = *sh;
+	*sh  = mc_copysign(1.0, a1d) < 0.0 ? *ch : *sh;
+	*ch  = mc_copysign(1.0, a1d) < 0.0 ?  w  : *ch;
 
 //!# Assigning r without normalization.
 	if (wantr) {
@@ -393,9 +393,8 @@ MC_TARGET_PROC int mc_qrgv3x3l(const long double a[9], long double q[9], long do
 
 MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmidt method. QT*Q=I for eps 1E-06
-//!# which is better than HH approach for singles. We might use in the future
-//!# a variant to do error correction for the sum^2.
+//!# A and Q may be the same. QR using Modified Gram-Schmidt
+//!# method, A must be fullrank.
 	float w;
 
 	if (a != q) {
@@ -465,7 +464,7 @@ MC_TARGET_FUNC int mc_qr3x3f(const float a[9], float q[9], float r[9])
 
 MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 {
-//!# Using Gram-Schmidt method.
+//!# QR using Modified Gram-Schmidt method, A must be fullrank.
 	double w;
 
 	q[0] = mc_cast(double, a[0]); q[1] = mc_cast(double, a[1]); q[2] = mc_cast(double, a[2]);
@@ -533,7 +532,8 @@ MC_TARGET_FUNC int mc_qr3x3ff(const float a[9], double q[9], double r[9])
 
 MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmidt method.
+//!# A and Q may be the same. QR using Modified Gram-Schmidt
+//!# method, A must be fullrank.
 	double w;
 
 	if (a != q) {
@@ -603,7 +603,8 @@ MC_TARGET_FUNC int mc_qr3x3(const double a[9], double q[9], double r[9])
 
 MC_TARGET_FUNC int mc_qr3x3l(const long double a[9], long double q[9], long double r[9])
 {
-//!# A and Q may be the same. Using Gram-Schmidt method.
+//!# A and Q may be the same. QR using Modified Gram-Schmidt
+//!# method, A must be fullrank.
 	long double w;
 
 	if (a != q) {

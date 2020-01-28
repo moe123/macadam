@@ -9,7 +9,7 @@
 #include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/numa/mc_mulabmxn.h>
 #include <macadam/details/numa/mc_mulatbmxn.h>
-#include <macadam/details/numa/mc_mgsmxn.h>
+#include <macadam/details/numa/mc_rmgsmxn.h>
 #include <macadam/mcswap.h>
 
 #ifndef MC_SVDMX3_H
@@ -39,7 +39,7 @@ MC_TARGET_FUNC int mc_svdmx3f(int m, const float * a, float * restrict u, float 
 			mc_eye3x3f(s, 0);
 			mc_mulabmxnf(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-			if (0 == mc_mgsmxnf(m, 3, u, u, s)) {
+			if (0 == mc_rmgsmxnf(m, 3, u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 				s[1] = 0.0f; s[2] = 0.0f;
 				s[3] = 0.0f; s[5] = 0.0f;
@@ -128,7 +128,7 @@ MC_TARGET_FUNC int mc_svdmx3ff(int m, const float * a, double * restrict u, doub
 			mc_eye3x3(s, 0);
 			mc_mulabmxnfd(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-			if (0 == mc_mgsmxn(m, 3, u, u, s)) {
+			if (0 == mc_rmgsmxn(m, 3, u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 				s[1] = 0.0; s[2] = 0.0;
 				s[3] = 0.0; s[5] = 0.0;
@@ -249,7 +249,7 @@ MC_TARGET_FUNC int mc_svdmx3(int m, const double * a, double * restrict u, doubl
 			mc_eye3x3(s, 0);
 			mc_mulabmxn(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-			if (0 == mc_mgsmxn(m, 3, u, u, s)) {
+			if (0 == mc_rmgsmxn(m, 3, u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 				s[1] = 0.0; s[2] = 0.0;
 				s[3] = 0.0; s[5] = 0.0;
@@ -338,7 +338,7 @@ MC_TARGET_FUNC int mc_svdmx3l(int m, const long double * a, long double * restri
 			mc_eye3x3l(s, 0);
 			mc_mulabmxnl(m, 3, 3, u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-			if (0 == mc_mgsmxnl(m, 3, u, u, s)) {
+			if (0 == mc_rmgsmxnl(m, 3, u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 				s[1] = 0.0L; s[2] = 0.0L;
 				s[3] = 0.0L; s[5] = 0.0L;

@@ -1,0 +1,365 @@
+//
+// # -*- coding: utf-8, tab-width: 3 -*-
+
+// mc_orthrmxn.h
+//
+// Copyright (C) 2019-2020 Moe123. All rights reserved.
+//
+
+#include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_fisnear.h>
+#include <macadam/details/math/mc_fmax.h>
+#include <macadam/details/numa/mc_copymxn.h>
+#include <macadam/details/numa/mc_dotpmx1.h>
+#include <macadam/details/numa/mc_l2normmx1.h>
+#include <macadam/details/numa/mc_zerosmx1.h>
+#include <macadam/details/numa/mc_eyenxn.h>
+
+#ifndef MC_ORTHRMXN_H
+#define MC_ORTHRMXN_H
+
+#pragma mark - mc_orthrmxn -
+
+MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
+{
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# A and Q may be the same. Forming a ortho-normalized basis Q using
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# If R is not null upper-right-triangle is formed.
+	const int wantr = mc_nonnull(r);
+
+	int i, j, k;
+	float bnorm, cnorm, dot;
+
+	if (m >= n) {
+		if (a != q) {
+			mc_copymxnf(m, n, q, a);
+		}
+		if (wantr) {
+			mc_eyenxnf(n, r, 0);
+		}
+
+		if (tol <= 0.0f) {
+			tol = mc_fabsf(tol);
+		}
+		if (tol == 0.0f) {
+			tol = MCLIMITS_EPSILONF;
+		}
+		bnorm = 0.0f;
+		for (k = 0; k < n; k++) {
+	//#! Step 2: re-orthogonalization.
+			if (k > 0) {
+				for (i = 0; i < k; i++) {
+					dot = mc_dotpmx1f(m, n, i, k, q, q, 1);
+					if (wantr) {
+						r[(n * i) + k] = r[(n * i) + k] + dot;
+					}
+					for (j = 0; j < m; j++) {
+						q[(n * j) + k] = q[(n * j) + k] - (dot * q[(n * j) + i]);
+					}
+				}
+			}
+	//#! Step 3: normalization.
+			cnorm = mc_l2normmx1f(m, n, k, q);
+			if (cnorm != 0.0f) {
+				//#! Step 4: close to zero decimation step.
+				if (cnorm < tol * bnorm) {
+					mc_zerosmx1f(m, n, k, q);
+					q[(n * k) + k] = 1.0f;
+					if (wantr) {
+						r[(n * k) + k] = 0.0f;
+					}
+				} else {
+					bnorm = mc_fmaxf(bnorm, cnorm);
+					if (wantr) {
+						r[(n * k) + k] = cnorm;
+					}
+					if (!mc_fisnearf(cnorm, 1.0f, 1)) {
+						cnorm = 1.0f / cnorm;
+						for (j = 0; j < m; j++) {
+							q[(n * j) + k] = q[(n * j) + k] * cnorm;
+						}
+					}
+				}
+			} else {
+				q[(n * k) + k] = 1.0f;
+				if (wantr) {
+					r[(n * k) + k] = 0.0f;
+				}
+			}
+	//#! Step 5: orthogonalization.
+			if (k < n) {
+				for (j = k + 1; j < n; j++) {
+					dot = mc_dotpmx1f(m, n, k, j, q, q, 1);
+					if (wantr) {
+						r[(n * k) + j] = dot;
+					}
+					for (i = 0; i < m; i++) {
+						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
+					}
+				}
+			} 
+		}
+		return 0;
+	}
+	return -1;
+}
+
+MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
+{
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# Forming a orthr-normalized basis Q using Modified Gram-Schmidt
+//!# method + a decimeting column step if norm < tol. If R is not null
+//!# upper-right-triangle is formed.
+	const int wantr = mc_nonnull(r);
+
+	int i, j, k;
+	double bnorm, cnorm, dot, told;
+
+	if (m >= n) {
+		mc_copymxnff(m, n, q, a);
+
+		if (wantr) {
+			mc_eyenxn(n, r, 0);
+		}
+
+		if (tol <= 0.0f) {
+			tol = mc_fabsf(tol);
+		}
+		if (tol == 0.0f) {
+			tol = MCLIMITS_EPSILONF;
+		}
+		told  = mc_cast(double, tol);
+		bnorm = 0.0;
+		for (k = 0; k < n; k++) {
+	//#! Step 2: re-orthogonalization.
+			if (k > 0) {
+				for (i = 0; i < k; i++) {
+					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
+					if (wantr) {
+						r[(n * i) + k] = r[(n * i) + k] + dot;
+					}
+					for (j = 0; j < m; j++) {
+						q[(n * j) + k] = q[(n * j) + k] - (dot * q[(n * j) + i]);
+					}
+				}
+			}
+	//#! Step 3: normalization.
+			cnorm = mc_l2normmx1(m, n, k, q);
+			if (cnorm != 0.0) {
+				//#! Step 4: close to zero decimation step.
+				if (cnorm < told * bnorm) {
+					mc_zerosmx1(m, n, k, q);
+					q[(n * k) + k] = 1.0;
+					if (wantr) {
+						r[(n * k) + k] = 0.0;
+					}
+				} else {
+					bnorm = mc_fmax(bnorm, cnorm);
+					if (wantr) {
+						r[(n * k) + k] = cnorm;
+					}
+					if (!mc_fisnear(cnorm, 1.0, 1)) {
+						cnorm = 1.0 / cnorm;
+						for (j = 0; j < m; j++) {
+							q[(n * j) + k] = q[(n * j) + k] * cnorm;
+						}
+					}
+				}
+			} else {
+				q[(n * k) + k] = 1.0;
+				if (wantr) {
+					r[(n * k) + k] = 0.0;
+				}
+			}
+	//#! Step 5: orthogonalization.
+			if (k < n) {
+				for (j = k + 1; j < n; j++) {
+					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
+					if (wantr) {
+						r[(n * k) + j] = dot;
+					}
+					for (i = 0; i < m; i++) {
+						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
+					}
+				}
+			} 
+		}
+		return 0;
+	}
+	return -1;
+}
+
+MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
+{
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# A and Q may be the same. Forming a ortho-normalized basis Q using
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# If R is not null upper-right-triangle is formed.
+	const int wantr = mc_nonnull(r);
+
+	int i, j, k;
+	double bnorm, cnorm, dot;
+
+	if (m >= n) {
+		if (a != q) {
+			mc_copymxn(m, n, q, a);
+		}
+		if (wantr) {
+			mc_eyenxn(n, r, 0);
+		}
+
+		if (tol <= 0.0) {
+			tol = mc_fabs(tol);
+		}
+		if (tol == 0.0) {
+			tol = MCLIMITS_EPSILON;
+		}
+		bnorm = 0.0;
+		for (k = 0; k < n; k++) {
+	//#! Step 2: re-orthogonalization.
+			if (k > 0) {
+				for (i = 0; i < k; i++) {
+					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
+					if (wantr) {
+						r[(n * i) + k] = r[(n * i) + k] + dot;
+					}
+					for (j = 0; j < m; j++) {
+						q[(n * j) + k] = q[(n * j) + k] - (dot * q[(n * j) + i]);
+					}
+				}
+			}
+	//#! Step 3: normalization.
+			cnorm = mc_l2normmx1(m, n, k, q);
+			if (cnorm != 0.0) {
+				//#! Step 4: close to zero decimation step.
+				if (cnorm < tol * bnorm) {
+					mc_zerosmx1(m, n, k, q);
+					q[(n * k) + k] = 1.0;
+					if (wantr) {
+						r[(n * k) + k] = 0.0;
+					}
+				} else {
+					bnorm = mc_fmax(bnorm, cnorm);
+					if (wantr) {
+						r[(n * k) + k] = cnorm;
+					}
+					if (!mc_fisnear(cnorm, 1.0, 1)) {
+						cnorm = 1.0 / cnorm;
+						for (j = 0; j < m; j++) {
+							q[(n * j) + k] = q[(n * j) + k] * cnorm;
+						}
+					}
+				}
+			} else {
+				q[(n * k) + k] = 1.0;
+				if (wantr) {
+					r[(n * k) + k] = 0.0;
+				}
+			}
+	//#! Step 5: orthogonalization.
+			if (k < n) {
+				for (j = k + 1; j < n; j++) {
+					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
+					if (wantr) {
+						r[(n * k) + j] = dot;
+					}
+					for (i = 0; i < m; i++) {
+						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
+					}
+				}
+			} 
+		}
+		return 0;
+	}
+	return -1;
+}
+
+MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
+{
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# A and Q may be the same. Forming a ortho-normalized basis Q using
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# If R is not null upper-right-triangle is formed.
+	const int wantr = mc_nonnull(r);
+
+	int i, j, k;
+	long double bnorm, cnorm, dot;
+
+	if (m >= n) {
+		if (a != q) {
+			mc_copymxnl(m, n, q, a);
+		}
+		if (wantr) {
+			mc_eyenxnl(n, r, 0);
+		}
+
+		if (tol <= 0.0L) {
+			tol = mc_fabsl(tol);
+		}
+		if (tol == 0.0) {
+			tol = MCLIMITS_EPSILONL;
+		}
+		bnorm = 0.0L;
+		for (k = 0; k < n; k++) {
+	//#! Step 2: re-orthogonalization.
+			if (k > 0) {
+				for (i = 0; i < k; i++) {
+					dot = mc_dotpmx1l(m, n, i, k, q, q, 1);
+					if (wantr) {
+						r[(n * i) + k] = r[(n * i) + k] + dot;
+					}
+					for (j = 0; j < m; j++) {
+						q[(n * j) + k] = q[(n * j) + k] - (dot * q[(n * j) + i]);
+					}
+				}
+			}
+	//#! Step 3: normalization.
+			cnorm = mc_l2normmx1l(m, n, k, q);
+			if (cnorm != 0.0L) {
+				//#! Step 4: close to zero decimation step.
+				if (cnorm < tol * bnorm) {
+					mc_zerosmx1l(m, n, k, q);
+					q[(n * k) + k] = 1.0L;
+					if (wantr) {
+						r[(n * k) + k] = 0.0L;
+					}
+				} else {
+					bnorm = mc_fmaxl(bnorm, cnorm);
+					if (wantr) {
+						r[(n * k) + k] = cnorm;
+					}
+					if (!mc_fisnearl(cnorm, 1.0L, 1)) {
+						cnorm = 1.0L / cnorm;
+						for (j = 0; j < m; j++) {
+							q[(n * j) + k] = q[(n * j) + k] * cnorm;
+						}
+					}
+				}
+			} else {
+				q[(n * k) + k] = 1.0L;
+				if (wantr) {
+					r[(n * k) + k] = 0.0L;
+				}
+			}
+	//#! Step 5: orthogonalization.
+			if (k < n) {
+				for (j = k + 1; j < n; j++) {
+					dot = mc_dotpmx1l(m, n, k, j, q, q, 1);
+					if (wantr) {
+						r[(n * k) + j] = dot;
+					}
+					for (i = 0; i < m; i++) {
+						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
+					}
+				}
+			} 
+		}
+		return 0;
+	}
+	return -1;
+}
+
+#endif /* !MC_ORTHRMXN_H */
+
+/* EOF */

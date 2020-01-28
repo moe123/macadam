@@ -65,18 +65,18 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dnm1                        = mc_blas_vector_at(z, j4p2 + 2) * (*dnm2 / mc_blas_vector_at(z, j4 - 2)) - tau;
 			*dmin                        = mc_fminf(*dmin, *dnm1);
 
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dn                          = mc_blas_vector_at(z, j4p2 + 2) * (*dnm1 / mc_blas_vector_at(z, j4 - 2)) - tau;
@@ -108,10 +108,10 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = (4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			if (*dnm2 < zero) {
 				return;
@@ -122,8 +122,8 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 
 			*dmin                        = mc_fminf(*dmin, *dnm1);
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			if (*dnm1 < zero) {
 				return;
@@ -166,18 +166,18 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dnm1                        = mc_blas_vector_at(z, j4p2 + 2) * (*dnm2 / mc_blas_vector_at(z, j4 - 2)) - tau;
 			*dmin                        = mc_fminf(*dmin, *dnm1);
 
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dn                          = mc_blas_vector_at(z, j4p2 + 2) * (*dnm1 / mc_blas_vector_at(z, j4 - 2)) - tau;
@@ -215,10 +215,10 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			if (*dnm2 < zero) {
 				return;
@@ -229,8 +229,8 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 
 			*dmin                        = mc_fminf(*dmin,*dnm1);
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			if (*dnm1 < zero) {
 				return;
@@ -242,7 +242,7 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 		}
 	}
 	mc_blas_vector_at(z, j4 + 2)        = *dn;
-	mc_blas_vector_at(z, (4 * n0) - pp) = emin;
+	mc_blas_vector_at(z, (4 * n0) - pp) =  emin;
 }
 
 #pragma mark - mc_lapack_dlasq5 -
@@ -298,18 +298,18 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dnm1                        = mc_blas_vector_at(z, j4p2 + 2) * (*dnm2 / mc_blas_vector_at(z, j4 - 2)) - tau;
 			*dmin                        = mc_fmin(*dmin, *dnm1);
 
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dn                          = mc_blas_vector_at(z, j4p2 + 2) * (*dnm1 / mc_blas_vector_at(z, j4 - 2)) - tau;
@@ -341,10 +341,10 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = (4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			if (*dnm2 < zero) {
 				return;
@@ -355,8 +355,8 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 
 			*dmin                        = mc_fmin(*dmin, *dnm1);
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			if (*dnm1 < zero) {
 				return;
@@ -399,18 +399,18 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dnm1                        = mc_blas_vector_at(z, j4p2 + 2) * (*dnm2 / mc_blas_vector_at(z, j4 - 2)) - tau;
 			*dmin                        = mc_fmin(*dmin, *dnm1);
 
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dn                          = mc_blas_vector_at(z, j4p2 + 2) * (*dnm1 / mc_blas_vector_at(z, j4 - 2)) - tau;
@@ -448,10 +448,10 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			if (*dnm2 < zero) {
 				return;
@@ -462,8 +462,8 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 
 			*dmin                        = mc_fmin(*dmin,*dnm1);
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			if (*dnm1 < zero) {
 				return;
@@ -475,7 +475,7 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 		}
 	}
 	mc_blas_vector_at(z, j4 + 2)        = *dn;
-	mc_blas_vector_at(z, (4 * n0) - pp) = emin;
+	mc_blas_vector_at(z, (4 * n0) - pp) =  emin;
 }
 
 #pragma mark - mc_lapack_llasq5 -
@@ -531,18 +531,18 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dnm1                        = mc_blas_vector_at(z, j4p2 + 2) * (*dnm2 / mc_blas_vector_at(z, j4 - 2)) - tau;
 			*dmin                        = mc_fminl(*dmin, *dnm1);
 
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dn                          = mc_blas_vector_at(z, j4p2 + 2) * (*dnm1 / mc_blas_vector_at(z, j4 - 2)) - tau;
@@ -574,10 +574,10 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = (4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			if (*dnm2 < zero) {
 				return;
@@ -588,8 +588,8 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 
 			*dmin                        = mc_fminl(*dmin, *dnm1);
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			if (*dnm1 < zero) {
 				return;
@@ -632,18 +632,18 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dnm1                        = mc_blas_vector_at(z, j4p2 + 2) * (*dnm2 / mc_blas_vector_at(z, j4 - 2)) - tau;
 			*dmin                        = mc_fminl(*dmin, *dnm1);
 
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			mc_blas_vector_at(z, j4)     = mc_blas_vector_at(z, j4p2 + 2) * (mc_blas_vector_at(z, j4p2) / mc_blas_vector_at(z, j4 - 2));
 			*dn                          = mc_blas_vector_at(z, j4p2 + 2) * (*dnm1 / mc_blas_vector_at(z, j4 - 2)) - tau;
@@ -681,10 +681,10 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 				}
 			}
 
-			*dnm2                        = d;
+			*dnm2                        =  d;
 			*dmin2                       = *dmin;
-			 j4                          = ( 4 * (n0 - 2)) - pp;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  (4 * (n0 - 2)) - pp;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm2 + mc_blas_vector_at(z, j4p2);
 			if (*dnm2 < zero) {
 				return;
@@ -695,8 +695,8 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 
 			*dmin                        = mc_fminl(*dmin,*dnm1);
 			*dmin1                       = *dmin;
-			 j4                          = j4 + 4;
-			 j4p2                        = j4 + (2 * pp) - 1;
+			 j4                          =  j4 + 4;
+			 j4p2                        =  j4 + (2 * pp) - 1;
 			mc_blas_vector_at(z, j4 - 2) = *dnm1 + mc_blas_vector_at(z, j4p2);
 			if (*dnm1 < zero) {
 				return;
@@ -708,7 +708,7 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 		}
 	}
 	mc_blas_vector_at(z, j4 + 2)        = *dn;
-	mc_blas_vector_at(z, (4 * n0) - pp) = emin;
+	mc_blas_vector_at(z, (4 * n0) - pp) =  emin;
 }
 
 #endif /* !MC_LAPACKE_LASQ5_H */

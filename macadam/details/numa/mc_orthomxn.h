@@ -13,7 +13,7 @@
 #include <macadam/details/numa/mc_dotpmx1.h>
 #include <macadam/details/numa/mc_l2normmx1.h>
 #include <macadam/details/numa/mc_zerosmx1.h>
-#include <macadam/details/numa/mc_zerosnxn.h>
+#include <macadam/details/numa/mc_eyenxn.h>
 
 #ifndef MC_ORTHOMXN_H
 #define MC_ORTHOMXN_H
@@ -35,7 +35,7 @@ MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float 
 			mc_copymxnf(m, n, q, a);
 		}
 		if (wantr) {
-			mc_zerosnxnf(n, r);
+			mc_eyenxnf(n, r, 0);
 		}
 
 		if (tol <= 0.0f) {
@@ -103,7 +103,7 @@ MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, doubl
 		mc_copymxnff(m, n, q, a);
 
 		if (wantr) {
-			mc_zerosnxn(n, r);
+			mc_eyenxn(n, r, 0);
 		}
 
 		if (tol <= 0.0f) {
@@ -173,7 +173,7 @@ MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, doubl
 			mc_copymxn(m, n, q, a);
 		}
 		if (wantr) {
-			mc_zerosnxn(n, r);
+			mc_eyenxn(n, r, 0);
 		}
 
 		if (tol <= 0.0) {
@@ -242,7 +242,7 @@ MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double
 			mc_copymxnl(m, n, q, a);
 		}
 		if (wantr) {
-			mc_zerosnxnl(n, r);
+			mc_eyenxnl(n, r, 0);
 		}
 
 		if (tol <= 0.0L) {

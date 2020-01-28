@@ -197,6 +197,8 @@
 #	include <macadam/details/numa/mc_ortho3x3.h>
 #	include <macadam/details/numa/mc_orthomxn.h>
 #	include <macadam/details/numa/mc_orthonxn.h>
+#	include <macadam/details/numa/mc_orthrmxn.h>
+#	include <macadam/details/numa/mc_orthrnxn.h>
 #	include <macadam/details/numa/mc_outp2x2.h>
 #	include <macadam/details/numa/mc_outp3x3.h>
 #	include <macadam/details/numa/mc_outpmxn.h>
@@ -209,6 +211,8 @@
 #	include <macadam/details/numa/mc_rescalemx1.h>
 #	include <macadam/details/numa/mc_rescalemxn.h>
 #	include <macadam/details/numa/mc_rescalenxn.h>
+#	include <macadam/details/numa/mc_rmgsmxn.h>
+#	include <macadam/details/numa/mc_rmgsnxn.h>
 #	include <macadam/details/numa/mc_rms1xn.h>
 #	include <macadam/details/numa/mc_ssqr1x2.h>
 #	include <macadam/details/numa/mc_ssqr1x3.h>

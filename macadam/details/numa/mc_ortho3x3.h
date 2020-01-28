@@ -132,7 +132,6 @@ MC_TARGET_FUNC int mc_ortho3x3f(const float a[9], float tol, float q[9], float *
 				r[8] = 0.0f;
 			}
 		} else {
-			bnorm = mc_fmaxf(bnorm, cnorm);
 			if (wantr) {
 				r[8] = cnorm;
 			}
@@ -264,7 +263,6 @@ MC_TARGET_FUNC int mc_ortho3x3ff(const float a[9], float tol, double q[9], doubl
 				r[8] = 0.0;
 			}
 		} else {
-			bnorm = mc_fmax(bnorm, cnorm);
 			if (wantr) {
 				r[8] = cnorm;
 			}
@@ -396,7 +394,6 @@ MC_TARGET_FUNC int mc_ortho3x3(const double a[9], double tol, double q[9], doubl
 				r[8] = 0.0;
 			}
 		} else {
-			bnorm = mc_fmax(bnorm, cnorm);
 			if (wantr) {
 				r[8] = cnorm;
 			}
@@ -528,7 +525,6 @@ MC_TARGET_FUNC int mc_ortho3x3l(const long double a[9], long double tol, long do
 				r[8] = 0.0L;
 			}
 		} else {
-			bnorm = mc_fmaxl(bnorm, cnorm);
 			if (wantr) {
 				r[8] = cnorm;
 			}

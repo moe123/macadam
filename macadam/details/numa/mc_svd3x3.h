@@ -36,7 +36,7 @@ MC_TARGET_FUNC int mc_svd3x3f(const float a[9], float u[9], float s[9], float v[
 		mc_eye3x3f(s, 0);
 		mc_mulab3x3f(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-		if (0 == mc_qr3x3f(u, u, s)) {
+		if (0 == mc_qrgv3x3f(u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 			s[1] = 0.0f; s[2] = 0.0f;
 			s[3] = 0.0f; s[5] = 0.0f;
@@ -120,7 +120,7 @@ MC_TARGET_FUNC int mc_svd3x3ff(const float a[9], double u[9], double s[9], doubl
 		mc_eye3x3(s, 0);
 		mc_mulab3x3fd(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-		if (0 == mc_qr3x3(u, u, s)) {
+		if (0 == mc_qrgv3x3(u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 			s[1] = 0.0; s[2] = 0.0;
 			s[3] = 0.0; s[5] = 0.0;
@@ -204,7 +204,7 @@ MC_TARGET_FUNC int mc_svd3x3(const double a[9], double u[9], double s[9], double
 		mc_eye3x3(s, 0);
 		mc_mulab3x3(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-		if (0 == mc_qr3x3(u, u, s)) {
+		if (0 == mc_qrgv3x3(u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 			s[1] = 0.0; s[2] = 0.0;
 			s[3] = 0.0; s[5] = 0.0;
@@ -288,7 +288,7 @@ MC_TARGET_FUNC int mc_svd3x3l(const long double a[9], long double u[9], long dou
 		mc_eye3x3l(s, 0);
 		mc_mulab3x3l(u, a, v);
 //!# Step 3: Computing singular-values and U such as U=A*V*S^-1.
-		if (0 == mc_qr3x3l(u, u, s)) {
+		if (0 == mc_qrgv3x3l(u, u, s)) {
 //!# Step 4: Decimeting off-diagonal residual elements.
 			s[1] = 0.0L; s[2] = 0.0L;
 			s[3] = 0.0L; s[5] = 0.0L;
