@@ -199,10 +199,11 @@
 #	include <macadam/details/numa/mc_orthonxn.h>
 #	include <macadam/details/numa/mc_orthrmxn.h>
 #	include <macadam/details/numa/mc_orthrnxn.h>
-#	include <macadam/details/numa/mc_outp2x2.h>
-#	include <macadam/details/numa/mc_outp3x3.h>
-#	include <macadam/details/numa/mc_outpmxn.h>
-#	include <macadam/details/numa/mc_outpnxn.h>
+#	include <macadam/details/numa/mc_outpabmxn.h>
+#	include <macadam/details/numa/mc_outpxy2x2.h>
+#	include <macadam/details/numa/mc_outpxy3x3.h>
+#	include <macadam/details/numa/mc_outpxymxn.h>
+#	include <macadam/details/numa/mc_outpxynxn.h>
 #	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>

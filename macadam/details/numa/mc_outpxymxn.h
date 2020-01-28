@@ -1,19 +1,19 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_outpmxn.h
+// mc_outpxymxn.h
 //
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/numa/mc_zerosmxn.h>
 
-#ifndef MC_OUTPMXN_H
-#define MC_OUTPMXN_H
+#ifndef MC_OUTPXYMXN_H
+#define MC_OUTPXYMXN_H
 
-#pragma mark - mc_outpmxn -
+#pragma mark - mc_outpxymxn -
 
-MC_TARGET_FUNC void mc_outpmxnf(int m, int n, float * a, const float * x, const float * y)
+MC_TARGET_FUNC void mc_outpxymxnf(int m, int n, float * a, const float * x, const float * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_outpmxnf(int m, int n, float * a, const float * x, const 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_outpmxnff(int m, int n, double * a, const float * x, const float * y)
+MC_TARGET_FUNC void mc_outpxymxnff(int m, int n, double * a, const float * x, const float * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -56,7 +56,7 @@ MC_TARGET_FUNC void mc_outpmxnff(int m, int n, double * a, const float * x, cons
 	}
 }
 
-MC_TARGET_FUNC void mc_outpmxnfd(int m, int n, double * a, const float * x, const double * y)
+MC_TARGET_FUNC void mc_outpxymxnfd(int m, int n, double * a, const float * x, const double * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -71,7 +71,7 @@ MC_TARGET_FUNC void mc_outpmxnfd(int m, int n, double * a, const float * x, cons
 	}
 }
 
-MC_TARGET_FUNC void mc_outpmxndf(int m, int n, double * a, const double * x, const float * y)
+MC_TARGET_FUNC void mc_outpxymxndf(int m, int n, double * a, const double * x, const float * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -86,7 +86,7 @@ MC_TARGET_FUNC void mc_outpmxndf(int m, int n, double * a, const double * x, con
 	}
 }
 
-MC_TARGET_FUNC void mc_outpmxn(int m, int n, double * a, const double * x, const double * y)
+MC_TARGET_FUNC void mc_outpxymxn(int m, int n, double * a, const double * x, const double * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -114,7 +114,7 @@ MC_TARGET_FUNC void mc_outpmxn(int m, int n, double * a, const double * x, const
 #	endif
 }
 
-MC_TARGET_FUNC void mc_outpmxnl(int m, int n, long double * a, const long double * x, const long double * y)
+MC_TARGET_FUNC void mc_outpxymxnl(int m, int n, long double * a, const long double * x, const long double * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -142,6 +142,6 @@ MC_TARGET_FUNC void mc_outpmxnl(int m, int n, long double * a, const long double
 #	endif
 }
 
-#endif /* !MC_OUTPMXN_H */
+#endif /* !MC_OUTPXYMXN_H */
 
 /* EOF */
