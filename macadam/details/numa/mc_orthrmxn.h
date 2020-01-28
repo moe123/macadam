@@ -24,7 +24,8 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
-//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol
+//!# + iterative re-orthogonalization step for rank deficient systems.
 //!# If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
@@ -108,9 +109,9 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
-//!# Forming a orthr-normalized basis Q using Modified Gram-Schmidt
-//!# method + a decimeting column step if norm < tol. If R is not null
-//!# upper-right-triangle is formed.
+//!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
+//!# + a decimeting column step if norm < tol + iterative re-orthogonalization
+//!# step for rank deficient systems. If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
 	int i, j, k;
@@ -194,7 +195,8 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
-//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol
+//!# + iterative re-orthogonalization step for rank deficient systems.
 //!# If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
@@ -279,7 +281,8 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
-//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
+//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol
+//!# + iterative re-orthogonalization step for rank deficient systems.
 //!# If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
 
