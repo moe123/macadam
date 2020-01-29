@@ -26,7 +26,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n. A and Q may be the same.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column
 //!# step if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is
-//!# not null upper-right-triangle is formed. @see Aciya Dax, `A modified Gram-schmidt algorithm
+//!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr  = mc_nonnull(r);
 	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
@@ -139,7 +139,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column
 //!# step if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is
-//!# not null upper-right-triangle is formed. @see Aciya Dax, `A modified Gram-schmidt algorithm
+//!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr = mc_nonnull(r);
 	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
@@ -252,7 +252,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n. A and Q may be the same.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column
 //!# step if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is
-//!# not null upper-right-triangle is formed. @see Aciya Dax, `A modified Gram-schmidt algorithm
+//!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr = mc_nonnull(r);
 	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
@@ -365,7 +365,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n. A and Q may be the same.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column
 //!# step if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is
-//!# not null upper-right-triangle is formed. @see Aciya Dax, `A modified Gram-schmidt algorithm
+//!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr = mc_nonnull(r);
 	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
