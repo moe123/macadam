@@ -65,16 +65,17 @@ MC_TARGET_FUNC void mc_minmaxmx1f(int m, int n, int j, const float * a, float * 
 				}
 			}
 			for (; i < m; i++) {
-				if (a[(n *i) + j] < *min) {
+				if (a[(n * i) + j] < *min) {
 					if (wantmin) {
-						*min = a[(n *i) + j];
+						*min = a[(n * i) + j];
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (a[(n *i) + j] > *max) {
+				}
+				if (a[(n * i) + j] > *max) {
 					if (wantmax) {
-						*max = a[(n *i) + j];
+						*max = a[(n * i) + j];
 					}
 					if (wantq) {
 						*q = i;
@@ -137,16 +138,17 @@ MC_TARGET_FUNC void mc_minmaxmx1ff(int m, int n, int j, const float * a, double 
 				}
 			}
 			for (; i < m; i++) {
-				if (a[(n *i) + j] < *min) {
+				if (a[(n * i) + j] < *min) {
 					if (wantmin) {
-						*min =  mc_cast(double, a[(n *i) + j]);
+						*min =  mc_cast(double, a[(n * i) + j]);
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (a[(n *i) + j] > *max) {
+				}
+				if (a[(n * i) + j] > *max) {
 					if (wantmax) {
-						*max =  mc_cast(double, a[(n *i) + j]);
+						*max =  mc_cast(double, a[(n * i) + j]);
 					}
 					if (wantq) {
 						*q = i;
@@ -209,16 +211,17 @@ MC_TARGET_FUNC void mc_minmaxmx1(int m, int n, int j, const double * a, double *
 				}
 			}
 			for (; i < m; i++) {
-				if (a[(n *i) + j] < *min) {
+				if (a[(n * i) + j] < *min) {
 					if (wantmin) {
-						*min = a[(n *i) + j];
+						*min = a[(n * i) + j];
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (a[(n *i) + j] > *max) {
+				}
+				if (a[(n * i) + j] > *max) {
 					if (wantmax) {
-						*max = a[(n *i) + j];
+						*max = a[(n * i) + j];
 					}
 					if (wantq) {
 						*q = i;
@@ -281,16 +284,17 @@ MC_TARGET_FUNC void mc_minmaxmx1l(int m, int n, int j, const long double * a, lo
 				}
 			}
 			for (; i < m; i++) {
-				if (a[(n *i) + j] < *min) {
+				if (a[(n * i) + j] < *min) {
 					if (wantmin) {
-						*min = a[(n *i) + j];
+						*min = a[(n * i) + j];
 					}
 					if (wantp) {
 						*p = i;
 					}
-				} else if (a[(n *i) + j] > *max) {
+				}
+				if (a[(n * i) + j] > *max) {
 					if (wantmax) {
-						*max = a[(n *i) + j];
+						*max = a[(n * i) + j];
 					}
 					if (wantq) {
 						*q = i;

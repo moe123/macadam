@@ -145,7 +145,8 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				}
+				if (x[i] > *max) {
 					if (wantmax) {
 						*max =  mc_cast(double, x[i]);
 					}
@@ -217,7 +218,8 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				}
+				if (x[i] > *max) {
 					if (wantmax) {
 						*max = x[i];
 					}
@@ -289,7 +291,8 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				}
+				if (x[i] > *max) {
 					if (wantmax) {
 						*max = x[i];
 					}
