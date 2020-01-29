@@ -9,6 +9,7 @@
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fisnear.h>
 #include <macadam/details/math/mc_fmax.h>
+#include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/numa/mc_copymxn.h>
 #include <macadam/details/numa/mc_dotpmx1.h>
 #include <macadam/details/numa/mc_l2normmx1.h>
@@ -20,24 +21,33 @@
 
 #pragma mark - mc_orthrmxn -
 
-MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
+MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float * q, float * restrict r, float * restrict w, int * pv)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
-//!# A and Q may be the same. Forming a ortho-normalized basis Q using
-//!# Modified Gram-Schmidt method + a decimeting column step if norm < tol
-//!# + iterative re-orthogonalization step for rank deficient systems.
-//!# If R is not null upper-right-triangle is formed.
-	const int wantr = mc_nonnull(r);
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n. A and Q may be the same.
+//!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column
+//!# step if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is
+//!# not null upper-right-triangle is formed. @see Aciya Dax, `A modified Gram-schmidt algorithm
+//!# with iterative orthogonalization and column pivoting`.
+	const int wantr  = mc_nonnull(r);
+	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
 
-	int i, j, k;
-	float bnorm, cnorm, dot;
+	int i, j, k, l, p;
+	float bnorm, cnorm, dot, s;
 
 	if (m >= n) {
 		if (a != q) {
 			mc_copymxnf(m, n, q, a);
 		}
 		if (wantr) {
-			mc_eyenxnf(n, r, 0);
+			mc_zerosnxnf(n, r);
+		}
+
+		if (wantpv) {
+			for (j = 0; j < n; j++) {
+				s     = mc_l2normmx1f(m, n, j, q);
+				w[j]  = mc_raise2f(s);
+				pv[j] = j;
+			}
 		}
 
 		if (tol <= 0.0f) {
@@ -48,7 +58,21 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 		}
 		bnorm = 0.0f;
 		for (k = 0; k < n; k++) {
-	//#! Step 2: re-orthogonalization.
+//#! Step 1: pivoting if required.
+			if (wantpv) {
+				mc_minmax1xnf(n - k, w + k, NULL, &s, NULL, &l);
+				l = l + k;
+				if(k != l) {
+					for (i = 0; i < m; i++) {
+						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
+						if (i < k) {
+							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
+						}
+					}
+					mcswap_var(p, pv[k], pv[l]);
+				}
+			}
+//#! Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1f(m, n, i, k, q, q, 1);
@@ -60,10 +84,10 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 					}
 				}
 			}
-	//#! Step 3: normalization.
+//#! Step 3: normalization.
 			cnorm = mc_l2normmx1f(m, n, k, q);
 			if (cnorm != 0.0f) {
-				//#! Step 4: close to zero decimation step.
+//#! Step 4: close to zero decimation step.
 				if (cnorm < tol * bnorm) {
 					mc_zerosmx1f(m, n, k, q);
 					q[(n * k) + k] = 1.0f;
@@ -88,15 +112,19 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 					r[(n * k) + k] = 0.0f;
 				}
 			}
-	//#! Step 5: orthogonalization.
+//#! Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
-					dot = mc_dotpmx1f(m, n, k, j, q, q, 1);
+					dot   = mc_dotpmx1f(m, n, k, j, q, q, 1);
 					if (wantr) {
 						r[(n * k) + j] = dot;
 					}
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
+					}
+					if (wantpv) {
+						s     = mc_l2normmx1f(m, n, j, q);
+						w[j]  = mc_raise2f(s);
 					}
 				}
 			} 
@@ -106,22 +134,31 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r, double * restrict w, int * pv)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization
 //!# step for rank deficient systems. If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
+	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
 
-	int i, j, k;
-	double bnorm, cnorm, dot, told;
+	int i, j, k, l, p;
+	double bnorm, cnorm, dot, told, s;
 
 	if (m >= n) {
 		mc_copymxnff(m, n, q, a);
 
 		if (wantr) {
 			mc_eyenxn(n, r, 0);
+		}
+
+		if (wantpv) {
+			for (j = 0; j < n; j++) {
+				s     = mc_l2normmx1(m, n, j, q);
+				w[j]  = mc_raise2(s);
+				pv[j] = j;
+			}
 		}
 
 		if (tol <= 0.0f) {
@@ -133,7 +170,21 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 		told  = mc_cast(double, tol);
 		bnorm = 0.0;
 		for (k = 0; k < n; k++) {
-	//#! Step 2: re-orthogonalization.
+//#! Step 1: pivoting if required.
+			if (wantpv) {
+				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
+				l = l + k;
+				if(k != l) {
+					for (i = 0; i < m; i++) {
+						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
+						if (i < k) {
+							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
+						}
+					}
+					mcswap_var(p, pv[k], pv[l]);
+				}
+			}
+//#! Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
@@ -145,10 +196,10 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					}
 				}
 			}
-	//#! Step 3: normalization.
+//#! Step 3: normalization.
 			cnorm = mc_l2normmx1(m, n, k, q);
 			if (cnorm != 0.0) {
-				//#! Step 4: close to zero decimation step.
+//#! Step 4: close to zero decimation step.
 				if (cnorm < told * bnorm) {
 					mc_zerosmx1(m, n, k, q);
 					q[(n * k) + k] = 1.0;
@@ -173,7 +224,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					r[(n * k) + k] = 0.0;
 				}
 			}
-	//#! Step 5: orthogonalization.
+//#! Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
@@ -183,6 +234,10 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
+					if (wantpv) {
+						s     = mc_l2normmx1(m, n, j, q);
+						w[j]  = mc_raise2(s);
+					}
 				}
 			} 
 		}
@@ -191,7 +246,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, double * q, double * restrict r, double * restrict w, int * pv)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
@@ -199,9 +254,10 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 //!# + iterative re-orthogonalization step for rank deficient systems.
 //!# If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
+	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
 
-	int i, j, k;
-	double bnorm, cnorm, dot;
+	int i, j, k, l, p;
+	double bnorm, cnorm, dot, s;
 
 	if (m >= n) {
 		if (a != q) {
@@ -209,6 +265,14 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 		}
 		if (wantr) {
 			mc_eyenxn(n, r, 0);
+		}
+
+		if (wantpv) {
+			for (j = 0; j < n; j++) {
+				s     = mc_l2normmx1(m, n, j, q);
+				w[j]  = mc_raise2(s);
+				pv[j] = j;
+			}
 		}
 
 		if (tol <= 0.0) {
@@ -219,7 +283,21 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 		}
 		bnorm = 0.0;
 		for (k = 0; k < n; k++) {
-	//#! Step 2: re-orthogonalization.
+//#! Step 1: pivoting if required.
+			if (wantpv) {
+				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
+				l = l + k;
+				if(k != l) {
+					for (i = 0; i < m; i++) {
+						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
+						if (i < k) {
+							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
+						}
+					}
+					mcswap_var(p, pv[k], pv[l]);
+				}
+			}
+//#! Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
@@ -231,10 +309,10 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					}
 				}
 			}
-	//#! Step 3: normalization.
+//#! Step 3: normalization.
 			cnorm = mc_l2normmx1(m, n, k, q);
 			if (cnorm != 0.0) {
-				//#! Step 4: close to zero decimation step.
+//#! Step 4: close to zero decimation step.
 				if (cnorm < tol * bnorm) {
 					mc_zerosmx1(m, n, k, q);
 					q[(n * k) + k] = 1.0;
@@ -259,7 +337,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					r[(n * k) + k] = 0.0;
 				}
 			}
-	//#! Step 5: orthogonalization.
+//#! Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
@@ -269,6 +347,10 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
+					if (wantpv) {
+						s     = mc_l2normmx1(m, n, j, q);
+						w[j]  = mc_raise2(s);
+					}
 				}
 			} 
 		}
@@ -277,7 +359,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
+MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r, long double * restrict w, int * pv)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
@@ -285,9 +367,10 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 //!# + iterative re-orthogonalization step for rank deficient systems.
 //!# If R is not null upper-right-triangle is formed.
 	const int wantr = mc_nonnull(r);
+	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
 
-	int i, j, k;
-	long double bnorm, cnorm, dot;
+	int i, j, k, l, p;
+	long double bnorm, cnorm, dot, s;
 
 	if (m >= n) {
 		if (a != q) {
@@ -295,6 +378,14 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 		}
 		if (wantr) {
 			mc_eyenxnl(n, r, 0);
+		}
+
+		if (wantpv) {
+			for (j = 0; j < n; j++) {
+				s     = mc_l2normmx1l(m, n, j, q);
+				w[j]  = mc_raise2l(s);
+				pv[j] = j;
+			}
 		}
 
 		if (tol <= 0.0L) {
@@ -305,7 +396,21 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 		}
 		bnorm = 0.0L;
 		for (k = 0; k < n; k++) {
-	//#! Step 2: re-orthogonalization.
+//#! Step 1: pivoting if required.
+			if (wantpv) {
+				mc_minmax1xnl(n - k, w + k, NULL, &s, NULL, &l);
+				l = l + k;
+				if(k != l) {
+					for (i = 0; i < m; i++) {
+						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
+						if (i < k) {
+							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
+						}
+					}
+					mcswap_var(p, pv[k], pv[l]);
+				}
+			}
+//#! Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1l(m, n, i, k, q, q, 1);
@@ -317,10 +422,10 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					}
 				}
 			}
-	//#! Step 3: normalization.
+//#! Step 3: normalization.
 			cnorm = mc_l2normmx1l(m, n, k, q);
 			if (cnorm != 0.0L) {
-				//#! Step 4: close to zero decimation step.
+//#! Step 4: close to zero decimation step.
 				if (cnorm < tol * bnorm) {
 					mc_zerosmx1l(m, n, k, q);
 					q[(n * k) + k] = 1.0L;
@@ -345,7 +450,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					r[(n * k) + k] = 0.0L;
 				}
 			}
-	//#! Step 5: orthogonalization.
+//#! Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot = mc_dotpmx1l(m, n, k, j, q, q, 1);
@@ -354,6 +459,10 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					}
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
+					}
+					if (wantpv) {
+						s     = mc_l2normmx1l(m, n, j, q);
+						w[j]  = mc_raise2l(s);
 					}
 				}
 			} 

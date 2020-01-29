@@ -72,7 +72,8 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 					if (wantp) {
 						*p = i;
 					}
-				} else if (x[i] > *max) {
+				}
+				if (x[i] > *max) {
 					if (wantmax) {
 						*max = x[i];
 					}
