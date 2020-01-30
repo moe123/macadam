@@ -15,33 +15,33 @@
 
 MC_TARGET_FUNC int mc_rmgsnxnf(int n, const float * a, float * q, float * restrict r, float * restrict w, int * pv)
 {
-//!# Requires a[n x n], q[n x n] and r[n x n] where 1 < m < n.
-//!# A and Q may be the same. Performing a QR decomposition
-//!# of a square matrix using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n.
+//!# A and Q may be the same. Performing a QR decomposition using
+//!# Recursive Modified Gram-Schmidt method with optional pivoting.
 	return mc_orthrnxnf(n, a, MCLIMITS_TINYF, q, r , w, pv);
 }
 
 MC_TARGET_FUNC int mc_rmgsnxnff(int n, const float * a, double * q, double * restrict r, double * restrict w, int * pv)
 {
-//!# Requires a[n x n], q[n x n] and r[n x n] where 1 < m < n.
-//!# Performing a QR decomposition of a square matrix using
-//!# Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n.
+//!# Performing a QR decomposition using Recursive Modified Gram-Schmidt
+//!# method with optional pivoting.
 	return mc_orthrnxnff(n, a, MCLIMITS_TINYF, q, r , w, pv);
 }
 
 MC_TARGET_FUNC int mc_rmgsnxn(int n, const double * a, double * q, double * restrict r, double * restrict w, int * pv)
 {
-//!# Requires a[n x n], q[n x n] and r[n x n] where 1 < m < n.
-//!# A and Q may be the same. Performing a QR decomposition
-//!# of a square matrix using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n.
+//!# A and Q may be the same. Performing a QR decomposition using
+//!# Recursive Modified Gram-Schmidt method with optional pivoting.
 	return mc_orthrnxn(n, a, MCLIMITS_TINY, q, r , w, pv);
 }
 
 MC_TARGET_FUNC int mc_rmgsnxnl(int n, const long double * a, long double * q, long double * restrict r, long double * restrict w, int * pv)
 {
-//!# Requires a[n x n], q[n x n] and r[n x n] where 1 < m < n.
-//!# A and Q may be the same. Performing a QR decomposition
-//!# of a square matrix using Modified Gram-Schmidt method.
+//!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n.
+//!# A and Q may be the same. Performing a QR decomposition using
+//!# Recursive Modified Gram-Schmidt method with optional pivoting.
 	return mc_orthrnxnl(n, a, MCLIMITS_TINYL, q, r , w, pv);
 }
 
