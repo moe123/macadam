@@ -124,6 +124,7 @@
 #	include <macadam/details/numa/mc_flip1xn.h>
 #	include <macadam/details/numa/mc_fliplrmxn.h>
 #	include <macadam/details/numa/mc_flipmx1.h>
+#	include <macadam/details/numa/mc_flipr1xn.h>
 #	include <macadam/details/numa/mc_flipudmxn.h>
 #	include <macadam/details/numa/mc_frobnormmxn.h>
 #	include <macadam/details/numa/mc_frobnormnxn.h>
@@ -221,6 +222,7 @@
 #	include <macadam/details/numa/mc_rmgsmxn.h>
 #	include <macadam/details/numa/mc_rmgsnxn.h>
 #	include <macadam/details/numa/mc_rms1xn.h>
+#	include <macadam/details/numa/mc_rotl1xn.h>
 #	include <macadam/details/numa/mc_ssqr1x2.h>
 #	include <macadam/details/numa/mc_ssqr1x3.h>
 #	include <macadam/details/numa/mc_ssqr1xn.h>
