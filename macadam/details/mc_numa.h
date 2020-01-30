@@ -121,6 +121,7 @@
 #	include <macadam/details/numa/mc_eye2x2.h>
 #	include <macadam/details/numa/mc_eye3x3.h>
 #	include <macadam/details/numa/mc_eyenxn.h>
+#	include <macadam/details/numa/mc_flip1xn.h>
 #	include <macadam/details/numa/mc_frobnormmxn.h>
 #	include <macadam/details/numa/mc_frobnormnxn.h>
 #	include <macadam/details/numa/mc_infnorm1xn.h>
