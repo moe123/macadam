@@ -52,7 +52,7 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors, under/overflow unsafe.
+//!# Building column-vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
@@ -153,7 +153,7 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors, under/overflow unsafe.
+//!# Building column-vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = mc_cast(double, x[i]);
 		yi    = mc_cast(double, y[i]);
@@ -254,7 +254,7 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors, under/overflow unsafe.
+//!# Building column-vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
@@ -355,7 +355,7 @@ MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 	a    = w + h;
 	p[0] = n;
 
-//!# Building column vectors, under/overflow unsafe.
+//!# Building column-vectors, under/overflow unsafe.
 	for (; i < n; i++) {
 		xi    = x[i];
 		yi    = y[i];
