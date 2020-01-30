@@ -15,6 +15,7 @@
 
 MC_TARGET_FUNC void mc_trsp3x3f(float at[9], const float a[9])
 {
+//!# Returning transpose of A.
 	if (a != at) {
 		at[0] = a[0]; at[1] = a[3]; at[2] = a[6];
 		at[3] = a[1]; at[4] = a[4]; at[5] = a[7];
@@ -26,6 +27,7 @@ MC_TARGET_FUNC void mc_trsp3x3f(float at[9], const float a[9])
 
 MC_TARGET_FUNC void mc_trsp3x3(double at[9], const double a[9])
 {
+//!# Returning transpose of A.
 	if (a != at) {
 		at[0] = a[0]; at[1] = a[3]; at[2] = a[6];
 		at[3] = a[1]; at[4] = a[4]; at[5] = a[7];
@@ -37,6 +39,7 @@ MC_TARGET_FUNC void mc_trsp3x3(double at[9], const double a[9])
 
 MC_TARGET_FUNC void mc_trsp3x3l(long double at[9], const long double a[9])
 {
+//!# Returning transpose of A.
 	if (a != at) {
 		at[0] = a[0]; at[1] = a[3]; at[2] = a[6];
 		at[3] = a[1]; at[4] = a[4]; at[5] = a[7];

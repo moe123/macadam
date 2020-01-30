@@ -15,6 +15,7 @@
 
 MC_TARGET_FUNC void mc_trsp2x2f(float at[4], const float a[4])
 {
+//!# Returning transpose of A.
 	if (a != at) {
 		at[0] = a[0]; at[1] = a[2];
 		at[2] = a[1]; at[3] = a[3];
@@ -25,6 +26,7 @@ MC_TARGET_FUNC void mc_trsp2x2f(float at[4], const float a[4])
 
 MC_TARGET_FUNC void mc_trsp2x2(double at[4], const double a[4])
 {
+//!# Returning transpose of A.
 	if (a != at) {
 		at[0] = a[0]; at[1] = a[2];
 		at[2] = a[1]; at[3] = a[3];
@@ -35,6 +37,7 @@ MC_TARGET_FUNC void mc_trsp2x2(double at[4], const double a[4])
 
 MC_TARGET_FUNC void mc_trsp2x2l(long double at[4], const long double a[4])
 {
+//!# Returning transpose of A.
 	if (a != at) {
 		at[0] = a[0]; at[1] = a[2];
 		at[2] = a[1]; at[3] = a[3];

@@ -58,7 +58,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 		}
 		bnorm = 0.0f;
 		for (k = 0; k < n; k++) {
-//#! Step 1: pivoting if required.
+//!# Step 1: pivoting if required.
 			if (wantpv) {
 				mc_minmax1xnf(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
@@ -72,7 +72,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 					mcswap_var(p, pv[k], pv[l]);
 				}
 			}
-//#! Step 2: re-orthogonalization.
+//!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1f(m, n, i, k, q, q, 1);
@@ -84,10 +84,10 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 					}
 				}
 			}
-//#! Step 3: normalization.
+//!# Step 3: normalization.
 			cnorm = mc_l2normmx1f(m, n, k, q);
 			if (cnorm != 0.0f) {
-//#! Step 4: close to zero decimation step.
+//!# Step 4: close to zero decimation step.
 				if (cnorm < tol * bnorm) {
 					mc_zerosmx1f(m, n, k, q);
 					q[(n * k) + k] = 1.0f;
@@ -112,7 +112,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 					r[(n * k) + k] = 0.0f;
 				}
 			}
-//#! Step 5: orthogonalization.
+//!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot   = mc_dotpmx1f(m, n, k, j, q, q, 1);
@@ -171,7 +171,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 		told  = mc_cast(double, tol);
 		bnorm = 0.0;
 		for (k = 0; k < n; k++) {
-//#! Step 1: pivoting if required.
+//!# Step 1: pivoting if required.
 			if (wantpv) {
 				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
@@ -185,7 +185,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					mcswap_var(p, pv[k], pv[l]);
 				}
 			}
-//#! Step 2: re-orthogonalization.
+//!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
@@ -197,10 +197,10 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					}
 				}
 			}
-//#! Step 3: normalization.
+//!# Step 3: normalization.
 			cnorm = mc_l2normmx1(m, n, k, q);
 			if (cnorm != 0.0) {
-//#! Step 4: close to zero decimation step.
+//!# Step 4: close to zero decimation step.
 				if (cnorm < told * bnorm) {
 					mc_zerosmx1(m, n, k, q);
 					q[(n * k) + k] = 1.0;
@@ -225,7 +225,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					r[(n * k) + k] = 0.0;
 				}
 			}
-//#! Step 5: orthogonalization.
+//!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
@@ -284,7 +284,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 		}
 		bnorm = 0.0;
 		for (k = 0; k < n; k++) {
-//#! Step 1: pivoting if required.
+//!# Step 1: pivoting if required.
 			if (wantpv) {
 				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
@@ -298,7 +298,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					mcswap_var(p, pv[k], pv[l]);
 				}
 			}
-//#! Step 2: re-orthogonalization.
+//!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
@@ -310,10 +310,10 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					}
 				}
 			}
-//#! Step 3: normalization.
+//!# Step 3: normalization.
 			cnorm = mc_l2normmx1(m, n, k, q);
 			if (cnorm != 0.0) {
-//#! Step 4: close to zero decimation step.
+//!# Step 4: close to zero decimation step.
 				if (cnorm < tol * bnorm) {
 					mc_zerosmx1(m, n, k, q);
 					q[(n * k) + k] = 1.0;
@@ -338,7 +338,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					r[(n * k) + k] = 0.0;
 				}
 			}
-//#! Step 5: orthogonalization.
+//!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
@@ -397,7 +397,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 		}
 		bnorm = 0.0L;
 		for (k = 0; k < n; k++) {
-//#! Step 1: pivoting if required.
+//!# Step 1: pivoting if required.
 			if (wantpv) {
 				mc_minmax1xnl(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
@@ -411,7 +411,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					mcswap_var(p, pv[k], pv[l]);
 				}
 			}
-//#! Step 2: re-orthogonalization.
+//!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
 					dot = mc_dotpmx1l(m, n, i, k, q, q, 1);
@@ -423,10 +423,10 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					}
 				}
 			}
-//#! Step 3: normalization.
+//!# Step 3: normalization.
 			cnorm = mc_l2normmx1l(m, n, k, q);
 			if (cnorm != 0.0L) {
-//#! Step 4: close to zero decimation step.
+//!# Step 4: close to zero decimation step.
 				if (cnorm < tol * bnorm) {
 					mc_zerosmx1l(m, n, k, q);
 					q[(n * k) + k] = 1.0L;
@@ -451,7 +451,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					r[(n * k) + k] = 0.0L;
 				}
 			}
-//#! Step 5: orthogonalization.
+//!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
 					dot = mc_dotpmx1l(m, n, k, j, q, q, 1);

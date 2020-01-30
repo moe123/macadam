@@ -16,18 +16,21 @@
 
 MC_TARGET_FUNC void mc_trsi2x2f(float a[4])
 {
+//!# Returning transpose of A (in-place).
 	float c;
 	mcswap_var(c, a[1], a[2]);
 }
 
 MC_TARGET_FUNC void mc_trsi2x2(double a[4])
 {
+//!# Returning transpose of A (in-place).
 	double c;
 	mcswap_var(c, a[1], a[2]);
 }
 
 MC_TARGET_FUNC void mc_trsi2x2l(long double a[4])
 {
+//!# Returning transpose of A (in-place).
 	long double c;
 	mcswap_var(c, a[1], a[2]);
 }

@@ -15,6 +15,7 @@
 
 MC_TARGET_FUNC void mc_trsimxnf(int m, int n, float * a)
 {
+//!# Returning transpose of A (in-place).
 	if (m == n) {
 		mc_trsinxnf(n, a);
 	} else {
@@ -42,6 +43,7 @@ MC_TARGET_FUNC void mc_trsimxnf(int m, int n, float * a)
 
 MC_TARGET_FUNC void mc_trsimxn(int m, int n, double * a)
 {
+//!# Returning transpose of A (in-place).
 	if (m == n) {
 		mc_trsinxn(n, a);
 	} else {
@@ -69,6 +71,7 @@ MC_TARGET_FUNC void mc_trsimxn(int m, int n, double * a)
 
 MC_TARGET_FUNC void mc_trsimxnl(int m, int n, long double * a)
 {
+//!# Returning transpose of A (in-place).
 	if (m == n) {
 		mc_trsinxnl(n, a);
 	} else {

@@ -15,16 +15,19 @@
 
 MC_TARGET_FUNC void mc_trspnxnf(int n, float * at, const float * a)
 {
+//!# Returning transpose of A.
 	mc_trspmxnf(n, n, at, a);
 }
 
 MC_TARGET_FUNC void mc_trspnxn(int n, double * at, const double * a)
 {
+//!# Returning transpose of A.
 	mc_trspmxn(n, n, at, a);
 }
 
 MC_TARGET_FUNC void mc_trspnxnl(int n, long double * at, const long double * a)
 {
+//!# Returning transpose of A.
 	mc_trspmxnl(n, n, at, a);
 }
 

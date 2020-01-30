@@ -15,6 +15,7 @@
 
 MC_TARGET_FUNC void mc_trsinxnf(int n, float * a)
 {
+//!# Returning transpose of A (in-place).
 	int i = 0, j;
 	float w;
 	for (; i < (n - 2); i++) {
@@ -28,6 +29,7 @@ MC_TARGET_FUNC void mc_trsinxnf(int n, float * a)
 
 MC_TARGET_FUNC void mc_trsinxn(int n, double * a)
 {
+//!# Returning transpose of A (in-place).
 	int i = 0, j;
 	double w;
 	for (; i < (n - 2); i++) {
@@ -41,6 +43,7 @@ MC_TARGET_FUNC void mc_trsinxn(int n, double * a)
 
 MC_TARGET_FUNC void mc_trsinxnl(int n, long double * a)
 {
+//!# Returning transpose of A (in-place).
 	int i = 0, j;
 	long double w;
 	for (; i < (n - 2); i++) {
