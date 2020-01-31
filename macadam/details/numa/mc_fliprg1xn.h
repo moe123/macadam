@@ -1,19 +1,19 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_flipr1xn.h
+// mc_fliprg1xn.h
 //
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/mc_target.h>
 
-#ifndef MC_FLIPR1XN_H
-#define MC_FLIPR1XN_H
+#ifndef MC_FLIPRG1XN_H
+#define MC_FLIPRG1XN_H
 
-#pragma mark - mc_flipr1xn -
+#pragma mark - mc_fliprg1xn -
 
-MC_TARGET_FUNC void mc_flipr1xnf(int n, int p, int q, float * y, const float * x)
+MC_TARGET_FUNC void mc_fliprg1xnf(int n, int p, int q, float * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Reversing order of elements in vector X and storing the result
@@ -33,7 +33,7 @@ MC_TARGET_FUNC void mc_flipr1xnf(int n, int p, int q, float * y, const float * x
 	}
 }
 
-MC_TARGET_FUNC void mc_flipr1xnff(int n, int p, int q, double * y, const float * x)
+MC_TARGET_FUNC void mc_fliprg1xnff(int n, int p, int q, double * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Reversing order of elements in
 //!# vector X and storing the result into vector Y within p and q range.
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_flipr1xnff(int n, int p, int q, double * y, const float *
 	}
 }
 
-MC_TARGET_FUNC void mc_flipr1xn(int n, int p, int q, double * y, const double * x)
+MC_TARGET_FUNC void mc_fliprg1xn(int n, int p, int q, double * y, const double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Reversing order of elements in vector X and storing the result
@@ -65,7 +65,7 @@ MC_TARGET_FUNC void mc_flipr1xn(int n, int p, int q, double * y, const double * 
 	}
 }
 
-MC_TARGET_FUNC void mc_flipr1xnl(int n, int p, int q, long double * y, const long double * x)
+MC_TARGET_FUNC void mc_fliprg1xnl(int n, int p, int q, long double * y, const long double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Reversing order of elements in vector X and storing the result
@@ -85,6 +85,6 @@ MC_TARGET_FUNC void mc_flipr1xnl(int n, int p, int q, long double * y, const lon
 	}
 }
 
-#endif /* !MC_FLIPR1XN_H */
+#endif /* !MC_FLIPRG1XN_H */
 
 /* EOF */

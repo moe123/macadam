@@ -108,6 +108,8 @@
 #	include <macadam/details/numa/mc_det3x3.h>
 #	include <macadam/details/numa/mc_det4x4.h>
 #	include <macadam/details/numa/mc_diag1xn.h>
+#	include <macadam/details/numa/mc_diff1xn.h>
+#	include <macadam/details/numa/mc_diffk1xn.h>
 #	include <macadam/details/numa/mc_divxv1xn.h>
 #	include <macadam/details/numa/mc_divxy1xn.h>
 #	include <macadam/details/numa/mc_dotp1xn.h>
@@ -124,7 +126,7 @@
 #	include <macadam/details/numa/mc_flip1xn.h>
 #	include <macadam/details/numa/mc_fliplrmxn.h>
 #	include <macadam/details/numa/mc_flipmx1.h>
-#	include <macadam/details/numa/mc_flipr1xn.h>
+#	include <macadam/details/numa/mc_fliprg1xn.h>
 #	include <macadam/details/numa/mc_flipudmxn.h>
 #	include <macadam/details/numa/mc_frobnormmxn.h>
 #	include <macadam/details/numa/mc_frobnormnxn.h>
@@ -142,6 +144,7 @@
 #	include <macadam/details/numa/mc_l2normmx1.h>
 #	include <macadam/details/numa/mc_ldu3x3.h>
 #	include <macadam/details/numa/mc_ldup3x3.h>
+#	include <macadam/details/numa/mc_linspace1xn.h>
 #	include <macadam/details/numa/mc_lu3x3.h>
 #	include <macadam/details/numa/mc_lup3x3.h>
 #	include <macadam/details/numa/mc_lupnxn.h>

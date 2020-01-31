@@ -156,6 +156,7 @@
 #	include <macadam/details/math/mc_polyroot3.h>
 #	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_pow2.h>
+#	include <macadam/details/math/mc_pow10.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
 #	include <macadam/details/math/mc_raise2.h>

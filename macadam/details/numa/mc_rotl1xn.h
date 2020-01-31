@@ -13,86 +13,86 @@
 
 #pragma mark - mc_rotl1xn -
 
-MC_TARGET_FUNC void mc_rotl1xnf(int n, int p, float * y, const float * x)
+MC_TARGET_FUNC void mc_rotl1xnf(int n, int k, float * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
-//!# Left rotate elements of vector X by p times and store the
+//!# Left rotate elements of vector X by k times and store the
 //!# result into vector Y.
-	int i = 0, j, k; 
+	int i = 0, j, l; 
 	float w;
 	if (x != y) {
-		mc_copy1xnf(n, y ,x);
+		mc_copy1xnf(n, y , x);
 	}
-	for (; i < mc_igcd(p, n); i++) {
+	for (; i < mc_igcd(k, n); i++) {
 		j = i;
 		w = y[j];
-		while (!(k == i)) { 
-			k    = ((j + p) >= n) ? ((j + p) - n) : (j + p);
-			y[j] = y[k]; 
-			j    = k; 
+		while (!(l == i)) { 
+			l    = ((j + k) >= n) ? ((j + k) - n) : (j + k);
+			y[j] = y[l]; 
+			j    = l; 
 		}
 		y[j] = w; 
 	}
 }
 
-MC_TARGET_FUNC void mc_rotl1xnff(int n, int p, double * y, const float * x)
+MC_TARGET_FUNC void mc_rotl1xnff(int n, int k, double * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Left rotate elements of
-//!# vector X by p times and store the result into vector Y.
-	int i = 0, j, k; 
+//!# vector X by k times and store the result into vector Y.
+	int i = 0, j, l; 
 	double w;
-	mc_copy1xnff(n, y ,x);
-	for (; i < mc_igcd(p, n); i++) {
+	mc_copy1xnff(n, y , x);
+	for (; i < mc_igcd(k, n); i++) {
 		j = i;
 		w = y[j];
-		while (!(k == i)) { 
-			k    = ((j + p) >= n) ? ((j + p) - n) : (j + p);
-			y[j] = y[k]; 
-			j    = k; 
+		while (!(l == i)) { 
+			l    = ((j + k) >= n) ? ((j + k) - n) : (j + k);
+			y[j] = y[l]; 
+			j    = l; 
 		}
 		y[j] = w; 
 	}
 }
 
-MC_TARGET_FUNC void mc_rotl1xn(int n, int p, double * y, const double * x)
+MC_TARGET_FUNC void mc_rotl1xn(int n, int k, double * y, const double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
-//!# Left rotate elements of vector X by p times and store the
+//!# Left rotate elements of vector X by k times and store the
 //!# result into vector Y.
-	int i = 0, j, k; 
+	int i = 0, j, l; 
 	double w;
 	if (x != y) {
-		mc_copy1xn(n, y ,x);
+		mc_copy1xn(n, y , x);
 	}
-	for (; i < mc_igcd(p, n); i++) {
+	for (; i < mc_igcd(k, n); i++) {
 		j = i;
 		w = y[j];
-		while (!(k == i)) { 
-			k    = ((j + p) >= n) ? ((j + p) - n) : (j + p);
-			y[j] = y[k]; 
-			j    = k; 
+		while (!(l == i)) { 
+			l    = ((j + k) >= n) ? ((j + k) - n) : (j + k);
+			y[j] = y[l]; 
+			j    = l; 
 		}
 		y[j] = w; 
 	}
 }
 
-MC_TARGET_FUNC void mc_rotl1xnl(int n, int p, long double * y, const long double * x)
+MC_TARGET_FUNC void mc_rotl1xnl(int n, int k, long double * y, const long double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
-//!# Left rotate elements of vector X by p times and store the
+//!# Left rotate elements of vector X by k times and store the
 //!# result into vector Y.
-	int i = 0, j, k; 
+	int i = 0, j, l; 
 	long double w;
 	if (x != y) {
-		mc_copy1xnl(n, y ,x);
+		mc_copy1xnl(n, y , x);
 	}
-	for (; i < mc_igcd(p, n); i++) {
+	for (; i < mc_igcd(k, n); i++) {
 		j = i;
 		w = y[j];
-		while (!(k == i)) { 
-			k    = ((j + p) >= n) ? ((j + p) - n) : (j + p);
-			y[j] = y[k]; 
-			j    = k; 
+		while (!(l == i)) { 
+			l    = ((j + k) >= n) ? ((j + k) - n) : (j + k);
+			y[j] = y[l]; 
+			j    = l; 
 		}
 		y[j] = w; 
 	}

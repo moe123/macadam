@@ -17,11 +17,11 @@ MC_TARGET_FUNC void mc_diag1xnf(int n, float * restrict a, float * restrict d, i
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
-//!# k>0: d elements are placed on the +kth superdiagonal.
-//!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set kth diagonal to d elements and zeroing other elements.
-//!# f=1: only set kth diagonal to d elements.
-//!# f=2: copy kth diagonal into d.
+//!# k>0: d elements are placed on the +k-th superdiagonal.
+//!# k<0: d elements are placed on the -k-th subdiagonal.
+//!# f=0: set k-th diagonal to d elements and zeroing other elements.
+//!# f=1: only set k-th diagonal to d elements.
+//!# f=2: copy k-th diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
@@ -72,11 +72,11 @@ MC_TARGET_FUNC void mc_diag1xnff(int n, double * restrict a, float * restrict d,
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
-//!# k>0: d elements are placed on the +kth superdiagonal.
-//!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set kth diagonal to d elements and zeroing other elements.
-//!# f=1: only set kth diagonal to d elements.
-//!# f=2: copy kth diagonal into d.
+//!# k>0: d elements are placed on the +k-th superdiagonal.
+//!# k<0: d elements are placed on the -k-th subdiagonal.
+//!# f=0: set k-th diagonal to d elements and zeroing other elements.
+//!# f=1: only set k-th diagonal to d elements.
+//!# f=2: copy k-th diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
@@ -127,11 +127,11 @@ MC_TARGET_FUNC void mc_diag1xn(int n, double * restrict a, double * restrict d, 
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
-//!# k>0: d elements are placed on the +kth superdiagonal.
-//!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set kth diagonal to d elements and zeroing other elements.
-//!# f=1: only set kth diagonal to d elements.
-//!# f=2: copy kth diagonal into d.
+//!# k>0: d elements are placed on the +k-th superdiagonal.
+//!# k<0: d elements are placed on the -k-th subdiagonal.
+//!# f=0: set k-th diagonal to d elements and zeroing other elements.
+//!# f=1: only set k-th diagonal to d elements.
+//!# f=2: copy k-th diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
@@ -182,11 +182,11 @@ MC_TARGET_FUNC void mc_diag1xnl(int n, long double * restrict a, long double * r
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
-//!# k>0: d elements are placed on the +kth superdiagonal.
-//!# k<0: d elements are placed on the -kth subdiagonal.
-//!# f=0: set kth diagonal to d elements and zeroing other elements.
-//!# f=1: only set kth diagonal to d elements.
-//!# f=2: copy kth diagonal into d.
+//!# k>0: d elements are placed on the +k-th superdiagonal.
+//!# k<0: d elements are placed on the -k-th subdiagonal.
+//!# f=0: set k-th diagonal to d elements and zeroing other elements.
+//!# f=1: only set k-th diagonal to d elements.
+//!# f=2: copy k-th diagonal into d.
 	int i = 0, m;
 	if (k > 0 ) {
 		m = n + k;
