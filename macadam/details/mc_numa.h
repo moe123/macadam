@@ -145,6 +145,7 @@
 #	include <macadam/details/numa/mc_ldu3x3.h>
 #	include <macadam/details/numa/mc_ldup3x3.h>
 #	include <macadam/details/numa/mc_linspace1xn.h>
+#	include <macadam/details/numa/mc_logspace1xn.h>
 #	include <macadam/details/numa/mc_lu3x3.h>
 #	include <macadam/details/numa/mc_lup3x3.h>
 #	include <macadam/details/numa/mc_lupnxn.h>
