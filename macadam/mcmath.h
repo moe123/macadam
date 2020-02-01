@@ -85,7 +85,7 @@
 #		define mcmath_fabs(x)          ::std::fabs(x)
 #		define mcmath_cbrt(x)          ::std::cbrt(x)
 #		define mcmath_hypot(x, y)      ::std::hypot(x, y)
-#		define mcmath_hypotc(x, y, z)  ::std::hypot(x, y, z)
+#		define mcmath_hypot3(x, y, z)  ::std::hypot(x, y, z)
 #		define mcmath_pow(x, y)        ::std::pow(x, y)
 #		define mcmath_sqrt(x)          ::std::sqrt(x)
 #	endif
@@ -1598,40 +1598,6 @@ MC_TARGET_ALIAS long double mcmath_hypot (long double x, long double y) { return
 #	endif
 #	endif
 
-#	ifndef mcmath_hypotc
-#	if MC_TARGET_CPP98
-#	if MC_TARGET_CPP17
-template <class T> MC_TARGET_INLINE T           mcmath_hypotc              (const T& x, const T& y, const T& z)                               { return ::std::hypot (mc_cast(double, x), mc_cast(double, y), mc_cast(double, z)); }
-template <>        MC_TARGET_INLINE float       mcmath_hypotc<float>       (const float& x, const float& y, const float& z)                   { return ::std::hypot (x, y, z);                                                    }
-template <>        MC_TARGET_INLINE double      mcmath_hypotc<double>      (const double& x, const double& y, const double& z)                { return ::std::hypot (x, y, z);                                                    }
-template <>        MC_TARGET_INLINE long double mcmath_hypotc<long double> (const long double& x, const long double& y, const long double& z) { return ::std::hypot (x, y, z);                                                    }
-#	else
-template <class T> MC_TARGET_INLINE T           mcmath_hypotc              (const T& x, const T& y, const T& z)                               { return mc_hypot3  (mc_cast(double, x), mc_cast(double, y), mc_cast(double, z));   }
-template <>        MC_TARGET_INLINE float       mcmath_hypotc<float>       (const float& x, const float& y, const float& z)                   { return mc_hypot3f (x, y, z);                                                      }
-template <>        MC_TARGET_INLINE double      mcmath_hypotc<double>      (const double& x, const double& y, const double& z)                { return mc_hypot3  (x, y, z);                                                      }
-template <>        MC_TARGET_INLINE long double mcmath_hypotc<long double> (const long double& x, const long double& y, const long double& z) { return mc_hypot3l (x, y, z);                                                      }
-#	endif
-#	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mcmath_hypotc (float x, float y, float z)                   { return mc_hypot3f (x, y, z); }
-MC_TARGET_ALIAS double      mcmath_hypotc (double x, double y, double z)                { return mc_hypot3  (x, y, z); }
-MC_TARGET_ALIAS long double mcmath_hypotc (long double x, long double y, long double z) { return mc_hypot3l (x, y, z); }
-#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
-#	define mcmath_hypotc(x, y, z) _Generic(x \
-	, float       : mc_hypot3f \
-	, double      : mc_hypot3  \
-	, long double : mc_hypot3l \
-) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
-#	else
-#	define mcmath_hypotc(x, y, z) \
-	( \
-		  sizeof(x) == sizeof(float)       ? mc_hypot3f (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
-		: sizeof(x) == sizeof(double)      ? mc_hypot3  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
-		: sizeof(x) == sizeof(long double) ? mc_hypot3l (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
-		: 0 \
-	)
-#	endif
-#	endif
-
 #	ifndef mcmath_mc_hypot2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_mc_hypot2              (const T& x, const T& y)                     { return mc_hypot2  (mc_cast(double, x), mc_cast(double, y)); }
@@ -1654,6 +1620,40 @@ MC_TARGET_ALIAS long double mcmath_mc_hypot2 (long double x, long double y) { re
 		  sizeof(x) == sizeof(float)       ? mc_hypot2f (mc_cast_expr(float, x), mc_cast_expr(float, y))             \
 		: sizeof(x) == sizeof(double)      ? mc_hypot2  (mc_cast_expr(double, x), mc_cast_expr(double, y))           \
 		: sizeof(x) == sizeof(long double) ? mc_hypot2l (mc_cast_expr(long double, x), mc_cast_expr(long double, y)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#	ifndef mcmath_hypot3
+#	if MC_TARGET_CPP98
+#	if MC_TARGET_CPP17
+template <class T> MC_TARGET_INLINE T           mcmath_hypot3              (const T& x, const T& y, const T& z)                               { return ::std::hypot (mc_cast(double, x), mc_cast(double, y), mc_cast(double, z)); }
+template <>        MC_TARGET_INLINE float       mcmath_hypot3<float>       (const float& x, const float& y, const float& z)                   { return ::std::hypot (x, y, z);                                                    }
+template <>        MC_TARGET_INLINE double      mcmath_hypot3<double>      (const double& x, const double& y, const double& z)                { return ::std::hypot (x, y, z);                                                    }
+template <>        MC_TARGET_INLINE long double mcmath_hypot3<long double> (const long double& x, const long double& y, const long double& z) { return ::std::hypot (x, y, z);                                                    }
+#	else
+template <class T> MC_TARGET_INLINE T           mcmath_hypot3              (const T& x, const T& y, const T& z)                               { return mc_hypot3  (mc_cast(double, x), mc_cast(double, y), mc_cast(double, z));   }
+template <>        MC_TARGET_INLINE float       mcmath_hypot3<float>       (const float& x, const float& y, const float& z)                   { return mc_hypot3f (x, y, z);                                                      }
+template <>        MC_TARGET_INLINE double      mcmath_hypot3<double>      (const double& x, const double& y, const double& z)                { return mc_hypot3  (x, y, z);                                                      }
+template <>        MC_TARGET_INLINE long double mcmath_hypot3<long double> (const long double& x, const long double& y, const long double& z) { return mc_hypot3l (x, y, z);                                                      }
+#	endif
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_hypot3 (float x, float y, float z)                   { return mc_hypot3f (x, y, z); }
+MC_TARGET_ALIAS double      mcmath_hypot3 (double x, double y, double z)                { return mc_hypot3  (x, y, z); }
+MC_TARGET_ALIAS long double mcmath_hypot3 (long double x, long double y, long double z) { return mc_hypot3l (x, y, z); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_hypot3(x, y, z) _Generic(x \
+	, float       : mc_hypot3f \
+	, double      : mc_hypot3  \
+	, long double : mc_hypot3l \
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
+#	else
+#	define mcmath_hypot3(x, y, z) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_hypot3f (mc_cast_expr(float, x), mc_cast_expr(float, y), mc_cast_expr(float, z))                   \
+		: sizeof(x) == sizeof(double)      ? mc_hypot3  (mc_cast_expr(double, x), mc_cast_expr(double, y), mc_cast_expr(double, z))                \
+		: sizeof(x) == sizeof(long double) ? mc_hypot3l (mc_cast_expr(long double, x), mc_cast_expr(long double, y), mc_cast_expr(long double, z)) \
 		: 0 \
 	)
 #	endif

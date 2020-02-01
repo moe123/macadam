@@ -189,7 +189,7 @@
 #	endif
 
 #	if defined(WIN32) && (defined(_MSC_VER) || defined(__ICL))
-#		define __declspec(thread)
+#		define MC_TARGET_THREAD_LOCAL __declspec(thread)
 #	elif defined(__clang__)
 #		if __has_feature(c_thread_local) || __has_extension(c_thread_local)
 #			define MC_TARGET_THREAD_LOCAL _Thread_local
@@ -368,6 +368,7 @@
 #			define mc_cmplxf(re, im) CMPLXF(re, im)
 #			define mc_cmplx(re, im)  CMPLX(re, im)
 #			define mc_cmplxl(re, im) CMPLXL(re, im)
+#			define mc_complex(type) type _Complex
 #		endif
 #	endif
 
@@ -378,6 +379,7 @@
 #	define mc_cmplxf(re, im) { (float)re       , (float)im       }
 #	define mc_cmplx(re, im)  { (double)re      , (double)im      }
 #	define mc_cmplxl(re, im) { (long double)re , (long double)im }
+#	define mc_complex(type) struct { type u_re; type  u_im; }
 #	endif
 
 #	if defined(__SSE__) && __SSE__
