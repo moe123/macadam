@@ -23,18 +23,20 @@ MC_TARGET_FUNC int mc_lusolvenxnf(int n, const float * restrict lu, const float 
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int i = 0, j;
+	int i, j;
 	float w;
 
 	mc_cast(void, d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
-		x[i] = b[pvi[i]];
+		for (i = 0; i < n; i++) {
+			x[i] = b[pvi[i]];
+		}
 	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < n; j++) {
-				if (p[n * i + j] != 0.0f) {
+				if (p[(n * i) + j] != 0.0f) {
 					break;
 				}
 			}
@@ -75,18 +77,20 @@ MC_TARGET_FUNC int mc_lusolvenxnff(int n, const float * restrict lu, const float
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int i = 0, j;
+	int i, j;
 	double w;
 
 	mc_cast(void, d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
-		x[i] = b[pvi[i]];
+		for (i = 0; i < n; i++) {
+			x[i] = b[pvi[i]];
+		}
 	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < n; j++) {
-				if (p[n * i + j] != 0.0f) {
+				if (p[(n * i) + j] != 0.0f) {
 					break;
 				}
 			}
@@ -127,18 +131,20 @@ MC_TARGET_FUNC int mc_lusolvenxn(int n, const double * restrict lu, const double
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int i = 0, j;
+	int i, j;
 	double w;
 
 	mc_cast(void, d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
-		x[i] = b[pvi[i]];
+		for (i = 0; i < n; i++) {
+			x[i] = b[pvi[i]];
+		}
 	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; i < n; i++) {
-				if (p[n * i + j] != 0.0) {
+				if (p[(n * i) + j] != 0.0) {
 					break;
 				}
 			}
@@ -179,18 +185,20 @@ MC_TARGET_FUNC int mc_lusolvenxnl(int n, const long double * restrict lu, const 
 	const int wantpvi = mc_nonnull(pvi);
 	const int wantp   = mc_nonnull(p);
 
-	int i = 0, j;
+	int i, j;
 	long double w;
 
 	mc_cast(void, d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
-		x[i] = b[pvi[i]];
+		for (i = 0; i < n; i++) {
+			x[i] = b[pvi[i]];
+		}
 	} else if (wantp) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; i < n; i++) {
-				if (p[n * i + j] != 0.0L) {
+				if (p[(n * i) + j] != 0.0L) {
 					break;
 				}
 			}

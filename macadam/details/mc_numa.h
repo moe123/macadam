@@ -215,6 +215,14 @@
 #	include <macadam/details/numa/mc_outpxy3x3.h>
 #	include <macadam/details/numa/mc_outpxymxn.h>
 #	include <macadam/details/numa/mc_outpxynxn.h>
+#	include <macadam/details/numa/mc_poly2fit1xn.h>
+#	include <macadam/details/numa/mc_poly3fit1xn.h>
+#	include <macadam/details/numa/mc_poly4fit1xn.h>
+#	include <macadam/details/numa/mc_poly5fit1xn.h>
+#	include <macadam/details/numa/mc_poly6fit1xn.h>
+#	include <macadam/details/numa/mc_poly7fit1xn.h>
+#	include <macadam/details/numa/mc_poly8fit1xn.h>
+#	include <macadam/details/numa/mc_poly9fit1xn.h>
 #	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_qr2x2.h>
 #	include <macadam/details/numa/mc_qr3x3.h>
