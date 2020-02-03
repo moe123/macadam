@@ -115,7 +115,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 //!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
-					dot   = mc_dotpmx1f(m, n, k, j, q, q, 1);
+					dot = mc_dotpmx1f(m, n, k, j, q, q, 1);
 					if (wantr) {
 						r[(n * k) + j] = dot;
 					}

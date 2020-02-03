@@ -85,7 +85,7 @@ MC_TARGET_FUNC int mc_lusolvenxnff(int n, const float * restrict lu, const float
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
 		for (i = 0; i < n; i++) {
-			x[i] = b[pvi[i]];
+			x[i] = mc_cast(double, b[pvi[i]]);
 		}
 	} else if (wantp) {
 		for (i = 0; i < n; i++) {

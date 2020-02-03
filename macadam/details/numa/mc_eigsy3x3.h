@@ -60,7 +60,7 @@ MC_TARGET_PROC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float 
 MC_TARGET_PROC int mc_tredsy3x3(const double a[9], double * q, double d[3], double e[2])
 {
 //!# Close-formish expression by rref.
-	const double tol = 2.0 * MCLIMITS_EPSILON;
+	const double tol = MCLIMITS_TINY;
 
 	int wantq = mc_nonnull(q);
 	double mag, s;

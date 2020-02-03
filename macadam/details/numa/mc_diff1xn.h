@@ -17,7 +17,7 @@ MC_TARGET_FUNC int mc_diff1xnf(int n, float * y, const float * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Y and X may be the same.
 //!# Calculating differences between adjacent elements of vector x.
-//!# Returns the number of elements in y vectors.
+//!# Returns the number of new elements in y vector.
 	int i = 1;
 	for (; i < n; i++) {
 		y[i - 1] = x[i] - x[i - 1];
@@ -41,7 +41,7 @@ MC_TARGET_FUNC int mc_diff1xn(int n, double * y, const double * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Y and X may be the same.
 //!# Calculating differences between adjacent elements of vector x.
-//!# Returns the number of elements in y vectors.
+//!# Returns the number of new elements in y vector.
 	int i = 1;
 	for (; i < n; i++) {
 		y[i - 1] = x[i] - x[i - 1];
@@ -53,7 +53,7 @@ MC_TARGET_FUNC int mc_diff1xnl(int n, long double * y, const long double * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Y and X may be the same.
 //!# Calculating differences between adjacent elements of vector x.
-//!# Returns the number of elements in y vectors.
+//!# Returns the number of new elements in y vector.
 	int i = 1;
 	for (; i < n; i++) {
 		y[i - 1] = x[i] - x[i - 1];
