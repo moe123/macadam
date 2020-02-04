@@ -19,6 +19,8 @@ MC_TARGET_FUNC void mc_vander1xnf(int n, int d, float * restrict a, const float 
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
 //!# of the output matrix A.
+//!# f=0: ascending powers (default).
+//!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;
 	float w, v, e;
 	for (; i < n; i++) {
@@ -38,6 +40,8 @@ MC_TARGET_FUNC void mc_vander1xnff(int n, int d, double * a, const float * x, in
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
 //!# of the output matrix A.
+//!# f=0: ascending powers (default).
+//!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;
 	double w, v, e;
 	for (; i < n; i++) {
@@ -57,6 +61,8 @@ MC_TARGET_FUNC void mc_vander1xn(int n, int d, double * restrict a, const double
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
 //!# of the output matrix A.
+//!# f=0: ascending powers (default).
+//!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;
 	double w, v, e;
 	for (; i < n; i++) {
