@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 //!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr  = mc_nonnull(r);
-	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
+	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
 
 	int i, j, k, l, p;
 	float bnorm, cnorm, dot, s;
@@ -142,7 +142,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 //!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr = mc_nonnull(r);
-	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
+	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
 
 	int i, j, k, l, p;
 	double bnorm, cnorm, dot, told, s;
@@ -255,7 +255,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 //!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr = mc_nonnull(r);
-	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
+	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
 
 	int i, j, k, l, p;
 	double bnorm, cnorm, dot, s;
@@ -368,7 +368,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 //!# not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm
 //!# with iterative orthogonalization and column pivoting`.
 	const int wantr = mc_nonnull(r);
-	const int wantpv = mc_nonnull(pv) && mc_nonnull(w);
+	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
 
 	int i, j, k, l, p;
 	long double bnorm, cnorm, dot, s;

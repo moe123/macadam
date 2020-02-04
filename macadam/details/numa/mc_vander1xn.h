@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/mc_rescalemxn.h>
+#include <macadam/details/math/mc_twoproduct.h>
 
 #ifndef MC_VANDER1XN_H
 #define MC_VANDER1XN_H
@@ -17,8 +17,8 @@ MC_TARGET_FUNC void mc_vander1xnf(int n, int d, float * restrict a, const float 
 {
 //!# a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
-//!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
-//!# of the output matrix A.
+//!# With the length noted n of vector X representing the m dimension and d=degree + 1
+//!# the n dimension of the output matrix A.
 //!# f=0: ascending powers (default).
 //!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;
@@ -38,8 +38,8 @@ MC_TARGET_FUNC void mc_vander1xnff(int n, int d, double * a, const float * x, in
 {
 //!# a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
-//!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
-//!# of the output matrix A.
+//!# With the length noted n of vector X representing the m dimension and d=degree + 1
+//!# the n dimension of the output matrix A.
 //!# f=0: ascending powers (default).
 //!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;
@@ -59,8 +59,8 @@ MC_TARGET_FUNC void mc_vander1xn(int n, int d, double * restrict a, const double
 {
 //!# a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
-//!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
-//!# of the output matrix A.
+//!# With the length noted n of vector X representing the m dimension and d=degree + 1
+//!# the n dimension of the output matrix A.
 //!# f=0: ascending powers (default).
 //!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;
@@ -80,8 +80,8 @@ MC_TARGET_FUNC void mc_vander1xnl(int n, int d, long double * restrict a, const 
 {
 //!# a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
-//!# The length of vector X representing the m dimension and d=degree + 1 the n dimension
-//!# of the output matrix A.
+//!# With the length noted n of vector X representing the m dimension and d=degree + 1
+//!# the n dimension of the output matrix A.
 //!# f=0: ascending powers (default).
 //!# f=1: descending powers (matlab and octave).
 	int i = 0, j, k;

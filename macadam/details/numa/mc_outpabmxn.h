@@ -16,7 +16,7 @@
 MC_TARGET_FUNC void mc_outpabmxnf(int m, int n, int p, int q, int j, int k, float * restrict c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
-//!# c=ai*bi' i.e outer product of two of two column-vectors.
+//!# c=ai*bi' i.e outer product of two column-vectors.
 	int l = 0, i;
 	float v, e, w;
 	for (; l < n; l++) {
@@ -31,7 +31,7 @@ MC_TARGET_FUNC void mc_outpabmxnf(int m, int n, int p, int q, int j, int k, floa
 MC_TARGET_FUNC void mc_outpabmxnff(int m, int n, int p, int q, int j, int k, double * restrict c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
-//!# c=ai*bi' i.e outer product of two of two column-vectors.
+//!# c=ai*bi' i.e outer product of two column-vectors.
 	int l = 0, i;
 	double v, e, w;
 	for (; l < n; l++) {
@@ -46,7 +46,7 @@ MC_TARGET_FUNC void mc_outpabmxnff(int m, int n, int p, int q, int j, int k, dou
 MC_TARGET_FUNC void mc_outpabmxnfd(int m, int n, int p, int q, int j, int k, double * restrict c, const float * a, const double * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
-//!# c=ai*bi' i.e outer product of two of two column-vectors.
+//!# c=ai*bi' i.e outer product of two column-vectors.
 	int l = 0, i;
 	double v, e, w;
 	for (; l < n; l++) {
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_outpabmxnfd(int m, int n, int p, int q, int j, int k, dou
 MC_TARGET_FUNC void mc_outpabmxndf(int m, int n, int p, int q, int j, int k, double * restrict c, const double * a, const float * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
-//!# c=ai*bi' i.e outer product of two of two column-vectors.
+//!# c=ai*bi' i.e outer product of two column-vectors.
 	int l = 0, i;
 	double v, e, w;
 	for (; l < n; l++) {
@@ -76,7 +76,7 @@ MC_TARGET_FUNC void mc_outpabmxndf(int m, int n, int p, int q, int j, int k, dou
 MC_TARGET_FUNC void mc_outpabmxn(int m, int n, int p, int q, int j, int k, double * restrict c, const double * a, const double * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
-//!# c=ai*bi' i.e outer product of two of two column-vectors.
+//!# c=ai*bi' i.e outer product of two column-vectors.
 	int l = 0, i;
 	double v, e, w;
 	for (; l < n; l++) {
@@ -91,7 +91,7 @@ MC_TARGET_FUNC void mc_outpabmxn(int m, int n, int p, int q, int j, int k, doubl
 MC_TARGET_FUNC void mc_outpabmxnl(int m, int n, int p, int q, int j, int k, long double * restrict c, const long double * a, const long double * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
-//!# c=ai*bi' i.e outer product of two of two column-vectors.
+//!# c=ai*bi' i.e outer product of two column-vectors.
 	int l = 0, i;
 	long double v, e, w;
 	for (; l < n; l++) {

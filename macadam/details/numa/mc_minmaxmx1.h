@@ -140,7 +140,7 @@ MC_TARGET_FUNC void mc_minmaxmx1ff(int m, int n, int j, const float * a, double 
 			for (; i < m; i++) {
 				if (a[(n * i) + j] < *min) {
 					if (wantmin) {
-						*min =  mc_cast(double, a[(n * i) + j]);
+						*min = mc_cast(double, a[(n * i) + j]);
 					}
 					if (wantp) {
 						*p = i;
@@ -148,7 +148,7 @@ MC_TARGET_FUNC void mc_minmaxmx1ff(int m, int n, int j, const float * a, double 
 				}
 				if (a[(n * i) + j] > *max) {
 					if (wantmax) {
-						*max =  mc_cast(double, a[(n * i) + j]);
+						*max = mc_cast(double, a[(n * i) + j]);
 					}
 					if (wantq) {
 						*q = i;

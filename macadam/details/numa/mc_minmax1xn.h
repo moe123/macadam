@@ -17,8 +17,8 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p);
-	const int wantq   = mc_nonnull(q);
+	const int wantp   = mc_nonnull(p) && wantmin;
+	const int wantq   = mc_nonnull(q) && wantmax;
 
 	int i = 2;
 
@@ -90,8 +90,8 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p);
-	const int wantq   = mc_nonnull(q);
+	const int wantp   = mc_nonnull(p) && wantmin;
+	const int wantq   = mc_nonnull(q) && wantmax;
 
 	int i = 2;
 
@@ -140,7 +140,7 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 			for (; i < n; i++) {
 				if (x[i] < *min) {
 					if (wantmin) {
-						*min =  mc_cast(double, x[i]);
+						*min = mc_cast(double, x[i]);
 					}
 					if (wantp) {
 						*p = i;
@@ -148,7 +148,7 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 				}
 				if (x[i] > *max) {
 					if (wantmax) {
-						*max =  mc_cast(double, x[i]);
+						*max = mc_cast(double, x[i]);
 					}
 					if (wantq) {
 						*q = i;
@@ -163,8 +163,8 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p);
-	const int wantq   = mc_nonnull(q);
+	const int wantp   = mc_nonnull(p) && wantmin;
+	const int wantq   = mc_nonnull(q) && wantmax;
 
 	int i = 2;
 
@@ -236,8 +236,8 @@ MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * mi
 {
 	const int wantmin = mc_nonnull(min);
 	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p);
-	const int wantq   = mc_nonnull(q);
+	const int wantp   = mc_nonnull(p) && wantmin;
+	const int wantq   = mc_nonnull(q) && wantmax;
 
 	int i = 2;
 
