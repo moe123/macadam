@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/mc_target.h>
+#include <macadam/mcswap.h>
 
 #ifndef MC_FLIPRG1XN_H
 #define MC_FLIPRG1XN_H
