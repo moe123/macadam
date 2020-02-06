@@ -14,12 +14,12 @@
 
 #pragma mark - mc_sort1xn_type -
 
-#	define mc_sort1xn_type(type, n, x, f)                                                                                                    \
+#	define mc_sort1xn_type(scalar_type, n, x, f)                                                                                             \
 	mc_scope_begin                                                                                                                           \
 		int __mc_sort1xn_type_i = 0, __mc_sort1xn_type_j;                                                                                     \
-		type __mc_sort1xn_type_w;                                                                                                             \
-		for (; __mc_sort1xn_type_i < n; __mc_sort1xn_type_i++) {                                                                              \
-			for (__mc_sort1xn_type_j = 1; __mc_sort1xn_type_j < (n - __mc_sort1xn_type_i); __mc_sort1xn_type_j++) {                            \
+		scalar_type __mc_sort1xn_type_w;                                                                                                      \
+		for (; __mc_sort1xn_type_i < mc_cast_expr(int, n); __mc_sort1xn_type_i++) {                                                           \
+			for (__mc_sort1xn_type_j = 1; __mc_sort1xn_type_j < (mc_cast_expr(int, n) - __mc_sort1xn_type_i); __mc_sort1xn_type_j++) {         \
 				if ((f == 1) ? (x[__mc_sort1xn_type_j - 1] < x[__mc_sort1xn_type_j]) : (x[__mc_sort1xn_type_j - 1] > x[__mc_sort1xn_type_j])) { \
 					mcswap_var(__mc_sort1xn_type_w, x[__mc_sort1xn_type_j - 1], x[__mc_sort1xn_type_j]);                                         \
 				}                                                                                                                               \

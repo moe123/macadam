@@ -11,22 +11,37 @@
 #ifndef MC_COPY1XN_H
 #define MC_COPY1XN_H
 
+#pragma mark - mc_copy1xn_type -
+
+#	if MC_TARGET_CPP98
+#		define mc_copy1xn_type(type, n, y, x)                         \
+		mc_scope_begin                                                \
+			if (mc_cast_expr(int, n) > 0) {                            \
+				::memcpy(y, x, mc_cast_expr(size_t, n) * sizeof(type)); \
+			}                                                          \
+		mc_scope_end
+#	elif MC_TARGET_C11 && defined(__STDC_LIB_EXT1__)
+#		define mc_copy1xn_type(type, n, y, x)                                                                 \
+		mc_scope_begin                                                                                        \
+			if (mc_cast_expr(int, n) > 0) {                                                                    \
+				memcpy_s(y, mc_cast_expr(size_t, n) * sizeof(type), x, mc_cast_expr(size_t, n) * sizeof(type)); \
+			}                                                                                                  \
+		mc_scope_end
+#	else
+#		define mc_copy1xn_type(type, n, y, x)                                          \
+		mc_scope_begin                                                                 \
+			int __mc_copy1xn_type_i = 0;                                                \
+			for (; __mc_copy1xn_type_i < mc_cast_expr(int, n); __mc_copy1xn_type_i++) { \
+				y[__mc_copy1xn_type_i] = mc_cast_expr(type, x[__mc_copy1xn_type_i]);     \
+			}                                                                           \
+		mc_scope_end
+#	endif
+
 #pragma mark - mc_copy1xn -
 
 MC_TARGET_FUNC void mc_copy1xnf(int n, float * y, const float * x)
 {
-#	if MC_TARGET_CPP98
-		::memcpy(y, x, n * sizeof(float));
-#	elif MC_TARGET_C11 && defined(__STDC_LIB_EXT1__)
-	if (n > 0) {
-		memcpy_s(y, mc_cast(size_t, n) * sizeof(float), x, mc_cast(size_t, n) * sizeof(float));
-	}
-#	else
-	int i = 0;
-	for (; i < n; i++) {
-		y[i] = x[i];
-	}
-#	endif
+	mc_copy1xn_type(float, n, y, x);
 }
 
 MC_TARGET_FUNC void mc_copy1xnff(int n, double * y, const float * x)
@@ -39,34 +54,12 @@ MC_TARGET_FUNC void mc_copy1xnff(int n, double * y, const float * x)
 
 MC_TARGET_FUNC void mc_copy1xn(int n, double * y, const double * x)
 {
-#	if MC_TARGET_CPP98
-		::memcpy(y, x, n * sizeof(double));
-#	elif MC_TARGET_C11 && defined(__STDC_LIB_EXT1__)
-	if (n > 0) {
-		memcpy_s(y, mc_cast(size_t, n) * sizeof(double), x, mc_cast(size_t, n) * sizeof(double));
-	}
-#	else
-	int i = 0;
-	for (; i < n; i++) {
-		y[i] = x[i];
-	}
-#	endif
+	mc_copy1xn_type(double, n, y, x);
 }
 
 MC_TARGET_FUNC void mc_copy1xnl(int n, long double * y, const long double * x)
 {
-#	if MC_TARGET_CPP98
-		::memcpy(y, x, n * sizeof(long double));
-#	elif MC_TARGET_C11 && defined(__STDC_LIB_EXT1__)
-	if (n > 0) {
-		memcpy_s(y, mc_cast(size_t, n) * sizeof(long double), x, mc_cast(size_t, n) * sizeof(long double));
-	}
-#	else
-	int i = 0;
-	for (; i < n; i++) {
-		y[i] = x[i];
-	}
-#	endif
+	mc_copy1xn_type(long double, n, y, x);
 }
 
 #endif /* !MC_COPY1XN_H */

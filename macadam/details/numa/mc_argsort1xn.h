@@ -14,20 +14,20 @@
 
 #pragma mark - mc_argsort1xn_type -
 
-#	define mc_argsort1xn_type(integer_type, n, x, k, f)                                                                              \
-	mc_scope_begin                                                                                                                   \
-		int __mc_argsort1xn_i = 0, __mc_argsort1xn_j;                                                                                 \
-		integer_type __mc_argsort1xn_w;                                                                                               \
-		for (; __mc_argsort1xn_i < n; __mc_argsort1xn_i++) {                                                                          \
-			k[__mc_argsort1xn_i] = mc_cast(integer_type, __mc_argsort1xn_i);                                                           \
-		}                                                                                                                             \
-		for (__mc_argsort1xn_i = 0; __mc_argsort1xn_i < n; __mc_argsort1xn_i++) {                                                     \
-			for (__mc_argsort1xn_j = 1; __mc_argsort1xn_j < (n - __mc_argsort1xn_i); __mc_argsort1xn_j++) {                            \
-				if ((f == 1) ? (x[__mc_argsort1xn_j - 1] < x[__mc_argsort1xn_j]) : (x[__mc_argsort1xn_j - 1] > x[__mc_argsort1xn_j])) { \
-					mcswap_var(__mc_argsort1xn_w, k[__mc_argsort1xn_j - 1], k[__mc_argsort1xn_j]);                                       \
-				}                                                                                                                       \
-			}                                                                                                                          \
-		}                                                                                                                             \
+#	define mc_argsort1xn_type(integer_type, n, x, k, f)                                                                                                  \
+	mc_scope_begin                                                                                                                                       \
+		int __mc_argsort1xn_type_i = 0, __mc_argsort1xn_type_j;                                                                                           \
+		integer_type __mc_argsort1xn_type_w;                                                                                                              \
+		for (; __mc_argsort1xn_type_i < mc_cast_expr(int, n); __mc_argsort1xn_type_i++) {                                                                 \
+			k[__mc_argsort1xn_type_i] = mc_cast(integer_type, __mc_argsort1xn_type_i);                                                                     \
+		}                                                                                                                                                 \
+		for (__mc_argsort1xn_type_i = 0; __mc_argsort1xn_type_i < mc_cast_expr(int, n); __mc_argsort1xn_type_i++) {                                       \
+			for (__mc_argsort1xn_type_j = 1; __mc_argsort1xn_type_j < (mc_cast_expr(int, n) - __mc_argsort1xn_type_i); __mc_argsort1xn_type_j++) {         \
+				if ((f == 1) ? (x[__mc_argsort1xn_type_j - 1] < x[__mc_argsort1xn_type_j]) : (x[__mc_argsort1xn_type_j - 1] > x[__mc_argsort1xn_type_j])) { \
+					mcswap_var(__mc_argsort1xn_type_w, k[__mc_argsort1xn_type_j - 1], k[__mc_argsort1xn_type_j]);                                            \
+				}                                                                                                                                           \
+			}                                                                                                                                              \
+		}                                                                                                                                                 \
 	mc_scope_end
 
 #pragma mark - mc_argsort1xn -
