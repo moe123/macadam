@@ -15,6 +15,8 @@
 
 MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int j, int k, const float * a, const float * b, int f)
 {
+//!# Requires a[m x n] and b[m x n].
+//!# A and B may be the same.
 //!# TwoProduct split factor @see mc_twoproduct.
 	const float cs = mc_cast_expr(float, 4096 + 1);
 

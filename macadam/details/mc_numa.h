@@ -258,6 +258,8 @@
 #	include <macadam/details/numa/mc_svd3x3.h>
 #	include <macadam/details/numa/mc_svdmx3.h>
 #	include <macadam/details/numa/mc_svdmxn.h>
+#	include <macadam/details/numa/mc_swap1xn.h>
+#	include <macadam/details/numa/mc_swapmx1.h>
 #	include <macadam/details/numa/mc_sytrize2x2.h>
 #	include <macadam/details/numa/mc_sytrize3x3.h>
 #	include <macadam/details/numa/mc_sytrizenxn.h>
