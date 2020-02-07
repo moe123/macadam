@@ -76,7 +76,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 //!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
-					dot = mc_dotpmx1f(m, n, i, k, q, q, 1);
+					dot = mc_dotpmx1f(m, n, n, i, k, q, q, 1);
 					if (wantr) {
 						r[(n * i) + k] = r[(n * i) + k] + dot;
 					}
@@ -116,7 +116,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 //!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
-					dot = mc_dotpmx1f(m, n, k, j, q, q, 1);
+					dot = mc_dotpmx1f(m, n, n, k, j, q, q, 1);
 					if (wantr) {
 						r[(n * k) + j] = dot;
 					}
@@ -189,7 +189,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 //!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
-					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
+					dot = mc_dotpmx1(m, n, n, i, k, q, q, 1);
 					if (wantr) {
 						r[(n * i) + k] = r[(n * i) + k] + dot;
 					}
@@ -229,7 +229,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 //!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
-					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
+					dot = mc_dotpmx1(m, n, n, k, j, q, q, 1);
 					if (wantr) {
 						r[(n * k) + j] = dot;
 					}
@@ -302,7 +302,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 //!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
-					dot = mc_dotpmx1(m, n, i, k, q, q, 1);
+					dot = mc_dotpmx1(m, n, n, i, k, q, q, 1);
 					if (wantr) {
 						r[(n * i) + k] = r[(n * i) + k] + dot;
 					}
@@ -342,7 +342,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 //!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
-					dot = mc_dotpmx1(m, n, k, j, q, q, 1);
+					dot = mc_dotpmx1(m, n, n, k, j, q, q, 1);
 					if (wantr) {
 						r[(n * k) + j] = dot;
 					}
@@ -415,7 +415,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 //!# Step 2: re-orthogonalization.
 			if (k > 0) {
 				for (i = 0; i < k; i++) {
-					dot = mc_dotpmx1l(m, n, i, k, q, q, 1);
+					dot = mc_dotpmx1l(m, n, n, i, k, q, q, 1);
 					if (wantr) {
 						r[(n * i) + k] = r[(n * i) + k] + dot;
 					}
@@ -455,7 +455,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 //!# Step 5: orthogonalization.
 			if (k < n) {
 				for (j = k + 1; j < n; j++) {
-					dot = mc_dotpmx1l(m, n, k, j, q, q, 1);
+					dot = mc_dotpmx1l(m, n, n, k, j, q, q, 1);
 					if (wantr) {
 						r[(n * k) + j] = dot;
 					}

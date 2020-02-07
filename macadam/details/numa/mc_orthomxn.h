@@ -47,7 +47,7 @@ MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float 
 		bnorm = 0.0f;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
-				dot = mc_dotpmx1f(m, n, k, j, q, q, 1);
+				dot = mc_dotpmx1f(m, n, n, k, j, q, q, 1);
 				if (wantr) {
 					r[(n * k) + j] = dot;
 				}
@@ -116,7 +116,7 @@ MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, doubl
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
-				dot = mc_dotpmx1(m, n, k, j, q, q, 1);
+				dot = mc_dotpmx1(m, n, n, k, j, q, q, 1);
 				if (wantr) {
 					r[(n * k) + j] = dot;
 				}
@@ -185,7 +185,7 @@ MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, doubl
 		bnorm = 0.0;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
-				dot = mc_dotpmx1(m, n, k, j, q, q, 1);
+				dot = mc_dotpmx1(m, n, n, k, j, q, q, 1);
 				if (wantr) {
 					r[(n * k) + j] = dot;
 				}
@@ -254,7 +254,7 @@ MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double
 		bnorm = 0.0L;
 		for (j = 0; j < n; j++) {
 			for (k = 0; k < j; k++) {
-				dot = mc_dotpmx1l(m, n, k, j, q, q, 1);
+				dot = mc_dotpmx1l(m, n, n, k, j, q, q, 1);
 				if (wantr) {
 					r[(n * k) + j] = dot;
 				}

@@ -13,22 +13,22 @@
 
 #pragma mark - mc_dotpmx1 -
 
-MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int j, int k, const float * a, const float * b, int f)
+MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int p, int j, int k, const float * a, const float * b, int f)
 {
-//!# Requires a[m x n] and b[m x n].
+//!# Requires a[m x n] and b[m x p].
 //!# A and B may be the same.
 //!# TwoProduct split factor @see mc_twoproduct.
 	const float cs = mc_cast_expr(float, 4096 + 1);
 
 	int i   = 0;
-	float p = 0.0f, s = 0.0f;
+	float w = 0.0f, s = 0.0f;
 	float h, q, r, x1, x2, y1, y2;
 
 	if (m > 0) {
 		switch (f) {
 			case 0:
 				for (; i < m; i++) {
-					s = s + (a[(n * i) + j] * b[(n * i) + k]);
+					s = s + (a[(n * i) + j] * b[(p * i) + k]);
 				}
 			break;
 			case 1:
@@ -38,15 +38,15 @@ MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int j, int k, const float * a, co
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
 //!# Computing (SISC), 26(6):1955-1988, 2005.
 
-//!# TwoProduct(a[(n * i) + j],b[(n * i) + k],h,r).
+//!# TwoProduct(a[(n * i) + j],b[(p * i) + k],h,r).
 					q  = a[(n * i) + j];
 //!# split a[(n * i) + j] into x1,x2.
 					r  = cs * q;
 					x2 = r - q;
 					x1 = r - x2;
 					x2 = q - x1;
-					r  = b[(n * i) + k];
-//!# h=a[(n * i) + j]*b[(n * i) + k].
+					r  = b[(p * i) + k];
+//!# h=a[(n * i) + j]*b[(p * i) + k].
 					h  = q * r;
 //!# split y into y1,y2.
 					q  = cs * r;
@@ -62,14 +62,14 @@ MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int j, int k, const float * a, co
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -77,23 +77,23 @@ MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int j, int k, const float * a, co
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
-MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int j, int k, const float * a, const float * b, int f)
+MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int p, int j, int k, const float * a, const float * b, int f)
 {
 //!# TwoProduct split factor @see mc_twoproduct.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
 
 	int i    = 0;
-	double p = 0.0, s = 0.0;
+	double w = 0.0, s = 0.0;
 	double h, q, r, x1, x2, y1, y2;
 
 	if (m > 0) {
 		switch (f) {
 			case 0:
 				for (; i < m; i++) {
-					s = s + (mc_cast(double, a[(n * i) + j]) * mc_cast(double, b[(n * i) + k]));
+					s = s + (mc_cast(double, a[(n * i) + j]) * mc_cast(double, b[(p * i) + k]));
 				}
 			break;
 			case 1:
@@ -103,15 +103,15 @@ MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int j, int k, const float * a, 
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
 //!# Computing (SISC), 26(6):1955-1988, 2005.
 
-//!# TwoProduct(a[(n * i) + j],b[(n * i) + k],h,r).
+//!# TwoProduct(a[(n * i) + j],b[(p * i) + k],h,r).
 					q  = mc_cast(double, a[(n * i) + j]);
 //!# split a[(n * i) + j] into x1,x2.
 					r  = cs * q;
 					x2 = r - q;
 					x1 = r - x2;
 					x2 = q - x1;
-					r  = mc_cast(double, b[(n * i) + k]);
-//!# h=a[(n * i) + j]*b[(n * i) + k].
+					r  = mc_cast(double, b[(p * i) + k]);
+//!# h=a[(n * i) + j]*b[(p * i) + k].
 					h  = q * r;
 //!# split y into y1,y2.
 					q  = cs * r;
@@ -127,14 +127,14 @@ MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int j, int k, const float * a, 
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -142,23 +142,23 @@ MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int j, int k, const float * a, 
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
-MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int j, int k, const double * a, const double * b, int f)
+MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int p, int j, int k, const double * a, const double * b, int f)
 {
 //!# TwoProduct split factor @see mc_twoproduct.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
 
 	int i    = 0;
-	double p = 0.0, s = 0.0;
+	double w = 0.0, s = 0.0;
 	double h, q, r, x1, x2, y1, y2;
 
 	if (m > 0) {
 		switch (f) {
 			case 0:
 				for (; i < m; i++) {
-					s = s + (a[(n * i) + j] * b[(n * i) + k]);
+					s = s + (a[(n * i) + j] * b[(p * i) + k]);
 				}
 			break;
 			case 1:
@@ -168,15 +168,15 @@ MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int j, int k, const double * a, c
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
 //!# Computing (SISC), 26(6):1955-1988, 2005.
 
-//!# TwoProduct(a[(n * i) + j],b[(n * i) + k],h,r).
+//!# TwoProduct(a[(n * i) + j],b[(p * i) + k],h,r).
 					q  = a[(n * i) + j];
 //!# split a[(n * i) + j] into x1,x2.
 					r  = cs * q;
 					x2 = r - q;
 					x1 = r - x2;
 					x2 = q - x1;
-					r  = b[(n * i) + k];
-//!# h=a[(n * i) + j]*b[(n * i) + k].
+					r  = b[(p * i) + k];
+//!# h=a[(n * i) + j]*b[(p * i) + k].
 					h  = q * r;
 //!# split y into y1,y2.
 					q  = cs * r;
@@ -192,14 +192,14 @@ MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int j, int k, const double * a, c
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -207,10 +207,10 @@ MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int j, int k, const double * a, c
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
-MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int j, int k, const long double * a, const long double * b, int f)
+MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int p, int j, int k, const long double * a, const long double * b, int f)
 {
 //!# TwoProduct split factor @see mc_twoproduct.
 #	if !MC_TARGET_MSVC_CPP
@@ -220,14 +220,14 @@ MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int j, int k, const long do
 #	endif
 
 	int i         = 0;
-	long double p = 0.0L, s = 0.0L;
+	long double w = 0.0L, s = 0.0L;
 	long double h, q, r, x1, x2, y1, y2;
 
 	if (m > 0) {
 		switch (f) {
 			case 0:
 				for (; i < m; i++) {
-					s = s + (a[(n * i) + j] * b[(n * i) + k]);
+					s = s + (a[(n * i) + j] * b[(p * i) + k]);
 				}
 			break;
 			case 1:
@@ -237,15 +237,15 @@ MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int j, int k, const long do
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
 //!# Computing (SISC), 26(6):1955-1988, 2005.
 
-//!# TwoProduct(a[(n * i) + j],b[(n * i) + k],h,r).
+//!# TwoProduct(a[(n * i) + j],b[(p * i) + k],h,r).
 					q  = a[(n * i) + j];
 //!# split a[(n * i) + j] into x1,x2.
 					r  = cs * q;
 					x2 = r - q;
 					x1 = r - x2;
 					x2 = q - x1;
-					r  = b[(n * i) + k];
-//!# h=a[(n * i) + j]*b[(n * i) + k].
+					r  = b[(p * i) + k];
+//!# h=a[(n * i) + j]*b[(p * i) + k].
 					h  = q * r;
 //!# split y into y1,y2.
 					q  = cs * r;
@@ -261,14 +261,14 @@ MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int j, int k, const long do
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -276,7 +276,7 @@ MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int j, int k, const long do
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
 #endif /* !MC_DOTPMX1_H */

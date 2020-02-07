@@ -15,17 +15,17 @@
 
 MC_TARGET_FUNC void mc_dotpnxnf(int n, float * restrict c, const float * a, const float * b, int d, int f)
 {
-	mc_dotpmxnf(n, n, c, a, b, d, f);
+	mc_dotpmxnf(n, n, n, c, a, b, d, f);
 }
 
 MC_TARGET_FUNC void mc_dotpnxn(int n, double * restrict c, const double * a, const double * b, int d, int f)
 {
-	mc_dotpmxn(n, n, c, a, b, d, f);
+	mc_dotpmxn(n, n, n, c, a, b, d, f);
 }
 
 MC_TARGET_FUNC void mc_dotpnxnl(int n, long double * restrict c, const long double * a, const long double * b, int d, int f)
 {
-	mc_dotpmxnl(n, n, c, a, b, d, f);
+	mc_dotpmxnl(n, n, n, c, a, b, d, f);
 }
 
 #endif /* !MC_DOTPNXN_H */

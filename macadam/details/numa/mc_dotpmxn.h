@@ -14,9 +14,9 @@
 
 #pragma mark - mc_dotpmxn -
 
-MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, float * restrict c, const float * a, const float * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b, int d, int f)
 {
-//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 //!# f=0 computing the dot product of each rows.
 //!# f=0 computing the dot product of each columns.
 	int i = 0;
@@ -25,21 +25,21 @@ MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, float * restrict c, const float * 
 		case 0:
 			for (; i < m; i++) {
 				const float * x = a + (n * i);
-				const float * y = b + (n * i);
+				const float * y = b + (p * i);
 				c[i]            = mc_dotp1xnf(n, x, y, f);
 			}
 		break;
 		case 1:
 			for (; i < n; i++) {
-				c[i] = mc_dotpmx1f(m, n, i, i, a, b, f);
+				c[i] = mc_dotpmx1f(m, n, p, i, i, a, b, f);
 			}
 		break;
 	}
 }
 
-MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, double * restrict c, const float * a, const float * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b, int d, int f)
 {
-//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 //!# f=0 computing the dot product of each rows.
 //!# f=0 computing the dot product of each columns.
 	int i = 0;
@@ -48,21 +48,21 @@ MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, double * restrict c, const float 
 		case 0:
 			for (; i < m; i++) {
 				const float * x = a + (n * i);
-				const float * y = b + (n * i);
+				const float * y = b + (p * i);
 				c[i]            = mc_dotp1xnff(n, x, y, f);
 			}
 		break;
 		case 1:
 			for (; i < n; i++) {
-				c[i] = mc_dotpmx1ff(m, n, i, i, a, b, f);
+				c[i] = mc_dotpmx1ff(m, n, p, i, i, a, b, f);
 			}
 		break;
 	}
 }
 
-MC_TARGET_FUNC void mc_dotpmxn(int m, int n, double * restrict c, const double * a, const double * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxn(int m, int n, int p, double * restrict c, const double * a, const double * b, int d, int f)
 {
-//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 //!# f=0 computing the dot product of each rows.
 //!# f=0 computing the dot product of each columns.
 	int i = 0;
@@ -71,34 +71,34 @@ MC_TARGET_FUNC void mc_dotpmxn(int m, int n, double * restrict c, const double *
 		case 0:
 			for (; i < m; i++) {
 				const double * x = a + (n * i);
-				const double * y = b + (n * i);
+				const double * y = b + (p * i);
 				c[i]             = mc_dotp1xn(n, x, y, f);
 			}
 		break;
 		case 1:
 			for (; i < n; i++) {
-				c[i] = mc_dotpmx1(m, n, i, i, a, b, f);
+				c[i] = mc_dotpmx1(m, n, p, i, i, a, b, f);
 			}
 		break;
 	}
 }
 
-MC_TARGET_FUNC void mc_dotpmxnl(int m, int n, long double * restrict c, const long double * a, const long double * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b, int d, int f)
 {
-//!# Returns dotp of A and B such as c[1 x p]=sum(a_ij.*b_ij) where p=m when d=0 and  p=n when d=1.
+//!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 	int i = 0;
 	switch (d)
 	{
 		case 0:
 			for (; i < m; i++) {
 				const long double * x = a + (n * i);
-				const long double * y = b + (n * i);
+				const long double * y = b + (p * i);
 				c[i]                  = mc_dotp1xnl(n, x, y, f);
 			}
 		break;
 		case 1:
 			for (; i < n; i++) {
-				c[i] = mc_dotpmx1l(m, n, i, i, a, b, f);
+				c[i] = mc_dotpmx1l(m, n, p, i, i, a, b, f);
 			}
 		break;
 	}

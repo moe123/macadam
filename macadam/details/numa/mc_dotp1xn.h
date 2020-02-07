@@ -19,7 +19,7 @@ MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
 	const float cs = mc_cast_expr(float, 4096 + 1);
 
 	int i   = 0;
-	float p = 0.0f, s = 0.0f;
+	float w = 0.0f, s = 0.0f;
 	float h, q, r, x1, x2, y1, y2;
 
 	if (n > 0) {
@@ -60,14 +60,14 @@ MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -75,7 +75,7 @@ MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
 MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int f)
@@ -84,7 +84,7 @@ MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int 
 	const double cs = mc_cast_expr(double, 134217728 + 1);
 
 	int i    = 0;
-	double p = 0.0, s = 0.0;
+	double w = 0.0, s = 0.0;
 	double h, q, r, x1, x2, y1, y2;
 
 	if (n > 0) {
@@ -125,14 +125,14 @@ MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int 
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -140,7 +140,7 @@ MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int 
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
 MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int f)
@@ -149,7 +149,7 @@ MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int 
 	const double cs = mc_cast_expr(double, 134217728 + 1);
 
 	int i    = 0;
-	double p = 0.0, s = 0.0;
+	double w = 0.0, s = 0.0;
 	double h, q, r, x1, x2, y1, y2;
 
 	if (n > 0) {
@@ -190,14 +190,14 @@ MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int 
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -205,7 +205,7 @@ MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int 
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
 MC_TARGET_FUNC long double mc_dotp1xnl(int n, const long double * x, const long double * y, int f)
@@ -218,7 +218,7 @@ MC_TARGET_FUNC long double mc_dotp1xnl(int n, const long double * x, const long 
 #	endif
 
 	int i         = 0;
-	long double p = 0.0L, s = 0.0L;
+	long double w = 0.0L, s = 0.0L;
 	long double h, q, r, x1, x2, y1, y2;
 
 	if (n > 0) {
@@ -259,14 +259,14 @@ MC_TARGET_FUNC long double mc_dotp1xnl(int n, const long double * x, const long 
 					q  = q - x1;
 					x2 = x2 * y2;
 					r  = x2 - q;
-//!# (p,q)=TwoSum(p,h).
-					x1 = p + h;
-					x2 = x1 - p;
+//!# (w,q)=TwoSum(w,h).
+					x1 = w + h;
+					x2 = x1 - w;
 					y1 = x1 - x2;
 					y2 = h - x2;
-					q  = p - y1;
+					q  = w - y1;
 					q  = q + y2;
-					p  = x1;
+					w  = x1;
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
@@ -274,7 +274,7 @@ MC_TARGET_FUNC long double mc_dotp1xnl(int n, const long double * x, const long 
 			break;
 		}
 	}
-	return p + s;
+	return w + s;
 }
 
 #endif /* !MC_DOTP1XN_H */
