@@ -22,15 +22,15 @@
 
 #pragma mark - mc_orthrmxn -
 
-MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float * q, float * restrict r, float * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float * q, float * restrict r, float * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pv[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
 //!# algorithm with iterative orthogonalization and column pivoting`.
-	const int wantr  = mc_nonnull(r);
-	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
+	const int wantr   = mc_nonnull(r);
+	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
 
 	int i, j, k, l, p;
 	float bnorm, cnorm, dot, s;
@@ -43,11 +43,11 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 			mc_eyenxnf(n, r, 0);
 		}
 
-		if (wantpv) {
+		if (wantpvi) {
 			for (j = 0; j < n; j++) {
-				s     = mc_l2normmx1f(m, n, j, q);
-				w[j]  = mc_raise2f(s);
-				pv[j] = j;
+				s      = mc_l2normmx1f(m, n, j, q);
+				w[j]   = mc_raise2f(s);
+				pvi[j] = j;
 			}
 		}
 
@@ -60,7 +60,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 		bnorm = 0.0f;
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
-			if (wantpv) {
+			if (wantpvi) {
 				mc_minmax1xnf(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
 				if(k != l) {
@@ -70,7 +70,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
 						}
 					}
-					mcswap_var(p, pv[k], pv[l]);
+					mcswap_var(p, pvi[k], pvi[l]);
 				}
 			}
 //!# Step 2: re-orthogonalization.
@@ -123,7 +123,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
-					if (wantpv) {
+					if (wantpvi) {
 						s     = mc_l2normmx1f(m, n, j, q);
 						w[j]  = mc_raise2f(s);
 					}
@@ -135,15 +135,15 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r, double * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r, double * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pv[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column step
 //!# if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is not null
 //!# upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm with iterative
 //!# orthogonalization and column pivoting`.
-	const int wantr = mc_nonnull(r);
-	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
+	const int wantr   = mc_nonnull(r);
+	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
 
 	int i, j, k, l, p;
 	double bnorm, cnorm, dot, told, s;
@@ -155,11 +155,11 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 			mc_eyenxn(n, r, 0);
 		}
 
-		if (wantpv) {
+		if (wantpvi) {
 			for (j = 0; j < n; j++) {
-				s     = mc_l2normmx1(m, n, j, q);
-				w[j]  = mc_raise2(s);
-				pv[j] = j;
+				s      = mc_l2normmx1(m, n, j, q);
+				w[j]   = mc_raise2(s);
+				pvi[j] = j;
 			}
 		}
 
@@ -173,7 +173,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 		bnorm = 0.0;
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
-			if (wantpv) {
+			if (wantpvi) {
 				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
 				if(k != l) {
@@ -183,7 +183,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
 						}
 					}
-					mcswap_var(p, pv[k], pv[l]);
+					mcswap_var(p, pvi[k], pvi[l]);
 				}
 			}
 //!# Step 2: re-orthogonalization.
@@ -236,7 +236,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
-					if (wantpv) {
+					if (wantpvi) {
 						s     = mc_l2normmx1(m, n, j, q);
 						w[j]  = mc_raise2(s);
 					}
@@ -248,15 +248,15 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, double * q, double * restrict r, double * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, double * q, double * restrict r, double * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pv[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
 //!# algorithm with iterative orthogonalization and column pivoting`.
-	const int wantr = mc_nonnull(r);
-	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
+	const int wantr   = mc_nonnull(r);
+	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
 
 	int i, j, k, l, p;
 	double bnorm, cnorm, dot, s;
@@ -269,11 +269,11 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 			mc_eyenxn(n, r, 0);
 		}
 
-		if (wantpv) {
+		if (wantpvi) {
 			for (j = 0; j < n; j++) {
-				s     = mc_l2normmx1(m, n, j, q);
-				w[j]  = mc_raise2(s);
-				pv[j] = j;
+				s      = mc_l2normmx1(m, n, j, q);
+				w[j]   = mc_raise2(s);
+				pvi[j] = j;
 			}
 		}
 
@@ -286,7 +286,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 		bnorm = 0.0;
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
-			if (wantpv) {
+			if (wantpvi) {
 				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
 				if(k != l) {
@@ -296,7 +296,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
 						}
 					}
-					mcswap_var(p, pv[k], pv[l]);
+					mcswap_var(p, pvi[k], pvi[l]);
 				}
 			}
 //!# Step 2: re-orthogonalization.
@@ -349,7 +349,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
-					if (wantpv) {
+					if (wantpvi) {
 						s     = mc_l2normmx1(m, n, j, q);
 						w[j]  = mc_raise2(s);
 					}
@@ -361,15 +361,15 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r, long double * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r, long double * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pv[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
 //!# algorithm with iterative orthogonalization and column pivoting`.
-	const int wantr = mc_nonnull(r);
-	const int wantpv = mc_nonnull(w) && mc_nonnull(pv);
+	const int wantr   = mc_nonnull(r);
+	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
 
 	int i, j, k, l, p;
 	long double bnorm, cnorm, dot, s;
@@ -382,11 +382,11 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 			mc_eyenxnl(n, r, 0);
 		}
 
-		if (wantpv) {
+		if (wantpvi) {
 			for (j = 0; j < n; j++) {
-				s     = mc_l2normmx1l(m, n, j, q);
-				w[j]  = mc_raise2l(s);
-				pv[j] = j;
+				s      = mc_l2normmx1l(m, n, j, q);
+				w[j]   = mc_raise2l(s);
+				pvi[j] = j;
 			}
 		}
 
@@ -399,7 +399,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 		bnorm = 0.0L;
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
-			if (wantpv) {
+			if (wantpvi) {
 				mc_minmax1xnl(n - k, w + k, NULL, &s, NULL, &l);
 				l = l + k;
 				if(k != l) {
@@ -409,7 +409,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 							mcswap_var(s, r[(n * i) + k], r[(n * i) + l]);
 						}
 					}
-					mcswap_var(p, pv[k], pv[l]);
+					mcswap_var(p, pvi[k], pvi[l]);
 				}
 			}
 //!# Step 2: re-orthogonalization.
@@ -462,7 +462,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 					for (i = 0; i < m; i++) {
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
-					if (wantpv) {
+					if (wantpvi) {
 						s     = mc_l2normmx1l(m, n, j, q);
 						w[j]  = mc_raise2l(s);
 					}

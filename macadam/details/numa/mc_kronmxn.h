@@ -1,19 +1,19 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_kronabmxn.h
+// mc_kronmxn.h
 //
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
 #include <macadam/details/mc_target.h>
 
-#ifndef MC_KRONABMXN_H
-#define MC_KRONABMXN_H
+#ifndef MC_KRONMXN_H
+#define MC_KRONMXN_H
 
-#pragma mark - mc_kronabmxn -
+#pragma mark - mc_kronmxn -
 
-MC_TARGET_FUNC void mc_kronabmxnf(int m, int n, int p, int q, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_kronmxnf(int m, int n, int p, int q, float * restrict c, const float * a, const float * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_kronabmxnf(int m, int n, int p, int q, float * restrict c
 	}
 }
 
-MC_TARGET_FUNC void mc_kronabmxnff(int m, int n, int p, int q, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_kronmxnff(int m, int n, int p, int q, double * restrict c, const float * a, const float * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_kronabmxnff(int m, int n, int p, int q, double * restrict
 	}
 }
 
-MC_TARGET_FUNC void mc_kronabmxnfd(int m, int n, int p, int q, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_kronmxnfd(int m, int n, int p, int q, double * restrict c, const float * a, const double * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_kronabmxnfd(int m, int n, int p, int q, double * restrict
 	}
 }
 
-MC_TARGET_FUNC void mc_kronabmxndf(int m, int n, int p, int q, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_kronmxndf(int m, int n, int p, int q, double * restrict c, const double * a, const float * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -77,7 +77,7 @@ MC_TARGET_FUNC void mc_kronabmxndf(int m, int n, int p, int q, double * restrict
 	}
 }
 
-MC_TARGET_FUNC void mc_kronabmxn(int m, int n, int p, int q, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_kronmxn(int m, int n, int p, int q, double * restrict c, const double * a, const double * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -93,7 +93,7 @@ MC_TARGET_FUNC void mc_kronabmxn(int m, int n, int p, int q, double * restrict c
 	}
 }
 
-MC_TARGET_FUNC void mc_kronabmxnl(int m, int n, int p, int q, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_kronmxnl(int m, int n, int p, int q, long double * restrict c, const long double * a, const long double * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -109,6 +109,6 @@ MC_TARGET_FUNC void mc_kronabmxnl(int m, int n, int p, int q, long double * rest
 	}
 }
 
-#endif /* !MC_KRONABMXN_H */
+#endif /* !MC_KRONMXN_H */
 
 /* EOF */

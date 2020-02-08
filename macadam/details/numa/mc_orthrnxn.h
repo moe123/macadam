@@ -13,32 +13,32 @@
 
 #pragma mark - mc_orthrnxn -
 
-MC_TARGET_FUNC int mc_orthrnxnf(int n, const float * a, float tol, float * q, float * restrict r, float * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrnxnf(int n, const float * a, float tol, float * q, float * restrict r, float * restrict w, int * pvi)
 {
 //!# A and Q may be the same. Forming a orthr-normalized basis Q
 //!# of a square matrix using Modified Gram-Schmidt method.
-	return mc_orthrmxnf(n, n, a, tol, q, r, w, pv);
+	return mc_orthrmxnf(n, n, a, tol, q, r, w, pvi);
 }
 
-MC_TARGET_FUNC int mc_orthrnxnff(int n, const float * a, float tol, double * q, double * restrict r, double * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrnxnff(int n, const float * a, float tol, double * q, double * restrict r, double * restrict w, int * pvi)
 {
 //!# Forming a orthr-normalized basis Q of a square
 //!# matrix using Modified Gram-Schmidt method.
-	return mc_orthrmxnff(n, n, a, tol, q, r, w, pv);
+	return mc_orthrmxnff(n, n, a, tol, q, r, w, pvi);
 }
 
-MC_TARGET_FUNC int mc_orthrnxn(int n, const double * a, double tol, double * q, double * restrict r, double * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrnxn(int n, const double * a, double tol, double * q, double * restrict r, double * restrict w, int * pvi)
 {
 //!# A and Q may be the same. Forming a orthr-normalized basis Q
 //!# of a square matrix using Modified Gram-Schmidt method.
-	return mc_orthrmxn(n, n, a, tol, q, r, w, pv);
+	return mc_orthrmxn(n, n, a, tol, q, r, w, pvi);
 }
 
-MC_TARGET_FUNC int mc_orthrnxnl(int n, const long double * a, long double tol, long double * q, long double * restrict r, long double * restrict w, int * pv)
+MC_TARGET_FUNC int mc_orthrnxnl(int n, const long double * a, long double tol, long double * q, long double * restrict r, long double * restrict w, int * pvi)
 {
 //!# A and Q may be the same. Forming a orthr-normalized basis Q
 //!# of a square matrix using Modified Gram-Schmidt method.
-	return mc_orthrmxnl(n, n, a, tol, q, r, w, pv);
+	return mc_orthrmxnl(n, n, a, tol, q, r, w, pvi);
 }
 
 #endif /* !MC_ORTHRNXN_H */

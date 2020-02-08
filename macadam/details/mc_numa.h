@@ -137,7 +137,7 @@
 #	include <macadam/details/numa/mc_infnormnxn.h>
 #	include <macadam/details/numa/mc_isort1xn.h>
 #	include <macadam/details/numa/mc_jacobisynxn.h>
-#	include <macadam/details/numa/mc_kronabmxn.h>
+#	include <macadam/details/numa/mc_kronmxn.h>
 #	include <macadam/details/numa/mc_l1norm1xn.h>
 #	include <macadam/details/numa/mc_l2norm1x2.h>
 #	include <macadam/details/numa/mc_l2norm1x3.h>
