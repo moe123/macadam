@@ -13,33 +13,33 @@
 
 #pragma mark - mc_centernxn -
 
-MC_TARGET_FUNC void mc_centernxnf(int n, float * c, const float * a)
+MC_TARGET_FUNC void mc_centernxnf(int n, float * c, const float * a, int f)
 {
 //!# Requires c[n x n] and a[n x n] where 1 < n <= m. C and A may be
 //!# the same. Centering A matrix to its column mean.
-	mc_centermxnf(n, n, c, a);
+	mc_centermxnf(n, n, c, a, f);
 }
 
-MC_TARGET_FUNC void mc_centernxnff(int n, double * c, const float * a)
+MC_TARGET_FUNC void mc_centernxnff(int n, double * c, const float * a, int f)
 {
 //!# Requires c[n x n] and a[n x n] where 1 < n <= m. Centering
 //!# A matrix to its column mean.
-	mc_centermxnff(n, n, c, a);
+	mc_centermxnff(n, n, c, a, f);
 }
 
 
-MC_TARGET_FUNC void mc_centernxn(int n, double * c, const double * a)
+MC_TARGET_FUNC void mc_centernxn(int n, double * c, const double * a, int f)
 {
 //!# Requires c[n x n] and a[n x n] where 1 < n <= m. C and A may be
 //!# the same. Centering A matrix to its column mean.
-	mc_centermxn(n, n, c, a);
+	mc_centermxn(n, n, c, a, f);
 }
 
-MC_TARGET_FUNC void mc_centernxnl(int n, long double * c, const long double * a)
+MC_TARGET_FUNC void mc_centernxnl(int n, long double * c, const long double * a, int f)
 {
 //!# Requires c[n x n] and a[n x n] where 1 < n <= m. C and A may be
 //!# the same. Centering A matrix to its column mean.
-	mc_centermxnl(n, n, c, a);
+	mc_centermxnl(n, n, c, a, f);
 }
 
 #endif /* !MC_CENTERNXN_H */
