@@ -23,9 +23,9 @@ MC_TARGET_FUNC int mc_covarmxnf(int m, int n, float * restrict c, const float * 
 	float mj, mk;
 	if (1 < n && n <= m) {
 		for (; j < n; j++) {
-			mj = mc_meanmx1f(m, n, j, a, b, 5);
+			mj = mc_meanmx1f(m, n, j, a, 0, 5);
 			for (k = 0; k < n; k++) {
-				mk             = mc_meanmx1f(m, n, k, a, b, 5);
+				mk             = mc_meanmx1f(m, n, k, a, 0, 5);
 				c[(n * j) + k] = 0.0f;
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((a[(n * i) + j] - mj) * (a[(n * i) + k] - mk));
@@ -48,9 +48,9 @@ MC_TARGET_FUNC int mc_covarmxnff(int m, int n, double * c, const float * a, int 
 	double mj, mk;
 	if (1 < n && n <= m) {
 		for (; j < n; j++) {
-			mj = mc_cast(double, mc_meanmx1f(m, n, j, a, b, 5));
+			mj = mc_cast(double, mc_meanmx1f(m, n, j, a, 0, 5));
 			for (k = 0; k < n; k++) {
-				mk             = mc_cast(double, mc_meanmx1f(m, n, k, a, b, 5));
+				mk             = mc_cast(double, mc_meanmx1f(m, n, k, a, 0, 5));
 				c[(n * j) + k] = 0.0;
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((mc_cast(double, a[(n * i) + j]) - mj) * (mc_cast(double, a[(n * i) + k]) - mk));
@@ -73,9 +73,9 @@ MC_TARGET_FUNC int mc_covarmxn(int m, int n, double * restrict c, const double *
 	double mj, mk;
 	if (1 < n && n <= m) {
 		for (; j < n; j++) {
-			mj = mc_meanmx1(m, n, j, a, b, 5);
+			mj = mc_meanmx1(m, n, j, a, 0, 5);
 			for (k = 0; k < n; k++) {
-				mk             = mc_meanmx1(m, n, k, a, b, 5);
+				mk             = mc_meanmx1(m, n, k, a, 0, 5);
 				c[(n * j) + k] = 0.0;
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((a[(n * i) + j] - mj) * (a[(n * i) + k] - mk));
@@ -98,9 +98,9 @@ MC_TARGET_FUNC int mc_covarmxnl(int m, int n, long double * restrict c, const lo
 	long double mj, mk;
 	if (1 < n && n <= m) {
 		for (; j < n; j++) {
-			mj = mc_meanmx1l(m, n, j, a, b, 5);
+			mj = mc_meanmx1l(m, n, j, a, 0, 5);
 			for (k = 0; k < n; k++) {
-				mk             = mc_meanmx1l(m, n, k, a, b, 5);
+				mk             = mc_meanmx1l(m, n, k, a, 0, 5);
 				c[(n * j) + k] = 0.0L;
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((a[(n * i) + j] - mj) * (a[(n * i) + k] - mk));

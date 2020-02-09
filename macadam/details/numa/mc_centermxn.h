@@ -20,13 +20,13 @@ MC_TARGET_FUNC void mc_centermxnf(int m, int n, float * c, const float * a, int 
 //!# the same. Centering A matrix to its column mean.
 //!# f=0: no scaling.
 //!# f=1: standard deviations scaling.
-//!# f=2: root mean square scaling and second moment.
+//!# f=2: root mean square scaling.
 	int i, j = 0;
 	float mj, wj;
 	switch (f) {
 		case 0:
 			for (; j < n; j++) {
-				mj = mc_meanmx1f(m, n, j, a, 1, 5);
+				mj = mc_meanmx1f(m, n, j, a, 0, 5);
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = a[(n * i) + j] - mj;
 				}
@@ -53,13 +53,13 @@ MC_TARGET_FUNC void mc_centermxnff(int m, int n, double * c, const float * a, in
 //!# A matrix to its column mean.
 //!# f=0: no scaling.
 //!# f=1: standard deviations scaling.
-//!# f=2: root mean square scaling and second moment.
+//!# f=2: root mean square scaling.
 	int i, j = 0;
 	double mj, wj;
 	switch (f) {
 		case 0:
 			for (; j < n; j++) {
-				mj = mc_meanmx1ff(m, n, j, a, 1, 5);
+				mj = mc_meanmx1ff(m, n, j, a, 0, 5);
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = mc_cast(double, a[(n * i) + j]) - mj;
 				}
@@ -96,13 +96,13 @@ MC_TARGET_FUNC void mc_centermxn(int m, int n, double * c, const double * a, int
 //!# the same. Centering A matrix to its column mean.
 //!# f=0: no scaling.
 //!# f=1: standard deviations scaling.
-//!# f=2: root mean square scaling and second moment.
+//!# f=2: root mean square scaling.
 	int i, j = 0;
 	double mj, wj;
 	switch (f) {
 		case 0:
 			for (; j < n; j++) {
-				mj = mc_meanmx1(m, n, j, a, 1, 5);
+				mj = mc_meanmx1(m, n, j, a, 0, 5);
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = a[(n * i) + j] - mj;
 				}
@@ -129,13 +129,13 @@ MC_TARGET_FUNC void mc_centermxnl(int m, int n, long double * c, const long doub
 //!# the same. Centering A matrix to its column mean.
 //!# f=0: no scaling.
 //!# f=1: standard deviations scaling.
-//!# f=2: root mean square scaling and second moment.
+//!# f=2: root mean square scaling.
 	int i, j = 0;
 	long double mj, wj;
 	switch (f) {
 		case 0:
 			for (; j < n; j++) {
-				mj = mc_meanmx1l(m, n, j, a, 1, 5);
+				mj = mc_meanmx1l(m, n, j, a, 0, 5);
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = a[(n * i) + j] - mj;
 				}
