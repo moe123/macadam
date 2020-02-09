@@ -22,7 +22,7 @@
 
 MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float * q, float * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
 //!# If R is not null upper-triangle is formed.
@@ -91,7 +91,7 @@ MC_TARGET_FUNC int mc_orthomxnf(int m, int n, const float * a, float tol, float 
 
 MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, double * q, double * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt
 //!# method + a decimeting column step if norm < tol. If R is not null
 //!# upper-triangle is formed.
@@ -160,7 +160,7 @@ MC_TARGET_FUNC int mc_orthomxnff(int m, int n, const float * a, float tol, doubl
 
 MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, double * q, double * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
 //!# If R is not null upper-triangle is formed.
@@ -229,7 +229,7 @@ MC_TARGET_FUNC int mc_orthomxn(int m, int n, const double * a, double tol, doubl
 
 MC_TARGET_FUNC int mc_orthomxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
 //!# If R is not null upper-triangle is formed.

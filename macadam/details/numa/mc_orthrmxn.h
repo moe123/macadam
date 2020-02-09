@@ -24,7 +24,7 @@
 
 MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float * q, float * restrict r, float * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
@@ -137,7 +137,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 
 MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, double * q, double * restrict r, double * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < n <= m.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt method + a decimeting column step
 //!# if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is not null
 //!# upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm with iterative
@@ -250,7 +250,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 
 MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, double * q, double * restrict r, double * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
@@ -363,7 +363,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 
 MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double tol, long double * q, long double * restrict r, long double * restrict w, int * pvi)
 {
-//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < m <= n.
+//!# Requires a[m x n], q[m x n] and r[n x n] if !null and w[n] && pvi[n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using Modified Gram-Schmidt method
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt

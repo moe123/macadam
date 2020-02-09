@@ -15,7 +15,7 @@
 
 MC_TARGET_FUNC int mc_covarmxnf(int m, int n, float * restrict c, const float * a, int b)
 {
-//!# Requires c[n x n] and a[m x n] where 1 < m <= n. Estimating a covariance matrix C
+//!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
 //!# whose rows represent observations. C is the covariance matrix with the corresponding
 //!# column variances along the diagonal.
@@ -40,7 +40,7 @@ MC_TARGET_FUNC int mc_covarmxnf(int m, int n, float * restrict c, const float * 
 
 MC_TARGET_FUNC int mc_covarmxnff(int m, int n, double * c, const float * a, int b)
 {
-//!# Requires c[n x n] and a[m x n] where 1 < m <= n. Estimating a covariance matrix C
+//!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
 //!# whose rows represent observations. C is the covariance matrix with the corresponding
 //!# column variances along the diagonal.
@@ -65,7 +65,7 @@ MC_TARGET_FUNC int mc_covarmxnff(int m, int n, double * c, const float * a, int 
 
 MC_TARGET_FUNC int mc_covarmxn(int m, int n, double * restrict c, const double * a, int b)
 {
-//!# Requires c[n x n] and a[m x n] where 1 < m <= n. Estimating a covariance matrix C
+//!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
 //!# whose rows represent observations. C is the covariance matrix with the corresponding
 //!# column variances along the diagonal.
@@ -90,7 +90,7 @@ MC_TARGET_FUNC int mc_covarmxn(int m, int n, double * restrict c, const double *
 
 MC_TARGET_FUNC int mc_covarmxnl(int m, int n, long double * restrict c, const long double * a, int b)
 {
-//!# Requires c[n x n] and a[m x n] where 1 < m <= n. Estimating a covariance matrix C
+//!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
 //!# whose rows represent observations. C is the covariance matrix with the corresponding
 //!# column variances along the diagonal.
