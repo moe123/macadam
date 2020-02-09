@@ -7,7 +7,7 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/numa/mc_sum21xn.h>
+#include <macadam/details/numa/mc_2sum1xn.h>
 
 #ifndef MC_SUM1XN_H
 #define MC_SUM1XN_H
@@ -84,8 +84,8 @@ MC_TARGET_FUNC float mc_sum1xnf(int n, const float * x, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum21xnf(n, x);
+		{//!# 2sum
+			return mc_2sum1xnf(n, x);
 		}
 	}
 	return 0.0f;
@@ -161,8 +161,8 @@ MC_TARGET_FUNC double mc_sum1xnff(int n, const float * x, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum21xnff(n, x);
+		{//!# 2sum
+			return mc_2sum1xnff(n, x);
 		}
 	}
 	return 0.0;
@@ -238,8 +238,8 @@ MC_TARGET_FUNC double mc_sum1xn(int n, const double * x, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum21xn(n, x);
+		{//!# 2sum
+			return mc_2sum1xn(n, x);
 		}
 	}
 	return 0.0;
@@ -315,8 +315,8 @@ MC_TARGET_FUNC long double mc_sum1xnl(int n, const long double * x, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum21xnl(n, x);
+		{//!# 2sum
+			return mc_2sum1xnl(n, x);
 		}
 	}
 	return 0.0L;

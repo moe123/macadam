@@ -82,6 +82,10 @@
 #	include <macadam/details/numa/lapack/mc_lapack_lasv2.h>
 #	include <macadam/details/numa/lapack/mc_lapack_lsamen.h>
 
+#	include <macadam/details/numa/mc_2summx1.h>
+#	include <macadam/details/numa/mc_2sum1xn.h>
+#	include <macadam/details/numa/mc_a2summx1.h>
+#	include <macadam/details/numa/mc_a2sum1xn.h>
 #	include <macadam/details/numa/mc_addmulatx2x2.h>
 #	include <macadam/details/numa/mc_addmulatx3x3.h>
 #	include <macadam/details/numa/mc_addmulax2x2.h>
@@ -91,8 +95,6 @@
 #	include <macadam/details/numa/mc_amean1xn.h>
 #	include <macadam/details/numa/mc_argsort1xn.h>
 #	include <macadam/details/numa/mc_asum1xn.h>
-#	include <macadam/details/numa/mc_asum2mx1.h>
-#	include <macadam/details/numa/mc_asum21xn.h>
 #	include <macadam/details/numa/mc_centermxn.h>
 #	include <macadam/details/numa/mc_centernxn.h>
 #	include <macadam/details/numa/mc_chpoly2x2.h>
@@ -253,8 +255,6 @@
 #	include <macadam/details/numa/mc_subxv1xn.h>
 #	include <macadam/details/numa/mc_subxy1xn.h>
 #	include <macadam/details/numa/mc_sum1xn.h>
-#	include <macadam/details/numa/mc_sum2mx1.h>
-#	include <macadam/details/numa/mc_sum21xn.h>
 #	include <macadam/details/numa/mc_summx1.h>
 #	include <macadam/details/numa/mc_sumsq1xn.h>
 #	include <macadam/details/numa/mc_svd2x2.h>

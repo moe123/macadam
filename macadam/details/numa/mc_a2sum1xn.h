@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_asum21xn.h
+// mc_a2sum1xn.h
 //
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
@@ -12,9 +12,9 @@
 #ifndef MC_ASUM21XN_H
 #define MC_ASUM21XN_H
 
-#pragma mark - mc_asum21xn -
+#pragma mark - mc_a2sum1xn -
 
-MC_TARGET_FUNC float mc_asum21xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_a2sum1xnf(int n, const float * x)
 {
 	int i   = 1;
 	float e = 0.0f, s = 0.0f, y;
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_asum21xnf(int n, const float * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_asum21xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_a2sum1xnff(int n, const float * x)
 {
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
@@ -42,7 +42,7 @@ MC_TARGET_FUNC double mc_asum21xnff(int n, const float * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_asum21xn(int n, const double * x)
+MC_TARGET_FUNC double mc_a2sum1xn(int n, const double * x)
 {
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
@@ -56,7 +56,7 @@ MC_TARGET_FUNC double mc_asum21xn(int n, const double * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC long double mc_asum21xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_a2sum1xnl(int n, const long double * x)
 {
 	int i         = 1;
 	long double e = 0.0L, s = 0.0L, y;

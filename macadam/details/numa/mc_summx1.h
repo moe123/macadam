@@ -7,7 +7,7 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/numa/mc_sum2mx1.h>
+#include <macadam/details/numa/mc_2summx1.h>
 
 #ifndef MC_SUMMX1_H
 #define MC_SUMMX1_H
@@ -84,8 +84,8 @@ MC_TARGET_FUNC float mc_summx1f(int m, int n, int j, const float * a, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum2mx1f(m, n, j, a);
+		{//!# 2sum
+			return mc_2summx1f(m, n, j, a);
 		}
 	}
 	return 0.0f;
@@ -161,8 +161,8 @@ MC_TARGET_FUNC double mc_summx1ff(int m, int n, int j, const float * a, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum2mx1ff(m, n, j, a);
+		{//!# 2sum
+			return mc_2summx1ff(m, n, j, a);
 		}
 	}
 	return 0.0;
@@ -238,8 +238,8 @@ MC_TARGET_FUNC double mc_summx1(int m, int n, int j, const double * a, int f)
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum2mx1(m, n, j, a);
+		{//!# 2sum
+			return mc_2summx1(m, n, j, a);
 		}
 	}
 	return 0.0;
@@ -315,8 +315,8 @@ MC_TARGET_FUNC long double mc_summx1l(int m, int n, int j, const long double * a
 			return s;
 		}
 		case 5:
-		{//!# sum2
-			return mc_sum2mx1l(m, n, j, a);
+		{//!# 2sum
+			return mc_2summx1l(m, n, j, a);
 		}
 	}
 	return 0.0L;
