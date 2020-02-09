@@ -18,6 +18,9 @@ MC_TARGET_FUNC void mc_centermxnf(int m, int n, float * c, const float * a, int 
 {
 //!# Requires c[m x n] and a[m x n] where 1 < n <= m. C and A may be
 //!# the same. Centering A matrix to its column mean.
+//!# f=0: no scaling.
+//!# f=1: standard deviations scaling.
+//!# f=2: root mean square scaling and second moment.
 	int i, j = 0;
 	float mj, wj;
 	switch (f) {
@@ -30,24 +33,15 @@ MC_TARGET_FUNC void mc_centermxnf(int m, int n, float * c, const float * a, int 
 			}
 		break;
 		case 1:
+		case 2:
 			for (; j < n; j++) {
-				mc_mstddmx1f(m, n, j, a, 1, &mj, &wj);
+				mc_mstddmx1f(m, n, j, a, ((f == 1) ? 1 : 0), &mj, &wj);
 				if (wj != 0.0f ) {
 					wj = 1.0f / wj;
 				}
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = (a[(n * i) + j] - mj) * wj;
 				}
-			}
-		break;
-		case 2:
-			mj = mc_meanmx1f(m, n, j, a, 1, 5);
-			wj = mc_hypot2f(1.0f, mj);
-			if (wj != 0.0f ) {
-				wj = 1.0f / wj;
-			}
-			for (i = 0; i < m; i++) {
-				c[(n * i) + j] = (a[(n * i) + j] - mj) * wj;
 			}
 		break;
 	}
@@ -57,6 +51,9 @@ MC_TARGET_FUNC void mc_centermxnff(int m, int n, double * c, const float * a, in
 {
 //!# Requires c[m x n] and a[m x n] where 1 < n <= m. Centering
 //!# A matrix to its column mean.
+//!# f=0: no scaling.
+//!# f=1: standard deviations scaling.
+//!# f=2: root mean square scaling and second moment.
 	int i, j = 0;
 	double mj, wj;
 	switch (f) {
@@ -70,7 +67,7 @@ MC_TARGET_FUNC void mc_centermxnff(int m, int n, double * c, const float * a, in
 		break;
 		case 1:
 			for (; j < n; j++) {
-				mc_mstddmx1ff(m, n, j, a, 1, &mj, &wj);
+				mc_mstddmx1ff(m, n, j, a, ((f == 1) ? 1 : 0), &mj, &wj);
 				if (wj != 0.0) {
 					wj = 1.0 / wj;
 				}
@@ -97,6 +94,9 @@ MC_TARGET_FUNC void mc_centermxn(int m, int n, double * c, const double * a, int
 {
 //!# Requires c[m x n] and a[m x n] where 1 < n <= m. C and A may be
 //!# the same. Centering A matrix to its column mean.
+//!# f=0: no scaling.
+//!# f=1: standard deviations scaling.
+//!# f=2: root mean square scaling and second moment.
 	int i, j = 0;
 	double mj, wj;
 	switch (f) {
@@ -109,24 +109,15 @@ MC_TARGET_FUNC void mc_centermxn(int m, int n, double * c, const double * a, int
 			}
 		break;
 		case 1:
+		case 2:
 			for (; j < n; j++) {
-				mc_mstddmx1(m, n, j, a, 1, &mj, &wj);
+				mc_mstddmx1(m, n, j, a, ((f == 1) ? 1 : 0), &mj, &wj);
 				if (wj != 0.0) {
 					wj = 1.0 / wj;
 				}
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = (a[(n * i) + j] - mj) * wj;
 				}
-			}
-		break;
-		case 2:
-			mj = mc_meanmx1(m, n, j, a, 1, 5);
-			wj = mc_hypot2(1.0, mj);
-			if (wj != 0.0) {
-				wj = 1.0 / wj;
-			}
-			for (i = 0; i < m; i++) {
-				c[(n * i) + j] = (a[(n * i) + j] - mj) * wj;
 			}
 		break;
 	}
@@ -136,6 +127,9 @@ MC_TARGET_FUNC void mc_centermxnl(int m, int n, long double * c, const long doub
 {
 //!# Requires c[m x n] and a[m x n] where 1 < n <= m. C and A may be
 //!# the same. Centering A matrix to its column mean.
+//!# f=0: no scaling.
+//!# f=1: standard deviations scaling.
+//!# f=2: root mean square scaling and second moment.
 	int i, j = 0;
 	long double mj, wj;
 	switch (f) {
@@ -148,24 +142,15 @@ MC_TARGET_FUNC void mc_centermxnl(int m, int n, long double * c, const long doub
 			}
 		break;
 		case 1:
+		case 2:
 			for (; j < n; j++) {
-				mc_mstddmx1l(m, n, j, a, 1, &mj, &wj);
+				mc_mstddmx1l(m, n, j, a, ((f == 1) ? 1 : 0), &mj, &wj);
 				if (wj != 0.0L) {
 					wj = 1.0L / wj;
 				}
 				for (i = 0; i < m; i++) {
 					c[(n * i) + j] = (a[(n * i) + j] - mj) * wj;
 				}
-			}
-		break;
-		case 2:
-			mj = mc_meanmx1l(m, n, j, a, 1, 5);
-			wj = mc_hypot2l(1.0, mj);
-			if (wj != 0.0L) {
-				wj = 1.0L / wj;
-			}
-			for (i = 0; i < m; i++) {
-				c[(n * i) + j] = (a[(n * i) + j] - mj) * wj;
 			}
 		break;
 	}
