@@ -93,6 +93,8 @@
 #	include <macadam/details/numa/mc_asum1xn.h>
 #	include <macadam/details/numa/mc_asum2mx1.h>
 #	include <macadam/details/numa/mc_asum21xn.h>
+#	include <macadam/details/numa/mc_centermxn.h>
+#	include <macadam/details/numa/mc_centernxn.h>
 #	include <macadam/details/numa/mc_chpoly2x2.h>
 #	include <macadam/details/numa/mc_chpoly3x3.h>
 #	include <macadam/details/numa/mc_copy1xn.h>

@@ -15,7 +15,7 @@
 
 MC_TARGET_FUNC void mc_vander1xnf(int n, int d, float * restrict a, const float * x, int f)
 {
-//!# a[n * (d + 1)] and x[n].
+//!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# With the length noted n of vector X representing the m dimension and d=degree + 1
 //!# the n dimension of the output matrix A.
@@ -36,7 +36,7 @@ MC_TARGET_FUNC void mc_vander1xnf(int n, int d, float * restrict a, const float 
 
 MC_TARGET_FUNC void mc_vander1xnff(int n, int d, double * a, const float * x, int f)
 {
-//!# a[n * (d + 1)] and x[n].
+//!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# With the length noted n of vector X representing the m dimension and d=degree + 1
 //!# the n dimension of the output matrix A.
@@ -57,7 +57,7 @@ MC_TARGET_FUNC void mc_vander1xnff(int n, int d, double * a, const float * x, in
 
 MC_TARGET_FUNC void mc_vander1xn(int n, int d, double * restrict a, const double * x, int f)
 {
-//!# a[n * (d + 1)] and x[n].
+//!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# With the length noted n of vector X representing the m dimension and d=degree + 1
 //!# the n dimension of the output matrix A.
@@ -78,7 +78,7 @@ MC_TARGET_FUNC void mc_vander1xn(int n, int d, double * restrict a, const double
 
 MC_TARGET_FUNC void mc_vander1xnl(int n, int d, long double * restrict a, const long double * x, int f)
 {
-//!# a[n * (d + 1)] and x[n].
+//!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
 //!# With the length noted n of vector X representing the m dimension and d=degree + 1
 //!# the n dimension of the output matrix A.
