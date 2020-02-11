@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_qr2x2.h
+// mc_qrgs2x2.h
 //
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
@@ -10,12 +10,12 @@
 #include <macadam/details/numa/mc_eye2x2.h>
 #include <macadam/details/numa/mc_zeros2x2.h>
 
-#ifndef MC_QR2X2_H
-#define MC_QR2X2_H
+#ifndef MC_QRGS2X2_H
+#define MC_QRGS2X2_H
 
-#pragma mark - mc_qr2x2 -
+#pragma mark - mc_qrgs2x2 -
 
-MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
+MC_TARGET_FUNC int mc_qrgs2x2f(const float a[4], float q[4], float r[4])
 {
 //!# A and Q may be the same. Using Gram-Schmidt method.
 	float w;
@@ -55,7 +55,7 @@ MC_TARGET_FUNC int mc_qr2x2f(const float a[4], float q[4], float r[4])
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
+MC_TARGET_FUNC int mc_qrgs2x2ff(const float a[4], double q[4], double r[4])
 {
 //!# Using Gram-Schmidt method.
 	double w;
@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_qr2x2ff(const float a[4], double q[4], double r[4])
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
+MC_TARGET_FUNC int mc_qrgs2x2(const double a[4], double q[4], double r[4])
 {
 //!# A and Q may be the same. Using Gram-Schmidt method.
 	double w;
@@ -135,7 +135,7 @@ MC_TARGET_FUNC int mc_qr2x2(const double a[4], double q[4], double r[4])
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long double r[4])
+MC_TARGET_FUNC int mc_qrgs2x2l(const long double a[4], long double q[4], long double r[4])
 {
 //!# A and Q may be the same. Using Gram-Schmidt method.
 	long double w;
@@ -176,6 +176,6 @@ MC_TARGET_FUNC int mc_qr2x2l(const long double a[4], long double q[4], long doub
 	return 0;
 }
 
-#endif /* !MC_QR2X2_H */
+#endif /* !MC_QRGS2X2_H */
 
 /* EOF */

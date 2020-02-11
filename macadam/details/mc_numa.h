@@ -153,6 +153,7 @@
 #	include <macadam/details/numa/mc_ldup3x3.h>
 #	include <macadam/details/numa/mc_linspace1xn.h>
 #	include <macadam/details/numa/mc_logspace1xn.h>
+#	include <macadam/details/numa/mc_lu2x2.h>
 #	include <macadam/details/numa/mc_lu3x3.h>
 #	include <macadam/details/numa/mc_lup3x3.h>
 #	include <macadam/details/numa/mc_lupnxn.h>
@@ -234,8 +235,10 @@
 #	include <macadam/details/numa/mc_polyfit1xn.h>
 #	include <macadam/details/numa/mc_ppsdev1xn.h>
 #	include <macadam/details/numa/mc_ppvar1xn.h>
-#	include <macadam/details/numa/mc_qr2x2.h>
-#	include <macadam/details/numa/mc_qr3x3.h>
+#	include <macadam/details/numa/mc_qrgs2x2.h>
+#	include <macadam/details/numa/mc_qrgs3x3.h>
+#	include <macadam/details/numa/mc_qrgv3x3.h>
+#	include <macadam/details/numa/mc_qrmgs3x3.h>
 #	include <macadam/details/numa/mc_qrsolve3x3.h>
 #	include <macadam/details/numa/mc_rescale1xn.h>
 #	include <macadam/details/numa/mc_rescalemx1.h>

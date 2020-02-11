@@ -7,9 +7,11 @@
 //
 
 #include <macadam/details/math/mc_copysign.h>
+#include <macadam/details/numa/mc_eigsy3x3.h>
+#include <macadam/details/numa/mc_eye3x3.h>
 #include <macadam/details/numa/mc_mulab3x3.h>
 #include <macadam/details/numa/mc_mulatb3x3.h>
-#include <macadam/details/numa/mc_qr3x3.h>
+#include <macadam/details/numa/mc_qrgv3x3.h>
 #include <macadam/mcswap.h>
 
 #ifndef MC_SVD3X3_H

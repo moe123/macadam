@@ -124,8 +124,8 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
 					if (wantpvi) {
-						s     = mc_l2normmx1f(m, n, j, q);
-						w[j]  = mc_raise2f(s);
+						s    = mc_l2normmx1f(m, n, j, q);
+						w[j] = mc_raise2f(s);
 					}
 				}
 			} 
@@ -237,8 +237,8 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
 					if (wantpvi) {
-						s     = mc_l2normmx1(m, n, j, q);
-						w[j]  = mc_raise2(s);
+						s    = mc_l2normmx1(m, n, j, q);
+						w[j] = mc_raise2(s);
 					}
 				}
 			} 
@@ -350,8 +350,8 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
 					if (wantpvi) {
-						s     = mc_l2normmx1(m, n, j, q);
-						w[j]  = mc_raise2(s);
+						s    = mc_l2normmx1(m, n, j, q);
+						w[j] = mc_raise2(s);
 					}
 				}
 			} 
@@ -463,8 +463,8 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 						q[(n * i) + j] = q[(n * i) + j] - (dot * q[(n * i) + k]);
 					}
 					if (wantpvi) {
-						s     = mc_l2normmx1l(m, n, j, q);
-						w[j]  = mc_raise2l(s);
+						s    = mc_l2normmx1l(m, n, j, q);
+						w[j] = mc_raise2l(s);
 					}
 				}
 			} 
