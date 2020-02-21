@@ -320,6 +320,7 @@
 #	include <macadam/details/numa/mc_zerosnxn.h>
 #	include <macadam/details/numa/mc_zeye2x2.h>
 #	include <macadam/details/numa/mc_zeye3x3.h>
+#	include <macadam/details/numa/mc_zlogspace1xn.h>
 #	include <macadam/details/numa/mc_znorm1x2.h>
 #	include <macadam/details/numa/mc_znorm1x3.h>
 #	include <macadam/details/numa/mc_zreig2x2.h>

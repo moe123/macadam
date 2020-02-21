@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_logspace1xnf(int n, float * x, float x1, float x2)
 			x[0]       = mc_pow10f(x1);
 			x[(n - 1)] = mc_pow10f(x2);
 			for (; i < (n - 1); i++) {
-				x[i] = mc_pow10f(x1 + i * step);
+				x[i] = mc_pow10f(x1 + (mc_cast(float, i) * step));
 			}
 		}
 		return 0;
@@ -57,7 +57,7 @@ MC_TARGET_FUNC int mc_logspace1xnff(int n, double * x, float x1, float x2)
 			x[0]       = mc_pow10(x1d);
 			x[(n - 1)] = mc_pow10(x2d);
 			for (; i < (n - 1); i++) {
-				x[i] = mc_pow10(x1d + i * step);
+				x[i] = mc_pow10(x1d + (mc_cast(double, i) * step));
 			}
 		}
 		return 0;
@@ -82,7 +82,7 @@ MC_TARGET_FUNC int mc_logspace1xn(int n, double * x, double x1, double x2)
 			x[0]       = mc_pow10(x1);
 			x[(n - 1)] = mc_pow10(x2);
 			for (; i < (n - 1); i++) {
-				x[i] = mc_pow10(x1 + i * step);
+				x[i] = mc_pow10(x1 + (mc_cast(double, i) * step));
 			}
 		}
 		return 0;
@@ -107,7 +107,7 @@ MC_TARGET_FUNC int mc_logspace1xnl(int n, long double * x, long double x1, long 
 			x[0]       = mc_pow10l(x1);
 			x[(n - 1)] = mc_pow10l(x2);
 			for (; i < (n - 1); i++) {
-				x[i] = mc_pow10l(x1 + i * step);
+				x[i] = mc_pow10l(x1 + (mc_cast(long double, i) * step));
 			}
 		}
 		return 0;

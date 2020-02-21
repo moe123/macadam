@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_linspace1xnf(int n, float * x, float x1, float x2)
 			x[0]       = x1;
 			x[(n - 1)] = x2;
 			for (; i < (n - 1); i++) {
-				x[i] = x1 + i * step;
+				x[i] = x1 + (mc_cast(float, i) * step);
 			}
 		}
 		return 0;
@@ -57,7 +57,7 @@ MC_TARGET_FUNC int mc_linspace1xnff(int n, double * x, float x1, float x2)
 			x[0]       = x1d;
 			x[(n - 1)] = x2d;
 			for (; i < (n - 1); i++) {
-				x[i] = x1d + i * step;
+				x[i] = x1d +  (mc_cast(double, i) * step);
 			}
 		}
 		return 0;
@@ -82,7 +82,7 @@ MC_TARGET_FUNC int mc_linspace1xn(int n, double * x, double x1, double x2)
 			x[0]       = x1;
 			x[(n - 1)] = x2;
 			for (; i < (n - 1); i++) {
-				x[i] = x1 + i * step;
+				x[i] = x1 + (mc_cast(double, i) * step);
 			}
 		}
 		return 0;
@@ -107,7 +107,7 @@ MC_TARGET_FUNC int mc_linspace1xnl(int n, long double * x, long double x1, long 
 			x[0]       = x1;
 			x[(n - 1)] = x2;
 			for (; i < (n - 1); i++) {
-				x[i] = x1 + i * step;
+				x[i] = x1 + (mc_cast(long double, i) * step);
 			}
 		}
 		return 0;
