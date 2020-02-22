@@ -68,7 +68,7 @@ MC_TARGET_FUNC int mc_zlogspace1xnff(int n, double * xr, double * xi, float x1r,
 			mc_zpow10(&xr[(n - 1)], &xi[(n - 1)], x2rd, x2id);
 			for (; i < (n - 1); i++) {
 				mc_zmul(&xr[i], &xi[i], mc_cast(double, i), 0.0, stepr, stepi);
-				mc_zadd(&xr[i], &xi[i], x1r, x1i, xr[i], xi[i]);
+				mc_zadd(&xr[i], &xi[i], x1rd, x1id, xr[i], xi[i]);
 				mc_zpow10(&xr[i], &xi[i], xr[i], xi[i]);
 			}
 		}
