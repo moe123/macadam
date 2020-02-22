@@ -22,7 +22,7 @@ MC_TARGET_FUNC int mc_zlogspace1xnf(int n, float * xr, float * xi, float x1r, fl
 //!# Requires xr[n] and xi[n] where 1 < n. Generates a logarithmically spaced vector x,
 //!# i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
-	float stepr, stepi, x0i, x0r;
+	float stepr, stepi;
 	if (n > 0) {
 		if (n < 2) {
 			mc_zpow10f(&xr[0], &xi[0], x2r, x2i);
@@ -35,9 +35,9 @@ MC_TARGET_FUNC int mc_zlogspace1xnf(int n, float * xr, float * xi, float x1r, fl
 			mc_zpow10f(&xr[0], &xi[0], x1r, x1i);
 			mc_zpow10f(&xr[(n - 1)], &xi[(n - 1)], x2r, x2i);
 			for (; i < (n - 1); i++) {
-				mc_zmulf(&x0r, &x0i, mc_cast(float, i), 0.0f, stepr, stepi);
-				mc_zaddf(&x0r, &x0i, x1r, x1i, x0r, x0i);
-				mc_zpow10f(&xr[i], &xi[i], x0r, x0i);
+				mc_zmulf(&xr[i], &xi[i], mc_cast(float, i), 0.0f, stepr, stepi);
+				mc_zaddf(&xr[i], &xi[i], x1r, x1i, xr[i], xi[i]);
+				mc_zpow10f(&xr[i], &xi[i], xr[i], xi[i]);
 			}
 		}
 		return 0;
@@ -50,7 +50,7 @@ MC_TARGET_FUNC int mc_zlogspace1xnff(int n, double * xr, double * xi, float x1r,
 //!# Requires xr[n] and xi[n] where 1 < n. Generates a logarithmically spaced vector x,
 //!# i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
-	double stepr, stepi, x0i, x0r, x1rd, x1id, x2rd, x2id;
+	double stepr, stepi, x1rd, x1id, x2rd, x2id;
 	if (n > 0) {
 		x1rd = mc_cast(double, x1r);
 		x1id = mc_cast(double, x1i);
@@ -67,9 +67,9 @@ MC_TARGET_FUNC int mc_zlogspace1xnff(int n, double * xr, double * xi, float x1r,
 			mc_zpow10(&xr[0], &xi[0], x1rd, x1id);
 			mc_zpow10(&xr[(n - 1)], &xi[(n - 1)], x2rd, x2id);
 			for (; i < (n - 1); i++) {
-				mc_zmul(&x0r, &x0i, mc_cast(double, i), 0.0, stepr, stepi);
-				mc_zadd(&x0r, &x0i, x1rd, x1id, x0r, x0i);
-				mc_zpow10(&xr[i], &xi[i], x0r, x0i);
+				mc_zmul(&xr[i], &xi[i], mc_cast(double, i), 0.0, stepr, stepi);
+				mc_zadd(&xr[i], &xi[i], x1r, x1i, xr[i], xi[i]);
+				mc_zpow10(&xr[i], &xi[i], xr[i], xi[i]);
 			}
 		}
 		return 0;
@@ -82,7 +82,7 @@ MC_TARGET_FUNC int mc_zlogspace1xn(int n, double * xr, double * xi, double x1r, 
 //!# Requires xr[n] and xi[n] where 1 < n. Generates a logarithmically spaced vector x,
 //!# i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
-	double stepr, stepi, x0i, x0r;
+	double stepr, stepi;
 	if (n > 0) {
 		if (n < 2) {
 			mc_zpow10(&xr[0], &xi[0], x2r, x2i);
@@ -95,9 +95,9 @@ MC_TARGET_FUNC int mc_zlogspace1xn(int n, double * xr, double * xi, double x1r, 
 			mc_zpow10(&xr[0], &xi[0], x1r, x1i);
 			mc_zpow10(&xr[(n - 1)], &xi[(n - 1)], x2r, x2i);
 			for (; i < (n - 1); i++) {
-				mc_zmul(&x0r, &x0i, mc_cast(double, i), 0.0, stepr, stepi);
-				mc_zadd(&x0r, &x0i, x1r, x1i, x0r, x0i);
-				mc_zpow10(&xr[i], &xi[i], x0r, x0i);
+				mc_zmul(&xr[i], &xi[i], mc_cast(double, i), 0.0, stepr, stepi);
+				mc_zadd(&xr[i], &xi[i], x1r, x1i, xr[i], xi[i]);
+				mc_zpow10(&xr[i], &xi[i], xr[i], xi[i]);
 			}
 		}
 		return 0;
@@ -110,7 +110,7 @@ MC_TARGET_FUNC int mc_zlogspace1xnl(int n, long double * xr, long double * xi, l
 //!# Requires xr[n] and xi[n] where 1 < n. Generates a logarithmically spaced vector x,
 //!# i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
-	long double stepr, stepi, x0i, x0r;
+	long double stepr, stepi;
 	if (n > 0) {
 		if (n < 2) {
 			mc_zpow10l(&xr[0], &xi[0], x2r, x2i);
@@ -123,9 +123,9 @@ MC_TARGET_FUNC int mc_zlogspace1xnl(int n, long double * xr, long double * xi, l
 			mc_zpow10l(&xr[0], &xi[0], x1r, x1i);
 			mc_zpow10l(&xr[(n - 1)], &xi[(n - 1)], x2r, x2i);
 			for (; i < (n - 1); i++) {
-				mc_zmull(&x0r, &x0i, mc_cast(long double, i), 0.0L, stepr, stepi);
-				mc_zaddl(&x0r, &x0i, x1r, x1i, x0r, x0i);
-				mc_zpow10l(&xr[i], &xi[i], x0r, x0i);
+				mc_zmull(&xr[i], &xi[i], mc_cast(long double, i), 0.0L, stepr, stepi);
+				mc_zaddl(&xr[i], &xi[i], x1r, x1i, xr[i], xi[i]);
+				mc_zpow10l(&xr[i], &xi[i], xr[i], xi[i]);
 			}
 		}
 		return 0;
