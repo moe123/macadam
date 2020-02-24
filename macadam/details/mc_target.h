@@ -10,8 +10,8 @@
 #define MC_TARGET_H
 
 #	if    (defined(__INTEL_COMPILER) && defined(_WIN32))         \
-		|| (defined(__ICC)   && defined(_WIN32))                 \
-		|| (defined(__ICL)   && defined(_WIN32))                 \
+		|| (defined(__ICC)    && defined(_WIN32))                 \
+		|| (defined(__ICL)    && defined(_WIN32))                 \
 		|| (defined(_MSC_VER) && (defined(__STDC__) && __STDC__)) \
 		|| (defined(_MSC_VER) && _MSC_VER < 1916)
 #		error "C99 compiler and Posix 1-2001 CRT required."
@@ -344,42 +344,52 @@
 #		include <stdint.h>
 #		include <inttypes.h>
 #		include <fenv.h>
+#	if !__STDC_NO_COMPLEX__
 #		include <complex.h>
+#	endif
 #		include <float.h>
 #		include <math.h>
 #	endif
 
-#	if MC_TARGET_BUILTIN_COMPLEX
-#		define MC_TARGET_C99_COMPLEX 0
+#	if MC_TARGET_C99
+#		if (defined(_Imaginary_I) || defined(_Complex_I)) && !defined(__STDC_IEC_559_COMPLEX__)
+#			define __STDC_IEC_559_COMPLEX__ 1
+#		endif
 #	endif
 
 #	if !MC_TARGET_CPP98 && !MC_TARGET_BUILTIN_COMPLEX
-#		if MC_TARGET_C99 && (defined(__STDC_IEC_559_COMPLEX__) || defined(_Imaginary_I))
+#		if MC_TARGET_C99 && defined(__STDC_IEC_559_COMPLEX__)
 #			undef  MC_TARGET_C99_COMPLEX
 #			define MC_TARGET_C99_COMPLEX 1
 			typedef float       _Complex mc_complex_float_t;
 			typedef double      _Complex mc_complex_double_t;
 			typedef long double _Complex mc_complex_long_double_t;
 #			if !MC_TARGET_C11
+#			ifndef CMPLXF
 #				define CMPLXF(re, im) ((float _Complex)      ((float)(re)       + _Imaginary_I * (float)(im)))
+#			endif
+#			ifndef CMPLX
 #				define CMPLX(re, im)  ((double _Complex)     ((double)(re)      + _Imaginary_I * (double)(im)))
+#			endif
+#			ifndef CMPLXL
 #				define CMPLXL(re, im) ((long double _Complex)((long double)(re) + _Imaginary_I * (long double)(im)))
+#			endif
 #			endif
 #			define mc_cmplxf(re, im) CMPLXF(re, im)
 #			define mc_cmplx(re, im)  CMPLX(re, im)
 #			define mc_cmplxl(re, im) CMPLXL(re, im)
-#			define mc_complex(type) type _Complex
+#			define mc_complex(type)  type _Complex
 #		endif
 #	endif
 
 #	if !MC_TARGET_C99_COMPLEX
-	typedef struct { float       u_re; float  u_im; } mc_complex_float_t;
-	typedef struct { double      u_re; double u_im; } mc_complex_double_t;
-	typedef struct { long double u_re; double u_im; } mc_complex_long_double_t;
-#	define mc_cmplxf(re, im) { (float)re       , (float)im       }
-#	define mc_cmplx(re, im)  { (double)re      , (double)im      }
-#	define mc_cmplxl(re, im) { (long double)re , (long double)im }
-#	define mc_complex(type) struct { type u_re; type  u_im; }
+#	define  mc_complex(type)        struct { type u_re; type  u_im; }
+	typedef mc_complex(float)       mc_complex_float_t;
+	typedef mc_complex(double)      mc_complex_double_t;
+	typedef mc_complex(long double) mc_complex_long_double_t;
+#	define  mc_cmplxf(re, im)       { (float)re       , (float)im       }
+#	define  mc_cmplx(re, im)        { (double)re      , (double)im      }
+#	define  mc_cmplxl(re, im)       { (long double)re , (long double)im }
 #	endif
 
 #	if defined(__SSE__) && __SSE__
