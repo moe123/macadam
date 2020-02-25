@@ -169,7 +169,11 @@
 #		define mcmath_llrint(x)        llrint(x)
 #		define mcmath_round(x)         round(x)
 #		define mcmath_lround(x)        lround(x)
+#	if MC_TARGET_CPP11
 #		define mcmath_llround(x)       llround(x)
+#	else
+#		define mcmath_llround(x)       lround(x)
+#	endif
 #		define mcmath_trunc(x)         trunc(x)
 #		define mcmath_fmod(x, y)       fmod(x, y)
 #		define mcmath_remainder(x, y)  remainder(x, y)
@@ -2293,18 +2297,27 @@ MC_TARGET_ALIAS long double mcmath_round (long double x) { return mc_roundl (x);
 #pragma mark - mcmath_lround -
 
 #	ifndef mcmath_lround
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE long mcmath_lround              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE long mcmath_lround<float>       (const float& x)       { return mc_lroundf (x);      }
+template <>        MC_TARGET_INLINE long mcmath_lround<double>      (const double& x)      { return mc_lround  (x);      }
+template <>        MC_TARGET_INLINE long mcmath_lround<long double> (const long double& x) { return mc_lroundl (x);      }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS long mcmath_lround (float x)       { return mc_lroundf (x); }
+MC_TARGET_ALIAS long mcmath_lround (double x)      { return mc_lround  (x); }
+MC_TARGET_ALIAS long mcmath_lround (long double x) { return mc_lroundl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_lround(x) _Generic(x \
-	, float       : lroundf \
-	, double      : lround  \
-	, long double : lroundl \
+	, float       : mc_lroundf \
+	, double      : mc_lround  \
+	, long double : mc_lroundl \
 ) (x)
 #	else
 #	define mcmath_lround(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? lroundf (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? lround  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? lroundl (mc_cast_expr(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_lroundf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_lround  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_lroundl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
 #	endif
@@ -2313,24 +2326,31 @@ MC_TARGET_ALIAS long double mcmath_round (long double x) { return mc_roundl (x);
 #pragma mark - mcmath_llround -
 
 #	ifndef mcmath_llround
-#	if MC_TARGET_C99
-#	if MC_TARGET_C11
+#	if MC_TARGET_CPP11
+template <class T> MC_TARGET_INLINE long long mcmath_llround              (const T& x)           { mc_cast(void, x); return 0; }
+template <>        MC_TARGET_INLINE long long mcmath_llround<float>       (const float& x)       { return mc_llroundf (x);     }
+template <>        MC_TARGET_INLINE long long mcmath_llround<double>      (const double& x)      { return mc_llround  (x);     }
+template <>        MC_TARGET_INLINE long long mcmath_llround<long double> (const long double& x) { return mc_llroundl (x);     }
+#	elif MC_TARGET_C99 && MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS long long mcmath_llround (float x)       { return mc_llroundf (x); }
+MC_TARGET_ALIAS long long mcmath_llround (double x)      { return mc_llround  (x); }
+MC_TARGET_ALIAS long long mcmath_llround (long double x) { return mc_llroundl (x); }
+#	elif MC_TARGET_C11
 #	define mcmath_llround(x) _Generic(x \
-	, float       : llroundf \
-	, double      : llround  \
-	, long double : llroundl \
+	, float       : mc_lroundf \
+	, double      : mc_lround  \
+	, long double : mc_lroundl \
 ) (x)
-#	else
+#	elif MC_TARGET_C99
 #	define mcmath_llround(x) \
 	( \
-		  sizeof(x) == sizeof(float)       ? llroundf (mc_cast_expr(float, x))       \
-		: sizeof(x) == sizeof(double)      ? llround  (mc_cast_expr(double, x))      \
-		: sizeof(x) == sizeof(long double) ? llroundl (mc_cast_expr(long double, x)) \
+		  sizeof(x) == sizeof(float)       ? mc_llroundf (mc_cast_expr(float, x))       \
+		: sizeof(x) == sizeof(double)      ? mc_llround  (mc_cast_expr(double, x))      \
+		: sizeof(x) == sizeof(long double) ? mc_llroundl (mc_cast_expr(long double, x)) \
 		: 0 \
 	)
-#	endif
 #	else
-#	define mcmath_llround mcmath_lround
+#	define mcmath_llround(x) mcmath_lround(x)
 #	endif
 #	endif
 
@@ -2507,29 +2527,41 @@ MC_TARGET_ALIAS long double mcmath_trunc (long double x) { return mc_truncl (x);
 
 #	ifndef mcmath_abs
 #	if MC_TARGET_CPP98
-
 template <class T> MC_TARGET_INLINE T                    mcmath_abs                      (const T& x)                  { return ::std::abs(x); }
-template <>        MC_TARGET_INLINE float                mcmath_abs<float>               (const float& x)              { return mc_fabsf(x);   }
-template <>        MC_TARGET_INLINE double               mcmath_abs<double>              (const double& x)             { return mc_fabs(x);    }
-template <>        MC_TARGET_INLINE long double          mcmath_abs<long double>         (const long double& x)        { return mc_fabsl(x);   }
+template <>        MC_TARGET_INLINE float                mcmath_abs<float>               (const float& x)              { return mc_fabsf  (x); }
+template <>        MC_TARGET_INLINE double               mcmath_abs<double>              (const double& x)             { return mc_fabs   (x); }
+template <>        MC_TARGET_INLINE long double          mcmath_abs<long double>         (const long double& x)        { return mc_fabsl  (x); }
 
-template <>        MC_TARGET_INLINE signed char          mcmath_abs<signed char>         (const signed char& x)        { return mc_babs(x);    }
-template <>        MC_TARGET_INLINE short                mcmath_abs<short>               (const short& x)              { return mc_sabs(x);    }
-template <>        MC_TARGET_INLINE int                  mcmath_abs<int>                 (const int& x)                { return mc_iabs(x);    }
-template <>        MC_TARGET_INLINE long                 mcmath_abs<long>                (const long& x)               { return mc_labs(x);    }
+template <>        MC_TARGET_INLINE signed char          mcmath_abs<signed char>         (const signed char& x)        { return mc_babs   (x); }
+template <>        MC_TARGET_INLINE short                mcmath_abs<short>               (const short& x)              { return mc_sabs   (x); }
+template <>        MC_TARGET_INLINE int                  mcmath_abs<int>                 (const int& x)                { return mc_iabs   (x); }
+template <>        MC_TARGET_INLINE long                 mcmath_abs<long>                (const long& x)               { return mc_labs   (x); }
 
 template <>        MC_TARGET_INLINE unsigned char        mcmath_abs<unsigned char>       (const unsigned char& x)      { return x;             }
 template <>        MC_TARGET_INLINE unsigned short       mcmath_abs<unsigned short>      (const unsigned short& x)     { return x;             }
 template <>        MC_TARGET_INLINE unsigned int         mcmath_abs<unsigned int>        (const unsigned int& x)       { return x;             }
 template <>        MC_TARGET_INLINE unsigned long        mcmath_abs<unsigned long>       (const unsigned long& x)      { return x;             }
-
 #	if MC_TARGET_CPP11
 template <>        MC_TARGET_INLINE long long            mcmath_abs<long long>           (const long long& x)          { return x;             }
 template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  long long> (const unsigned long long& x) { return x;             }
 #	endif
-
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float              mcmath_abs (float x)              { return mc_fabsf (x); }
+MC_TARGET_ALIAS double             mcmath_abs (double x)             { return mc_fabs  (x); }
+MC_TARGET_ALIAS long double        mcmath_abs (long double x)        { return mc_fabsl (x); }
+MC_TARGET_ALIAS signed char        mcmath_abs (signed char x)        { return mc_babs  (x); }
+MC_TARGET_ALIAS short              mcmath_abs (short x)              { return mc_sabs  (x); }
+MC_TARGET_ALIAS int                mcmath_abs (int x)                { return mc_iabs  (x); }
+MC_TARGET_ALIAS long               mcmath_abs (long x)               { return mc_labs  (x); }
+MC_TARGET_ALIAS unsigned char      mcmath_abs (unsigned char x)      { return x;            }
+MC_TARGET_ALIAS unsigned short     mcmath_abs (unsigned short x)     { return x;            }
+MC_TARGET_ALIAS unsigned int       mcmath_abs (unsigned int x)       { return x;            }
+MC_TARGET_ALIAS unsigned long      mcmath_abs (unsigned long x)      { return x;            }
+#	if MC_TARGET_C99
+MC_TARGET_ALIAS long long          mcmath_abs (long long x)          { return mc_llabs (x); }
+MC_TARGET_ALIAS unsigned long long mcmath_abs (unsigned long long x) { return x;            }
+#	endif
 #	elif MC_TARGET_C11
-
 #	define mcmath_abs(x) _Generic(x \
 	, float              : mc_fabsf            \
 	, double             : mc_fabs             \
@@ -2590,19 +2622,10 @@ template <>        MC_TARGET_INLINE unsigned long long   mcmath_abs<unsigned  lo
 
 #	ifndef mcmath_max
 #	if MC_TARGET_CPP98
-
-template <class T> MC_TARGET_INLINE T           mcmath_max              (const T& x, const T& y)                     { return ::std::max (x, y);   }
-
-#	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return ::std::fmaxf (x, y); }
-template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return ::std::fmax  (x, y); }
-template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return ::std::fmaxl(x, y);  }
-#	else
-template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return ::fmaxf (x, y);      }
-template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return ::fmax  (x, y);      }
-template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return ::fmaxl (x, y);      }
-#	endif
-
+template <class T> MC_TARGET_INLINE T           mcmath_max              (const T& x, const T& y)                     { return ::std::max (x, y); }
+template <>        MC_TARGET_INLINE float       mcmath_max<float>       (const float& x, const float& y)             { return mc_fmaxf   (x, y); }
+template <>        MC_TARGET_INLINE double      mcmath_max<double>      (const double& x, const double& y)           { return mc_fmax    (x, y); }
+template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const long double& x, const long double& y) { return mc_fmaxl   (x, y); }
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_AUTOTYPE
 #	define mcmath_max(a, b) \
 	__extension__ ({ \
@@ -2610,10 +2633,10 @@ template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const l
 		MC_TARGET_AUTOTYPE __mcmath_max_bb = (b); \
 		mc_cast(MC_TARGET_TYPEOF(__mcmath_max_aa), \
 		( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), float)       ? fmaxf (__mcmath_max_aa, mc_cast(float, __mcmath_max_bb))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), double)      ? fmax  (__mcmath_max_aa, mc_cast(double, __mcmath_max_bb))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), long double) ? fmaxl (__mcmath_max_aa, mc_cast(long double, __mcmath_max_bb)) \
-		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                               \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), float)       ? mc_fmaxf (mc_cast(float, __mcmath_max_aa)       , mc_cast(float, __mcmath_max_bb))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), double)      ? mc_fmax  (mc_cast(double, __mcmath_max_aa)      , mc_cast(double, __mcmath_max_bb))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), long double) ? mc_fmaxl (mc_cast(long double, __mcmath_max_aa) , mc_cast(long double, __mcmath_max_bb)) \
+		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                                                         \
 		)); \
 	})
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_TYPEOF
@@ -2623,10 +2646,10 @@ template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const l
 		MC_TARGET_TYPEOF((b)) __mcmath_max_bb = (b); \
 		mc_cast(MC_TARGET_TYPEOF(__mcmath_max_aa), \
 		( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), float)       ? fmaxf (__mcmath_max_aa, mc_cast(float, __mcmath_max_bb))       \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), double)      ? fmax  (__mcmath_max_aa, mc_cast(double, __mcmath_max_bb))      \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), long double) ? fmaxl (__mcmath_max_aa, mc_cast(long double, __mcmath_max_bb)) \
-		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                               \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), float)       ? mc_fmaxf (mc_cast(float, __mcmath_max_aa)       , mc_cast(float, __mcmath_max_bb))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), double)      ? mc_fmax  (mc_cast(double, __mcmath_max_aa)      , mc_cast(double, __mcmath_max_bb))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_max_aa)), long double) ? mc_fmaxl (mc_cast(long double, __mcmath_max_aa) , mc_cast(long double, __mcmath_max_bb)) \
+		: (__mcmath_max_aa > __mcmath_max_bb ? __mcmath_max_aa : __mcmath_max_bb)                                                                                         \
 		)); \
 	})
 #	else
@@ -2638,19 +2661,10 @@ template <>        MC_TARGET_INLINE long double mcmath_max<long double> (const l
 
 #	ifndef mcmath_min
 #	if MC_TARGET_CPP98
-
-template <class T> MC_TARGET_INLINE T           mcmath_min              (const T& x, const T& y)                     { return ::std::min (x, y);   }
-
-#	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return ::std::fminf (x, y); }
-template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return ::std::fmin  (x, y); }
-template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return ::std::fminl (x, y); }
-#	else
-template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return ::fminf (x, y);      }
-template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return ::fmin  (x, y);      }
-template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return ::fminl (x, y);      }
-#	endif
-
+template <class T> MC_TARGET_INLINE T           mcmath_min              (const T& x, const T& y)                     { return ::std::min (x, y); }
+template <>        MC_TARGET_INLINE float       mcmath_min<float>       (const float& x, const float& y)             { return mc_fminf   (x, y); }
+template <>        MC_TARGET_INLINE double      mcmath_min<double>      (const double& x, const double& y)           { return mc_fmin    (x, y); }
+template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const long double& x, const long double& y) { return mc_fminl   (x, y); }
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_AUTOTYPE
 #	define mcmath_min(a, b) \
 	__extension__ ({ \
@@ -2658,10 +2672,10 @@ template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const l
 		MC_TARGET_AUTOTYPE __mcmath_min_bb = (b); \
 		mc_cast(MC_TARGET_TYPEOF(__mcmath_min_aa), \
 		( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (mc_cast(float, __mcmath_min_aa), mc_cast(float, __mcmath_min_bb))             \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (mc_cast(double, __mcmath_min_aa), mc_cast(double, __mcmath_min_bb))           \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (mc_cast(long double, __mcmath_min_aa), mc_cast(long double, __mcmath_min_bb)) \
-		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                                                     \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? mc_fminf (mc_cast(float, __mcmath_min_aa)       , mc_cast(float, __mcmath_min_bb))       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? mc_fmin  (mc_cast(double, __mcmath_min_aa)      , mc_cast(double, __mcmath_min_bb))      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? mc_fminl (mc_cast(long double, __mcmath_min_aa) , mc_cast(long double, __mcmath_min_bb)) \
+		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                                                         \
 		)); \
 	})
 #	elif MC_TARGET_C99 && MC_TARGET_HAVE_TYPEOF
@@ -2671,10 +2685,10 @@ template <>        MC_TARGET_INLINE long double mcmath_min<long double> (const l
 		MC_TARGET_TYPEOF((b)) __mcmath_min_bb = (b); \
 		mc_cast(MC_TARGET_TYPEOF(__mcmath_min_aa), \
 		( \
-		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? fminf (mc_cast(float, __mcmath_min_aa), mc_cast(float, __mcmath_min_bb))             \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? fmin  (mc_cast(double, __mcmath_min_aa), mc_cast(double, __mcmath_min_bb))           \
-		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? fminl (mc_cast(long double, __mcmath_min_aa), mc_cast(long double, __mcmath_min_bb)) \
-		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                                                     \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), float)       ? mc_fminf (mc_cast(float, __mcmath_min_aa), mc_cast(float, __mcmath_min_bb))             \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), double)      ? mc_fmin  (mc_cast(double, __mcmath_min_aa), mc_cast(double, __mcmath_min_bb))           \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF((__mcmath_min_aa)), long double) ? mc_fminl (mc_cast(long double, __mcmath_min_aa), mc_cast(long double, __mcmath_min_bb)) \
+		: (__mcmath_min_aa < __mcmath_min_bb ? __mcmath_min_aa : __mcmath_min_bb)                                                                                        \
 		)); \
 	})
 #	else
