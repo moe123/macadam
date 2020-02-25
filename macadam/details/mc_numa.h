@@ -93,6 +93,7 @@
 #	include <macadam/details/numa/mc_addxv1xn.h>
 #	include <macadam/details/numa/mc_addxy1xn.h>
 #	include <macadam/details/numa/mc_amean1xn.h>
+#	include <macadam/details/numa/mc_arange1xn.h>
 #	include <macadam/details/numa/mc_argmax1xn.h>
 #	include <macadam/details/numa/mc_argmaxmx1.h>
 #	include <macadam/details/numa/mc_argmin1xn.h>
