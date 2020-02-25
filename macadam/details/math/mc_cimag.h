@@ -18,7 +18,7 @@ MC_TARGET_FUNC float mc_cimagf(mc_complex_float_t c)
 #	if MC_TARGET_C99_COMPLEX
 		return cimagf(c);
 #	else
-	return c.u_re;
+	return c.u_im;
 #	endif
 }
 
@@ -27,7 +27,7 @@ MC_TARGET_FUNC double mc_cimag(mc_complex_double_t c)
 #	if MC_TARGET_C99_COMPLEX
 		return cimag(c);
 #	else
-	return c.u_re;
+	return c.u_im;
 #	endif
 }
 
@@ -36,7 +36,7 @@ MC_TARGET_FUNC long double mc_cimagl(mc_complex_long_double_t c)
 #	if MC_TARGET_C99_COMPLEX
 		return cimagl(c);
 #	else
-	return c.u_re;
+	return c.u_im;
 #	endif
 }
 
