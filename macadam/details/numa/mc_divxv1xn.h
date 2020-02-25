@@ -15,7 +15,7 @@
 
 MC_TARGET_FUNC void mc_divxv1xnf(int n, float * u, const float * x, float v)
 {
-//!# u_i=x_i/v
+//!# Ui=Xi/v
 	const float w = 1.0f / v;
 
 	int i = 0;
@@ -26,7 +26,7 @@ MC_TARGET_FUNC void mc_divxv1xnf(int n, float * u, const float * x, float v)
 
 MC_TARGET_FUNC void mc_divxv1xnff(int n, double * u, const float * x, float v)
 {
-//!# u_i=x_i/v
+//!# Ui=Xi/v
 	const float w = 1.0f / v;
 
 	int i = 0;
@@ -37,7 +37,7 @@ MC_TARGET_FUNC void mc_divxv1xnff(int n, double * u, const float * x, float v)
 
 MC_TARGET_FUNC void mc_divxv1xn(int n, double * u, const double * x, double v)
 {
-//!# u_i=x_i/v
+//!# Ui=Xi/v
 	const double w = 1.0 / v;
 
 	int i = 0;
@@ -48,7 +48,7 @@ MC_TARGET_FUNC void mc_divxv1xn(int n, double * u, const double * x, double v)
 
 MC_TARGET_FUNC void mc_divxv1xnl(int n, long double * u, const long double * x, long double v)
 {
-//!# u_i=x_i/v
+//!# Ui=Xi/v
 	const long double w = 1.0L / v;
 
 	int i = 0;

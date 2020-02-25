@@ -15,7 +15,7 @@
 
 MC_TARGET_FUNC void mc_mulxy1xnf(int n, float * u, const float * x, const float * y)
 {
-//!# u_i=x_i*y_i
+//!# Ui=Xi*Yi
 	int i = 0;
 	for (; i < n; i++) {
 		u[i] = x[i] * y[i];
@@ -24,7 +24,7 @@ MC_TARGET_FUNC void mc_mulxy1xnf(int n, float * u, const float * x, const float 
 
 MC_TARGET_FUNC void mc_mulxy1xnff(int n, double * u, const float * x, const float * y)
 {
-//!# u_i=x_i*y_i
+//!# Ui=Xi*Yi
 	int i = 0;
 	for (; i < n; i++) {
 		u[i] = mc_cast(double, x[i]) * mc_cast(double, y[i]);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC void mc_mulxy1xnff(int n, double * u, const float * x, const floa
 
 MC_TARGET_FUNC void mc_mulxy1xn(int n, double * u, const double * x, const double * y)
 {
-//!# u_i=x_i*y_i
+//!# Ui=Xi*Yi
 	int i = 0;
 	for (; i < n; i++) {
 		u[i] = x[i] * y[i];
@@ -42,7 +42,7 @@ MC_TARGET_FUNC void mc_mulxy1xn(int n, double * u, const double * x, const doubl
 
 MC_TARGET_FUNC void mc_mulxy1xnl(int n, long double * u, const long double * x, const long double * y)
 {
-//!# u_i=x_i*y_i
+//!# Ui=Xi*Yi
 	int i = 0;
 	for (; i < n; i++) {
 		u[i] = x[i] * y[i];
