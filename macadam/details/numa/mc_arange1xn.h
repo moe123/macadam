@@ -17,7 +17,7 @@ MC_TARGET_FUNC int mc_arangef(int n, float * x, float x1, float x2, float xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
-//!# the half-open interval [x1, x2[, returning usable length of vector X.
+//!# the half-open interval [x1, x2[. Returning usable length of vector X.
 	int i   = 0;
 	float w = x1;
 	if (n > 0) {
@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_arangeff(int n, double * x, float x1, float x2, float xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
-//!# the half-open interval [x1, x2[, returning usable length of vector X.
+//!# the half-open interval [x1, x2[. Returning usable length of vector X.
 	int i    = 0;
 	double w = mc_cast(double, x1);
 	if (n > 0) {
@@ -49,7 +49,7 @@ MC_TARGET_FUNC int mc_arange(int n, double * x, double x1, double x2, double xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
-//!# the half-open interval [x1, x2[, returning usable length of vector X.
+//!# the half-open interval [x1, x2[. Returning usable length of vector X.
 	int i    = 0;
 	double w = x1;
 	if (n > 0) {
@@ -65,7 +65,7 @@ MC_TARGET_FUNC int mc_arangel(int n, long double * x, long double x1, long doubl
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
-//!# the half-open interval [x1, x2[, returning usable length of vector X.
+//!# the half-open interval [x1, x2[. Returning usable length of vector X.
 	int i         = 0;
 	long double w = x1;
 	if (n > 0) {

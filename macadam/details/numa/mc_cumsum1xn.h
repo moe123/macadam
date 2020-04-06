@@ -18,7 +18,7 @@ MC_TARGET_FUNC int mc_cumsum1xnf(int n, float * u, const float * x, int f)
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. U and X may be the
 //!# same. Returning the cumulative sum of the elements.
 //!# f=0: forward cumulative sum.
-//!# f=1: bacward cumulative sum.
+//!# f=1: backward cumulative sum.
 	int i = 1;
 	float a, b;
 	if (n > 0) {
@@ -38,7 +38,7 @@ MC_TARGET_FUNC int mc_cumsum1xnff(int n, double * u, const float * x, int f)
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. Returning
 //!# the cumulative sum of the elements.
 //!# f=0: forward cumulative sum.
-//!# f=1: bacward cumulative sum.
+//!# f=1: backward cumulative sum.
 	int i = 1;
 	double a, b;
 	if (n > 0) {
@@ -58,7 +58,7 @@ MC_TARGET_FUNC int mc_cumsum1xn(int n, double * u, const double * x, int f)
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. U and X may be the
 //!# same. Returning the cumulative sum of the elements.
 //!# f=0: forward cumulative sum.
-//!# f=1: bacward cumulative sum.
+//!# f=1: backward cumulative sum.
 	int i = 1;
 	double a, b;
 	if (n > 0) {
@@ -78,7 +78,7 @@ MC_TARGET_FUNC int mc_cumsum1xnl(int n, long double * u, const long double * x, 
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. U and X may be the
 //!# same. Returning the cumulative sum of the elements.
 //!# f=0: forward cumulative sum.
-//!# f=1: bacward cumulative sum.
+//!# f=1: backward cumulative sum.
 	int i = 1;
 	long double a, b;
 	if (n > 0) {

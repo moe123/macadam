@@ -44,7 +44,7 @@ MC_TARGET_FUNC int mc_qrsolve3x3ff(const float q[9], const float r[9], const flo
 
 MC_TARGET_FUNC int mc_qrsolve3x3(const double q[9], const double r[9], const double p[9], const int pvi[3], const double b[3], double x[3]) 
 {
-//!# Solving linear system Ax=b for LU family factorization.
+//!# Solving linear system Ax=b for QR family factorization.
 //!# q[m x n], r[n x n], d[n x n], p[n x n], pvi[n x 1], x[n x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
@@ -58,7 +58,7 @@ MC_TARGET_FUNC int mc_qrsolve3x3(const double q[9], const double r[9], const dou
 
 MC_TARGET_FUNC int mc_qrsolve3x3l(const long double q[9], const long double r[9], const long double p[9], const int pvi[3], const long double b[3], long double x[3]) 
 {
-//!# Solving linear system Ax=b for LU family factorization.
+//!# Solving linear system Ax=b for QR family factorization.
 //!# q[m x n], r[n x n], d[n x n], p[n x n], pvi[n x 1], x[n x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.

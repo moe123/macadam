@@ -103,7 +103,6 @@ MC_TARGET_FUNC void mc_centermxnff(int m, int n, double * c, const float * a, in
 	}
 }
 
-
 MC_TARGET_FUNC void mc_centermxn(int m, int n, double * c, const double * a, int f)
 {
 //!# Requires c[m x n] and a[m x n] where 1 < n <= m. C and A may be

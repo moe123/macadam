@@ -17,7 +17,7 @@ MC_TARGET_FUNC void mc_outpxymxnf(int m, int n, float * a, const float * x, cons
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
-#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = m;
 	const int nn      = n;
@@ -90,7 +90,7 @@ MC_TARGET_FUNC void mc_outpxymxn(int m, int n, double * a, const double * x, con
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
-#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm       = m;
 	const int nn       = n;
@@ -118,7 +118,7 @@ MC_TARGET_FUNC void mc_outpxymxnl(int m, int n, long double * a, const long doub
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
-#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm            = m;
 	const int nn            = n;

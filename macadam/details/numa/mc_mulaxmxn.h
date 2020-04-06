@@ -17,7 +17,7 @@ MC_TARGET_FUNC void mc_mulaxmxnf(int m, int n, float * restrict b, const float *
 {
 //!# Requires b[m x 1], a[m * n] and x[n x 1].
 //!# b=a*x
-#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = m;
 	const int nn      = n;
@@ -86,7 +86,7 @@ MC_TARGET_FUNC void mc_mulaxmxn(int m, int n, double * restrict b, const double 
 {
 //!# Requires b[m x 1], a[m * n] and x[n x 1].
 //!# b=a*x
-#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm       = m;
 	const int nn       = n;
@@ -113,7 +113,7 @@ MC_TARGET_FUNC void mc_mulaxmxnl(int m, int n, long double * restrict b, const l
 {
 //!# Requires b[m x 1], a[m * n] and x[n x 1].
 //!# b=a*x
-#	if !MC_TARGET_EMBEDDED && MCTARGET_BLAS_USE_CLAYOUT
+#	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm            = m;
 	const int nn            = n;

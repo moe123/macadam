@@ -11,14 +11,9 @@
 #ifndef MCCONSTS_H
 #define MCCONSTS_H
 
-#	if MCTARGET_CPP98
-#		if MCTARGET_CPP11
-#			define MCK_NAN ::std::NAN
-#			define MCK_INF ::std::INFINITY
-#		else
-#			define MCK_NAN ::NAN
-#			define MCK_INF ::INFINITY
-#		endif
+#	if MC_TARGET_CPP98
+#		define MCK_NAN ::NAN
+#		define MCK_INF ::INFINITY
 #	else
 #		define MCK_NAN NAN
 #		define MCK_INF INFINITY
