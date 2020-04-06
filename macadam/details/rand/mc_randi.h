@@ -9,6 +9,7 @@
 #include <macadam/details/mc_target.h>
 #include <macadam/mcconsts.h>
 #include <macadam/mclimits.h>
+#include <macadam/mcswap.h>
 
 #ifndef MC_RANDI_H
 #define MC_RANDI_H
@@ -150,7 +151,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 #	else
 	mc_randi_seeds_s[0] = a * mc_cast_expr(const uint64_t, 6364136223846793005   ) + mc_randi_seeds_s[1];
 #	endif
-	x                   = mc_cast(uint32_t, ((a >> 18U) ^ a)) >> 27U;
+	x                   = mc_cast_expr(uint32_t, ((a >> 18U) ^ a) >> 27U);
 	r                   = a >> 59U;
 	b                   = (x >> r) | (x << ((-r) & 31));
 	if (!(b < MCLIMITS_RANDMAX)) {
