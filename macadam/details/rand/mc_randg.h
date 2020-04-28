@@ -56,7 +56,7 @@ MC_TARGET_PROC float mc_randgf(void)
 			u              = 2.0f * r1 - 1.0f;
 			v              = 2.0f * r2 - 1.0f;
 			s              = mc_raise2f(u) + mc_raise2f(v);
-		} while (s < 1.0f && s > 0.0f);
+		} while (s > 1.0f || s == 0.0f);
 		w = -2.0f * mc_logf(s) * (1.0f / s);
 		if (w < 0.0f) {
 			mc_zsqrtf(&w, &s, w, 0.0f);
@@ -108,7 +108,7 @@ MC_TARGET_PROC double mc_randg(void)
 			u               = 2.0 * r1 - 1.0;
 			v               = 2.0 * r2 - 1.0;
 			s               = mc_raise2(u) + mc_raise2(v);
-		} while (s < 1.0 && s > 0.0);
+		} while (s > 1.0 || s == 0.0);
 		w = -2.0 * mc_log(s) * (1.0 / s);
 		if (w < 0.0) {
 			mc_zsqrt(&w, &s, w, 0.0);
@@ -160,7 +160,7 @@ MC_TARGET_PROC long double mc_randgl(void)
 			u                    = 2.0L * r1 - 1.0L;
 			v                    = 2.0L * r2 - 1.0L;
 			s                    = mc_raise2l(u) + mc_raise2l(v);
-		} while (s < 1.0 && s > 0.0);
+		} while (s > 1.0L || s == 0.0L);
 		w = -2.0L * mc_logl(s) * (1.0L / s);
 		if (w < 0.0L) {
 			mc_zsqrtl(&w, &s, w, 0.0L);
