@@ -36,7 +36,6 @@ MC_TARGET_PROC void mc_lapack_slasq2(int n, float * z, int * info)
 	      qmin, s, safmin, sigma, t, tau, temp, tol,
 	      tol2, trace, zmax, tempe, tempq;
 
-
 	*info   = 0;
 	 eps    = mc_lapack_slamch('P');
 	 safmin = mc_lapack_slamch('S');
@@ -394,7 +393,6 @@ MC_TARGET_PROC void mc_lapack_dlasq2(int n, double * z, int * info)
 	       qmin, s, safmin, sigma, t, tau, temp, tol,
 	       tol2, trace, zmax, tempe, tempq;
 
-
 	*info   = 0;
 	 eps    = mc_lapack_dlamch('P');
 	 safmin = mc_lapack_dlamch('S');
@@ -751,7 +749,6 @@ MC_TARGET_PROC void mc_lapack_llasq2(int n, long double * z, int * info)
 	            dn1, dn2, e, emax, emin, eps, g, oldemn, qmax,
 	            qmin, s, safmin, sigma, t, tau, temp, tol,
 	            tol2, trace, zmax, tempe, tempq;
-
 
 	*info   = 0;
 	 eps    = mc_lapack_llamch('P');
