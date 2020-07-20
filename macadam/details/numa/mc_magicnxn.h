@@ -44,7 +44,7 @@ MC_TARGET_FUNC int mc_magicnxnf(int n, float * a)
 		return 0;
 	} else if (n > 2 && ((n % 2 == 0 && (n /2 ) % 2 == 1))) { 
 //!# Single-even order.
-		r = n / 2
+		r = n / 2;
 		i = 0;
 		j = r / 2;
 
@@ -79,7 +79,7 @@ MC_TARGET_FUNC int mc_magicnxnf(int n, float * a)
 					mcswap_var(w, a[(n * ki) + j], a[(n * (n / 2 + ki)) + j]);
 				}
 				for (j = 0; j < kj; j++) {
-					mcswap_var(w, a[(n * ki) + (n - 1 - j)], a[(n * (n / 2 + ki])) + (n - 1 - j)]);
+					mcswap_var(w, a[(n * ki) + (n - 1 - j)], a[(n * (n / 2 + ki)) + (n - 1 - j)]);
 				}
 			}
 		}
@@ -87,16 +87,16 @@ MC_TARGET_FUNC int mc_magicnxnf(int n, float * a)
 	} else if (n > 2 && ((n % 4) == 0)) {
 //!# Doubly-even order.
 		r = n / 4;
-		for (; i < r; i++) {
+		for (i = 0; i < r; i++) {
 			for (j = 0; j < r; j++) {
 				ki = i * 4;
 				kj = j * 4;
 				for (k = 0; k < 4; k++) {
 					for (l = 0; l < 4; l++) {
-						a[(n * (ki + k)) + (kj + l)] = mc_cast(float, (k == l || k + l == 3)
+						a[(n * (ki + k)) + (kj + l)] = mc_cast(float, ((k == l || k + l == 3)
 							? (n * n) - (n * (ki + k) + (kj + l))
 							: 1       +  n * (ki + k) + (kj + l)
-						);
+						));
 					}
 				}
 			}
@@ -137,7 +137,7 @@ MC_TARGET_FUNC int mc_magicnxn(int n, double * a)
 		return 0;
 	} else if (n > 2 && ((n % 2 == 0 && (n /2 ) % 2 == 1))) { 
 //!# Single-even order.
-		r = n / 2
+		r = n / 2;
 		i = 0;
 		j = r / 2;
 
@@ -172,7 +172,7 @@ MC_TARGET_FUNC int mc_magicnxn(int n, double * a)
 					mcswap_var(w, a[(n * ki) + j], a[(n * (n / 2 + ki)) + j]);
 				}
 				for (j = 0; j < kj; j++) {
-					mcswap_var(w, a[(n * ki) + (n - 1 - j)], a[(n * (n / 2 + ki])) + (n - 1 - j)]);
+					mcswap_var(w, a[(n * ki) + (n - 1 - j)], a[(n * (n / 2 + ki)) + (n - 1 - j)]);
 				}
 			}
 		}
@@ -180,16 +180,16 @@ MC_TARGET_FUNC int mc_magicnxn(int n, double * a)
 	} else if (n > 2 && ((n % 4) == 0)) {
 //!# Doubly-even order.
 		r = n / 4;
-		for (; i < r; i++) {
+		for (i = 0; i < r; i++) {
 			for (j = 0; j < r; j++) {
 				ki = i * 4;
 				kj = j * 4;
 				for (k = 0; k < 4; k++) {
 					for (l = 0; l < 4; l++) {
-						a[(n * (ki + k)) + (kj + l)] = mc_cast(double, (k == l || k + l == 3)
+						a[(n * (ki + k)) + (kj + l)] = mc_cast(double, ((k == l || k + l == 3)
 							? (n * n) - (n * (ki + k) + (kj + l))
 							: 1       +  n * (ki + k) + (kj + l)
-						);
+						));
 					}
 				}
 			}
@@ -199,7 +199,7 @@ MC_TARGET_FUNC int mc_magicnxn(int n, double * a)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_magicnxnl(int n, double * a)
+MC_TARGET_FUNC int mc_magicnxnl(int n, long double * a)
 {
 	int i, j, k, ki, kj;
 	int r, l;
@@ -230,7 +230,7 @@ MC_TARGET_FUNC int mc_magicnxnl(int n, double * a)
 		return 0;
 	} else if (n > 2 && ((n % 2 == 0 && (n /2 ) % 2 == 1))) { 
 //!# Single-even order.
-		r = n / 2
+		r = n / 2;
 		i = 0;
 		j = r / 2;
 
@@ -265,7 +265,7 @@ MC_TARGET_FUNC int mc_magicnxnl(int n, double * a)
 					mcswap_var(w, a[(n * ki) + j], a[(n * (n / 2 + ki)) + j]);
 				}
 				for (j = 0; j < kj; j++) {
-					mcswap_var(w, a[(n * ki) + (n - 1 - j)], a[(n * (n / 2 + ki])) + (n - 1 - j)]);
+					mcswap_var(w, a[(n * ki) + (n - 1 - j)], a[(n * (n / 2 + ki)) + (n - 1 - j)]);
 				}
 			}
 		}
@@ -273,16 +273,16 @@ MC_TARGET_FUNC int mc_magicnxnl(int n, double * a)
 	} else if (n > 2 && ((n % 4) == 0)) {
 //!# Doubly-even order.
 		r = n / 4;
-		for (; i < r; i++) {
+		for (i = 0; i < r; i++) {
 			for (j = 0; j < r; j++) {
 				ki = i * 4;
 				kj = j * 4;
 				for (k = 0; k < 4; k++) {
 					for (l = 0; l < 4; l++) {
-						a[(n * (ki + k)) + (kj + l)] = mc_cast(long double, (k == l || k + l == 3)
+						a[(n * (ki + k)) + (kj + l)] = mc_cast(long double, ((k == l || k + l == 3)
 							? (n * n) - (n * (ki + k) + (kj + l))
 							: 1       +  n * (ki + k) + (kj + l)
-						);
+						));
 					}
 				}
 			}

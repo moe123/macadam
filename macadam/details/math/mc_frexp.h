@@ -15,7 +15,7 @@
 
 #pragma mark - mc_frexp -
 
-MC_TARGET_FUNC float mc_frexpf(float x, int * e)
+MC_TARGET_PROC float mc_frexpf(float x, int * e)
 {
 #	if MC_TARGET_CPP98
 	return ::frexpf(x, e);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_frexpf(float x, int * e)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_frexp(double x, int * e)
+MC_TARGET_PROC double mc_frexp(double x, int * e)
 {
 #	if MC_TARGET_CPP98
 	return ::frexp(x, e);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_frexp(double x, int * e)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_frexpl(long double x, int * e)
+MC_TARGET_PROC long double mc_frexpl(long double x, int * e)
 {
 #	if MC_TARGET_CPP98
 	return ::frexpl(x, e);

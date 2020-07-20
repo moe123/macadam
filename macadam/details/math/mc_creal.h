@@ -13,7 +13,7 @@
 
 #pragma mark - mc_creal -
 
-MC_TARGET_FUNC float mc_crealf(mc_complex_float_t c)
+MC_TARGET_PROC float mc_crealf(mc_complex_float_t c)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return crealf(c);
@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_crealf(mc_complex_float_t c)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_creal(mc_complex_double_t c)
+MC_TARGET_PROC double mc_creal(mc_complex_double_t c)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return creal(c);
@@ -31,7 +31,7 @@ MC_TARGET_FUNC double mc_creal(mc_complex_double_t c)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_creall(mc_complex_long_double_t c)
+MC_TARGET_PROC long double mc_creall(mc_complex_long_double_t c)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return creall(c);
