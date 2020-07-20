@@ -169,6 +169,7 @@
 #	include <macadam/details/numa/mc_magic4x4.h>
 #	include <macadam/details/numa/mc_magic5x5.h>
 #	include <macadam/details/numa/mc_magic6x6.h>
+#	include <macadam/details/numa/mc_magicnxn.h>
 #	include <macadam/details/numa/mc_max1xn.h>
 #	include <macadam/details/numa/mc_maxmx1.h>
 #	include <macadam/details/numa/mc_mean1xn.h>

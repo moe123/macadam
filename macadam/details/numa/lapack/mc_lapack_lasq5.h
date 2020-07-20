@@ -20,7 +20,7 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 	, float * dmin2
 	, float * dn
 	, float * dnm1
-	, float *dnm2
+	, float * dnm2
 	, int ieee
 	, float eps
 ) {
@@ -253,7 +253,7 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 	, double * dmin2
 	, double * dn
 	, double * dnm1
-	, double *dnm2
+	, double * dnm2
 	, int ieee
 	, double eps
 ) {
@@ -486,7 +486,7 @@ MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, lo
 	, long double * dmin2
 	, long double * dn
 	, long double * dnm1
-	, long double *dnm2
+	, long double * dnm2
 	, int ieee
 	, long double eps
 ) {

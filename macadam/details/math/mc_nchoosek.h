@@ -30,9 +30,9 @@ MC_TARGET_FUNC unsigned int mc_nchoosek(unsigned int n, unsigned int k)
 	return MCLIMITS_UIMAX;
 }
 
-#pragma mark - mc_ulnchoosek -
+#pragma mark - mc_nchoosekul -
 
-MC_TARGET_PROC unsigned long mc_ulnchoosek(unsigned long n, unsigned long k)
+MC_TARGET_PROC unsigned long mc_nchoosekul(unsigned long n, unsigned long k)
 {
 	if (n < MCLIMITS_ULMAX && k < MCLIMITS_ULMAX) {
 		if (k > n) {
@@ -42,15 +42,15 @@ MC_TARGET_PROC unsigned long mc_ulnchoosek(unsigned long n, unsigned long k)
 		} else if ((k == 1) || (k == n - 1)) {
 			return n;
 		}
-		return (n * mc_ulnchoosek(n - 1, k - 1)) / k;
+		return (n * mc_nchoosekul(n - 1, k - 1)) / k;
 	}
 	return MCLIMITS_ULMAX;
 }
 
-#pragma mark - mc_ullnchoosek -
+#pragma mark - mc_nchoosekull -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_PROC unsigned long long mc_ullnchoosek(unsigned long long n, unsigned long long k)
+MC_TARGET_PROC unsigned long long mc_nchoosekull(unsigned long long n, unsigned long long k)
 {
 	if (n < MCLIMITS_ULLMAX && k < MCLIMITS_ULLMAX) {
 		if (k > n) {
@@ -60,12 +60,12 @@ MC_TARGET_PROC unsigned long long mc_ullnchoosek(unsigned long long n, unsigned 
 		} else if ((k == 1) || (k == n - 1)) {
 			return n;
 		}
-		return (n * mc_ullnchoosek(n - 1, k - 1)) / k;
+		return (n * mc_nchoosekull(n - 1, k - 1)) / k;
 	}
 	return MCLIMITS_ULLMAX;
 }
 #	else
-#	define mc_ullnchoosek mc_ulnchoosek
+#	define mc_nchoosekull mc_nchoosekul
 #	endif
 
 #endif /* !MC_NCHOOSEK_H */

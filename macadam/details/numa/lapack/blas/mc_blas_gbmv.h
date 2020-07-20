@@ -193,7 +193,7 @@ MC_TARGET_FUNC void mc_blas_sgbmv(const char trans, int m, int n, int kl, int ku
 			if (beta == zero) {
 				for (i = 1; i <= leny; ++i) {
 					mc_blas_vector_at(y, iy) = zero;
-					iy                      = iy + incy;
+					iy                       = iy + incy;
 				}
 			} else {
 				for (i = 1; i <= leny; ++i) {
@@ -336,7 +336,7 @@ MC_TARGET_FUNC void mc_blas_dgbmv(const char trans, int m, int n, int kl, int ku
 			if (beta == zero) {
 				for (i = 1; i <= leny; ++i) {
 					mc_blas_vector_at(y, iy) = zero;
-					iy                      = iy + incy;
+					iy                       = iy + incy;
 				}
 			} else {
 				for (i = 1; i <= leny; ++i) {
@@ -479,7 +479,7 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, int m, int n, int kl, int ku
 			if (beta == zero) {
 				for (i = 1; i <= leny; ++i) {
 					mc_blas_vector_at(y, iy) = zero;
-					iy                      = iy + incy;
+					iy                       = iy + incy;
 				}
 			} else {
 				for (i = 1; i <= leny; ++i) {
