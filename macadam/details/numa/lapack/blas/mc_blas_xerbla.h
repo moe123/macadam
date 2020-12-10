@@ -17,13 +17,13 @@ MC_TARGET_FUNC void mc_blas_xerbla(const char * srname, int info)
 {
 #	if MC_TARGET_CPP98
 	::fprintf(stderr,
-		"** On entry to %6s, parameter number %2d had an illegal value.\n"
+		"** On entry to %8s, parameter number %2d had an illegal value.\n"
 		, srname
 		, info
 	);
 #	else
 	fprintf(stderr,
-		"** On entry to %6s, parameter number %2d had an illegal value.\n"
+		"** On entry to %8s, parameter number %2d had an illegal value.\n"
 		, srname
 		, info
 	);

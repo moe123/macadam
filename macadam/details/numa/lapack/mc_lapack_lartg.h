@@ -72,7 +72,7 @@ F30:
 				*r = (*r) * safmn2;
 			}
 		} else {
-			*r = mc_sqrtf(mc_raise2f(f1) + mc_raise2f(g1));
+			*r  = mc_sqrtf(mc_raise2f(f1) + mc_raise2f(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 		}
@@ -141,7 +141,7 @@ F30:
 				*r = (*r) * safmn2;
 			}
 		} else {
-			*r = mc_sqrt(mc_raise2(f1) + mc_raise2(g1));
+			*r  = mc_sqrt(mc_raise2(f1) + mc_raise2(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 		}
@@ -210,7 +210,7 @@ F30:
 				*r = (*r) * safmn2;
 			}
 		} else {
-			*r = mc_sqrtl(mc_raise2l(f1) + mc_raise2l(g1));
+			*r  = mc_sqrtl(mc_raise2l(f1) + mc_raise2l(g1));
 			*cs = f1 / (*r);
 			*sn = g1 / (*r);
 		}
