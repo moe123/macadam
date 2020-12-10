@@ -45,7 +45,7 @@ MC_TARGET_PROC double mc_randu(void)
 MC_TARGET_PROC long double mc_randul(void)
 {
 //!# Uniform distribution range [0, 1] (theoretically may include low and high).
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double a = mc_cast(long double, mc_randi());
 #	if MC_TARGET_RAND_USE_LIBCRAND
 	const long double b = mc_cast(long double, MCLIMITS_RANDMAX);
