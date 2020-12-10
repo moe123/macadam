@@ -124,7 +124,7 @@ MC_TARGET_FUNC double mc_rgamma(double x)
 MC_TARGET_FUNC long double mc_rgammal(long double x)
 {
 //!# Computes reciprocical gamma(x) reducing error rate for low input i.e 1 / gamma(x).
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	if (mc_isnan(x) || mc_isinf(x)) {
 		if (mc_isinfp(x)) {
 			return 0.0L;

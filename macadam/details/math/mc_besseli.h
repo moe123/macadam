@@ -384,7 +384,7 @@ MC_TARGET_PROC double mc_besseli1_approx1(double x)
 
 MC_TARGET_PROC long double mc_besseli1l_approx1(long double x)
 {
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1, a2, a3, a4;
 	long double b1, b2, b3, b4;
@@ -611,7 +611,7 @@ MC_TARGET_PROC double mc_besseli0_approx2(double x)
 
 MC_TARGET_PROC long double mc_besseli0l_approx2(long double x)
 {
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double A[] =
 	{
 		  -4.415341646479339379500000000000000000000000000000000000000000000E-18L
@@ -801,7 +801,7 @@ MC_TARGET_PROC double mc_besseli1_approx2(double x)
 
 MC_TARGET_PROC long double mc_besseli1l_approx2(long double x)
 {
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double A[] =
 	{
 		  +2.777914112761046399590000000000000000000000000000000000000000000E-18L

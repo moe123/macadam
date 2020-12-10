@@ -415,7 +415,7 @@ MC_TARGET_PROC double mc_zetapsc(double s, double sc)
 
 MC_TARGET_PROC long double mc_zetapscl(long double s, long double sc)
 {
-#	if MC_TARGET_MSVC_CPP
+#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const double x = mc_cast(double, s);
 	const double y = mc_cast(double, sc);
 	return mc_cast(long double, mc_zetapsc(x, y));
@@ -568,7 +568,7 @@ MC_TARGET_PROC double mc_izetap(unsigned int s)
 
 MC_TARGET_PROC long double mc_izetapl(unsigned int s)
 {
-#	if MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double Z[] =
 	{
 		  -5.000000000000000000000000000000000000000000000000000000000000000E-01L
@@ -697,7 +697,7 @@ MC_TARGET_PROC long double mc_zetapl(long double s)
 	} else if (mc_isinf(s)) {
 		return MCK_INFP;
 	}
-#	if MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	if (mc_fisintl(s) && (s >= 0.0L && s < 75.0L)) {
 		return mc_izetapl(mc_cast(unsigned int, s));
 	}

@@ -68,7 +68,7 @@ MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x
 //!#
 //!# @note: Dekker's twoProduct is not a robust fma implementation.
 //!#
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 //!# 2^32 + 1.
 	const long double cs = mc_cast_expr(long double, 4294967296 + 1);
 #	else

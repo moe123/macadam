@@ -13,7 +13,7 @@
 
 #pragma mark - mc_csub -
 
-MC_TARGET_FUNC mc_complex_float_t mc_csubf(mc_complex_float_t a, mc_complex_float_t b)
+MC_TARGET_PROC mc_complex_float_t mc_csubf(mc_complex_float_t a, mc_complex_float_t b)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return a - b;
@@ -24,7 +24,7 @@ MC_TARGET_FUNC mc_complex_float_t mc_csubf(mc_complex_float_t a, mc_complex_floa
 #	endif
 }
 
-MC_TARGET_FUNC mc_complex_double_t mc_csub(mc_complex_double_t a, mc_complex_double_t b)
+MC_TARGET_PROC mc_complex_double_t mc_csub(mc_complex_double_t a, mc_complex_double_t b)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return a - b;
@@ -35,7 +35,7 @@ MC_TARGET_FUNC mc_complex_double_t mc_csub(mc_complex_double_t a, mc_complex_dou
 #	endif
 }
 
-MC_TARGET_FUNC mc_complex_long_double_t mc_csubl(mc_complex_long_double_t a, mc_complex_long_double_t b)
+MC_TARGET_PROC mc_complex_long_double_t mc_csubl(mc_complex_long_double_t a, mc_complex_long_double_t b)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return a - b;

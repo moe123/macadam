@@ -155,7 +155,7 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 	long double w           = 1.0L;
 	int i                   = 1;
 	int k                   = 0;
-#	if MC_TARGET_MSVC_CPP
+#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const int max_factorial = 171;
 #	else
 	const int max_factorial = 1755;

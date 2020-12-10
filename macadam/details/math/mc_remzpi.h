@@ -100,7 +100,7 @@ MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
 
 MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 {
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
 	int64_t r = 0;
 	long double w;

@@ -205,7 +205,7 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double lanczos_g  = +5.000000000000000000000000000000000000000000000000000000000000000E+00L;
 	const long double lanczos_c0 = +1.000000000190014892709200466924812644720077514648437500000000000E+00L;
 	const long double lanczos_c1 = +7.618009172947145657417422626167535781860351562500000000000000000E+01L;

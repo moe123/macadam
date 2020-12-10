@@ -21,9 +21,6 @@
 
 MC_TARGET_FUNC float mc_bessely0f(float x)
 {
-#	if MC_TARGET_MSVC_CPP
-
-#	endif
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::y0(mc_cast(double, x)));
 #	else

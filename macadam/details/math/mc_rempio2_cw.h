@@ -90,7 +90,7 @@ MC_TARGET_PROC int64_t mc_rempio2_cw(double x, double * z)
 MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
 {
 //!# Cody-Waite reduction of x such as z=x - n*pi/2 where |z|<=pi/4, result = n mod 8.
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double dp1 = +7.853981554508209228515625000000000000000000000000000000000000000E-01L;
 	const long double dp2 = +7.946627356147928367136046290000000000000000000000000000000000000E-09L;
 	const long double dp3 = +3.061616997868382943065164830000000000000000000000000000000000000E-17L;
