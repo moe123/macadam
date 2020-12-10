@@ -213,7 +213,7 @@ MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int p, int j, int k, const double
 MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int p, int j, int k, const long double * a, const long double * b, int f)
 {
 //!# TwoProduct split factor @see mc_twoproduct.
-#	if !MC_TARGET_MSVC_CPP
+#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double cs = mc_cast_expr(long double, 4294967296 + 1);
 #	else
 	const long double cs = mc_cast_expr(long double, 134217728 + 1);
