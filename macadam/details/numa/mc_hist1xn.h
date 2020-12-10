@@ -13,7 +13,7 @@
 
 #pragma mark - mc_hist1xn -
 
-MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int abs, float min, float max, int npts, int nbins, int * h)
+MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int adiff, float min, float max, int npts, int nbins, int * h)
 {
 //!# Requires x[n] and h[npts] where 1 < n.
 	int i = 0;
@@ -24,10 +24,10 @@ MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int abs, float min, float
 		if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		scale = mc_cast_expr(float, (abs == 1 ? mc_fabsf(max - min) : (max - min)) / (nbins - 1));
+		scale = mc_cast_expr(float, (adiff > 0 ? mc_fabsf(max - min) : (max - min)) / (nbins - 1));
 		scale = (scale != 0.0f) ? (1.0f / scale) : 1.0f;
 		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (abs == 1 ? mc_fabsf(x[i] - min) : (x[i] - min)) * scale);
+			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabsf(x[i] - min) : (x[i] - min)) * scale);
 			const int k = j % npts;
 			h[k]++;
 		}
@@ -36,7 +36,7 @@ MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int abs, float min, float
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int abs, double min, double max, int npts, int nbins, int * h)
+MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int adiff, double min, double max, int npts, int nbins, int * h)
 {
 //!# Requires x[n] and h[npts] where 1 < n.
 	int i = 0;
@@ -47,10 +47,10 @@ MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int abs, double min, doub
 		if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		scale = mc_cast_expr(double, (abs == 1 ? mc_fabs(max - min) : (max - min)) / (nbins - 1));
+		scale = mc_cast_expr(double, (adiff > 0 ? mc_fabs(max - min) : (max - min)) / (nbins - 1));
 		scale = (scale != 0.0) ? (1.0 / scale) : 1.0;
 		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (abs == 1 ? mc_fabs(x[i] - min) : (x[i] - min)) * scale);
+			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabs(x[i] - min) : (x[i] - min)) * scale);
 			const int k = j % npts;
 			h[k]++;
 		}
@@ -59,7 +59,7 @@ MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int abs, double min, doub
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_hist1xnl(int n, const long double * x, int abs, long double min, long double max, int npts, int nbins, int * h)
+MC_TARGET_FUNC int mc_hist1xnl(int n, const long double * x, int adiff, long double min, long double max, int npts, int nbins, int * h)
 {
 //!# Requires x[n] and h[npts] where 1 < n.
 	int i = 0;
@@ -70,10 +70,10 @@ MC_TARGET_FUNC int mc_hist1xnl(int n, const long double * x, int abs, long doubl
 		if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		scale = mc_cast_expr(long double, (abs == 1 ? mc_fabsl(max - min) : (max - min)) / (nbins - 1));
+		scale = mc_cast_expr(long double, (adiff > 0 ? mc_fabsl(max - min) : (max - min)) / (nbins - 1));
 		scale = (scale != 0.0L) ? (1.0L / scale) : 1.0L;
 		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (abs == 1 ? mc_fabsl(x[i] - min) : (x[i] - min)) * scale);
+			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabsl(x[i] - min) : (x[i] - min)) * scale);
 			const int k = j % npts;
 			h[k]++;
 		}
