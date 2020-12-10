@@ -8,8 +8,8 @@
 
 #include <macadam/details/numa/mc_minmaxmx1.h>
 
-#ifndef MC_MAXMX1_H
-#define MC_MAXMX1_H
+#ifndef MC_MINMX1_H
+#define MC_MINMX1_H
 
 #pragma mark - mc_minmx1 -
 
