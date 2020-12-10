@@ -6,6 +6,8 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
+#include <macadam/details/mc_target.h>
+
 #ifndef MC_RAND_H
 #define MC_RAND_H
 

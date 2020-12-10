@@ -6,6 +6,8 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
+#include <macadam/details/mc_target.h>
+
 #ifndef MC_NUMA_H
 #define MC_NUMA_H
 
@@ -140,6 +142,7 @@
 #	include <macadam/details/numa/mc_flipudmxn.h>
 #	include <macadam/details/numa/mc_frobnormmxn.h>
 #	include <macadam/details/numa/mc_frobnormnxn.h>
+#	include <macadam/details/numa/mc_hist1xn.h>
 #	include <macadam/details/numa/mc_icopy1xn.h>
 #	include <macadam/details/numa/mc_infnorm1xn.h>
 #	include <macadam/details/numa/mc_infnormmxn.h>

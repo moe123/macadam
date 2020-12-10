@@ -6,6 +6,8 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
+#include <macadam/details/mc_target.h>
+
 #ifndef MC_MATH_H
 #define MC_MATH_H
 
@@ -229,6 +231,7 @@
 #	include <macadam/details/math/mc_zcosh.h>
 #	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
+#	include <macadam/details/math/mc_zetan.h>
 #	include <macadam/details/math/mc_zetap.h>
 #	include <macadam/details/math/mc_zexp.h>
 #	include <macadam/details/math/mc_zexp2.h>

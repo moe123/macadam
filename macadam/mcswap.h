@@ -14,14 +14,14 @@
 #pragma mark - mcswap_var -
 
 #	define mcswap_var(var, a, b) \
-		(var) = (a);   \
-		(a)   = (b);   \
+		(var) = (a);              \
+		(a)   = (b);              \
 		(b)   = (var)
 
 #pragma mark - mcswap_type -
 
-#	define mcswap_type(type, a, b) \
-	mc_scope_begin \
+#	define mcswap_type(type, a, b)               \
+	mc_scope_begin                               \
 		type __mcswap_type_aa = (a);              \
 		type __mcswap_type_bb = (b);              \
 		(a)                   = __mcswap_type_bb; \
@@ -33,8 +33,8 @@
 #	if MC_TARGET_CPP98
 #	define mcswap(a, b) ::std::swap(a, b)
 #	elif MC_TARGET_HAVE_AUTOTYPE
-#	define mcswap(a, b) \
-	__extension__ ({ \
+#	define mcswap(a, b)                              \
+	__extension__ ({                                 \
 		MC_TARGET_AUTOTYPE __mcswap_aa = (a);         \
 		MC_TARGET_AUTOTYPE __mcswap_bb = (b);         \
 		(a)                            = __mcswap_bb; \

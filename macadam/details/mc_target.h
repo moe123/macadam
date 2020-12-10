@@ -351,6 +351,12 @@
 #		include <math.h>
 #	endif
 
+#	if DBL_MANT_DIG < LDBL_MANT_DIG
+#		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 0
+#	else
+#		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 1
+#	endif
+
 #	if MC_TARGET_C99
 #		if (defined(_Imaginary_I) || defined(_Complex_I)) && !defined(__STDC_IEC_559_COMPLEX__)
 #			define __STDC_IEC_559_COMPLEX__ 1
@@ -383,13 +389,13 @@
 #	endif
 
 #	if !MC_TARGET_C99_COMPLEX
-#	define  mc_complex(type)        struct { type u_re; type  u_im; }
+#	define  mc_complex(type)        struct { type u_re; type u_im; }
 	typedef mc_complex(float)       mc_complex_float_t;
 	typedef mc_complex(double)      mc_complex_double_t;
 	typedef mc_complex(long double) mc_complex_long_double_t;
-#	define  mc_cmplxf(re, im)       { (float)re       , (float)im       }
-#	define  mc_cmplx(re, im)        { (double)re      , (double)im      }
-#	define  mc_cmplxl(re, im)       { (long double)re , (long double)im }
+#	define  mc_cmplxf(re, im)       { mc_cast(float,       re), mc_cast(float,       im) }
+#	define  mc_cmplx(re, im)        { mc_cast(double,      re), mc_cast(double,      im) }
+#	define  mc_cmplxl(re, im)       { mc_cast(long double, re), mc_cast(long double, im) }
 #	endif
 
 #	if defined(__SSE__) && __SSE__
@@ -493,6 +499,10 @@ MC_TARGET_FUNC unsigned long long MC_TARGET_ULONGLONG (unsigned long long x) { r
 #	else
 #	define MC_TARGET_LONGLONG  MC_TARGET_LONG
 #	define MC_TARGET_ULONGLONG MC_TARGET_ULONG
+#	endif
+
+#	ifndef MC_TARGET_ALLOCATOR_MAXSIZE
+#		define MC_TARGET_ALLOCATOR_MAXSIZE UINT_MAX
 #	endif
 
 #endif /* !MC_TARGET_H */
