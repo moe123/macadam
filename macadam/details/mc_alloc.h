@@ -91,7 +91,7 @@ void * mc_os_memmove(void * restrict dest, const void * restrict src, size_t len
 #pragma mark - mc_os_memcmp -
 
 static MC_TARGET_INLINE
-int mc_os_memcmp(void * restrict left, const void * restrict right, size_t len)
+int mc_os_memcmp(const void * restrict left, const void * restrict right, size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -166,6 +166,31 @@ void mc_os_free(void * ptr)
 	free(ptr);
 #	endif
 }
+
+#pragma mark - mc_base_memset -
+
+#	define mc_base_memset(src_addr, c, size) \
+		mc_os_memset(src_addr, c, mc_cast_expr(size_t, size))
+
+#pragma mark - mc_base_memzero -
+
+#	define mc_base_memzero(src_addr, size) \
+		mc_os_memzero(src_addr, mc_cast_expr(size_t, size))
+
+#pragma mark - mc_base_memcpy -
+
+#	define mc_base_memcpy(dest_addr, src_addr, size) \
+		mc_os_memcpy(dest_addr, src_addr, mc_cast_expr(size_t, size))
+
+#pragma mark - mc_base_memmove -
+
+#	define mc_base_memmove(dest_addr, src_addr, size) \
+		mc_os_memmove(dest_addr, src_addr, mc_cast_expr(size_t, size))
+
+#pragma mark - mc_base_memcmp -
+
+#	define mc_base_memcmp(left_addr, right_addr, size) \
+		mc_os_memcmp(left_addr, right_addr, mc_cast_expr(size_t, size))
 
 #pragma mark - mc_base_alloc -
 
