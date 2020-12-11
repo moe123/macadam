@@ -17,9 +17,9 @@ MC_TARGET_FUNC int mc_polyfit1xnf(int n, int d, const float * x, const float * y
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#     x - The query points.
 //!#     y - Fitted values at query points.
-//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#         Specifies the polynomial power of the right-most coefficient in vector c.
 //!#     w - Working buffer being of size w[d * 6].
 //!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
@@ -118,9 +118,9 @@ MC_TARGET_FUNC int mc_polyfit1xnff(int n, int d, const float * x, const float * 
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#     x - The query points.
 //!#     y - Fitted values at query points.
-//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#         Specifies the polynomial power of the right-most coefficient in vector c.
 //!#     w - Working buffer being of size w[d * 6].
 //!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
@@ -219,9 +219,9 @@ MC_TARGET_FUNC int mc_polyfit1xn(int n, int d, const double * x, const double * 
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#     x - The query points.
 //!#     y - Fitted values at query points.
-//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#         Specifies the polynomial power of the right-most coefficient in vector c.
 //!#     w - Working buffer being of size w[d * 6].
 //!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
@@ -320,9 +320,9 @@ MC_TARGET_FUNC int mc_polyfit1xnl(int n, int d, const long double * x, const lon
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
+//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#     x - The query points.
 //!#     y - Fitted values at query points.
-//!#     d - Order or degree of polynomial fit specified as a positive integer.
 //!#         Specifies the polynomial power of the right-most coefficient in vector c.
 //!#     w - Working buffer being of size w[d * 6].
 //!#     c - Least-squares fit polynomial coefficients, returned as a vector c[d + 1],
