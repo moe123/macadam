@@ -16,11 +16,20 @@
 MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int adiff, float min, float max, int npts, int nbins, int * h)
 {
 //!# Requires x[n] and h[npts] where 1 < n.
+//!#     n     - Number of samples in x.
+//!#     x     - The sample vector x.
+//!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
+//!#     min   - Minimum edge value.
+//!#     max   - Maximum edge value.
+//!#     npts  - Number of points to bin.
+//!#     nbins - Number of bins.
+//!#     h     - The histogram result.
+
 	int i = 0;
 	float w, scale;
 
 	if (n > 1 && nbins > 1 && npts > 1) {
-		mc_os_memzero(h, npts);
+		mc_base_memzero(h, npts);
 		if (min > max) {
 			mcswap_var(w, min, max);
 		}
@@ -39,11 +48,20 @@ MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int adiff, float min, flo
 MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int adiff, double min, double max, int npts, int nbins, int * h)
 {
 //!# Requires x[n] and h[npts] where 1 < n.
+//!#     n     - Number of samples in x.
+//!#     x     - The sample vector x.
+//!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
+//!#     min   - Minimum edge value.
+//!#     max   - Maximum edge value.
+//!#     npts  - Number of points to bin.
+//!#     nbins - Number of bins.
+//!#     h     - The histogram result.
+
 	int i = 0;
 	double w, scale;
 
 	if (n > 1 && nbins > 1 && npts > 1) {
-		mc_os_memzero(h, npts);
+		mc_base_memzero(h, npts);
 		if (min > max) {
 			mcswap_var(w, min, max);
 		}
@@ -62,11 +80,20 @@ MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int adiff, double min, do
 MC_TARGET_FUNC int mc_hist1xnl(int n, const long double * x, int adiff, long double min, long double max, int npts, int nbins, int * h)
 {
 //!# Requires x[n] and h[npts] where 1 < n.
+//!#     n     - Number of samples in x.
+//!#     x     - The sample vector x.
+//!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
+//!#     min   - Minimum edge value.
+//!#     max   - Maximum edge value.
+//!#     npts  - Number of points to bin.
+//!#     nbins - Number of bins.
+//!#     h     - The histogram result.
+
 	int i = 0;
 	long double w, scale;
 
 	if (n > 1 && nbins > 1 && npts > 1) {
-		mc_os_memzero(h, npts);
+		mc_base_memzero(h, npts);
 		if (min > max) {
 			mcswap_var(w, min, max);
 		}
