@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/numa/mc_minmax1xn.h>
 
 #ifndef MC_HIST1XN_H
 #define MC_HIST1XN_H
@@ -19,8 +20,8 @@ MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int adiff, float min, flo
 //!#     n     - Number of samples in x.
 //!#     x     - The sample vector x.
 //!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
-//!#     min   - Minimum edge value.
-//!#     max   - Maximum edge value.
+//!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     npts  - Number of points to bin.
 //!#     nbins - Number of bins.
 //!#     h     - The histogram result.
@@ -30,7 +31,9 @@ MC_TARGET_FUNC int mc_hist1xnf(int n, const float * x, int adiff, float min, flo
 
 	if (n > 1 && nbins > 1 && npts > 1) {
 		mc_base_memzero(h, npts);
-		if (min > max) {
+		if (min == 0.0f && max == 0.0f) {
+			mc_minmax1xnf(n, x, &min, &max, NULL, NULL);
+		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
 		scale = mc_cast_expr(float, (adiff > 0 ? mc_fabsf(max - min) : (max - min)) / (nbins - 1));
@@ -51,8 +54,8 @@ MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int adiff, double min, do
 //!#     n     - Number of samples in x.
 //!#     x     - The sample vector x.
 //!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
-//!#     min   - Minimum edge value.
-//!#     max   - Maximum edge value.
+//!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     npts  - Number of points to bin.
 //!#     nbins - Number of bins.
 //!#     h     - The histogram result.
@@ -62,7 +65,9 @@ MC_TARGET_FUNC int mc_hist1xn(int n, const double * x, int adiff, double min, do
 
 	if (n > 1 && nbins > 1 && npts > 1) {
 		mc_base_memzero(h, npts);
-		if (min > max) {
+		if (min == 0.0 && max == 0.0) {
+			mc_minmax1xn(n, x, &min, &max, NULL, NULL);
+		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
 		scale = mc_cast_expr(double, (adiff > 0 ? mc_fabs(max - min) : (max - min)) / (nbins - 1));
@@ -83,8 +88,8 @@ MC_TARGET_FUNC int mc_hist1xnl(int n, const long double * x, int adiff, long dou
 //!#     n     - Number of samples in x.
 //!#     x     - The sample vector x.
 //!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
-//!#     min   - Minimum edge value.
-//!#     max   - Maximum edge value.
+//!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     npts  - Number of points to bin.
 //!#     nbins - Number of bins.
 //!#     h     - The histogram result.
@@ -94,7 +99,9 @@ MC_TARGET_FUNC int mc_hist1xnl(int n, const long double * x, int adiff, long dou
 
 	if (n > 1 && nbins > 1 && npts > 1) {
 		mc_base_memzero(h, npts);
-		if (min > max) {
+		if (min == 0.0L && max == 0.0L) {
+			mc_minmax1xnl(n, x, &min, &max, NULL, NULL);
+		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
 		scale = mc_cast_expr(long double, (adiff > 0 ? mc_fabsl(max - min) : (max - min)) / (nbins - 1));
