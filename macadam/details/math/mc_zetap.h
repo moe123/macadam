@@ -669,7 +669,7 @@ MC_TARGET_PROC float mc_zetapf(float s)
 		return mc_izetapf(mc_cast(unsigned int, s));
 	}
 	if (s > 0.0f && s <= 1.6E-10f) {
-		return -0.5f - MCK_KF(MCK_LSQRT2PI) * s;
+		return -0.5f - MCK_KF(MCK_LOGESQRT2PI) * s;
 	}
 	return mc_zetapscf(s, 1.0f - s);
 }
@@ -685,7 +685,7 @@ MC_TARGET_PROC double mc_zetap(double s)
 		return mc_izetap(mc_cast(unsigned int, s));
 	}
 	if (s > 0.0 && s <= 1.6E-10) {
-		return -0.5 - MCK_K(MCK_LSQRT2PI) * s;
+		return -0.5 - MCK_K(MCK_LOGESQRT2PI) * s;
 	}
 	return mc_zetapsc(s, 1.0 - s);
 }
@@ -707,7 +707,7 @@ MC_TARGET_PROC long double mc_zetapl(long double s)
 	}
 #	endif
 	if (s > 0.0L && s <= 1.6E-10L) {
-		return -0.5L - MCK_KL(MCK_LSQRT2PI) * s;
+		return -0.5L - MCK_KL(MCK_LOGESQRT2PI) * s;
 	}
 	return mc_zetapscl(s, 1.0L - s);
 }

@@ -16,8 +16,9 @@
 MC_TARGET_FUNC float mc_iexp2f(int e)
 {
 	float r       = 1.0f;
+	int i         = 0;
 	const float s = e >= 0 ? 2.0f : 0.5f;
-	for (int i = 0; i < mc_iabs(e); i++) {
+	for (; i < mc_iabs(e); i++) {
 		r = r * s;
 	}
 	return r;
@@ -26,8 +27,9 @@ MC_TARGET_FUNC float mc_iexp2f(int e)
 MC_TARGET_FUNC double mc_iexp2(int e)
 {
 	double r       = 1.0;
+	int i          = 0;
 	const double s = e >= 0 ? 2.0 : 0.5;
-	for (int i = 0; i < mc_iabs(e); i++) {
+	for (; i < mc_iabs(e); i++) {
 		r = r * s;
 	}
 	return r;
@@ -36,8 +38,9 @@ MC_TARGET_FUNC double mc_iexp2(int e)
 MC_TARGET_FUNC long double mc_iexp2l(int e)
 {
 	long double r       = 1.0L;
+	int i               = 0;
 	const long double s = e >= 0 ? 2.0L : 0.5L;
-	for (int i = 0; i < mc_iabs(e); i++) {
+	for (; i < mc_iabs(e); i++) {
 		r = r * s;
 	}
 	return r;

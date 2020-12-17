@@ -18,17 +18,17 @@
 
 MC_TARGET_FUNC float mc_log1mef(float x)
 {
-	return (x > MCK_KF(MCK_LOG2)) ? mc_log1pf(-mc_expf(-x)) : mc_logf(-mc_expm1f(-x));
+	return (x > MCK_KF(MCK_LOGE2)) ? mc_log1pf(-mc_expf(-x)) : mc_logf(-mc_expm1f(-x));
 }
 
 MC_TARGET_FUNC double mc_log1me(double x)
 {
-	return (x > MCK_K(MCK_LOG2)) ? mc_log1p(-mc_exp(-x)) : mc_log(-mc_expm1(-x));
+	return (x > MCK_K(MCK_LOGE2)) ? mc_log1p(-mc_exp(-x)) : mc_log(-mc_expm1(-x));
 }
 
 MC_TARGET_FUNC long double mc_log1mel(long double x)
 {
-	return (x > MCK_KL(MCK_LOG2)) ? mc_log1pl(-mc_expl(-x)) : mc_logl(-mc_expm1l(-x));
+	return (x > MCK_KL(MCK_LOGE2)) ? mc_log1pl(-mc_expl(-x)) : mc_logl(-mc_expm1l(-x));
 }
 
 #endif /* !MC_LOG1ME_H */

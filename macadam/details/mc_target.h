@@ -398,9 +398,19 @@
 	typedef mc_complex(float)       mc_complex_float_t;
 	typedef mc_complex(double)      mc_complex_double_t;
 	typedef mc_complex(long double) mc_complex_long_double_t;
-#	define  mc_cmplxf(re, im)       (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
-#	define  mc_cmplx(re, im)        (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
-#	define  mc_cmplxl(re, im)       (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
+#	if MC_TARGET_CPP98
+#		define  mc_cmplxf(re, im) (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
+#		define  mc_cmplx(re, im)  (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
+#		define  mc_cmplxl(re, im) (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
+#	elif MC_TARGET_C99
+#		define  mc_cmplxf(re, im) (mc_complex_float_t)       { .u_re = (float)(re)      , .u_im = (float)(im)       }
+#		define  mc_cmplx(re, im)  (mc_complex_double_t)      { .u_re = (double)(re)     , .u_im = (double)(im)      }
+#		define  mc_cmplxl(re, im) (mc_complex_long_double_t) { .u_re = (long double)(re), .u_im = (long double)(im) }
+#	else
+#		define  mc_cmplxf(re, im) __extension__ (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
+#		define  mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
+#		define  mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
+#	endif
 #	endif
 
 #	if defined(__SSE__) && __SSE__

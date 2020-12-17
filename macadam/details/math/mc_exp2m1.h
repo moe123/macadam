@@ -15,13 +15,13 @@
 
 MC_TARGET_FUNC float mc_exp2m1f(float x)
 {
-	const float y = x * MCK_KF(MCK_LOG2);
+	const float y = x * MCK_KF(MCK_LOGE2);
 	return mc_expm1f(y);
 }
 
 MC_TARGET_FUNC double mc_exp2m1(double x)
 {
-	const double y = x * MCK_K(MCK_LOG2);
+	const double y = x * MCK_K(MCK_LOGE2);
 	return mc_expm1(y);
 }
 
@@ -30,7 +30,7 @@ MC_TARGET_FUNC long double mc_exp2m1l(long double x)
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 	const long double y = x * M_LN2l;
 #	else
-	const long double y = x * MCK_KL(MCK_LOG2);
+	const long double y = x * MCK_KL(MCK_LOGE2);
 #	endif
 	return mc_expm1l(y);
 }

@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_log2f(float x)
 	return log2f(x);
 #	endif
 #	else
-	const float y = x * MCK_KF(MCK_1_LOG2);
+	const float y = x * MCK_KF(MCK_1_LOGE2);
 #	if MC_TARGET_CPP98
 	return ::logf(y);
 #	else
@@ -42,7 +42,7 @@ MC_TARGET_FUNC double mc_log2(double x)
 	return log2(x);
 #	endif
 #	else
-	const double y = x * MCK_K(MCK_1_LOG2);
+	const double y = x * MCK_K(MCK_1_LOGE2);
 #	if MC_TARGET_CPP98
 	return ::log(y);
 #	else
@@ -63,7 +63,7 @@ MC_TARGET_FUNC long double mc_log2l(long double x)
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 	const long double y = x / M_LN2l;
 #	else
-	const long double y = x * MCK_KL(MCK_1_LOG2);
+	const long double y = x * MCK_KL(MCK_1_LOGE2);
 #	endif
 #	if MC_TARGET_CPP98
 	return ::logl(y);

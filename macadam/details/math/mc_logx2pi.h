@@ -15,17 +15,17 @@
 
 MC_TARGET_FUNC float mc_logx2pif(float x)
 {
-	return MCK_KF(MCK_LOG2PI) + mc_logf(x);
+	return MCK_KF(MCK_LOGE2PI) + mc_logf(x);
 }
 
 MC_TARGET_FUNC double mc_logx2pi(double x)
 {
-	return MCK_K(MCK_LOG2PI) + mc_log(x);
+	return MCK_K(MCK_LOGE2PI) + mc_log(x);
 }
 
 MC_TARGET_FUNC long double mc_logx2pil(long double x)
 {
-	return MCK_KL(MCK_LOG2PI) + mc_logl(x);
+	return MCK_KL(MCK_LOGE2PI) + mc_logl(x);
 }
 
 #endif /* !MC_LOGX2PI_H */

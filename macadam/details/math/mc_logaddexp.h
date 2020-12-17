@@ -17,7 +17,7 @@
 MC_TARGET_FUNC float mc_logaddexpf(float x, float y)
 {
 	return ((x == y)
-		? (x + MCK_KF(MCK_LOG2))
+		? (x + MCK_KF(MCK_LOGE2))
 		: ((x - y) > 0 ? x + mc_log1pf(mc_expf(-(x - y))) : y + mc_log1pf(mc_expf((x - y))))
 	);
 }
@@ -25,7 +25,7 @@ MC_TARGET_FUNC float mc_logaddexpf(float x, float y)
 MC_TARGET_FUNC double mc_logaddexp(double x, double y)
 {
 	return ((x == y)
-		? (x + MCK_K(MCK_LOG2))
+		? (x + MCK_K(MCK_LOGE2))
 		: ((x - y) > 0 ? x + mc_log1p(mc_exp(-(x - y))) : y + mc_log1p(mc_exp((x - y))))
 	);
 }
@@ -39,7 +39,7 @@ MC_TARGET_FUNC long double mc_logaddexpl(long double x, long double y)
 		);
 #	else
 		return ((x == y)
-			? (x + MCK_K(MCK_LOG2))
+			? (x + MCK_K(MCK_LOGE2))
 			: ((x - y) > 0 ? x + mc_log1pl(mc_expl(-(x - y))) : y + mc_log1pl(mc_expl((x - y))))
 		);
 #	endif

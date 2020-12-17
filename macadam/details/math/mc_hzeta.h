@@ -21,7 +21,7 @@
 
 MC_TARGET_FUNC float mc_hzetaf(float s, float q)
 {
-	const float w = MCK_KF(FLT_MAX_10_EXP) * MCK_KF(MCK_LOG10);
+	const float w = MCK_KF(FLT_MAX_10_EXP) * MCK_KF(MCK_LOGE10);
 
 	float r = 0.0f, c, term, sign;
 	unsigned int i = 0, j;
@@ -62,7 +62,7 @@ hurwitz_end:
 
 MC_TARGET_FUNC double mc_hzeta(double s, double q)
 {
-	const double w = MCK_K(DBL_MAX_10_EXP) * MCK_K(MCK_LOG10);
+	const double w = MCK_K(DBL_MAX_10_EXP) * MCK_K(MCK_LOGE10);
 
 	double r = 0.0, c, term, sign;
 	unsigned int i = 0, j;
@@ -103,7 +103,7 @@ hurwitz_end:
 
 MC_TARGET_FUNC long double mc_hzetal(long double s, long double q)
 {
-	const long double w = MCK_KL(LDBL_MAX_10_EXP) * MCK_KL(MCK_LOG10);
+	const long double w = MCK_KL(LDBL_MAX_10_EXP) * MCK_KL(MCK_LOGE10);
 
 	long double r = 0.0L, c, term, sign;
 	unsigned int i = 0, j;

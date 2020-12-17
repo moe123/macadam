@@ -21,7 +21,7 @@ MC_TARGET_FUNC float mc_lmgammaf(unsigned int p, float a)
 		return mc_lgammaf(a);
 	} else if (p < MCLIMITS_IMAX) {
 		const float d  = mc_cast(float, p);
-		float x        = d * (d - 1.0f) / 4.0f * MCK_KF(MCK_LOGPI);
+		float x        = d * (d - 1.0f) / 4.0f * MCK_KF(MCK_LOGEPI);
 		unsigned int k = 0;
 		for (; k < p; k++) {
 			x = x + mc_lgammaf(a - 0.5f * mc_cast(float, k));
@@ -41,7 +41,7 @@ MC_TARGET_FUNC double mc_lmgamma(unsigned int p, double a)
 		return mc_lgamma(a);
 	} else if (p < MCLIMITS_IMAX) {
 		const double d = mc_cast(double, p);
-		double x       = d * (d - 1.0) / 4.0 * MCK_K(MCK_LOGPI);
+		double x       = d * (d - 1.0) / 4.0 * MCK_K(MCK_LOGEPI);
 		unsigned int k = 0;
 		for (; k < p; k++) {
 			x = x + mc_lgamma(a - 0.5 * mc_cast(double, k));
@@ -61,7 +61,7 @@ MC_TARGET_FUNC long double mc_lmgammal(unsigned int p, long double a)
 		return mc_lgammal(a);
 	} else if (p < MCLIMITS_IMAX) {
 		const long double d = mc_cast(long double, p);
-		long double x       = d * (d - 1.0L) / 4.0L * MCK_KL(MCK_LOGPI);
+		long double x       = d * (d - 1.0L) / 4.0L * MCK_KL(MCK_LOGEPI);
 		unsigned int k      = 0;
 		for (; k < p; k++) {
 			x = x + mc_lgammal(a - 0.5L * mc_cast(long double, k));

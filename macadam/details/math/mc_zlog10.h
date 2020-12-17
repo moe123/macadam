@@ -18,21 +18,21 @@ MC_TARGET_PROC void mc_zlog10f(float * c_r, float * c_i
 	, float a_r, float a_i
 ) {
 	mc_zlogf(c_r, c_i, a_r, a_i);
-	mc_zfmulf(c_r, c_i, *c_r, *c_i, MCK_KF(MCK_1_LOG10));
+	mc_zfmulf(c_r, c_i, *c_r, *c_i, MCK_KF(MCK_1_LOGE10));
 }
 
 MC_TARGET_PROC void mc_zlog10(double * c_r, double * c_i
 	, double a_r, double a_i
 ) {
 	mc_zlog(c_r, c_i, a_r, a_i);
-	mc_zfmul(c_r, c_i, *c_r, *c_i, MCK_K(MCK_1_LOG10));
+	mc_zfmul(c_r, c_i, *c_r, *c_i, MCK_K(MCK_1_LOGE10));
 }
 
 MC_TARGET_PROC void mc_zlog10l(long double * c_r, long double * c_i
 	, long double a_r, long double a_i
 ) {
 	mc_zlogl(c_r, c_i, a_r, a_i);
-	mc_zfmull(c_r, c_i, *c_r, *c_i, MCK_KL(MCK_1_LOG10));
+	mc_zfmull(c_r, c_i, *c_r, *c_i, MCK_KL(MCK_1_LOGE10));
 }
 
 #endif /* !MC_ZLOG10_H */
