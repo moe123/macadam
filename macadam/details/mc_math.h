@@ -143,6 +143,7 @@
 #	include <macadam/details/math/mc_log2p1.h>
 #	include <macadam/details/math/mc_logaddexp.h>
 #	include <macadam/details/math/mc_logb.h>
+#	include <macadam/details/math/mc_logbase.h>
 #	include <macadam/details/math/mc_logcf.h>
 #	include <macadam/details/math/mc_logdiffexp.h>
 #	include <macadam/details/math/mc_logistic.h>
