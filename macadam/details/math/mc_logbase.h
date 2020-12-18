@@ -21,6 +21,9 @@ MC_TARGET_FUNC float mc_logbasef(float x, int b)
 	{
 		case 0:
 		case 1:
+		{
+			l = mc_logf(x);
+		}
 		break;
 		case 2:
 		{
@@ -50,6 +53,9 @@ MC_TARGET_FUNC double mc_logbase(double x, int b)
 	{
 		case 0:
 		case 1:
+		{
+			l = mc_log(x);
+		}
 		break;
 		case 2:
 		{
@@ -79,6 +85,9 @@ MC_TARGET_FUNC long double mc_logbasel(long double x, int b)
 	{
 		case 0:
 		case 1:
+		{
+			l = mc_logl(x);
+		}
 		break;
 		case 2:
 		{
