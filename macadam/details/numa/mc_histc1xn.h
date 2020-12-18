@@ -8,6 +8,7 @@
 
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/numa/mc_minmax1xn.h>
+#include <macadam/details/mc_mem.h>
 
 #ifndef MC_HISTC1XN_H
 #define MC_HISTC1XN_H

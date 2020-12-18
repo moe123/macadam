@@ -142,8 +142,9 @@
 #	include <macadam/details/numa/mc_flipudmxn.h>
 #	include <macadam/details/numa/mc_frobnormmxn.h>
 #	include <macadam/details/numa/mc_frobnormnxn.h>
-#	include <macadam/details/numa/mc_histce1xn.h>
 #	include <macadam/details/numa/mc_histc1xn.h>
+#	include <macadam/details/numa/mc_histce1xn.h>
+#	include <macadam/details/numa/mc_histcg1xn.h>
 #	include <macadam/details/numa/mc_icopy1xn.h>
 #	include <macadam/details/numa/mc_infnorm1xn.h>
 #	include <macadam/details/numa/mc_infnormmxn.h>
