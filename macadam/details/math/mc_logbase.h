@@ -16,6 +16,9 @@
 
 MC_TARGET_FUNC float mc_logbasef(float x, int b)
 {
+//!# Log base function. Computing log10(x) / log10(b=base)
+//!# where b > 0. If b is `zero` or `one` returning loge(x).
+
 	float l = MCK_NAN;
 	switch (b)
 	{
@@ -48,6 +51,9 @@ MC_TARGET_FUNC float mc_logbasef(float x, int b)
 
 MC_TARGET_FUNC double mc_logbase(double x, int b)
 {
+//!# Log base function. Computing log10(x) / log10(b=base)
+//!# where b > 0. If b is `zero` or `one` returning loge(x).
+
 	double l = MCK_NAN;
 	switch (b)
 	{
@@ -80,6 +86,9 @@ MC_TARGET_FUNC double mc_logbase(double x, int b)
 
 MC_TARGET_FUNC long double mc_logbasel(long double x, int b)
 {
+//!# Log base function. Computing log10(x) / log10(b=base)
+//!# where b > 0. If b is `zero` or `one` returning loge(x).
+
 	long double l = MCK_NAN;
 	switch (b)
 	{
