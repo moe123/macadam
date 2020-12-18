@@ -17,12 +17,8 @@ MC_TARGET_PROC float mc_randuf(void)
 {
 //!# Uniform distribution range [0, 1] (theoretically may include low and high).
 	const float a = mc_cast(float, mc_randi());
-#	if MC_TARGET_RAND_USE_LIBCRAND && RAND_MAX < MCLIMITS_IMAX
-	const float b = mc_cast(float, MCLIMITS_RANDMAX);
-	return a / (b + 1.0f);
-#	elif MC_TARGET_RAND_USE_LIBCRAND
-	const float b = mc_cast(float, MCLIMITS_RANDMAX);
-	return a / b;
+#	if MC_TARGET_RAND_USE_LIBCRAND && MCLIMITS_RANDMAX < 16777215U
+	return a / (MCLIMITS_RANDMAX + 1);
 #	else
 	const float b = +2.32830643708079700000000000000000000000E-10f;
 	return a * b;
