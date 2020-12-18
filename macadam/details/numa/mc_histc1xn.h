@@ -29,12 +29,15 @@ MC_TARGET_FUNC int mc_histc1xnf(int n, const float * x, int adiff, float min, fl
 	int i = 0;
 	float w, scale;
 
-	if (n > 1 && binw > 1 && npts > 1) {
+	if (n > 1 && npts > 1) {
 		mc_base_memzero(h, npts);
 		if (min == 0.0f && max == 0.0f) {
 			mc_minmax1xnf(n, x, &min, &max, NULL, NULL);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
+		}
+		if (binw < 2) {
+			binw = 2;
 		}
 		scale = mc_cast_expr(float, (adiff > 0 ? mc_fabsf(max - min) : (max - min)) / (binw - 1));
 		scale = (scale != 0.0f) ? (1.0f / scale) : 1.0f;
@@ -63,12 +66,15 @@ MC_TARGET_FUNC int mc_histc1xn(int n, const double * x, int adiff, double min, d
 	int i = 0;
 	double w, scale;
 
-	if (n > 1 && binw > 1 && npts > 1) {
+	if (n > 1 && npts > 1) {
 		mc_base_memzero(h, npts);
 		if (min == 0.0 && max == 0.0) {
 			mc_minmax1xn(n, x, &min, &max, NULL, NULL);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
+		}
+		if (binw < 2) {
+			binw = 2;
 		}
 		scale = mc_cast_expr(double, (adiff > 0 ? mc_fabs(max - min) : (max - min)) / (binw - 1));
 		scale = (scale != 0.0) ? (1.0 / scale) : 1.0;
@@ -97,12 +103,15 @@ MC_TARGET_FUNC int mc_histc1xnl(int n, const long double * x, int adiff, long do
 	int i = 0;
 	long double w, scale;
 
-	if (n > 1 && binw > 1 && npts > 1) {
+	if (n > 1 && npts > 1) {
 		mc_base_memzero(h, npts);
 		if (min == 0.0L && max == 0.0L) {
 			mc_minmax1xnl(n, x, &min, &max, NULL, NULL);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
+		}
+		if (binw < 2) {
+			binw = 2;
 		}
 		scale = mc_cast_expr(long double, (adiff > 0 ? mc_fabsl(max - min) : (max - min)) / (binw - 1));
 		scale = (scale != 0.0L) ? (1.0L / scale) : 1.0L;
