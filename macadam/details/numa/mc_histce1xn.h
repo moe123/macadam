@@ -16,8 +16,8 @@
 
 MC_TARGET_FUNC float mc_histce1xnf(int npts, int binw, int b, const int * h)
 {
-//!# Requires h[npts] where 1 < n and 0 < binw. Computing the
-//!# entropy of a given counted histogram @see mc_histc1xn or mc_histcg1xn.
+//!# Requires h[npts] where 1 < n and 0 < binw. Computing the entropy of a
+//!# given `counted` histogram (frequency) @see mc_histc1xn or mc_histcg1xn.
 //!#     npts  - Size of histogram i.e h[npts].
 //!#     binw  - The original bin width.
 //!#     b     - The logarithm base, if b < 3, log2 is used.
@@ -37,8 +37,8 @@ MC_TARGET_FUNC float mc_histce1xnf(int npts, int binw, int b, const int * h)
 
 MC_TARGET_FUNC double mc_histce1xn(int npts, int binw, int b, const int * h)
 {
-//!# Requires h[npts] where 1 < n and 0 < binw. Computing the
-//!# entropy of a given counted histogram @see mc_histc1xn or mc_histcg1xn.
+//!# Requires h[npts] where 1 < n and 0 < binw. Computing the entropy of a
+//!# given `counted` histogram (frequency) @see mc_histc1xn or mc_histcg1xn.
 //!#     npts  - Size of histogram i.e h[npts].
 //!#     binw  - The original bin width.
 //!#     b     - The logarithm base, if b < 3, log2 is used.
@@ -58,8 +58,8 @@ MC_TARGET_FUNC double mc_histce1xn(int npts, int binw, int b, const int * h)
 
 MC_TARGET_FUNC long double mc_histce1xnl(int npts, int binw, int b, const int * h)
 {
-//!# Requires h[npts] where 1 < n and 0 < binw. Computing the
-//!# entropy of a given counted histogram @see mc_histc1xn or mc_histcg1xn.
+//!# Requires h[npts] where 1 < n and 0 < binw. Computing the entropy of a
+//!# given `counted` histogram (frequency) @see mc_histc1xn or mc_histcg1xn.
 //!#     npts  - Size of histogram i.e h[npts].
 //!#     binw  - The original bin width.
 //!#     b     - The logarithm base, if b < 3, log2 is used.

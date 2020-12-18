@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_histc1xnf(int n, const float * x, int adiff, float min, fl
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     npts  - Size of histogram i.e h[npts].
 //!#     binw  - The bin width.
-//!#     h     - The counted histogram result.
+//!#     h     - The histogram result.
 
 	int i = 0;
 	float w, scale;
@@ -62,7 +62,7 @@ MC_TARGET_FUNC int mc_histc1xn(int n, const double * x, int adiff, double min, d
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     npts  - Size of histogram i.e h[npts].
 //!#     binw  - The bin width.
-//!#     h     - The counted histogram result.
+//!#     h     - The histogram result.
 
 	int i = 0;
 	double w, scale;
@@ -99,7 +99,7 @@ MC_TARGET_FUNC int mc_histc1xnl(int n, const long double * x, int adiff, long do
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     npts  - Size of histogram i.e h[npts].
 //!#     binw  - The bin width.
-//!#     h     - The counted histogram result.
+//!#     h     - The histogram result.
 
 	int i = 0;
 	long double w, scale;
