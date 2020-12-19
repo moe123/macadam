@@ -155,6 +155,31 @@
 #	endif
 #	endif
 
+#	if (defined(__GNUC__) || defined(__clang__))
+#	if ((__GNUC__ >= 4) || (__clang_major__ >= 4))
+#		undef  MC_TARGET_SIGNBITF
+#		undef  MC_TARGET_SIGNBIT
+#		undef  MC_TARGET_SIGNBITL
+#		undef  MC_TARGET_HAVE_SIGNBIT
+#		define MC_TARGET_SIGNBITF(x) __builtin_signbitf(x)
+#		define MC_TARGET_SIGNBIT(x)  __builtin_signbit(x)
+#		define MC_TARGET_SIGNBITL(x) __builtin_signbitl(x)
+#		define MC_TARGET_HAVE_SIGNBIT 1
+#	else
+#		undef  MC_TARGET_SIGNBITF
+#		undef  MC_TARGET_SIGNBIT
+#		undef  MC_TARGET_SIGNBITL
+#		undef  MC_TARGET_HAVE_SIGNBIT
+#		define MC_TARGET_HAVE_SIGNBIT 0
+#	endif
+#	else
+#		undef  MC_TARGET_SIGNBITF
+#		undef  MC_TARGET_SIGNBIT
+#		undef  MC_TARGET_SIGNBITL
+#		undef  MC_TARGET_HAVE_SIGNBIT
+#		define MC_TARGET_HAVE_SIGNBIT 0
+#	endif
+
 #	if !defined(MC_TARGET_PROC)
 #		define MC_TARGET_PROC static MC_TARGET_INLINE
 #	endif
