@@ -89,28 +89,28 @@ template <>        MC_TARGET_INLINE double      mclimits_epsilonof<double>      
 template <>        MC_TARGET_INLINE long double mclimits_epsilonof<long double> (const long double& x) { mc_cast(void, x); return MCLIMITS_EPSILONL; }
 
 #	elif MC_TARGET_C11
-#	define mclimits_epsilonof(x) _Generic(x \
-	, float              : MCLIMITS_EPSILONF  \
+#	define mclimits_epsilonof(x) _Generic(x  \
+	, float              : MCLIMITS_EPSILONF \
 	, double             : MCLIMITS_EPSILON  \
 	, long double        : MCLIMITS_EPSILONL \
-	, signed char        : (0) \
-	, short              : (0) \
-	, int                : (0) \
-	, long               : (0) \
-	, long long          : (0) \
-	, unsigned char      : (0) \
-	, unsigned short     : (0) \
-	, unsigned int       : (0) \
-	, unsigned long      : (0) \
-	, unsigned long long : (0) \
+	, signed char        : (0)               \
+	, short              : (0)               \
+	, int                : (0)               \
+	, long               : (0)               \
+	, long long          : (0)               \
+	, unsigned char      : (0)               \
+	, unsigned short     : (0)               \
+	, unsigned int       : (0)               \
+	, unsigned long      : (0)               \
+	, unsigned long long : (0)               \
 )
 #	elif MC_TARGET_HAVE_TYPEOF
-#	define mclimits_epsilonof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_epsilonof(x) mc_cast(MC_TARGET_TYPEOF(x),                     \
+	(                                                                             \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? MCLIMITS_EPSILONF \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? MCLIMITS_EPSILON  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? MCLIMITS_EPSILONL \
-		: 0 \
+		: 0                                                                        \
 	))
 #	else
 #	define mclimits_epsilonof(x) (0)
@@ -143,7 +143,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned l
 #	endif
 
 #	elif MC_TARGET_C11
-#	define mclimits_maxof(x) _Generic(x \
+#	define mclimits_maxof(x) _Generic(x    \
 	, float              : MCLIMITS_MAXF   \
 	, double             : MCLIMITS_MAX    \
 	, long double        : MCLIMITS_MAXL   \
@@ -160,8 +160,8 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned l
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_maxof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_maxof(x) mc_cast(MC_TARGET_TYPEOF(x),                              \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? MCLIMITS_MAXF   \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? MCLIMITS_MAX    \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? MCLIMITS_MAXL   \
@@ -175,11 +175,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned l
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? MCLIMITS_UIMAX  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? MCLIMITS_ULLMAX \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? MCLIMITS_ULLMAX \
-		: 0 \
+		: 0                                                                             \
 	))
 #	else
-#	define mclimits_maxof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_maxof(x) mc_cast(MC_TARGET_TYPEOF(x),                              \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? MCLIMITS_MAXF   \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? MCLIMITS_MAX    \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? MCLIMITS_MAXL   \
@@ -191,7 +191,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned l
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? MCLIMITS_USMAX  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? MCLIMITS_UIMAX  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? MCLIMITS_ULLMAX \
-		: 0 \
+		: 0                                                                             \
 	))
 #	endif
 #	else
@@ -225,7 +225,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned l
 #	endif
 
 #	elif MC_TARGET_C11
-#	define mclimits_minof(x) _Generic(x \
+#	define mclimits_minof(x) _Generic(x    \
 	, float              : MCLIMITS_MINF   \
 	, double             : MCLIMITS_MIN    \
 	, long double        : MCLIMITS_MINL   \
@@ -242,8 +242,8 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned l
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_minof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_minof(x) mc_cast(MC_TARGET_TYPEOF(x),                              \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? MCLIMITS_MINF   \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? MCLIMITS_MIN    \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? MCLIMITS_MINL   \
@@ -257,11 +257,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned l
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? MCLIMITS_UIMIN  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? MCLIMITS_ULLMIN \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? MCLIMITS_ULLMIN \
-		: 0 \
+		: 0                                                                             \
 	))
 #	else
-#	define mclimits_minof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_minof(x) mc_cast(MC_TARGET_TYPEOF(x),                              \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? MCLIMITS_MINF   \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? MCLIMITS_MIN    \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? MCLIMITS_MINL   \
@@ -273,7 +273,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned l
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? MCLIMITS_USMIN  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? MCLIMITS_UIMIN  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? MCLIMITS_ULLMIN \
-		: 0 \
+		: 0                                                                             \
 	))
 #	endif
 #	else
@@ -307,7 +307,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigne
 #	endif
 
 #	elif MC_TARGET_C11
-#	define mclimits_lowestof(x) _Generic(x \
+#	define mclimits_lowestof(x) _Generic(x  \
 	, float              : -MCLIMITS_MAXF   \
 	, double             : -MCLIMITS_MAX    \
 	, long double        : -MCLIMITS_MAXL   \
@@ -324,8 +324,8 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigne
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_lowestof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_lowestof(x) mc_cast(MC_TARGET_TYPEOF(x),                            \
+	(                                                                                   \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? -MCLIMITS_MAXF   \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? -MCLIMITS_MAX    \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? -MCLIMITS_MAXL   \
@@ -339,11 +339,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigne
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ?  MCLIMITS_UIMIN  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ?  MCLIMITS_ULLMIN \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ?  MCLIMITS_ULLMIN \
-		: 0 \
+		: 0                                                                              \
 	))
 #	else
-#	define mclimits_lowestof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_lowestof(x) mc_cast(MC_TARGET_TYPEOF(x),                            \
+	(                                                                                   \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? -MCLIMITS_MAXF   \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? -MCLIMITS_MAX    \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? -MCLIMITS_MAXL   \
@@ -355,7 +355,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigne
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ?  MCLIMITS_USMIN  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ?  MCLIMITS_UIMIN  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ?  MCLIMITS_ULLMIN \
-		: 0 \
+		: 0                                                                              \
 	))
 #	endif
 #	else
@@ -390,24 +390,24 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexpof<unsigne
 
 #	elif MC_TARGET_C11
 #	define mclimits_maxexpof(x) _Generic(x \
-	, float              : FLT_MAX_EXP  \
-	, double             : DBL_MAX_EXP  \
-	, long double        : LDBL_MAX_EXP \
-	, signed char        : 0            \
-	, short              : 0            \
-	, int                : 0            \
-	, long               : 0            \
-	, long long          : 0            \
-	, unsigned char      : 0            \
-	, unsigned short     : 0            \
-	, unsigned int       : 0            \
-	, unsigned long      : 0            \
-	, unsigned long long : 0            \
+	, float              : FLT_MAX_EXP     \
+	, double             : DBL_MAX_EXP     \
+	, long double        : LDBL_MAX_EXP    \
+	, signed char        : 0               \
+	, short              : 0               \
+	, int                : 0               \
+	, long               : 0               \
+	, long long          : 0               \
+	, unsigned char      : 0               \
+	, unsigned short     : 0               \
+	, unsigned int       : 0               \
+	, unsigned long      : 0               \
+	, unsigned long long : 0               \
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_maxexpof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_maxexpof(x) mc_cast(MC_TARGET_TYPEOF(x),                        \
+	(                                                                               \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MAX_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MAX_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MAX_EXP \
@@ -421,11 +421,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexpof<unsigne
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? 0            \
-		: 0 \
+		: 0                                                                          \
 	))
 #	else
-#	define mclimits_maxexpof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_maxexpof(x) mc_cast(MC_TARGET_TYPEOF(x),                        \
+	(                                                                               \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MAX_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MAX_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MAX_EXP \
@@ -437,7 +437,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexpof<unsigne
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0            \
-		: 0 \
+		: 0                                                                          \
 	))
 #	endif
 #	else
@@ -472,24 +472,24 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexpof<unsigne
 
 #	elif MC_TARGET_C11
 #	define mclimits_minexpof(x) _Generic(x \
-	, float              : FLT_MIN_EXP  \
-	, double             : DBL_MIN_EXP  \
-	, long double        : LDBL_MIN_EXP \
-	, signed char        : 0            \
-	, short              : 0            \
-	, int                : 0            \
-	, long               : 0            \
-	, long long          : 0            \
-	, unsigned char      : 0            \
-	, unsigned short     : 0            \
-	, unsigned int       : 0            \
-	, unsigned long      : 0            \
-	, unsigned long long : 0            \
+	, float              : FLT_MIN_EXP     \
+	, double             : DBL_MIN_EXP     \
+	, long double        : LDBL_MIN_EXP    \
+	, signed char        : 0               \
+	, short              : 0               \
+	, int                : 0               \
+	, long               : 0               \
+	, long long          : 0               \
+	, unsigned char      : 0               \
+	, unsigned short     : 0               \
+	, unsigned int       : 0               \
+	, unsigned long      : 0               \
+	, unsigned long long : 0               \
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_minexpof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_minexpof(x) mc_cast(MC_TARGET_TYPEOF(x),                        \
+	(                                                                               \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MIN_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MIN_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MIN_EXP \
@@ -503,11 +503,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexpof<unsigne
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? 0            \
-		: 0 \
+		: 0                                                                          \
 	))
 #	else
-#	define mclimits_minexpof(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_minexpof(x) mc_cast(MC_TARGET_TYPEOF(x),                        \
+	(                                                                               \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MIN_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MIN_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MIN_EXP \
@@ -519,7 +519,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexpof<unsigne
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0            \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0            \
-		: 0 \
+		: 0                                                                          \
 	))
 #	endif
 #	else
@@ -554,24 +554,24 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexp10of<unsig
 
 #	elif MC_TARGET_C11
 #	define mclimits_maxexp10of(x) _Generic(x \
-	, float              : FLT_MAX_10_EXP  \
-	, double             : DBL_MAX_10_EXP  \
-	, long double        : LDBL_MAX_10_EXP \
-	, signed char        : 0               \
-	, short              : 0               \
-	, int                : 0               \
-	, long               : 0               \
-	, long long          : 0               \
-	, unsigned char      : 0               \
-	, unsigned short     : 0               \
-	, unsigned int       : 0               \
-	, unsigned long      : 0               \
-	, unsigned long long : 0               \
+	, float              : FLT_MAX_10_EXP    \
+	, double             : DBL_MAX_10_EXP    \
+	, long double        : LDBL_MAX_10_EXP   \
+	, signed char        : 0                 \
+	, short              : 0                 \
+	, int                : 0                 \
+	, long               : 0                 \
+	, long long          : 0                 \
+	, unsigned char      : 0                 \
+	, unsigned short     : 0                 \
+	, unsigned int       : 0                 \
+	, unsigned long      : 0                 \
+	, unsigned long long : 0                 \
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_maxexp10of(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_maxexp10of(x) mc_cast(MC_TARGET_TYPEOF(x),                         \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MAX_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MAX_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MAX_10_EXP \
@@ -585,11 +585,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexp10of<unsig
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? 0               \
-		: 0 \
+		: 0                                                                             \
 	))
 #	else
-#	define mclimits_maxexp10of(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_maxexp10of(x) mc_cast(MC_TARGET_TYPEOF(x),                         \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MAX_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MAX_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MAX_10_EXP \
@@ -601,7 +601,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexp10of<unsig
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0               \
-		: 0 \
+		: 0                                                                             \
 	))
 #	endif
 #	else
@@ -636,24 +636,24 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsig
 
 #	elif MC_TARGET_C11
 #	define mclimits_minexp10of(x) _Generic(x \
-	, float              : FLT_MIN_10_EXP  \
-	, double             : DBL_MIN_10_EXP  \
-	, long double        : LDBL_MIN_10_EXP \
-	, signed char        : 0               \
-	, short              : 0               \
-	, int                : 0               \
-	, long               : 0               \
-	, long long          : 0               \
-	, unsigned char      : 0               \
-	, unsigned short     : 0               \
-	, unsigned int       : 0               \
-	, unsigned long      : 0               \
-	, unsigned long long : 0               \
+	, float              : FLT_MIN_10_EXP    \
+	, double             : DBL_MIN_10_EXP    \
+	, long double        : LDBL_MIN_10_EXP   \
+	, signed char        : 0                 \
+	, short              : 0                 \
+	, int                : 0                 \
+	, long               : 0                 \
+	, long long          : 0                 \
+	, unsigned char      : 0                 \
+	, unsigned short     : 0                 \
+	, unsigned int       : 0                 \
+	, unsigned long      : 0                 \
+	, unsigned long long : 0                 \
 )
 #	elif MC_TARGET_HAVE_TYPEOF
 #	if MC_TARGET_C99
-#	define mclimits_minexp10of(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_minexp10of(x) mc_cast(MC_TARGET_TYPEOF(x),                         \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MIN_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MIN_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MIN_10_EXP \
@@ -667,11 +667,11 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsig
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? 0               \
-		: 0 \
+		: 0                                                                             \
 	))
 #	else
-#	define mclimits_minexp10of(x) mc_cast(MC_TARGET_TYPEOF(x), \
-	( \
+#	define mclimits_minexp10of(x) mc_cast(MC_TARGET_TYPEOF(x),                         \
+	(                                                                                  \
 		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MIN_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? DBL_MIN_10_EXP  \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MIN_10_EXP \
@@ -683,7 +683,7 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsig
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? 0               \
 		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? 0               \
-		: 0 \
+		: 0                                                                             \
 	))
 #	endif
 #	else
