@@ -85,10 +85,10 @@ MC_TARGET_FUNC void mc_nonblas_sger_c(int m, int n, float alpha, const float * x
 	}
 
 	if (m == 0 || n == 0 || alpha == zero) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -154,10 +154,10 @@ MC_TARGET_FUNC void mc_nonblas_dger_c(int m, int n, double alpha, const double *
 	}
 
 	if (m == 0 || n == 0 || alpha == zero) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -223,10 +223,10 @@ MC_TARGET_FUNC void mc_nonblas_lger_c(int m, int n, long double alpha, const lon
 	}
 
 	if (m == 0 || n == 0 || alpha == zero) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 

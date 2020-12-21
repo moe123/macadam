@@ -97,7 +97,7 @@ F10:
 		mul  = ctoc / cfromc;
 		done = 1;
 		cto1 = ctoc;
-		mc_cast(void, cto1);
+		mc_unused(cto1);
 	} else {
 		cto1 = ctoc / bignum;
 		if (cto1 == ctoc) {
@@ -256,7 +256,7 @@ F10:
 		mul  = ctoc / cfromc;
 		done = 1;
 		cto1 = ctoc;
-		mc_cast(void, cto1);
+		mc_unused(cto1);
 	} else {
 		cto1 = ctoc / bignum;
 		if (cto1 == ctoc) {
@@ -415,7 +415,7 @@ F10:
 		mul  = ctoc / cfromc;
 		done = 1;
 		cto1 = ctoc;
-		mc_cast(void, cto1);
+		mc_unused(cto1);
 	} else {
 		cto1 = ctoc / bignum;
 		if (cto1 == ctoc) {

@@ -205,10 +205,10 @@ MC_TARGET_FUNC void mc_nonblas_sgbmv_c(const char trans, int m, int n, int kl, i
 	}
 
 	if (m == 0 || n == 0 || (alpha == zero && beta == one)) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -352,10 +352,10 @@ MC_TARGET_FUNC void mc_nonblas_dgbmv_c(const char trans, int m, int n, int kl, i
 	}
 
 	if (m == 0 || n == 0 || (alpha == zero && beta == one)) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -495,10 +495,10 @@ MC_TARGET_FUNC void mc_nonblas_lgbmv_c(const char trans, int m, int n, int kl, i
 	}
 	if (info != 0) {
 		mc_blas_xerbla("LGBMV_C", info);
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 

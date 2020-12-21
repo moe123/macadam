@@ -14,16 +14,16 @@
 
 #pragma mark - mc_histce1xn -
 
-MC_TARGET_FUNC float mc_histce1xnf(int npts, int binw, int b, const int * h)
+MC_TARGET_FUNC float mc_histce1xnf(int npts, int nbins, int b, const int * h)
 {
-//!# Requires h[npts] where 1 < n and 0 < binw and 0 < b. Computing the entropy
-//!# of a given `counted` histogram (frequency) @see mc_histc1xn or mc_histcg1xn.
-//!#     npts  - Size of histogram i.e h[npts].
-//!#     binw  - The original bin width.
+//!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
+//!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
+//!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins - The given bin width.        @note npts, nbins are usually equal @see `mc_histcs1xn`.
 //!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
 
 	int i       = 0;
-	const int c = binw < 1 ? 1 : binw;
+	const int c = nbins < 1 ? 1 : nbins;
 	float e     = 0.0f;
 
 	if (npts > 1 && b > 0) {
@@ -35,16 +35,16 @@ MC_TARGET_FUNC float mc_histce1xnf(int npts, int binw, int b, const int * h)
 	return e;
 }
 
-MC_TARGET_FUNC double mc_histce1xn(int npts, int binw, int b, const int * h)
+MC_TARGET_FUNC double mc_histce1xn(int npts, int nbins, int b, const int * h)
 {
-//!# Requires h[npts] where 1 < n and 0 < binw and 0 < b. Computing the entropy
-//!# of a given `counted` histogram (frequency) @see mc_histc1xn or mc_histcg1xn.
-//!#     npts  - Size of histogram i.e h[npts].
-//!#     binw  - The original bin width.
+//!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
+//!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
+//!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins - The given bin width.        @note npts, nbins are usually equal @see `mc_histcs1xn`.
 //!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
 
 	int i       = 0;
-	const int c = binw < 1 ? 1 : binw;
+	const int c = nbins < 1 ? 1 : nbins;
 	double e    = 0.0f;
 
 	if (npts > 1 && b > 0) {
@@ -56,16 +56,16 @@ MC_TARGET_FUNC double mc_histce1xn(int npts, int binw, int b, const int * h)
 	return e;
 }
 
-MC_TARGET_FUNC long double mc_histce1xnl(int npts, int binw, int b, const int * h)
+MC_TARGET_FUNC long double mc_histce1xnl(int npts, int nbins, int b, const int * h)
 {
-//!# Requires h[npts] where 1 < n and 0 < binw and 0 < b. Computing the entropy
-//!# of a given `counted` histogram (frequency) @see mc_histc1xn or mc_histcg1xn.
-//!#     npts  - Size of histogram i.e h[npts].
-//!#     binw  - The original bin width.
+//!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
+//!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
+//!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins - The given bin width.        @note npts, nbins are usually equal @see `mc_histcs1xn`.
 //!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
 
 	int i         = 0;
-	const int c   = binw < 1 ? 1 : binw;
+	const int c   = nbins < 1 ? 1 : nbins;
 	long double e = 0.0f;
 
 	if (npts > 1 && b > 0) {

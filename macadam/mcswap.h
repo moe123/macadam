@@ -44,7 +44,7 @@
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcswap(a, b) mcswap_type(MC_TARGET_TYPEOF(a), a, b)
 #	else
-#	define mcswap(a, b) mc_cast(void, a); mc_cast(void, b)
+#	define mcswap(a, b) mc_unused(a); mc_unused(b)
 #	endif
 
 #endif /* !MCSWAP_H */

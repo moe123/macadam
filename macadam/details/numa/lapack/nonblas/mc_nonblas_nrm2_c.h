@@ -49,8 +49,8 @@ MC_TARGET_FUNC float mc_blas_snrm2_c(int m, const float * x, int ldx, int nx, in
 	int ix;
 
 	if (m < 1 || incx < 1) {
-		mc_cast(void, ldx);
-		mc_cast(void, nx);
+		mc_unused(ldx);
+		mc_unused(nx);
 		norm = zero;
 	} else if (m == 1) {
 		norm = mc_fabsf(mc_blas_matrix_at(x, ldx, nx, indx, 1));
@@ -84,8 +84,8 @@ MC_TARGET_FUNC double mc_blas_sdnrm2_c(int m, const float * x, int ldx, int nx, 
 	int ix;
 
 	if (m < 1 || incx < 1) {
-		mc_cast(void, ldx);
-		mc_cast(void, nx);
+		mc_unused(ldx);
+		mc_unused(nx);
 		norm = zero;
 	} else if (m == 1) {
 		norm = mc_fabs(mc_cast(double, mc_blas_matrix_at(x, ldx, nx, indx, 1)));
@@ -119,8 +119,8 @@ MC_TARGET_FUNC double mc_blas_dnrm2_c(int m, const double * x, int ldx, int nx, 
 	int ix;
 
 	if (m < 1 || incx < 1) {
-		mc_cast(void, ldx);
-		mc_cast(void, nx);
+		mc_unused(ldx);
+		mc_unused(nx);
 		norm = zero;
 	} else if (m == 1) {
 		norm = mc_fabs(mc_blas_matrix_at(x, ldx, nx, indx, 1));
@@ -154,8 +154,8 @@ MC_TARGET_FUNC long double mc_blas_lnrm2_c(int m, const long double * x, int ldx
 	int ix;
 
 	if (m < 1 || incx < 1) {
-		mc_cast(void, ldx);
-		mc_cast(void, nx);
+		mc_unused(ldx);
+		mc_unused(nx);
 		norm = zero;
 	} else if (m == 1) {
 		norm = mc_fabsl(mc_blas_matrix_at(x, ldx, nx, indx, 1));

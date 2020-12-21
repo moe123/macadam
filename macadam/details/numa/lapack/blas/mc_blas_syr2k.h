@@ -27,14 +27,14 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, int n, int
 		ka    = k;
 		kb    = k;
 		nrowa = n;
-		mc_cast(void, ka);
-		mc_cast(void, kb);
+		mc_unused(ka);
+		mc_unused(kb);
 	} else {
 		ka    = n;
 		kb    = n;
 		nrowa = k;
-		mc_cast(void, ka);
-		mc_cast(void, kb);
+		mc_unused(ka);
+		mc_unused(kb);
 	}
 	upper = mc_blas_lsame(uplo, 'U');
 
@@ -191,14 +191,14 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, int n, int
 		ka    = k;
 		kb    = k;
 		nrowa = n;
-		mc_cast(void, ka);
-		mc_cast(void, kb);
+		mc_unused(ka);
+		mc_unused(kb);
 	} else {
 		ka    = n;
 		kb    = n;
 		nrowa = k;
-		mc_cast(void, ka);
-		mc_cast(void, kb);
+		mc_unused(ka);
+		mc_unused(kb);
 	}
 	upper = mc_blas_lsame(uplo, 'U');
 
@@ -355,14 +355,14 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, int n, int
 		ka    = k;
 		kb    = k;
 		nrowa = n;
-		mc_cast(void, ka);
-		mc_cast(void, kb);
+		mc_unused(ka);
+		mc_unused(kb);
 	} else {
 		ka    = n;
 		kb    = n;
 		nrowa = k;
-		mc_cast(void, ka);
-		mc_cast(void, kb);
+		mc_unused(ka);
+		mc_unused(kb);
 	}
 	upper = mc_blas_lsame(uplo, 'U');
 

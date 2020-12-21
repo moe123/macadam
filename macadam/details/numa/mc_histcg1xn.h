@@ -6,31 +6,74 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-#include <macadam/details/mc_mem.h>
+#include <macadam/details/numa/mc_izeros1xn.h>
 
 #ifndef MC_HISTCG1XN_H
 #define MC_HISTCG1XN_H
 
 #pragma mark - mc_histcg1xn -
 
-MC_TARGET_FUNC int mc_histcg1xnf(int n, const float * x, float min, float max, int m, int * h)
+MC_TARGET_FUNC int mc_histcg1xnf(int n, const float * x, float min, float max, int nbins, int * h)
 {
-//!# Requires x[n] and h[m] where 1 < n && 0 < m.
+//!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
 //!#     x     - The sample vector x.
-//!#     m     - Number of bins.
+//!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     nbins - The given bin width.
 //!#     h     - The histogram result.
 
 	int i = 0;
+	float w;
 
-	if (n > 1 && m > 0) {
-		const float c = mc_cast_expr(float, (max - min) / m);
-		mc_base_memzero(h, m);
-		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (x[i] - min) / c);
-			if (j >= 0 && j < m) {
-				h[j]++;
+	if (n > 1 && nbins > 0) {
+		if (min == 0.0f && max == 0.0f) {
+			mc_minmax1xnf(n, x, &min, &max, NULL, NULL);
+		} else if (min > max) {
+			mcswap_var(w, min, max);
+		}
+		const float c = mc_cast_expr(float, (max - min) / nbins);
+		if (c != 0.0f) {
+			mc_izeros1xn(nbins, h);
+			for (; i < n; i++) {
+				const int j = mc_cast_expr(int, (x[i] - min) / c);
+				if (j >= 0 && j < nbins) {
+					h[j]++;
+				}
+			}
+			return 0;
+		}
+	}
+	return -1;
+}
+
+MC_TARGET_FUNC int mc_histcg1xn(int n, const double * x, double min, double max, int nbins, int * h)
+{
+//!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
+//!#     n     - Number of samples in x.
+//!#     x     - The sample vector x.
+//!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     nbins - The given bin width.
+//!#     h     - The histogram result.
+
+	int i = 0;
+	double w;
+
+	if (n > 1 && nbins > 0) {
+		if (min == 0.0f && max == 0.0f) {
+			mc_minmax1xn(n, x, &min, &max, NULL, NULL);
+		} else if (min > max) {
+			mcswap_var(w, min, max);
+		}
+		const double c = mc_cast_expr(double, (max - min) / nbins);
+		if (c != 0.0) {
+			mc_izeros1xn(nbins, h);
+			for (; i < n; i++) {
+				const int j = mc_cast_expr(int, (x[i] - min) / c);
+				if (j >= 0 && j < nbins) {
+					h[j]++;
+				}
 			}
 		}
 		return 0;
@@ -38,50 +81,36 @@ MC_TARGET_FUNC int mc_histcg1xnf(int n, const float * x, float min, float max, i
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_histcg1xn(int n, const double * x, double min, double max, int m, int * h)
+MC_TARGET_FUNC  int mc_histcg1xnl(int n, const long double * x, long double min, long double max, int nbins, int * h)
 {
-//!# Requires x[n] and h[m] where 1 < n && 0 < m.
+//!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
 //!#     x     - The sample vector x.
-//!#     m     - Number of bins.
+//!#     nbins - The given bin width.
+//!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
+//!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     h     - The histogram result.
 
 	int i = 0;
+	long double w;
 
-	if (n > 1 && m > 0) {
-		const double c = mc_cast_expr(double, (max - min) / m);
-		mc_base_memzero(h, m);
-		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (x[i] - min) / c);
-			if (j >= 0 && j < m) {
-				h[j]++;
-			}
+	if (n > 1 && nbins > 0) {
+		if (min == 0.0f && max == 0.0f) {
+			mc_minmax1xnl(n, x, &min, &max, NULL, NULL);
+		} else if (min > max) {
+			mcswap_var(w, min, max);
 		}
-		return 0;
-	}
-	return -1;
-}
-
-MC_TARGET_FUNC  int mc_histcg1xnl(int n, const long double * x, long double min, long double max, int m, int * h)
-{
-//!# Requires x[n] and h[m] where 1 < n && 0 < m.
-//!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
-//!#     m     - Number of bins.
-//!#     h     - The histogram result.
-
-	int i = 0;
-
-	if (n > 1 && m > 0) {
-		const long double c = mc_cast_expr(long double, (max - min) / m);
-		mc_base_memzero(h, m);
-		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (x[i] - min) / c);
-			if (j >= 0 && j < m) {
-				h[j]++;
+		const long double c = mc_cast_expr(long double, (max - min) / nbins);
+		if (c != 0.0) {
+			mc_izeros1xn(nbins, h);
+			for (; i < n; i++) {
+				const int j = mc_cast_expr(int, (x[i] - min) / c);
+				if (j >= 0 && j < nbins) {
+					h[j]++;
+				}
 			}
+			return 0;
 		}
-		return 0;
 	}
 	return -1;
 }

@@ -24,7 +24,7 @@ void * mc_os_memset(void * b, int c, size_t len)
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (b != NULL && len > 0 && len < max) {
+	if (mc_nonnull(b) && len > 0 && len < max) {
 #	if MC_TARGET_CPP98
 		return ::memset(b, c, len);
 #	else
@@ -55,7 +55,7 @@ void * mc_os_memcpy(void * restrict dest, const void * restrict src, size_t len)
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (dest != NULL && src != NULL && (len > 0 && len < max)) {
+	if (mc_nonnull(dest) && mc_nonnull(src) && (len > 0 && len < max)) {
 #	if MC_TARGET_CPP98
 		return ::memcpy(dest, src, len);
 #	else
@@ -78,7 +78,7 @@ void * mc_os_memmove(void * restrict dest, const void * restrict src, size_t len
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (dest != NULL && src != NULL && (len > 0 && len < max)) {
+	if (mc_nonnull(dest) && mc_nonnull(src) && (len > 0 && len < max)) {
 #	if MC_TARGET_CPP98
 		return ::memmove(dest, src, len);
 #	else
@@ -101,7 +101,7 @@ int mc_os_memcmp(const void * restrict left, const void * restrict right, size_t
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (left != NULL && right != NULL && (len > 0 && len < max)) {
+	if (mc_nonnull(left) && mc_nonnull(right) && (len > 0 && len < max)) {
 #	if MC_TARGET_CPP98
 		return ::memcmp(left, right, len);
 #	else
@@ -177,10 +177,80 @@ void mc_os_free(void * ptr)
 #	define mc_base_memzero(src_addr, size) \
 		mc_os_memzero(src_addr, mc_cast_expr(size_t, size))
 
+#pragma mark - mc_base_memzero_type -
+
+#	if MC_TARGET_CPP98 && !MC_TARGET_MEMSET_CC_OPTIM
+#		define mc_base_memzero_type(type, n, x)                                                        \
+		mc_scope_begin                                                                                 \
+			if ((n) > 0) {                                                                              \
+				::std::fill_n(x, n, mc_cast(type, 0));                                                   \
+			}                                                                                           \
+		mc_scope_end
+#	elif MC_TARGET_CPP98 && MC_TARGET_MEMSET_CC_OPTIM
+#		define mc_base_memzero_type(type, n, x)                                                        \
+		mc_scope_begin                                                                                 \
+			if ((n) > 0) {                                                                              \
+				::memset(x, 0, mc_cast(size_t, n) * sizeof(type));                                       \
+			}                                                                                           \
+		mc_scope_end
+#	elif MC_TARGET_C11 && !MC_TARGET_MEMSET_CC_OPTIM && defined(__STDC_LIB_EXT1__)
+#		define mc_base_memzero_type(type, n, x)                                                        \
+		mc_scope_begin                                                                                 \
+			if ((n) > 0) {                                                                              \
+				memset_s(x, mc_cast(size_t, n) * sizeof(type), 0, mc_cast(size_t, n) * sizeof(type));    \
+			}                                                                                           \
+		mc_scope_end
+#	elif MC_TARGET_C99 && MC_TARGET_MEMSET_CC_OPTIM
+#		define mc_base_memzero_type(type, n, x)                                                        \
+		mc_scope_begin                                                                                 \
+			if ((n) > 0) {                                                                              \
+				memset(x, 0, mc_cast(size_t, n) * sizeof(type));                                         \
+			}                                                                                           \
+		mc_scope_end
+#	else
+#		define mc_base_memzero_type(type, n, x)                                                        \
+		mc_scope_begin                                                                                 \
+			size_t __mc_base_memzero_type_i = 0;                                                        \
+			if ((n) > 0) {                                                                              \
+				for (; __mc_base_memzero_type_i < mc_cast_expr(size_t, n); __mc_base_memzero_type_i++) { \
+					x[__mc_base_memzero_type_i] = mc_cast_expr(type, 0);                                  \
+				}                                                                                        \
+			}                                                                                           \
+		mc_scope_end
+#	endif
+
 #pragma mark - mc_base_memcpy -
 
 #	define mc_base_memcpy(dest_addr, src_addr, size) \
 		mc_os_memcpy(dest_addr, src_addr, mc_cast_expr(size_t, size))
+
+#pragma mark - mc_base_memcpy_type -
+
+#	if MC_TARGET_CPP98
+#		define mc_base_memcpy_type(type, n, y, x)                                                             \
+		mc_scope_begin                                                                                        \
+			if ((n) > 0) {                                                                                     \
+				::memcpy(y, x, mc_cast_expr(size_t, n) * sizeof(type));                                         \
+			}                                                                                                  \
+		mc_scope_end
+#	elif MC_TARGET_C11 && defined(__STDC_LIB_EXT1__)
+#		define mc_base_memcpy_type(type, n, y, x)                                                             \
+		mc_scope_begin                                                                                        \
+			if ((n) > 0) {                                                                                     \
+				memcpy_s(y, mc_cast_expr(size_t, n) * sizeof(type), x, mc_cast_expr(size_t, n) * sizeof(type)); \
+			}                                                                                                  \
+		mc_scope_end
+#	else
+#		define mc_base_memcpy_type(type, n, y, x)                                                             \
+		mc_scope_begin                                                                                        \
+			size_t __mc_base_memcpy_type_i = 0;                                                                \
+			if ((n) > 0) {                                                                                     \
+				for (; __mc_base_memcpy_type_i < mc_cast_expr(size_t, n); __mc_base_memcpy_type_i++) {          \
+					y[__mc_base_memcpy_type_i] = mc_cast_expr(type, x[__mc_base_memcpy_type_i]);                 \
+				}                                                                                               \
+			}                                                                                                  \
+		mc_scope_end
+#	endif
 
 #pragma mark - mc_base_memmove -
 
@@ -284,9 +354,9 @@ void mc_os_free(void * ptr)
 
 #	define mc_realloc_safe(item_type, dest_addr, src_addr, newsize)                  \
 	mc_scope_begin                                                                   \
-		if (0 == mc_base_sizeck(newsize)) {                                          \
+		if (0 == mc_base_sizeck(newsize)) {                                           \
 			if (NULL == (dest_addr = mc_base_realloc(item_type, src_addr, newsize))) { \
-				if (src_addr != NULL) {                                                 \
+				if (mc_nonnull(src_addr)) {                                             \
 					mc_os_free(src_addr);                                                \
 					src_addr = NULL;                                                     \
 				}                                                                       \
@@ -303,9 +373,9 @@ void mc_os_free(void * ptr)
 
 #	define mc_realloc_count_safe(item_type, dest_addr, src_addr, newcount)                  \
 	mc_scope_begin                                                                          \
-		if (0 == mc_base_countck(item_type, newcount)) {                                    \
+		if (0 == mc_base_countck(item_type, newcount)) {                                     \
 			if (NULL == (dest_addr = mc_base_realloc_count(item_type, src_addr, newcount))) { \
-				if (src_addr != NULL) {                                                        \
+				if (mc_nonnull(src_addr)) {                                                    \
 					mc_os_free(src_addr);                                                       \
 					src_addr = NULL;                                                            \
 				}                                                                              \
@@ -322,7 +392,7 @@ void mc_os_free(void * ptr)
 
 #	define mc_dealloc_safe(src_addr) \
 	mc_scope_begin                   \
-		if (src_addr != NULL) {       \
+		if (mc_nonnull(src_addr)) {   \
 			mc_os_free(src_addr);      \
 			src_addr = NULL;           \
 		}                             \

@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/mc_target.h>
+#include <macadam/details/mc_mem.h>
 
 #ifndef MC_ICOPY1XN_H
 #define MC_ICOPY1XN_H
@@ -15,7 +16,7 @@
 
 MC_TARGET_FUNC void mc_icopy1xn(int n, int * y, const int * x)
 {
-	mc_copy1xn_type(int, n, y, x);
+	mc_base_memcpy_type(int, n, y, x);
 }
 
 #endif /* !MC_ICOPY1XN_H */

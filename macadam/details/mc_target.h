@@ -327,9 +327,22 @@
 #	define mc_static_assert(COND, IDF) typedef char static_assertion_##IDF[(COND) ? 1 : -1]
 #	endif
 
+
+#	if MC_TARGET_CPP98
+#	define mc_cast(t, x)      static_cast<t>(x)
+#	define mc_cast_expr(t, x) static_cast<t>((x))
+#	if MC_TARGET_CPP11
+#		define mc_nonnull(p) ((p) != NULL)
+#	else
+#		define mc_nonnull(p) ((p) != nullptr)
+#	endif
+#	else
 #	define mc_cast(t, x) (t)x
 #	define mc_cast_expr(t, x) mc_cast(t, (x))
 #	define mc_nonnull(p) ((p) != NULL)
+#	endif
+
+#	define mc_unused(x) (void)x
 
 #	define mc_scope_begin do {
 #	define mc_scope_end   break; } while (0)

@@ -16,7 +16,7 @@
 MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 {
 //!#
-//!# @note: Dekker's twoProduct is not a robust fma implementation.
+//!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
 
 //!# 2^12 + 1.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 {
 //!#
-//!# @note: Dekker's twoProduct is not a robust fma implementation.
+//!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
 
 //!# 2^27 + 1.
@@ -66,7 +66,7 @@ MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x, long double * y)
 {
 //!#
-//!# @note: Dekker's twoProduct is not a robust fma implementation.
+//!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 //!# 2^32 + 1.

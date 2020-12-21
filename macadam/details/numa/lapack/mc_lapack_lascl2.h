@@ -20,7 +20,7 @@ MC_TARGET_FUNC void mc_lapack_slascl2(int m, int n, const float * d, float * x, 
 {
 	int i, j;
 
-	mc_cast(void, ldx);
+	mc_unused(ldx);
 	for (j = 1; j <= n; ++j) {
 		for (i = 1; i <= m; ++i) {
 			mc_blas_matrix_at(x, ldx, n, i, j) = mc_blas_matrix_at(x, ldx, n, i, j) * mc_blas_vector_at(d, i);
@@ -34,7 +34,7 @@ MC_TARGET_FUNC void mc_lapack_dlascl2(int m, int n, const double * d, double * x
 {
 	int i, j;
 
-	mc_cast(void, ldx);
+	mc_unused(ldx);
 	for (j = 1; j <= n; ++j) {
 		for (i = 1; i <= m; ++i) {
 			mc_blas_matrix_at(x, ldx, n, i, j) = mc_blas_matrix_at(x, ldx, n, i, j) * mc_blas_vector_at(d, i);
@@ -48,7 +48,7 @@ MC_TARGET_FUNC void mc_lapack_llascl2(int m, int n, const long double * d, long 
 {
 	int i, j;
 
-	mc_cast(void, ldx);
+	mc_unused(ldx);
 	for (j = 1; j <= n; ++j) {
 		for (i = 1; i <= m; ++i) {
 			mc_blas_matrix_at(x, ldx, n, i, j) = mc_blas_matrix_at(x, ldx, n, i, j) * mc_blas_vector_at(d, i);

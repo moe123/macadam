@@ -21,8 +21,8 @@ MC_TARGET_FUNC int mc_qrsolve3x3f(const float q[9], const float r[9], const floa
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
-	mc_cast(void, pvi);
-	mc_cast(void, p);
+	mc_unused(pvi);
+	mc_unused(p);
 
 	mc_mulatx3x3f(x, q, b);
 	return mc_triusolve3x3f(r, x, x);
@@ -35,8 +35,8 @@ MC_TARGET_FUNC int mc_qrsolve3x3ff(const float q[9], const float r[9], const flo
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
-	mc_cast(void, pvi);
-	mc_cast(void, p);
+	mc_unused(pvi);
+	mc_unused(p);
 
 	mc_mulatx3x3ff(x, q, b);
 	return mc_triusolve3x3fd(r, x, x);
@@ -49,8 +49,8 @@ MC_TARGET_FUNC int mc_qrsolve3x3(const double q[9], const double r[9], const dou
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
-	mc_cast(void, pvi);
-	mc_cast(void, p);
+	mc_unused(pvi);
+	mc_unused(p);
 
 	mc_mulatx3x3(x, q, b);
 	return mc_triusolve3x3(r, x, x);
@@ -63,8 +63,8 @@ MC_TARGET_FUNC int mc_qrsolve3x3l(const long double q[9], const long double r[9]
 //!# d, p and pvi can be null; for now d, p and pvi should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
 
-	mc_cast(void, pvi);
-	mc_cast(void, p);
+	mc_unused(pvi);
+	mc_unused(p);
 
 	mc_mulatx3x3l(x, q, b);
 	return mc_triusolve3x3l(r, x, x);

@@ -21,7 +21,7 @@ MC_TARGET_FUNC int mc_lapack_ilaslr(int m, int n, const float * a, int lda)
 	int i, ilalr, j;
 
 	if (m == 0) {
-		mc_cast(void, lda);
+		mc_unused(lda);
 		ilalr = m;
 	} else if (mc_blas_matrix_at(a, lda, n, m, 1) != zero || mc_blas_matrix_at(a, lda, n, m, n) != zero) {
 		ilalr = m;
@@ -47,7 +47,7 @@ MC_TARGET_FUNC int mc_lapack_iladlr(int m, int n, const double * a, int lda)
 	int i, ilalr, j;
 
 	if (m == 0) {
-		mc_cast(void, lda);
+		mc_unused(lda);
 		ilalr = m;
 	} else if (mc_blas_matrix_at(a, lda, n, m, 1) != zero || mc_blas_matrix_at(a, lda, n, m, n) != zero) {
 		ilalr = m;
@@ -73,7 +73,7 @@ MC_TARGET_FUNC int mc_lapack_ilallr(int m, int n, const long double * a, int lda
 	int i, ilalr, j;
 
 	if (m == 0) {
-		mc_cast(void, lda);
+		mc_unused(lda);
 		ilalr = m;
 	} else if (mc_blas_matrix_at(a, lda, n, m, 1) != zero || mc_blas_matrix_at(a, lda, n, m, n) != zero) {
 		ilalr = m;

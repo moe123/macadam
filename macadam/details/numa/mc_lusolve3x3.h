@@ -26,7 +26,7 @@ MC_TARGET_FUNC int mc_lusolve3x3f(const float l[9], const float u[9], const floa
 	int i;
 	float w;
 
-	mc_cast(void, d);
+	mc_unused(d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_lusolve3x3ff(const float l[9], const float u[9], const flo
 	int i;
 	double w;
 
-	mc_cast(void, d);
+	mc_unused(d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
@@ -162,7 +162,7 @@ MC_TARGET_FUNC int mc_lusolve3x3(const double l[9], const double u[9], const dou
 	int i;
 	double w;
 
-	mc_cast(void, d);
+	mc_unused(d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {
@@ -230,7 +230,7 @@ MC_TARGET_FUNC int mc_lusolve3x3l(const long double l[9], const long double u[9]
 	int i;
 	long double w;
 
-	mc_cast(void, d);
+	mc_unused(d);
 
 //!# Computing x=b[pvi[i]] according to permutation matrix or pivot indeces vector.
 	if (wantpvi) {

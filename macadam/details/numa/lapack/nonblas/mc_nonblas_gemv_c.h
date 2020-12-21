@@ -99,10 +99,10 @@ MC_TARGET_FUNC void mc_nonblas_sgemv_c(const char trans, int m, int n, float alp
 	}
 
 	if (m == 0 || n == 0 || (alpha == zero && beta == one)) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -231,10 +231,10 @@ MC_TARGET_FUNC void mc_nonblas_dgemv_c(const char trans, int m, int n, double al
 	}
 
 	if (m == 0 || n == 0 || (alpha == zero && beta == one)) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -363,10 +363,10 @@ MC_TARGET_FUNC void mc_nonblas_lgemv_c(const char trans, int m, int n, long doub
 	}
 
 	if (m == 0 || n == 0 || (alpha == zero && beta == one)) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 

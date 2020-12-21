@@ -22,7 +22,7 @@ MC_TARGET_PROC float mc_xpolyevalnef(float x, const float * p, unsigned int n, f
 	if (n > 0 && n < 256) {
 		m = mc_cast(int, n);
 		s = p[m - 1];
-		if (err != NULL) {
+		if (mc_nonnull(err)) {
 			z = mc_fabsf(x);
 			e = 0.5f * mc_fabsf(s);
 			for (i = m - 2; i >= 0; i--) {
@@ -49,7 +49,7 @@ MC_TARGET_PROC double mc_xpolyevalne(double x, const double * p, unsigned int n,
 	if (n > 0 && n < 256) {
 		m = mc_cast(int, n);
 		s = p[m - 1];
-		if (err != NULL) {
+		if (mc_nonnull(err)) {
 			z = mc_fabs(x);
 			e = 0.5 * mc_fabs(s);
 			for (i = m - 2; i >= 0; i--) {
@@ -76,7 +76,7 @@ MC_TARGET_PROC long double mc_xpolyevalnel(long double x, const long double * p,
 	if (n > 0 && n < 256) {
 		m = mc_cast(int, n);
 		s = p[m - 1];
-		if (err != NULL) {
+		if (mc_nonnull(err)) {
 			z = mc_fabsl(x);
 			e = 0.5L * mc_fabsl(s);
 			for (i = m - 2; i >= 0; i--) {

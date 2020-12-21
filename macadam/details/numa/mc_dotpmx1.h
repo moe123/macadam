@@ -17,7 +17,7 @@ MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int p, int j, int k, const float 
 {
 //!# Requires a[m x n] and b[m x p].
 //!# A and B may be the same.
-//!# TwoProduct split factor @see mc_twoproduct.
+//!# TwoProduct split factor @see `mc_twoproduct`.
 	const float cs = mc_cast_expr(float, 4096 + 1);
 
 	int i   = 0;
@@ -82,7 +82,7 @@ MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int p, int j, int k, const float 
 
 MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int p, int j, int k, const float * a, const float * b, int f)
 {
-//!# TwoProduct split factor @see mc_twoproduct.
+//!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
 
 	int i    = 0;
@@ -147,7 +147,7 @@ MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int p, int j, int k, const floa
 
 MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int p, int j, int k, const double * a, const double * b, int f)
 {
-//!# TwoProduct split factor @see mc_twoproduct.
+//!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
 
 	int i    = 0;
@@ -212,7 +212,7 @@ MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int p, int j, int k, const double
 
 MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int p, int j, int k, const long double * a, const long double * b, int f)
 {
-//!# TwoProduct split factor @see mc_twoproduct.
+//!# TwoProduct split factor @see `mc_twoproduct`.
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const long double cs = mc_cast_expr(long double, 4294967296 + 1);
 #	else

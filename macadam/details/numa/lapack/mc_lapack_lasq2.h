@@ -113,7 +113,7 @@ MC_TARGET_PROC void mc_lapack_slasq2(int n, float * z, int * info)
 	d    = d + mc_blas_vector_at(z, (2 * n) - 1);
 	qmax = mc_fmaxf(qmax, mc_blas_vector_at(z, (2 * n) - 1));
 	zmax = mc_fmaxf(qmax, zmax);
-	mc_cast(void, zmax);
+	mc_unused(zmax);
 
 	if (e == zero) {
 		for (k = 2; k <= n; ++k) {
@@ -321,7 +321,7 @@ F100:
 	*info = 2;
 	 i1   = i0;
 	 n1   = n0;
-	mc_cast(void, n1);
+	mc_unused(n1);
 
 F145:
 	tempq                              = mc_blas_vector_at(z, (4 * i0) - 3);
@@ -470,7 +470,7 @@ MC_TARGET_PROC void mc_lapack_dlasq2(int n, double * z, int * info)
 	d    = d + mc_blas_vector_at(z, (2 * n) - 1);
 	qmax = mc_fmax(qmax, mc_blas_vector_at(z, (2 * n) - 1));
 	zmax = mc_fmax(qmax, zmax);
-	mc_cast(void, zmax);
+	mc_unused(zmax);
 
 	if (e == zero) {
 		for (k = 2; k <= n; ++k) {
@@ -678,7 +678,7 @@ F100:
 	*info = 2;
 	 i1   = i0;
 	 n1   = n0;
-	mc_cast(void, n1);
+	mc_unused(n1);
 
 F145:
 	tempq                              = mc_blas_vector_at(z, (4 * i0) - 3);
@@ -827,7 +827,7 @@ MC_TARGET_PROC void mc_lapack_llasq2(int n, long double * z, int * info)
 	d    = d + mc_blas_vector_at(z, (2 * n) - 1);
 	qmax = mc_fmaxl(qmax, mc_blas_vector_at(z, (2 * n) - 1));
 	zmax = mc_fmaxl(qmax, zmax);
-	mc_cast(void, zmax);
+	mc_unused(zmax);
 
 	if (e == zero) {
 		for (k = 2; k <= n; ++k) {
@@ -1035,7 +1035,7 @@ F100:
 	*info = 2;
 	 i1   = i0;
 	 n1   = n0;
-	mc_cast(void, n1);
+	mc_unused(n1);
 
 F145:
 	tempq                              = mc_blas_vector_at(z, (4 * i0) - 3);

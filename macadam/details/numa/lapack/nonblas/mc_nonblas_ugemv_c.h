@@ -95,10 +95,10 @@ MC_TARGET_FUNC void mc_nonblas_sugemv_c(const char trans, int m, int n, const fl
 	}
 
 	if (m == 0 || n == 0) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -169,10 +169,10 @@ MC_TARGET_FUNC void mc_nonblas_dugemv_c(const char trans, int m, int n, const do
 	}
 
 	if (m == 0 || n == 0) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 
@@ -243,10 +243,10 @@ MC_TARGET_FUNC void mc_nonblas_lugemv_c(const char trans, int m, int n, const lo
 	}
 
 	if (m == 0 || n == 0) {
-		mc_cast(void, ldx);
-		mc_cast(void, ldy);
-		mc_cast(void, nx);
-		mc_cast(void, ny);
+		mc_unused(ldx);
+		mc_unused(ldy);
+		mc_unused(nx);
+		mc_unused(ny);
 		return;
 	}
 

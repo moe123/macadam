@@ -83,10 +83,10 @@
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T           mclimits_epsilonof              (const T& x)           { mc_cast(void, x); return 0;                 }
-template <>        MC_TARGET_INLINE float       mclimits_epsilonof<float>       (const float& x)       { mc_cast(void, x); return MCLIMITS_EPSILONF; }
-template <>        MC_TARGET_INLINE double      mclimits_epsilonof<double>      (const double& x)      { mc_cast(void, x); return MCLIMITS_EPSILON;  }
-template <>        MC_TARGET_INLINE long double mclimits_epsilonof<long double> (const long double& x) { mc_cast(void, x); return MCLIMITS_EPSILONL; }
+template <class T> MC_TARGET_INLINE T           mclimits_epsilonof              (const T& x)           { mc_unused(x); return 0;                 }
+template <>        MC_TARGET_INLINE float       mclimits_epsilonof<float>       (const float& x)       { mc_unused(x); return MCLIMITS_EPSILONF; }
+template <>        MC_TARGET_INLINE double      mclimits_epsilonof<double>      (const double& x)      { mc_unused(x); return MCLIMITS_EPSILON;  }
+template <>        MC_TARGET_INLINE long double mclimits_epsilonof<long double> (const long double& x) { mc_unused(x); return MCLIMITS_EPSILONL; }
 
 #	elif MC_TARGET_C11
 #	define mclimits_epsilonof(x) _Generic(x  \
@@ -120,26 +120,26 @@ template <>        MC_TARGET_INLINE long double mclimits_epsilonof<long double> 
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_maxof                     (const T& x)                  { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE float              mclimits_maxof<float>              (const float& x)              { mc_cast(void, x); return MCLIMITS_MAXF;   }
-template <>        MC_TARGET_INLINE double             mclimits_maxof<double>             (const double& x)             { mc_cast(void, x); return MCLIMITS_MAX;    }
-template <>        MC_TARGET_INLINE long double        mclimits_maxof<long double>        (const long double& x)        { mc_cast(void, x); return MCLIMITS_MAXL;   }
-template <>        MC_TARGET_INLINE signed char        mclimits_maxof<signed char>        (const signed char& x)        { mc_cast(void, x); return MCLIMITS_BMAX;   }
-template <>        MC_TARGET_INLINE short              mclimits_maxof<short>              (const short& x)              { mc_cast(void, x); return MCLIMITS_SMAX;   }
-template <>        MC_TARGET_INLINE int                mclimits_maxof<int>                (const int& x)                { mc_cast(void, x); return MCLIMITS_IMAX;   }
-template <>        MC_TARGET_INLINE long               mclimits_maxof<long>               (const long& x)               { mc_cast(void, x); return MCLIMITS_LMAX;   }
+template <class T> MC_TARGET_INLINE T                  mclimits_maxof                     (const T& x)                  { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE float              mclimits_maxof<float>              (const float& x)              { mc_unused(x); return MCLIMITS_MAXF;   }
+template <>        MC_TARGET_INLINE double             mclimits_maxof<double>             (const double& x)             { mc_unused(x); return MCLIMITS_MAX;    }
+template <>        MC_TARGET_INLINE long double        mclimits_maxof<long double>        (const long double& x)        { mc_unused(x); return MCLIMITS_MAXL;   }
+template <>        MC_TARGET_INLINE signed char        mclimits_maxof<signed char>        (const signed char& x)        { mc_unused(x); return MCLIMITS_BMAX;   }
+template <>        MC_TARGET_INLINE short              mclimits_maxof<short>              (const short& x)              { mc_unused(x); return MCLIMITS_SMAX;   }
+template <>        MC_TARGET_INLINE int                mclimits_maxof<int>                (const int& x)                { mc_unused(x); return MCLIMITS_IMAX;   }
+template <>        MC_TARGET_INLINE long               mclimits_maxof<long>               (const long& x)               { mc_unused(x); return MCLIMITS_LMAX;   }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_maxof<long long>          (const long long& x)          { mc_cast(void, x); return MCLIMITS_LLMAX;  }
+template <>        MC_TARGET_INLINE long long          mclimits_maxof<long long>          (const long long& x)          { mc_unused(x); return MCLIMITS_LLMAX;  }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_maxof<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return MCLIMITS_UBMAX;  }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_maxof<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return MCLIMITS_USMAX;  }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_maxof<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return MCLIMITS_UIMAX;  }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_maxof<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return MCLIMITS_ULMAX;  }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_maxof<unsigned char>      (const unsigned char& x)      { mc_unused(x); return MCLIMITS_UBMAX;  }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_maxof<unsigned short>     (const unsigned short& x)     { mc_unused(x); return MCLIMITS_USMAX;  }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_maxof<unsigned int>       (const unsigned int& x)       { mc_unused(x); return MCLIMITS_UIMAX;  }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_maxof<unsigned long>      (const unsigned long& x)      { mc_unused(x); return MCLIMITS_ULMAX;  }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return MCLIMITS_ULLMAX; }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned long long> (const unsigned long long& x) { mc_unused(x); return MCLIMITS_ULLMAX; }
 #	endif
 
 #	elif MC_TARGET_C11
@@ -202,26 +202,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxof<unsigned l
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_minof                     (const T& x)                  { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE float              mclimits_minof<float>              (const float& x)              { mc_cast(void, x); return MCLIMITS_MINF;   }
-template <>        MC_TARGET_INLINE double             mclimits_minof<double>             (const double& x)             { mc_cast(void, x); return MCLIMITS_MIN;    }
-template <>        MC_TARGET_INLINE long double        mclimits_minof<long double>        (const long double& x)        { mc_cast(void, x); return MCLIMITS_MINL;   }
-template <>        MC_TARGET_INLINE signed char        mclimits_minof<signed char>        (const signed char& x)        { mc_cast(void, x); return MCLIMITS_BMIN;   }
-template <>        MC_TARGET_INLINE short              mclimits_minof<short>              (const short& x)              { mc_cast(void, x); return MCLIMITS_SMIN;   }
-template <>        MC_TARGET_INLINE int                mclimits_minof<int>                (const int& x)                { mc_cast(void, x); return MCLIMITS_IMIN;   }
-template <>        MC_TARGET_INLINE long               mclimits_minof<long>               (const long& x)               { mc_cast(void, x); return MCLIMITS_LMIN;   }
+template <class T> MC_TARGET_INLINE T                  mclimits_minof                     (const T& x)                  { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE float              mclimits_minof<float>              (const float& x)              { mc_unused(x); return MCLIMITS_MINF;   }
+template <>        MC_TARGET_INLINE double             mclimits_minof<double>             (const double& x)             { mc_unused(x); return MCLIMITS_MIN;    }
+template <>        MC_TARGET_INLINE long double        mclimits_minof<long double>        (const long double& x)        { mc_unused(x); return MCLIMITS_MINL;   }
+template <>        MC_TARGET_INLINE signed char        mclimits_minof<signed char>        (const signed char& x)        { mc_unused(x); return MCLIMITS_BMIN;   }
+template <>        MC_TARGET_INLINE short              mclimits_minof<short>              (const short& x)              { mc_unused(x); return MCLIMITS_SMIN;   }
+template <>        MC_TARGET_INLINE int                mclimits_minof<int>                (const int& x)                { mc_unused(x); return MCLIMITS_IMIN;   }
+template <>        MC_TARGET_INLINE long               mclimits_minof<long>               (const long& x)               { mc_unused(x); return MCLIMITS_LMIN;   }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_minof<long long>          (const long long& x)          { mc_cast(void, x); return MCLIMITS_LLMIN;  }
+template <>        MC_TARGET_INLINE long long          mclimits_minof<long long>          (const long long& x)          { mc_unused(x); return MCLIMITS_LLMIN;  }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_minof<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return MCLIMITS_UBMIN;  }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_minof<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return MCLIMITS_USMIN;  }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_minof<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return MCLIMITS_UIMIN;  }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_minof<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return MCLIMITS_ULMIN;  }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_minof<unsigned char>      (const unsigned char& x)      { mc_unused(x); return MCLIMITS_UBMIN;  }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_minof<unsigned short>     (const unsigned short& x)     { mc_unused(x); return MCLIMITS_USMIN;  }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_minof<unsigned int>       (const unsigned int& x)       { mc_unused(x); return MCLIMITS_UIMIN;  }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_minof<unsigned long>      (const unsigned long& x)      { mc_unused(x); return MCLIMITS_ULMIN;  }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return MCLIMITS_ULLMIN; }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned long long> (const unsigned long long& x) { mc_unused(x); return MCLIMITS_ULLMIN; }
 #	endif
 
 #	elif MC_TARGET_C11
@@ -284,26 +284,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minof<unsigned l
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_lowestof                     (const T& x)                  { mc_cast(void, x); return  0;               }
-template <>        MC_TARGET_INLINE float              mclimits_lowestof<float>              (const float& x)              { mc_cast(void, x); return -MCLIMITS_MAXF;   }
-template <>        MC_TARGET_INLINE double             mclimits_lowestof<double>             (const double& x)             { mc_cast(void, x); return -MCLIMITS_MAX;    }
-template <>        MC_TARGET_INLINE long double        mclimits_lowestof<long double>        (const long double& x)        { mc_cast(void, x); return -MCLIMITS_MAXL;   }
-template <>        MC_TARGET_INLINE signed char        mclimits_lowestof<signed char>        (const signed char& x)        { mc_cast(void, x); return  MCLIMITS_BMIN;   }
-template <>        MC_TARGET_INLINE short              mclimits_lowestof<short>              (const short& x)              { mc_cast(void, x); return  MCLIMITS_SMIN;   }
-template <>        MC_TARGET_INLINE int                mclimits_lowestof<int>                (const int& x)                { mc_cast(void, x); return  MCLIMITS_IMIN;   }
-template <>        MC_TARGET_INLINE long               mclimits_lowestof<long>               (const long& x)               { mc_cast(void, x); return  MCLIMITS_LMIN;   }
+template <class T> MC_TARGET_INLINE T                  mclimits_lowestof                     (const T& x)                  { mc_unused(x); return  0;               }
+template <>        MC_TARGET_INLINE float              mclimits_lowestof<float>              (const float& x)              { mc_unused(x); return -MCLIMITS_MAXF;   }
+template <>        MC_TARGET_INLINE double             mclimits_lowestof<double>             (const double& x)             { mc_unused(x); return -MCLIMITS_MAX;    }
+template <>        MC_TARGET_INLINE long double        mclimits_lowestof<long double>        (const long double& x)        { mc_unused(x); return -MCLIMITS_MAXL;   }
+template <>        MC_TARGET_INLINE signed char        mclimits_lowestof<signed char>        (const signed char& x)        { mc_unused(x); return  MCLIMITS_BMIN;   }
+template <>        MC_TARGET_INLINE short              mclimits_lowestof<short>              (const short& x)              { mc_unused(x); return  MCLIMITS_SMIN;   }
+template <>        MC_TARGET_INLINE int                mclimits_lowestof<int>                (const int& x)                { mc_unused(x); return  MCLIMITS_IMIN;   }
+template <>        MC_TARGET_INLINE long               mclimits_lowestof<long>               (const long& x)               { mc_unused(x); return  MCLIMITS_LMIN;   }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_lowestof<long long>          (const long long& x)          { mc_cast(void, x); return  MCLIMITS_LLMIN;  }
+template <>        MC_TARGET_INLINE long long          mclimits_lowestof<long long>          (const long long& x)          { mc_unused(x); return  MCLIMITS_LLMIN;  }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_lowestof<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return  MCLIMITS_UBMIN;  }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_lowestof<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return  MCLIMITS_USMIN;  }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_lowestof<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return  MCLIMITS_UIMIN;  }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_lowestof<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return  MCLIMITS_ULMIN;  }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_lowestof<unsigned char>      (const unsigned char& x)      { mc_unused(x); return  MCLIMITS_UBMIN;  }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_lowestof<unsigned short>     (const unsigned short& x)     { mc_unused(x); return  MCLIMITS_USMIN;  }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_lowestof<unsigned int>       (const unsigned int& x)       { mc_unused(x); return  MCLIMITS_UIMIN;  }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_lowestof<unsigned long>      (const unsigned long& x)      { mc_unused(x); return  MCLIMITS_ULMIN;  }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return  MCLIMITS_ULLMIN; }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigned long long> (const unsigned long long& x) { mc_unused(x); return  MCLIMITS_ULLMIN; }
 #	endif
 
 #	elif MC_TARGET_C11
@@ -366,26 +366,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_lowestof<unsigne
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_maxexpof                     (const T& x)                  { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE float              mclimits_maxexpof<float>              (const float& x)              { mc_cast(void, x); return FLT_MAX_EXP;  }
-template <>        MC_TARGET_INLINE double             mclimits_maxexpof<double>             (const double& x)             { mc_cast(void, x); return DBL_MAX_EXP;  }
-template <>        MC_TARGET_INLINE long double        mclimits_maxexpof<long double>        (const long double& x)        { mc_cast(void, x); return LDBL_MAX_EXP; }
-template <>        MC_TARGET_INLINE signed char        mclimits_maxexpof<signed char>        (const signed char& x)        { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE short              mclimits_maxexpof<short>              (const short& x)              { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE int                mclimits_maxexpof<int>                (const int& x)                { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE long               mclimits_maxexpof<long>               (const long& x)               { mc_cast(void, x); return 0;            }
+template <class T> MC_TARGET_INLINE T                  mclimits_maxexpof                     (const T& x)                  { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE float              mclimits_maxexpof<float>              (const float& x)              { mc_unused(x); return FLT_MAX_EXP;  }
+template <>        MC_TARGET_INLINE double             mclimits_maxexpof<double>             (const double& x)             { mc_unused(x); return DBL_MAX_EXP;  }
+template <>        MC_TARGET_INLINE long double        mclimits_maxexpof<long double>        (const long double& x)        { mc_unused(x); return LDBL_MAX_EXP; }
+template <>        MC_TARGET_INLINE signed char        mclimits_maxexpof<signed char>        (const signed char& x)        { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE short              mclimits_maxexpof<short>              (const short& x)              { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE int                mclimits_maxexpof<int>                (const int& x)                { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE long               mclimits_maxexpof<long>               (const long& x)               { mc_unused(x); return 0;            }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_maxexpof<long long>          (const long long& x)          { mc_cast(void, x); return 0;            }
+template <>        MC_TARGET_INLINE long long          mclimits_maxexpof<long long>          (const long long& x)          { mc_unused(x); return 0;            }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_maxexpof<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_maxexpof<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_maxexpof<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_maxexpof<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_maxexpof<unsigned char>      (const unsigned char& x)      { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_maxexpof<unsigned short>     (const unsigned short& x)     { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_maxexpof<unsigned int>       (const unsigned int& x)       { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_maxexpof<unsigned long>      (const unsigned long& x)      { mc_unused(x); return 0;            }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexpof<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexpof<unsigned long long> (const unsigned long long& x) { mc_unused(x); return 0;            }
 #	endif
 
 #	elif MC_TARGET_C11
@@ -448,26 +448,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexpof<unsigne
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_minexpof                     (const T& x)                  { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE float              mclimits_minexpof<float>              (const float& x)              { mc_cast(void, x); return FLT_MIN_EXP;  }
-template <>        MC_TARGET_INLINE double             mclimits_minexpof<double>             (const double& x)             { mc_cast(void, x); return DBL_MIN_EXP;  }
-template <>        MC_TARGET_INLINE long double        mclimits_minexpof<long double>        (const long double& x)        { mc_cast(void, x); return LDBL_MIN_EXP; }
-template <>        MC_TARGET_INLINE signed char        mclimits_minexpof<signed char>        (const signed char& x)        { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE short              mclimits_minexpof<short>              (const short& x)              { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE int                mclimits_minexpof<int>                (const int& x)                { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE long               mclimits_minexpof<long>               (const long& x)               { mc_cast(void, x); return 0;            }
+template <class T> MC_TARGET_INLINE T                  mclimits_minexpof                     (const T& x)                  { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE float              mclimits_minexpof<float>              (const float& x)              { mc_unused(x); return FLT_MIN_EXP;  }
+template <>        MC_TARGET_INLINE double             mclimits_minexpof<double>             (const double& x)             { mc_unused(x); return DBL_MIN_EXP;  }
+template <>        MC_TARGET_INLINE long double        mclimits_minexpof<long double>        (const long double& x)        { mc_unused(x); return LDBL_MIN_EXP; }
+template <>        MC_TARGET_INLINE signed char        mclimits_minexpof<signed char>        (const signed char& x)        { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE short              mclimits_minexpof<short>              (const short& x)              { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE int                mclimits_minexpof<int>                (const int& x)                { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE long               mclimits_minexpof<long>               (const long& x)               { mc_unused(x); return 0;            }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_minexpof<long long>          (const long long& x)          { mc_cast(void, x); return 0;            }
+template <>        MC_TARGET_INLINE long long          mclimits_minexpof<long long>          (const long long& x)          { mc_unused(x); return 0;            }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_minexpof<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_minexpof<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_minexpof<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return 0;            }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_minexpof<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_minexpof<unsigned char>      (const unsigned char& x)      { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_minexpof<unsigned short>     (const unsigned short& x)     { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_minexpof<unsigned int>       (const unsigned int& x)       { mc_unused(x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_minexpof<unsigned long>      (const unsigned long& x)      { mc_unused(x); return 0;            }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_minexpof<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return 0;            }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_minexpof<unsigned long long> (const unsigned long long& x) { mc_unused(x); return 0;            }
 #	endif
 
 #	elif MC_TARGET_C11
@@ -530,26 +530,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexpof<unsigne
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_maxexp10of                     (const T& x)                  { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE float              mclimits_maxexp10of<float>              (const float& x)              { mc_cast(void, x); return FLT_MAX_10_EXP;  }
-template <>        MC_TARGET_INLINE double             mclimits_maxexp10of<double>             (const double& x)             { mc_cast(void, x); return DBL_MAX_10_EXP;  }
-template <>        MC_TARGET_INLINE long double        mclimits_maxexp10of<long double>        (const long double& x)        { mc_cast(void, x); return LDBL_MAX_10_EXP; }
-template <>        MC_TARGET_INLINE signed char        mclimits_maxexp10of<signed char>        (const signed char& x)        { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE short              mclimits_maxexp10of<short>              (const short& x)              { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE int                mclimits_maxexp10of<int>                (const int& x)                { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE long               mclimits_maxexp10of<long>               (const long& x)               { mc_cast(void, x); return 0;               }
+template <class T> MC_TARGET_INLINE T                  mclimits_maxexp10of                     (const T& x)                  { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE float              mclimits_maxexp10of<float>              (const float& x)              { mc_unused(x); return FLT_MAX_10_EXP;  }
+template <>        MC_TARGET_INLINE double             mclimits_maxexp10of<double>             (const double& x)             { mc_unused(x); return DBL_MAX_10_EXP;  }
+template <>        MC_TARGET_INLINE long double        mclimits_maxexp10of<long double>        (const long double& x)        { mc_unused(x); return LDBL_MAX_10_EXP; }
+template <>        MC_TARGET_INLINE signed char        mclimits_maxexp10of<signed char>        (const signed char& x)        { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE short              mclimits_maxexp10of<short>              (const short& x)              { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE int                mclimits_maxexp10of<int>                (const int& x)                { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE long               mclimits_maxexp10of<long>               (const long& x)               { mc_unused(x); return 0;               }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_maxexp10of<long long>          (const long long& x)          { mc_cast(void, x); return 0;               }
+template <>        MC_TARGET_INLINE long long          mclimits_maxexp10of<long long>          (const long long& x)          { mc_unused(x); return 0;               }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_maxexp10of<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_maxexp10of<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_maxexp10of<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_maxexp10of<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_maxexp10of<unsigned char>      (const unsigned char& x)      { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_maxexp10of<unsigned short>     (const unsigned short& x)     { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_maxexp10of<unsigned int>       (const unsigned int& x)       { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_maxexp10of<unsigned long>      (const unsigned long& x)      { mc_unused(x); return 0;               }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexp10of<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexp10of<unsigned long long> (const unsigned long long& x) { mc_unused(x); return 0;               }
 #	endif
 
 #	elif MC_TARGET_C11
@@ -612,26 +612,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_maxexp10of<unsig
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_minexp10of                     (const T& x)                  { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE float              mclimits_minexp10of<float>              (const float& x)              { mc_cast(void, x); return FLT_MIN_10_EXP;  }
-template <>        MC_TARGET_INLINE double             mclimits_minexp10of<double>             (const double& x)             { mc_cast(void, x); return DBL_MIN_10_EXP;  }
-template <>        MC_TARGET_INLINE long double        mclimits_minexp10of<long double>        (const long double& x)        { mc_cast(void, x); return LDBL_MIN_10_EXP; }
-template <>        MC_TARGET_INLINE signed char        mclimits_minexp10of<signed char>        (const signed char& x)        { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE short              mclimits_minexp10of<short>              (const short& x)              { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE int                mclimits_minexp10of<int>                (const int& x)                { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE long               mclimits_minexp10of<long>               (const long& x)               { mc_cast(void, x); return 0;               }
+template <class T> MC_TARGET_INLINE T                  mclimits_minexp10of                     (const T& x)                  { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE float              mclimits_minexp10of<float>              (const float& x)              { mc_unused(x); return FLT_MIN_10_EXP;  }
+template <>        MC_TARGET_INLINE double             mclimits_minexp10of<double>             (const double& x)             { mc_unused(x); return DBL_MIN_10_EXP;  }
+template <>        MC_TARGET_INLINE long double        mclimits_minexp10of<long double>        (const long double& x)        { mc_unused(x); return LDBL_MIN_10_EXP; }
+template <>        MC_TARGET_INLINE signed char        mclimits_minexp10of<signed char>        (const signed char& x)        { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE short              mclimits_minexp10of<short>              (const short& x)              { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE int                mclimits_minexp10of<int>                (const int& x)                { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE long               mclimits_minexp10of<long>               (const long& x)               { mc_unused(x); return 0;               }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_minexp10of<long long>          (const long long& x)          { mc_cast(void, x); return 0;               }
+template <>        MC_TARGET_INLINE long long          mclimits_minexp10of<long long>          (const long long& x)          { mc_unused(x); return 0;               }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_minexp10of<unsigned char>      (const unsigned char& x)      { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_minexp10of<unsigned short>     (const unsigned short& x)     { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_minexp10of<unsigned int>       (const unsigned int& x)       { mc_cast(void, x); return 0;               }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_minexp10of<unsigned long>      (const unsigned long& x)      { mc_cast(void, x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_minexp10of<unsigned char>      (const unsigned char& x)      { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_minexp10of<unsigned short>     (const unsigned short& x)     { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_minexp10of<unsigned int>       (const unsigned int& x)       { mc_unused(x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_minexp10of<unsigned long>      (const unsigned long& x)      { mc_unused(x); return 0;               }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsigned long long> (const unsigned long long& x) { mc_cast(void, x); return 0;               }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsigned long long> (const unsigned long long& x) { mc_unused(x); return 0;               }
 #	endif
 
 #	elif MC_TARGET_C11
