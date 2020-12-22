@@ -328,6 +328,12 @@ MC_TARGET_ALIAS long double mcmath_atan2 (long double y, long double x) { return
 	, double      : mc_atan2  \
 	, long double : mc_atan2l \
 ) (y, mc_cast_expr(MC_TARGET_TYPEOF(y), x))
+#	elif MC_TARGET_C11
+#	define mcmath_atan2(y, x) _Generic((y)+(x) \
+	, float       : mc_atan2f \
+	, double      : mc_atan2  \
+	, long double : mc_atan2l \
+) ((y), (x))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_atan2(y, x) mc_cast(MC_TARGET_TYPEOF(y), \
 	( \
@@ -1591,6 +1597,12 @@ MC_TARGET_ALIAS long double mcmath_hypot (long double x, long double y) { return
 	, double      : mc_hypot  \
 	, long double : mc_hypotl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_hypot(x, y) _Generic((x)+(y) \
+	, float       : mc_hypotf \
+	, double      : mc_hypot  \
+	, long double : mc_hypotl \
+) ((x), (y))
 #	else
 #	define mcmath_hypot(x, y) \
 	( \
@@ -1618,6 +1630,12 @@ MC_TARGET_ALIAS long double mcmath_mc_hypot2 (long double x, long double y) { re
 	, double      : mc_hypot2  \
 	, long double : mc_hypot2l \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_mc_hypot2(x, y) _Generic((x)+(y) \
+	, float       : mc_hypot2f \
+	, double      : mc_hypot2  \
+	, long double : mc_hypot2l \
+) ((x), (y))
 #	else
 #	define mcmath_mc_hypot2(x, y) \
 	( \
@@ -1652,6 +1670,12 @@ MC_TARGET_ALIAS long double mcmath_hypot3 (long double x, long double y, long do
 	, double      : mc_hypot3  \
 	, long double : mc_hypot3l \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
+#	elif MC_TARGET_C11
+#	define mcmath_hypot3(x, y, z) _Generic((x)+(y)+(z) \
+	, float       : mc_hypot3f \
+	, double      : mc_hypot3  \
+	, long double : mc_hypot3l \
+) ((x), (y), (z))
 #	else
 #	define mcmath_hypot3(x, y, z) \
 	( \
@@ -1681,6 +1705,12 @@ MC_TARGET_ALIAS long double mcmath_pow (long double x, long double y) { return m
 	, double      : mc_pow  \
 	, long double : mc_powl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_pow(x, y) _Generic((x)+(y) \
+	, float       : mc_powf \
+	, double      : mc_pow  \
+	, long double : mc_powl \
+) ((x), (y))
 #	else
 #	define mcmath_pow(x, y) \
 	( \
@@ -3064,6 +3094,12 @@ MC_TARGET_ALIAS long double mcmath_scalb (long double x, long double y) { return
 	, double      : mc_scalb  \
 	, long double : mc_scalbl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_scalb(x, y) _Generic((x)+(y) \
+	, float       : mc_scalbf \
+	, double      : mc_scalb  \
+	, long double : mc_scalbl \
+) ((x), (y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_scalb(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -3103,6 +3139,12 @@ MC_TARGET_ALIAS long double mcmath_ibeta (long double a, long double b, long dou
 	, double      : mc_ibeta  \
 	, long double : mc_ibetal \
 ) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b), mc_cast_expr(MC_TARGET_TYPEOF(a), x))
+#	elif MC_TARGET_C11
+#	define mcmath_ibeta(a, b, x) _Generic((a)+(b)+(x) \
+	, float       : mc_ibetaf \
+	, double      : mc_ibeta  \
+	, long double : mc_ibetal \
+) ((a), (b), (x))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_ibeta(a, b, x) mc_cast(MC_TARGET_TYPEOF(a), \
 	( \
@@ -3140,6 +3182,12 @@ MC_TARGET_ALIAS long double mcmath_lbeta (long double x, long double y) { return
 	, double      : mc_lbeta  \
 	, long double : mc_lbetal \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_lbeta(x, y) _Generic((x)+(y) \
+	, float       : mc_lbetaf \
+	, double      : mc_lbeta  \
+	, long double : mc_lbetal \
+) ((x), (y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lbeta(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -3182,6 +3230,12 @@ MC_TARGET_ALIAS long double mcmath_beta (long double x, long double y) { return 
 	, double      : mc_beta  \
 	, long double : mc_betal \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_beta(x, y) _Generic((x)+(y) \
+	, float       : mc_betaf \
+	, double      : mc_beta  \
+	, long double : mc_betal \
+) ((x), (y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_beta(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -3223,6 +3277,12 @@ MC_TARGET_ALIAS long double mcmath_xlogy (long double x, long double y) { return
 	, double      : mc_xlogy  \
 	, long double : mc_xlogyl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_xlogy(x, y) _Generic((x)+(y) \
+	, float       : mc_xlogyf \
+	, double      : mc_xlogy  \
+	, long double : mc_xlogyl \
+) ((x), (y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_xlogy(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -3260,6 +3320,12 @@ MC_TARGET_ALIAS long double mcmath_xlog1py (long double x, long double y) { retu
 	, double      : mc_xlog1py  \
 	, long double : mc_xlog1pyl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y))
+#	elif MC_TARGET_C11
+#	define mcmath_xlog1py(x, y) _Generic((x)+(y) \
+	, float       : mc_xlog1pyf \
+	, double      : mc_xlog1py  \
+	, long double : mc_xlog1pyl \
+) ((x), (y))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_xlog1py(x, y) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \
@@ -3411,6 +3477,12 @@ MC_TARGET_ALIAS long double mcmath_lerp (long double x, long double y, long doub
 	, double      : mc_lerp  \
 	, long double : mc_lerpl \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
+#	elif MC_TARGET_C11
+#	define mcmath_lerp(x, y, z) _Generic((x)+(y)+(z) \
+	, float       : mc_lerpf \
+	, double      : mc_lerp  \
+	, long double : mc_lerpl \
+) ((x), (y), (z))
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcmath_lerp(x, y, z) mc_cast(MC_TARGET_TYPEOF(x), \
 	( \

@@ -15,6 +15,11 @@
 		|| (defined(_MSC_VER) && (defined(__STDC__) && __STDC__)) \
 		|| (defined(_MSC_VER) && _MSC_VER < 1916)
 #		error "C99 compiler and Posix 1-2001 CRT required."
+#	else
+#		undef  MC_DISABLE_TYPEOF
+#		undef  MC_DISABLE_TGMATH
+#		define MC_DISABLE_TYPEOF 1
+#		define MC_DISABLE_TGMATH 1
 #	endif
 
 #	if defined(__linux__) && defined(__GLIBC__)
@@ -32,7 +37,7 @@
 
 #	if defined(__APPLE__) && defined(__MACH__)
 #		ifndef __MATH_LONG_DOUBLE_CONSTANTS
-#			define __MATH_LONG_DOUBLE_CONSTANTS
+#			define __MATH_LONG_DOUBLE_CONSTANTS 1
 #		endif
 #	endif
 
