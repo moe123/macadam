@@ -18,7 +18,7 @@ MC_TARGET_FUNC void mc_rescalemx1f(int m, int n, int j, float * c, float a, floa
 	int i = 0;
 	float min, max, range;
 
-	mc_minmaxmx1f(m, n, j, c, &min, &max, NULL, NULL);
+	mc_minmaxmx1f(m, n, j, c, &min, &max, MC_NULLPTR, MC_NULLPTR);
 	range = max - min;
 	range = range != 0.0f ? 1.0f / range : 1.0f;
 	for (; i < m; i++) {
@@ -31,7 +31,7 @@ MC_TARGET_FUNC void mc_rescalemx1(int m, int n, int j, double * c, double a, dou
 	int i = 0;
 	double min, max, range;
 
-	mc_minmaxmx1(m, n, j, c, &min, &max, NULL, NULL);
+	mc_minmaxmx1(m, n, j, c, &min, &max, MC_NULLPTR, MC_NULLPTR);
 	range = max - min;
 	range = range != 0.0 ? 1.0 / range : 1.0;
 	for (; i < m; i++) {
@@ -44,7 +44,7 @@ MC_TARGET_FUNC void mc_rescalemx1l(int m, int n, int j, long double * c, long do
 	int i = 0;
 	long double min, max, range;
 
-	mc_minmaxmx1l(m, n, j, c, &min, &max, NULL, NULL);
+	mc_minmaxmx1l(m, n, j, c, &min, &max, MC_NULLPTR, MC_NULLPTR);
 	range = max - min;
 	range = range != 0.0L ? 1.0L / range : 1.0L;
 	for (; i < m; i++) {

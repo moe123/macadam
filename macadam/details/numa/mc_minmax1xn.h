@@ -15,10 +15,10 @@
 
 MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * max, int * p, int * q)
 {
-	const int wantmin = mc_nonnull(min);
-	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p) && wantmin;
-	const int wantq   = mc_nonnull(q) && wantmax;
+	const int wantmin = mc_nonnullptr(min);
+	const int wantmax = mc_nonnullptr(max);
+	const int wantp   = mc_nonnullptr(p) && wantmin;
+	const int wantq   = mc_nonnullptr(q) && wantmax;
 
 	int i = 2;
 
@@ -88,10 +88,10 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 
 MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double * max, int * p, int * q)
 {
-	const int wantmin = mc_nonnull(min);
-	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p) && wantmin;
-	const int wantq   = mc_nonnull(q) && wantmax;
+	const int wantmin = mc_nonnullptr(min);
+	const int wantmax = mc_nonnullptr(max);
+	const int wantp   = mc_nonnullptr(p) && wantmin;
+	const int wantq   = mc_nonnullptr(q) && wantmax;
 
 	int i = 2;
 
@@ -161,10 +161,10 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 
 MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double * max, int * p, int * q)
 {
-	const int wantmin = mc_nonnull(min);
-	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p) && wantmin;
-	const int wantq   = mc_nonnull(q) && wantmax;
+	const int wantmin = mc_nonnullptr(min);
+	const int wantmax = mc_nonnullptr(max);
+	const int wantp   = mc_nonnullptr(p) && wantmin;
+	const int wantq   = mc_nonnullptr(q) && wantmax;
 
 	int i = 2;
 
@@ -234,10 +234,10 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 
 MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * min, long double * max, int * p, int * q)
 {
-	const int wantmin = mc_nonnull(min);
-	const int wantmax = mc_nonnull(max);
-	const int wantp   = mc_nonnull(p) && wantmin;
-	const int wantq   = mc_nonnull(q) && wantmax;
+	const int wantmin = mc_nonnullptr(min);
+	const int wantmax = mc_nonnullptr(max);
+	const int wantp   = mc_nonnullptr(p) && wantmin;
+	const int wantq   = mc_nonnullptr(q) && wantmax;
 
 	int i = 2;
 

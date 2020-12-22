@@ -20,7 +20,7 @@ MC_TARGET_PROC float mc_chbevlf(float x, const float * a, unsigned int n)
 	int i;
 	float s = 0.0f, b0 = 0.0f, b1 = 0.0f, b2 = 0.0f;
 	const float * p;
-	if (mc_nonnull(a) && (n > 0 && n < 256)) {
+	if (mc_nonnullptr(a) && (n > 0 && n < 256)) {
 		p  = a;
 		b0 = *p++;
 		i  = mc_cast(int, n) - 1;
@@ -39,7 +39,7 @@ MC_TARGET_PROC double mc_chbevl(double x, const double * a, unsigned int n)
 	int i;
 	double s = 0.0, b0 = 0.0, b1 = 0.0, b2 = 0.0;
 	const double * p;
-	if (mc_nonnull(a) && (n > 0 && n < 256)) {
+	if (mc_nonnullptr(a) && (n > 0 && n < 256)) {
 		p  = a;
 		b0 = *p++;
 		i  = mc_cast(int, n) - 1;
@@ -58,7 +58,7 @@ MC_TARGET_PROC long double mc_chbevll(long double x, const long double * a, unsi
 	int i;
 	long double s = 0.0L, b0 = 0.0L, b1 = 0.0L, b2 = 0.0L;
 	const long double * p;
-	if (mc_nonnull(a) && (n > 0 && n < 256)) {
+	if (mc_nonnullptr(a) && (n > 0 && n < 256)) {
 		p  = a;
 		b0 = *p++;
 		i  = mc_cast(int, n) - 1;

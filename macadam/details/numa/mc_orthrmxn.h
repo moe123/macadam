@@ -29,8 +29,8 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
 //!# algorithm with iterative orthogonalization and column pivoting`.
-	const int wantr   = mc_nonnull(r);
-	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
+	const int wantr   = mc_nonnullptr(r);
+	const int wantpvi = mc_nonnullptr(w) && mc_nonnullptr(pvi);
 
 	int i, j, k, l, p;
 	float bnorm, cnorm, dot, s;
@@ -61,7 +61,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(int m, int n, const float * a, float tol, float 
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
 			if (wantpvi) {
-				mc_minmax1xnf(n - k, w + k, NULL, &s, NULL, &l);
+				mc_minmax1xnf(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
 				if(k != l) {
 					for (i = 0; i < m; i++) {
@@ -142,8 +142,8 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 //!# if norm < tol + iterative re-orthogonalization step for rank deficient systems. If R is not null
 //!# upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt algorithm with iterative
 //!# orthogonalization and column pivoting`.
-	const int wantr   = mc_nonnull(r);
-	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
+	const int wantr   = mc_nonnullptr(r);
+	const int wantpvi = mc_nonnullptr(w) && mc_nonnullptr(pvi);
 
 	int i, j, k, l, p;
 	double bnorm, cnorm, dot, told, s;
@@ -174,7 +174,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(int m, int n, const float * a, float tol, doubl
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
 			if (wantpvi) {
-				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
+				mc_minmax1xn(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
 				if(k != l) {
 					for (i = 0; i < m; i++) {
@@ -255,8 +255,8 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
 //!# algorithm with iterative orthogonalization and column pivoting`.
-	const int wantr   = mc_nonnull(r);
-	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
+	const int wantr   = mc_nonnullptr(r);
+	const int wantpvi = mc_nonnullptr(w) && mc_nonnullptr(pvi);
 
 	int i, j, k, l, p;
 	double bnorm, cnorm, dot, s;
@@ -287,7 +287,7 @@ MC_TARGET_FUNC int mc_orthrmxn(int m, int n, const double * a, double tol, doubl
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
 			if (wantpvi) {
-				mc_minmax1xn(n - k, w + k, NULL, &s, NULL, &l);
+				mc_minmax1xn(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
 				if(k != l) {
 					for (i = 0; i < m; i++) {
@@ -368,8 +368,8 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 //!# + a decimeting column step if norm < tol + iterative re-orthogonalization step for rank deficient
 //!# systems. If R is not null upper-right-triangle is formed. @see Achiya Dax, `A modified Gram-schmidt
 //!# algorithm with iterative orthogonalization and column pivoting`.
-	const int wantr   = mc_nonnull(r);
-	const int wantpvi = mc_nonnull(w) && mc_nonnull(pvi);
+	const int wantr   = mc_nonnullptr(r);
+	const int wantpvi = mc_nonnullptr(w) && mc_nonnullptr(pvi);
 
 	int i, j, k, l, p;
 	long double bnorm, cnorm, dot, s;
@@ -400,7 +400,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(int m, int n, const long double * a, long double
 		for (k = 0; k < n; k++) {
 //!# Step 1: pivoting if required.
 			if (wantpvi) {
-				mc_minmax1xnl(n - k, w + k, NULL, &s, NULL, &l);
+				mc_minmax1xnl(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
 				if(k != l) {
 					for (i = 0; i < m; i++) {

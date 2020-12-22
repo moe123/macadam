@@ -28,7 +28,7 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 	float c, s, scale, sumsq, diff, w, t;
 
 	const int max   = 90;
-	const int wantv = mc_nonnull(v);
+	const int wantv = mc_nonnullptr(v);
 
 	if (a != e) {
 		mc_copynxnf(n, e, a);
@@ -130,7 +130,7 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 	double c, s, scale, sumsq, diff, w, t, told;
 
 	const int max   = 120;
-	const int wantv = mc_nonnull(v);
+	const int wantv = mc_nonnullptr(v);
 
 	mc_copynxnff(n, e, a);
 
@@ -232,7 +232,7 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 	double c, s, scale, sumsq, diff, w, t;
 
 	const int max   = 120;
-	const int wantv = mc_nonnull(v);
+	const int wantv = mc_nonnullptr(v);
 
 	if (a != e) {
 		mc_copynxn(n, e, a);
@@ -335,7 +335,7 @@ MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol
 	long double c, s, scale, sumsq, diff, w, t;
 
 	const int max   = 190;
-	const int wantv = mc_nonnull(v);
+	const int wantv = mc_nonnullptr(v);
 
 	if (a != e) {
 		mc_copynxnl(n, e, a);

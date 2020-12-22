@@ -24,14 +24,14 @@ void * mc_os_memset(void * b, int c, size_t len)
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (mc_nonnull(b) && len > 0 && len < max) {
+	if (mc_nonnullptr(b) && len > 0 && len < max) {
 #	if MC_TARGET_CPP98
 		return ::memset(b, c, len);
 #	else
 		return memset(b, c, len);
 #	endif
 	}
-	return NULL;
+	return MC_NULLPTR;
 }
 
 #pragma mark - mc_os_memzero -
@@ -55,14 +55,14 @@ void * mc_os_memcpy(void * restrict dest, const void * restrict src, size_t len)
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (mc_nonnull(dest) && mc_nonnull(src) && (len > 0 && len < max)) {
+	if (mc_nonnullptr(dest) && mc_nonnullptr(src) && (len > 0 && len < max)) {
 #	if MC_TARGET_CPP98
 		return ::memcpy(dest, src, len);
 #	else
 		return memcpy(dest, src, len);
 #	endif
 	}
-	return NULL;
+	return MC_NULLPTR;
 }
 
 #pragma mark - mc_os_memmove -
@@ -78,14 +78,14 @@ void * mc_os_memmove(void * restrict dest, const void * restrict src, size_t len
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (mc_nonnull(dest) && mc_nonnull(src) && (len > 0 && len < max)) {
+	if (mc_nonnullptr(dest) && mc_nonnullptr(src) && (len > 0 && len < max)) {
 #	if MC_TARGET_CPP98
 		return ::memmove(dest, src, len);
 #	else
 		return memmove(dest, src, len);
 #	endif
 	}
-	return NULL;
+	return MC_NULLPTR;
 }
 
 #pragma mark - mc_os_memcmp -
@@ -101,7 +101,7 @@ int mc_os_memcmp(const void * restrict left, const void * restrict right, size_t
 #	else
 	size_t max = mc_cast(size_t, UINT32_MAX);
 #	endif
-	if (mc_nonnull(left) && mc_nonnull(right) && (len > 0 && len < max)) {
+	if (mc_nonnullptr(left) && mc_nonnullptr(right) && (len > 0 && len < max)) {
 #	if MC_TARGET_CPP98
 		return ::memcmp(left, right, len);
 #	else
@@ -308,9 +308,9 @@ void mc_os_free(void * ptr)
 		dest_addr = mc_base_alloc(item_type, size); \
 	mc_scope_end
 
-#	define mc_alloc_safe(item_type, dest_addr, size)                                   \
-	mc_scope_begin                                                                     \
-		dest_addr = mc_base_sizeck(size) == 0 ? mc_base_alloc(item_type, size) : NULL; \
+#	define mc_alloc_safe(item_type, dest_addr, size)                                        \
+	mc_scope_begin                                                                          \
+		dest_addr = mc_base_sizeck(size) == 0 ? mc_base_alloc(item_type, size) : MC_NULLPTR; \
 	mc_scope_end
 
 #	define mc_alloc_count(item_type, dest_addr, count)    \
@@ -318,9 +318,9 @@ void mc_os_free(void * ptr)
 		dest_addr = mc_base_alloc_count(item_type, count); \
 	mc_scope_end
 
-#	define mc_alloc_count_safe(item_type, dest_addr, count)                                                \
-	mc_scope_begin                                                                                         \
-		dest_addr = mc_base_countck(item_type, count) == 0 ? mc_base_alloc_count(item_type, count) : NULL; \
+#	define mc_alloc_count_safe(item_type, dest_addr, count)                                                     \
+	mc_scope_begin                                                                                              \
+		dest_addr = mc_base_countck(item_type, count) == 0 ? mc_base_alloc_count(item_type, count) : MC_NULLPTR; \
 	mc_scope_end
 
 #pragma mark - mc_calloc -
@@ -330,9 +330,9 @@ void mc_os_free(void * ptr)
 		dest_addr = mc_base_calloc(item_type, size); \
 	mc_scope_end
 
-#	define mc_calloc_safe(item_type, dest_addr, size)                                   \
-	mc_scope_begin                                                                      \
-		dest_addr = mc_base_sizeck(size) == 0 ? mc_base_calloc(item_type, size) : NULL; \
+#	define mc_calloc_safe(item_type, dest_addr, size)                                        \
+	mc_scope_begin                                                                           \
+		dest_addr = mc_base_sizeck(size) == 0 ? mc_base_calloc(item_type, size) : MC_NULLPTR; \
 	mc_scope_end
 
 #	define mc_calloc_count(item_type, dest_addr, count)    \
@@ -340,9 +340,9 @@ void mc_os_free(void * ptr)
 		dest_addr = mc_base_calloc_count(item_type, count); \
 	mc_scope_end
 
-#	define mc_calloc_count_safe(item_type, dest_addr, count)                                                \
-	mc_scope_begin                                                                                          \
-		dest_addr = mc_base_countck(item_type, count) == 0 ? mc_base_calloc_count(item_type, count) : NULL; \
+#	define mc_calloc_count_safe(item_type, dest_addr, count)                                                     \
+	mc_scope_begin                                                                                               \
+		dest_addr = mc_base_countck(item_type, count) == 0 ? mc_base_calloc_count(item_type, count) : MC_NULLPTR; \
 	mc_scope_end
 
 #pragma mark - mc_realloc -
@@ -352,18 +352,18 @@ void mc_os_free(void * ptr)
 		dest_addr = mc_base_realloc(item_type, src_addr, newsize); \
 	mc_scope_end
 
-#	define mc_realloc_safe(item_type, dest_addr, src_addr, newsize)                  \
-	mc_scope_begin                                                                   \
-		if (0 == mc_base_sizeck(newsize)) {                                           \
-			if (NULL == (dest_addr = mc_base_realloc(item_type, src_addr, newsize))) { \
-				if (mc_nonnull(src_addr)) {                                             \
-					mc_os_free(src_addr);                                                \
-					src_addr = NULL;                                                     \
-				}                                                                       \
-			}                                                                          \
-		} else {                                                                      \
-			dest_addr = NULL;                                                          \
-		}                                                                             \
+#	define mc_realloc_safe(item_type, dest_addr, src_addr, newsize)                        \
+	mc_scope_begin                                                                         \
+		if (0 == mc_base_sizeck(newsize)) {                                                 \
+			if (MC_NULLPTR == (dest_addr = mc_base_realloc(item_type, src_addr, newsize))) { \
+				if (mc_nonnullptr(src_addr)) {                                                \
+					mc_os_free(src_addr);                                                      \
+					src_addr = MC_NULLPTR;                                                     \
+				}                                                                             \
+			}                                                                                \
+		} else {                                                                            \
+			dest_addr = MC_NULLPTR;                                                          \
+		}                                                                                   \
 	mc_scope_end
 
 #	define mc_realloc_count(item_type, dest_addr, src_addr, newcount)    \
@@ -371,18 +371,18 @@ void mc_os_free(void * ptr)
 		dest_addr = mc_base_realloc_count(item_type, src_addr, newcount); \
 	mc_scope_end
 
-#	define mc_realloc_count_safe(item_type, dest_addr, src_addr, newcount)                  \
-	mc_scope_begin                                                                          \
-		if (0 == mc_base_countck(item_type, newcount)) {                                     \
-			if (NULL == (dest_addr = mc_base_realloc_count(item_type, src_addr, newcount))) { \
-				if (mc_nonnull(src_addr)) {                                                    \
-					mc_os_free(src_addr);                                                       \
-					src_addr = NULL;                                                            \
-				}                                                                              \
-			}                                                                                 \
-		} else {                                                                             \
-			dest_addr = NULL;                                                                 \
-		}                                                                                    \
+#	define mc_realloc_count_safe(item_type, dest_addr, src_addr, newcount)                        \
+	mc_scope_begin                                                                                \
+		if (0 == mc_base_countck(item_type, newcount)) {                                           \
+			if (MC_NULLPTR == (dest_addr = mc_base_realloc_count(item_type, src_addr, newcount))) { \
+				if (mc_nonnullptr(src_addr)) {                                                       \
+					mc_os_free(src_addr);                                                             \
+					src_addr = MC_NULLPTR;                                                            \
+				}                                                                                    \
+			}                                                                                       \
+		} else {                                                                                   \
+			dest_addr = MC_NULLPTR;                                                                 \
+		}                                                                                          \
 	mc_scope_end
 
 #pragma mark - mc_dealloc -
@@ -390,12 +390,12 @@ void mc_os_free(void * ptr)
 #	define mc_dealloc(src_addr) \
 		mc_os_free(src_addr)
 
-#	define mc_dealloc_safe(src_addr) \
-	mc_scope_begin                   \
-		if (mc_nonnull(src_addr)) {   \
-			mc_os_free(src_addr);      \
-			src_addr = NULL;           \
-		}                             \
+#	define mc_dealloc_safe(src_addr)  \
+	mc_scope_begin                    \
+		if (mc_nonnullptr(src_addr)) { \
+			mc_os_free(src_addr);       \
+			src_addr = MC_NULLPTR;      \
+		}                              \
 	mc_scope_end
 
 #endif /* !MC_MEM_H */

@@ -19,8 +19,8 @@ MC_TARGET_FUNC int mc_lup3x3f(const float a[9], float l[9], float u[9], float p[
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	float w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
@@ -125,8 +125,8 @@ MC_TARGET_FUNC int mc_lup3x3ff(const float a[9], double l[9], double u[9], doubl
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	double w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
@@ -231,8 +231,8 @@ MC_TARGET_FUNC int mc_lup3x3(const double a[9], double l[9], double u[9], double
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	double w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;
@@ -337,8 +337,8 @@ MC_TARGET_FUNC int mc_lup3x3l(const long double a[9], long double l[9], long dou
 {
 //!# A and L may be the same. Using a closed-form expression.
 //!# Returns A=L(DU) as per Doolittle's method.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	long double w;
 	int p0 = 0, p1 = 1, p2 = 2, j, pv = 0;

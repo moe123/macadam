@@ -20,8 +20,8 @@ MC_TARGET_FUNC int mc_lupnxnf(int n, const float * a, float * lu, float * restri
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int pv = 0, i, j, k, m, r, q;
 	float w, h;
@@ -86,8 +86,8 @@ MC_TARGET_FUNC int mc_lupnxnff(int n, const float * a, double * lu, double * res
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int pv = 0, i, j, k, m, r, q;
 	double w, h;
@@ -152,8 +152,8 @@ MC_TARGET_FUNC int mc_lupnxn(int n, const double * a, double * lu, double * rest
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int pv = 0, i, j, k, m, r, q;
 	double w, h;
@@ -221,8 +221,8 @@ MC_TARGET_FUNC int mc_lupnxnl(int n, const long double * a, long double * lu, lo
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int pv = 0, i, j, k, m, r, q;
 	long double w, h;

@@ -22,7 +22,7 @@ MC_TARGET_PROC float mc_xpolyevalnef(float x, const float * p, unsigned int n, f
 	if (n > 0 && n < 256) {
 		m = mc_cast(int, n);
 		s = p[m - 1];
-		if (mc_nonnull(err)) {
+		if (mc_nonnullptr(err)) {
 			z = mc_fabsf(x);
 			e = 0.5f * mc_fabsf(s);
 			for (i = m - 2; i >= 0; i--) {
@@ -49,7 +49,7 @@ MC_TARGET_PROC double mc_xpolyevalne(double x, const double * p, unsigned int n,
 	if (n > 0 && n < 256) {
 		m = mc_cast(int, n);
 		s = p[m - 1];
-		if (mc_nonnull(err)) {
+		if (mc_nonnullptr(err)) {
 			z = mc_fabs(x);
 			e = 0.5 * mc_fabs(s);
 			for (i = m - 2; i >= 0; i--) {
@@ -76,7 +76,7 @@ MC_TARGET_PROC long double mc_xpolyevalnel(long double x, const long double * p,
 	if (n > 0 && n < 256) {
 		m = mc_cast(int, n);
 		s = p[m - 1];
-		if (mc_nonnull(err)) {
+		if (mc_nonnullptr(err)) {
 			z = mc_fabsl(x);
 			e = 0.5L * mc_fabsl(s);
 			for (i = m - 2; i >= 0; i--) {
@@ -1851,7 +1851,7 @@ MC_TARGET_PROC float mc_xpolyevalnf(float x, const float * p, unsigned int n)
 		s = mc_xpolyeval20f(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19]);
 	break;
 	default:
-		s = mc_xpolyevalnef(x, p, n, NULL);
+		s = mc_xpolyevalnef(x, p, n, MC_NULLPTR);
 	}
 	return s;
 }
@@ -1920,7 +1920,7 @@ MC_TARGET_PROC double mc_xpolyevaln(double x, const double * p, unsigned int n)
 		s = mc_xpolyeval20(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19]);
 	break;
 	default:
-		s = mc_xpolyevalne(x, p, n, NULL);
+		s = mc_xpolyevalne(x, p, n, MC_NULLPTR);
 	}
 	return s;
 }
@@ -1989,7 +1989,7 @@ MC_TARGET_PROC long double mc_xpolyevalnl(long double x, const long double * p, 
 		s = mc_xpolyeval20l(x, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19]);
 	break;
 	default:
-		s = mc_xpolyevalnel(x, p, n, NULL);
+		s = mc_xpolyevalnel(x, p, n, MC_NULLPTR);
 	}
 	return s;
 }

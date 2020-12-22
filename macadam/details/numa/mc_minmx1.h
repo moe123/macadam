@@ -16,28 +16,28 @@
 MC_TARGET_FUNC float mc_minmx1f(int m, int n, int j, const float * a)
 {
 	float min;
-	mc_minmaxmx1f(m, n, j, a, &min, NULL, NULL, NULL);
+	mc_minmaxmx1f(m, n, j, a, &min, MC_NULLPTR, MC_NULLPTR, MC_NULLPTR);
 	return min;
 }
 
 MC_TARGET_FUNC double mc_minmx1ff(int m, int n, int j, const float * a)
 {
 	double min;
-	mc_minmaxmx1ff(m, n, j, a, &min, NULL, NULL, NULL);
+	mc_minmaxmx1ff(m, n, j, a, &min, MC_NULLPTR, MC_NULLPTR, MC_NULLPTR);
 	return min;
 }
 
 MC_TARGET_FUNC double mc_minmx1(int m, int n, int j, const double * a)
 {
 	double min;
-	mc_minmaxmx1(m, n, j, a, &min, NULL, NULL, NULL);
+	mc_minmaxmx1(m, n, j, a, &min, MC_NULLPTR, MC_NULLPTR, MC_NULLPTR);
 	return min;
 }
 
 MC_TARGET_FUNC long double mc_minmx1l(int m, int n, int j, const long double * a)
 {
 	long double min;
-	mc_minmaxmx1l(m, n, j, a, &min, NULL, NULL, NULL);
+	mc_minmaxmx1l(m, n, j, a, &min, MC_NULLPTR, MC_NULLPTR, MC_NULLPTR);
 	return min;
 }
 

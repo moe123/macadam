@@ -28,7 +28,7 @@ MC_TARGET_FUNC int mc_histcg1xnf(int n, const float * x, float min, float max, i
 
 	if (n > 1 && nbins > 0) {
 		if (min == 0.0f && max == 0.0f) {
-			mc_minmax1xnf(n, x, &min, &max, NULL, NULL);
+			mc_minmax1xnf(n, x, &min, &max, MC_NULLPTR, MC_NULLPTR);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
@@ -62,7 +62,7 @@ MC_TARGET_FUNC int mc_histcg1xn(int n, const double * x, double min, double max,
 
 	if (n > 1 && nbins > 0) {
 		if (min == 0.0f && max == 0.0f) {
-			mc_minmax1xn(n, x, &min, &max, NULL, NULL);
+			mc_minmax1xn(n, x, &min, &max, MC_NULLPTR, MC_NULLPTR);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
@@ -96,7 +96,7 @@ MC_TARGET_FUNC  int mc_histcg1xnl(int n, const long double * x, long double min,
 
 	if (n > 1 && nbins > 0) {
 		if (min == 0.0f && max == 0.0f) {
-			mc_minmax1xnl(n, x, &min, &max, NULL, NULL);
+			mc_minmax1xnl(n, x, &min, &max, MC_NULLPTR, MC_NULLPTR);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}

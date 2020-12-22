@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_histcs1xnf(int n, const float * x, int adiff, float min, f
 	if (n > 1 && npts > 1) {
 		mc_izeros1xn(npts, h);
 		if (min == 0.0f && max == 0.0f) {
-			mc_minmax1xnf(n, x, &min, &max, NULL, NULL);
+			mc_minmax1xnf(n, x, &min, &max, MC_NULLPTR, MC_NULLPTR);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
@@ -70,7 +70,7 @@ MC_TARGET_FUNC int mc_histcs1xn(int n, const double * x, int adiff, double min, 
 	if (n > 1 && npts > 1) {
 		mc_izeros1xn(npts, h);
 		if (min == 0.0 && max == 0.0) {
-			mc_minmax1xn(n, x, &min, &max, NULL, NULL);
+			mc_minmax1xn(n, x, &min, &max, MC_NULLPTR, MC_NULLPTR);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
@@ -107,7 +107,7 @@ MC_TARGET_FUNC int mc_histcs1xnl(int n, const long double * x, int adiff, long d
 	if (n > 1 && npts > 1) {
 		mc_izeros1xn(npts, h);
 		if (min == 0.0L && max == 0.0L) {
-			mc_minmax1xnl(n, x, &min, &max, NULL, NULL);
+			mc_minmax1xnl(n, x, &min, &max, MC_NULLPTR, MC_NULLPTR);
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}

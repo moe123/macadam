@@ -17,7 +17,7 @@ MC_TARGET_FUNC int mc_argmax1xnf(int n, const float * x)
 {
 	int q;
 	float max;
-	mc_minmax1xnf(n, x, NULL, &max, NULL, &q);
+	mc_minmax1xnf(n, x, MC_NULLPTR, &max, MC_NULLPTR, &q);
 	return q;
 }
 
@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_argmax1xn(int n, const double * x)
 {
 	int q;
 	double max;
-	mc_minmax1xn(n, x, NULL, &max, NULL, &q);
+	mc_minmax1xn(n, x, MC_NULLPTR, &max, MC_NULLPTR, &q);
 	return q;
 }
 
@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_argmax1xnl(int n, const long double * x)
 {
 	int q;
 	long double max;
-	mc_minmax1xnl(n, x, NULL, &max, NULL, &q);
+	mc_minmax1xnl(n, x, MC_NULLPTR, &max, MC_NULLPTR, &q);
 	return q;
 }
 

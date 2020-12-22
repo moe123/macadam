@@ -39,7 +39,7 @@
 		MC_TARGET_AUTOTYPE __mcswap_bb = (b);         \
 		(a)                            = __mcswap_bb; \
 		(b)                            = __mcswap_aa; \
-		NULL;                                         \
+		MC_NULLPTR;                                   \
 	})
 #	elif MC_TARGET_HAVE_TYPEOF
 #	define mcswap(a, b) mcswap_type(MC_TARGET_TYPEOF(a), a, b)

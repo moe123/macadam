@@ -20,8 +20,8 @@ MC_TARGET_FUNC int mc_lusolve3x3f(const float l[9], const float u[9], const floa
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int i;
 	float w;
@@ -88,8 +88,8 @@ MC_TARGET_FUNC int mc_lusolve3x3ff(const float l[9], const float u[9], const flo
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int i;
 	double w;
@@ -156,8 +156,8 @@ MC_TARGET_FUNC int mc_lusolve3x3(const double l[9], const double u[9], const dou
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int i;
 	double w;
@@ -224,8 +224,8 @@ MC_TARGET_FUNC int mc_lusolve3x3l(const long double l[9], const long double u[9]
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n=3.
 //!# d, p and pvi can be null; for now d should always be, obviously null.
 //!# Accepting a permutation matrix or a pivot indeces vector. Pass null accordingly.
-	const int wantpvi = mc_nonnull(pvi);
-	const int wantp   = mc_nonnull(p);
+	const int wantpvi = mc_nonnullptr(pvi);
+	const int wantp   = mc_nonnullptr(p);
 
 	int i;
 	long double w;

@@ -26,7 +26,7 @@ MC_TARGET_FUNC int mc_ortho3x3f(const float a[9], float tol, float q[9], float *
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
 //!# If R is not null upper-triangle is formed.
-	const int wantr = mc_nonnull(r);
+	const int wantr = mc_nonnullptr(r);
 
 	float bnorm, cnorm, dot;
 
@@ -157,7 +157,7 @@ MC_TARGET_FUNC int mc_ortho3x3ff(const float a[9], float tol, double q[9], doubl
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt
 //!# method + a decimeting column step if norm < tol. If R is not null
 //!# upper-triangle is formed.
-	const int wantr = mc_nonnull(r);
+	const int wantr = mc_nonnullptr(r);
 
 	double bnorm, cnorm, dot, told;
 
@@ -288,7 +288,7 @@ MC_TARGET_FUNC int mc_ortho3x3(const double a[9], double tol, double q[9], doubl
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
 //!# If R is not null upper-triangle is formed.
-	const int wantr = mc_nonnull(r);
+	const int wantr = mc_nonnullptr(r);
 
 	double bnorm, cnorm, dot;
 
@@ -419,7 +419,7 @@ MC_TARGET_FUNC int mc_ortho3x3l(const long double a[9], long double tol, long do
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
 //!# Modified Gram-Schmidt method + a decimeting column step if norm < tol.
 //!# If R is not null upper-triangle is formed.
-	const int wantr = mc_nonnull(r);
+	const int wantr = mc_nonnullptr(r);
 
 	long double bnorm, cnorm, dot;
 

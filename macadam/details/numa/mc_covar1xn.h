@@ -17,9 +17,9 @@
 MC_TARGET_FUNC float mc_covar1xnf(int n, const float * x, const float * y, int b)
 {
 	float s = 0.0f;
-	if ((mc_nonnull(x) && !mc_nonnull(y)) || x == y) {
+	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
 		mc_var1xnf(n, x, b, &s);
-	} else if (mc_nonnull(x) && mc_nonnull(y)) {
+	} else if (mc_nonnullptr(x) && mc_nonnullptr(y)) {
 		int i;
 		if (n > 1) {
 			const float mux = mc_2sum1xnf(n, x) / mc_cast(float, n);
@@ -36,9 +36,9 @@ MC_TARGET_FUNC float mc_covar1xnf(int n, const float * x, const float * y, int b
 MC_TARGET_FUNC double mc_covar1xnff(int n, const float * x, const float * y, int b)
 {
 	double s = 0.0;
-	if ((mc_nonnull(x) && !mc_nonnull(y)) || x == y) {
+	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
 		mc_var1xnff(n, x, b, &s);
-	} else if (mc_nonnull(x) && mc_nonnull(y)) {
+	} else if (mc_nonnullptr(x) && mc_nonnullptr(y)) {
 		int i;
 		if (n > 1) {
 			const double mux = mc_2sum1xnff(n, x) / mc_cast(double, n);
@@ -55,9 +55,9 @@ MC_TARGET_FUNC double mc_covar1xnff(int n, const float * x, const float * y, int
 MC_TARGET_FUNC double mc_covar1xn(int n, const double * x, const double * y, int b)
 {
 	double s = 0.0;
-	if ((mc_nonnull(x) && !mc_nonnull(y)) || x == y) {
+	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
 		mc_var1xn(n, x, b, &s);
-	} else if (mc_nonnull(x) && mc_nonnull(y)) {
+	} else if (mc_nonnullptr(x) && mc_nonnullptr(y)) {
 		int i;
 		if (n > 1) {
 			const double mux = mc_2sum1xn(n, x) / mc_cast(double, n);
@@ -74,9 +74,9 @@ MC_TARGET_FUNC double mc_covar1xn(int n, const double * x, const double * y, int
 MC_TARGET_FUNC long double mc_covar1xnl(int n, const long double * x, const long double * y, int b)
 {
 	long double s = 0.0L;
-	if ((mc_nonnull(x) && !mc_nonnull(y)) || x == y) {
+	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
 		mc_var1xnl(n, x, b, &s);
-	} else if (mc_nonnull(x) && mc_nonnull(y)) {
+	} else if (mc_nonnullptr(x) && mc_nonnullptr(y)) {
 		int i;
 		if (n > 1) {
 			const long double mux = mc_2sum1xnl(n, x) / mc_cast(long double, n);

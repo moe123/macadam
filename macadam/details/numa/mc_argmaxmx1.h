@@ -17,7 +17,7 @@ MC_TARGET_FUNC int mc_argmaxmx1f(int m, int n, int j, const float * a)
 {
 	int q;
 	float max;
-	mc_minmaxmx1f(m, n, j, a, NULL, &max, NULL, &q);
+	mc_minmaxmx1f(m, n, j, a, MC_NULLPTR, &max, MC_NULLPTR, &q);
 	return q;
 }
 
@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_argmaxmx1(int m, int n, int j, const double * a)
 {
 	int q;
 	double max;
-	mc_minmaxmx1(m, n, j, a, NULL, &max, NULL, &q);
+	mc_minmaxmx1(m, n, j, a, MC_NULLPTR, &max, MC_NULLPTR, &q);
 	return q;
 }
 
@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_argmaxmx1l(int m, int n, int j, const long double * a)
 {
 	int q;
 	long double max;
-	mc_minmaxmx1l(m, n, j, a, NULL, &max, NULL, &q);
+	mc_minmaxmx1l(m, n, j, a, MC_NULLPTR, &max, MC_NULLPTR, &q);
 	return q;
 }
 

@@ -23,7 +23,7 @@ MC_TARGET_PROC int mc_tredsy3x3f(const float a[9], float * q, float d[3], float 
 //!# Close-formish expression by rref.
 	const float tol = 2.0f * MCLIMITS_EPSILONF;
 
-	int wantq = mc_nonnull(q);
+	int wantq = mc_nonnullptr(q);
 	float mag, s;
 
 	float a11 = a[0], a12 = a[1], a13 = a[2];
@@ -62,7 +62,7 @@ MC_TARGET_PROC int mc_tredsy3x3(const double a[9], double * q, double d[3], doub
 //!# Close-formish expression by rref.
 	const double tol = MCLIMITS_TINY;
 
-	int wantq = mc_nonnull(q);
+	int wantq = mc_nonnullptr(q);
 	double mag, s;
 
 	double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -101,7 +101,7 @@ MC_TARGET_PROC int mc_tredsy3x3l(const long double a[9], long double * q, long d
 //!# Close-formish expression by rref.
 	const long double tol = 2.0L * MCLIMITS_EPSILONL;
 
-	int wantq = mc_nonnull(q);
+	int wantq = mc_nonnullptr(q);
 	long double mag, s;
 
 	long double a11 = a[0], a12 = a[1], a13 = a[2];
@@ -139,7 +139,7 @@ MC_TARGET_PROC int mc_tredsy3x3l(const long double a[9], long double * q, long d
 
 MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 {
-	const int wanta = mc_nonnull(a);
+	const int wanta = mc_nonnullptr(a);
 	int z           = 0;
 	float b, c, f, h, p, r, s, t;
 	int i, j, k, n;
@@ -247,7 +247,7 @@ MC_TARGET_PROC int mc_tredql3x3f(float * a, float d[3], float e[3])
 
 MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 {
-	const int wanta = mc_nonnull(a);
+	const int wanta = mc_nonnullptr(a);
 	int z           = 0;
 	double b, c, f, h, p, r, s, t;
 	int i, j, k, n;
@@ -355,7 +355,7 @@ MC_TARGET_PROC int mc_tredql3x3(double * a, double d[3], double e[3])
 
 MC_TARGET_PROC int mc_tredql3x3l(long double * a, long double d[3], long double e[3])
 {
-	const int wanta = mc_nonnull(a);
+	const int wanta = mc_nonnullptr(a);
 	int z           = 0;
 	long double b, c, f, h, p, r, s, t;
 	int i, j, k, n;
@@ -497,7 +497,7 @@ MC_TARGET_FUNC int mc_eigsyq3x3l(const long double a[9], long double e[3], long 
 
 MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 {
-	const int wantv = mc_nonnull(v);
+	const int wantv = mc_nonnullptr(v);
 //!# Number of Jacobi iterations.
 	int i           = 0;
 //!# Too low values guard.
@@ -706,7 +706,7 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 
 MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 {
-	const int wantv = mc_nonnull(v);
+	const int wantv = mc_nonnullptr(v);
 //!# Number of Jacobi iterations.
 	int i           = 0;
 //!# Too low values guard.
@@ -915,7 +915,7 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 
 MC_TARGET_FUNC int mc_eigsy3x3l(const long double a[9], long double e[3], long double * v)
 {
-	const int wantv     = mc_nonnull(v);
+	const int wantv     = mc_nonnullptr(v);
 //!# Number of Jacobi iterations.
 	int i               = 0;
 //!# Too low values guard.

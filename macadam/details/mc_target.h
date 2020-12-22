@@ -332,14 +332,17 @@
 #	define mc_cast(t, x)      static_cast<t>(x)
 #	define mc_cast_expr(t, x) static_cast<t>((x))
 #	if MC_TARGET_CPP11
-#		define mc_nonnull(p) ((p) != NULL)
+#		define MC_NULLPTR nullptr
+#		define mc_nonnullptr(p) ((p) != MC_NULLPTR)
 #	else
-#		define mc_nonnull(p) ((p) != nullptr)
+#		define MC_NULLPTR NULL
+#		define mc_nonnullptr(p) ((p) != MC_NULLPTR)
 #	endif
 #	else
 #	define mc_cast(t, x) (t)x
 #	define mc_cast_expr(t, x) mc_cast(t, (x))
-#	define mc_nonnull(p) ((p) != NULL)
+#	define MC_NULLPTR NULL
+#	define mc_nonnullptr(p) ((p) != MC_NULLPTR)
 #	endif
 
 #	define mc_unused(x) (void)x
