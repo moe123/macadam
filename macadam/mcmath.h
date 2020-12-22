@@ -85,7 +85,6 @@
 #		define mcmath_fabs(x)          ::std::fabs(x)
 #		define mcmath_cbrt(x)          ::std::cbrt(x)
 #		define mcmath_hypot(x, y)      ::std::hypot(x, y)
-#		define mcmath_hypot3(x, y, z)  ::std::hypot(x, y, z)
 #		define mcmath_pow(x, y)        ::std::pow(x, y)
 #		define mcmath_sqrt(x)          ::std::sqrt(x)
 #	endif
@@ -122,8 +121,8 @@
 #		define mcmath_fmax(x, y)       ::std::fmax(x, y)
 #		define mcmath_fmin(x, y)       ::std::fmin(x, y)
 #	endif
-#		define mcmath_fma(x, y, z)     ::std::fma((x),(y), (z))
-#	elif MC_TARGET_HAVE_TGMATH
+#		define mcmath_fma(x, y, z)     ::std::fma(x, y, z)
+#	elif MC_TARGET_C89 && MC_TARGET_HAVE_TGMATH
 #		define mcmath_acos(x)          acos(x)
 #		define mcmath_asin(x)          asin(x)
 #		define mcmath_atan(x)          atan(x)
@@ -169,7 +168,7 @@
 #		define mcmath_llrint(x)        llrint(x)
 #		define mcmath_round(x)         round(x)
 #		define mcmath_lround(x)        lround(x)
-#	if MC_TARGET_CPP11
+#	if MC_TARGET_C11
 #		define mcmath_llround(x)       llround(x)
 #	else
 #		define mcmath_llround(x)       lround(x)
@@ -184,7 +183,7 @@
 #		define mcmath_fdim(x, y)       fdim(x, y)
 #		define mcmath_fmax(x, y)       fmax(x, y)
 #		define mcmath_fmin(x, y)       fmin(x, y)
-#		define mcmath_fma(x, y, z)     fma((x),(y), (z))
+#		define mcmath_fma(x, y, z)     fma(x, y, z)
 #	endif
 
 #pragma mark - mcmath_imod -
@@ -204,9 +203,9 @@
 #	ifndef mcmath_acos
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_acos              (const T& x)           { mc_unused(x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_acos<float>       (const float& x)       { return mc_acosf (x);        }
-template <>        MC_TARGET_INLINE double      mcmath_acos<double>      (const double& x)      { return mc_acos  (x);        }
-template <>        MC_TARGET_INLINE long double mcmath_acos<long double> (const long double& x) { return mc_acosl (x);        }
+template <>        MC_TARGET_INLINE float       mcmath_acos<float>       (const float& x)       { return mc_acosf (x);    }
+template <>        MC_TARGET_INLINE double      mcmath_acos<double>      (const double& x)      { return mc_acos  (x);    }
+template <>        MC_TARGET_INLINE long double mcmath_acos<long double> (const long double& x) { return mc_acosl (x);    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
 MC_TARGET_ALIAS float       mcmath_acos (float x)       { return mc_acosf (x); }
 MC_TARGET_ALIAS double      mcmath_acos (double x)      { return mc_acos  (x); }
@@ -241,9 +240,9 @@ MC_TARGET_ALIAS long double mcmath_acos (long double x) { return mc_acosl (x); }
 #	ifndef mcmath_asin
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_asin              (const T& x)           { mc_unused(x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_asin<float>       (const float& x)       { return mc_asinf (x);        }
-template <>        MC_TARGET_INLINE double      mcmath_asin<double>      (const double& x)      { return mc_asin  (x);        }
-template <>        MC_TARGET_INLINE long double mcmath_asin<long double> (const long double& x) { return mc_asinl (x);        }
+template <>        MC_TARGET_INLINE float       mcmath_asin<float>       (const float& x)       { return mc_asinf (x);    }
+template <>        MC_TARGET_INLINE double      mcmath_asin<double>      (const double& x)      { return mc_asin  (x);    }
+template <>        MC_TARGET_INLINE long double mcmath_asin<long double> (const long double& x) { return mc_asinl (x);    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
 MC_TARGET_ALIAS float       mcmath_asin (float x)       { return mc_asinf (x); }
 MC_TARGET_ALIAS double      mcmath_asin (double x)      { return mc_asin  (x); }
@@ -278,9 +277,9 @@ MC_TARGET_ALIAS long double mcmath_asin (long double x) { return mc_asinl (x); }
 #	ifndef mcmath_atan
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_atan              (const T& x)           { mc_unused(x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_atan<float>       (const float& x)       { return mc_atanf (x);        }
-template <>        MC_TARGET_INLINE double      mcmath_atan<double>      (const double& x)      { return mc_atan  (x);        }
-template <>        MC_TARGET_INLINE long double mcmath_atan<long double> (const long double& x) { return mc_atanl (x);        }
+template <>        MC_TARGET_INLINE float       mcmath_atan<float>       (const float& x)       { return mc_atanf (x);    }
+template <>        MC_TARGET_INLINE double      mcmath_atan<double>      (const double& x)      { return mc_atan  (x);    }
+template <>        MC_TARGET_INLINE long double mcmath_atan<long double> (const long double& x) { return mc_atanl (x);    }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
 MC_TARGET_ALIAS float       mcmath_atan (float x)       { return mc_atanf (x); }
 MC_TARGET_ALIAS double      mcmath_atan (double x)      { return mc_atan  (x); }
@@ -315,9 +314,9 @@ MC_TARGET_ALIAS long double mcmath_atan (long double x) { return mc_atanl (x); }
 #	ifndef mcmath_atan2
 #	if MC_TARGET_CPP98
 template <class T> MC_TARGET_INLINE T           mcmath_atan2              (const T& y, const T& x)                     { mc_unused(y); mc_unused(x); return 0; }
-template <>        MC_TARGET_INLINE float       mcmath_atan2<float>       (const float& y, const float& x)             { return mc_atan2f (y, x);                      }
-template <>        MC_TARGET_INLINE double      mcmath_atan2<double>      (const double& y, const double& x)           { return mc_atan2  (y, x);                      }
-template <>        MC_TARGET_INLINE long double mcmath_atan2<long double> (const long double& y, const long double& x) { return mc_atan2l (y, x);                      }
+template <>        MC_TARGET_INLINE float       mcmath_atan2<float>       (const float& y, const float& x)             { return mc_atan2f (y, x);              }
+template <>        MC_TARGET_INLINE double      mcmath_atan2<double>      (const double& y, const double& x)           { return mc_atan2  (y, x);              }
+template <>        MC_TARGET_INLINE long double mcmath_atan2<long double> (const long double& y, const long double& x) { return mc_atan2l (y, x);              }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
 MC_TARGET_ALIAS float       mcmath_atan2 (float y, float x)             { return mc_atan2f (y, x); }
 MC_TARGET_ALIAS double      mcmath_atan2 (double y, double x)           { return mc_atan2  (y, x); }

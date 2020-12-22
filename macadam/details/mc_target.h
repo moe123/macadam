@@ -14,23 +14,31 @@
 		|| (defined(__ICL)    && defined(_WIN32))                 \
 		|| (defined(_MSC_VER) && (defined(__STDC__) && __STDC__)) \
 		|| (defined(_MSC_VER) && _MSC_VER < 1916)
-#		error "C99 compiler and Posix 1-2001 CRT required."
+#		error "C99 or CPP11 compiler and Posix 1-2001 CRT required. ICC is banned."
 #	else
 #		undef  MC_DISABLE_TYPEOF
 #		undef  MC_DISABLE_TGMATH
+#		undef  MC_DISABLE_ALLOW_CPP_CMATH
 #		define MC_DISABLE_TYPEOF 1
 #		define MC_DISABLE_TGMATH 1
+#		define MC_DISABLE_ALLOW_CPP_CMATH 1
 #	endif
 
-#	if defined(__linux__) && defined(__GLIBC__)
+#	if defined(__GLIBC__)
 #		ifndef _GNU_SOURCE
 #			define _GNU_SOURCE
 #		endif
 #	endif
 
-#	if    defined(__unix__)  \
-		|| defined(__linux__) \
-		|| defined(__bsdi__) \
+#	if     defined(__unix__)      \
+		||  defined(__linux__)     \
+		||  defined(__gnu_linux__) \
+		||  defined(__bsdi__)      \
+		||  defined(__FreeBSD__)   \
+		||  defined(__NetBSD__)    \
+		||  defined(__OpenBSD__)   \
+		||  defined(__bsdi__)      \
+		||  defined(__DragonFly__) \
 		|| (defined(__APPLE__) && defined(__MACH__))
 #		include <unistd.h>
 #	endif
@@ -42,40 +50,39 @@
 #	endif
 
 #	if MC_DISABLE_REENTRANT
-#	undef  _REENTRANT
-#	define _REENTRANT 0
+#		undef  _REENTRANT
 #	else
-#	undef  _REENTRANT
-#	define _REENTRANT 1
+#		undef  _REENTRANT
+#		define _REENTRANT 1
 #	endif
 
 #	if MC_DISABLE_TGMATH
-#	undef  MC_TARGET_HAVE_TGMATH
-#	define MC_TARGET_HAVE_TGMATH 0
+#		undef  MC_TARGET_HAVE_TGMATH
+#		define MC_TARGET_HAVE_TGMATH 0
 #	else
-#	undef  MC_TARGET_HAVE_TGMATH
-#	define MC_TARGET_HAVE_TGMATH 1
+#		undef  MC_TARGET_HAVE_TGMATH
+#		define MC_TARGET_HAVE_TGMATH 1
 #	endif
 
 #	if MC_DISABLE_ALLOW_CPP_CMATH
-#	undef  MC_TARGET_ALLOW_CPP_CMATH
-#	define MC_TARGET_ALLOW_CPP_CMATH 1
+#		undef  MC_TARGET_ALLOW_CPP_CMATH
+#		define MC_TARGET_ALLOW_CPP_CMATH 1
 #	else
-#	undef  MC_TARGET_ALLOW_CPP_CMATH
-#	define MC_TARGET_ALLOW_CPP_CMATH 0
+#		undef  MC_TARGET_ALLOW_CPP_CMATH
+#		define MC_TARGET_ALLOW_CPP_CMATH 0
 #	endif
 
 #	if MC_DISABLE_LOG2
-#	undef  MC_TARGET_HAVE_LOG2
-#	define MC_TARGET_HAVE_LOG2 0
+#		undef  MC_TARGET_HAVE_LOG2
+#		define MC_TARGET_HAVE_LOG2 0
 #	else
-#	undef  MC_TARGET_HAVE_LOG2
-#	define MC_TARGET_HAVE_LOG2 1
+#		undef  MC_TARGET_HAVE_LOG2
+#		define MC_TARGET_HAVE_LOG2 1
 #	endif
 
 #	if MC_DISABLE_INLINE
-#	undef  MC_TARGET_INLINE
-#	define MC_TARGET_INLINE inline
+#		undef  MC_TARGET_INLINE
+#		define MC_TARGET_INLINE inline
 #	endif
 
 #	if defined(__STDC__)
@@ -366,8 +373,10 @@
 #		include <cinttypes>
 #		include <cfenv>
 #		include <cfloat>
+#	if	MC_TARGET_ALLOW_CPP_CMATH
 #		include <complex>
 #		include <cmath>
+#	endif
 #	elif MC_TARGET_HAVE_TGMATH
 #		include <stdio.h>
 #		include <limits.h>
@@ -452,7 +461,7 @@
 #		define  mc_cmplxf(re, im) (mc_complex_float_t)       { .u_re = (float)(re)      , .u_im = (float)(im)       }
 #		define  mc_cmplx(re, im)  (mc_complex_double_t)      { .u_re = (double)(re)     , .u_im = (double)(im)      }
 #		define  mc_cmplxl(re, im) (mc_complex_long_double_t) { .u_re = (long double)(re), .u_im = (long double)(im) }
-#	else
+#	elif MC_TARGET_C89
 #		define  mc_cmplxf(re, im) __extension__ (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
 #		define  mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
 #		define  mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
