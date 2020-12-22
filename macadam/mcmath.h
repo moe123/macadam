@@ -186,6 +186,67 @@
 #		define mcmath_fma(x, y, z)     fma(x, y, z)
 #	endif
 
+
+#pragma mark - mcmath_ispow2 -
+
+#	ifndef mcmath_ispow2
+#	if MC_TARGET_CPP20 && MC_TARGET_HAVE_ISPOW2FN
+#	define mcmath_ispow2(x) ::std::ispow2(x)
+#	else
+#	define mcmath_ispow2(x) ((x) & ((x) - 1)) == 0 && ((x) != 0)
+#	endif
+#	endif
+
+#pragma mark - mcmath_nlz -
+
+#	ifndef mcmath_nlz
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+#	define mcmath_nlz(x) ((x) ? MC_TARGET_CLZLL(mc_cast(unsigned long long, x)) : 64)
+#	else
+#	define mcmath_nlz(x) ((x) ? MC_TARGET_CLZL(mc_cast(unsigned long, x)) : 64)
+#	endif
+#	endif
+
+#pragma mark - mcmath_log2floor -
+
+#	ifndef mcmath_log2floor
+#	define mcmath_log2floor(x) (63 - mcmath_nlz(x))
+#	endif
+
+#pragma mark - mcmath_log2ceil -
+
+#	ifndef mcmath_log2ceil
+#	define mcmath_log2ceil(x) ((x) ? 64 - mcmath_nlz(((x) - 1)) : -1)
+#	endif
+
+#pragma mark - mcmath_ceil2 -
+
+#	ifndef mcmath_floor2
+#	if MC_TARGET_CPP20 && MC_TARGET_HAVE_FLOOR2FN
+#	define mcmath_floor2(x) ::std::floor2(x)
+#	else
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+#	define mcmath_floor2(x) ((x) ? 1ULL << mcmath_log2floor(x) : 0ULL)
+#	else
+#	define mcmath_floor2(x) ((x) ? 1UL << mcmath_log2floor(x) : 0UL)
+#	endif
+#	endif
+#	endif
+
+#pragma mark - mcmath_ceil2 -
+
+#	ifndef mcmath_ceil2
+#	if MC_TARGET_CPP20 && MC_TARGET_HAVE_CEIL2FN
+#	define mcmath_ceil2(x) ::std::ceil2(x)
+#	else
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+#	define mcmath_ceil2(x) ((x) > 1 ? 1ULL << mcmath_log2ceil(x) : 0ULL)
+#	else
+#	define mcmath_ceil2(x) ((x) > 1 ? 1UL << mcmath_log2ceil(x) : 0UL)
+#	endif
+#	endif
+#	endif
+
 #pragma mark - mcmath_imod -
 
 #	ifndef mcmath_imod

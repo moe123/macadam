@@ -20,7 +20,7 @@ MC_TARGET_FUNC float mc_exp10f(float x)
 #	if MC_TARGET_CPP98
 #	if (defined(__GLIBC__) || defined(_GNU_SOURCE))
 	return ::exp10f(x);
-#	elif (defined(__APPLE__) && defined(__MACH__))
+#	elif MC_TARGET_APPLEXM
 	return ::__exp10f(x);
 #	else
 	return ::expf(MCK_KF(MCK_LOGE10) * x);
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_exp10f(float x)
 #	else
 #	if (defined(__GLIBC__) || defined(_GNU_SOURCE))
 	return exp10f(x);
-#	elif (defined(__APPLE__) && defined(__MACH__))
+#	elif MC_TARGET_APPLEXM
 	return __exp10f(x);
 #	else
 	return expf(MCK_KF(MCK_LOGE10) * x);
