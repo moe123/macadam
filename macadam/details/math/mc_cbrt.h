@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_pow.h>
+#include <macadam/details/mc_target.h>
 #include <macadam/mcconsts.h>
 #include <macadam/mclimits.h>
 
