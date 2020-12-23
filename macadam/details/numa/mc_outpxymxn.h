@@ -6,6 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
+#include <macadam/details/numa/lapack/blas/mc_blas_ger.h>
 #include <macadam/details/numa/mc_zerosmxn.h>
 
 #ifndef MC_OUTPXYMXN_H

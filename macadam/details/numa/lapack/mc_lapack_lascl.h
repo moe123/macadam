@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/numa/lapack/blas/mc_blas_access.h>
+#include <macadam/details/numa/lapack/blas/mc_blas_lsame.h>
 #include <macadam/details/numa/lapack/mc_lapack_lamch.h>
 #include <macadam/details/numa/lapack/mc_lapack_lartgp.h>
 #include <macadam/details/math/mc_fabs.h>
