@@ -14,22 +14,22 @@
 
 #pragma mark - mc_rand_lnormal -
 
-MC_TARGET_FUNC float mc_rand_lnormalf(float mu, float stdd)
+MC_TARGET_FUNC float mc_rand_lnormalf(float mu, float stddev)
 {
 //!# Random number from Log normal distribution with given mean and stddev.
-	return mc_expf(mc_randnf(mu, stdd));
+	return mc_expf(mc_randnf(mu, stddev));
 }
 
-MC_TARGET_FUNC double mc_rand_lnormal(double mu, double stdd)
+MC_TARGET_FUNC double mc_rand_lnormal(double mu, double stddev)
 {
 //!# Random number from Log normal distribution with given mean and stddev.
-	return mc_exp(mc_randn(mu, stdd));
+	return mc_exp(mc_randn(mu, stddev));
 }
 
-MC_TARGET_FUNC long double mc_rand_lnormall(long double mu, long double stdd)
+MC_TARGET_FUNC long double mc_rand_lnormall(long double mu, long double stddev)
 {
 //!# Random number from Log normal distribution with given mean and stddev.
-	return mc_expl(mc_randnl(mu, stdd));
+	return mc_expl(mc_randnl(mu, stddev));
 }
 
 #endif /* !MC_RAND_LNORMAL_H */
