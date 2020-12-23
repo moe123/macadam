@@ -145,6 +145,7 @@
 #	include <macadam/details/numa/mc_histcs1xn.h>
 #	include <macadam/details/numa/mc_histce1xn.h>
 #	include <macadam/details/numa/mc_histcg1xn.h>
+#	include <macadam/details/numa/mc_histcb1xn.h>
 #	include <macadam/details/numa/mc_icopy1xn.h>
 #	include <macadam/details/numa/mc_infnorm1xn.h>
 #	include <macadam/details/numa/mc_infnormmxn.h>
