@@ -540,10 +540,12 @@
 
 	MC_TARGET_FUNC int __builtin_clzl(unsigned long x)
 	{
-		return (sizeof(x) == 8 ?
-			  __builtin_clzll(x)
-			: __builtin_clz(mc_cast(unsigned int, x))
-		);
+		unsigned long ret;
+		if (sizeof(x) >= 8) {
+			return __builtin_clzll(x);
+		}
+		_BitScanReverse(&ret, x);
+		return mc_cast(int, (31 ^ ret));
 	}
 #	endif
 
