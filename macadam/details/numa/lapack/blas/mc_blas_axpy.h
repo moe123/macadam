@@ -41,7 +41,7 @@
 
 #pragma mark - mc_blas_saxpy -
 
-MC_TARGET_FUNC void mc_blas_saxpy(int n, float a, const float * x, int incx, float * y, int incy)
+MC_TARGET_FUNC void mc_blas_saxpy(const int n, float a, const float * x, const int incx, float * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 
@@ -87,7 +87,7 @@ MC_TARGET_FUNC void mc_blas_saxpy(int n, float a, const float * x, int incx, flo
 
 #pragma mark - mc_daxpy -
 
-MC_TARGET_FUNC void mc_blas_daxpy(int n, double a, const double * x, int incx, double * y, int incy)
+MC_TARGET_FUNC void mc_blas_daxpy(const int n, double a, const double * x, const int incx, double * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 
@@ -133,7 +133,7 @@ MC_TARGET_FUNC void mc_blas_daxpy(int n, double a, const double * x, int incx, d
 
 #pragma mark - mc_blas_laxpy -
 
-MC_TARGET_FUNC void mc_blas_laxpy(int n, long double a, const long double * x, int incx, long double * y, int incy)
+MC_TARGET_FUNC void mc_blas_laxpy(const int n, long double a, const long double * x, const int incx, long double * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 

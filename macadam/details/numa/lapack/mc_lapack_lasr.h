@@ -16,7 +16,7 @@
 
 #pragma mark - mc_lapack_slasr -
 
-MC_TARGET_FUNC void mc_lapack_slasr(const char side, const char pivot, const char direct, int m, int n, const float * c, const float * s, float * a, int lda)
+MC_TARGET_FUNC void mc_lapack_slasr(const char side, const char pivot, const char direct, const int m, const int n, const float * c, const float * s, float * a, const int lda)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -211,7 +211,7 @@ MC_TARGET_FUNC void mc_lapack_slasr(const char side, const char pivot, const cha
 
 #pragma mark - mc_lapack_dlasr -
 
-MC_TARGET_FUNC void mc_lapack_dlasr(const char side, const char pivot, const char direct, int m, int n, const double * c, const double * s, double * a, int lda)
+MC_TARGET_FUNC void mc_lapack_dlasr(const char side, const char pivot, const char direct, const int m, const int n, const double * c, const double * s, double * a, const int lda)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -406,7 +406,7 @@ MC_TARGET_FUNC void mc_lapack_dlasr(const char side, const char pivot, const cha
 
 #pragma mark - mc_lapack_llasr -
 
-MC_TARGET_FUNC void mc_lapack_llasr(const char side, const char pivot, const char direct, int m, int n, const long double * c, const long double * s, long double * a, int lda)
+MC_TARGET_FUNC void mc_lapack_llasr(const char side, const char pivot, const char direct, const int m, const int n, const long double * c, const long double * s, long double * a, const int lda)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

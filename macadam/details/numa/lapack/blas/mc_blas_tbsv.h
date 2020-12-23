@@ -16,7 +16,7 @@
 
 #pragma mark - mc_blas_stbsv -
 
-MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char diag, int n, int k, const float * a, int lda, float * x, int incx)
+MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char diag, const int n, const int k, const float * a, const int lda, float * x, const int incx)
 {
 	const float zero = 0.0f;
 
@@ -201,7 +201,7 @@ MC_TARGET_FUNC void mc_blas_stbsv(const char uplo, const char trans, const char 
 
 #pragma mark - mc_blas_dtbsv -
 
-MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char diag, int n, int k, const double * a, int lda, double * x, int incx)
+MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char diag, const int n, const int k, const double * a, const int lda, double * x, const int incx)
 {
 	const double zero = 0.0;
 
@@ -386,7 +386,7 @@ MC_TARGET_FUNC void mc_blas_dtbsv(const char uplo, const char trans, const char 
 
 #pragma mark - mc_blas_ltbsv -
 
-MC_TARGET_FUNC void mc_blas_ltbsv(const char uplo, const char trans, const char diag, int n, int k, const long double * a, int lda, long double * x, int incx)
+MC_TARGET_FUNC void mc_blas_ltbsv(const char uplo, const char trans, const char diag, const int n, const int k, const long double * a, const int lda, long double * x, const int incx)
 {
 	const long double zero = 0.0L;
 

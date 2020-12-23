@@ -17,7 +17,7 @@
 
 #pragma mark - mc_lapack_slascl -
 
-MC_TARGET_FUNC void mc_lapack_slascl(const char type, int kl, int ku, float cfrom, float cto, int m, int n, float * a, int lda, int * info)
+MC_TARGET_FUNC void mc_lapack_slascl(const char type, const int kl, const int ku, float cfrom, float cto, const int m, const int n, float * a, const int lda, int * info)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -176,7 +176,7 @@ F10:
 
 #pragma mark - mc_lapack_dlascl -
 
-MC_TARGET_FUNC void mc_lapack_dlascl(const char type, int kl, int ku, double cfrom, double cto, int m, int n, double * a, int lda, int * info)
+MC_TARGET_FUNC void mc_lapack_dlascl(const char type, const int kl, const int ku, double cfrom, double cto, const int m, const int n, double * a, const int lda, int * info)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -335,7 +335,7 @@ F10:
 
 #pragma mark - mc_lapack_llascl -
 
-MC_TARGET_FUNC void mc_lapack_llascl(const char type, int kl, int ku, long double cfrom, long double cto, int m, int n, long double * a, int lda, int * info)
+MC_TARGET_FUNC void mc_lapack_llascl(const char type, const int kl, const int ku, long double cfrom, long double cto, const int m, const int n, long double * a, const int lda, int * info)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

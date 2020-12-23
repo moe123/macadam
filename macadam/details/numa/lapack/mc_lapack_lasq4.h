@@ -18,18 +18,18 @@
 
 #pragma mark - mc_lapack_slasq4 -
 
-MC_TARGET_PROC void mc_lapack_slasq4(int i0, int n0, const float * z
-	, int pp
-	, int n0in
-	, float dmin
-	, float dmin1
-	, float dmin2
-	, float dn
-	, float dn1
-	, float dn2
-	, float * tau
-	, int * ttype
-	, float * g
+MC_TARGET_PROC void mc_lapack_slasq4(const int i0, const int n0, const float * z
+	, const int pp
+	, const int n0in
+	, float     dmin
+	, float     dmin1
+	, float     dmin2
+	, float     dn
+	, float     dn1
+	, float     dn2
+	, float *   tau
+	, int *     ttype
+	, float *   g
 ) {
 	const float hundrd = 100.0f, two = 2.0f, one = 1.0f, half = 0.5f, third = 0.333f, qurtr = 0.25f, zero = 0.0f;
 	const float cnst1 = 0.563f, cnst2 = 1.01f, cnst3 = 1.05f;
@@ -247,18 +247,18 @@ F80:
 
 #pragma mark - mc_lapack_dlasq4 -
 
-MC_TARGET_PROC void mc_lapack_dlasq4(int i0, int n0, const double * z
-	, int pp
-	, int n0in
-	, double dmin
-	, double dmin1
-	, double dmin2
-	, double dn
-	, double dn1
-	, double dn2
-	, double * tau
-	, int * ttype
-	, double * g
+MC_TARGET_PROC void mc_lapack_dlasq4(const int i0, const int n0, const double * z
+	, const int pp
+	, const int n0in
+	, double    dmin
+	, double    dmin1
+	, double    dmin2
+	, double    dn
+	, double    dn1
+	, double    dn2
+	, double *  tau
+	, int *     ttype
+	, double *  g
 ) {
 	const double hundrd = 100.0, two = 2.0, one = 1.0, half = 0.5, third = 0.333, qurtr = 0.25, zero = 0.0;
 	const double cnst1 = 0.563, cnst2 = 1.01, cnst3 = 1.05;
@@ -476,17 +476,17 @@ F80:
 
 #pragma mark - mc_lapack_llasq4 -
 
-MC_TARGET_PROC void mc_lapack_llasq4(int i0, int n0, const long double * z
-	, int pp
-	, int n0in
-	, long double dmin
-	, long double dmin1
-	, long double dmin2
-	, long double dn
-	, long double dn1
-	, long double dn2
+MC_TARGET_PROC void mc_lapack_llasq4(const int i0, const int n0, const long double * z
+	, const int     pp
+	, const int     n0in
+	, long double   dmin
+	, long double   dmin1
+	, long double   dmin2
+	, long double   dn
+	, long double   dn1
+	, long double   dn2
 	, long double * tau
-	, int * ttype
+	, int *         ttype
 	, long double * g
 ) {
 	const long double hundrd = 100.0L, two = 2.0L, one = 1.0L, half = 0.5L, third = 0.333L, qurtr = 0.25L, zero = 0.0L;

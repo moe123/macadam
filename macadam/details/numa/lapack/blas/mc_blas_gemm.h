@@ -90,7 +90,7 @@
 
 #pragma mark - mc_blas_sgemm -
 
-MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, int n, int k, float alpha, const float * a, int lda, const float * b, int ldb, float beta, float * c, int ldc)
+MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, const int m, const int n, const int k, float alpha, const float * a, const int lda, const float * b, const int ldb, float beta, float * c, const int ldc)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -241,7 +241,7 @@ MC_TARGET_FUNC void mc_blas_sgemm(const char transa, const char transb, int m, i
 
 #pragma mark - mc_blas_dgemm -
 
-MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, int n, int k, double alpha, const double * a, int lda, const double * b, int ldb, double beta, double * c, int ldc)
+MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, const int m, const int n, const int k, double alpha, const double * a, const int lda, const double * b, const int ldb, double beta, double * c, const int ldc)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -393,7 +393,7 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, int m, i
 
 #pragma mark - mc_blas_lgemm -
 
-MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, int m, int n, int k, long double alpha, const long double * a, int lda, const long double * b, int ldb, long double beta, long double * c, int ldc)
+MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, const int m, const int n, const int k, long double alpha, const long double * a, const int lda, const long double * b, const int ldb, long double beta, long double * c, const int ldc)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

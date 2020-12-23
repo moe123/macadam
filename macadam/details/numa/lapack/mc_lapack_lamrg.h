@@ -13,7 +13,7 @@
 
 #pragma mark - mc_lapack_slamrg -
 
-MC_TARGET_FUNC void mc_lapack_slamrg(int n1, int n2, const float * a, int strd1, int strd2, int * index)
+MC_TARGET_FUNC void mc_lapack_slamrg(const int n1, const int n2, const float * a, const int strd1, const int strd2, int * index)
 {
 	int i, ind1, ind2, n1sv, n2sv;
 
@@ -64,7 +64,7 @@ F10:
 
 #pragma mark - mc_lapack_llamrg -
 
-MC_TARGET_FUNC void mc_lapack_llamrg(int n1, int n2, const long double * a, int strd1, int strd2, int * index)
+MC_TARGET_FUNC void mc_lapack_llamrg(const int n1, const int n2, const long double * a, const int strd1, const int strd2, int * index)
 {
 	int i, ind1, ind2, n1sv, n2sv;
 
@@ -115,7 +115,7 @@ F10:
 
 #pragma mark - mc_lapack_dlamrg -
 
-MC_TARGET_FUNC void mc_lapack_dlamrg(int n1, int n2, const double * a, int strd1, int strd2, int * index)
+MC_TARGET_FUNC void mc_lapack_dlamrg(const int n1, const int n2, const double * a, const int strd1, const int strd2, int * index)
 {
 	int i, ind1, ind2, n1sv, n2sv;
 

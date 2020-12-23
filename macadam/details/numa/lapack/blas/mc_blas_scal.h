@@ -13,7 +13,7 @@
 
 #pragma mark - mc_blas_sscal -
 
-MC_TARGET_FUNC void mc_blas_sscal(int n, float a, float * x, int incx)
+MC_TARGET_FUNC void mc_blas_sscal(const int n, float a, float * x, const int incx)
 {
 	int i, m, mp1, nincx;
 
@@ -48,7 +48,7 @@ MC_TARGET_FUNC void mc_blas_sscal(int n, float a, float * x, int incx)
 
 #pragma mark - mc_blas_dscal -
 
-MC_TARGET_FUNC void mc_blas_dscal(int n, double a, double * x, int incx)
+MC_TARGET_FUNC void mc_blas_dscal(const int n, double a, double * x, const int incx)
 {
 	int i, m, mp1, nincx;
 
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_blas_dscal(int n, double a, double * x, int incx)
 
 #pragma mark - mc_blas_lscal -
 
-MC_TARGET_FUNC void mc_blas_lscal(int n, long double a, long double * x, int incx)
+MC_TARGET_FUNC void mc_blas_lscal(const int n, long double a, long double * x, const int incx)
 {
 	int i, m, mp1, nincx;
 

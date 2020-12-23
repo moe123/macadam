@@ -41,7 +41,7 @@
 
 #pragma mark - mc_blas_sdot -
 
-MC_TARGET_FUNC float mc_blas_sdot(int n, const float * x, int incx, const float * y , int incy)
+MC_TARGET_FUNC float mc_blas_sdot(const int n, const float * x, const int incx, const float * y , const int incy)
 {
 	int i, m, ix, iy, mp1;
 	float temp;
@@ -90,7 +90,7 @@ MC_TARGET_FUNC float mc_blas_sdot(int n, const float * x, int incx, const float 
 
 #pragma mark - mc_blas_dsdot -
 
-MC_TARGET_FUNC double mc_blas_dsdot(int n, const float * x, int incx, const float * y , int incy)
+MC_TARGET_FUNC double mc_blas_dsdot(const int n, const float * x, const int incx, const float * y , const int incy)
 {
 	int i, m, ix, iy, mp1;
 	double temp;
@@ -139,14 +139,14 @@ MC_TARGET_FUNC double mc_blas_dsdot(int n, const float * x, int incx, const floa
 
 #pragma mark - mc_blas_sdsdot -
 
-MC_TARGET_FUNC float mc_blas_sdsdot(int n, float b, const float * x, int incx, const float * y , int incy)
+MC_TARGET_FUNC float mc_blas_sdsdot(const int n, float b, const float * x, const int incx, const float * y , const int incy)
 {
 	return mc_cast(float, (mc_cast(double, b) + mc_blas_dsdot(n, x, incx, y, incy)));
 }
 
 #pragma mark - mc_blas_ddot -
 
-MC_TARGET_FUNC double mc_blas_ddot(int n, const double * x, int incx, const double * y , int incy)
+MC_TARGET_FUNC double mc_blas_ddot(const int n, const double * x, const int incx, const double * y , const int incy)
 {
 	int i, m, ix, iy, mp1;
 	double temp;
@@ -195,7 +195,7 @@ MC_TARGET_FUNC double mc_blas_ddot(int n, const double * x, int incx, const doub
 
 #pragma mark - mc_blas_ldot -
 
-MC_TARGET_FUNC long double mc_blas_ldot(int n, const long double * x, int incx, const long double * y , int incy)
+MC_TARGET_FUNC long double mc_blas_ldot(const int n, const long double * x, const int incx, const long double * y , const int incy)
 {
 	int i, m, ix, iy, mp1;
 	long double temp;

@@ -23,24 +23,24 @@
 
 #pragma mark - mc_lapack_slasq3 -
 
-MC_TARGET_PROC void mc_lapack_slasq3(int i0, int * n0, float * z
-	, int * pp
-	, float * dmin
-	, float * sigma
-	, float * desig
-	, float * qmax
-	, int * nfail
-	, int * iter
-	, int * ndiv
-	, int ieee
-	, int * ttype
-	, float * dmin1
-	, float * dmin2
-	, float * dn
-	, float * dn1
-	, float * dn2
-	, float * g
-	, float * tau
+MC_TARGET_PROC void mc_lapack_slasq3(const int i0, int * n0, float * z
+	, int *    pp
+	, float *  dmin
+	, float *  sigma
+	, float *  desig
+	, float *  qmax
+	, int *    nfail
+	, int *    iter
+	, int *     ndiv
+	, const int ieee
+	, int *     ttype
+	, float *   dmin1
+	, float *   dmin2
+	, float *   dn
+	, float *   dn1
+	, float *   dn2
+	, float *   g
+	, float *   tau
 ) {
 	const float hundrd = 100.0f, two = 2.0f, one = 1.0f, half = 0.5f, qurtr = 0.25f, zero = 0.0f;
 	const float cbias = 1.5f;
@@ -211,24 +211,24 @@ F90:
 
 #pragma mark - mc_lapack_dlasq3 -
 
-MC_TARGET_PROC void mc_lapack_dlasq3(int i0, int * n0, double * z
-	, int * pp
-	, double * dmin
-	, double * sigma
-	, double * desig
-	, double * qmax
-	, int * nfail
-	, int * iter
-	, int * ndiv
-	, int ieee
-	, int * ttype
-	, double * dmin1
-	, double * dmin2
-	, double * dn
-	, double * dn1
-	, double * dn2
-	, double * g
-	, double * tau
+MC_TARGET_PROC void mc_lapack_dlasq3(const int i0, int * n0, double * z
+	, int *     pp
+	, double *  dmin
+	, double *  sigma
+	, double *  desig
+	, double *  qmax
+	, int *     nfail
+	, int *     iter
+	, int *     ndiv
+	, const int ieee
+	, int *     ttype
+	, double *  dmin1
+	, double *  dmin2
+	, double *  dn
+	, double *  dn1
+	, double *  dn2
+	, double *  g
+	, double *  tau
 ) {
 	const double hundrd = 100.0, two = 2.0, one = 1.0, half = 0.5, qurtr = 0.25, zero = 0.0;
 	const double cbias = 1.5;
@@ -399,17 +399,17 @@ F90:
 
 #pragma mark - mc_lapack_llasq3 -
 
-MC_TARGET_PROC void mc_lapack_llasq3(int i0, int * n0, long double * z
-	, int * pp
+MC_TARGET_PROC void mc_lapack_llasq3(const int i0, int * n0, long double * z
+	, int *         pp
 	, long double * dmin
 	, long double * sigma
 	, long double * desig
 	, long double * qmax
-	, int * nfail
-	, int * iter
-	, int * ndiv
-	, int ieee
-	, int * ttype
+	, int *         nfail
+	, int *         iter
+	, int *         ndiv
+	, const int     ieee
+	, int *         ttype
 	, long double * dmin1
 	, long double * dmin2
 	, long double * dn

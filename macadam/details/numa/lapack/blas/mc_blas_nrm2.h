@@ -41,7 +41,7 @@
 
 #pragma mark - mc_blas_snrm2 -
 
-MC_TARGET_FUNC float mc_blas_snrm2(int n, const float * x, int incx)
+MC_TARGET_FUNC float mc_blas_snrm2(const int n, const float * x, const int incx)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -74,7 +74,7 @@ MC_TARGET_FUNC float mc_blas_snrm2(int n, const float * x, int incx)
 
 #pragma mark - mc_blas_sdnrm2 -
 
-MC_TARGET_FUNC double mc_blas_sdnrm2(int n, const float * x, int incx)
+MC_TARGET_FUNC double mc_blas_sdnrm2(const int n, const float * x, const int incx)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -107,7 +107,7 @@ MC_TARGET_FUNC double mc_blas_sdnrm2(int n, const float * x, int incx)
 
 #pragma mark - mc_blas_dnrm2 -
 
-MC_TARGET_FUNC double mc_blas_dnrm2(int n, const double * x, int incx)
+MC_TARGET_FUNC double mc_blas_dnrm2(const int n, const double * x, const int incx)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -140,7 +140,7 @@ MC_TARGET_FUNC double mc_blas_dnrm2(int n, const double * x, int incx)
 
 #pragma mark - mc_blas_lnrm2 -
 
-MC_TARGET_FUNC long double mc_blas_lnrm2(int n, const long double * x, int incx)
+MC_TARGET_FUNC long double mc_blas_lnrm2(const int n, const long double * x, const int incx)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

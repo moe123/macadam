@@ -16,7 +16,7 @@
 
 #pragma mark - mc_lapack_slasdt -
 
-MC_TARGET_FUNC void mc_lapack_slasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
+MC_TARGET_FUNC void mc_lapack_slasdt(const int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, const int msub)
 {
 	const float two = 2.0f;
 
@@ -53,7 +53,7 @@ MC_TARGET_FUNC void mc_lapack_slasdt(int n, int * lvl, int * nd, int * inode, in
 
 #pragma mark - mc_lapack_dlasdt -
 
-MC_TARGET_FUNC void mc_lapack_dlasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
+MC_TARGET_FUNC void mc_lapack_dlasdt(const int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, const int msub)
 {
 	const double two = 2.0;
 
@@ -90,7 +90,7 @@ MC_TARGET_FUNC void mc_lapack_dlasdt(int n, int * lvl, int * nd, int * inode, in
 
 #pragma mark - mc_lapack_llasdt -
 
-MC_TARGET_FUNC void mc_lapack_llasdt(int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, int msub)
+MC_TARGET_FUNC void mc_lapack_llasdt(const int n, int * lvl, int * nd, int * inode, int * ndiml, int * ndimr, const int msub)
 {
 	const long double two = 2.0L;
 

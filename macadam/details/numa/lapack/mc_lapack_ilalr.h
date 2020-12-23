@@ -14,7 +14,7 @@
 
 #pragma mark - mc_lapack_ilaslr -
 
-MC_TARGET_FUNC int mc_lapack_ilaslr(int m, int n, const float * a, int lda)
+MC_TARGET_FUNC int mc_lapack_ilaslr(const int m, const int n, const float * a, const int lda)
 {
 	const float zero = 0.0f;
 
@@ -40,7 +40,7 @@ MC_TARGET_FUNC int mc_lapack_ilaslr(int m, int n, const float * a, int lda)
 
 #pragma mark - mc_lapack_iladlr -
 
-MC_TARGET_FUNC int mc_lapack_iladlr(int m, int n, const double * a, int lda)
+MC_TARGET_FUNC int mc_lapack_iladlr(const int m, const int n, const double * a, const int lda)
 {
 	const double zero = 0.0;
 
@@ -66,7 +66,7 @@ MC_TARGET_FUNC int mc_lapack_iladlr(int m, int n, const double * a, int lda)
 
 #pragma mark - mc_lapack_ilallr -
 
-MC_TARGET_FUNC int mc_lapack_ilallr(int m, int n, const long double * a, int lda)
+MC_TARGET_FUNC int mc_lapack_ilallr(const int m, const int n, const long double * a, const int lda)
 {
 	const long double zero = 0.0L;
 

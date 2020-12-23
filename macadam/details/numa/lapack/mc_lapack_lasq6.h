@@ -16,7 +16,7 @@
 
 #pragma mark - mc_lapack_slasq6 -
 
-MC_TARGET_PROC void mc_lapack_slasq6(int i0, int n0, float * z, int pp
+MC_TARGET_PROC void mc_lapack_slasq6(const int i0, const int n0, float * z, const int pp
 	, float * dmin
 	, float * dmin1
 	, float * dmin2
@@ -134,7 +134,7 @@ MC_TARGET_PROC void mc_lapack_slasq6(int i0, int n0, float * z, int pp
 
 #pragma mark - mc_lapack_dlasq6 -
 
-MC_TARGET_PROC void mc_lapack_dlasq6(int i0, int n0, double * z, int pp
+MC_TARGET_PROC void mc_lapack_dlasq6(const int i0, const int n0, double * z, const int pp
 	, double * dmin
 	, double * dmin1
 	, double * dmin2
@@ -252,7 +252,7 @@ MC_TARGET_PROC void mc_lapack_dlasq6(int i0, int n0, double * z, int pp
 
 #pragma mark - mc_lapack_llasq6 -
 
-MC_TARGET_PROC void mc_lapack_llasq6(int i0, int n0, long double * z, int pp
+MC_TARGET_PROC void mc_lapack_llasq6(const int i0, const int n0, long double * z, const int pp
 	, long double * dmin
 	, long double * dmin1
 	, long double * dmin2

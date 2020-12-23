@@ -73,7 +73,7 @@
 
 #pragma mark - mc_blas_srotm -
 
-MC_TARGET_FUNC void mc_blas_srotm(int n, float * x, int incx, float * y, int incy, const float param[5])
+MC_TARGET_FUNC void mc_blas_srotm(const int n, float * x, const int incx, float * y, const int incy, const float param[5])
 {
 	const float zero = 0.0f, two = 2.0f;
 
@@ -167,7 +167,7 @@ MC_TARGET_FUNC void mc_blas_srotm(int n, float * x, int incx, float * y, int inc
 
 #pragma mark - mc_blas_drotm -
 
-MC_TARGET_FUNC void mc_blas_drotm(int n, double * x, int incx, double * y, int incy, const double param[5])
+MC_TARGET_FUNC void mc_blas_drotm(const int n, double * x, const int incx, double * y, const int incy, const double param[5])
 {
 	const double zero = 0.0, two = 2.0;
 
@@ -261,7 +261,7 @@ MC_TARGET_FUNC void mc_blas_drotm(int n, double * x, int incx, double * y, int i
 
 #pragma mark - mc_blas_lrotm -
 
-MC_TARGET_FUNC void mc_blas_lrotm(int n, long double * x, int incx, long double * y, int incy, const long double param[5])
+MC_TARGET_FUNC void mc_blas_lrotm(const int n, long double * x, const int incx, long double * y, const int incy, const long double param[5])
 {
 	const long double zero = 0.0L, two = 2.0L;
 

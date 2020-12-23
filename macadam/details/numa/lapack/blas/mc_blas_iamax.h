@@ -11,7 +11,7 @@
 
 #pragma mark - mc_blas_isamax -
 
-MC_TARGET_FUNC int mc_blas_isamax(int n, const float * x, int incx)
+MC_TARGET_FUNC int mc_blas_isamax(const int n, const float * x, const int incx)
 {
 	float max;
 	int i, iamax, ix;
@@ -49,7 +49,7 @@ MC_TARGET_FUNC int mc_blas_isamax(int n, const float * x, int incx)
 
 #pragma mark - mc_blas_idamax -
 
-MC_TARGET_FUNC int mc_blas_idamax(int n, const double * x, int incx)
+MC_TARGET_FUNC int mc_blas_idamax(const int n, const double * x, const int incx)
 {
 	double max;
 	int i, iamax, ix;
@@ -87,7 +87,7 @@ MC_TARGET_FUNC int mc_blas_idamax(int n, const double * x, int incx)
 
 #pragma mark - mc_blas_ilamax -
 
-MC_TARGET_FUNC int mc_blas_ilamax(int n, const long double * x, int incx)
+MC_TARGET_FUNC int mc_blas_ilamax(const int n, const long double * x, const int incx)
 {
 	long double max;
 	int i, iamax, ix;

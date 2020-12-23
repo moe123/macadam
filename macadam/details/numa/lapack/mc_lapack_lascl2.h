@@ -16,7 +16,7 @@
 
 #pragma mark - mc_lapack_slascl2 -
 
-MC_TARGET_FUNC void mc_lapack_slascl2(int m, int n, const float * d, float * x, int ldx)
+MC_TARGET_FUNC void mc_lapack_slascl2(const int m, const int n, const float * d, float * x, const int ldx)
 {
 	int i, j;
 
@@ -30,7 +30,7 @@ MC_TARGET_FUNC void mc_lapack_slascl2(int m, int n, const float * d, float * x, 
 
 #pragma mark - mc_lapack_dlascl2 -
 
-MC_TARGET_FUNC void mc_lapack_dlascl2(int m, int n, const double * d, double * x, int ldx)
+MC_TARGET_FUNC void mc_lapack_dlascl2(const int m, const int n, const double * d, double * x, const int ldx)
 {
 	int i, j;
 
@@ -44,7 +44,7 @@ MC_TARGET_FUNC void mc_lapack_dlascl2(int m, int n, const double * d, double * x
 
 #pragma mark - mc_lapack_llascl2 -
 
-MC_TARGET_FUNC void mc_lapack_llascl2(int m, int n, const long double * d, long double * x, int ldx)
+MC_TARGET_FUNC void mc_lapack_llascl2(const int m, const int n, const long double * d, long double * x, const int ldx)
 {
 	int i, j;
 

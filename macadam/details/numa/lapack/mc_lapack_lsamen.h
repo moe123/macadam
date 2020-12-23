@@ -13,7 +13,7 @@
 
 #pragma mark - mc_lapack_lsamen -
 
-MC_TARGET_FUNC int mc_lapack_lsamen(int n, const char * ca, const char * cb)
+MC_TARGET_FUNC int mc_lapack_lsamen(const int n, const char * ca, const char * cb)
 {
 	int i, lsamen;
 	lsamen = 0;

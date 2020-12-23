@@ -13,7 +13,7 @@
 
 #pragma mark - mc_blas_xerbla -
 
-MC_TARGET_FUNC void mc_blas_xerbla(const char * srname, int info)
+MC_TARGET_FUNC void mc_blas_xerbla(const char * srname, const int info)
 {
 #	if MC_TARGET_CPP98
 	::fprintf(stderr,

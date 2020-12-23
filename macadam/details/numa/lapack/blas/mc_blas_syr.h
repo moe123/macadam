@@ -15,7 +15,7 @@
 
 #pragma mark - mc_blas_ssyr -
 
-MC_TARGET_FUNC void mc_blas_ssyr(const char uplo, int n, float alpha, const float * x, int incx, float * a, int lda)
+MC_TARGET_FUNC void mc_blas_ssyr(const char uplo, const int n, float alpha, const float * x, const int incx, float * a, const int lda)
 {
 	const float zero = 0.0f;
 
@@ -100,7 +100,7 @@ MC_TARGET_FUNC void mc_blas_ssyr(const char uplo, int n, float alpha, const floa
 
 #pragma mark - mc_blas_dsyr -
 
-MC_TARGET_FUNC void mc_blas_dsyr(const char uplo, int n, double alpha, const double * x, int incx, double * a, int lda)
+MC_TARGET_FUNC void mc_blas_dsyr(const char uplo, const int n, double alpha, const double * x, const int incx, double * a, const int lda)
 {
 	const double zero = 0.0;
 
@@ -185,7 +185,7 @@ MC_TARGET_FUNC void mc_blas_dsyr(const char uplo, int n, double alpha, const dou
 
 #pragma mark - mc_blas_lsyr -
 
-MC_TARGET_FUNC void mc_blas_lsyr(const char uplo, int n, long double alpha, const long double * x, int incx, long double * a, int lda)
+MC_TARGET_FUNC void mc_blas_lsyr(const char uplo, const int n, long double alpha, const long double * x, const int incx, long double * a, const int lda)
 {
 	const long double zero = 0.0L;
 

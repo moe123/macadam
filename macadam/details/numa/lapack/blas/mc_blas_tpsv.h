@@ -14,7 +14,7 @@
 
 #pragma mark - mc_blas_stpsv -
 
-MC_TARGET_FUNC void mc_blas_stpsv(const char uplo, const char trans, const char diag, int n, const float * ap, float * x, int incx)
+MC_TARGET_FUNC void mc_blas_stpsv(const char uplo, const char trans, const char diag, const int n, const float * ap, float * x, const int incx)
 {
 	const float zero = 0.0f;
 
@@ -196,7 +196,7 @@ MC_TARGET_FUNC void mc_blas_stpsv(const char uplo, const char trans, const char 
 
 #pragma mark - mc_blas_dtpsv -
 
-MC_TARGET_FUNC void mc_blas_dtpsv(const char uplo, const char trans, const char diag, int n, const double * ap, double * x, int incx)
+MC_TARGET_FUNC void mc_blas_dtpsv(const char uplo, const char trans, const char diag, const int n, const double * ap, double * x, const int incx)
 {
 	const double zero = 0.0;
 
@@ -378,7 +378,7 @@ MC_TARGET_FUNC void mc_blas_dtpsv(const char uplo, const char trans, const char 
 
 #pragma mark - mc_blas_ltpsv -
 
-MC_TARGET_FUNC void mc_blas_ltpsv(const char uplo, const char trans, const char diag, int n, const long double * ap, long double * x, int incx)
+MC_TARGET_FUNC void mc_blas_ltpsv(const char uplo, const char trans, const char diag, const int n, const long double * ap, long double * x, const int incx)
 {
 	const long double zero = 0.0L;
 

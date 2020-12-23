@@ -11,7 +11,7 @@
 
 #pragma mark - mc_blas_scopy -
 
-MC_TARGET_FUNC void mc_blas_scopy(int n, const float * x, int incx, float * y, int incy)
+MC_TARGET_FUNC void mc_blas_scopy(const int n, const float * x, const int incx, float * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 
@@ -57,7 +57,7 @@ MC_TARGET_FUNC void mc_blas_scopy(int n, const float * x, int incx, float * y, i
 
 #pragma mark - mc_blas_dcopy -
 
-MC_TARGET_FUNC void mc_blas_dcopy(int n, const double * x, int incx, double * y, int incy)
+MC_TARGET_FUNC void mc_blas_dcopy(const int n, const double * x, const int incx, double * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 
@@ -103,7 +103,7 @@ MC_TARGET_FUNC void mc_blas_dcopy(int n, const double * x, int incx, double * y,
 
 #pragma mark - mc_blas_lcopy -
 
-MC_TARGET_FUNC void mc_blas_lcopy(int n, const long double * x, int incx, long double * y, int incy)
+MC_TARGET_FUNC void mc_blas_lcopy(const int n, const long double * x, const int incx, long double * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 

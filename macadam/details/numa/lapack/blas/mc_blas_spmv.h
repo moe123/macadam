@@ -14,7 +14,7 @@
 
 #pragma mark - mc_blas_sspmv -
 
-MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, int n, float alpha, const float * ap, const float * x, int incx, float beta, float * y, int incy)
+MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, const int n, float alpha, const float * ap, const float * x, const int incx, float beta, float * y, const int incy)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -157,7 +157,7 @@ MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, int n, float alpha, const flo
 
 #pragma mark - mc_blas_dspmv -
 
-MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, int n, double alpha, const double * ap, const double * x, int incx, double beta, double * y, int incy)
+MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, const int n, double alpha, const double * ap, const double * x, const int incx, double beta, double * y, const int incy)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -300,7 +300,7 @@ MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, int n, double alpha, const do
 
 #pragma mark - mc_blas_lspmv -
 
-MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, int n, long double alpha, const long double * ap, const long double * x, int incx, long double beta, long double * y, int incy)
+MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, long double alpha, const long double * ap, const long double * x, const int incx, long double beta, long double * y, const int incy)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

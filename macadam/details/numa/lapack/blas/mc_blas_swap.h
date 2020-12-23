@@ -12,7 +12,7 @@
 
 #pragma mark - mc_blas_sswap -
 
-MC_TARGET_FUNC void mc_blas_sswap(int n, float * x, int incx, float * y, int incy)
+MC_TARGET_FUNC void mc_blas_sswap(const int n, float * x, const int incx, float * y, const int incy)
 {
 	float temp;
 	int i, ix, iy, m, mp1;
@@ -65,7 +65,7 @@ MC_TARGET_FUNC void mc_blas_sswap(int n, float * x, int incx, float * y, int inc
 
 #pragma mark - mc_blas_dswap -
 
-MC_TARGET_FUNC void mc_blas_dswap(int n, double * x, int incx, double * y, int incy)
+MC_TARGET_FUNC void mc_blas_dswap(const int n, double * x, const int incx, double * y, const int incy)
 {
 	double temp;
 	int i, ix, iy, m, mp1;
@@ -118,7 +118,7 @@ MC_TARGET_FUNC void mc_blas_dswap(int n, double * x, int incx, double * y, int i
 
 #pragma mark - mc_blas_lswap -
 
-MC_TARGET_FUNC void mc_blas_lswap(int n, long double * x, int incx, long double * y, int incy)
+MC_TARGET_FUNC void mc_blas_lswap(const int n, long double * x, const int incx, long double * y, const int incy)
 {
 	long double temp;
 	int i, ix, iy, m, mp1;

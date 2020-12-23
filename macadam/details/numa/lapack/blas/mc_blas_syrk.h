@@ -15,7 +15,7 @@
 
 #pragma mark - mc_blas_ssyrk -
 
-MC_TARGET_FUNC void mc_blas_ssyrk(const char uplo, const char trans, int n, int k, float alpha, const float * a, int lda, float beta, float * c, int ldc)
+MC_TARGET_FUNC void mc_blas_ssyrk(const char uplo, const char trans, const int n, const int k, float alpha, const float * a, const int lda, float beta, float * c, const int ldc)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -167,7 +167,7 @@ MC_TARGET_FUNC void mc_blas_ssyrk(const char uplo, const char trans, int n, int 
 
 #pragma mark - mc_blas_dsyrk -
 
-MC_TARGET_FUNC void mc_blas_dsyrk(const char uplo, const char trans, int n, int k, double alpha, const double * a, int lda, double beta, double * c, int ldc)
+MC_TARGET_FUNC void mc_blas_dsyrk(const char uplo, const char trans, const int n, const int k, double alpha, const double * a, const int lda, double beta, double * c, const int ldc)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -319,7 +319,7 @@ MC_TARGET_FUNC void mc_blas_dsyrk(const char uplo, const char trans, int n, int 
 
 #pragma mark - mc_blas_lsyrk -
 
-MC_TARGET_FUNC void mc_blas_lsyrk(const char uplo, const char trans, int n, int k, long double alpha, const long double * a, int lda, long double beta, long double * c, int ldc)
+MC_TARGET_FUNC void mc_blas_lsyrk(const char uplo, const char trans, const int n, const int k, long double alpha, const long double * a, const int lda, long double beta, long double * c, const int ldc)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

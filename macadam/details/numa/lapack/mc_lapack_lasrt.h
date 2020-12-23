@@ -16,7 +16,7 @@
 
 #pragma mark - mc_lapack_slasrt -
 
-MC_TARGET_FUNC void mc_lapack_slasrt(const char id, int n, float * d, int * info)
+MC_TARGET_FUNC void mc_lapack_slasrt(const char id, const int n, float * d, int * info)
 {
 	int select = 20;
 	int dir, endd, i, j, start, stkpnt;
@@ -183,7 +183,7 @@ F100:
 
 #pragma mark - mc_lapack_dlasrt -
 
-MC_TARGET_FUNC void mc_lapack_dlasrt(const char id, int n, double * d, int * info)
+MC_TARGET_FUNC void mc_lapack_dlasrt(const char id, const int n, double * d, int * info)
 {
 	int select = 20;
 	int dir, endd, i, j, start, stkpnt;
@@ -350,7 +350,7 @@ F100:
 
 #pragma mark - mc_lapack_llasrt -
 
-MC_TARGET_FUNC void mc_lapack_llasrt(const char id, int n, long double * d, int * info)
+MC_TARGET_FUNC void mc_lapack_llasrt(const char id, const int n, long double * d, int * info)
 {
 	int select = 20;
 	int dir, endd, i, j, start, stkpnt;

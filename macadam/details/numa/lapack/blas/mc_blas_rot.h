@@ -48,7 +48,7 @@
 
 #pragma mark - mc_blas_srot -
 
-MC_TARGET_FUNC void mc_blas_srot(int n, float * x, int incx, float * y, int incy, float c, float s)
+MC_TARGET_FUNC void mc_blas_srot(const int n, float * x, const int incx, float * y, const int incy, float c, float s)
 {
 	float temp;
 	int i, ix, iy;
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_blas_srot(int n, float * x, int incx, float * y, int incy
 
 #pragma mark - mc_blas_drot -
 
-MC_TARGET_FUNC void mc_blas_drot(int n, double * x, int incx, double * y, int incy, double c, double s)
+MC_TARGET_FUNC void mc_blas_drot(const int n, double * x, const int incx, double * y, const int incy, double c, double s)
 {
 	double temp;
 	int i, ix, iy;
@@ -118,7 +118,7 @@ MC_TARGET_FUNC void mc_blas_drot(int n, double * x, int incx, double * y, int in
 
 #pragma mark - mc_blas_lrot -
 
-MC_TARGET_FUNC void mc_blas_lrot(int n, long double * x, int incx, long double * y, int incy, long double c, long double s)
+MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, long double * y, const int incy, long double c, long double s)
 {
 	long double temp;
 	int i, ix, iy;

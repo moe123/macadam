@@ -22,7 +22,7 @@
 
 #pragma mark - mc_lapack_slasq1 -
 
-MC_TARGET_PROC void mc_lapack_slasq1(int n, float * d, float * e, float * work, int * info)
+MC_TARGET_PROC void mc_lapack_slasq1(const int n, float * d, float * e, float * work, int * info)
 {
 	const float zero = 0.0f;
 
@@ -97,7 +97,7 @@ MC_TARGET_PROC void mc_lapack_slasq1(int n, float * d, float * e, float * work, 
 
 #pragma mark - mc_lapack_dlasq1 -
 
-MC_TARGET_PROC void mc_lapack_dlasq1(int n, double * d, double * e, double * work, int * info)
+MC_TARGET_PROC void mc_lapack_dlasq1(const int n, double * d, double * e, double * work, int * info)
 {
 	const double zero = 0.0;
 
@@ -172,7 +172,7 @@ MC_TARGET_PROC void mc_lapack_dlasq1(int n, double * d, double * e, double * wor
 
 #pragma mark - mc_lapack_llasq1 -
 
-MC_TARGET_PROC void mc_lapack_llasq1(int n, long double * d, long double * e, long double * work, int * info)
+MC_TARGET_PROC void mc_lapack_llasq1(const int n, long double * d, long double * e, long double * work, int * info)
 {
 	const long double zero = 0.0L;
 

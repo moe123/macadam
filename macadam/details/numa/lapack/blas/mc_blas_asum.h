@@ -14,7 +14,7 @@
 
 #pragma mark - mc_blas_sasum -
 
-MC_TARGET_FUNC float mc_blas_sasum(int n, const float * x, int incx)
+MC_TARGET_FUNC float mc_blas_sasum(const int n, const float * x, const int incx)
 {
 	int i, m, mp1, nincx;
 	float temp;
@@ -56,7 +56,7 @@ MC_TARGET_FUNC float mc_blas_sasum(int n, const float * x, int incx)
 
 #pragma mark - mc_blas_dsasum -
 
-MC_TARGET_FUNC double mc_blas_dsasum(int n, const float * x, int incx)
+MC_TARGET_FUNC double mc_blas_dsasum(const int n, const float * x, const int incx)
 {
 	int i, m, mp1, nincx;
 	double temp;
@@ -98,14 +98,14 @@ MC_TARGET_FUNC double mc_blas_dsasum(int n, const float * x, int incx)
 
 #pragma mark - mc_blas_sdsasum -
 
-MC_TARGET_FUNC float mc_blas_sdsasum(int n, const float * x, int incx)
+MC_TARGET_FUNC float mc_blas_sdsasum(const int n, const float * x, const int incx)
 {
 	return mc_cast(float, mc_blas_dsasum(n, x, incx));
 }
 
 #pragma mark - mc_blas_dasum -
 
-MC_TARGET_FUNC double mc_blas_dasum(int n, const double * x, int incx)
+MC_TARGET_FUNC double mc_blas_dasum(const int n, const double * x, const int incx)
 {
 	int i, m, mp1, nincx;
 	double temp;
@@ -147,7 +147,7 @@ MC_TARGET_FUNC double mc_blas_dasum(int n, const double * x, int incx)
 
 #pragma mark - mc_blas_lasum -
 
-MC_TARGET_FUNC long double mc_blas_lasum(int n, const long double * x, int incx)
+MC_TARGET_FUNC long double mc_blas_lasum(const int n, const long double * x, const int incx)
 {
 	int i, m, mp1, nincx;
 	long double temp;

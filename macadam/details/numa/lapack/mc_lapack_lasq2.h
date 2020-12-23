@@ -22,7 +22,7 @@
 
 #pragma mark - mc_lapack_slasq2 -
 
-MC_TARGET_PROC void mc_lapack_slasq2(int n, float * z, int * info)
+MC_TARGET_PROC void mc_lapack_slasq2(const int n, float * z, int * info)
 {
 	const float hundrd = 100.0f, four = 4.0f, two = 2.0f, one = 1.0f, half = 0.5f, zero = 0.0f;
 	const float cbias = 1.5f;
@@ -379,7 +379,7 @@ F170:
 
 #pragma mark - mc_lapack_dlasq2 -
 
-MC_TARGET_PROC void mc_lapack_dlasq2(int n, double * z, int * info)
+MC_TARGET_PROC void mc_lapack_dlasq2(const int n, double * z, int * info)
 {
 	const double hundrd = 100.0, four = 4.0, two = 2.0, one = 1.0, half = 0.5, zero = 0.0;
 	const double cbias = 1.5;
@@ -736,7 +736,7 @@ F170:
 
 #pragma mark - mc_lapack_llasq2 -
 
-MC_TARGET_PROC void mc_lapack_llasq2(int n, long double * z, int * info)
+MC_TARGET_PROC void mc_lapack_llasq2(const int n, long double * z, int * info)
 {
 	const long double hundrd = 100.0L, four = 4.0L, two = 2.0L, one = 1.0L, half = 0.5L, zero = 0.0L;
 	const long double cbias = 1.5L;

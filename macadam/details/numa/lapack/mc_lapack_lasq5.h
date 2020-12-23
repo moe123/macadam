@@ -14,15 +14,15 @@
 
 #pragma mark - mc_lapack_slasq5 -
 
-MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float tau, float sigma
-	, float * dmin
-	, float * dmin1
-	, float * dmin2
-	, float * dn
-	, float * dnm1
-	, float * dnm2
-	, int ieee
-	, float eps
+MC_TARGET_PROC void mc_lapack_slasq5(const int i0, const int n0, float * z, const int pp, float tau, float sigma
+	, float *   dmin
+	, float *   dmin1
+	, float *   dmin2
+	, float *   dn
+	, float *   dnm1
+	, float *   dnm2
+	, const int ieee
+	, float     eps
 ) {
 	const float half = 0.5f, zero = 0.0f;
 
@@ -247,15 +247,15 @@ MC_TARGET_PROC void mc_lapack_slasq5(int i0, int n0, float * z, int pp, float ta
 
 #pragma mark - mc_lapack_dlasq5 -
 
-MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double tau, double sigma
-	, double * dmin
-	, double * dmin1
-	, double * dmin2
-	, double * dn
-	, double * dnm1
-	, double * dnm2
-	, int ieee
-	, double eps
+MC_TARGET_PROC void mc_lapack_dlasq5(const int i0, const int n0, double * z, const int pp, double tau, double sigma
+	, double *  dmin
+	, double *  dmin1
+	, double *  dmin2
+	, double *  dn
+	, double *  dnm1
+	, double *  dnm2
+	, const int ieee
+	, double    eps
 ) {
 	const double half = 0.5, zero = 0.0;
 
@@ -480,15 +480,15 @@ MC_TARGET_PROC void mc_lapack_dlasq5(int i0, int n0, double * z, int pp, double 
 
 #pragma mark - mc_lapack_llasq5 -
 
-MC_TARGET_PROC void mc_lapack_llasq5(int i0, int n0, long double * z, int pp, long double tau, long double sigma
+MC_TARGET_PROC void mc_lapack_llasq5(const int i0, const int n0, long double * z, const int pp, long double tau, long double sigma
 	, long double * dmin
 	, long double * dmin1
 	, long double * dmin2
 	, long double * dn
 	, long double * dnm1
 	, long double * dnm2
-	, int ieee
-	, long double eps
+	, const int     ieee
+	, long double   eps
 ) {
 	const long double half = 0.5L, zero = 0.0L;
 
