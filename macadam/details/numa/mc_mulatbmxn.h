@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mulatbmxn -
 
-MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulatbmxnf(const int m, const int n, const int p, float * restrict c, const float * a, const float * b)
 {
 //!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_mulatbmxnf(int m, int n, int p, float * restrict c, const
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulatbmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulatbmxnff(const int m, const int n, const int p, double * restrict c, const float * a, const float * b)
 {
 //!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_mulatbmxnff(int m, int n, int p, double * restrict c, con
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatbmxnfd(int m, int n, int p, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_mulatbmxnfd(const int m, const int n, const int p, double * restrict c, const float * a, const double * b)
 {
 //!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -69,7 +69,7 @@ MC_TARGET_FUNC void mc_mulatbmxnfd(int m, int n, int p, double * restrict c, con
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatbmxndf(int m, int n, int p, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_mulatbmxndf(const int m, const int n, const int p, double * restrict c, const double * a, const float * b)
 {
 //!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_mulatbmxndf(int m, int n, int p, double * restrict c, con
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_mulatbmxn(const int m, const int n, const int p, double * restrict c, const double * a, const double * b)
 {
 //!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -111,7 +111,7 @@ MC_TARGET_FUNC void mc_mulatbmxn(int m, int n, int p, double * restrict c, const
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulatbmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_mulatbmxnl(const int m, const int n, const int p, long double * restrict c, const long double * a, const long double * b)
 {
 //!# c=a'*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT

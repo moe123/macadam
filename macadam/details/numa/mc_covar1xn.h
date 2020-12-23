@@ -14,7 +14,7 @@
 
 #pragma mark - mc_covar1xn -
 
-MC_TARGET_FUNC float mc_covar1xnf(int n, const float * x, const float * y, int b)
+MC_TARGET_FUNC float mc_covar1xnf(const int n, const float * x, const float * y, int b)
 {
 	float s = 0.0f;
 	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
@@ -33,7 +33,7 @@ MC_TARGET_FUNC float mc_covar1xnf(int n, const float * x, const float * y, int b
 	return s;
 }
 
-MC_TARGET_FUNC double mc_covar1xnff(int n, const float * x, const float * y, int b)
+MC_TARGET_FUNC double mc_covar1xnff(const int n, const float * x, const float * y, int b)
 {
 	double s = 0.0;
 	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
@@ -52,7 +52,7 @@ MC_TARGET_FUNC double mc_covar1xnff(int n, const float * x, const float * y, int
 	return s;
 }
 
-MC_TARGET_FUNC double mc_covar1xn(int n, const double * x, const double * y, int b)
+MC_TARGET_FUNC double mc_covar1xn(const int n, const double * x, const double * y, int b)
 {
 	double s = 0.0;
 	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {
@@ -71,7 +71,7 @@ MC_TARGET_FUNC double mc_covar1xn(int n, const double * x, const double * y, int
 	return s;
 }
 
-MC_TARGET_FUNC long double mc_covar1xnl(int n, const long double * x, const long double * y, int b)
+MC_TARGET_FUNC long double mc_covar1xnl(const int n, const long double * x, const long double * y, int b)
 {
 	long double s = 0.0L;
 	if ((mc_nonnullptr(x) && !mc_nonnullptr(y)) || x == y) {

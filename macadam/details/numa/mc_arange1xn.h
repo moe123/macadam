@@ -13,7 +13,7 @@
 
 #pragma mark - mc_arange1xn -
 
-MC_TARGET_FUNC int mc_arangef(int n, float * x, float x1, float x2, float xs)
+MC_TARGET_FUNC int mc_arangef(const int n, float * x, float x1, float x2, float xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_arangef(int n, float * x, float x1, float x2, float xs)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_arangeff(int n, double * x, float x1, float x2, float xs)
+MC_TARGET_FUNC int mc_arangeff(const int n, double * x, float x1, float x2, float xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
@@ -45,7 +45,7 @@ MC_TARGET_FUNC int mc_arangeff(int n, double * x, float x1, float x2, float xs)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_arange(int n, double * x, double x1, double x2, double xs)
+MC_TARGET_FUNC int mc_arange(const int n, double * x, double x1, double x2, double xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within
@@ -61,7 +61,7 @@ MC_TARGET_FUNC int mc_arange(int n, double * x, double x1, double x2, double xs)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_arangel(int n, long double * x, long double x1, long double x2, long double xs)
+MC_TARGET_FUNC int mc_arangel(const int n, long double * x, long double x1, long double x2, long double xs)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a evenly
 //!# spaced values within a given interval, values are generated within

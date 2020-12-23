@@ -13,21 +13,24 @@
 
 #pragma mark - mc_mulabtmxn -
 
-MC_TARGET_FUNC void mc_mulabtmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulabtmxnf(const int m, const int n, const int p, float * restrict c, const float * a, const float * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = m;
 	const int nn      = m;
-	const int kk      = n = p;
+	const int kk0     = n;
+	const int kk1     = p;
 	const int lda     = m;
 	const int ldb     = m;
 	const int ldc     = m;
 	const float alpha = 1.0f;
 	const float beta  = 0.0f;
 
-	mc_blas_sgemm('N', 'T', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_unused(kk1);
+
+	mc_blas_sgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {
@@ -44,7 +47,7 @@ MC_TARGET_FUNC void mc_mulabtmxnf(int m, int n, int p, float * restrict c, const
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabtmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulabtmxnff(const int m, const int n, const int p, double * restrict c, const float * a, const float * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -61,7 +64,7 @@ MC_TARGET_FUNC void mc_mulabtmxnff(int m, int n, int p, double * restrict c, con
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabtmxnfd(int m, int n, int p, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_mulabtmxnfd(const int m, const int n, const int p, double * restrict c, const float * a, const double * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -78,7 +81,7 @@ MC_TARGET_FUNC void mc_mulabtmxnfd(int m, int n, int p, double * restrict c, con
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabtmxndf(int m, int n, int p, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_mulabtmxndf(const int m, const int n, const int p, double * restrict c, const double * a, const float * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -95,21 +98,24 @@ MC_TARGET_FUNC void mc_mulabtmxndf(int m, int n, int p, double * restrict c, con
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabtmxn(int m, int n, int p, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_mulabtmxn(const int m, const int n, const int p, double * restrict c, const double * a, const double * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm       = m;
 	const int nn       = m;
-	const int kk       = n = p;
+	const int kk0      = n;
+	const int kk1      = p;
 	const int lda      = m;
 	const int ldb      = m;
 	const int ldc      = m;
 	const double alpha = 1.0;
 	const double beta  = 0.0;
 
-	mc_blas_dgemm('N', 'T', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_unused(kk1);
+
+	mc_blas_dgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {
@@ -126,21 +132,24 @@ MC_TARGET_FUNC void mc_mulabtmxn(int m, int n, int p, double * restrict c, const
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabtmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_mulabtmxnl(const int m, const int n, const int p, long double * restrict c, const long double * a, const long double * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm            = m;
 	const int nn            = m;
-	const int kk            = n = p;
+	const int kk0           = n;
+	const int kk1           = p;
 	const int lda           = m;
 	const int ldb           = m;
 	const int ldc           = m;
 	const long double alpha = 1.0L;
 	const long double beta  = 0.0L;
 
-	mc_blas_lgemm('N', 'T', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_unused(kk1);
+
+	mc_blas_lgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {

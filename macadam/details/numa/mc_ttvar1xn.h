@@ -14,7 +14,7 @@
 
 #pragma mark - mc_ttvar1xn -
 
-MC_TARGET_FUNC float mc_ttvar1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_ttvar1xnf(const int n, const float * x)
 {
 //!# Returns the total variance of vector X.
 	float mean, sumsq, scale;
@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_ttvar1xnf(int n, const float * x)
 	return mc_raise2f(scale) * sumsq;
 }
 
-MC_TARGET_FUNC double mc_ttvar1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_ttvar1xnff(const int n, const float * x)
 {
 //!# Returns the total variance of vector X.
 	double mean, sumsq, scale;
@@ -30,7 +30,7 @@ MC_TARGET_FUNC double mc_ttvar1xnff(int n, const float * x)
 	return mc_raise2(scale) * sumsq;
 }
 
-MC_TARGET_FUNC double mc_ttvar1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_ttvar1xn(const int n, const double * x)
 {
 //!# Returns the total variance of vector X.
 	double mean, sumsq, scale;
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_ttvar1xn(int n, const double * x)
 	return mc_raise2(scale) * sumsq;
 }
 
-MC_TARGET_FUNC long double mc_ttvar1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_ttvar1xnl(const int n, const long double * x)
 {
 //!# Returns the total variance of vector X.
 	long double mean, sumsq, scale;

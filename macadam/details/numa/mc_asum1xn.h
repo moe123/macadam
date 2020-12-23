@@ -13,22 +13,22 @@
 
 #pragma mark - mc_asum1xn -
 
-MC_TARGET_FUNC float mc_asum1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_asum1xnf(const int n, const float * x)
 {
 	return mc_sum1xnf(n, x, 4);
 }
 
-MC_TARGET_FUNC double mc_asum1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_asum1xnff(const int n, const float * x)
 {
 	return mc_sum1xnff(n, x, 4);
 }
 
-MC_TARGET_FUNC double mc_asum1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_asum1xn(const int n, const double * x)
 {
 	return mc_sum1xn(n, x, 4);
 }
 
-MC_TARGET_FUNC long double mc_asum1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_asum1xnl(const int n, const long double * x)
 {
 	return mc_sum1xnl(n, x, 4);
 }

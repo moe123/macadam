@@ -13,17 +13,17 @@
 
 #pragma mark - mc_onesmxn -
 
-MC_TARGET_FUNC void mc_onesmxnf(int m, int n, float * a)
+MC_TARGET_FUNC void mc_onesmxnf(const int m, const int n, float * a)
 {
 	mc_ones1xnf(m * n, a);
 }
 
-MC_TARGET_FUNC void mc_onesmxn(int m, int n, double * a)
+MC_TARGET_FUNC void mc_onesmxn(const int m, const int n, double * a)
 {
 	mc_ones1xn(m * n, a);
 }
 
-MC_TARGET_FUNC void mc_onesmxnl(int m, int n, long  double * a)
+MC_TARGET_FUNC void mc_onesmxnl(const int m, const int n, long  double * a)
 {
 	mc_ones1xnl(m * n, a);
 }

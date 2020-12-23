@@ -13,7 +13,7 @@
 
 #pragma mark - mc_unitmxn -
 
-MC_TARGET_FUNC void mc_unitmxnf(int m, int n, float * a)
+MC_TARGET_FUNC void mc_unitmxnf(const int m, const int n, float * a)
 {
 	int j = 0;
 	for (; j < n; j++) {
@@ -21,7 +21,7 @@ MC_TARGET_FUNC void mc_unitmxnf(int m, int n, float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_unitmxn(int m, int n, double * a)
+MC_TARGET_FUNC void mc_unitmxn(const int m, const int n, double * a)
 {
 	int j = 0;
 	for (; j < n; j++) {
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_unitmxn(int m, int n, double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_unitmxnl(int m, int n, long double * a)
+MC_TARGET_FUNC void mc_unitmxnl(const int m, const int n, long double * a)
 {
 	int j = 0;
 	for (; j < n; j++) {

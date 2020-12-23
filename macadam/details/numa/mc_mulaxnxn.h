@@ -13,42 +13,42 @@
 
 #pragma mark - mc_mulaxnxn -
 
-MC_TARGET_FUNC void mc_mulaxnxnf(int n, float * restrict b, const float * a, const float * x)
+MC_TARGET_FUNC void mc_mulaxnxnf(const int n, float * restrict b, const float * a, const float * x)
 {
 //!# Requires b[n x 1], a[n * n] and x[n x 1].
 //!# b=a*x
 	mc_mulaxmxnf(n, n, b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulaxnxnff(int n, double * restrict b, const float * a, const float * x)
+MC_TARGET_FUNC void mc_mulaxnxnff(const int n, double * restrict b, const float * a, const float * x)
 {
 //!# Requires b[n x 1], a[n * n] and x[n x 1].
 //!# b=a*x
 	mc_mulaxmxnff(n, n, b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulaxnxnfd(int n, double * restrict b, const float * a, const double * x)
+MC_TARGET_FUNC void mc_mulaxnxnfd(const int n, double * restrict b, const float * a, const double * x)
 {
 //!# Requires b[n x 1], a[n * n] and x[n x 1].
 //!# b=a*x
 	mc_mulaxmxnfd(n, n, b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulaxnxndf(int n, double * restrict b, const double * a, const float * x)
+MC_TARGET_FUNC void mc_mulaxnxndf(const int n, double * restrict b, const double * a, const float * x)
 {
 //!# Requires b[n x 1], a[n * n] and x[n x 1].
 //!# b=a*x
 	mc_mulaxmxndf(n, n, b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulaxnxn(int n, double * restrict b, const double * a, const double * x)
+MC_TARGET_FUNC void mc_mulaxnxn(const int n, double * restrict b, const double * a, const double * x)
 {
 //!# Requires b[n x 1], a[n * n] and x[n x 1].
 //!# b=a*x
 	mc_mulaxmxn(n, n, b, a, x);
 }
 
-MC_TARGET_FUNC void mc_mulaxnxnl(int n, long double * restrict b, const long double * a, const long double * x)
+MC_TARGET_FUNC void mc_mulaxnxnl(const int n, long double * restrict b, const long double * a, const long double * x)
 {
 //!# Requires b[n x 1], a[n * n] and x[n x 1].
 //!# b=a*x

@@ -13,17 +13,17 @@
 
 #pragma mark - mc_zerosnxn -
 
-MC_TARGET_FUNC void mc_zerosnxnf(int n, float * a)
+MC_TARGET_FUNC void mc_zerosnxnf(const int n, float * a)
 {
 	mc_zeros1xnf(n * n, a);
 }
 
-MC_TARGET_FUNC void mc_zerosnxn(int n, double * a)
+MC_TARGET_FUNC void mc_zerosnxn(const int n, double * a)
 {
 	mc_zeros1xn(n * n, a);
 }
 
-MC_TARGET_FUNC void mc_zerosnxnl(int n, long  double * a)
+MC_TARGET_FUNC void mc_zerosnxnl(const int n, long  double * a)
 {
 	mc_zeros1xnl(n * n, a);
 }

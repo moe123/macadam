@@ -14,7 +14,7 @@
 
 #pragma mark - mc_ppsdev1xn -
 
-MC_TARGET_FUNC float mc_ppsdev1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_ppsdev1xnf(const int n, const float * x)
 {
 //!# Returns the population standard deviation of vector X.
 	float mean, sumsq, scale;
@@ -25,7 +25,7 @@ MC_TARGET_FUNC float mc_ppsdev1xnf(int n, const float * x)
 	return scale * mc_sqrtf(sumsq / mc_cast(float, n));
 }
 
-MC_TARGET_FUNC double mc_ppsdev1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_ppsdev1xnff(const int n, const float * x)
 {
 //!# Returns the population standard deviation of vector X.
 	double mean, sumsq, scale;
@@ -36,7 +36,7 @@ MC_TARGET_FUNC double mc_ppsdev1xnff(int n, const float * x)
 	return scale * mc_sqrt(sumsq / mc_cast(double, n));
 }
 
-MC_TARGET_FUNC double mc_ppsdev1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_ppsdev1xn(const int n, const double * x)
 {
 //!# Returns the population standard deviation of vector X.
 	double mean, sumsq, scale;
@@ -47,7 +47,7 @@ MC_TARGET_FUNC double mc_ppsdev1xn(int n, const double * x)
 	return scale * mc_sqrt(sumsq / mc_cast(double, n));
 }
 
-MC_TARGET_FUNC long double mc_ppsdev1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_ppsdev1xnl(const int n, const long double * x)
 {
 //!# Returns the population standard deviation of vector X.
 	long double mean, sumsq, scale;

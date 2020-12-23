@@ -13,7 +13,7 @@
 
 #pragma mark - mc_argmaxmx1 -
 
-MC_TARGET_FUNC int mc_argmaxmx1f(int m, int n, int j, const float * a)
+MC_TARGET_FUNC int mc_argmaxmx1f(const int m, const int n, const int j, const float * a)
 {
 	int q;
 	float max;
@@ -21,7 +21,7 @@ MC_TARGET_FUNC int mc_argmaxmx1f(int m, int n, int j, const float * a)
 	return q;
 }
 
-MC_TARGET_FUNC int mc_argmaxmx1(int m, int n, int j, const double * a)
+MC_TARGET_FUNC int mc_argmaxmx1(const int m, const int n, const int j, const double * a)
 {
 	int q;
 	double max;
@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_argmaxmx1(int m, int n, int j, const double * a)
 	return q;
 }
 
-MC_TARGET_FUNC int mc_argmaxmx1l(int m, int n, int j, const long double * a)
+MC_TARGET_FUNC int mc_argmaxmx1l(const int m, const int n, const int j, const long double * a)
 {
 	int q;
 	long double max;

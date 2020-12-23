@@ -14,7 +14,7 @@
 
 #pragma mark - mc_ppvar1xn -
 
-MC_TARGET_FUNC float mc_ppvar1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_ppvar1xnf(const int n, const float * x)
 {
 //!# Returns the population variance of vector X.
 	float mean, sumsq, scale;
@@ -25,7 +25,7 @@ MC_TARGET_FUNC float mc_ppvar1xnf(int n, const float * x)
 	return mc_raise2f(scale) * (sumsq / mc_cast(float, n));
 }
 
-MC_TARGET_FUNC double mc_ppvar1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_ppvar1xnff(const int n, const float * x)
 {
 //!# Returns the population variance of vector X.
 	double mean, sumsq, scale;
@@ -36,7 +36,7 @@ MC_TARGET_FUNC double mc_ppvar1xnff(int n, const float * x)
 	return mc_raise2(scale) * (sumsq / mc_cast(double, n));
 }
 
-MC_TARGET_FUNC double mc_ppvar1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_ppvar1xn(const int n, const double * x)
 {
 //!# Returns the population variance of vector X.
 	double mean, sumsq, scale;
@@ -47,7 +47,7 @@ MC_TARGET_FUNC double mc_ppvar1xn(int n, const double * x)
 	return mc_raise2(scale) * (sumsq / mc_cast(double, n));
 }
 
-MC_TARGET_FUNC long double mc_ppvar1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_ppvar1xnl(const int n, const long double * x)
 {
 //!# Returns the population variance of vector X.
 	long double mean, sumsq, scale;

@@ -14,7 +14,7 @@
 
 #pragma mark - mc_rmsmx1 -
 
-MC_TARGET_FUNC float mc_rmsmx1f(int m, int n, int j, const float * a)
+MC_TARGET_FUNC float mc_rmsmx1f(const int m, const int n, const int j, const float * a)
 {
 	float sumsq = 0.0f, scale;
 	if (n > 0) {
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_rmsmx1f(int m, int n, int j, const float * a)
 	return sumsq;
 }
 
-MC_TARGET_FUNC double mc_rmsmx1ff(int m, int n, int j, const float * a)
+MC_TARGET_FUNC double mc_rmsmx1ff(const int m, const int n, const int j, const float * a)
 {
 	double sumsq = 0.0, scale;
 	if (n > 0) {
@@ -34,7 +34,7 @@ MC_TARGET_FUNC double mc_rmsmx1ff(int m, int n, int j, const float * a)
 	return sumsq;
 }
 
-MC_TARGET_FUNC double mc_rmsmx1(int m, int n, int j, const double * a)
+MC_TARGET_FUNC double mc_rmsmx1(const int m, const int n, const int j, const double * a)
 {
 	double sumsq = 0.0, scale;
 	if (n > 0) {
@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_rmsmx1(int m, int n, int j, const double * a)
 	return sumsq;
 }
 
-MC_TARGET_FUNC long double mc_rmsmx1l(int m, int n, int j, const long double * a)
+MC_TARGET_FUNC long double mc_rmsmx1l(const int m, const int n, const int j, const long double * a)
 {
 	long double sumsq = 0.0L, scale;
 	if (n > 0) {

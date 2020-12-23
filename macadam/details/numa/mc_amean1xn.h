@@ -13,22 +13,22 @@
 
 #pragma mark - mc_amean1xn -
 
-MC_TARGET_FUNC float mc_amean1xnf(int n, const float * x, int b)
+MC_TARGET_FUNC float mc_amean1xnf(const int n, const float * x, int b)
 {
 	return mc_mean1xnf(n, x, b, 4);
 }
 
-MC_TARGET_FUNC double mc_amean1xnff(int n, const float * x, int b)
+MC_TARGET_FUNC double mc_amean1xnff(const int n, const float * x, int b)
 {
 	return mc_mean1xnff(n, x, b, 4);
 }
 
-MC_TARGET_FUNC double mc_amean1xn(int n, const double * x, int b)
+MC_TARGET_FUNC double mc_amean1xn(const int n, const double * x, int b)
 {
 	return mc_mean1xn(n, x, b, 4);
 }
 
-MC_TARGET_FUNC long double mc_amean1xnl(int n, const long double * x, int b)
+MC_TARGET_FUNC long double mc_amean1xnl(const int n, const long double * x, int b)
 {
 	return mc_mean1xnl(n, x, b, 4);
 }

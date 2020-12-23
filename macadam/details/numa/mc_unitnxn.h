@@ -13,17 +13,17 @@
 
 #pragma mark - mc_unitnxn -
 
-MC_TARGET_FUNC void mc_unitnxnf(int n, float * a)
+MC_TARGET_FUNC void mc_unitnxnf(const int n, float * a)
 {
 	mc_unitmxnf(n, n, a);
 }
 
-MC_TARGET_FUNC void mc_unitnxn(int n, double * a)
+MC_TARGET_FUNC void mc_unitnxn(const int n, double * a)
 {
 	mc_unitmxn(n, n, a);
 }
 
-MC_TARGET_FUNC void mc_unitnxnl(int n, long double * a)
+MC_TARGET_FUNC void mc_unitnxnl(const int n, long double * a)
 {
 	mc_unitmxnl(n, n, a);
 }

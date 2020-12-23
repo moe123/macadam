@@ -6,7 +6,6 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_log2.h>
 #include <macadam/details/math/mc_logbase.h>
 
 #ifndef MC_HISTCE1XN_H
@@ -19,7 +18,7 @@ MC_TARGET_FUNC float mc_histce1xnf(int npts, int nbins, int b, const int * h)
 //!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
 //!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
 //!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     nbins - The given bin width.        @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
 //!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
 
 	int i       = 0;
@@ -40,7 +39,7 @@ MC_TARGET_FUNC double mc_histce1xn(int npts, int nbins, int b, const int * h)
 //!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
 //!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
 //!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     nbins - The given bin width.        @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
 //!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
 
 	int i       = 0;
@@ -61,7 +60,7 @@ MC_TARGET_FUNC long double mc_histce1xnl(int npts, int nbins, int b, const int *
 //!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
 //!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
 //!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     nbins - The given bin width.        @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
 //!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
 
 	int i         = 0;

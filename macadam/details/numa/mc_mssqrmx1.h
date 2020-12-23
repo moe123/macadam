@@ -15,7 +15,7 @@
 
 #pragma mark - mc_mssqrmx1 -
 
-MC_TARGET_FUNC void mc_mssqrmx1f(int m, int n, int j, const float * a, int b, float * mean, float * sumsq, float * scale)
+MC_TARGET_FUNC void mc_mssqrmx1f(const int m, const int n, const int j, const float * a, int b, float * mean, float * sumsq, float * scale)
 {
 	int i;
 	float t;
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mssqrmx1f(int m, int n, int j, const float * a, int b, fl
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqrmx1ff(int m, int n, int j, const float * a, int b, double * mean, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_mssqrmx1ff(const int m, const int n, const int j, const float * a, int b, double * mean, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -71,7 +71,7 @@ MC_TARGET_FUNC void mc_mssqrmx1ff(int m, int n, int j, const float * a, int b, d
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqrmx1(int m, int n, int j, const double * a, int b, double * mean, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_mssqrmx1(const int m, const int n, const int j, const double * a, int b, double * mean, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -99,7 +99,7 @@ MC_TARGET_FUNC void mc_mssqrmx1(int m, int n, int j, const double * a, int b, do
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqrmx1l(int m, int n, int j, const long double * a, int b, long double * mean, long double * sumsq, long double * scale)
+MC_TARGET_FUNC void mc_mssqrmx1l(const int m, const int n, const int j, const long double * a, int b, long double * mean, long double * sumsq, long double * scale)
 {
 	int i;
 	long double t;

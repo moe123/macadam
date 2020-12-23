@@ -13,7 +13,7 @@
 
 #pragma mark - mc_magicnxn -
 
-MC_TARGET_FUNC int mc_magicnxnf(int n, float * a)
+MC_TARGET_FUNC int mc_magicnxnf(const int n, float * a)
 {
 	int i, j, k, ki, kj;
 	int r, l;
@@ -106,7 +106,7 @@ MC_TARGET_FUNC int mc_magicnxnf(int n, float * a)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_magicnxn(int n, double * a)
+MC_TARGET_FUNC int mc_magicnxn(const int n, double * a)
 {
 	int i, j, k, ki, kj;
 	int r, l;
@@ -199,7 +199,7 @@ MC_TARGET_FUNC int mc_magicnxn(int n, double * a)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_magicnxnl(int n, long double * a)
+MC_TARGET_FUNC int mc_magicnxnl(const int n, long double * a)
 {
 	int i, j, k, ki, kj;
 	int r, l;

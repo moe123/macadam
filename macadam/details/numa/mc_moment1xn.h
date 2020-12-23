@@ -15,7 +15,7 @@
 
 #pragma mark - mc_moment1xn -
 
-MC_TARGET_FUNC void mc_moment1xnf(int n, const float * x, float * m1, float * m2, float * m3, float * m4, float * skewness, float * kurtosis)
+MC_TARGET_FUNC void mc_moment1xnf(const int n, const float * x, float * m1, float * m2, float * m3, float * m4, float * skewness, float * kurtosis)
 {
 	float q, d, scale, sumsq;
 	int i = 1;
@@ -46,7 +46,7 @@ MC_TARGET_FUNC void mc_moment1xnf(int n, const float * x, float * m1, float * m2
 	}
 }
 
-MC_TARGET_FUNC void mc_moment1xnff(int n, const float * x, double * m1, double * m2, double * m3, double * m4, double * skewness, double * kurtosis)
+MC_TARGET_FUNC void mc_moment1xnff(const int n, const float * x, double * m1, double * m2, double * m3, double * m4, double * skewness, double * kurtosis)
 {
 	double q, d, scale, sumsq;
 	int i = 1;
@@ -77,7 +77,7 @@ MC_TARGET_FUNC void mc_moment1xnff(int n, const float * x, double * m1, double *
 	}
 }
 
-MC_TARGET_FUNC void mc_moment1xn(int n, const double * x, double * m1, double * m2, double * m3, double * m4, double * skewness, double * kurtosis)
+MC_TARGET_FUNC void mc_moment1xn(const int n, const double * x, double * m1, double * m2, double * m3, double * m4, double * skewness, double * kurtosis)
 {
 	double q, d, scale, sumsq;
 	int i = 1;
@@ -108,7 +108,7 @@ MC_TARGET_FUNC void mc_moment1xn(int n, const double * x, double * m1, double * 
 	}
 }
 
-MC_TARGET_FUNC void mc_moment1xnl(int n, const long double * x, long double * m1, long double * m2, long double * m3, long double * m4, long double * skewness, long double * kurtosis)
+MC_TARGET_FUNC void mc_moment1xnl(const int n, const long double * x, long double * m1, long double * m2, long double * m3, long double * m4, long double * skewness, long double * kurtosis)
 {
 	long double q, d, scale, sumsq;
 	int i = 1;

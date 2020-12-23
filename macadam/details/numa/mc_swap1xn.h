@@ -14,7 +14,7 @@
 
 #pragma mark - mc_swap1xn -
 
-MC_TARGET_FUNC void mc_swap1xnf(int n, float * restrict x, float * restrict y)
+MC_TARGET_FUNC void mc_swap1xnf(const int n, float * restrict x, float * restrict y)
 {
 	int i = 0;
 	float w;
@@ -25,7 +25,7 @@ MC_TARGET_FUNC void mc_swap1xnf(int n, float * restrict x, float * restrict y)
 	}
 }
 
-MC_TARGET_FUNC void mc_swap1xnfd(int n, float * restrict x, double * restrict y)
+MC_TARGET_FUNC void mc_swap1xnfd(const int n, float * restrict x, double * restrict y)
 {
 	int i = 0;
 	double w, xi, yi;
@@ -40,7 +40,7 @@ MC_TARGET_FUNC void mc_swap1xnfd(int n, float * restrict x, double * restrict y)
 	}
 }
 
-MC_TARGET_FUNC void mc_swap1xndf(int n, double * restrict x, float * restrict y)
+MC_TARGET_FUNC void mc_swap1xndf(const int n, double * restrict x, float * restrict y)
 {
 	int i = 0;
 	double w, xi, yi;
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_swap1xndf(int n, double * restrict x, float * restrict y)
 	}
 }
 
-MC_TARGET_FUNC void mc_swap1xn(int n, double * restrict x, double * restrict y)
+MC_TARGET_FUNC void mc_swap1xn(const int n, double * restrict x, double * restrict y)
 {
 	int i = 0;
 	double w;
@@ -66,7 +66,7 @@ MC_TARGET_FUNC void mc_swap1xn(int n, double * restrict x, double * restrict y)
 	}
 }
 
-MC_TARGET_FUNC void mc_swap1xnl(int n, long double * restrict x, long double * restrict y)
+MC_TARGET_FUNC void mc_swap1xnl(const int n, long double * restrict x, long double * restrict y)
 {
 	int i = 0;
 	long double w;

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mean1xn -
 
-MC_TARGET_FUNC float mc_mean1xnf(int n, const float * x, int b, int f)
+MC_TARGET_FUNC float mc_mean1xnf(const int n, const float * x, int b, int f)
 {
 	float s = 0.0f;
 	if (n > 0) {
@@ -23,7 +23,7 @@ MC_TARGET_FUNC float mc_mean1xnf(int n, const float * x, int b, int f)
 	return s;
 }
 
-MC_TARGET_FUNC double mc_mean1xnff(int n, const float * x, int b, int f)
+MC_TARGET_FUNC double mc_mean1xnff(const int n, const float * x, int b, int f)
 {
 	double s = 0.0;
 	if (n > 0) {
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_mean1xnff(int n, const float * x, int b, int f)
 	return s;
 }
 
-MC_TARGET_FUNC double mc_mean1xn(int n, const double * x, int b, int f)
+MC_TARGET_FUNC double mc_mean1xn(const int n, const double * x, int b, int f)
 {
 	double s = 0.0;
 	if (n > 0) {
@@ -43,7 +43,7 @@ MC_TARGET_FUNC double mc_mean1xn(int n, const double * x, int b, int f)
 	return s;
 }
 
-MC_TARGET_FUNC long double mc_mean1xnl(int n, const long double * x, int b, int f)
+MC_TARGET_FUNC long double mc_mean1xnl(const int n, const long double * x, int b, int f)
 {
 	long double s = 0.0L;
 	if (n > 0) {

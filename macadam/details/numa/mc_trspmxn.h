@@ -13,7 +13,7 @@
 
 #pragma mark - mc_trspmxn -
 
-MC_TARGET_FUNC void mc_trspmxnf(int m, int n, float * at, const float * a)
+MC_TARGET_FUNC void mc_trspmxnf(const int m, const int n, float * at, const float * a)
 {
 //!# Returning transpose of A.
 	if (a == at) {
@@ -26,7 +26,7 @@ MC_TARGET_FUNC void mc_trspmxnf(int m, int n, float * at, const float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_trspmxn(int m, int n, double * at, const double * a)
+MC_TARGET_FUNC void mc_trspmxn(const int m, const int n, double * at, const double * a)
 {
 //!# Returning transpose of A.
 	if (a == at) {
@@ -39,7 +39,7 @@ MC_TARGET_FUNC void mc_trspmxn(int m, int n, double * at, const double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_trspmxnl(int m, int n, long double * at, const long double * a)
+MC_TARGET_FUNC void mc_trspmxnl(const int m, const int n, long double * at, const long double * a)
 {
 //!# Returning transpose of A.
 	if (a == at) {

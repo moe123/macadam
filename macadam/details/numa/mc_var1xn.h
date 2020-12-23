@@ -14,7 +14,7 @@
 
 #pragma mark - mc_var1xn -
 
-MC_TARGET_FUNC void mc_var1xnf(int n, const float * x, int b, float * var)
+MC_TARGET_FUNC void mc_var1xnf(const int n, const float * x, int b, float * var)
 {
 	float mean, sumsq, scale;
 
@@ -25,7 +25,7 @@ MC_TARGET_FUNC void mc_var1xnf(int n, const float * x, int b, float * var)
 	}
 }
 
-MC_TARGET_FUNC void mc_var1xnff(int n, const float * x, int b, double * var)
+MC_TARGET_FUNC void mc_var1xnff(const int n, const float * x, int b, double * var)
 {
 	double mean, sumsq, scale;
 
@@ -36,7 +36,7 @@ MC_TARGET_FUNC void mc_var1xnff(int n, const float * x, int b, double * var)
 	}
 }
 
-MC_TARGET_FUNC void mc_var1xn(int n, const double * x, int b, double * var)
+MC_TARGET_FUNC void mc_var1xn(const int n, const double * x, int b, double * var)
 {
 	double mean, sumsq, scale;
 
@@ -47,7 +47,7 @@ MC_TARGET_FUNC void mc_var1xn(int n, const double * x, int b, double * var)
 	}
 }
 
-MC_TARGET_FUNC void mc_var1xnl(int n, const long double * x, int b, long double * var)
+MC_TARGET_FUNC void mc_var1xnl(const int n, const long double * x, int b, long double * var)
 {
 	long double mean, sumsq, scale;
 

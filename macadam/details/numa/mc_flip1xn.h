@@ -14,7 +14,7 @@
 
 #pragma mark - mc_flip1xn -
 
-MC_TARGET_FUNC void mc_flip1xnf(int n, float * y, const float * x)
+MC_TARGET_FUNC void mc_flip1xnf(const int n, float * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n.
 //!# Y and X may be the same. Reversing order of elements
@@ -32,7 +32,7 @@ MC_TARGET_FUNC void mc_flip1xnf(int n, float * y, const float * x)
 	}
 }
 
-MC_TARGET_FUNC void mc_flip1xnff(int n, double * y, const float * x)
+MC_TARGET_FUNC void mc_flip1xnff(const int n, double * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n.
 //!# Y and X may be the same. Reversing order of elements
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_flip1xnff(int n, double * y, const float * x)
 	}
 }
 
-MC_TARGET_FUNC void mc_flip1xn(int n, double * y, const double * x)
+MC_TARGET_FUNC void mc_flip1xn(const int n, double * y, const double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n.
 //!# Y and X may be the same. Reversing order of elements
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_flip1xn(int n, double * y, const double * x)
 	}
 }
 
-MC_TARGET_FUNC void mc_flip1xnl(int n, long double * y, const long double * x)
+MC_TARGET_FUNC void mc_flip1xnl(const int n, long double * y, const long double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n.
 //!# Y and X may be the same. Reversing order of elements

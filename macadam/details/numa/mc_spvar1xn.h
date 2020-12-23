@@ -14,7 +14,7 @@
 
 #pragma mark - mc_spvar1xn -
 
-MC_TARGET_FUNC float mc_spvar1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_spvar1xnf(const int n, const float * x)
 {
 //!# Returns the sample variance of vector X.
 	float mean, sumsq, scale;
@@ -25,7 +25,7 @@ MC_TARGET_FUNC float mc_spvar1xnf(int n, const float * x)
 	return mc_raise2f(scale) * (sumsq / mc_cast_expr(float, n - 1));
 }
 
-MC_TARGET_FUNC double mc_spvar1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_spvar1xnff(const int n, const float * x)
 {
 //!# Returns the sample variance of vector X.
 	double mean, sumsq, scale;
@@ -36,7 +36,7 @@ MC_TARGET_FUNC double mc_spvar1xnff(int n, const float * x)
 	return mc_raise2(scale) * (sumsq / mc_cast_expr(double, n - 1));
 }
 
-MC_TARGET_FUNC double mc_spvar1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_spvar1xn(const int n, const double * x)
 {
 //!# Returns the sample variance of vector X.
 	double mean, sumsq, scale;
@@ -47,7 +47,7 @@ MC_TARGET_FUNC double mc_spvar1xn(int n, const double * x)
 	return mc_raise2(scale) * (sumsq / mc_cast_expr(double, n - 1));
 }
 
-MC_TARGET_FUNC long double mc_spvar1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_spvar1xnl(const int n, const long double * x)
 {
 //!# Returns the sample variance of vector X.
 	long double mean, sumsq, scale;

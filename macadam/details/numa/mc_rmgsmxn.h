@@ -13,7 +13,7 @@
 
 #pragma mark - mc_rmgsmxn -
 
-MC_TARGET_FUNC int mc_rmgsmxnf(int m, int n, const float * a, float * q, float * restrict r, float * restrict w, int * pvi)
+MC_TARGET_FUNC int mc_rmgsmxnf(const int m, const int n, const float * a, float * q, float * restrict r, float * restrict w, int * pvi)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n <= m.
 //!# A and Q may be the same. Performing a QR decomposition using
@@ -21,7 +21,7 @@ MC_TARGET_FUNC int mc_rmgsmxnf(int m, int n, const float * a, float * q, float *
 	return mc_orthrmxnf(m, n, a, MCLIMITS_TINYF, q, r, w, pvi);
 }
 
-MC_TARGET_FUNC int mc_rmgsmxnff(int m, int n, const float * a, double * q, double * restrict r, double * restrict w, int * pvi)
+MC_TARGET_FUNC int mc_rmgsmxnff(const int m, const int n, const float * a, double * q, double * restrict r, double * restrict w, int * pvi)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n <= m.
 //!# Performing a QR decomposition using Recursive Modified Gram-Schmidt
@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_rmgsmxnff(int m, int n, const float * a, double * q, doubl
 	return mc_orthrmxnff(m, n, a, MCLIMITS_TINYF, q, r, w, pvi);
 }
 
-MC_TARGET_FUNC int mc_rmgsmxn(int m, int n, const double * a, double * q, double * restrict r, double * restrict w, int * pvi)
+MC_TARGET_FUNC int mc_rmgsmxn(const int m, const int n, const double * a, double * q, double * restrict r, double * restrict w, int * pvi)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n <= m.
 //!# A and Q may be the same. Performing a QR decomposition using
@@ -37,7 +37,7 @@ MC_TARGET_FUNC int mc_rmgsmxn(int m, int n, const double * a, double * q, double
 	return mc_orthrmxn(m, n, a, MCLIMITS_TINY, q, r, w, pvi);
 }
 
-MC_TARGET_FUNC int mc_rmgsmxnl(int m, int n, const long double * a, long double * q, long double * restrict r, long double * restrict w, int * pvi)
+MC_TARGET_FUNC int mc_rmgsmxnl(const int m, const int n, const long double * a, long double * q, long double * restrict r, long double * restrict w, int * pvi)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] where 1 < n <= m.
 //!# A and Q may be the same. Performing a QR decomposition using

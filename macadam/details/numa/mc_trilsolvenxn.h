@@ -13,7 +13,7 @@
 
 #pragma mark - MC_TRILSOLVENXN_H -
 
-MC_TARGET_FUNC int mc_trilsolvenxnf(int n, const float * l, const float * b, float * x)
+MC_TARGET_FUNC int mc_trilsolvenxnf(const int n, const float * l, const float * b, float * x)
 {
 //!# B and X may be the same. Solving the non-singular lower
 //!# triangular system Lx=b, where l[n x n], b[n x 1], and x[1 x n].
@@ -40,7 +40,7 @@ MC_TARGET_FUNC int mc_trilsolvenxnf(int n, const float * l, const float * b, flo
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_trilsolvenxnff(int n, const float * l, const float * b, double * x)
+MC_TARGET_FUNC int mc_trilsolvenxnff(const int n, const float * l, const float * b, double * x)
 {
 //!# Solving the non-singular lower triangular system
 //!# Lx=b, where l[n x n], b[n x 1], and x[1 x n].
@@ -66,7 +66,7 @@ MC_TARGET_FUNC int mc_trilsolvenxnff(int n, const float * l, const float * b, do
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_trilsolvenxn(int n, const double * l, const double * b, double * x)
+MC_TARGET_FUNC int mc_trilsolvenxn(const int n, const double * l, const double * b, double * x)
 {
 //!# B and X may be the same. Solving the non-singular lower
 //!# triangular system Lx=b, where l[n x n], b[n x 1], and x[1 x n].
@@ -94,7 +94,7 @@ MC_TARGET_FUNC int mc_trilsolvenxn(int n, const double * l, const double * b, do
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_trilsolvenxnl(int n, const long double * l, const long double * b, long double * x)
+MC_TARGET_FUNC int mc_trilsolvenxnl(const int n, const long double * l, const long double * b, long double * x)
 {
 //!# B and X may be the same. Solving the non-singular lower
 //!# triangular system Lx=b, where l[n x n], b[n x 1], and x[1 x n].

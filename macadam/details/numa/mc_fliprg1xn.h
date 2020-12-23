@@ -14,7 +14,7 @@
 
 #pragma mark - mc_fliprg1xn -
 
-MC_TARGET_FUNC void mc_fliprg1xnf(int n, int p, int q, float * y, const float * x)
+MC_TARGET_FUNC void mc_fliprg1xnf(const int n, int p, int q, float * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Reversing order of elements in vector X and storing the result
@@ -34,7 +34,7 @@ MC_TARGET_FUNC void mc_fliprg1xnf(int n, int p, int q, float * y, const float * 
 	}
 }
 
-MC_TARGET_FUNC void mc_fliprg1xnff(int n, int p, int q, double * y, const float * x)
+MC_TARGET_FUNC void mc_fliprg1xnff(const int n, int p, int q, double * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Reversing order of elements in
 //!# vector X and storing the result into vector Y within p and q range.
@@ -46,7 +46,7 @@ MC_TARGET_FUNC void mc_fliprg1xnff(int n, int p, int q, double * y, const float 
 	}
 }
 
-MC_TARGET_FUNC void mc_fliprg1xn(int n, int p, int q, double * y, const double * x)
+MC_TARGET_FUNC void mc_fliprg1xn(const int n, int p, int q, double * y, const double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Reversing order of elements in vector X and storing the result
@@ -66,7 +66,7 @@ MC_TARGET_FUNC void mc_fliprg1xn(int n, int p, int q, double * y, const double *
 	}
 }
 
-MC_TARGET_FUNC void mc_fliprg1xnl(int n, int p, int q, long double * y, const long double * x)
+MC_TARGET_FUNC void mc_fliprg1xnl(const int n, int p, int q, long double * y, const long double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Reversing order of elements in vector X and storing the result

@@ -17,7 +17,7 @@
 
 #pragma mark - mc_svdgrmxn -
 
-MC_TARGET_FUNC int mc_svdgrmxnf(int m, int n, const float * a, float * w, int withu, int withv, int sorted, float eps, float tol, float * u, float * restrict s, float * restrict v)
+MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float * w, int withu, int withv, int sorted, float eps, float tol, float * u, float * restrict s, float * restrict v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -348,7 +348,7 @@ l40:
 	return r;
 }
 
-MC_TARGET_FUNC int mc_svdgrmxnff(int m, int n, const float * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * restrict s, double * restrict v)
+MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * restrict s, double * restrict v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -677,7 +677,7 @@ l40:
 	return r;
 }
 
-MC_TARGET_FUNC int mc_svdgrmxn(int m, int n, const double * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * restrict s, double * restrict v)
+MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * restrict s, double * restrict v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -1008,7 +1008,7 @@ l40:
 	return r;
 }
 
-MC_TARGET_FUNC int mc_svdgrmxnl(int m, int n, const long double * a, long double * w, int withu, int withv, int sorted, long double eps, long double tol, long double * u, long double * restrict s, long double * restrict v)
+MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a, long double * w, int withu, int withv, int sorted, long double eps, long double tol, long double * u, long double * restrict s, long double * restrict v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic

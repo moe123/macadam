@@ -14,7 +14,7 @@
 
 #pragma mark - mc_l2norm1xn -
 
-MC_TARGET_FUNC float mc_l2norm1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_l2norm1xnf(const int n, const float * x)
 {
 	float sumsq = 0.0f, scale;
 	if (n > 0) {
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_l2norm1xnf(int n, const float * x)
 	return sumsq;
 }
 
-MC_TARGET_FUNC double mc_l2norm1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_l2norm1xnff(const int n, const float * x)
 {
 	double sumsq = 0.0, scale;
 	if (n > 0) {
@@ -34,7 +34,7 @@ MC_TARGET_FUNC double mc_l2norm1xnff(int n, const float * x)
 	return sumsq;
 }
 
-MC_TARGET_FUNC double mc_l2norm1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_l2norm1xn(const int n, const double * x)
 {
 	double sumsq = 0.0, scale;
 	if (n > 0) {
@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_l2norm1xn(int n, const double * x)
 	return sumsq;
 }
 
-MC_TARGET_FUNC long double mc_l2norm1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_l2norm1xnl(const int n, const long double * x)
 {
 	long double sumsq = 0.0L, scale;
 	if (n > 0) {

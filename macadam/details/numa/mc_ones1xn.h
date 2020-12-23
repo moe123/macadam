@@ -13,7 +13,7 @@
 
 #pragma mark - mc_ones1xn -
 
-MC_TARGET_FUNC void mc_ones1xnf(int n, float * x)
+MC_TARGET_FUNC void mc_ones1xnf(const int n, float * x)
 {
 #	if MC_TARGET_CPP98
 	::std::fill_n(x, n, 1.0f);
@@ -25,7 +25,7 @@ MC_TARGET_FUNC void mc_ones1xnf(int n, float * x)
 #	endif
 }
 
-MC_TARGET_FUNC void mc_ones1xn(int n, double * x)
+MC_TARGET_FUNC void mc_ones1xn(const int n, double * x)
 {
 #	if MC_TARGET_CPP98
 	::std::fill_n(x, n, 1.0);
@@ -37,7 +37,7 @@ MC_TARGET_FUNC void mc_ones1xn(int n, double * x)
 #	endif
 }
 
-MC_TARGET_FUNC void mc_ones1xnl(int n, long double * x)
+MC_TARGET_FUNC void mc_ones1xnl(const int n, long double * x)
 {
 #	if MC_TARGET_CPP98
 	::std::fill_n(x, n, 1.0L);

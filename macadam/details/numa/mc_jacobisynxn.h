@@ -19,7 +19,7 @@
 
 #pragma mark - mc_jacobisynxn -
 
-MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e, float * v)
+MC_TARGET_FUNC int mc_jacobisynxnf(const int n, const float * a, float tol, float * e, float * v)
 {
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# A and E may be the same. Computing eigenvalues and right-hand
@@ -121,7 +121,7 @@ MC_TARGET_FUNC int mc_jacobisynxnf(int n, const float * a, float tol, float * e,
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * e, double * v)
+MC_TARGET_FUNC int mc_jacobisynxnff(const int n, const float * a, float tol, double * e, double * v)
 {
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# Computing eigenvalues and right-hand side eigenvectors of a
@@ -223,7 +223,7 @@ MC_TARGET_FUNC int mc_jacobisynxnff(int n, const float * a, float tol, double * 
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * e, double * v)
+MC_TARGET_FUNC int mc_jacobisynxn(const int n, const double * a, double tol, double * e, double * v)
 {
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# A and E may be the same. Computing eigenvalues and right-hand
@@ -326,7 +326,7 @@ MC_TARGET_FUNC int mc_jacobisynxn(int n, const double * a, double tol, double * 
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_jacobisynxnl(int n, const long double * a, long double tol, long double * e, long double * v)
+MC_TARGET_FUNC int mc_jacobisynxnl(const int n, const long double * a, long double tol, long double * e, long double * v)
 {
 //!# Requires a[n x n], e[n x n] and v[n x n] if !null where 1 < n.
 //!# A and E may be the same. Computing eigenvalues and right-hand

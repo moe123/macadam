@@ -13,7 +13,7 @@
 
 #pragma mark - mc_argminmx1 -
 
-MC_TARGET_FUNC int mc_argminmx1f(int m, int n, int j, const float * a)
+MC_TARGET_FUNC int mc_argminmx1f(const int m, const int n, const int j, const float * a)
 {
 	int p;
 	float min;
@@ -21,7 +21,7 @@ MC_TARGET_FUNC int mc_argminmx1f(int m, int n, int j, const float * a)
 	return p;
 }
 
-MC_TARGET_FUNC int mc_argminmx1(int m, int n, int j, const double * a)
+MC_TARGET_FUNC int mc_argminmx1(const int m, const int n, const int j, const double * a)
 {
 	int p;
 	double min;
@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_argminmx1(int m, int n, int j, const double * a)
 	return p;
 }
 
-MC_TARGET_FUNC int mc_argminmx1l(int m, int n, int j, const long double * a)
+MC_TARGET_FUNC int mc_argminmx1l(const int m, const int n, const int j, const long double * a)
 {
 	int p;
 	long double min;

@@ -14,17 +14,17 @@
 
 #pragma mark - mc_zeros1xn -
 
-MC_TARGET_FUNC void mc_zeros1xnf(int n, float * x)
+MC_TARGET_FUNC void mc_zeros1xnf(const int n, float * x)
 {
 	mc_base_memzero_type(float, n, x);
 }
 
-MC_TARGET_FUNC void mc_zeros1xn(int n, double * x)
+MC_TARGET_FUNC void mc_zeros1xn(const int n, double * x)
 {
 	mc_base_memzero_type(double, n, x);
 }
 
-MC_TARGET_FUNC void mc_zeros1xnl(int n, long double * x)
+MC_TARGET_FUNC void mc_zeros1xnl(const int n, long double * x)
 {
 	mc_base_memzero_type(long double, n, x);
 }

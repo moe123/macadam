@@ -14,7 +14,7 @@
 
 #pragma mark - mc_swapmx1 -
 
-MC_TARGET_FUNC void mc_swapmx1f(int m, int n, int p, int j, int k, float * a, float * b)
+MC_TARGET_FUNC void mc_swapmx1f(const int m, const int n, const int p, const int j, const int k, float * a, float * b)
 {
 //!# Requires a[m x n] and b[m x p].
 //!# A and B may be the same. Swapping columns Aj and Bk.
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_swapmx1f(int m, int n, int p, int j, int k, float * a, fl
 	}
 }
 
-MC_TARGET_FUNC void mc_swapmx1fd(int m, int n, int p, int j, int k, float * a, double * b)
+MC_TARGET_FUNC void mc_swapmx1fd(const int m, const int n, const int p, const int j, const int k, float * a, double * b)
 {
 //!# Requires a[m x n] and b[m x p].
 //!# Swapping columns Aj and Bk.
@@ -44,7 +44,7 @@ MC_TARGET_FUNC void mc_swapmx1fd(int m, int n, int p, int j, int k, float * a, d
 	}
 }
 
-MC_TARGET_FUNC void mc_swapmx1df(int m, int n, int p, int j, int k, double * a, float * b)
+MC_TARGET_FUNC void mc_swapmx1df(const int m, const int n, const int p, const int j, const int k, double * a, float * b)
 {
 //!# Requires a[m x n] and b[m x p].
 //!# Swapping columns Aj and Bk.
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_swapmx1df(int m, int n, int p, int j, int k, double * a, 
 	}
 }
 
-MC_TARGET_FUNC void mc_swapmx1(int m, int n, int p, int j, int k, double * a, double * b)
+MC_TARGET_FUNC void mc_swapmx1(const int m, const int n, const int p, const int j, const int k, double * a, double * b)
 {
 //!# Requires a[m x n] and b[m x p].
 //!# A and B may be the same. Swapping columns Aj and Bk.
@@ -74,7 +74,7 @@ MC_TARGET_FUNC void mc_swapmx1(int m, int n, int p, int j, int k, double * a, do
 	}
 }
 
-MC_TARGET_FUNC void mc_swapmx1l(int m, int n, int p, int j, int k, long double * a, long double * b)
+MC_TARGET_FUNC void mc_swapmx1l(const int m, const int n, const int p, const int j, const int k, long double * a, long double * b)
 {
 //!# Requires a[m x n] and b[m x p].
 //!# A and B may be the same. Swapping columns Aj and Bk.

@@ -14,7 +14,7 @@
 
 #pragma mark - mc_dotpmxn -
 
-MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, int p, float * restrict c, const float * a, const float * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxnf(const int m, const int n, const int p, float * restrict c, const float * a, const float * b, int d, int f)
 {
 //!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 //!# f=0 computing the dot product of each rows.
@@ -37,7 +37,7 @@ MC_TARGET_FUNC void mc_dotpmxnf(int m, int n, int p, float * restrict c, const f
 	}
 }
 
-MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, int p, double * restrict c, const float * a, const float * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxnff(const int m, const int n, const int p, double * restrict c, const float * a, const float * b, int d, int f)
 {
 //!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 //!# f=0 computing the dot product of each rows.
@@ -60,7 +60,7 @@ MC_TARGET_FUNC void mc_dotpmxnff(int m, int n, int p, double * restrict c, const
 	}
 }
 
-MC_TARGET_FUNC void mc_dotpmxn(int m, int n, int p, double * restrict c, const double * a, const double * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxn(const int m, const int n, const int p, double * restrict c, const double * a, const double * b, int d, int f)
 {
 //!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 //!# f=0 computing the dot product of each rows.
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_dotpmxn(int m, int n, int p, double * restrict c, const d
 	}
 }
 
-MC_TARGET_FUNC void mc_dotpmxnl(int m, int n, int p, long double * restrict c, const long double * a, const long double * b, int d, int f)
+MC_TARGET_FUNC void mc_dotpmxnl(const int m, const int n, const int p, long double * restrict c, const long double * a, const long double * b, int d, int f)
 {
 //!# Returns dotp of A and B such as c[1 x q]=sum(a_ij.*b_ij) where q=m when d=0 and q=n when d=1 and n <= p.
 	int i = 0;

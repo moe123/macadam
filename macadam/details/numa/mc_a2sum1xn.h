@@ -14,7 +14,7 @@
 
 #pragma mark - mc_a2sum1xn -
 
-MC_TARGET_FUNC float mc_a2sum1xnf(int n, const float * x)
+MC_TARGET_FUNC float mc_a2sum1xnf(const int n, const float * x)
 {
 	int i   = 1;
 	float e = 0.0f, s = 0.0f, y;
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_a2sum1xnf(int n, const float * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_a2sum1xnff(int n, const float * x)
+MC_TARGET_FUNC double mc_a2sum1xnff(const int n, const float * x)
 {
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
@@ -42,7 +42,7 @@ MC_TARGET_FUNC double mc_a2sum1xnff(int n, const float * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_a2sum1xn(int n, const double * x)
+MC_TARGET_FUNC double mc_a2sum1xn(const int n, const double * x)
 {
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
@@ -56,7 +56,7 @@ MC_TARGET_FUNC double mc_a2sum1xn(int n, const double * x)
 	return s + e;
 }
 
-MC_TARGET_FUNC long double mc_a2sum1xnl(int n, const long double * x)
+MC_TARGET_FUNC long double mc_a2sum1xnl(const int n, const long double * x)
 {
 	int i         = 1;
 	long double e = 0.0L, s = 0.0L, y;

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_dotp1xn -
 
-MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
+MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const float cs = mc_cast_expr(float, 4096 + 1);
@@ -78,7 +78,7 @@ MC_TARGET_FUNC float mc_dotp1xnf(int n, const float * x, const float * y, int f)
 	return w + s;
 }
 
-MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int f)
+MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
@@ -143,7 +143,7 @@ MC_TARGET_FUNC double mc_dotp1xnff(int n, const float * x, const float * y, int 
 	return w + s;
 }
 
-MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int f)
+MC_TARGET_FUNC double mc_dotp1xn(const int n, const double * x, const double * y, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
@@ -208,7 +208,7 @@ MC_TARGET_FUNC double mc_dotp1xn(int n, const double * x, const double * y, int 
 	return w + s;
 }
 
-MC_TARGET_FUNC long double mc_dotp1xnl(int n, const long double * x, const long double * y, int f)
+MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const long double * y, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE

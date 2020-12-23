@@ -13,7 +13,7 @@
 
 #pragma mark - mc_unitmx1 -
 
-MC_TARGET_FUNC void mc_unitmx1f(int m, int n, int j, float * a)
+MC_TARGET_FUNC void mc_unitmx1f(const int m, const int n, const int j, float * a)
 {
 	const float norm = mc_l2normmx1f(m, n, j, a);
 	if (norm != 0.0f) {
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_unitmx1f(int m, int n, int j, float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_unitmx1(int m, int n, int j, double * a)
+MC_TARGET_FUNC void mc_unitmx1(const int m, const int n, const int j, double * a)
 {
 	const double norm = mc_l2normmx1(m, n, j, a);
 	if (norm != 0.0) {
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_unitmx1(int m, int n, int j, double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_unitmx1l(int m, int n, int j, long double * a)
+MC_TARGET_FUNC void mc_unitmx1l(const int m, const int n, const int j, long double * a)
 {
 	const long double norm = mc_l2normmx1l(m, n, j, a);
 	if (norm != 0.0L) {

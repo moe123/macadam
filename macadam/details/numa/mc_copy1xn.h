@@ -14,12 +14,12 @@
 
 #pragma mark - mc_copy1xn -
 
-MC_TARGET_FUNC void mc_copy1xnf(int n, float * y, const float * x)
+MC_TARGET_FUNC void mc_copy1xnf(const int n, float * y, const float * x)
 {
 	mc_base_memcpy_type(float, n, y, x);
 }
 
-MC_TARGET_FUNC void mc_copy1xnff(int n, double * y, const float * x)
+MC_TARGET_FUNC void mc_copy1xnff(const int n, double * y, const float * x)
 {
 	int i = 0;
 	for (; i < n; i++) {
@@ -27,12 +27,12 @@ MC_TARGET_FUNC void mc_copy1xnff(int n, double * y, const float * x)
 	}
 }
 
-MC_TARGET_FUNC void mc_copy1xn(int n, double * y, const double * x)
+MC_TARGET_FUNC void mc_copy1xn(const int n, double * y, const double * x)
 {
 	mc_base_memcpy_type(double, n, y, x);
 }
 
-MC_TARGET_FUNC void mc_copy1xnl(int n, long double * y, const long double * x)
+MC_TARGET_FUNC void mc_copy1xnl(const int n, long double * y, const long double * x)
 {
 	mc_base_memcpy_type(long double, n, y, x);
 }

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_trsinxn -
 
-MC_TARGET_FUNC void mc_trsinxnf(int n, float * a)
+MC_TARGET_FUNC void mc_trsinxnf(const int n, float * a)
 {
 //!# Returning transpose of A (in-place).
 	int i = 0, j;
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_trsinxnf(int n, float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_trsinxn(int n, double * a)
+MC_TARGET_FUNC void mc_trsinxn(const int n, double * a)
 {
 //!# Returning transpose of A (in-place).
 	int i = 0, j;
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_trsinxn(int n, double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_trsinxnl(int n, long double * a)
+MC_TARGET_FUNC void mc_trsinxnl(const int n, long double * a)
 {
 //!# Returning transpose of A (in-place).
 	int i = 0, j;

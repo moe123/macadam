@@ -13,7 +13,7 @@
 
 #pragma mark - mc_minormxn -
 
-MC_TARGET_FUNC void mc_minormxnf(int m, int n, int p, float * restrict b, const float * a)
+MC_TARGET_FUNC void mc_minormxnf(const int m, const int n, const int p, float * restrict b, const float * a)
 {
 	int i = 0, j;
 	for (; i < p; i++) {
@@ -26,7 +26,7 @@ MC_TARGET_FUNC void mc_minormxnf(int m, int n, int p, float * restrict b, const 
 	}
 }
 
-MC_TARGET_FUNC void mc_minormxnff(int m, int n, int p, double * b, const float * a)
+MC_TARGET_FUNC void mc_minormxnff(const int m, const int n, const int p, double * b, const float * a)
 {
 	int i = 0, j;
 	for (; i < p; i++) {
@@ -39,7 +39,7 @@ MC_TARGET_FUNC void mc_minormxnff(int m, int n, int p, double * b, const float *
 	}
 }
 
-MC_TARGET_FUNC void mc_minormxn(int m, int n, int p, double * b, const double * a)
+MC_TARGET_FUNC void mc_minormxn(const int m, const int n, const int p, double * b, const double * a)
 {
 	int i = 0, j;
 	for (; i < p; i++) {
@@ -52,7 +52,7 @@ MC_TARGET_FUNC void mc_minormxn(int m, int n, int p, double * b, const double * 
 	}
 }
 
-MC_TARGET_FUNC void mc_minormxnl(int m, int n, int p, long double * restrict b, const long double * a)
+MC_TARGET_FUNC void mc_minormxnl(const int m, const int n, const int p, long double * restrict b, const long double * a)
 {
 	int i = 0, j;
 	for (; i < p; i++) {

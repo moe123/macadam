@@ -13,22 +13,22 @@
 
 #pragma mark - mc_frobnormnxn -
 
-MC_TARGET_FUNC float mc_frobnormnxnf(int n, const float * a)
+MC_TARGET_FUNC float mc_frobnormnxnf(const int n, const float * a)
 {
 	return mc_frobnormmxnf(n, n, a);
 }
 
-MC_TARGET_FUNC double mc_frobnormnxnff(int n, const float * a)
+MC_TARGET_FUNC double mc_frobnormnxnff(const int n, const float * a)
 {
 	return mc_frobnormmxnff(n, n, a);
 }
 
-MC_TARGET_FUNC double mc_frobnormnxn(int n, const double * a)
+MC_TARGET_FUNC double mc_frobnormnxn(const int n, const double * a)
 {
 	return mc_frobnormmxn(n, n, a);
 }
 
-MC_TARGET_FUNC long double mc_frobnormnxnl(int n, const long double * a)
+MC_TARGET_FUNC long double mc_frobnormnxnl(const int n, const long double * a)
 {
 	return mc_frobnormmxnl(n, n, a);
 }

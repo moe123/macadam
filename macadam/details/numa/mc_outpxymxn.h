@@ -13,7 +13,7 @@
 
 #pragma mark - mc_outpxymxn -
 
-MC_TARGET_FUNC void mc_outpxymxnf(int m, int n, float * a, const float * x, const float * y)
+MC_TARGET_FUNC void mc_outpxymxnf(const int m, const int n, float * a, const float * x, const float * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_outpxymxnf(int m, int n, float * a, const float * x, cons
 #	endif
 }
 
-MC_TARGET_FUNC void mc_outpxymxnff(int m, int n, double * a, const float * x, const float * y)
+MC_TARGET_FUNC void mc_outpxymxnff(const int m, const int n, double * a, const float * x, const float * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -56,7 +56,7 @@ MC_TARGET_FUNC void mc_outpxymxnff(int m, int n, double * a, const float * x, co
 	}
 }
 
-MC_TARGET_FUNC void mc_outpxymxnfd(int m, int n, double * a, const float * x, const double * y)
+MC_TARGET_FUNC void mc_outpxymxnfd(const int m, const int n, double * a, const float * x, const double * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -71,7 +71,7 @@ MC_TARGET_FUNC void mc_outpxymxnfd(int m, int n, double * a, const float * x, co
 	}
 }
 
-MC_TARGET_FUNC void mc_outpxymxndf(int m, int n, double * a, const double * x, const float * y)
+MC_TARGET_FUNC void mc_outpxymxndf(const int m, const int n, double * a, const double * x, const float * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -86,7 +86,7 @@ MC_TARGET_FUNC void mc_outpxymxndf(int m, int n, double * a, const double * x, c
 	}
 }
 
-MC_TARGET_FUNC void mc_outpxymxn(int m, int n, double * a, const double * x, const double * y)
+MC_TARGET_FUNC void mc_outpxymxn(const int m, const int n, double * a, const double * x, const double * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.
@@ -114,7 +114,7 @@ MC_TARGET_FUNC void mc_outpxymxn(int m, int n, double * a, const double * x, con
 #	endif
 }
 
-MC_TARGET_FUNC void mc_outpxymxnl(int m, int n, long double * a, const long double * x, const long double * y)
+MC_TARGET_FUNC void mc_outpxymxnl(const int m, const int n, long double * a, const long double * x, const long double * y)
 {
 //!# Requires a[m x n], x[m x 1] and y[n x 1].
 //!# c=x*y' i.e outer product of two vectors.

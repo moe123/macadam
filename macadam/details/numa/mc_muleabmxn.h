@@ -13,7 +13,7 @@
 
 #pragma mark - mc_muleabmxn -
 
-MC_TARGET_FUNC void mc_muleabmxnf(int m, int n, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_muleabmxnf(const int m, const int n, float * restrict c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_muleabmxnf(int m, int n, float * restrict c, const float 
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxnff(int m, int n, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_muleabmxnff(const int m, const int n, double * restrict c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_muleabmxnff(int m, int n, double * restrict c, const floa
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxnfd(int m, int n, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_muleabmxnfd(const int m, const int n, double * restrict c, const float * a, const double * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_muleabmxnfd(int m, int n, double * restrict c, const floa
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxndf(int m, int n, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_muleabmxndf(const int m, const int n, double * restrict c, const double * a, const float * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -69,7 +69,7 @@ MC_TARGET_FUNC void mc_muleabmxndf(int m, int n, double * restrict c, const doub
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxn(int m, int n, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_muleabmxn(const int m, const int n, double * restrict c, const double * a, const double * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_muleabmxn(int m, int n, double * restrict c, const double
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxnl(int m, int n, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_muleabmxnl(const int m, const int n, long double * restrict c, const long double * a, const long double * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.

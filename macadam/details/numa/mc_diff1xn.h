@@ -13,7 +13,7 @@
 
 #pragma mark - mc_diff1xn -
 
-MC_TARGET_FUNC int mc_diff1xnf(int n, float * y, const float * x)
+MC_TARGET_FUNC int mc_diff1xnf(const int n, float * y, const float * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Y and X may be the same.
 //!# Calculating differences between adjacent elements of vector x.
@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_diff1xnf(int n, float * y, const float * x)
 	return n - 1;
 }
 
-MC_TARGET_FUNC int mc_diff1xnff(int n, double * y, const float * x)
+MC_TARGET_FUNC int mc_diff1xnff(const int n, double * y, const float * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Calculating differences
 //!# between adjacent elements of vector x. Returns the number of
@@ -37,7 +37,7 @@ MC_TARGET_FUNC int mc_diff1xnff(int n, double * y, const float * x)
 	return n - 1;
 }
 
-MC_TARGET_FUNC int mc_diff1xn(int n, double * y, const double * x)
+MC_TARGET_FUNC int mc_diff1xn(const int n, double * y, const double * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Y and X may be the same.
 //!# Calculating differences between adjacent elements of vector x.
@@ -49,7 +49,7 @@ MC_TARGET_FUNC int mc_diff1xn(int n, double * y, const double * x)
 	return n - 1;
 }
 
-MC_TARGET_FUNC int mc_diff1xnl(int n, long double * y, const long double * x)
+MC_TARGET_FUNC int mc_diff1xnl(const int n, long double * y, const long double * x)
 {
 //!# Requires y[n - 1] and x[n] where 1 < n. Y and X may be the same.
 //!# Calculating differences between adjacent elements of vector x.

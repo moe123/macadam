@@ -32,17 +32,17 @@
 
 #pragma mark - mc_argsort1xn -
 
-MC_TARGET_FUNC void mc_argsort1xnf(int n, const float * x, int * k, int f)
+MC_TARGET_FUNC void mc_argsort1xnf(const int n, const float * x, int * k, int f)
 {
 	mc_argsort1xn_type(int, n, x, k, f);
 }
 
-MC_TARGET_FUNC void mc_argsort1xn(int n, const double * x, int * k, int f)
+MC_TARGET_FUNC void mc_argsort1xn(const int n, const double * x, int * k, int f)
 {
 	mc_argsort1xn_type(int, n, x, k, f);
 }
 
-MC_TARGET_FUNC void mc_argsort1xnl(int n, const long double * x, int * k, int f)
+MC_TARGET_FUNC void mc_argsort1xnl(const int n, const long double * x, int * k, int f)
 {
 	mc_argsort1xn_type(int, n, x, k, f);
 }

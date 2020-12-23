@@ -13,7 +13,7 @@
 
 #pragma mark - mc_sytrizenxn -
 
-MC_TARGET_FUNC void mc_sytrizenxnf(int n, float * b, const float * a, int f)
+MC_TARGET_FUNC void mc_sytrizenxnf(const int n, float * b, const float * a, int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.
@@ -32,7 +32,7 @@ MC_TARGET_FUNC void mc_sytrizenxnf(int n, float * b, const float * a, int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_sytrizenxnff(int n, double * b, const float * a, int f)
+MC_TARGET_FUNC void mc_sytrizenxnff(const int n, double * b, const float * a, int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.
@@ -50,7 +50,7 @@ MC_TARGET_FUNC void mc_sytrizenxnff(int n, double * b, const float * a, int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_sytrizenxn(int n, double * b, const double * a, int f)
+MC_TARGET_FUNC void mc_sytrizenxn(const int n, double * b, const double * a, int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.
@@ -69,7 +69,7 @@ MC_TARGET_FUNC void mc_sytrizenxn(int n, double * b, const double * a, int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_sytrizenxnl(int n, long double * b, const long double * a, int f)
+MC_TARGET_FUNC void mc_sytrizenxnl(const int n, long double * b, const long double * a, int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.

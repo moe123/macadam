@@ -14,7 +14,7 @@
 
 #pragma mark - mc_flipmx1 -
 
-MC_TARGET_FUNC void mc_flipmx1f(int m, int n, int j, float * c, const float * a)
+MC_TARGET_FUNC void mc_flipmx1f(const int m, const int n, const int j, float * c, const float * a)
 {
 //!# Requires c[m x n] and a[m x n].
 //!# C and A may be the same. Reversing order of elements
@@ -32,7 +32,7 @@ MC_TARGET_FUNC void mc_flipmx1f(int m, int n, int j, float * c, const float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_flipmx1ff(int m, int n, int j, double * c, const float * a)
+MC_TARGET_FUNC void mc_flipmx1ff(const int m, const int n, const int j, double * c, const float * a)
 {
 //!# Requires c[n] and a[n].
 //!# Reversing order of elements in column vector a_:j
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_flipmx1ff(int m, int n, int j, double * c, const float * 
 	}
 }
 
-MC_TARGET_FUNC void mc_flipmx1(int m, int n, int j, double * c, const double * a)
+MC_TARGET_FUNC void mc_flipmx1(const int m, const int n, const int j, double * c, const double * a)
 {
 //!# Requires c[n] and a[n].
 //!# C and A may be the same. Reversing order of elements
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_flipmx1(int m, int n, int j, double * c, const double * a
 	}
 }
 
-MC_TARGET_FUNC void mc_flipmx1l(int m, int n, int j, long double * c, const long double * a)
+MC_TARGET_FUNC void mc_flipmx1l(const int m, const int n, const int j, long double * c, const long double * a)
 {
 //!# Requires c[n] and a[n].
 //!# C and A may be the same. Reversing order of elements

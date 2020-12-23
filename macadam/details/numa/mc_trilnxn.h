@@ -13,7 +13,7 @@
 
 #pragma mark - mc_trilnxn -
 
-MC_TARGET_FUNC void mc_trilnxnf(int n, float * restrict c, const float * a, int f)
+MC_TARGET_FUNC void mc_trilnxnf(const int n, float * restrict c, const float * a, int f)
 {
 //!# f=0: default behavior.
 //!# f=1: excluding diagonal.
@@ -47,7 +47,7 @@ MC_TARGET_FUNC void mc_trilnxnf(int n, float * restrict c, const float * a, int 
 	}
 }
 
-MC_TARGET_FUNC void mc_trilnxnff(int n, double * c, const float * a, int f)
+MC_TARGET_FUNC void mc_trilnxnff(const int n, double * c, const float * a, int f)
 {
 //!# f=0: default behavior.
 //!# f=1: excluding diagonal.
@@ -81,7 +81,7 @@ MC_TARGET_FUNC void mc_trilnxnff(int n, double * c, const float * a, int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_trilnxn(int n, double * restrict c, const double * a, int f)
+MC_TARGET_FUNC void mc_trilnxn(const int n, double * restrict c, const double * a, int f)
 {
 //!# f=0: default behavior.
 //!# f=1: excluding diagonal.
@@ -115,7 +115,7 @@ MC_TARGET_FUNC void mc_trilnxn(int n, double * restrict c, const double * a, int
 	}
 }
 
-MC_TARGET_FUNC void mc_trilnxnl(int n, long double * restrict c, const long double * a, int f)
+MC_TARGET_FUNC void mc_trilnxnl(const int n, long double * restrict c, const long double * a, int f)
 {
 //!# f=0: default behavior.
 //!# f=1: excluding diagonal.

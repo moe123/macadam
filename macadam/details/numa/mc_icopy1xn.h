@@ -14,7 +14,7 @@
 
 #pragma mark - mc_icopy1xn -
 
-MC_TARGET_FUNC void mc_icopy1xn(int n, int * y, const int * x)
+MC_TARGET_FUNC void mc_icopy1xn(const int n, int * y, const int * x)
 {
 	mc_base_memcpy_type(int, n, y, x);
 }

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_histcg1xn -
 
-MC_TARGET_FUNC int mc_histcg1xnf(int n, const float * x, float min, float max, int nbins, int * h)
+MC_TARGET_FUNC int mc_histcg1xnf(const int n, const float * x, float min, float max, int nbins, int * h)
 {
 //!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
@@ -47,7 +47,7 @@ MC_TARGET_FUNC int mc_histcg1xnf(int n, const float * x, float min, float max, i
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_histcg1xn(int n, const double * x, double min, double max, int nbins, int * h)
+MC_TARGET_FUNC int mc_histcg1xn(const int n, const double * x, double min, double max, int nbins, int * h)
 {
 //!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
@@ -81,7 +81,7 @@ MC_TARGET_FUNC int mc_histcg1xn(int n, const double * x, double min, double max,
 	return -1;
 }
 
-MC_TARGET_FUNC  int mc_histcg1xnl(int n, const long double * x, long double min, long double max, int nbins, int * h)
+MC_TARGET_FUNC  int mc_histcg1xnl(const int n, const long double * x, long double min, long double max, int nbins, int * h)
 {
 //!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_rescale1xn -
 
-MC_TARGET_FUNC void mc_rescale1xnf(int n, float * x, float a, float b)
+MC_TARGET_FUNC void mc_rescale1xnf(const int n, float * x, float a, float b)
 {
 	int i = 0;
 	float min, max, range;
@@ -26,7 +26,7 @@ MC_TARGET_FUNC void mc_rescale1xnf(int n, float * x, float a, float b)
 	}
 }
 
-MC_TARGET_FUNC void mc_rescale1xn(int n, double * x, double a, double b)
+MC_TARGET_FUNC void mc_rescale1xn(const int n, double * x, double a, double b)
 {
 	int i = 0;
 	double min, max, range;
@@ -39,7 +39,7 @@ MC_TARGET_FUNC void mc_rescale1xn(int n, double * x, double a, double b)
 	}
 }
 
-MC_TARGET_FUNC void mc_rescale1xnl(int n, long double * x, long double a, long double b)
+MC_TARGET_FUNC void mc_rescale1xnl(const int n, long double * x, long double a, long double b)
 {
 	int i = 0;
 	long double min, max, range;

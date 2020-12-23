@@ -13,7 +13,7 @@
 
 #pragma mark - mc_flipudmxn -
 
-MC_TARGET_FUNC void mc_flipudmxnf(int m, int n, float * c, const float * a)
+MC_TARGET_FUNC void mc_flipudmxnf(const int m, const int n, float * c, const float * a)
 {
 //!# Requires c[m x n] and a[m x n]. C and A may be the same. Reversing
 //!# order of elements in each column of A and storing the result into C
@@ -24,7 +24,7 @@ MC_TARGET_FUNC void mc_flipudmxnf(int m, int n, float * c, const float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_flipudmxnff(int m, int n, double * c, const float * a)
+MC_TARGET_FUNC void mc_flipudmxnff(const int m, const int n, double * c, const float * a)
 {
 //!# Requires c[m x n] and a[m x n]. Reversing order of elements in each
 //!# column of A and storing the result into C i.e returns A with its rows
@@ -35,7 +35,7 @@ MC_TARGET_FUNC void mc_flipudmxnff(int m, int n, double * c, const float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_flipudmxn(int m, int n, double * c, const double * a)
+MC_TARGET_FUNC void mc_flipudmxn(const int m, const int n, double * c, const double * a)
 {
 //!# Requires c[m x n] and a[m x n]. C and A may be the same. Reversing
 //!# order of elements in each column of A and storing the result into C
@@ -46,7 +46,7 @@ MC_TARGET_FUNC void mc_flipudmxn(int m, int n, double * c, const double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_flipudmxnl(int m, int n, long double * c, const long double * a)
+MC_TARGET_FUNC void mc_flipudmxnl(const int m, const int n, long double * c, const long double * a)
 {
 //!# Requires c[m x n] and a[m x n]. C and A may be the same. Reversing
 //!# order of elements in each column of A and storing the result into C

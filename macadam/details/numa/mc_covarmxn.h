@@ -13,7 +13,7 @@
 
 #pragma mark - mc_covarmxn -
 
-MC_TARGET_FUNC int mc_covarmxnf(int m, int n, float * restrict c, const float * a, int b)
+MC_TARGET_FUNC int mc_covarmxnf(const int m, const int n, float * restrict c, const float * a, int b)
 {
 //!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
@@ -38,7 +38,7 @@ MC_TARGET_FUNC int mc_covarmxnf(int m, int n, float * restrict c, const float * 
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_covarmxnff(int m, int n, double * c, const float * a, int b)
+MC_TARGET_FUNC int mc_covarmxnff(const int m, const int n, double * c, const float * a, int b)
 {
 //!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
@@ -63,7 +63,7 @@ MC_TARGET_FUNC int mc_covarmxnff(int m, int n, double * c, const float * a, int 
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_covarmxn(int m, int n, double * restrict c, const double * a, int b)
+MC_TARGET_FUNC int mc_covarmxn(const int m, const int n, double * restrict c, const double * a, int b)
 {
 //!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and
@@ -88,7 +88,7 @@ MC_TARGET_FUNC int mc_covarmxn(int m, int n, double * restrict c, const double *
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_covarmxnl(int m, int n, long double * restrict c, const long double * a, int b)
+MC_TARGET_FUNC int mc_covarmxnl(const int m, const int n, long double * restrict c, const long double * a, int b)
 {
 //!# Requires c[n x n] and a[m x n] where 1 < n <= m. Estimating a covariance matrix C
 //!# from A observations. A is a matrix whose columns represent random variables and

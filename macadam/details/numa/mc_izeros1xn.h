@@ -14,7 +14,7 @@
 
 #pragma mark - mc_izeros1xn -
 
-MC_TARGET_FUNC void mc_izeros1xn(int n, int * x)
+MC_TARGET_FUNC void mc_izeros1xn(const int n, int * x)
 {
 	mc_base_memzero_type(int, n, x);
 }

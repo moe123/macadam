@@ -14,7 +14,7 @@
 
 #pragma mark - mc_summx1 -
 
-MC_TARGET_FUNC float mc_summx1f(int m, int n, int j, const float * a, int f)
+MC_TARGET_FUNC float mc_summx1f(const int m, const int n, const int j, const float * a, int f)
 {
 	switch (f) {
 		case 0:
@@ -91,7 +91,7 @@ MC_TARGET_FUNC float mc_summx1f(int m, int n, int j, const float * a, int f)
 	return 0.0f;
 }
 
-MC_TARGET_FUNC double mc_summx1ff(int m, int n, int j, const float * a, int f)
+MC_TARGET_FUNC double mc_summx1ff(const int m, const int n, const int j, const float * a, int f)
 {
 	switch (f) {
 		case 0:
@@ -168,7 +168,7 @@ MC_TARGET_FUNC double mc_summx1ff(int m, int n, int j, const float * a, int f)
 	return 0.0;
 }
 
-MC_TARGET_FUNC double mc_summx1(int m, int n, int j, const double * a, int f)
+MC_TARGET_FUNC double mc_summx1(const int m, const int n, const int j, const double * a, int f)
 {
 	switch (f) {
 		case 0:
@@ -245,7 +245,7 @@ MC_TARGET_FUNC double mc_summx1(int m, int n, int j, const double * a, int f)
 	return 0.0;
 }
 
-MC_TARGET_FUNC long double mc_summx1l(int m, int n, int j, const long double * a, int f)
+MC_TARGET_FUNC long double mc_summx1l(const int m, const int n, const int j, const long double * a, int f)
 {
 	switch (f) {
 		case 0:

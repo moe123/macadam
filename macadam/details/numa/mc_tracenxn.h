@@ -13,7 +13,7 @@
 
 #pragma mark - mc_tracenxn -
 
-MC_TARGET_FUNC float mc_tracenxnf(int n, const float * a)
+MC_TARGET_FUNC float mc_tracenxnf(const int n, const float * a)
 {
 	int i      = 0;
 	float diag = 0.0f;
@@ -23,7 +23,7 @@ MC_TARGET_FUNC float mc_tracenxnf(int n, const float * a)
 	return diag;
 }
 
-MC_TARGET_FUNC double mc_tracenxnff(int n, const float * a)
+MC_TARGET_FUNC double mc_tracenxnff(const int n, const float * a)
 {
 	int i       = 0;
 	double diag = 0.0;
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_tracenxnff(int n, const float * a)
 	return diag;
 }
 
-MC_TARGET_FUNC double mc_tracenxn(int n, const double * a)
+MC_TARGET_FUNC double mc_tracenxn(const int n, const double * a)
 {
 	int i       = 0;
 	double diag = 0.0;
@@ -43,7 +43,7 @@ MC_TARGET_FUNC double mc_tracenxn(int n, const double * a)
 	return diag;
 }
 
-MC_TARGET_FUNC long double mc_tracenxnl(int n, const long double * a)
+MC_TARGET_FUNC long double mc_tracenxnl(const int n, const long double * a)
 {
 	int i            = 0;
 	long double diag = 0.0;

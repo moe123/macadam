@@ -13,7 +13,7 @@
 
 #pragma mark - mc_nnzmx1 -
 
-MC_TARGET_FUNC int mc_nnzmx1f(int m, int n, int j, const float * a)
+MC_TARGET_FUNC int mc_nnzmx1f(const int m, const int n, const int j, const float * a)
 {
 	int i = 0, c = 0;
 	for (; i < m; i++) {
@@ -22,7 +22,7 @@ MC_TARGET_FUNC int mc_nnzmx1f(int m, int n, int j, const float * a)
 	return c;
 }
 
-MC_TARGET_FUNC int mc_nnzmx1(int m, int n, int j, const double * a)
+MC_TARGET_FUNC int mc_nnzmx1(const int m, const int n, const int j, const double * a)
 {
 	int i = 0, c = 0;
 	for (; i < m; i++) {
@@ -31,7 +31,7 @@ MC_TARGET_FUNC int mc_nnzmx1(int m, int n, int j, const double * a)
 	return c;
 }
 
-MC_TARGET_FUNC int mc_nnzmx1l(int m, int n, int j, const long double * a)
+MC_TARGET_FUNC int mc_nnzmx1l(const int m, const int n, const int j, const long double * a)
 {
 	int i = 0, c = 0;
 	for (; i < m; i++) {

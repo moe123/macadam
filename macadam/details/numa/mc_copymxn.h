@@ -13,22 +13,22 @@
 
 #pragma mark - mc_copymxn -
 
-MC_TARGET_FUNC void mc_copymxnf(int m, int n, float * b, const float * a)
+MC_TARGET_FUNC void mc_copymxnf(const int m, const int n, float * b, const float * a)
 {
 	mc_copy1xnf(m * n, b, a);
 }
 
-MC_TARGET_FUNC void mc_copymxnff(int m, int n, double * b, const float * a)
+MC_TARGET_FUNC void mc_copymxnff(const int m, const int n, double * b, const float * a)
 {
 	mc_copy1xnff(m * n, b, a);
 }
 
-MC_TARGET_FUNC void mc_copymxn(int m, int n, double * b, const double * a)
+MC_TARGET_FUNC void mc_copymxn(const int m, const int n, double * b, const double * a)
 {
 	mc_copy1xn(m * n, b, a);
 }
 
-MC_TARGET_FUNC void mc_copymxnl(int m, int n, long double * b, const long double * a)
+MC_TARGET_FUNC void mc_copymxnl(const int m, const int n, long double * b, const long double * a)
 {
 	mc_copy1xnl(m * n, b, a);
 }

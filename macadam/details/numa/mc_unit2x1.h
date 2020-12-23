@@ -13,7 +13,7 @@
 
 #pragma mark - mc_unit2x1 -
 
-MC_TARGET_FUNC void mc_unit2x1f(int n, int j, float * a)
+MC_TARGET_FUNC void mc_unit2x1f(const int n, int j, float * a)
 {
 	const float norm = mc_l2norm2x1f(n, j, a);
 	if (norm != 0.0f) {
@@ -25,7 +25,7 @@ MC_TARGET_FUNC void mc_unit2x1f(int n, int j, float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_unit2x1(int n, int j, double * a)
+MC_TARGET_FUNC void mc_unit2x1(const int n, int j, double * a)
 {
 	const double norm = mc_l2norm2x1(n, j, a);
 	if (norm != 0.0) {
@@ -37,7 +37,7 @@ MC_TARGET_FUNC void mc_unit2x1(int n, int j, double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_unit2x1l(int n, int j, long double * a)
+MC_TARGET_FUNC void mc_unit2x1l(const int n, int j, long double * a)
 {
 	const long double norm = mc_l2norm2x1l(n, j, a);
 	if (norm != 0.0L) {

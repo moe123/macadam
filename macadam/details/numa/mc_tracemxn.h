@@ -14,7 +14,7 @@
 
 #pragma mark - mc_tracemxn -
 
-MC_TARGET_FUNC float mc_tracemxnf(int m, int n, const float * a)
+MC_TARGET_FUNC float mc_tracemxnf(const int m, const int n, const float * a)
 {
 	if (m >= n) {
 		return mc_tracenxnf(n, a);
@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_tracemxnf(int m, int n, const float * a)
 	return 0.0f;
 }
 
-MC_TARGET_FUNC double mc_tracemxnff(int m, int n, const float * a)
+MC_TARGET_FUNC double mc_tracemxnff(const int m, const int n, const float * a)
 {
 	if (m >= n) {
 		return mc_tracenxnff(n, a);
@@ -30,7 +30,7 @@ MC_TARGET_FUNC double mc_tracemxnff(int m, int n, const float * a)
 	return 0.0;
 }
 
-MC_TARGET_FUNC double mc_tracemxn(int m, int n, const double * a)
+MC_TARGET_FUNC double mc_tracemxn(const int m, const int n, const double * a)
 {
 	if (m >= n) {
 		return mc_tracenxn(n, a);
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_tracemxn(int m, int n, const double * a)
 	return 0.0;
 }
 
-MC_TARGET_FUNC long double mc_tracemxnl(int m, int n, const long double * a)
+MC_TARGET_FUNC long double mc_tracemxnl(const int m, const int n, const long double * a)
 {
 	if (m >= n) {
 		return mc_tracenxnl(n, a);

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_onesmx1 -
 
-MC_TARGET_FUNC void mc_onesmx1f(int m, int n, int j, float * a)
+MC_TARGET_FUNC void mc_onesmx1f(const int m, const int n, const int j, float * a)
 {
 	int i = 0;
 	for (; i < m; i++) {
@@ -21,7 +21,7 @@ MC_TARGET_FUNC void mc_onesmx1f(int m, int n, int j, float * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_onesmx1(int m, int n, int j, double * a)
+MC_TARGET_FUNC void mc_onesmx1(const int m, const int n, const int j, double * a)
 {
 	int i = 0;
 	for (; i < m; i++) {
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_onesmx1(int m, int n, int j, double * a)
 	}
 }
 
-MC_TARGET_FUNC void mc_onesmx1l(int m, int n, int j, long double * a)
+MC_TARGET_FUNC void mc_onesmx1l(const int m, const int n, const int j, long double * a)
 {
 	int i = 0;
 	for (; i < m; i++) {

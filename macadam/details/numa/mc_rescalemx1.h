@@ -13,7 +13,7 @@
 
 #pragma mark - mc_rescalemx1 -
 
-MC_TARGET_FUNC void mc_rescalemx1f(int m, int n, int j, float * c, float a, float b)
+MC_TARGET_FUNC void mc_rescalemx1f(const int m, const int n, const int j, float * c, float a, float b)
 {
 	int i = 0;
 	float min, max, range;
@@ -26,7 +26,7 @@ MC_TARGET_FUNC void mc_rescalemx1f(int m, int n, int j, float * c, float a, floa
 	}
 }
 
-MC_TARGET_FUNC void mc_rescalemx1(int m, int n, int j, double * c, double a, double b)
+MC_TARGET_FUNC void mc_rescalemx1(const int m, const int n, const int j, double * c, double a, double b)
 {
 	int i = 0;
 	double min, max, range;
@@ -39,7 +39,7 @@ MC_TARGET_FUNC void mc_rescalemx1(int m, int n, int j, double * c, double a, dou
 	}
 }
 
-MC_TARGET_FUNC void mc_rescalemx1l(int m, int n, int j, long double * c, long double a, long double b)
+MC_TARGET_FUNC void mc_rescalemx1l(const int m, const int n, const int j, long double * c, long double a, long double b)
 {
 	int i = 0;
 	long double min, max, range;

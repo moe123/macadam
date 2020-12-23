@@ -13,7 +13,7 @@
 
 #pragma mark - mc_dotpmx1 -
 
-MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int p, int j, int k, const float * a, const float * b, int f)
+MC_TARGET_FUNC float mc_dotpmx1f(const int m, const int n, const int p, const int j, const int k, const float * a, const float * b, int f)
 {
 //!# Requires a[m x n] and b[m x p].
 //!# A and B may be the same.
@@ -80,7 +80,7 @@ MC_TARGET_FUNC float mc_dotpmx1f(int m, int n, int p, int j, int k, const float 
 	return w + s;
 }
 
-MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int p, int j, int k, const float * a, const float * b, int f)
+MC_TARGET_FUNC double mc_dotpmx1ff(const int m, const int n, const int p, const int j, const int k, const float * a, const float * b, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
@@ -145,7 +145,7 @@ MC_TARGET_FUNC double mc_dotpmx1ff(int m, int n, int p, int j, int k, const floa
 	return w + s;
 }
 
-MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int p, int j, int k, const double * a, const double * b, int f)
+MC_TARGET_FUNC double mc_dotpmx1(const int m, const int n, const int p, const int j, const int k, const double * a, const double * b, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(double, 134217728 + 1);
@@ -210,7 +210,7 @@ MC_TARGET_FUNC double mc_dotpmx1(int m, int n, int p, int j, int k, const double
 	return w + s;
 }
 
-MC_TARGET_FUNC long double mc_dotpmx1l(int m, int n, int p, int j, int k, const long double * a, const long double * b, int f)
+MC_TARGET_FUNC long double mc_dotpmx1l(const int m, const int n, const int p, const int j, const int k, const long double * a, const long double * b, int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_minmax1xn -
 
-MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmax1xnf(const int n, const float * x, float * min, float * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnullptr(min);
 	const int wantmax = mc_nonnullptr(max);
@@ -86,7 +86,7 @@ MC_TARGET_FUNC void mc_minmax1xnf(int n, const float * x, float * min, float * m
 	}
 }
 
-MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmax1xnff(const int n, const float * x, double * min, double * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnullptr(min);
 	const int wantmax = mc_nonnullptr(max);
@@ -159,7 +159,7 @@ MC_TARGET_FUNC void mc_minmax1xnff(int n, const float * x, double * min, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmax1xn(const int n, const double * x, double * min, double * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnullptr(min);
 	const int wantmax = mc_nonnullptr(max);
@@ -232,7 +232,7 @@ MC_TARGET_FUNC void mc_minmax1xn(int n, const double * x, double * min, double *
 	}
 }
 
-MC_TARGET_FUNC void mc_minmax1xnl(int n, const long double * x, long double * min, long double * max, int * p, int * q)
+MC_TARGET_FUNC void mc_minmax1xnl(const int n, const long double * x, long double * min, long double * max, int * p, int * q)
 {
 	const int wantmin = mc_nonnullptr(min);
 	const int wantmax = mc_nonnullptr(max);

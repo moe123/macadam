@@ -14,7 +14,7 @@
 
 #pragma mark - mc_isort1xn -
 
-MC_TARGET_FUNC void mc_isort1xn(int n, int * y, const int * x, int f)
+MC_TARGET_FUNC void mc_isort1xn(const int n, int * y, const int * x, int f)
 {
 	if (x != y) {
 		mc_icopy1xn(n, y, x);

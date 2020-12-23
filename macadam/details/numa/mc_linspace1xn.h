@@ -13,7 +13,7 @@
 
 #pragma mark - mc_linspace1xn -
 
-MC_TARGET_FUNC int mc_linspace1xnf(int n, float * x, float x1, float x2)
+MC_TARGET_FUNC int mc_linspace1xnf(const int n, float * x, float x1, float x2)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a linearly spaced
 //!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
@@ -38,7 +38,7 @@ MC_TARGET_FUNC int mc_linspace1xnf(int n, float * x, float x1, float x2)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_linspace1xnff(int n, double * x, float x1, float x2)
+MC_TARGET_FUNC int mc_linspace1xnff(const int n, double * x, float x1, float x2)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a linearly spaced
 //!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
@@ -65,7 +65,7 @@ MC_TARGET_FUNC int mc_linspace1xnff(int n, double * x, float x1, float x2)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_linspace1xn(int n, double * x, double x1, double x2)
+MC_TARGET_FUNC int mc_linspace1xn(const int n, double * x, double x1, double x2)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a linearly spaced
 //!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
@@ -90,7 +90,7 @@ MC_TARGET_FUNC int mc_linspace1xn(int n, double * x, double x1, double x2)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_linspace1xnl(int n, long double * x, long double x1, long double x2)
+MC_TARGET_FUNC int mc_linspace1xnl(const int n, long double * x, long double x1, long double x2)
 {
 //!# Requires x[n] where 1 < n. Draws a linspace: generates a linearly spaced
 //!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_nnz1xn -
 
-MC_TARGET_FUNC int mc_nnz1xnf(int n, const float * x)
+MC_TARGET_FUNC int mc_nnz1xnf(const int n, const float * x)
 {
 	int i = 0, c = 0;
 	for (; i < n; i++) {
@@ -22,7 +22,7 @@ MC_TARGET_FUNC int mc_nnz1xnf(int n, const float * x)
 	return c;
 }
 
-MC_TARGET_FUNC int mc_nnz1xn(int n, const double * x)
+MC_TARGET_FUNC int mc_nnz1xn(const int n, const double * x)
 {
 	int i = 0, c = 0;
 	for (; i < n; i++) {
@@ -31,7 +31,7 @@ MC_TARGET_FUNC int mc_nnz1xn(int n, const double * x)
 	return c;
 }
 
-MC_TARGET_FUNC int mc_nnz1xnl(int n, const long double * x)
+MC_TARGET_FUNC int mc_nnz1xnl(const int n, const long double * x)
 {
 	int i = 0, c = 0;
 	for (; i < n; i++) {

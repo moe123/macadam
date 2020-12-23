@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mulxy1xn -
 
-MC_TARGET_FUNC void mc_mulxy1xnf(int n, float * u, const float * x, const float * y)
+MC_TARGET_FUNC void mc_mulxy1xnf(const int n, float * u, const float * x, const float * y)
 {
 //!# Ui=Xi*Yi
 	int i = 0;
@@ -22,7 +22,7 @@ MC_TARGET_FUNC void mc_mulxy1xnf(int n, float * u, const float * x, const float 
 	}
 }
 
-MC_TARGET_FUNC void mc_mulxy1xnff(int n, double * u, const float * x, const float * y)
+MC_TARGET_FUNC void mc_mulxy1xnff(const int n, double * u, const float * x, const float * y)
 {
 //!# Ui=Xi*Yi
 	int i = 0;
@@ -31,7 +31,7 @@ MC_TARGET_FUNC void mc_mulxy1xnff(int n, double * u, const float * x, const floa
 	}
 }
 
-MC_TARGET_FUNC void mc_mulxy1xn(int n, double * u, const double * x, const double * y)
+MC_TARGET_FUNC void mc_mulxy1xn(const int n, double * u, const double * x, const double * y)
 {
 //!# Ui=Xi*Yi
 	int i = 0;
@@ -40,7 +40,7 @@ MC_TARGET_FUNC void mc_mulxy1xn(int n, double * u, const double * x, const doubl
 	}
 }
 
-MC_TARGET_FUNC void mc_mulxy1xnl(int n, long double * u, const long double * x, const long double * y)
+MC_TARGET_FUNC void mc_mulxy1xnl(const int n, long double * u, const long double * x, const long double * y)
 {
 //!# Ui=Xi*Yi
 	int i = 0;
