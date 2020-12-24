@@ -13,7 +13,7 @@
 
 #pragma mark - mc_minormxn -
 
-MC_TARGET_FUNC void mc_minormxnf(const int m, const int n, const int p, float * restrict b, const float * a)
+MC_TARGET_FUNC void mc_minormxnf(const int m, const int n, const int p, float * MC_TARGET_RESTRICT b, const float * a)
 {
 	int i = 0, j;
 	for (; i < p; i++) {
@@ -52,7 +52,7 @@ MC_TARGET_FUNC void mc_minormxn(const int m, const int n, const int p, double * 
 	}
 }
 
-MC_TARGET_FUNC void mc_minormxnl(const int m, const int n, const int p, long double * restrict b, const long double * a)
+MC_TARGET_FUNC void mc_minormxnl(const int m, const int n, const int p, long double * MC_TARGET_RESTRICT b, const long double * a)
 {
 	int i = 0, j;
 	for (; i < p; i++) {

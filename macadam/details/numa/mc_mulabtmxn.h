@@ -6,14 +6,14 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_gemm.h>
+#include <macadam/details/numa/lapack/mc_blas.h>
 
 #ifndef MC_MULABTMXN_H
 #define MC_MULABTMXN_H
 
 #pragma mark - mc_mulabtmxn -
 
-MC_TARGET_FUNC void mc_mulabtmxnf(const int m, const int n, const int p, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulabtmxnf(const int m, const int n, const int p, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -30,7 +30,7 @@ MC_TARGET_FUNC void mc_mulabtmxnf(const int m, const int n, const int p, float *
 
 	mc_unused(kk1);
 
-	mc_blas_sgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_sgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {
@@ -47,7 +47,7 @@ MC_TARGET_FUNC void mc_mulabtmxnf(const int m, const int n, const int p, float *
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabtmxnff(const int m, const int n, const int p, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulabtmxnff(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -64,7 +64,7 @@ MC_TARGET_FUNC void mc_mulabtmxnff(const int m, const int n, const int p, double
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabtmxnfd(const int m, const int n, const int p, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_mulabtmxnfd(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const float * a, const double * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -81,7 +81,7 @@ MC_TARGET_FUNC void mc_mulabtmxnfd(const int m, const int n, const int p, double
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabtmxndf(const int m, const int n, const int p, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_mulabtmxndf(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const double * a, const float * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 	int i, j = 0, k;
@@ -98,7 +98,7 @@ MC_TARGET_FUNC void mc_mulabtmxndf(const int m, const int n, const int p, double
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabtmxn(const int m, const int n, const int p, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_mulabtmxn(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -115,7 +115,7 @@ MC_TARGET_FUNC void mc_mulabtmxn(const int m, const int n, const int p, double *
 
 	mc_unused(kk1);
 
-	mc_blas_dgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_dgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {
@@ -132,7 +132,7 @@ MC_TARGET_FUNC void mc_mulabtmxn(const int m, const int n, const int p, double *
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabtmxnl(const int m, const int n, const int p, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_mulabtmxnl(const int m, const int n, const int p, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
 {
 //!# c=a*b'. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -149,7 +149,7 @@ MC_TARGET_FUNC void mc_mulabtmxnl(const int m, const int n, const int p, long do
 
 	mc_unused(kk1);
 
-	mc_blas_lgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_lgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {

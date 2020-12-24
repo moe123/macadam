@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mulatxmxn -
 
-MC_TARGET_FUNC void mc_mulatxmxnf(const int m, const int n, float * restrict b, const float * a, const float * x)
+MC_TARGET_FUNC void mc_mulatxmxnf(const int m, const int n, float * MC_TARGET_RESTRICT b, const float * a, const float * x)
 {
 //!# Requires b[n x 1], a[m * n] and x[m x 1].
 //!# b=a'*x
@@ -42,7 +42,7 @@ MC_TARGET_FUNC void mc_mulatxmxnf(const int m, const int n, float * restrict b, 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulatxmxnff(const int m, const int n, double * restrict b, const float * a, const float * x)
+MC_TARGET_FUNC void mc_mulatxmxnff(const int m, const int n, double * MC_TARGET_RESTRICT b, const float * a, const float * x)
 {
 //!# Requires b[n x 1], a[m * n] and x[m x 1].
 //!# b=a'*x
@@ -58,7 +58,7 @@ MC_TARGET_FUNC void mc_mulatxmxnff(const int m, const int n, double * restrict b
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatxmxnfd(const int m, const int n, double * restrict b, const float * a, const double * x)
+MC_TARGET_FUNC void mc_mulatxmxnfd(const int m, const int n, double * MC_TARGET_RESTRICT b, const float * a, const double * x)
 {
 //!# Requires b[n x 1], a[m * n] and x[m x 1].
 //!# b=a'*x
@@ -74,7 +74,7 @@ MC_TARGET_FUNC void mc_mulatxmxnfd(const int m, const int n, double * restrict b
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatxmxndf(const int m, const int n, double * restrict b, const double * a, const float * x)
+MC_TARGET_FUNC void mc_mulatxmxndf(const int m, const int n, double * MC_TARGET_RESTRICT b, const double * a, const float * x)
 {
 //!# Requires b[n x 1], a[m * n] and x[m x 1].
 //!# b=a'*x
@@ -90,7 +90,7 @@ MC_TARGET_FUNC void mc_mulatxmxndf(const int m, const int n, double * restrict b
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatxmxn(const int m, const int n, double * restrict b, const double * a, const double * x)
+MC_TARGET_FUNC void mc_mulatxmxn(const int m, const int n, double * MC_TARGET_RESTRICT b, const double * a, const double * x)
 {
 //!# Requires b[n x 1], a[m * n] and x[m x 1].
 //!# b=a'*x
@@ -119,7 +119,7 @@ MC_TARGET_FUNC void mc_mulatxmxn(const int m, const int n, double * restrict b, 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulatxmxnl(const int m, const int n, long double * restrict b, const long double * a, const long double * x)
+MC_TARGET_FUNC void mc_mulatxmxnl(const int m, const int n, long double * MC_TARGET_RESTRICT b, const long double * a, const long double * x)
 {
 //!# Requires b[n x 1], a[m * n] and x[m x 1].
 //!# b=a'*x

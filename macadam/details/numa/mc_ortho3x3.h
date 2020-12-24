@@ -20,7 +20,7 @@
 
 #pragma mark - mc_ortho3x3 -
 
-MC_TARGET_FUNC int mc_ortho3x3f(const float a[9], float tol, float q[9], float * restrict r)
+MC_TARGET_FUNC int mc_ortho3x3f(const float a[9], float tol, float q[9], float * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3] if !null.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
@@ -151,7 +151,7 @@ MC_TARGET_FUNC int mc_ortho3x3f(const float a[9], float tol, float q[9], float *
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_ortho3x3ff(const float a[9], float tol, double q[9], double * restrict r)
+MC_TARGET_FUNC int mc_ortho3x3ff(const float a[9], float tol, double q[9], double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3] if !null.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt
@@ -282,7 +282,7 @@ MC_TARGET_FUNC int mc_ortho3x3ff(const float a[9], float tol, double q[9], doubl
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_ortho3x3(const double a[9], double tol, double q[9], double * restrict r)
+MC_TARGET_FUNC int mc_ortho3x3(const double a[9], double tol, double q[9], double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3] if !null.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
@@ -413,7 +413,7 @@ MC_TARGET_FUNC int mc_ortho3x3(const double a[9], double tol, double q[9], doubl
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_ortho3x3l(const long double a[9], long double tol, long double q[9], long double * restrict r)
+MC_TARGET_FUNC int mc_ortho3x3l(const long double a[9], long double tol, long double q[9], long double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3] if !null.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using

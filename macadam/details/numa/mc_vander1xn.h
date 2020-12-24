@@ -13,7 +13,7 @@
 
 #pragma mark - mc_vander1xn -
 
-MC_TARGET_FUNC void mc_vander1xnf(const int n, int d, float * restrict a, const float * x, int f)
+MC_TARGET_FUNC void mc_vander1xnf(const int n, int d, float * MC_TARGET_RESTRICT a, const float * x, int f)
 {
 //!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_vander1xnff(const int n, int d, double * a, const float *
 	}
 }
 
-MC_TARGET_FUNC void mc_vander1xn(const int n, int d, double * restrict a, const double * x, int f)
+MC_TARGET_FUNC void mc_vander1xn(const int n, int d, double * MC_TARGET_RESTRICT a, const double * x, int f)
 {
 //!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.
@@ -76,7 +76,7 @@ MC_TARGET_FUNC void mc_vander1xn(const int n, int d, double * restrict a, const 
 	}
 }
 
-MC_TARGET_FUNC void mc_vander1xnl(const int n, int d, long double * restrict a, const long double * x, int f)
+MC_TARGET_FUNC void mc_vander1xnl(const int n, int d, long double * MC_TARGET_RESTRICT a, const long double * x, int f)
 {
 //!# Requires a[n * (d + 1)] and x[n].
 //!# Returns the Vandermonde matrix A such that its columns are powers of the vector X.

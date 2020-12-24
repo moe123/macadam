@@ -16,7 +16,7 @@
 
 #pragma mark - mc_histcb1xn -
 
-int mc_histcb1xnf(const int n, const float * x, float min, float max, float stddev, float tol)
+MC_TARGET_FUNC int mc_histcb1xnf(const int n, const float * x, float min, float max, float stddev, float tol)
 {
 	float w;
 
@@ -40,7 +40,7 @@ int mc_histcb1xnf(const int n, const float * x, float min, float max, float stdd
 	return -1;
 }
 
-int mc_histcb1xn(const int n, const double * x, double min, double max, double stddev, double tol)
+MC_TARGET_FUNC int mc_histcb1xn(const int n, const double * x, double min, double max, double stddev, double tol)
 {
 	double w;
 
@@ -64,7 +64,7 @@ int mc_histcb1xn(const int n, const double * x, double min, double max, double s
 	return -1;
 }
 
-int mc_histcb1xnl(const int n, const long double * x, long double min, long double max, long double stddev, long double tol)
+MC_TARGET_FUNC int mc_histcb1xnl(const int n, const long double * x, long double min, long double max, long double stddev, long double tol)
 {
 	long double w;
 

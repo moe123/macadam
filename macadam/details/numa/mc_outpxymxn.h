@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_ger.h>
+#include <macadam/details/numa/lapack/mc_blas.h>
 #include <macadam/details/numa/mc_zerosmxn.h>
 
 #ifndef MC_OUTPXYMXN_H
@@ -28,7 +28,7 @@ MC_TARGET_FUNC void mc_outpxymxnf(const int m, const int n, float * a, const flo
 	const float alpha = 1.0f;
 
 	mc_zerosmxnf(m, n, a);
-	mc_blas_sger(mm, nn, alpha, x, incx, y, incy, a, lda);
+	mc_sger(mm, nn, alpha, x, incx, y, incy, a, lda);
 #	else
 	int j = 0, i;
 	float v, e, w;
@@ -101,7 +101,7 @@ MC_TARGET_FUNC void mc_outpxymxn(const int m, const int n, double * a, const dou
 	const double alpha = 1.0;
 
 	mc_zerosmxn(m, n, a);
-	mc_blas_dger(mm, nn, alpha, x, incx, y, incy, a, lda);
+	mc_dger(mm, nn, alpha, x, incx, y, incy, a, lda);
 #	else
 	int j = 0, i;
 	double v, e, w;
@@ -129,7 +129,7 @@ MC_TARGET_FUNC void mc_outpxymxnl(const int m, const int n, long double * a, con
 	const long double alpha = 1.0L;
 
 	mc_zerosmxnl(m, n, a);
-	mc_blas_lger(mm, nn, alpha, x, incx, y, incy, a, lda);
+	mc_lger(mm, nn, alpha, x, incx, y, incy, a, lda);
 #	else
 	int j = 0, i;
 	long double v, e, w;

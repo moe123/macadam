@@ -6,14 +6,14 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_gemm.h>
+#include <macadam/details/numa/lapack/mc_blas.h>
 
 #ifndef MC_MULABMXN_H
 #define MC_MULABMXN_H
 
 #pragma mark - mc_mulabmxn -
 
-MC_TARGET_FUNC void mc_mulabmxnf(const int m, const int n, const int p, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulabmxnf(const int m, const int n, const int p, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_mulabmxnf(const int m, const int n, const int p, float * 
 	const float alpha = 1.0f;
 	const float beta  = 0.0f;
 
-	mc_blas_sgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_sgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i = 0, j, k;
 	for (; i < m; i++) {
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_mulabmxnf(const int m, const int n, const int p, float * 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabmxnff(const int m, const int n, const int p, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulabmxnff(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i = 0, j, k;
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_mulabmxnff(const int m, const int n, const int p, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabmxnfd(const int m, const int n, const int p, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_mulabmxnfd(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const float * a, const double * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i = 0, j, k;
@@ -69,7 +69,7 @@ MC_TARGET_FUNC void mc_mulabmxnfd(const int m, const int n, const int p, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabmxndf(const int m, const int n, const int p, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_mulabmxndf(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const double * a, const float * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
 	int i = 0, j, k;
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_mulabmxndf(const int m, const int n, const int p, double 
 	}
 }
 
-MC_TARGET_FUNC void mc_mulabmxn(const int m, const int n, const int p, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_mulabmxn(const int m, const int n, const int p, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -97,7 +97,7 @@ MC_TARGET_FUNC void mc_mulabmxn(const int m, const int n, const int p, double * 
 	const double alpha = 1.0;
 	const double beta  = 0.0;
 
-	mc_blas_dgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_dgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i = 0, j, k;
 	for (; i < m; i++) {
@@ -111,7 +111,7 @@ MC_TARGET_FUNC void mc_mulabmxn(const int m, const int n, const int p, double * 
 #	endif
 }
 
-MC_TARGET_FUNC void mc_mulabmxnl(const int m, const int n, const int p, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_mulabmxnl(const int m, const int n, const int p, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
@@ -125,7 +125,7 @@ MC_TARGET_FUNC void mc_mulabmxnl(const int m, const int n, const int p, long dou
 	const long double alpha = 1.0L;
 	const long double beta  = 0.0L;
 
-	mc_blas_lgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_lgemm('N', 'N', mm, nn, kk, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i = 0, j, k;
 	for (; i < m; i++) {

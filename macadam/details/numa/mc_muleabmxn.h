@@ -13,7 +13,7 @@
 
 #pragma mark - mc_muleabmxn -
 
-MC_TARGET_FUNC void mc_muleabmxnf(const int m, const int n, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_muleabmxnf(const int m, const int n, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_muleabmxnf(const int m, const int n, float * restrict c, 
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxnff(const int m, const int n, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_muleabmxnff(const int m, const int n, double * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_muleabmxnff(const int m, const int n, double * restrict c
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxnfd(const int m, const int n, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_muleabmxnfd(const int m, const int n, double * MC_TARGET_RESTRICT c, const float * a, const double * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_muleabmxnfd(const int m, const int n, double * restrict c
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxndf(const int m, const int n, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_muleabmxndf(const int m, const int n, double * MC_TARGET_RESTRICT c, const double * a, const float * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -69,7 +69,7 @@ MC_TARGET_FUNC void mc_muleabmxndf(const int m, const int n, double * restrict c
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxn(const int m, const int n, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_muleabmxn(const int m, const int n, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.
@@ -83,7 +83,7 @@ MC_TARGET_FUNC void mc_muleabmxn(const int m, const int n, double * restrict c, 
 	}
 }
 
-MC_TARGET_FUNC void mc_muleabmxnl(const int m, const int n, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_muleabmxnl(const int m, const int n, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
 {
 //!# Requires c[m x n], a[m x n] and b[m x n].
 //!# c=a.*b i.e Hadamard product.

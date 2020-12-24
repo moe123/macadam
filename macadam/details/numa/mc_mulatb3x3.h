@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mulatb3x3 -
 
-MC_TARGET_FUNC void mc_mulatb3x3f(float * restrict c, const float a[9], const float b[9])
+MC_TARGET_FUNC void mc_mulatb3x3f(float * MC_TARGET_RESTRICT c, const float a[9], const float b[9])
 {
 //!# c=a'*b
 	c[0] = (a[0] * b[0]) + (a[3] * b[3]) + (a[6] * b[6]);
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_mulatb3x3ff(double * c, const float a[9], const float b[9
 	c[8] = (mc_cast(double, a[2]) * mc_cast(double, b[2])) + (mc_cast(double, a[5]) * mc_cast(double, b[5])) + (mc_cast(double, a[8]) * mc_cast(double, b[8]));
 }
 
-MC_TARGET_FUNC void mc_mulatb3x3fd(double * restrict c, const float a[9], const double b[9])
+MC_TARGET_FUNC void mc_mulatb3x3fd(double * MC_TARGET_RESTRICT c, const float a[9], const double b[9])
 {
 //!# c=a'*b
 	c[0] = (mc_cast(double, a[0]) * b[0]) + (mc_cast(double, a[3]) * b[3]) + (mc_cast(double, a[6]) * b[6]);
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_mulatb3x3fd(double * restrict c, const float a[9], const 
 	c[8] = (mc_cast(double, a[2]) * b[2]) + (mc_cast(double, a[5]) * b[5]) + (mc_cast(double, a[8]) * b[8]);
 }
 
-MC_TARGET_FUNC void mc_mulatb3x3df(double * restrict c, const double a[9], const float b[9])
+MC_TARGET_FUNC void mc_mulatb3x3df(double * MC_TARGET_RESTRICT c, const double a[9], const float b[9])
 {
 //!# c=a'*b
 	c[0] = (a[0] * mc_cast(double, b[0])) + (a[3] * mc_cast(double, b[3])) + (a[6] * mc_cast(double, b[6]));
@@ -77,7 +77,7 @@ MC_TARGET_FUNC void mc_mulatb3x3df(double * restrict c, const double a[9], const
 	c[8] = (a[2] * mc_cast(double, b[2])) + (a[5] * mc_cast(double, b[5])) + (a[8] * mc_cast(double, b[8]));
 }
 
-MC_TARGET_FUNC void mc_mulatb3x3(double * restrict c, const double a[9], const double b[9])
+MC_TARGET_FUNC void mc_mulatb3x3(double * MC_TARGET_RESTRICT c, const double a[9], const double b[9])
 {
 //!# c=a'*b
 	c[0] = (a[0] * b[0]) + (a[3] * b[3]) + (a[6] * b[6]);
@@ -93,7 +93,7 @@ MC_TARGET_FUNC void mc_mulatb3x3(double * restrict c, const double a[9], const d
 	c[8] = (a[2] * b[2]) + (a[5] * b[5]) + (a[8] * b[8]);
 }
 
-MC_TARGET_FUNC void mc_mulatb3x3l(long double * restrict c, const long double a[9], const long double b[9])
+MC_TARGET_FUNC void mc_mulatb3x3l(long double * MC_TARGET_RESTRICT c, const long double a[9], const long double b[9])
 {
 //!# c=a'*b
 	c[0] = (a[0] * b[0]) + (a[3] * b[3]) + (a[6] * b[6]);

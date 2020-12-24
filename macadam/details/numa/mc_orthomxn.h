@@ -20,7 +20,7 @@
 
 #pragma mark - mc_orthomxn -
 
-MC_TARGET_FUNC int mc_orthomxnf(const int m, const int n, const float * a, float tol, float * q, float * restrict r)
+MC_TARGET_FUNC int mc_orthomxnf(const int m, const int n, const float * a, float tol, float * q, float * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
@@ -89,7 +89,7 @@ MC_TARGET_FUNC int mc_orthomxnf(const int m, const int n, const float * a, float
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthomxnff(const int m, const int n, const float * a, float tol, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_orthomxnff(const int m, const int n, const float * a, float tol, double * q, double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# Forming a ortho-normalized basis Q using Modified Gram-Schmidt
@@ -158,7 +158,7 @@ MC_TARGET_FUNC int mc_orthomxnff(const int m, const int n, const float * a, floa
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthomxn(const int m, const int n, const double * a, double tol, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_orthomxn(const int m, const int n, const double * a, double tol, double * q, double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using
@@ -227,7 +227,7 @@ MC_TARGET_FUNC int mc_orthomxn(const int m, const int n, const double * a, doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_orthomxnl(const int m, const int n, const long double * a, long double tol, long double * q, long double * restrict r)
+MC_TARGET_FUNC int mc_orthomxnl(const int m, const int n, const long double * a, long double tol, long double * q, long double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[m x n], q[m x n] and r[n x n] if !null where 1 < n <= m.
 //!# A and Q may be the same. Forming a ortho-normalized basis Q using

@@ -16,7 +16,7 @@
 
 #pragma mark - mc_lupnxn -
 
-MC_TARGET_FUNC int mc_lupnxnf(const int n, const float * a, float * lu, float * restrict p, int * pvi)
+MC_TARGET_FUNC int mc_lupnxnf(const int n, const float * a, float * lu, float * MC_TARGET_RESTRICT p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
@@ -82,7 +82,7 @@ MC_TARGET_FUNC int mc_lupnxnf(const int n, const float * a, float * lu, float * 
 	return pv;
 }
 
-MC_TARGET_FUNC int mc_lupnxnff(const int n, const float * a, double * lu, double * restrict p, int * pvi)
+MC_TARGET_FUNC int mc_lupnxnff(const int n, const float * a, double * lu, double * MC_TARGET_RESTRICT p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
@@ -148,7 +148,7 @@ MC_TARGET_FUNC int mc_lupnxnff(const int n, const float * a, double * lu, double
 	return pv;
 }
 
-MC_TARGET_FUNC int mc_lupnxn(const int n, const double * a, double * lu, double * restrict p, int * pvi)
+MC_TARGET_FUNC int mc_lupnxn(const int n, const double * a, double * lu, double * MC_TARGET_RESTRICT p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.
@@ -217,7 +217,7 @@ MC_TARGET_FUNC int mc_lupnxn(const int n, const double * a, double * lu, double 
 	return pv;
 }
 
-MC_TARGET_FUNC int mc_lupnxnl(const int n, const long double * a, long double * lu, long double * restrict p, int * pvi)
+MC_TARGET_FUNC int mc_lupnxnl(const int n, const long double * a, long double * lu, long double * MC_TARGET_RESTRICT p, int * pvi)
 {
 //!# A and LU may be the same.
 //!# Returns A=(LU)P, L and U being combined.

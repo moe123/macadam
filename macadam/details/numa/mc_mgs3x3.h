@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mgs3x3 -
 
-MC_TARGET_FUNC int mc_mgs3x3f(const float a[9], float q[9], float * restrict r)
+MC_TARGET_FUNC int mc_mgs3x3f(const float a[9], float q[9], float * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3].
 //!# A and Q may be the same. Performing a QR decomposition
@@ -21,7 +21,7 @@ MC_TARGET_FUNC int mc_mgs3x3f(const float a[9], float q[9], float * restrict r)
 	return mc_ortho3x3f(a, MCLIMITS_TINYF, q, r);
 }
 
-MC_TARGET_FUNC int mc_mgs3x3ff(const float a[9], double q[9], double * restrict r)
+MC_TARGET_FUNC int mc_mgs3x3ff(const float a[9], double q[9], double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3].
 //!# Performing a QR decomposition of a square matrix using
@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_mgs3x3ff(const float a[9], double q[9], double * restrict 
 	return mc_ortho3x3ff(a, MCLIMITS_TINYF, q, r);
 }
 
-MC_TARGET_FUNC int mc_mgs3x3(const double a[9], double q[9], double * restrict r)
+MC_TARGET_FUNC int mc_mgs3x3(const double a[9], double q[9], double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3].
 //!# A and Q may be the same. Performing a QR decomposition
@@ -37,7 +37,7 @@ MC_TARGET_FUNC int mc_mgs3x3(const double a[9], double q[9], double * restrict r
 	return mc_ortho3x3(a, MCLIMITS_TINY, q, r);
 }
 
-MC_TARGET_FUNC int mc_mgs3x3l(const long double a[9], long double q[9], long double * restrict r)
+MC_TARGET_FUNC int mc_mgs3x3l(const long double a[9], long double q[9], long double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[3 x 3], q[3 x 3] and r[3 x 3].
 //!# A and Q may be the same. Performing a QR decomposition

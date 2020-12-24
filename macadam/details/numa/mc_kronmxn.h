@@ -13,7 +13,7 @@
 
 #pragma mark - mc_kronmxn -
 
-MC_TARGET_FUNC void mc_kronmxnf(const int m, const int n, const int p, const int q, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_kronmxnf(const int m, const int n, const int p, const int q, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_kronmxnf(const int m, const int n, const int p, const int
 	}
 }
 
-MC_TARGET_FUNC void mc_kronmxnff(const int m, const int n, const int p, const int q, double * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_kronmxnff(const int m, const int n, const int p, const int q, double * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -45,7 +45,7 @@ MC_TARGET_FUNC void mc_kronmxnff(const int m, const int n, const int p, const in
 	}
 }
 
-MC_TARGET_FUNC void mc_kronmxnfd(const int m, const int n, const int p, const int q, double * restrict c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_kronmxnfd(const int m, const int n, const int p, const int q, double * MC_TARGET_RESTRICT c, const float * a, const double * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_kronmxnfd(const int m, const int n, const int p, const in
 	}
 }
 
-MC_TARGET_FUNC void mc_kronmxndf(const int m, const int n, const int p, const int q, double * restrict c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_kronmxndf(const int m, const int n, const int p, const int q, double * MC_TARGET_RESTRICT c, const double * a, const float * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -77,7 +77,7 @@ MC_TARGET_FUNC void mc_kronmxndf(const int m, const int n, const int p, const in
 	}
 }
 
-MC_TARGET_FUNC void mc_kronmxn(const int m, const int n, const int p, const int q, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_kronmxn(const int m, const int n, const int p, const int q, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.
@@ -93,7 +93,7 @@ MC_TARGET_FUNC void mc_kronmxn(const int m, const int n, const int p, const int 
 	}
 }
 
-MC_TARGET_FUNC void mc_kronmxnl(const int m, const int n, const int p, const int q, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_kronmxnl(const int m, const int n, const int p, const int q, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
 {
 //!# Requires c[(p * m) * (q * n)], a[m x n] and b[p x q].
 //!# Computing the Kronecker product of two matrices.

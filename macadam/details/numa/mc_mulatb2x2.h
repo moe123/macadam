@@ -33,7 +33,7 @@ MC_TARGET_FUNC void mc_mulatb2x2ff(double * c, const float a[4], const float b[4
 	c[3] = (mc_cast(double, a[1]) * mc_cast(double, b[1])) + (mc_cast(double, a[3]) * mc_cast(double, b[3]));
 }
 
-MC_TARGET_FUNC void mc_mulatb2x2fd(double * restrict c, const float a[4], const double b[4])
+MC_TARGET_FUNC void mc_mulatb2x2fd(double * MC_TARGET_RESTRICT c, const float a[4], const double b[4])
 {
 //!# c=a'*b
 	c[0] = (mc_cast(double, a[0]) * b[0]) + (mc_cast(double, a[2]) * b[2]);
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mulatb2x2fd(double * restrict c, const float a[4], const 
 	c[3] = (mc_cast(double, a[1]) * b[1]) + (mc_cast(double, a[3]) * b[3]);
 }
 
-MC_TARGET_FUNC void mc_mulatb2x2df(double * restrict c, const double a[4], const float b[4])
+MC_TARGET_FUNC void mc_mulatb2x2df(double * MC_TARGET_RESTRICT c, const double a[4], const float b[4])
 {
 //!# c=a'*b
 	c[0] = (a[0] * mc_cast(double, b[0])) + (a[2] * mc_cast(double, b[2]));

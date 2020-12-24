@@ -14,7 +14,7 @@
 
 #pragma mark - mc_lusolvenxn -
 
-MC_TARGET_FUNC int mc_lusolvenxnf(const int n, const float * restrict lu, const float * restrict d, const float * restrict p, const int * pvi, const float * restrict b, float * restrict x) 
+MC_TARGET_FUNC int mc_lusolvenxnf(const int n, const float * MC_TARGET_RESTRICT lu, const float * MC_TARGET_RESTRICT d, const float * MC_TARGET_RESTRICT p, const int * pvi, const float * MC_TARGET_RESTRICT b, float * MC_TARGET_RESTRICT x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n.
@@ -68,7 +68,7 @@ MC_TARGET_FUNC int mc_lusolvenxnf(const int n, const float * restrict lu, const 
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_lusolvenxnff(const int n, const float * restrict lu, const float * restrict d, const float * restrict p, const int * pvi, const float * restrict b, double * restrict x) 
+MC_TARGET_FUNC int mc_lusolvenxnff(const int n, const float * MC_TARGET_RESTRICT lu, const float * MC_TARGET_RESTRICT d, const float * MC_TARGET_RESTRICT p, const int * pvi, const float * MC_TARGET_RESTRICT b, double * MC_TARGET_RESTRICT x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n.
@@ -122,7 +122,7 @@ MC_TARGET_FUNC int mc_lusolvenxnff(const int n, const float * restrict lu, const
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_lusolvenxn(const int n, const double * restrict lu, const double * restrict d, const double * restrict p, const int * pvi, const double * restrict b, double * restrict x) 
+MC_TARGET_FUNC int mc_lusolvenxn(const int n, const double * MC_TARGET_RESTRICT lu, const double * MC_TARGET_RESTRICT d, const double * MC_TARGET_RESTRICT p, const int * pvi, const double * MC_TARGET_RESTRICT b, double * MC_TARGET_RESTRICT x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n.
@@ -176,7 +176,7 @@ MC_TARGET_FUNC int mc_lusolvenxn(const int n, const double * restrict lu, const 
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_lusolvenxnl(const int n, const long double * restrict lu, const long double * restrict d, const long double * restrict p, const int * pvi, const long double * restrict b, long double * restrict x) 
+MC_TARGET_FUNC int mc_lusolvenxnl(const int n, const long double * MC_TARGET_RESTRICT lu, const long double * MC_TARGET_RESTRICT d, const long double * MC_TARGET_RESTRICT p, const int * pvi, const long double * MC_TARGET_RESTRICT b, long double * MC_TARGET_RESTRICT x) 
 {
 //!# Solving linear system Ax=b for LU family factorization.
 //!# lu[m x n], d[m x n], p[m x n], pvi[m x 1], x[m x 1] and b[m x 1] where m=n.

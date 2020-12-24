@@ -15,7 +15,7 @@
 
 #pragma mark - mc_mulatbnxn -
 
-MC_TARGET_FUNC void mc_mulatbnxnf(const int n, float * restrict c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_mulatbnxnf(const int n, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# c=a'*b
 	if (n == 1) {
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_mulatbnxnf(const int n, float * restrict c, const float *
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatbnxn(const int n, double * restrict c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_mulatbnxn(const int n, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
 {
 //!# c=a'*b
 	if (n == 1) {
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mulatbnxn(const int n, double * restrict c, const double 
 	}
 }
 
-MC_TARGET_FUNC void mc_mulatbnxnl(const int n, long double * restrict c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_mulatbnxnl(const int n, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
 {
 //!# c=a'*b
 	if (n == 1) {

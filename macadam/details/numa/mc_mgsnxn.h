@@ -13,7 +13,7 @@
 
 #pragma mark - mc_mgsnxn -
 
-MC_TARGET_FUNC int mc_mgsnxnf(const int n, const float * a, float * q, float * restrict r)
+MC_TARGET_FUNC int mc_mgsnxnf(const int n, const float * a, float * q, float * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[n x n], q[n x n] and r[n x n] where 1 < n.
 //!# A and Q may be the same. Performing a QR decomposition
@@ -21,7 +21,7 @@ MC_TARGET_FUNC int mc_mgsnxnf(const int n, const float * a, float * q, float * r
 	return mc_orthonxnf(n, a, MCLIMITS_TINYF, q, r);
 }
 
-MC_TARGET_FUNC int mc_mgsnxnff(const int n, const float * a, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_mgsnxnff(const int n, const float * a, double * q, double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[n x n], q[n x n] and r[n x n] where 1 < n.
 //!# Performing a QR decomposition of a square matrix using
@@ -29,7 +29,7 @@ MC_TARGET_FUNC int mc_mgsnxnff(const int n, const float * a, double * q, double 
 	return mc_orthonxnff(n, a, MCLIMITS_TINYF, q, r);
 }
 
-MC_TARGET_FUNC int mc_mgsnxn(const int n, const double * a, double * q, double * restrict r)
+MC_TARGET_FUNC int mc_mgsnxn(const int n, const double * a, double * q, double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[n x n], q[n x n] and r[n x n] where 1 < n.
 //!# A and Q may be the same. Performing a QR decomposition
@@ -37,7 +37,7 @@ MC_TARGET_FUNC int mc_mgsnxn(const int n, const double * a, double * q, double *
 	return mc_orthonxn(n, a, MCLIMITS_TINY, q, r);
 }
 
-MC_TARGET_FUNC int mc_mgsnxnl(const int n, const long double * a, long double * q, long double * restrict r)
+MC_TARGET_FUNC int mc_mgsnxnl(const int n, const long double * a, long double * q, long double * MC_TARGET_RESTRICT r)
 {
 //!# Requires a[n x n], q[n x n] and r[n x n] where 1 < n.
 //!# A and Q may be the same. Performing a QR decomposition

@@ -17,7 +17,7 @@
 
 #pragma mark - mc_svdmx3 -
 
-MC_TARGET_FUNC int mc_svdmx3f(int m, const float * a, float * restrict u, float s[9], float v[9])
+MC_TARGET_FUNC int mc_svdmx3f(int m, const float * a, float * MC_TARGET_RESTRICT u, float s[9], float v[9])
 {
 //!# Requires a[m x 3], u[m x 3], s[3 x 3] and v[3 x 3].
 //!# The main result SVD provides is that we can write an m by n matrix A
@@ -106,7 +106,7 @@ MC_TARGET_FUNC int mc_svdmx3f(int m, const float * a, float * restrict u, float 
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_svdmx3ff(int m, const float * a, double * restrict u, double s[9], double v[9])
+MC_TARGET_FUNC int mc_svdmx3ff(int m, const float * a, double * MC_TARGET_RESTRICT u, double s[9], double v[9])
 {
 //!# Requires a[m x 3], u[m x 3], s[3 x 3] and v[3 x 3].
 //!# The main result SVD provides is that we can write an m by n matrix A
@@ -227,7 +227,7 @@ MC_TARGET_FUNC int mc_svdmx3ff(int m, const float * a, double * restrict u, doub
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_svdmx3(int m, const double * a, double * restrict u, double s[9], double v[9])
+MC_TARGET_FUNC int mc_svdmx3(int m, const double * a, double * MC_TARGET_RESTRICT u, double s[9], double v[9])
 {
 //!# Requires a[m x 3], u[m x 3], s[3 x 3] and v[3 x 3].
 //!# The main result SVD provides is that we can write an m by n matrix A
@@ -316,7 +316,7 @@ MC_TARGET_FUNC int mc_svdmx3(int m, const double * a, double * restrict u, doubl
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_svdmx3l(int m, const long double * a, long double * restrict u, long double s[9], long double v[9])
+MC_TARGET_FUNC int mc_svdmx3l(int m, const long double * a, long double * MC_TARGET_RESTRICT u, long double s[9], long double v[9])
 {
 //!# Requires a[m x 3], u[m x 3], s[3 x 3] and v[3 x 3].
 //!# The main result SVD provides is that we can write an m by n matrix A
