@@ -80,17 +80,16 @@
  *     \author Sven Hammarling, Numerical Algorithms Group Ltd.
  */
 
-#include <macadam/details/numa/lapack/blas/mc_blas_access.h>
 #include <macadam/details/numa/lapack/blas/mc_blas_lsame.h>
+
+#ifndef MC_BLAS_NATIVE_GEMM_H
+#define MC_BLAS_NATIVE_GEMM_H
 
 #	if MC_TARGET_BLAS_USE_ACCELERATE
 #		include <Accelerate/Accelerate.h>
 #	else
 #		include "cblas.h"
 #	endif
-
-#ifndef MC_BLAS_NATIVE_GEMM_H
-#define MC_BLAS_NATIVE_GEMM_H
 
 #pragma mark - mc_blas_native_sgemm -
 

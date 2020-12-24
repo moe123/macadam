@@ -12,11 +12,6 @@
 #ifndef MC_BLAS_ACCESS_H
 #define MC_BLAS_ACCESS_H
 
-#	undef  MC_TARGET_BLAS_USE_CLAYOUT
-#	undef  MC_TARGET_BLAS_USE_FLAYOUT
-#	define MC_TARGET_BLAS_USE_CLAYOUT 1
-#	define MC_TARGET_BLAS_USE_FLAYOUT 0
-
 #	define mc_nonblas_vector_at(g, gi) g[(gi)]
 #	define mc_nonblas_matrix_rmj_at(g, mg, ng, gi, gj) g[((gi) * (ng)) + (gj)]
 #	define mc_nonblas_matrix_cmj_at(g, mg, ng, gi, gj) g[((gj) * (mg)) + (gi)]
@@ -26,7 +21,7 @@
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 #		define mc_blas_matrix_at(g, mg, ng, gj, gi) \
 			mc_nonblas_matrix_rmj_at(g, mg, ng, ((gj) - 1), ((gi) - 1))
-#	elif MC_TARGET_BLAS_USE_FLAYOUT
+#	else
 #		define mc_blas_matrix_at(g, mg, ng, gj, gi) \
 			mc_nonblas_matrix_cmj_at(g, mg, ng, ((gj) - 1), ((gi) - 1))
 #	endif

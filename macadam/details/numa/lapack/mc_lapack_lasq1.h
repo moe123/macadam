@@ -6,8 +6,6 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_access.h>
-#include <macadam/details/numa/lapack/blas/mc_blas_copy.h>
 #include <macadam/details/numa/lapack/mc_lapack_lamch.h>
 #include <macadam/details/numa/lapack/mc_lapack_lascl.h>
 #include <macadam/details/numa/lapack/mc_lapack_lasq2.h>
@@ -70,8 +68,8 @@ MC_TARGET_PROC void mc_lapack_slasq1(const int n, float * d, float * e, float * 
 	eps    = mc_lapack_slamch('P');
 	safmin = mc_lapack_slamch('S');
 	scale  = mc_sqrtf(eps / safmin);
-	mc_blas_scopy(n, d, 1, work, 2);
-	mc_blas_scopy(n - 1, e, 1, work + 1, 2);
+	mc_scopy(n, d, 1, work, 2);
+	mc_scopy(n - 1, e, 1, work + 1, 2);
 	mc_lapack_slascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
 
 	for (i = 1; i <= ((2 * n) - 1); ++i) {
@@ -145,8 +143,8 @@ MC_TARGET_PROC void mc_lapack_dlasq1(const int n, double * d, double * e, double
 	eps    = mc_lapack_dlamch('P');
 	safmin = mc_lapack_dlamch('S');
 	scale  = mc_sqrt(eps / safmin);
-	mc_blas_dcopy(n, d, 1, work, 2);
-	mc_blas_dcopy(n - 1, e, 1, work + 1, 2);
+	mc_dcopy(n, d, 1, work, 2);
+	mc_dcopy(n - 1, e, 1, work + 1, 2);
 	mc_lapack_dlascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
 
 	for (i = 1; i <= ((2 * n) - 1); ++i) {
@@ -220,8 +218,8 @@ MC_TARGET_PROC void mc_lapack_llasq1(const int n, long double * d, long double *
 	eps    = mc_lapack_llamch('P');
 	safmin = mc_lapack_llamch('S');
 	scale  = mc_sqrtl(eps / safmin);
-	mc_blas_lcopy(n, d, 1, work, 2);
-	mc_blas_lcopy(n - 1, e, 1, work + 1, 2);
+	mc_lcopy(n, d, 1, work, 2);
+	mc_lcopy(n - 1, e, 1, work + 1, 2);
 	mc_lapack_llascl('G', 0, 0, sigmx, scale, (2 * n) - 1, 1, work, (2 * n) - 1, &iinfo);
 
 	for (i = 1; i <= ((2 * n) - 1); ++i) {

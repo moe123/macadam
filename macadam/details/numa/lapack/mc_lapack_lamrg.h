@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_access.h>
+#include <macadam/details/numa/lapack/mc_blas.h>
 
 #ifndef MC_LAPACKE_LAMRG_H
 #define MC_LAPACKE_LAMRG_H
