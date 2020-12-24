@@ -5,13 +5,19 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_lsame.h>
+#include <macadam/details/mc_target.h>
 
 #ifndef MC_BLAS_NATIVE_COPY_H
 #define MC_BLAS_NATIVE_COPY_H
 
 #	if MC_TARGET_BLAS_USE_ACCELERATE
 #		include <Accelerate/Accelerate.h>
+#	elif MC_TARGET_BLAS_USE_VECLIB
+#		include <vecLib/cblas.h>
+#	elif MC_TARGET_BLAS_USE_MLK
+#		define MKL_Complex8  mc_complex_float_t
+#		define MKL_Complex16 mc_complex_double_t
+#		include <mkl_cblas.h>
 #	else
 #		include "cblas.h"
 #	endif
