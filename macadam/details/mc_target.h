@@ -40,7 +40,7 @@
 		||  defined(__bsdi__)      \
 		||  defined(__DragonFly__) \
 		|| (defined(__APPLE__) && defined(__MACH__))
-#		include <unistd.h>
+#	include <unistd.h>
 #	endif
 
 #	if defined(__APPLE__) && defined(__MACH__)
@@ -66,10 +66,10 @@
 
 #	if MC_DISABLE_ALLOW_CPP_CMATH
 #		undef  MC_TARGET_ALLOW_CPP_CMATH
-#		define MC_TARGET_ALLOW_CPP_CMATH 1
+#		define MC_TARGET_ALLOW_CPP_CMATH 0
 #	else
 #		undef  MC_TARGET_ALLOW_CPP_CMATH
-#		define MC_TARGET_ALLOW_CPP_CMATH 0
+#		define MC_TARGET_ALLOW_CPP_CMATH 1
 #	endif
 
 #	if MC_DISABLE_LOG2
@@ -85,7 +85,7 @@
 #		define MC_TARGET_INLINE inline
 #	endif
 
-#	if defined(__STDC__)
+#	if defined(__STDC__) && !defined(__cplusplus)
 #		define MC_TARGET_C89 1
 #		if defined(__STDC_VERSION__)
 #			define MC_TARGET_C90 1
@@ -98,10 +98,18 @@
 #			if (__STDC_VERSION__ >= 201112L)
 #				define MC_TARGET_C11 1
 #			endif
+#			if (__STDC_VERSION__ >= 201710L)
+#				define MC_TARGET_C17 1
+#			endif
 #		endif
 #	endif
 
 #	if defined(__cplusplus)
+#		undef MC_TARGET_C89
+#		undef MC_TARGET_C90
+#		undef MC_TARGET_C99
+#		undef MC_TARGET_C11
+#		undef MC_TARGET_C17
 #		define MC_TARGET_CPP98 1
 #		if (__cplusplus >= 201103L)
 #			define MC_TARGET_CPP11 1
@@ -117,9 +125,11 @@
 #		endif
 #	endif
 
-#	define MC_TARGET_MSVC_CPP 0
+#	undef MC_TARGET_MSVC_CPP
 #	if defined(_MSC_VER)
-#		undef  MC_TARGET_MSVC_CPP
+#		if !defined(__cplusplus)
+#			error "MSC C++ support only."
+#		endif
 #		define MC_TARGET_MSVC_CPP 1
 #		ifndef MC_TARGET_CPP98
 #			define MC_TARGET_CPP98 1
@@ -149,8 +159,10 @@
 #		endif
 #	endif
 
-#	if !MC_TARGET_C99 || MC_TARGET_CPP98
-#		define restrict
+#	if MC_TARGET_C99
+#		define MC_TARGET_RESTRICT restrict
+#	else
+#		define MC_TARGET_RESTRICT
 #	endif
 
 #	if !defined(MC_TARGET_INLINE)
@@ -373,10 +385,8 @@
 #		include <cinttypes>
 #		include <cfenv>
 #		include <cfloat>
-#	if	MC_TARGET_ALLOW_CPP_CMATH
-#		include <complex>
 #		include <cmath>
-#	endif
+#		include <algorithm>
 #	elif MC_TARGET_HAVE_TGMATH
 #		include <stdio.h>
 #		include <limits.h>

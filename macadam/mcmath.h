@@ -228,7 +228,7 @@
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 #	define mcmath_floor2(x) ((x) ? 1ULL << mcmath_log2floor(x) : 0ULL)
 #	else
-#	define mcmath_floor2(x) ((x) ? 1UL << mcmath_log2floor(x) : 0UL)
+#	define mcmath_floor2(x) ((x) ? 1UL  << mcmath_log2floor(x) : 0UL)
 #	endif
 #	endif
 #	endif
