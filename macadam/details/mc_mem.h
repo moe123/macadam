@@ -45,7 +45,7 @@ void * mc_os_memzero(void * b, size_t len)
 #pragma mark - mc_os_memcpy -
 
 static MC_TARGET_INLINE
-void * mc_os_memcpy(void * restrict dest, const void * restrict src, size_t len)
+void * mc_os_memcpy(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -68,7 +68,7 @@ void * mc_os_memcpy(void * restrict dest, const void * restrict src, size_t len)
 #pragma mark - mc_os_memmove -
 
 static MC_TARGET_INLINE
-void * mc_os_memmove(void * restrict dest, const void * restrict src, size_t len)
+void * mc_os_memmove(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -91,7 +91,7 @@ void * mc_os_memmove(void * restrict dest, const void * restrict src, size_t len
 #pragma mark - mc_os_memcmp -
 
 static MC_TARGET_INLINE
-int mc_os_memcmp(const void * restrict left, const void * restrict right, size_t len)
+int mc_os_memcmp(const void * MC_TARGET_RESTRICT left, const void * MC_TARGET_RESTRICT right, size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
