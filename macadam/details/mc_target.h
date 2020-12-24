@@ -159,6 +159,14 @@
 #		endif
 #	endif
 
+#	if MC_TARGET_C89 && !MC_TARGET_C99
+#	if defined(__GNUC__)
+#		define inline __inline__
+#	else
+#		define inline __inline
+#	endif
+#	endif
+
 #	if MC_TARGET_C99
 #		define MC_TARGET_RESTRICT restrict
 #	else
@@ -171,6 +179,8 @@
 #			define MC_TARGET_INLINE __inline__ __attribute__((__always_inline__, __unused__))
 #		elif defined(__GNUC__)
 #			define MC_TARGET_INLINE __inline__
+#		elif defined(_MSC_VER)
+#			define MC_TARGET_INLINE __forceinline
 #		else
 #			define MC_TARGET_INLINE inline
 #		endif

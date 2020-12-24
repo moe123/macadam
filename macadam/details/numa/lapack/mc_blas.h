@@ -14,8 +14,6 @@
 #	define MC_TARGET_BLAS_USE_CLAYOUT 1
 #	define MC_TARGET_BLAS_USE_FLAYOUT 0
 
-#	undef MC_TARGET_BLAS_USE_NATIVE
-
 #	if MC_TARGET_BLAS_USE_NATIVE
 #	include <macadam/details/numa/lapack/blas/native/mc_blas_native_copy.h>
 #	include <macadam/details/numa/lapack/blas/native/mc_blas_native_gemm.h>
