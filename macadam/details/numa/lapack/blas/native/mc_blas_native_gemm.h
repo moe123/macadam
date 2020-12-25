@@ -110,7 +110,11 @@ MC_TARGET_FUNC void mc_blas_native_sgemm(const char transa, const char transb, c
 	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(transa, 'N') ? CblasNoTrans : (mc_blas_lsame(transa, 'T') ? CblasTrans : CblasConjTrans);
 	const enum CBLAS_TRANSPOSE trans_b = mc_blas_lsame(transb, 'N') ? CblasNoTrans : (mc_blas_lsame(transb, 'T') ? CblasTrans : CblasConjTrans);
 
+# if MC_TARGET_CPP98
+	::cblas_sgemm(order, trans_a, trans_b, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
 	cblas_sgemm(order, trans_a, trans_b, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+#	endif
 }
 
 #pragma mark - mc_blas_native_dgemm -
@@ -126,7 +130,11 @@ MC_TARGET_FUNC void mc_blas_native_dgemm(const char transa, const char transb, c
 	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(transa, 'N') ? CblasNoTrans : (mc_blas_lsame(transa, 'T') ? CblasTrans : CblasConjTrans);
 	const enum CBLAS_TRANSPOSE trans_b = mc_blas_lsame(transb, 'N') ? CblasNoTrans : (mc_blas_lsame(transb, 'T') ? CblasTrans : CblasConjTrans);
 
+# if MC_TARGET_CPP98
+	::cblas_dgemm(order, trans_a, trans_b, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+#	else
 	cblas_dgemm(order, trans_a, trans_b, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+#	endif
 }
 
 #endif /* !MC_BLAS_NATIVE_GEMM_H */

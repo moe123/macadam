@@ -79,7 +79,11 @@ MC_TARGET_FUNC void mc_blas_native_sger(const int m, const int n, float alpha, c
 	const enum CBLAS_ORDER order = CblasColMajor;
 #	endif
 
+# if MC_TARGET_CPP98
+	::cblas_sger(order, m, n, alpha, x, incx, y, incy, a, lda);
+#	else
 	cblas_sger(order, m, n, alpha, x, incx, y, incy, a, lda);
+#	endif
 }
 
 #pragma mark - mc_blas_native_dger -
@@ -92,7 +96,11 @@ MC_TARGET_FUNC void mc_blas_native_dger(const int m, const int n, double alpha, 
 	const enum CBLAS_ORDER order = CblasColMajor;
 #	endif
 
+# if MC_TARGET_CPP98
+	::cblas_dger(order, m, n, alpha, x, incx, y, incy, a, lda);
+#	else
 	cblas_dger(order, m, n, alpha, x, incx, y, incy, a, lda);
+#	endif
 }
 
 #endif /* !MC_BLAS_NATIVE_GER_H */

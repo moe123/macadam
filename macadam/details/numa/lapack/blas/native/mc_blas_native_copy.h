@@ -1,6 +1,6 @@
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_blas_copy.h
+// mc_blas_native_copy.h
 //
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
@@ -26,14 +26,22 @@
 
 MC_TARGET_FUNC void mc_blas_native_scopy(const int n, const float * x, const int incx, float * y, const int incy)
 {
+# if MC_TARGET_CPP98
+	::cblas_scopy(n, x, incx, y, incy);
+#	else
 	cblas_scopy(n, x, incx, y, incy);
+#	endif
 }
 
 #pragma mark - mc_blas_native_dcopy -
 
 MC_TARGET_FUNC void mc_blas_native_dcopy(const int n, const double * x, const int incx, double * y, const int incy)
 {
+# if MC_TARGET_CPP98
+	::cblas_dcopy(n, x, incx, y, incy);
+#	else
 	cblas_dcopy(n, x, incx, y, incy);
+#	endif
 }
 
 #endif /* !MC_BLAS_NATIVE_COPY_H */
