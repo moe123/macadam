@@ -478,7 +478,7 @@
 #		define mc_cmplx(re, im)  { (double)(re)     , (double)(im)      }
 #		define mc_cmplxl(re, im) { (long double)(re), (long double)(im) }
 #	elif MC_TARGET_CPP98
-#	if defined(__GNUC__)
+#	if (defined(__GNUC__) || defined(__clang__))
 #		define mc_cmplxf(re, im) __extension__ (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
 #		define mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
 #		define mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
@@ -533,14 +533,16 @@
 	MC_TARGET_FUNC int __builtin_ctz(unsigned int x)
 	{
 		unsigned long ret;
-		_BitScanForward(&ret, x);
+		unsigned __int32 m = mc_cast(unsigned __int32, x);
+		_BitScanForward(&ret, m);
 		return mc_cast(int, ret);
 	}
 
 	MC_TARGET_FUNC int __builtin_ctzll(unsigned long long x)
 	{
 		unsigned long ret;
-		_BitScanForward64(&ret, x);
+		unsigned __int64 m = mc_cast(unsigned __int64, x);
+		_BitScanForward64(&ret, m);
 		return mc_cast(int, ret);
 	}
 
@@ -555,15 +557,17 @@
 	MC_TARGET_FUNC int __builtin_clz(unsigned int x)
 	{
 		unsigned long ret;
-		_BitScanReverse(&ret, x);
-		return mc_cast(int, (31 ^ ret));
+		unsigned __int32 m = mc_cast(unsigned __int32, x);
+		_BitScanReverse(&ret, m);
+		return mc_cast(int, ((CHAR_BIT * sizeof(unsigned __int32) - 1) ^ ret));
 	}
 
 	MC_TARGET_FUNC int __builtin_clzll(unsigned long long x)
 	{
 		unsigned long ret;
+		unsigned __int64 m = mc_cast(unsigned __int64, x);
 		_BitScanReverse64(&ret, x);
-		return mc_cast(int, (63 ^ ret));
+		return mc_cast(int, ((CHAR_BIT * sizeof(unsigned __int64) - 1) ^ ret));
 	}
 
 	MC_TARGET_FUNC int __builtin_clzl(unsigned long x)
@@ -572,8 +576,9 @@
 		if (sizeof(x) >= 8) {
 			return __builtin_clzll(x);
 		}
-		_BitScanReverse(&ret, x);
-		return mc_cast(int, (31 ^ ret));
+		unsigned __int32 m = mc_cast(unsigned __int32, x);
+		_BitScanReverse(&ret, m);
+		return mc_cast(int, ((CHAR_BIT * sizeof(unsigned __int32) - 1) ^ ret));
 	}
 #	endif
 

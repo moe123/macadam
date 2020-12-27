@@ -201,25 +201,25 @@
 
 #	ifndef mcmath_nlz
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-#	define mcmath_nlz(x) ((x) ? MC_TARGET_CLZLL(mc_cast(unsigned long long, x)) : 64)
+#	define mcmath_nlz(x) ((x) ? MC_TARGET_CLZLL(mc_cast(unsigned long long, x)) : CHAR_BIT * sizeof(unsigned long long))
 #	else
-#	define mcmath_nlz(x) ((x) ? MC_TARGET_CLZL(mc_cast(unsigned long, x)) : 64)
+#	define mcmath_nlz(x) ((x) ? MC_TARGET_CLZL(mc_cast(unsigned long, x))       : CHAR_BIT * sizeof(unsigned long)     )
 #	endif
 #	endif
 
 #pragma mark - mcmath_log2floor -
 
 #	ifndef mcmath_log2floor
-#	define mcmath_log2floor(x) (63 - mcmath_nlz(x))
+#	define mcmath_log2floor(x) ((CHAR_BIT * sizeof(x)) - 1) - mcmath_nlz(x))
 #	endif
 
 #pragma mark - mcmath_log2ceil -
 
 #	ifndef mcmath_log2ceil
-#	define mcmath_log2ceil(x) ((x) ? 64 - mcmath_nlz(((x) - 1)) : -1)
+#	define mcmath_log2ceil(x) ((x) ? (CHAR_BIT * sizeof(x)) - mcmath_nlz(((x) - 1)) : -1)
 #	endif
 
-#pragma mark - mcmath_ceil2 -
+#pragma mark - mcmath_floor2 -
 
 #	ifndef mcmath_floor2
 #	if MC_TARGET_CPP20 && MC_TARGET_HAVE_FLOOR2FN
@@ -228,7 +228,7 @@
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 #	define mcmath_floor2(x) ((x) ? 1ULL << mcmath_log2floor(x) : 0ULL)
 #	else
-#	define mcmath_floor2(x) ((x) ? 1UL  << mcmath_log2floor(x) : 0UL)
+#	define mcmath_floor2(x) ((x) ? 1UL  << mcmath_log2floor(x) : 0UL )
 #	endif
 #	endif
 #	endif
@@ -242,21 +242,9 @@
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 #	define mcmath_ceil2(x) ((x) > 1 ? 1ULL << mcmath_log2ceil(x) : 0ULL)
 #	else
-#	define mcmath_ceil2(x) ((x) > 1 ? 1UL << mcmath_log2ceil(x) : 0UL)
+#	define mcmath_ceil2(x) ((x) > 1 ? 1UL  << mcmath_log2ceil(x) : 0UL )
 #	endif
 #	endif
-#	endif
-
-#pragma mark - mcmath_imod -
-
-#	ifndef mcmath_imod
-#	define mcmath_imod(x, y) ((x) % (y))
-#	endif
-
-#pragma mark - mcmath_ipmod -
-
-#	ifndef mcmath_ipmod
-#	define mcmath_ipmod(x, y) ((((x) % (y)) + (y)) % (y))
 #	endif
 
 #pragma mark - mcmath_acos -
