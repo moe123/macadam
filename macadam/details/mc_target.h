@@ -175,7 +175,7 @@
 
 #	if !defined(MC_TARGET_INLINE)
 #	if MC_TARGET_C99 || MC_TARGET_CPP98
-#		if (((defined(__GNUC__) && __GNUC__ >= 4)) || defined(__clang__))
+#		if (((defined(__GNUC__) && __GNUC__ + 0 >= 4)) || defined(__clang__))
 #			define MC_TARGET_INLINE __inline__ __attribute__((__always_inline__, __unused__))
 #		elif defined(__GNUC__)
 #			define MC_TARGET_INLINE __inline__
@@ -190,7 +190,7 @@
 #	endif
 
 #	if (defined(__GNUC__) || defined(__clang__))
-#	if ((__GNUC__ >= 4) || (__clang_major__ >= 4))
+#	if ((__GNUC__ + 0 >= 4) || (__clang_major__ >= 4))
 #		undef  MC_TARGET_SIGNBITF
 #		undef  MC_TARGET_SIGNBIT
 #		undef  MC_TARGET_SIGNBITL
@@ -259,7 +259,7 @@
 #		define MC_TARGET_THREAD_LOCAL __thread
 #	elif defined(__GNUG__) && (__GNUC__ == 4 && __GNUC_MINOR__ >= 80)
 #		define MC_TARGET_THREAD_LOCAL _Thread_local
-#	elif defined(__GNUG__) && (__GNUC__ > 4)
+#	elif defined(__GNUG__) && (__GNUC__ + 0 > 4)
 #		define MC_TARGET_THREAD_LOCAL _Thread_local
 #	elif (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L) && !defined(__STDC_NO_THREADS__)
 #		define MC_TARGET_THREAD_LOCAL _Thread_local
@@ -289,11 +289,11 @@
 #		if MC_TARGET_CPP11
 #			define MC_TARGET_HAVE_AUTOTYPE 1
 #			define MC_TARGET_AUTOTYPE      auto
-#		elif ((defined(__GNUC__) && (__GNUC__ >= 5)) || defined(__clang__))
+#		elif ((defined(__GNUC__) && (__GNUC__ + 0 >= 5)) || defined(__clang__))
 #			define MC_TARGET_HAVE_AUTOTYPE 1
 #			define MC_TARGET_AUTOTYPE      __auto_type
 #		endif
-#		if ((defined(__GNUC__) && (__GNUC__ >= 3)) || defined(__clang__))
+#		if ((defined(__GNUC__) && (__GNUC__ + 0 >= 3)) || defined(__clang__))
 #			define MC_TARGET_TYPEISOF(type1, type2) ((__builtin_types_compatible_p(type1, type2)) ? 1 : 0)
 #		elif MC_TARGET_CPP11
 #			define MC_TARGET_TYPEISOF(type1, type2) \

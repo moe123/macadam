@@ -98,9 +98,19 @@
 #		define MKL_UINT      unsigned int
 #		define MKL_Complex8  mc_complex_float_t
 #		define MKL_Complex16 mc_complex_double_t
-#		include <mkl_cblas.h>
+#		include "mkl_cblas.h"
 #	elif MC_TARGET_BLAS_USE_OPENBLAS
-#		include <cblas_openblas.h>
+#		if defined __has_include
+#			if __has_include("cblas_openblas.h")
+#				include "cblas_openblas.h"
+#			elif __has_include("cblas-openblas.h")
+#				include "cblas-openblas.h"
+#			else
+#				include "cblas.h"
+#		endif
+#		else
+#			include "cblas.h"
+#		endif
 #	else
 #		include "cblas.h"
 #	endif
