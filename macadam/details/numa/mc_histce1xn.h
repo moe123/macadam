@@ -13,64 +13,64 @@
 
 #pragma mark - mc_histce1xn -
 
-MC_TARGET_FUNC float mc_histce1xnf(int npts, int nbins, int b, const int * h)
+MC_TARGET_FUNC float mc_histce1xnf(int npts, int nbins, int logbase, const int * h)
 {
 //!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
 //!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
-//!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     nbins - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
+//!#     npts    - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins   - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     logbase - The logarithm base, if set to `one`, loge is used i.e nat; `two` for bit unit.
 
 	int i       = 0;
 	const int c = nbins < 1 ? 1 : nbins;
 	float e     = 0.0f;
 
-	if (npts > 1 && b > 0) {
+	if (npts > 1 && logbase > 0) {
 		for (; i < npts; i++) {
 			const float p  = mc_cast(float, h[i]) / c;
-			e             -= p > 0.0f ? p * mc_logbasef(p, b) : 0.0f;
+			e             -= p > 0.0f ? p * mc_logbasef(p, logbase) : 0.0f;
 		}
 	}
 	return e;
 }
 
-MC_TARGET_FUNC double mc_histce1xn(int npts, int nbins, int b, const int * h)
+MC_TARGET_FUNC double mc_histce1xn(int npts, int nbins, int logbase, const int * h)
 {
 //!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
 //!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
-//!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     nbins - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
+//!#     npts    - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins   - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     logbase - The logarithm base, if set to `one`, loge is used i.e nat; `two` for bit unit.
 
 	int i       = 0;
 	const int c = nbins < 1 ? 1 : nbins;
-	double e    = 0.0f;
+	double e    = 0.0;
 
-	if (npts > 1 && b > 0) {
+	if (npts > 1 && logbase > 0) {
 		for (; i < npts; i++) {
 			const double p  = mc_cast(double, h[i]) / c;
-			e              -= p > 0.0 ? p * mc_logbase(p, b) : 0.0;
+			e              -= p > 0.0 ? p * mc_logbase(p, logbase) : 0.0;
 		}
 	}
 	return e;
 }
 
-MC_TARGET_FUNC long double mc_histce1xnl(int npts, int nbins, int b, const int * h)
+MC_TARGET_FUNC long double mc_histce1xnl(int npts, int nbins, int logbase, const int * h)
 {
 //!# Requires h[npts] where 1 < n and 0 < nbins and 0 < b. Computing the entropy
 //!# of a given `counted` histogram (frequency) @see  `mc_histcs1xn` or `mc_histcg1xn`.
-//!#     npts  - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     nbins - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
-//!#     b     - The logarithm base, if b is `one`, loge is used i.e nat use base2 for bit unit.
+//!#     npts    - Size of histogram i.e h[npts]. @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     nbins   - The given bin width.           @note npts, nbins are usually equal @see `mc_histcs1xn`.
+//!#     logbase - The logarithm base, if set to `one`, loge is used i.e nat; `two` for bit unit.
 
 	int i         = 0;
 	const int c   = nbins < 1 ? 1 : nbins;
 	long double e = 0.0f;
 
-	if (npts > 1 && b > 0) {
+	if (npts > 1 && logbase > 0) {
 		for (; i < npts; i++) {
 			const long double p  = mc_cast(long double, h[i]) / c;
-			e                   -= p > 0.0L ? p * mc_logbasel(p, b) : 0.0L;
+			e                   -= p > 0.0L ? p * mc_logbasel(p, logbase) : 0.0L;
 		}
 	}
 	return e;

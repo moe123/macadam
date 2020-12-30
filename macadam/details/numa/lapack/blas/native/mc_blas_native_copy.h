@@ -53,6 +53,8 @@
 #		define MKL_Complex8  mc_complex_float_t
 #		define MKL_Complex16 mc_complex_double_t
 #		include <mkl_cblas.h>
+#	elif MC_TARGET_BLAS_USE_OPENBLAS
+#		include <cblas_openblas.h>
 #	else
 #		include "cblas.h"
 #	endif
