@@ -7,7 +7,7 @@
 
 /* \name
  *    ?rotm performs modified Givens rotation of points in the plane.
- * 
+ *
  * \synopsis
  *    real-floating ?rotm(n, x, incx, y, incy, param)
  *    int           incx, incy, n

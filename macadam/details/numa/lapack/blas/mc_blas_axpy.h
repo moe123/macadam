@@ -8,7 +8,7 @@
 
 /* \name
  *    ?axpy constant times a vector plus a vector: y=y+(a*x).
- * 
+ *
  * \synopsis
  *    void ?axpy(n, a, x, incx, y, incy)
  *    int           incx, incy, n

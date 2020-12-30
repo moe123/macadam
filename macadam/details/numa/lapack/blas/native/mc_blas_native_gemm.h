@@ -90,6 +90,12 @@
 #	elif MC_TARGET_BLAS_USE_VECLIB
 #		include <vecLib/cblas.h>
 #	elif MC_TARGET_BLAS_USE_MLK
+#		undef  MKL_INT
+#		undef  MKL_UINT
+#		undef  MKL_Complex8
+#		undef  MKL_Complex16
+#		define MKL_INT       int
+#		define MKL_UINT      unsigned int
 #		define MKL_Complex8  mc_complex_float_t
 #		define MKL_Complex16 mc_complex_double_t
 #		include <mkl_cblas.h>

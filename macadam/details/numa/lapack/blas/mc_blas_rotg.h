@@ -7,7 +7,7 @@
 
 /* \name
  *    ?rotg computes the parameters for a Givens rotation.
- * 
+ *
  * \synopsis
  *    real-floating ?rotg(a, b, c, s)
  *    real-floating a, b, c, s

@@ -7,7 +7,7 @@
 
 /* \name
  *    ?rot applies a plane rotation.
- * 
+ *
  * \synopsis
  *    real-floating ?rot(n, x, incx, y, incy, c, s)
  *    real-floating c, s

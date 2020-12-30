@@ -7,7 +7,7 @@
 
 /* \name
  *    ?rotmg constructs a Gentleman's modified Given's plane rotation.
- * 
+ *
  * \synopsis
  *    real-floating ?rotmg(d1, d2, x1, y1, param)
  *    real-floating d1, d2, x1, y1

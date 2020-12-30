@@ -7,7 +7,7 @@
 
 /* \name
  *    ?nrm2 returns the euclidean norm of a vector.
- * 
+ *
  * \synopsis
  *    real-floating ?nrm2(n, x, incx)
  *    int           incx, n

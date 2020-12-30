@@ -28,7 +28,7 @@
  *    array x must contain the m element vector x.
  *
  *    [in]  incx  - int. Specifies the increment for the elements of x, incx must not be zero.
-
+ *
  *    [in]  y     - float-floating array of dimension at least (1+(n-1)*abs(incy)). The incremented
  *    array y must contain the n element vector y.
  *
@@ -38,7 +38,7 @@
  *    array a must contain the matrix of coefficients. a is overwritten by the updated matrix.
  *
  *    [in]  lda   - int. Specifies the first dimension of a, d must be at least max(1, m).
- * 
+ *
  * \examples
  *
  * \level 2 blas routine.
@@ -62,6 +62,12 @@
 #	elif MC_TARGET_BLAS_USE_VECLIB
 #		include <vecLib/cblas.h>
 #	elif MC_TARGET_BLAS_USE_MLK
+#		undef  MKL_INT
+#		undef  MKL_UINT
+#		undef  MKL_Complex8
+#		undef  MKL_Complex16
+#		define MKL_INT       int
+#		define MKL_UINT      unsigned int
 #		define MKL_Complex8  mc_complex_float_t
 #		define MKL_Complex16 mc_complex_double_t
 #		include <mkl_cblas.h>

@@ -7,7 +7,7 @@
 
 /* \name
  *    ?trsv Solves a system of linear equations whose coefficients are in a triangular matrix.
- * 
+ *
  * \synopsis
  *    void ?trsv(uplo, trans, diag, n, a, lda, x, incx)
  *    real-floating alpha, beta

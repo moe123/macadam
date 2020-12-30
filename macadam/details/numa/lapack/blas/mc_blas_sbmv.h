@@ -59,7 +59,7 @@
  *    contain the vector y, y is overwritten by the updated vector y.
  *
  *    [in] incy  - int. Specifies the increment for the elements of y, incy must not be zero.
- * 
+ *
  * \examples
  *              | 1 | 1 | 1 | 1 | 0 | 0 | 0 |
  *              | 1 | 2 | 2 | 2 | 2 | 0 | 0 |

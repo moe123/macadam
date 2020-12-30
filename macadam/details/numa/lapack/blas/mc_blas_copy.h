@@ -6,6 +6,35 @@
 // Copyright (C) 2019-2020 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?copy copies a vector x, to a vector y.
+ *
+ * \synopsis
+ *    void ?copy(n, x, incx, y, incy)
+ *    int            incx, incy, n
+ *    float-floating x(*), y(*)
+ *
+ * \purpose
+ *    ?copy copies a vector x, to a vector y.
+ *
+ * \parameters
+ *    [in]  n     - int. Specifies the number of elements in input vector(s).
+ *
+ *    [in]  x     - float-floating array of dimension at least (1+(n-1)*abs(incx)).
+ *    [in]  incx  - int. Specifies the storage spacing between elements of x.
+ *
+ *    [out]  y    - float-floating array of dimension at least (1+(n-1)*abs(incy)).
+ *    [in]  incy  - int. Specifies the storage spacing between elements of y.
+ *
+ * \examples
+ *
+ * \level 2 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
 #ifndef MC_BLAS_COPY_H
 #define MC_BLAS_COPY_H
 
