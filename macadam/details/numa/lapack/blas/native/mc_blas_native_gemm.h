@@ -80,7 +80,6 @@
  *     \author Sven Hammarling, Numerical Algorithms Group Ltd.
  */
 
-#include <macadam/details/numa/lapack/blas/native/mc_blas_native.h>
 #include <macadam/details/numa/lapack/blas/mc_blas_lsame.h>
 
 #ifndef MC_BLAS_NATIVE_GEMM_H

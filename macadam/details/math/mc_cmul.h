@@ -19,7 +19,10 @@ MC_TARGET_PROC mc_complex_float_t mc_cmulf(mc_complex_float_t a, mc_complex_floa
 		return a * b;
 #	else
 	mc_complex_float_t c;
-	mc_zmulf(&c.u_re, &c.u_im, a.u_re, a.u_im, b.u_re, b.u_im);
+	mc_zmulf(&mc_cmplxrf(c), &mc_cmplxif(c)
+		, mc_cmplxrf(a), mc_cmplxif(a)
+		, mc_cmplxrf(b), mc_cmplxif(b)
+	);
 	return c;
 #	endif
 }
@@ -30,7 +33,10 @@ MC_TARGET_PROC mc_complex_double_t mc_cmul(mc_complex_double_t a, mc_complex_dou
 		return a * b;
 #	else
 	mc_complex_double_t c;
-	mc_zmul(&c.u_re, &c.u_im, a.u_re, a.u_im, b.u_re, b.u_im);
+	mc_zmul(&mc_cmplxr(c), &mc_cmplxi(c)
+		, mc_cmplxr(a), mc_cmplxi(a)
+		, mc_cmplxr(b), mc_cmplxi(b)
+	);
 	return c;
 #	endif
 }
@@ -41,7 +47,10 @@ MC_TARGET_PROC mc_complex_long_double_t mc_cmull(mc_complex_long_double_t a, mc_
 		return a * b;
 #	else
 	mc_complex_long_double_t c;
-	mc_zmull(&c.u_re, &c.u_im, a.u_re, a.u_im, b.u_re, b.u_im);
+	mc_zmull(&mc_cmplxrl(c), &mc_cmplxil(c)
+		, mc_cmplxrl(a), mc_cmplxil(a)
+		, mc_cmplxrl(b), mc_cmplxil(b)
+	);
 	return c;
 #	endif
 }

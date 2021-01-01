@@ -15,29 +15,17 @@
 
 MC_TARGET_PROC float mc_cimagf(mc_complex_float_t c)
 {
-#	if MC_TARGET_C99_COMPLEX
-		return cimagf(c);
-#	else
-	return c.u_im;
-#	endif
+	return mc_cmplxif(c);
 }
 
 MC_TARGET_PROC double mc_cimag(mc_complex_double_t c)
 {
-#	if MC_TARGET_C99_COMPLEX
-		return cimag(c);
-#	else
-	return c.u_im;
-#	endif
+	return mc_cmplxi(c);
 }
 
 MC_TARGET_PROC long double mc_cimagl(mc_complex_long_double_t c)
 {
-#	if MC_TARGET_C99_COMPLEX
-		return cimagl(c);
-#	else
-	return c.u_im;
-#	endif
+	return mc_cmplxil(c);
 }
 
 #endif /* !MC_CIMAG_H */

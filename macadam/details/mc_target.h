@@ -432,7 +432,7 @@
 #		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 1
 #	endif
 
-#	if MC_TARGET_C99 && !MC_TARGET_BUILTIN_COMPLEX
+#	if MC_TARGET_C99 && !MC_TARGET_BUILTIN_COMPLEX && !__STDC_NO_COMPLEX__
 #		if (defined(_Imaginary_I) || defined(_Complex_I)) && !defined(__STDC_IEC_559_COMPLEX__)
 #			define __STDC_IEC_559_COMPLEX__ 1
 #		endif
@@ -443,14 +443,62 @@
 #		define MC_TARGET_C99_COMPLEX 0
 #	endif
 
-#	if !MC_TARGET_CPP98 && !MC_TARGET_BUILTIN_COMPLEX
-#		if MC_TARGET_C99 && defined(__STDC_IEC_559_COMPLEX__)
+#	if MC_TARGET_BLAS_USE_NATIVE
+#	if MC_TARGET_BLAS_USE_ACCELERATE
+#		include <Accelerate/Accelerate.h>
+		typedef __CLPK_complex                           mc_complex_float_t;
+		typedef __CLPK_doublecomplex                     mc_complex_double_t;
+		typedef struct { long double r; long double i; } mc_complex_long_double_t;
+#		undef  MC_TARGET_BUILTIN_COMPLEX
+#		define MC_TARGET_BUILTIN_COMPLEX 1
+#	elif MC_TARGET_BLAS_USE_VECLIB
+#		include <vecLib/clapack.h>
+#		include <vecLib/cblas.h>
+		typedef __CLPK_complex                           mc_complex_float_t;
+		typedef __CLPK_doublecomplex                     mc_complex_double_t;
+		typedef struct { long double r; long double i; } mc_complex_long_double_t;
+#		undef  MC_TARGET_BUILTIN_COMPLEX
+#		define MC_TARGET_BUILTIN_COMPLEX 1
+#	elif MC_TARGET_BLAS_USE_OPENBLAS
+#		if defined __has_include
+#			if __has_include("openblas/cblas.h")
+#				include "openblas/cblas.h"
+#			elif __has_include("cblas_openblas.h")
+#				include "cblas_openblas.h"
+#			elif __has_include("cblas-openblas.h")
+#				include "cblas-openblas.h"
+#			else
+#				include "cblas.h"
+#			endif
+#		else
+#			include "cblas.h"
+#		endif
+#		if defined(OPENBLAS_COMPLEX_C99) || defined(OPENBLAS_COMPLEX_STRUCT)
+			typedef openblas_complex_float  mc_complex_float_t;
+			typedef openblas_complex_double mc_complex_double_t;
+#			if defined(OPENBLAS_COMPLEX_STRUCT)
+#				undef  MC_TARGET_BUILTIN_COMPLEX
+#				define MC_TARGET_BUILTIN_COMPLEX 1
+				typedef struct { long double real; long double imag; } mc_complex_long_double_t;
+#			else
+				typedef long double _Complex mc_complex_long_double_t;
+#			endif
+#		else
+#			error "OpenBlas header not found."
+#		endif
+#	endif
+#	endif
+
+#	if ((!MC_TARGET_CPP98 && !MC_TARGET_BUILTIN_COMPLEX) || defined(OPENBLAS_COMPLEX_C99))
+#		if ((MC_TARGET_C99 && defined(__STDC_IEC_559_COMPLEX__) && !__STDC_NO_COMPLEX__) || defined(OPENBLAS_COMPLEX_C99))
 #			undef  MC_TARGET_C99_COMPLEX
 #			define MC_TARGET_C99_COMPLEX 1
-#			define  mc_complex(type)        type _Complex
-			typedef mc_complex(float)       mc_complex_float_t;
-			typedef mc_complex(double)      mc_complex_double_t;
-			typedef mc_complex(long double) mc_complex_long_double_t;
+#			if !defined(OPENBLAS_COMPLEX_C99)
+#				define  mc_complex(type)        type _Complex
+				typedef mc_complex(float)       mc_complex_float_t;
+				typedef mc_complex(double)      mc_complex_double_t;
+				typedef mc_complex(long double) mc_complex_long_double_t;
+#			endif
 #			if !MC_TARGET_C11
 #			ifndef CMPLXF
 #				define CMPLXF(re, im) ((float _Complex)      ((float)(re)       + _Imaginary_I * (float)(im)))
@@ -465,34 +513,84 @@
 #			define mc_cmplxf(re, im) CMPLXF(re, im)
 #			define mc_cmplx(re, im)  CMPLX(re, im)
 #			define mc_cmplxl(re, im) CMPLXL(re, im)
+#			define mc_cmplxrf(c)     crealf(c)
+#			define mc_cmplxr(c)      creal (c)
+#			define mc_cmplxrl(c)     creall(c)
+#			define mc_cmplxif(c)     cimagf(c)
+#			define mc_cmplxi(c)      cimag (c)
+#			define mc_cmplxil(c)     cimagl(c)
 #		endif
 #	endif
 
 #	if !MC_TARGET_C99_COMPLEX
-#	define  mc_complex(type)        struct { type u_re; type u_im; }
-	typedef mc_complex(float)       mc_complex_float_t;
-	typedef mc_complex(double)      mc_complex_double_t;
-	typedef mc_complex(long double) mc_complex_long_double_t;
+#	if MC_TARGET_BLAS_USE_NATIVE
+#		if !defined(OPENBLAS_COMPLEX_STRUCT) && !(MC_TARGET_BLAS_USE_ACCELERATE || MC_TARGET_BLAS_USE_VECLIB)
+#			define mc_complex(type) struct { type real; type imag; }
+#		endif
+#	else
+#		define mc_complex(type) struct { type u_re; type u_im; }
+#	endif
+#	if !defined(OPENBLAS_COMPLEX_STRUCT) && !(MC_TARGET_BLAS_USE_ACCELERATE || MC_TARGET_BLAS_USE_VECLIB)
+		typedef mc_complex(float)       mc_complex_float_t;
+		typedef mc_complex(double)      mc_complex_double_t;
+		typedef mc_complex(long double) mc_complex_long_double_t;
+#	endif
 #	if MC_TARGET_CPP11
 #		define mc_cmplxf(re, im) { (float)(re)      , (float)(im)       }
 #		define mc_cmplx(re, im)  { (double)(re)     , (double)(im)      }
 #		define mc_cmplxl(re, im) { (long double)(re), (long double)(im) }
 #	elif MC_TARGET_CPP98
-#	if (defined(__GNUC__) || defined(__clang__))
-#		define mc_cmplxf(re, im) __extension__ (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
-#		define mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
-#		define mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
-#	else
-#		error "C++98/03 compound literals extension needed."
-#	endif
+#		if (defined(__GNUC__) || defined(__clang__))
+#			define mc_cmplxf(re, im) __extension__ (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
+#			define mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
+#			define mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
+#		else
+#			error "C++98/03 compound literals extension needed."
+#		endif
 #	elif MC_TARGET_C99
-#		define mc_cmplxf(re, im) (mc_complex_float_t)       { .u_re = (float)(re)      , .u_im = (float)(im)       }
-#		define mc_cmplx(re, im)  (mc_complex_double_t)      { .u_re = (double)(re)     , .u_im = (double)(im)      }
-#		define mc_cmplxl(re, im) (mc_complex_long_double_t) { .u_re = (long double)(re), .u_im = (long double)(im) }
+#		if MC_TARGET_BLAS_USE_NATIVE
+#			if MC_TARGET_BLAS_USE_ACCELERATE || MC_TARGET_BLAS_USE_VECLIB
+#				define mc_cmplxf(re, im) (mc_complex_float_t)       { .r = (float)(re)      , .i = (float)(im)       }
+#				define mc_cmplx(re, im)  (mc_complex_double_t)      { .r = (double)(re)     , .i = (double)(im)      }
+#				define mc_cmplxl(re, im) (mc_complex_long_double_t) { .r = (long double)(re), .i = (long double)(im) }
+#			else
+#				define mc_cmplxf(re, im) (mc_complex_float_t)       { .real = (float)(re)      , .imag = (float)(im)       }
+#				define mc_cmplx(re, im)  (mc_complex_double_t)      { .real = (double)(re)     , .imag = (double)(im)      }
+#				define mc_cmplxl(re, im) (mc_complex_long_double_t) { .real = (long double)(re), .imag = (long double)(im) }
+#			endif
+#		else
+#			define mc_cmplxf(re, im) (mc_complex_float_t)       { .u_re = (float)(re)      , .u_im = (float)(im)       }
+#			define mc_cmplx(re, im)  (mc_complex_double_t)      { .u_re = (double)(re)     , .u_im = (double)(im)      }
+#			define mc_cmplxl(re, im) (mc_complex_long_double_t) { .u_re = (long double)(re), .u_im = (long double)(im) }
+#		endif
 #	elif MC_TARGET_C89
 #		define mc_cmplxf(re, im) __extension__ (mc_complex_float_t)       { (float)(re)      , (float)(im)       }
 #		define mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
 #		define mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
+#	endif
+#	if MC_TARGET_BLAS_USE_NATIVE
+#	if MC_TARGET_BLAS_USE_ACCELERATE || MC_TARGET_BLAS_USE_VECLIB
+#		define mc_cmplxrf(c) c.r
+#		define mc_cmplxr(c)  c.r
+#		define mc_cmplxrl(c) c.r
+#		define mc_cmplxif(c) c.i
+#		define mc_cmplxi(c)  c.i
+#		define mc_cmplxil(c) c.i
+#	else
+#		define mc_cmplxrf(c) c.real
+#		define mc_cmplxr(c)  c.real
+#		define mc_cmplxrl(c) c.real
+#		define mc_cmplxif(c) c.imag
+#		define mc_cmplxi(c)  c.imag
+#		define mc_cmplxil(c) c.imag
+#	endif
+#	else
+#		define mc_cmplxrf(c) c.u_re
+#		define mc_cmplxr(c)  c.u_re
+#		define mc_cmplxrl(c) c.u_re
+#		define mc_cmplxif(c) c.u_im
+#		define mc_cmplxi(c)  c.u_im
+#		define mc_cmplxil(c) c.u_im
 #	endif
 #	endif
 

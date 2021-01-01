@@ -143,106 +143,106 @@ MC_TARGET_PROC long double mc_legendre_p6l(long double x)
 MC_TARGET_FUNC float mc_legendre_pnf(unsigned int n, float x)
 {
 //!# Legendre polynomials or functions.
-	float pi       = 0.0f;
-	float p0       = 0.0f;
-	float p1       = 0.0f;
+	float pli      = 0.0f;
+	float pl0      = 0.0f;
+	float pl1      = 0.0f;
 	unsigned int i = 2;
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
 	if (x == 1.0f || x == -1.0f) {
-		p1 = 1.0f;
+		pl1 = 1.0f;
 		if ((x < 0.0f) && ((n % 2) != 0)) {
-			p1 = -(p1);
+			pl1 = -(pl1);
 		}
 	} else if (n >= 1 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
-			p1 = x;
+			pl1 = x;
 		} else if (n == 2) {
-			p1 = mc_legendre_p2f(x);
+			pl1 = mc_legendre_p2f(x);
 		} else if ((x == 0.0f) && ((n % 2) != 0)) {
-			p1 = 0.0f;
+			pl1 = 0.0f;
 		} else {
-			p0 = 1.0f;
-			p1 = x;
+			pl0 = 1.0f;
+			pl1 = x;
 			for (; i <= n; i++) {
-				pi = ((2.0f * mc_cast(float, i) - 1.0f) * x * p1 - mc_cast(float, (i - 1)) * p0) / mc_cast(float, i);
-				p0 = p1;
-				p1 = pi;
+				pli = ((2.0f * mc_cast(float, i) - 1.0f) * x * pl1 - mc_cast(float, (i - 1)) * pl0) / mc_cast(float, i);
+				pl0 = pl1;
+				pl1 = pli;
 			}
 		}
 	}
-	return p1;
+	return pl1;
 }
 
 MC_TARGET_FUNC double mc_legendre_pn(unsigned int n, double x)
 {
 //!# Legendre polynomials or functions.
-	double pi      = 0.0;
-	double p0      = 0.0;
-	double p1      = 0.0;
+	double pli     = 0.0;
+	double pl0     = 0.0;
+	double pl1     = 0.0;
 	unsigned int i = 2;
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
 	if (x == 1.0 || x == -1.0) {
-		p1 = 1.0;
+		pl1 = 1.0;
 		if ((x < 0.0) && ((n % 2) != 0)) {
-			p1 = -(p1);
+			pl1 = -(pl1);
 		}
 	} else if (n >= 1 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
-			p1 = x;
+			pl1 = x;
 		} else if (n == 2) {
-			p1 = mc_legendre_p2(x);
+			pl1 = mc_legendre_p2(x);
 		} else if ((x == 0.0) && ((n % 2) != 0)) {
-			p1 = 0.0;
+			pl1 = 0.0;
 		} else {
-			p0 = 1.0;
-			p1 = x;
+			pl0 = 1.0;
+			pl1 = x;
 			for (; i <= n; i++) {
-				pi = ((2.0 * mc_cast(double, i) - 1.0) * x * p1 - mc_cast(double, (i - 1)) * p0) / mc_cast(double, i);
-				p0 = p1;
-				p1 = pi;
+				pli = ((2.0 * mc_cast(double, i) - 1.0) * x * pl1 - mc_cast(double, (i - 1)) * pl0) / mc_cast(double, i);
+				pl0 = pl1;
+				pl1 = pli;
 			}
 		}
 	}
-	return p1;
+	return pl1;
 }
 
 MC_TARGET_FUNC long double mc_legendre_pnl(unsigned int n, long double x)
 {
 //!# Legendre polynomials or functions.
-	long double pi = 0.0L;
-	long double p0 = 0.0L;
-	long double p1 = 0.0L;
-	unsigned int i = 2;
+	long double pli = 0.0L;
+	long double pl0 = 0.0L;
+	long double pl1 = 0.0L;
+	unsigned int i  = 2;
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
 	if (x == 1.0L || x == -1.0L) {
-		p1 = 1.0L;
+		pl1 = 1.0L;
 		if ((x < 0.0L) && ((n % 2) != 0)) {
-			p1 = -(p1);
+			pl1 = -(pl1);
 		}
 	} else if (n >= 1 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
-			p1 = x;
+			pl1 = x;
 		} else if (n == 2) {
-			p1 = mc_legendre_p2l(x);
+			pl1 = mc_legendre_p2l(x);
 		} else if ((x == 0.0L) && ((n % 2) != 0)) {
-			p1 = 0.0L;
+			pl1 = 0.0L;
 		} else {
-			p0 = 1.0L;
-			p1 = x;
+			pl0 = 1.0L;
+			pl1 = x;
 			for (; i <= n; i++) {
-				pi = ((2.0L * mc_cast(long double, i) - 1.0L) * x * p1 - mc_cast(long double, (i - 1)) * p0) / mc_cast(long double, i);
-				p0 = p1;
-				p1 = pi;
+				pli = ((2.0L * mc_cast(long double, i) - 1.0L) * x * pl1 - mc_cast(long double, (i - 1)) * pl0) / mc_cast(long double, i);
+				pl0 = pl1;
+				pl1 = pli;
 			}
 		}
 	}
-	return p1;
+	return pl1;
 }
 
 #endif /* !MC_LEGENDRE_PN_H */

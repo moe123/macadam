@@ -34,7 +34,7 @@
  *     \author NAG Ltd.
  */
 
-#include <macadam/details/numa/lapack/blas/native/mc_blas_native.h>
+#include <macadam/details/mc_target.h>
 
 #ifndef MC_BLAS_NATIVE_COPY_H
 #define MC_BLAS_NATIVE_COPY_H

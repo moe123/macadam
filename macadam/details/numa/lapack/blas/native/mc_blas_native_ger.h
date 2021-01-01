@@ -52,7 +52,7 @@
  *     \author Richard Hanson, Sandia National Labs.
  */
 
-#include <macadam/details/numa/lapack/blas/native/mc_blas_native.h>
+#include <macadam/details/mc_target.h>
 
 #ifndef MC_BLAS_NATIVE_GER_H
 #define MC_BLAS_NATIVE_GER_H

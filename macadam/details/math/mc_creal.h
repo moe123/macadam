@@ -15,29 +15,17 @@
 
 MC_TARGET_PROC float mc_crealf(mc_complex_float_t c)
 {
-#	if MC_TARGET_C99_COMPLEX
-		return crealf(c);
-#	else
-	return c.u_re;
-#	endif
+	return mc_cmplxrf(c);
 }
 
 MC_TARGET_PROC double mc_creal(mc_complex_double_t c)
 {
-#	if MC_TARGET_C99_COMPLEX
-		return creal(c);
-#	else
-	return c.u_re;
-#	endif
+	return mc_cmplxr(c);
 }
 
 MC_TARGET_PROC long double mc_creall(mc_complex_long_double_t c)
 {
-#	if MC_TARGET_C99_COMPLEX
-		return creall(c);
-#	else
-	return c.u_re;
-#	endif
+	return mc_cmplxrl(c);
 }
 
 #endif /* !MC_CREAL_H */

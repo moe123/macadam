@@ -65,7 +65,7 @@ MC_TARGET_FUNC long double mc_histce1xnl(int npts, int nbins, int logbase, const
 
 	int i         = 0;
 	const int c   = nbins < 1 ? 1 : nbins;
-	long double e = 0.0f;
+	long double e = 0.0L;
 
 	if (npts > 1 && logbase > 0) {
 		for (; i < npts; i++) {
