@@ -690,6 +690,88 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsig
 #	define mclimits_minexp10of(x) (0)
 #	endif
 
+#pragma mark - mclimits_digits -
+
+#	if MC_TARGET_CPP98
+
+template <class T> MC_TARGET_INLINE T                  mclimits_digits                     (const T& x)                  { mc_unused(x); return 0;                                     }
+template <>        MC_TARGET_INLINE float              mclimits_digits<float>              (const float& x)              { mc_unused(x); return FLT_MANT_DIG;                          }
+template <>        MC_TARGET_INLINE double             mclimits_digits<double>             (const double& x)             { mc_unused(x); return DBL_MANT_DIG;                          }
+template <>        MC_TARGET_INLINE long double        mclimits_digits<long double>        (const long double& x)        { mc_unused(x); return LDBL_MANT_DIG;                         }
+template <>        MC_TARGET_INLINE signed char        mclimits_digits<signed char>        (const signed char& x)        { mc_unused(x); return CHAR_BIT - 1;                          }
+template <>        MC_TARGET_INLINE short              mclimits_digits<short>              (const short& x)              { mc_unused(x); return CHAR_BIT * sizeof(short) - 1;          }
+template <>        MC_TARGET_INLINE int                mclimits_digits<int>                (const int& x)                { mc_unused(x); return CHAR_BIT * sizeof(int)   - 1;          }
+template <>        MC_TARGET_INLINE long               mclimits_digits<long>               (const long& x)               { mc_unused(x); return CHAR_BIT * sizeof(long)  - 1;          }
+
+#	if MC_TARGET_CPP11
+template <>        MC_TARGET_INLINE long long          mclimits_digits<long long>          (const long long& x)          { mc_unused(x); return CHAR_BIT * sizeof(long long) - 1;      }
+#	endif
+
+template <>        MC_TARGET_INLINE unsigned char      mclimits_digits<unsigned char>      (const unsigned char& x)      { mc_unused(x); return CHAR_BIT;                              }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_digits<unsigned short>     (const unsigned short& x)     { mc_unused(x); return CHAR_BIT * sizeof(unsigned short);     }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_digits<unsigned int>       (const unsigned int& x)       { mc_unused(x); return CHAR_BIT * sizeof(unsigned int);       }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_digits<unsigned long>      (const unsigned long& x)      { mc_unused(x); return CHAR_BIT * sizeof(unsigned long);      }
+
+#	if MC_TARGET_CPP11
+template <>        MC_TARGET_INLINE unsigned long long mclimits_digits<unsigned long long> (const unsigned long long& x) { rmc_unused(x); eturn CHAR_BIT * sizeof(unsigned long long); }
+#	endif
+
+#	elif MC_TARGET_C11
+#	define mclimits_digits(x) _Generic(x                         \
+	, float              : FLT_MANT_DIG                          \
+	, double             : FLT_MANT_DIG                          \
+	, long double        : LDBL_MANT_DIG                         \
+	, signed char        : CHAR_BIT - 1                          \
+	, short              : CHAR_BIT * sizeof(short)     - 1      \
+	, int                : CHAR_BIT * sizeof(int)       - 1      \
+	, long               : CHAR_BIT * sizeof(long)      - 1      \
+	, long long          : CHAR_BIT * sizeof(long long) - 1      \
+	, unsigned char      : CHAR_BIT                              \
+	, unsigned short     : CHAR_BIT * sizeof(unsigned short)     \
+	, unsigned int       : CHAR_BIT * sizeof(unsigned int)       \
+	, unsigned long      : CHAR_BIT * sizeof(unsigned long)      \
+	, unsigned long long : CHAR_BIT * sizeof(unsigned long long) \
+)
+#	elif MC_TARGET_HAVE_TYPEOF
+#	if MC_TARGET_C99
+#	define mclimits_digits(x) mc_cast(MC_TARGET_TYPEOF(x),                                                   \
+	(                                                                                                        \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MANT_DIG                          \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? FLT_MANT_DIG                          \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MANT_DIG                         \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? CHAR_BIT - 1                          \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? CHAR_BIT * sizeof(short)     - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? CHAR_BIT * sizeof(int)       - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? CHAR_BIT * sizeof(long)      - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long long)          ? CHAR_BIT * sizeof(long long) - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? CHAR_BIT                              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? CHAR_BIT * sizeof(unsigned short)     \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? CHAR_BIT * sizeof(unsigned int)       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? CHAR_BIT * sizeof(unsigned long)      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long long) ? CHAR_BIT * sizeof(unsigned long long) \
+		: 0                                                                                                   \
+	))
+#	else
+#	define mclimits_digits(x) mc_cast(MC_TARGET_TYPEOF(x),                                                   \
+	(                                                                                                        \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)              ? FLT_MANT_DIG                          \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)             ? FLT_MANT_DIG                          \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double)        ? LDBL_MANT_DIG                         \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), signed char)        ? CHAR_BIT - 1                          \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), short)              ? CHAR_BIT * sizeof(short)     - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), int)                ? CHAR_BIT * sizeof(int)       - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long)               ? CHAR_BIT * sizeof(long)      - 1      \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned char)      ? CHAR_BIT                              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned short)     ? CHAR_BIT * sizeof(unsigned short)     \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned int)       ? CHAR_BIT * sizeof(unsigned int)       \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), unsigned long)      ? CHAR_BIT * sizeof(unsigned long)      \
+		: 0                                                                                                   \
+	))
+#	endif
+#	else
+#	define mclimits_digits(x) (0)
+#	endif
+
 #endif /* !MCLIMITS_H */
 
 /* EOF */
