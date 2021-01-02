@@ -432,6 +432,32 @@
 #		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 1
 #	endif
 
+#	ifndef FLT_DECIMAL_DIG
+#		ifdef __FLT_DECIMAL_DIG__
+#			define FLT_DECIMAL_DIG  __FLT_DECIMAL_DIG__
+#		else
+#			define FLT_DECIMAL_DIG  (FLT_DIG  + 3)
+#		endif
+#	endif
+#	ifndef DBL_DECIMAL_DIG
+#		ifdef __DBL_DECIMAL_DIG__
+#			define DBL_DECIMAL_DIG  __DBL_DECIMAL_DIG__
+#		else
+#			define DBL_DECIMAL_DIG  (DBL_DIG  + 2)
+#		endif
+#	endif
+#	ifndef LDBL_DECIMAL_DIG
+#		ifdef __LDBL_DECIMAL_DIG__
+#			define LDBL_DECIMAL_DIG  __LDBL_DECIMAL_DIG__
+#		else
+#			if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#				define LDBL_DECIMAL_DIG (LDBL_DIG + 2)
+#			else
+#				define LDBL_DECIMAL_DIG (LDBL_DIG + 3)
+#			endif
+#		endif
+#	endif
+
 #	if MC_TARGET_C99 && !MC_TARGET_BUILTIN_COMPLEX && !__STDC_NO_COMPLEX__
 #		if (defined(_Imaginary_I) || defined(_Complex_I)) && !defined(__STDC_IEC_559_COMPLEX__)
 #			define __STDC_IEC_559_COMPLEX__ 1
