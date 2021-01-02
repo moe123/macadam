@@ -694,26 +694,26 @@ template <>        MC_TARGET_INLINE unsigned long long mclimits_minexp10of<unsig
 
 #	if MC_TARGET_CPP98
 
-template <class T> MC_TARGET_INLINE T                  mclimits_digits                     (const T& x)                  { mc_unused(x); return 0;                                     }
-template <>        MC_TARGET_INLINE float              mclimits_digits<float>              (const float& x)              { mc_unused(x); return FLT_MANT_DIG;                          }
-template <>        MC_TARGET_INLINE double             mclimits_digits<double>             (const double& x)             { mc_unused(x); return DBL_MANT_DIG;                          }
-template <>        MC_TARGET_INLINE long double        mclimits_digits<long double>        (const long double& x)        { mc_unused(x); return LDBL_MANT_DIG;                         }
-template <>        MC_TARGET_INLINE signed char        mclimits_digits<signed char>        (const signed char& x)        { mc_unused(x); return CHAR_BIT - 1;                          }
-template <>        MC_TARGET_INLINE short              mclimits_digits<short>              (const short& x)              { mc_unused(x); return CHAR_BIT * sizeof(short) - 1;          }
-template <>        MC_TARGET_INLINE int                mclimits_digits<int>                (const int& x)                { mc_unused(x); return CHAR_BIT * sizeof(int)   - 1;          }
-template <>        MC_TARGET_INLINE long               mclimits_digits<long>               (const long& x)               { mc_unused(x); return CHAR_BIT * sizeof(long)  - 1;          }
+template <class T> MC_TARGET_INLINE T                  mclimits_digits                     (const T& x)                  { mc_unused(x); return 0;                                      }
+template <>        MC_TARGET_INLINE float              mclimits_digits<float>              (const float& x)              { mc_unused(x); return FLT_MANT_DIG;                           }
+template <>        MC_TARGET_INLINE double             mclimits_digits<double>             (const double& x)             { mc_unused(x); return DBL_MANT_DIG;                           }
+template <>        MC_TARGET_INLINE long double        mclimits_digits<long double>        (const long double& x)        { mc_unused(x); return LDBL_MANT_DIG;                          }
+template <>        MC_TARGET_INLINE signed char        mclimits_digits<signed char>        (const signed char& x)        { mc_unused(x); return CHAR_BIT - 1;                           }
+template <>        MC_TARGET_INLINE short              mclimits_digits<short>              (const short& x)              { mc_unused(x); return CHAR_BIT * sizeof(short) - 1;           }
+template <>        MC_TARGET_INLINE int                mclimits_digits<int>                (const int& x)                { mc_unused(x); return CHAR_BIT * sizeof(int)   - 1;           }
+template <>        MC_TARGET_INLINE long               mclimits_digits<long>               (const long& x)               { mc_unused(x); return CHAR_BIT * sizeof(long)  - 1;           }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE long long          mclimits_digits<long long>          (const long long& x)          { mc_unused(x); return CHAR_BIT * sizeof(long long) - 1;      }
+template <>        MC_TARGET_INLINE long long          mclimits_digits<long long>          (const long long& x)          { mc_unused(x); return CHAR_BIT * sizeof(long long) - 1;       }
 #	endif
 
-template <>        MC_TARGET_INLINE unsigned char      mclimits_digits<unsigned char>      (const unsigned char& x)      { mc_unused(x); return CHAR_BIT;                              }
-template <>        MC_TARGET_INLINE unsigned short     mclimits_digits<unsigned short>     (const unsigned short& x)     { mc_unused(x); return CHAR_BIT * sizeof(unsigned short);     }
-template <>        MC_TARGET_INLINE unsigned int       mclimits_digits<unsigned int>       (const unsigned int& x)       { mc_unused(x); return CHAR_BIT * sizeof(unsigned int);       }
-template <>        MC_TARGET_INLINE unsigned long      mclimits_digits<unsigned long>      (const unsigned long& x)      { mc_unused(x); return CHAR_BIT * sizeof(unsigned long);      }
+template <>        MC_TARGET_INLINE unsigned char      mclimits_digits<unsigned char>      (const unsigned char& x)      { mc_unused(x); return CHAR_BIT;                               }
+template <>        MC_TARGET_INLINE unsigned short     mclimits_digits<unsigned short>     (const unsigned short& x)     { mc_unused(x); return CHAR_BIT * sizeof(unsigned short);      }
+template <>        MC_TARGET_INLINE unsigned int       mclimits_digits<unsigned int>       (const unsigned int& x)       { mc_unused(x); return CHAR_BIT * sizeof(unsigned int);        }
+template <>        MC_TARGET_INLINE unsigned long      mclimits_digits<unsigned long>      (const unsigned long& x)      { mc_unused(x); return CHAR_BIT * sizeof(unsigned long);       }
 
 #	if MC_TARGET_CPP11
-template <>        MC_TARGET_INLINE unsigned long long mclimits_digits<unsigned long long> (const unsigned long long& x) { rmc_unused(x); eturn CHAR_BIT * sizeof(unsigned long long); }
+template <>        MC_TARGET_INLINE unsigned long long mclimits_digits<unsigned long long> (const unsigned long long& x) { rmc_unused(x); return CHAR_BIT * sizeof(unsigned long long); }
 #	endif
 
 #	elif MC_TARGET_C11
