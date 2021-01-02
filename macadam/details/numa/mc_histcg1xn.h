@@ -17,7 +17,7 @@ MC_TARGET_FUNC int mc_histcg1xnf(const int n, const float * x, float min, float 
 {
 //!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
+//!#     x     - The sample vector `x`.
 //!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     nbins - The given bin width.
@@ -51,7 +51,7 @@ MC_TARGET_FUNC int mc_histcg1xn(const int n, const double * x, double min, doubl
 {
 //!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
+//!#     x     - The sample vector `x`.
 //!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     nbins - The given bin width.
@@ -85,7 +85,7 @@ MC_TARGET_FUNC  int mc_histcg1xnl(const int n, const long double * x, long doubl
 {
 //!# Requires x[n] and h[nbins] where 1 < n && 0 < nbins.
 //!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
+//!#     x     - The sample vector `x`.
 //!#     nbins - The given bin width.
 //!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.

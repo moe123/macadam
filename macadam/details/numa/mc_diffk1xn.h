@@ -16,7 +16,7 @@
 MC_TARGET_FUNC int mc_diffk1xf(const int n, int k, float * y, const float * x)
 {
 //!# Requires y[n - k] and x[n] where 1 < (k + 1) <= n. Y and X may be the same.
-//!# Calculating the k-th differences between adjacent elements of vector x.
+//!# Calculating the k-th differences between adjacent elements of vector `x`.
 //!# Returns the number of new elements in y vector.
 	int i = 1, r = -1;
 	if (0 < k && n > (k + 1)) {
@@ -31,7 +31,7 @@ MC_TARGET_FUNC int mc_diffk1xf(const int n, int k, float * y, const float * x)
 MC_TARGET_FUNC int mc_diffk1xff(const int n, int k, double * y, const float * x)
 {
 //!# Requires y[n - k] and x[n] where 1 < (k + 1) <= n. Calculating the k-th
-//!# differences between adjacent elements of vector x. Returns the number
+//!# differences between adjacent elements of vector `x`. Returns the number
 //!# of elements in y vectors.
 	int i = 1, r = -1;
 	if (0 < k && n > (k + 1)) {
@@ -46,7 +46,7 @@ MC_TARGET_FUNC int mc_diffk1xff(const int n, int k, double * y, const float * x)
 MC_TARGET_FUNC int mc_diffk1x(const int n, int k, double * y, const double * x)
 {
 //!# Requires y[n - k] and x[n] where 1 < (k + 1) <= n. Y and X may be the same.
-//!# Calculating the k-th differences between adjacent elements of vector x.
+//!# Calculating the k-th differences between adjacent elements of vector `x`.
 //!# Returns the number of new elements in y vector.
 	int i = 1, r = -1;
 	if (0 < k && n > (k + 1)) {
@@ -61,7 +61,7 @@ MC_TARGET_FUNC int mc_diffk1x(const int n, int k, double * y, const double * x)
 MC_TARGET_FUNC int mc_diffk1xl(const int n, int k, long double * y, const long double * x)
 {
 //!# Requires y[n - k] and x[n] where 1 < (k + 1) <= n. Y and X may be the same.
-//!# Calculating the k-th differences between adjacent elements of vector x.
+//!# Calculating the k-th differences between adjacent elements of vector `x`.
 //!# Returns the number of new elements in y vector.
 	int i = 1, r = -1;
 	if (0 < k && n > (k + 1)) {

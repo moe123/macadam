@@ -16,7 +16,7 @@
 MC_TARGET_FUNC int mc_logspace1xnf(const int n, float * x, float x1, float x2)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	float step;
 	if (n > 0) {
@@ -41,7 +41,7 @@ MC_TARGET_FUNC int mc_logspace1xnf(const int n, float * x, float x1, float x2)
 MC_TARGET_FUNC int mc_logspace1xnff(const int n, double * x, float x1, float x2)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	double step, x1d, x2d;
 	if (n > 0) {
@@ -68,7 +68,7 @@ MC_TARGET_FUNC int mc_logspace1xnff(const int n, double * x, float x1, float x2)
 MC_TARGET_FUNC int mc_logspace1xn(const int n, double * x, double x1, double x2)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	double step;
 	if (n > 0) {
@@ -93,7 +93,7 @@ MC_TARGET_FUNC int mc_logspace1xn(const int n, double * x, double x1, double x2)
 MC_TARGET_FUNC int mc_logspace1xnl(const int n, long double * x, long double x1, long double x2)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	long double step;
 	if (n > 0) {

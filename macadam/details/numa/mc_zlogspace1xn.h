@@ -20,7 +20,7 @@
 MC_TARGET_FUNC int mc_zlogspace1xnf(const int n, float * xr, float * xi, float x1r, float x1i, float x2r, float x2i)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	float stepr, stepi;
 	if (n > 0) {
@@ -48,7 +48,7 @@ MC_TARGET_FUNC int mc_zlogspace1xnf(const int n, float * xr, float * xi, float x
 MC_TARGET_FUNC int mc_zlogspace1xnff(const int n, double * xr, double * xi, float x1r, float x1i, float x2r, float x2i)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	double stepr, stepi, x1rd, x1id, x2rd, x2id;
 	if (n > 0) {
@@ -80,7 +80,7 @@ MC_TARGET_FUNC int mc_zlogspace1xnff(const int n, double * xr, double * xi, floa
 MC_TARGET_FUNC int mc_zlogspace1xn(const int n, double * xr, double * xi, double x1r, double x1i, double x2r, double x2i)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	double stepr, stepi;
 	if (n > 0) {
@@ -108,7 +108,7 @@ MC_TARGET_FUNC int mc_zlogspace1xn(const int n, double * xr, double * xi, double
 MC_TARGET_FUNC int mc_zlogspace1xnl(const int n, long double * xr, long double * xi, long double x1r, long double x1i, long double x2r, long double x2i)
 {
 //!# Requires x[n] where 1 < n. Draws a logspace: generates a logarithmically spaced
-//!# vector x, i.e n points with spacing between points being (x2-x1)/(n-1).
+//!# vector `x`, i.e n points with spacing between points being (x2-x1)/(n-1).
 	int i = 1;
 	long double stepr, stepi;
 	if (n > 0) {
