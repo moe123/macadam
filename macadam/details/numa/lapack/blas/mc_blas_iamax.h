@@ -26,6 +26,13 @@ MC_TARGET_FUNC int mc_blas_isamax(const int n, const float * x, const int incx)
 	}
 	if (incx == 1) {
 		max = mc_fabsf(mc_blas_vector_at(x, 1));
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 2; i <= n; ++i) {
 			if (mc_fabsf(mc_blas_vector_at(x, i)) > max) {
 				iamax = i;
@@ -36,6 +43,13 @@ MC_TARGET_FUNC int mc_blas_isamax(const int n, const float * x, const int incx)
 		ix  = 1;
 		max = mc_fabsf(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 2; i <= n; ++i) {
 			if (mc_fabsf(mc_blas_vector_at(x, ix)) > max) {
 				iamax = i;
@@ -64,6 +78,13 @@ MC_TARGET_FUNC int mc_blas_idamax(const int n, const double * x, const int incx)
 	}
 	if (incx == 1) {
 		max = mc_fabs(mc_blas_vector_at(x, 1));
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 2; i <= n; ++i) {
 			if (mc_fabs(mc_blas_vector_at(x, i)) > max) {
 				iamax = i;
@@ -74,6 +95,13 @@ MC_TARGET_FUNC int mc_blas_idamax(const int n, const double * x, const int incx)
 		ix  = 1;
 		max = mc_fabs(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 2; i <= n; ++i) {
 			if (mc_fabs(mc_blas_vector_at(x, ix)) > max) {
 				iamax = i;
@@ -102,6 +130,13 @@ MC_TARGET_FUNC int mc_blas_ilamax(const int n, const long double * x, const int 
 	}
 	if (incx == 1) {
 		max = mc_fabsl(mc_blas_vector_at(x, 1));
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 2; i <= n; ++i) {
 			if (mc_fabsl(mc_blas_vector_at(x, i)) > max) {
 				iamax = i;
@@ -112,6 +147,13 @@ MC_TARGET_FUNC int mc_blas_ilamax(const int n, const long double * x, const int 
 		ix  = 1;
 		max = mc_fabsl(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 2; i <= n; ++i) {
 			if (mc_fabsl(mc_blas_vector_at(x, ix)) > max) {
 				iamax = i;

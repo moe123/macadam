@@ -57,6 +57,13 @@ MC_TARGET_FUNC void mc_blas_srot(const int n, float * x, const int incx, float *
 		return;
 	}
 	if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                    = c * mc_blas_vector_at(x, i) + s * mc_blas_vector_at(y, i);
 			mc_blas_vector_at(y, i) = c * mc_blas_vector_at(y, i) - s * mc_blas_vector_at(x, i);
@@ -71,6 +78,13 @@ MC_TARGET_FUNC void mc_blas_srot(const int n, float * x, const int incx, float *
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                     = c * mc_blas_vector_at(x, ix) + s * mc_blas_vector_at(y, iy);
 			mc_blas_vector_at(y, iy) = c * mc_blas_vector_at(y, iy) - s * mc_blas_vector_at(x, ix);
@@ -92,6 +106,13 @@ MC_TARGET_FUNC void mc_blas_drot(const int n, double * x, const int incx, double
 		return;
 	}
 	if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                    = c * mc_blas_vector_at(x, i) + s * mc_blas_vector_at(y, i);
 			mc_blas_vector_at(y, i) = c * mc_blas_vector_at(y, i) - s * mc_blas_vector_at(x, i);
@@ -106,6 +127,13 @@ MC_TARGET_FUNC void mc_blas_drot(const int n, double * x, const int incx, double
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                     = c * mc_blas_vector_at(x, ix) + s * mc_blas_vector_at(y, iy);
 			mc_blas_vector_at(y, iy) = c * mc_blas_vector_at(y, iy) - s * mc_blas_vector_at(x, ix);
@@ -127,6 +155,13 @@ MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, l
 		return;
 	}
 	if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                    = c * mc_blas_vector_at(x, i) + s * mc_blas_vector_at(y, i);
 			mc_blas_vector_at(y, i) = c * mc_blas_vector_at(y, i) - s * mc_blas_vector_at(x, i);
@@ -141,6 +176,13 @@ MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, l
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                     = c * mc_blas_vector_at(x, ix) + s * mc_blas_vector_at(y, iy);
 			mc_blas_vector_at(y, iy) = c * mc_blas_vector_at(y, iy) - s * mc_blas_vector_at(x, ix);

@@ -66,12 +66,26 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 	if (alpha == zero) {
 		if (upper) {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = 1; i <= j; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = 1; i <= j; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -80,12 +94,26 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 			}
 		} else {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = j; i <= n; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = j; i <= n; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -98,6 +126,13 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 
 	if (mc_blas_lsame(trans, 'N')) {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= j; ++i) {
@@ -119,6 +154,13 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = j; i <= n; ++i) {
@@ -142,6 +184,13 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 		}
 	} else {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= j; ++i) {
 					temp1 = zero;
@@ -158,6 +207,13 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = j; i <= n; ++i) {
 					temp1 = zero;
@@ -230,12 +286,26 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 	if (alpha == zero) {
 		if (upper) {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = 1; i <= j; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = 1; i <= j; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -244,12 +314,26 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 			}
 		} else {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = j; i <= n; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = j; i <= n; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -262,6 +346,13 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 
 	if (mc_blas_lsame(trans, 'N')) {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= j; ++i) {
@@ -283,6 +374,13 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = j; i <= n; ++i) {
@@ -306,6 +404,13 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 		}
 	} else {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= j; ++i) {
 					temp1 = zero;
@@ -322,6 +427,13 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = j; i <= n; ++i) {
 					temp1 = zero;
@@ -394,12 +506,26 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
 	if (alpha == zero) {
 		if (upper) {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = 1; i <= j; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = 1; i <= j; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -408,12 +534,26 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
 			}
 		} else {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = j; i <= n; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 					}
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (j = 1; j <= n; ++j) {
 					for (i = j; i <= n; ++i) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -426,6 +566,13 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
 
 	if (mc_blas_lsame(trans, 'N')) {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = 1; i <= j; ++i) {
@@ -447,6 +594,13 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				if (beta == zero) {
 					for (i = j; i <= n; ++i) {
@@ -470,6 +624,13 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
 		}
 	} else {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= j; ++i) {
 					temp1 = zero;
@@ -486,6 +647,13 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = j; i <= n; ++i) {
 					temp1 = zero;

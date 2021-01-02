@@ -50,6 +50,13 @@ MC_TARGET_FUNC void mc_blas_scopy(const int n, const float * x, const int incx, 
 	if (incx == 1 && incy == 1) {
 		m = n % 7;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(y, i) = mc_blas_vector_at(x, i);
 			}
@@ -58,6 +65,13 @@ MC_TARGET_FUNC void mc_blas_scopy(const int n, const float * x, const int incx, 
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 7) {
 			mc_blas_vector_at(y, i    ) = mc_blas_vector_at(x, i    );
 			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(x, i + 1);
@@ -76,6 +90,13 @@ MC_TARGET_FUNC void mc_blas_scopy(const int n, const float * x, const int incx, 
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(y, iy) = mc_blas_vector_at(x, ix);
 			ix                       = ix + incx;
@@ -96,6 +117,13 @@ MC_TARGET_FUNC void mc_blas_dcopy(const int n, const double * x, const int incx,
 	if (incx == 1 && incy == 1) {
 		m = n % 7;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(y, i) = mc_blas_vector_at(x, i);
 			}
@@ -104,6 +132,13 @@ MC_TARGET_FUNC void mc_blas_dcopy(const int n, const double * x, const int incx,
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 7) {
 			mc_blas_vector_at(y, i)     = mc_blas_vector_at(x, i    );
 			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(x, i + 1);
@@ -122,6 +157,13 @@ MC_TARGET_FUNC void mc_blas_dcopy(const int n, const double * x, const int incx,
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(y, iy) = mc_blas_vector_at(x, ix);
 			ix                       = ix + incx;
@@ -142,6 +184,13 @@ MC_TARGET_FUNC void mc_blas_lcopy(const int n, const long double * x, const int 
 	if (incx == 1 && incy == 1) {
 		m = n % 7;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(y, i) = mc_blas_vector_at(x, i);
 			}
@@ -150,6 +199,13 @@ MC_TARGET_FUNC void mc_blas_lcopy(const int n, const long double * x, const int 
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 7) {
 			mc_blas_vector_at(y, i)     = mc_blas_vector_at(x, i    );
 			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(x, i + 1);
@@ -168,6 +224,13 @@ MC_TARGET_FUNC void mc_blas_lcopy(const int n, const long double * x, const int 
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(y, iy) = mc_blas_vector_at(x, ix);
 			ix                       = ix + incx;

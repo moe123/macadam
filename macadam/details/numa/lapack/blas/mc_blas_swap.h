@@ -23,6 +23,13 @@ MC_TARGET_FUNC void mc_blas_sswap(const int n, float * x, const int incx, float 
 	if (incx == 1 && incy == 1) {
 		m = n % 3;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp                    = mc_blas_vector_at(x, i);
 				mc_blas_vector_at(x, i) = mc_blas_vector_at(y, i);
@@ -33,6 +40,13 @@ MC_TARGET_FUNC void mc_blas_sswap(const int n, float * x, const int incx, float 
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 3) {
 			temp                        = mc_blas_vector_at(x, i);
 			mc_blas_vector_at(x, i    ) = mc_blas_vector_at(y, i);
@@ -53,6 +67,13 @@ MC_TARGET_FUNC void mc_blas_sswap(const int n, float * x, const int incx, float 
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                     = mc_blas_vector_at(x, ix);
 			mc_blas_vector_at(x, ix) = mc_blas_vector_at(y, iy);
@@ -76,6 +97,13 @@ MC_TARGET_FUNC void mc_blas_dswap(const int n, double * x, const int incx, doubl
 	if (incx == 1 && incy == 1) {
 		m = n % 3;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp                    = mc_blas_vector_at(x, i);
 				mc_blas_vector_at(x, i) = mc_blas_vector_at(y, i);
@@ -86,6 +114,13 @@ MC_TARGET_FUNC void mc_blas_dswap(const int n, double * x, const int incx, doubl
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 3) {
 			temp                        = mc_blas_vector_at(x, i);
 			mc_blas_vector_at(x, i    ) = mc_blas_vector_at(y, i);
@@ -106,6 +141,13 @@ MC_TARGET_FUNC void mc_blas_dswap(const int n, double * x, const int incx, doubl
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                     = mc_blas_vector_at(x, ix);
 			mc_blas_vector_at(x, ix) = mc_blas_vector_at(y, iy);
@@ -129,6 +171,13 @@ MC_TARGET_FUNC void mc_blas_lswap(const int n, long double * x, const int incx, 
 	if (incx == 1 && incy == 1) {
 		m = n % 3;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp                    = mc_blas_vector_at(x, i);
 				mc_blas_vector_at(x, i) = mc_blas_vector_at(y, i);
@@ -139,6 +188,13 @@ MC_TARGET_FUNC void mc_blas_lswap(const int n, long double * x, const int incx, 
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 3) {
 			temp                        = mc_blas_vector_at(x, i);
 			mc_blas_vector_at(x, i    ) = mc_blas_vector_at(y, i);
@@ -159,6 +215,13 @@ MC_TARGET_FUNC void mc_blas_lswap(const int n, long double * x, const int incx, 
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp                     = mc_blas_vector_at(x, ix);
 			mc_blas_vector_at(x, ix) = mc_blas_vector_at(y, iy);

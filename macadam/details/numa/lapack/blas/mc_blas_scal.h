@@ -23,6 +23,13 @@ MC_TARGET_FUNC void mc_blas_sscal(const int n, float a, float * x, const int inc
 	if (incx == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(x, i) = a * mc_blas_vector_at(x, i);
 			}
@@ -31,6 +38,13 @@ MC_TARGET_FUNC void mc_blas_sscal(const int n, float a, float * x, const int inc
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			mc_blas_vector_at(x, i    ) = a * mc_blas_vector_at(x, i    );
 			mc_blas_vector_at(x, i + 1) = a * mc_blas_vector_at(x, i + 1);
@@ -58,6 +72,13 @@ MC_TARGET_FUNC void mc_blas_dscal(const int n, double a, double * x, const int i
 	if (incx == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(x, i) = a * mc_blas_vector_at(x, i);
 			}
@@ -66,6 +87,13 @@ MC_TARGET_FUNC void mc_blas_dscal(const int n, double a, double * x, const int i
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			mc_blas_vector_at(x, i    ) = a * mc_blas_vector_at(x, i    );
 			mc_blas_vector_at(x, i + 1) = a * mc_blas_vector_at(x, i + 1);
@@ -93,6 +121,13 @@ MC_TARGET_FUNC void mc_blas_lscal(const int n, long double a, long double * x, c
 	if (incx == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(x, i) = a * mc_blas_vector_at(x, i);
 			}
@@ -101,6 +136,13 @@ MC_TARGET_FUNC void mc_blas_lscal(const int n, long double a, long double * x, c
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			mc_blas_vector_at(x, i    ) = a * mc_blas_vector_at(x, i    );
 			mc_blas_vector_at(x, i + 1) = a * mc_blas_vector_at(x, i + 1);

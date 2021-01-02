@@ -148,10 +148,24 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 	if (beta != one) {
 		if (incy == 1) {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, i) = zero;
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, i) = beta * mc_blas_vector_at(y, i);
 				}
@@ -159,11 +173,25 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 		} else {
 			iy = ky;
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, iy) = zero;
 					iy                       = iy + incy;
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, iy) = beta * mc_blas_vector_at(y, iy);
 					iy                       = iy + incy;
@@ -179,6 +207,13 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1 = alpha * mc_blas_vector_at(x, j);
 				temp2 = zero;
@@ -192,6 +227,13 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 		} else {
 			jx = kx;
 			jy = ky;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1 = alpha * mc_blas_vector_at(x, jx);
 				temp2 = zero;
@@ -215,6 +257,13 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1                   = alpha * mc_blas_vector_at(x, j);
 				temp2                   = zero;
@@ -229,6 +278,13 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 		} else {
 			jx = kx;
 			jy = ky;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1                    = alpha * mc_blas_vector_at(x, jx);
 				temp2                    = zero;
@@ -296,10 +352,24 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 	if (beta != one) {
 		if (incy == 1) {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, i) = zero;
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, i) = beta * mc_blas_vector_at(y, i);
 				}
@@ -307,11 +377,25 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 		} else {
 			iy = ky;
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, iy) = zero;
 					iy                       = iy + incy;
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, iy) = beta * mc_blas_vector_at(y, iy);
 					iy                       = iy + incy;
@@ -327,6 +411,13 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1 = alpha * mc_blas_vector_at(x, j);
 				temp2 = zero;
@@ -340,6 +431,13 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 		} else {
 			jx = kx;
 			jy = ky;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1 = alpha * mc_blas_vector_at(x, jx);
 				temp2 = zero;
@@ -363,6 +461,13 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1                   = alpha * mc_blas_vector_at(x, j);
 				temp2                   = zero;
@@ -377,6 +482,13 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 		} else {
 			jx = kx;
 			jy = ky;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1                    = alpha * mc_blas_vector_at(x, jx);
 				temp2                    = zero;
@@ -444,10 +556,24 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, lon
 	if (beta != one) {
 		if (incy == 1) {
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, i) = zero;
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, i) = beta * mc_blas_vector_at(y, i);
 				}
@@ -455,11 +581,25 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, lon
 		} else {
 			iy = ky;
 			if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, iy) = zero;
 					iy                       = iy + incy;
 				}
 			} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 				for (i = 1; i <= n; ++i) {
 					mc_blas_vector_at(y, iy) = beta * mc_blas_vector_at(y, iy);
 					iy                       = iy + incy;
@@ -475,6 +615,13 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, lon
 	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1 = alpha * mc_blas_vector_at(x, j);
 				temp2 = zero;
@@ -488,6 +635,13 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, lon
 		} else {
 			jx = kx;
 			jy = ky;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1 = alpha * mc_blas_vector_at(x, jx);
 				temp2 = zero;
@@ -511,6 +665,13 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, lon
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1                   = alpha * mc_blas_vector_at(x, j);
 				temp2                   = zero;
@@ -525,6 +686,13 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, lon
 		} else {
 			jx = kx;
 			jy = ky;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				temp1                    = alpha * mc_blas_vector_at(x, jx);
 				temp2                    = zero;

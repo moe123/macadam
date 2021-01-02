@@ -96,6 +96,13 @@ MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, float alpha, const fl
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			if (mc_blas_vector_at(y, jy) != zero) {
 				temp = alpha * mc_blas_vector_at(y, jy);
@@ -111,6 +118,13 @@ MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, float alpha, const fl
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			if (mc_blas_vector_at(y, jy) != zero) {
 				temp = alpha * mc_blas_vector_at(y, jy);
@@ -161,6 +175,13 @@ MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, double alpha, const d
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			if (mc_blas_vector_at(y, jy) != zero) {
 				temp = alpha * mc_blas_vector_at(y, jy);
@@ -176,6 +197,13 @@ MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, double alpha, const d
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			if (mc_blas_vector_at(y, jy) != zero) {
 				temp = alpha * mc_blas_vector_at(y, jy);
@@ -226,6 +254,13 @@ MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, long double alpha, co
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			if (mc_blas_vector_at(y, jy) != zero) {
 				temp = alpha * mc_blas_vector_at(y, jy);
@@ -241,6 +276,13 @@ MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, long double alpha, co
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			if (mc_blas_vector_at(y, jy) != zero) {
 				temp = alpha * mc_blas_vector_at(y, jy);

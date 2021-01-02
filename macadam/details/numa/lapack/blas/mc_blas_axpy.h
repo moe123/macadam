@@ -54,6 +54,13 @@ MC_TARGET_FUNC void mc_blas_saxpy(const int n, float a, const float * x, const i
 	if (incx == 1 && incy == 1) {
 		m = n % 4;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(y, i) = mc_blas_vector_at(y, i) + (a * mc_blas_vector_at(x, i));
 			}
@@ -62,6 +69,13 @@ MC_TARGET_FUNC void mc_blas_saxpy(const int n, float a, const float * x, const i
 			return;
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 4) {
 			mc_blas_vector_at(y, i    ) = mc_blas_vector_at(y, i    ) + (a * mc_blas_vector_at(x, i    ));
 			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(y, i + 1) + (a * mc_blas_vector_at(x, i + 1));
@@ -77,6 +91,13 @@ MC_TARGET_FUNC void mc_blas_saxpy(const int n, float a, const float * x, const i
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (a * mc_blas_vector_at(x, ix));
 			ix                       = ix + incx;
@@ -100,6 +121,13 @@ MC_TARGET_FUNC void mc_blas_daxpy(const int n, double a, const double * x, const
 	if (incx == 1 && incy == 1) {
 		m = n % 4;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(y, i) = mc_blas_vector_at(y, i) + (a * mc_blas_vector_at(x, i));
 			}
@@ -108,6 +136,13 @@ MC_TARGET_FUNC void mc_blas_daxpy(const int n, double a, const double * x, const
 			return;
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 4) {
 			mc_blas_vector_at(y, i    ) = mc_blas_vector_at(y, i    ) + (a * mc_blas_vector_at(x, i    ));
 			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(y, i + 1) + (a * mc_blas_vector_at(x, i + 1));
@@ -123,6 +158,13 @@ MC_TARGET_FUNC void mc_blas_daxpy(const int n, double a, const double * x, const
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (a * mc_blas_vector_at(x, ix));
 			ix                       = ix + incx;
@@ -146,6 +188,13 @@ MC_TARGET_FUNC void mc_blas_laxpy(const int n, long double a, const long double 
 	if (incx == 1 && incy == 1) {
 		m = n % 4;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				mc_blas_vector_at(y, i) = mc_blas_vector_at(y, i) + (a * mc_blas_vector_at(x, i));
 			}
@@ -154,6 +203,13 @@ MC_TARGET_FUNC void mc_blas_laxpy(const int n, long double a, const long double 
 			return;
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 4) {
 			mc_blas_vector_at(y, i    ) = mc_blas_vector_at(y, i    ) + (a * mc_blas_vector_at(x, i    ));
 			mc_blas_vector_at(y, i + 1) = mc_blas_vector_at(y, i + 1) + (a * mc_blas_vector_at(x, i + 1));
@@ -169,6 +225,13 @@ MC_TARGET_FUNC void mc_blas_laxpy(const int n, long double a, const long double 
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			mc_blas_vector_at(y, iy) = mc_blas_vector_at(y, iy) + (a * mc_blas_vector_at(x, ix));
 			ix                       = ix + incx;

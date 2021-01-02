@@ -53,6 +53,13 @@ MC_TARGET_FUNC float mc_blas_sdot(const int n, const float * x, const int incx, 
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp = temp + (mc_blas_vector_at(x, i) * mc_blas_vector_at(y, i));
 			}
@@ -61,6 +68,13 @@ MC_TARGET_FUNC float mc_blas_sdot(const int n, const float * x, const int incx, 
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			temp = temp + (
 				  (mc_blas_vector_at(x, i    ) * mc_blas_vector_at(y, i    ))
@@ -79,6 +93,13 @@ MC_TARGET_FUNC float mc_blas_sdot(const int n, const float * x, const int incx, 
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (mc_blas_vector_at(x, ix) * mc_blas_vector_at(y, iy));
 			ix   = ix + incx;
@@ -102,6 +123,13 @@ MC_TARGET_FUNC double mc_blas_dsdot(const int n, const float * x, const int incx
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp = temp + (mc_cast(double, mc_blas_vector_at(x, i)) * mc_cast(double, mc_blas_vector_at(y, i)));
 			}
@@ -110,6 +138,13 @@ MC_TARGET_FUNC double mc_blas_dsdot(const int n, const float * x, const int incx
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			temp = temp + (
 				  (mc_cast(double, mc_blas_vector_at(x, i    )) * mc_cast(double, mc_blas_vector_at(y, i    )))
@@ -128,6 +163,13 @@ MC_TARGET_FUNC double mc_blas_dsdot(const int n, const float * x, const int incx
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (mc_cast(double, mc_blas_vector_at(x, ix)) * mc_cast(double, mc_blas_vector_at(y, iy)));
 			ix   = ix + incx;
@@ -158,6 +200,13 @@ MC_TARGET_FUNC double mc_blas_ddot(const int n, const double * x, const int incx
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp = temp + (mc_blas_vector_at(x, i) * mc_blas_vector_at(y, i));
 			}
@@ -166,6 +215,13 @@ MC_TARGET_FUNC double mc_blas_ddot(const int n, const double * x, const int incx
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			temp = temp + (
 				  (mc_blas_vector_at(x, i    ) * mc_blas_vector_at(y, i    ))
@@ -184,6 +240,13 @@ MC_TARGET_FUNC double mc_blas_ddot(const int n, const double * x, const int incx
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (mc_blas_vector_at(x, ix) * mc_blas_vector_at(y, iy));
 			ix   = ix + incx;
@@ -207,6 +270,13 @@ MC_TARGET_FUNC long double mc_blas_ldot(const int n, const long double * x, cons
 	if (incx == 1 && incy == 1) {
 		m = n % 5;
 		if (m != 0) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (i = 1; i <= m; ++i) {
 				temp = temp + (mc_blas_vector_at(x, i) * mc_blas_vector_at(y, i));
 			}
@@ -215,6 +285,13 @@ MC_TARGET_FUNC long double mc_blas_ldot(const int n, const long double * x, cons
 			}
 		}
 		mp1 = m + 1;
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = mp1; i <= n; i += 5) {
 			temp = temp + (
 				  (mc_blas_vector_at(x, i    ) * mc_blas_vector_at(y, i    ))
@@ -233,6 +310,13 @@ MC_TARGET_FUNC long double mc_blas_ldot(const int n, const long double * x, cons
 		if (incy < 0) {
 			iy = (-(n) + 1) * incy + 1;
 		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (i = 1; i <= n; ++i) {
 			temp = temp + (mc_blas_vector_at(x, ix) * mc_blas_vector_at(y, iy));
 			ix   = ix + incx;

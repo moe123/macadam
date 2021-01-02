@@ -61,12 +61,26 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m,
 
 	if (alpha == zero) {
 		if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -78,6 +92,13 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m,
 
 	if (mc_blas_lsame(side, 'L')) {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					temp1 = alpha * mc_blas_matrix_at(b, ldb, n, i, j);
@@ -94,6 +115,13 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m,
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = m; i >= 1; --i) {
 					temp1 = alpha * mc_blas_matrix_at(b, ldb, n, i, j);
@@ -111,6 +139,13 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m,
 			}
 		}
 	} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			temp1 = alpha * mc_blas_matrix_at(a, lda, ka, j, j);
 			if (beta == zero) {
@@ -194,12 +229,26 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m,
 
 	if (alpha == zero) {
 		if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -211,6 +260,13 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m,
 
 	if (mc_blas_lsame(side, 'L')) {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					temp1 = alpha * mc_blas_matrix_at(b, ldb, n, i, j);
@@ -227,6 +283,13 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m,
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = m; i >= 1; --i) {
 					temp1 = alpha * mc_blas_matrix_at(b, ldb, n, i, j);
@@ -244,6 +307,13 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m,
 			}
 		}
 	} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			temp1 = alpha * mc_blas_matrix_at(a, lda, ka, j, j);
 			if (beta == zero) {
@@ -327,12 +397,26 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
 
 	if (alpha == zero) {
 		if (beta == zero) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j);
@@ -344,6 +428,13 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
 
 	if (mc_blas_lsame(side, 'L')) {
 		if (upper) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = 1; i <= m; ++i) {
 					temp1 = alpha * mc_blas_matrix_at(b, ldb, n, i, j);
@@ -360,6 +451,13 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
 				}
 			}
 		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 			for (j = 1; j <= n; ++j) {
 				for (i = m; i >= 1; --i) {
 					temp1 = alpha * mc_blas_matrix_at(b, ldb, n, i, j);
@@ -377,6 +475,13 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
 			}
 		}
 	} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
 		for (j = 1; j <= n; ++j) {
 			temp1 = alpha * mc_blas_matrix_at(a, lda, ka, j, j);
 			if (beta == zero) {
