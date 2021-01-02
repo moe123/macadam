@@ -3,7 +3,7 @@
 
 // mc_l1norm1xn.h
 //
-// Copyright (C) 2019-2020 Moe123. All rights reserved.
+// Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
 #include <macadam/details/numa/mc_a2sum1xn.h>

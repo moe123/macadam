@@ -3,7 +3,7 @@
 
 // mc_trsp3x3.h
 //
-// Copyright (C) 2019-2020 Moe123. All rights reserved.
+// Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
 #include <macadam/details/numa/mc_trsi3x3.h>
