@@ -43,17 +43,17 @@
  *    value of flag and are not required to be set in the param array.
  *
  * \parameters
- *    [in] n     - int. Specifies the number of elements in the input vector x and y.
+ *    [in] n     - int. Specifies the number of elements in the input vector `x` and y.
  *
  *    [out] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
  *    Each element x[i] is replaced by x[i]=h11*x[i] + h12*y[i].
  *
- *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)).
  *    Each element y[i] is replaced by y[i]=h21*x[i] + h22*y[i].
  *
- *    [in] incy  - int. Specifies the increment for the elements of y, incy must not be zero.
+ *    [in] incy  - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
  *    [in] param - real-floating array of size 5 such as param[flag, h11, h21, h12, h22].
  *

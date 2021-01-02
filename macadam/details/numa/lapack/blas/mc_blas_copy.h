@@ -7,7 +7,7 @@
 //
 
 /* \name
- *    ?copy copies a vector x, to a vector y.
+ *    ?copy copies a vector `x`, to a vector `y`.
  *
  * \synopsis
  *    void ?copy(n, x, incx, y, incy)
@@ -15,16 +15,16 @@
  *    float-floating x(*), y(*)
  *
  * \purpose
- *    ?copy copies a vector x, to a vector y.
+ *    ?copy copies a vector `x`, to a vector `y`.
  *
  * \parameters
  *    [in]  n     - int. Specifies the number of elements in input vector(s).
  *
- *    [in]  x     - float-floating array of dimension at least (1+(n-1)*abs(incx)).
- *    [in]  incx  - int. Specifies the storage spacing between elements of x.
+ *    [in]  x     - float-floating array of dimension (at least) (1+(n-1)*abs(incx)).
+ *    [in]  incx  - int. Specifies the storage spacing between elements of `x`.
  *
- *    [out]  y    - float-floating array of dimension at least (1+(n-1)*abs(incy)).
- *    [in]  incy  - int. Specifies the storage spacing between elements of y.
+ *    [out]  y    - float-floating array of dimension (at least) (1+(n-1)*abs(incy)).
+ *    [in]  incy  - int. Specifies the storage spacing between elements of `y`.
  *
  * \examples
  *

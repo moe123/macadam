@@ -39,7 +39,7 @@
  *    diag='U' or 'u' a is assumed to be unit triangular.
  *    diag='N' or 'n' a is not assumed to be unit triangular.
  *
- *    [in] n     - int. Specifies the order of the matrix a, n must be at least zero; n>=0 and n<=lda
+ *    [in] n     - int. Specifies the order of the matrix `a`, n must be at least zero; n>=0 and n<=lda
  *
  *    [in] a     - real-floating array of dimension (lda, n). With uplo='U' or 'u', the leading n by n
  *    upper triangular part of the array A must contain the upper triangular matrix and the strictly
@@ -48,12 +48,12 @@
  *    triangular part of a is not referenced. Note that when  diag='U' or 'u', the diagonal elements
  *    of a are not referenced either, but are assumed to be unity.
  *
- *    [in] lda   - int. Specifies the first dimension of a, lda must be at least max(1, n).
+ *    [in] lda   - int. Specifies the first dimension of `a`, lda must be at least max(1, n).
  *
- *    [out] x    - real-floating array of dimension at least (1+(n-1)*abs(incx)), the incremented array
- *    x must contain the n element right-hand side vector b, x is overwritten with the solution vector x.
+ *    [out] x    - real-floating array of dimension (at least) (1+(n-1)*abs(incx)), the incremented array
+ *    x must contain the n element right-hand side vector b, x is overwritten with the solution vector `x`.
  *
- *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  * \examples
  *              | 0 0 0 0 |

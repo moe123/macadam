@@ -21,15 +21,15 @@
  *    scalars, x and y are n element vectors and a is an n by n symmetric band matrix, with k
  *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
  *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
- *    the scalars alpha and beta, vectors x and y, and band matrix a.
+ *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
  *
  * \parameters
- *    [in] uplo - char. Specifies whether the upper or lower triangular part of the band matrix a
+ *    [in] uplo - char. Specifies whether the upper or lower triangular part of the band matrix `a`
  *    is being supplied as follows:
  *    UPLO='U' or 'u', the upper triangular part of a is being supplied.
  *    UPLO='L' or 'l', the lower triangular part of a is being supplied.
  *
- *    [in] n    - int. Specifies the order of the symmetric matrix a, must be at least zero.
+ *    [in] n    - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *    [in] k    - int. Specifies the number of super-diagonals of the matrix symmetric a, k
  *    must satisfy  0 < k, i.e must be at least one.
  *
@@ -46,19 +46,19 @@
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
  *    right k by k triangle of the array a is not referenced.
  *
- *    [in] lda   - int. Specifies the first dimension of a, a must be at least (k+1).
+ *    [in] lda   - int. Specifies the first dimension of `a`, a must be at least (k+1).
  *
- *    [int] x    - real-floating array of size at least (1+(n-1)*abs(incx)). The incremented array x must
- *    contain the vector x.
+ *    [int] x    - real-floating array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
+ *    contain the vector `x`.
  *
- *    [in] incx  - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  *    [in] beta  - float-floating. Specifies the scalar beta.
  *
- *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)). The incremented array y must
- *    contain the vector y, y is overwritten by the updated vector y.
+ *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)). The incremented array `y` must
+ *    contain the vector `y`, y is overwritten by the updated vector `y`.
  *
- *    [in] incy  - int. Specifies the increment for the elements of y, incy must not be zero.
+ *    [in] incy  - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
  * \examples
  *              | 1 | 1 | 1 | 1 | 0 | 0 | 0 |

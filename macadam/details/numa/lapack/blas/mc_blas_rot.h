@@ -20,13 +20,13 @@
  *    and the transformation is called a Givens plane rotation.
  *
  * \parameters
- *    [in]  n    - int. Specifies the number of elements in the input vector x and y.
+ *    [in]  n    - int. Specifies the number of elements in the input vector `x` and y.
  *
  *    [out] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
- *    [in]  incx - int. Specifies the increment for the elements of x, incx must not be zero.
+ *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)).
- *    [in]  incy - int. Specifies the increment for the elements of y, incy must not be zero.
+ *    [in]  incy - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
  *    [in]  c    - float-floating. Specifies the cosine of the angle of rotation.
  *    [in]  s    - float-floating. Specifies the sine of the angle of rotation.
