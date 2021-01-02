@@ -19,7 +19,7 @@ MC_TARGET_FUNC int mc_histcs1xnf(const int n, const float * x, int adiff, float 
 {
 //!# Requires x[n] and h[npts] where 1 < n.
 //!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
+//!#     x     - The sample vector `x`.
 //!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
 //!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
@@ -45,7 +45,7 @@ MC_TARGET_FUNC int mc_histcs1xnf(const int n, const float * x, int adiff, float 
 		for (; i < n; i++) {
 			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabsf(x[i] - min) : (x[i] - min)) * scale);
 			const int q = j % npts;
- 			const int k = q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts);
+ 			const int k = q < 0 ? (q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts)) : q;
 			h[k]++;
 		}
 		return 0;
@@ -57,7 +57,7 @@ MC_TARGET_FUNC int mc_histcs1xn(const int n, const double * x, int adiff, double
 {
 //!# Requires x[n] and h[npts] where 1 < n.
 //!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
+//!#     x     - The sample vector `x`.
 //!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
 //!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
@@ -83,7 +83,7 @@ MC_TARGET_FUNC int mc_histcs1xn(const int n, const double * x, int adiff, double
 		for (; i < n; i++) {
 			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabs(x[i] - min) : (x[i] - min)) * scale);
 			const int q = j % npts;
- 			const int k = q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts);
+ 			const int k = q < 0 ? (q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts)) : q;
 			h[k]++;
 		}
 		return 0;
@@ -95,7 +95,7 @@ MC_TARGET_FUNC int mc_histcs1xnl(const int n, const long double * x, int adiff, 
 {
 //!# Requires x[n] and h[npts] where 1 < n.
 //!#     n     - Number of samples in x.
-//!#     x     - The sample vector x.
+//!#     x     - The sample vector `x`.
 //!#     adiff - Pass 1 to compute absolute differencials or 0 (default).
 //!#     min   - Minimum edge value. If min and max are set to `zero` computing true x-min and x-max.
 //!#     max   - Maximum edge value. If min and max are set to `zero` computing true x-min and x-max.
@@ -121,7 +121,7 @@ MC_TARGET_FUNC int mc_histcs1xnl(const int n, const long double * x, int adiff, 
 		for (; i < n; i++) {
 			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabsl(x[i] - min) : (x[i] - min)) * scale);
 			const int q = j % npts;
- 			const int k = q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts);
+ 			const int k = q < 0 ? (q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts)) : q;
 			h[k]++;
 		}
 		return 0;
