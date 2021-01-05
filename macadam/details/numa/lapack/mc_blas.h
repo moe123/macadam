@@ -64,6 +64,10 @@
 #	define mc_dgemm mc_blas_native_dgemm
 #	define mc_sger  mc_blas_native_sger
 #	define mc_dger  mc_blas_native_dger
+#	define mc_cgerc mc_blas_native_cgerc
+#	define mc_zgerc mc_blas_native_zgerc
+#	define mc_cgeru mc_blas_native_cgeru
+#	define mc_zgeru mc_blas_native_zgeru
 #	else
 #	define mc_scopy mc_blas_scopy
 #	define mc_dcopy mc_blas_dcopy
@@ -71,11 +75,17 @@
 #	define mc_dgemm mc_blas_dgemm
 #	define mc_sger  mc_blas_sger
 #	define mc_dger  mc_blas_dger
+#	define mc_cgerc mc_blas_cgerc
+#	define mc_zgerc mc_blas_zgerc
+#	define mc_cgeru mc_blas_cgeru
+#	define mc_zgeru mc_blas_zgeru
 #	endif
 
 #	define mc_lcopy mc_blas_lcopy
 #	define mc_lgemm mc_blas_lgemm
 #	define mc_lger  mc_blas_lger
+#	define mc_qgerc mc_blas_qgerc
+#	define mc_qgeru mc_blas_qgeru
 
 #endif /* !MC_BLAS_H */
 

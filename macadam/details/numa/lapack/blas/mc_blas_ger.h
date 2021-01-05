@@ -55,6 +55,10 @@
 #include <macadam/details/numa/lapack/blas/mc_blas_access.h>
 #include <macadam/details/numa/lapack/blas/mc_blas_lsame.h>
 #include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
+#include <macadam/details/math/mc_cadd.h>
+#include <macadam/details/math/mc_ciseq.h>
+#include <macadam/details/math/mc_conj.h>
+#include <macadam/details/math/mc_cmul.h>
 #include <macadam/details/math/mc_maxmag.h>
 
 #ifndef MC_BLAS_GER_H
@@ -62,7 +66,7 @@
 
 #pragma mark - mc_blas_sger -
 
-MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, float alpha, const float * x, const int incx, const float * y, const int incy, float * a, const int lda)
+MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, const float alpha, const float * x, const int incx, const float * y, const int incy, float * a, const int lda)
 {
 	const float zero = 0.0f;
 
@@ -141,7 +145,7 @@ MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, float alpha, const fl
 
 #pragma mark - mc_blas_dger -
 
-MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, double alpha, const double * x, const int incx, const double * y, const int incy, double * a, const int lda)
+MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, const double alpha, const double * x, const int incx, const double * y, const int incy, double * a, const int lda)
 {
 	const double zero = 0.0;
 
@@ -220,7 +224,7 @@ MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, double alpha, const d
 
 #pragma mark - mc_blas_lger -
 
-MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, long double alpha, const long double * x, const int incx, const long double * y, const int incy, long double * a, const int lda)
+MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, const long double alpha, const long double * x, const int incx, const long double * y, const int incy, long double * a, const int lda)
 {
 	const long double zero = 0.0L;
 
@@ -289,6 +293,480 @@ MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, long double alpha, co
 				ix   = kx;
 				for (i = 1; i <= m; ++i) {
 					mc_blas_matrix_at(a, lda, n, i, j) = mc_blas_matrix_at(a, lda, n, i, j) + (mc_blas_vector_at(x, ix) * temp);
+					ix                                 = ix + incx;
+				}
+			}
+			jy = jy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_cgerc -
+
+MC_TARGET_FUNC void mc_blas_cgerc(const int m, const int n, const mc_complex_float_t alpha, const mc_complex_float_t * x, const int incx, const mc_complex_float_t * y, const int incy, mc_complex_float_t * a, const int lda)
+{
+	const mc_complex_float_t zero = mc_cmplxf(0.0f, 0.0f);
+
+	mc_complex_float_t temp;
+	int i, info, j, ix, jy, kx;
+
+	info = 0;
+	if (m < 0) {
+		info = 1;
+	} else if (n < 0) {
+		info = 2;
+	} else if (incx == 0) {
+		info = 5;
+	} else if (incy == 0) {
+		info = 7;
+	} else if (lda < mc_maxmag(1, m)) {
+		info = 9;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("CGERC ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || mc_ciseqf(alpha, zero)) {
+		return;
+	}
+
+	if (incy > 0) {
+		jy = 1;
+	} else {
+		jy = 1 - (n - 1) * incy;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseqf(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmulf(alpha, mc_conjf(mc_blas_vector_at(y, jy)));
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddf(mc_blas_matrix_at(a, lda, n, i, j), mc_cmulf(mc_blas_vector_at(x, i), temp));
+				}
+			}
+			jy = jy + incy;
+		}
+	} else {
+		if (incx > 0) {
+			kx = 1;
+		} else {
+			kx = 1 - (m - 1) * incx;
+		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseqf(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmulf(alpha, mc_conjf(mc_blas_vector_at(y, jy)));
+				ix   = kx;
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddf(mc_blas_matrix_at(a, lda, n, i, j), mc_cmulf(mc_blas_vector_at(x, ix), temp));
+					ix                                 = ix + incx;
+				}
+			}
+			jy = jy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_zgerc -
+
+MC_TARGET_FUNC void mc_blas_zgerc(const int m, const int n, const mc_complex_double_t alpha, const mc_complex_double_t * x, const int incx, const mc_complex_double_t * y, const int incy, mc_complex_double_t * a, const int lda)
+{
+	const mc_complex_double_t zero = mc_cmplx(0.0, 0.0);
+
+	mc_complex_double_t temp;
+	int i, info, j, ix, jy, kx;
+
+	info = 0;
+	if (m < 0) {
+		info = 1;
+	} else if (n < 0) {
+		info = 2;
+	} else if (incx == 0) {
+		info = 5;
+	} else if (incy == 0) {
+		info = 7;
+	} else if (lda < mc_maxmag(1, m)) {
+		info = 9;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("ZGERC ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || mc_ciseq(alpha, zero)) {
+		return;
+	}
+
+	if (incy > 0) {
+		jy = 1;
+	} else {
+		jy = 1 - (n - 1) * incy;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseq(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmul(alpha, mc_conj(mc_blas_vector_at(y, jy)));
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_cadd(mc_blas_matrix_at(a, lda, n, i, j), mc_cmul(mc_blas_vector_at(x, i), temp));
+				}
+			}
+			jy = jy + incy;
+		}
+	} else {
+		if (incx > 0) {
+			kx = 1;
+		} else {
+			kx = 1 - (m - 1) * incx;
+		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseq(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmul(alpha, mc_conj(mc_blas_vector_at(y, jy)));
+				ix   = kx;
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_cadd(mc_blas_matrix_at(a, lda, n, i, j), mc_cmul(mc_blas_vector_at(x, ix), temp));
+					ix                                 = ix + incx;
+				}
+			}
+			jy = jy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_qgerc -
+
+MC_TARGET_FUNC void mc_blas_qgerc(const int m, const int n, const mc_complex_long_double_t alpha, const mc_complex_long_double_t * x, const int incx, const mc_complex_long_double_t * y, const int incy, mc_complex_long_double_t * a, const int lda)
+{
+	const mc_complex_long_double_t zero = mc_cmplxl(0.0L, 0.0L);
+
+	mc_complex_long_double_t temp;
+	int i, info, j, ix, jy, kx;
+
+	info = 0;
+	if (m < 0) {
+		info = 1;
+	} else if (n < 0) {
+		info = 2;
+	} else if (incx == 0) {
+		info = 5;
+	} else if (incy == 0) {
+		info = 7;
+	} else if (lda < mc_maxmag(1, m)) {
+		info = 9;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("QGERC ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || mc_ciseql(alpha, zero)) {
+		return;
+	}
+
+	if (incy > 0) {
+		jy = 1;
+	} else {
+		jy = 1 - (n - 1) * incy;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseql(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmull(alpha, mc_conjl(mc_blas_vector_at(y, jy)));
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddl(mc_blas_matrix_at(a, lda, n, i, j), mc_cmull(mc_blas_vector_at(x, i), temp));
+				}
+			}
+			jy = jy + incy;
+		}
+	} else {
+		if (incx > 0) {
+			kx = 1;
+		} else {
+			kx = 1 - (m - 1) * incx;
+		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseql(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmull(alpha, mc_conjl(mc_blas_vector_at(y, jy)));
+				ix   = kx;
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddl(mc_blas_matrix_at(a, lda, n, i, j), mc_cmull(mc_blas_vector_at(x, ix), temp));
+					ix                                 = ix + incx;
+				}
+			}
+			jy = jy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_cgeru -
+
+MC_TARGET_FUNC void mc_blas_cgeru(const int m, const int n, const mc_complex_float_t alpha, const mc_complex_float_t * x, const int incx, const mc_complex_float_t * y, const int incy, mc_complex_float_t * a, const int lda)
+{
+	const mc_complex_float_t zero = mc_cmplxf(0.0f, 0.0f);
+
+	mc_complex_float_t temp;
+	int i, info, j, ix, jy, kx;
+
+	info = 0;
+	if (m < 0) {
+		info = 1;
+	} else if (n < 0) {
+		info = 2;
+	} else if (incx == 0) {
+		info = 5;
+	} else if (incy == 0) {
+		info = 7;
+	} else if (lda < mc_maxmag(1, m)) {
+		info = 9;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("CGERU ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || mc_ciseqf(alpha, zero)) {
+		return;
+	}
+
+	if (incy > 0) {
+		jy = 1;
+	} else {
+		jy = 1 - (n - 1) * incy;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseqf(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmulf(alpha, mc_blas_vector_at(y, jy));
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddf(mc_blas_matrix_at(a, lda, n, i, j), mc_cmulf(mc_blas_vector_at(x, i), temp));
+				}
+			}
+			jy = jy + incy;
+		}
+	} else {
+		if (incx > 0) {
+			kx = 1;
+		} else {
+			kx = 1 - (m - 1) * incx;
+		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseqf(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmulf(alpha, mc_blas_vector_at(y, jy));
+				ix   = kx;
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddf(mc_blas_matrix_at(a, lda, n, i, j), mc_cmulf(mc_blas_vector_at(x, ix), temp));
+					ix                                 = ix + incx;
+				}
+			}
+			jy = jy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_zgeru -
+
+MC_TARGET_FUNC void mc_blas_zgeru(const int m, const int n, const mc_complex_double_t alpha, const mc_complex_double_t * x, const int incx, const mc_complex_double_t * y, const int incy, mc_complex_double_t * a, const int lda)
+{
+	const mc_complex_double_t zero = mc_cmplx(0.0, 0.0);
+
+	mc_complex_double_t temp;
+	int i, info, j, ix, jy, kx;
+
+	info = 0;
+	if (m < 0) {
+		info = 1;
+	} else if (n < 0) {
+		info = 2;
+	} else if (incx == 0) {
+		info = 5;
+	} else if (incy == 0) {
+		info = 7;
+	} else if (lda < mc_maxmag(1, m)) {
+		info = 9;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("ZGERU ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || mc_ciseq(alpha, zero)) {
+		return;
+	}
+
+	if (incy > 0) {
+		jy = 1;
+	} else {
+		jy = 1 - (n - 1) * incy;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseq(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmul(alpha, mc_blas_vector_at(y, jy));
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_cadd(mc_blas_matrix_at(a, lda, n, i, j), mc_cmul(mc_blas_vector_at(x, i), temp));
+				}
+			}
+			jy = jy + incy;
+		}
+	} else {
+		if (incx > 0) {
+			kx = 1;
+		} else {
+			kx = 1 - (m - 1) * incx;
+		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseq(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmul(alpha, mc_blas_vector_at(y, jy));
+				ix   = kx;
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_cadd(mc_blas_matrix_at(a, lda, n, i, j), mc_cmul(mc_blas_vector_at(x, ix), temp));
+					ix                                 = ix + incx;
+				}
+			}
+			jy = jy + incy;
+		}
+	}
+}
+
+#pragma mark - mc_blas_qgeru -
+
+MC_TARGET_FUNC void mc_blas_qgeru(const int m, const int n, const mc_complex_long_double_t alpha, const mc_complex_long_double_t * x, const int incx, const mc_complex_long_double_t * y, const int incy, mc_complex_long_double_t * a, const int lda)
+{
+	const mc_complex_long_double_t zero = mc_cmplxl(0.0L, 0.0L);
+
+	mc_complex_long_double_t temp;
+	int i, info, j, ix, jy, kx;
+
+	info = 0;
+	if (m < 0) {
+		info = 1;
+	} else if (n < 0) {
+		info = 2;
+	} else if (incx == 0) {
+		info = 5;
+	} else if (incy == 0) {
+		info = 7;
+	} else if (lda < mc_maxmag(1, m)) {
+		info = 9;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("QGERU ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || mc_ciseql(alpha, zero)) {
+		return;
+	}
+
+	if (incy > 0) {
+		jy = 1;
+	} else {
+		jy = 1 - (n - 1) * incy;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseql(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmull(alpha, mc_blas_vector_at(y, jy));
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddl(mc_blas_matrix_at(a, lda, n, i, j), mc_cmull(mc_blas_vector_at(x, i), temp));
+				}
+			}
+			jy = jy + incy;
+		}
+	} else {
+		if (incx > 0) {
+			kx = 1;
+		} else {
+			kx = 1 - (m - 1) * incx;
+		}
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (j = 1; j <= n; ++j) {
+			if (!mc_ciseql(mc_blas_vector_at(y, jy), zero)) {
+				temp = mc_cmull(alpha, mc_blas_vector_at(y, jy));
+				ix   = kx;
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(a, lda, n, i, j) = mc_caddl(mc_blas_matrix_at(a, lda, n, i, j), mc_cmull(mc_blas_vector_at(x, ix), temp));
 					ix                                 = ix + incx;
 				}
 			}
