@@ -14,7 +14,7 @@
 
 #pragma mark - mc_blas_sspr2 -
 
-MC_TARGET_FUNC void mc_blas_sspr2(const char uplo, const int n, float alpha, const float * x, const int incx, const float * y, const int incy, float * ap)
+MC_TARGET_FUNC void mc_blas_sspr2(const char uplo, const int n, const float alpha, const float * x, const int incx, const float * y, const int incy, float * ap)
 {
 	const float zero = 0.0f;
 
@@ -153,7 +153,7 @@ MC_TARGET_FUNC void mc_blas_sspr2(const char uplo, const int n, float alpha, con
 
 #pragma mark - mc_blas_dspr2 -
 
-MC_TARGET_FUNC void mc_blas_dspr2(const char uplo, const int n, double alpha, const double * x, const int incx, const double * y, const int incy, double * ap)
+MC_TARGET_FUNC void mc_blas_dspr2(const char uplo, const int n, const double alpha, const double * x, const int incx, const double * y, const int incy, double * ap)
 {
 	const double zero = 0.0;
 
@@ -292,7 +292,7 @@ MC_TARGET_FUNC void mc_blas_dspr2(const char uplo, const int n, double alpha, co
 
 #pragma mark - mc_blas_lspr2 -
 
-MC_TARGET_FUNC void mc_blas_lspr2(const char uplo, const int n, long double alpha, const long double * x, const int incx, const long double * y, const int incy, long double * ap)
+MC_TARGET_FUNC void mc_blas_lspr2(const char uplo, const int n, const long double alpha, const long double * x, const int incx, const long double * y, const int incy, long double * ap)
 {
 	const long double zero = 0.0L;
 

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_blas_strmm -
 
-MC_TARGET_FUNC void mc_blas_strmm(const char side, const char uplo, const char transa, const char diag, const int m, const int n, float alpha, const float * a, const int lda, float * b, const int ldb)
+MC_TARGET_FUNC void mc_blas_strmm(const char side, const char uplo, const char transa, const char diag, const int m, const int n, const float alpha, const float * a, const int lda, float * b, const int ldb)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -277,7 +277,7 @@ MC_TARGET_FUNC void mc_blas_strmm(const char side, const char uplo, const char t
 
 #pragma mark - mc_blas_dtrmm -
 
-MC_TARGET_FUNC void mc_blas_dtrmm(const char side, const char uplo, const char transa, const char diag, const int m, const int n, double alpha, const double * a, const int lda, double * b, const int ldb)
+MC_TARGET_FUNC void mc_blas_dtrmm(const char side, const char uplo, const char transa, const char diag, const int m, const int n, const double alpha, const double * a, const int lda, double * b, const int ldb)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -539,7 +539,7 @@ MC_TARGET_FUNC void mc_blas_dtrmm(const char side, const char uplo, const char t
 
 #pragma mark - mc_blas_ltrmm -
 
-MC_TARGET_FUNC void mc_blas_ltrmm(const char side, const char uplo, const char transa, const char diag, const int m, const int n, long double alpha, const long double * a, const int lda, long double * b, const int ldb)
+MC_TARGET_FUNC void mc_blas_ltrmm(const char side, const char uplo, const char transa, const char diag, const int m, const int n, const long double alpha, const long double * a, const int lda, long double * b, const int ldb)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

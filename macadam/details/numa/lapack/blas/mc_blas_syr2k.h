@@ -15,7 +15,7 @@
 
 #pragma mark - mc_blas_ssyr2k -
 
-MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int n, const int k, float alpha, const float * a, const int lda, const float * b, const int ldb, float beta, float * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int n, const int k, const float alpha, const float * a, const int lda, const float * b, const int ldb, const float beta, float * c, const int ldc)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -235,7 +235,7 @@ MC_TARGET_FUNC void mc_blas_ssyr2k(const char uplo, const char trans, const int 
 
 #pragma mark - mc_blas_dsyr2k -
 
-MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int n, const int k, double alpha, const double * a, const int lda, const double * b, const int ldb, double beta, double * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int n, const int k, const double alpha, const double * a, const int lda, const double * b, const int ldb, const double beta, double * c, const int ldc)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -455,7 +455,7 @@ MC_TARGET_FUNC void mc_blas_dsyr2k(const char uplo, const char trans, const int 
 
 #pragma mark - mc_blas_lsyr2k -
 
-MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int n, const int k, long double alpha, const long double * a, const int lda, const long double * b, const int ldb, long double beta, long double * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int n, const int k, const long double alpha, const long double * a, const int lda, const long double * b, const int ldb, const long double beta, long double * c, const int ldc)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

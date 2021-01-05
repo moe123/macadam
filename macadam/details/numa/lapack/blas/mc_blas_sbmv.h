@@ -104,7 +104,7 @@
 
 #pragma mark - mc_blas_ssbmv -
 
-MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, float alpha, const float * a, const int lda, const float * x, const int incx, float beta, float * y, const int incy)
+MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, const float alpha, const float * a, const int lda, const float * x, const int incx, const float beta, float * y, const int incy)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -308,7 +308,7 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, flo
 
 #pragma mark - mc_blas_dsbmv -
 
-MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, double alpha, const double * a, const int lda, const double * x, const int incx, double beta, double * y, const int incy)
+MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, const double alpha, const double * a, const int lda, const double * x, const int incx, const double beta, double * y, const int incy)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -512,7 +512,7 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, dou
 
 #pragma mark - mc_blas_lsbmv -
 
-MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, long double alpha, const long double * a, const int lda, const long double * x, const int incx, long double beta, long double * y, const int incy)
+MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, const long double alpha, const long double * a, const int lda, const long double * x, const int incx, const long double beta, long double * y, const int incy)
 {
 	const long double one = 1.0, zero = 0.0;
 

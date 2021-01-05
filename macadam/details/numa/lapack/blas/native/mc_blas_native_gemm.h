@@ -87,7 +87,7 @@
 
 #pragma mark - mc_blas_native_sgemm -
 
-MC_TARGET_FUNC void mc_blas_native_sgemm(const char transa, const char transb, const int m, const int n, const int k, float alpha, const float * a, const int lda, const float * b, const int ldb, float beta, float * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_native_sgemm(const char transa, const char transb, const int m, const int n, const int k, const float alpha, const float * a, const int lda, const float * b, const int ldb, const float beta, float * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 	const enum CBLAS_ORDER order = CblasRowMajor;
@@ -107,7 +107,7 @@ MC_TARGET_FUNC void mc_blas_native_sgemm(const char transa, const char transb, c
 
 #pragma mark - mc_blas_native_dgemm -
 
-MC_TARGET_FUNC void mc_blas_native_dgemm(const char transa, const char transb, const int m, const int n, const int k, double alpha, const double * a, const int lda, const double * b, const int ldb, double beta, double * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_native_dgemm(const char transa, const char transb, const int m, const int n, const int k, const double alpha, const double * a, const int lda, const double * b, const int ldb, const double beta, double * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 	const enum CBLAS_ORDER order = CblasRowMajor;

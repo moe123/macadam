@@ -125,7 +125,7 @@
 
 #pragma mark - mc_blas_sgbmv -
 
-MC_TARGET_FUNC void mc_blas_sgbmv(const char trans, const int m, const int n, const int kl, const int ku, float alpha, const float * a, const int lda, const float * x, const int incx, float beta, float * y, const int incy)
+MC_TARGET_FUNC void mc_blas_sgbmv(const char trans, const int m, const int n, const int kl, const int ku, const float alpha, const float * a, const int lda, const float * x, const int incx, const float beta, float * y, const int incy)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -324,7 +324,7 @@ MC_TARGET_FUNC void mc_blas_sgbmv(const char trans, const int m, const int n, co
 
 #pragma mark - mc_blas_dgbmv -
 
-MC_TARGET_FUNC void mc_blas_dgbmv(const char trans, const int m, const int n, const int kl, const int ku, double alpha, const double * a, const int lda, const double * x, const int incx, double beta, double * y, const int incy)
+MC_TARGET_FUNC void mc_blas_dgbmv(const char trans, const int m, const int n, const int kl, const int ku, const double alpha, const double * a, const int lda, const double * x, const int incx, const double beta, double * y, const int incy)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -523,7 +523,7 @@ MC_TARGET_FUNC void mc_blas_dgbmv(const char trans, const int m, const int n, co
 
 #pragma mark - mc_blas_lgbmv -
 
-MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, const int kl, const int ku, long double alpha, const long double * a, const int lda, const long double * x, const int incx, long double beta, long double * y, const int incy)
+MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, const int kl, const int ku, const long double alpha, const long double * a, const int lda, const long double * x, const int incx, const long double beta, long double * y, const int incy)
 {
 	const long double one = 1.0L, zero = 0.0L;
 

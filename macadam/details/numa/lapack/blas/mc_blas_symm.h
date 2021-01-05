@@ -15,7 +15,7 @@
 
 #pragma mark - mc_blas_ssymm -
 
-MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m, const int n, float alpha, const float * a, const int lda, const float * b, const int ldb, float beta, float * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m, const int n, const float alpha, const float * a, const int lda, const float * b, const int ldb, const float beta, float * c, const int ldc)
 {
 	const float one = 1.0f, zero = 0.0f;
 
@@ -183,7 +183,7 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m,
 
 #pragma mark - mc_blas_dsymm -
 
-MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m, const int n, double alpha, const double * a, const int lda, const double * b, const int ldb, double beta, double * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m, const int n, const double alpha, const double * a, const int lda, const double * b, const int ldb, const double beta, double * c, const int ldc)
 {
 	const double one = 1.0, zero = 0.0;
 
@@ -351,7 +351,7 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m,
 
 #pragma mark - mc_blas_lsymm -
 
-MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m, const int n, long double alpha, const long double * a, const int lda, const long double * b, const int ldb, long double beta, long double * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m, const int n, const long double alpha, const long double * a, const int lda, const long double * b, const int ldb, const long double beta, long double * c, const int ldc)
 {
 	const long double one = 1.0L, zero = 0.0L;
 
