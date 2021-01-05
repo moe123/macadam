@@ -14,7 +14,7 @@
 
 #pragma mark - mc_znorm -
 
-MC_TARGET_PROC float mc_znormf(float z_r, float z_i)
+MC_TARGET_PROC float mc_znormf(const float z_r, const float z_i)
 {
 	if (mc_isinf(z_r)) {
 		return MCK_INFP;
@@ -25,7 +25,7 @@ MC_TARGET_PROC float mc_znormf(float z_r, float z_i)
 	return mc_raise2f(z_r) + mc_raise2f(z_i);
 }
 
-MC_TARGET_PROC double mc_znorm(double z_r, double z_i)
+MC_TARGET_PROC double mc_znorm(const double z_r, const double z_i)
 {
 	if (mc_isinf(z_r)) {
 		return MCK_INFP;
@@ -36,7 +36,7 @@ MC_TARGET_PROC double mc_znorm(double z_r, double z_i)
 	return mc_raise2(z_r) + mc_raise2(z_i);
 }
 
-MC_TARGET_PROC long double mc_znorml(long double z_r, long double z_i)
+MC_TARGET_PROC long double mc_znorml(const long double z_r, const long double z_i)
 {
 	if (mc_isinf(z_r)) {
 		return MCK_INFP;

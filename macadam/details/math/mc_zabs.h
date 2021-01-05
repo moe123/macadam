@@ -13,17 +13,17 @@
 
 #pragma mark - mc_zabs -
 
-MC_TARGET_PROC float mc_zabsf(float z_r, float z_i)
+MC_TARGET_PROC float mc_zabsf(const float z_r, const float z_i)
 {
 	return mc_hypotf(z_i, z_r);
 }
 
-MC_TARGET_PROC double mc_zabs(double z_r, double z_i)
+MC_TARGET_PROC double mc_zabs(const double z_r, const double z_i)
 {
 	return mc_hypot(z_i, z_r);
 }
 
-MC_TARGET_PROC long double mc_zabsl(long double z_r, long double z_i)
+MC_TARGET_PROC long double mc_zabsl(const long double z_r, const long double z_i)
 {
 	return mc_hypotl(z_i, z_r);
 }

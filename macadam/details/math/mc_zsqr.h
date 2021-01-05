@@ -14,21 +14,21 @@
 #pragma mark - mc_zsqr -
 
 MC_TARGET_PROC void mc_zsqrf(float * c_r, float * c_i
-	, float a_r, float a_i
+	, const float a_r, const float a_i
 ) {
 	*c_r = mc_raise2f(a_r) - mc_raise2f(a_i);
 	*c_i = 2.0f * a_r * a_i;
 }
 
 MC_TARGET_PROC void mc_zsqr(double * c_r, double * c_i
-	, double a_r, double a_i
+	, const double a_r, const double a_i
 ) {
 	*c_r = mc_raise2(a_r) - mc_raise2(a_i);
 	*c_i = 2.0 * a_r * a_i;
 }
 
 MC_TARGET_PROC void mc_zsqrl(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
+	, const long double a_r, const long double a_i
 ) {
 	*c_r = mc_raise2l(a_r) - mc_raise2l(a_i);
 	*c_i = 2.0L * a_r * a_i;

@@ -15,7 +15,7 @@
 #pragma mark - mc_zpow10 -
 
 MC_TARGET_PROC void mc_zpow10f(float * c_r, float * c_i
-	, float a_r, float a_i
+	, const float a_r, const float a_i
 ) {
 	*c_r = MCK_KF(MCK_LOGE10);
 	*c_i = 0.0f;
@@ -24,7 +24,7 @@ MC_TARGET_PROC void mc_zpow10f(float * c_r, float * c_i
 }
 
 MC_TARGET_PROC void mc_zpow10(double * c_r, double * c_i
-	, double a_r, double a_i
+	, const double a_r, const double a_i
 ) {
 	*c_r = MCK_K(MCK_LOGE10);
 	*c_i = 0.0;
@@ -33,7 +33,7 @@ MC_TARGET_PROC void mc_zpow10(double * c_r, double * c_i
 }
 
 MC_TARGET_PROC void mc_zpow10l(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
+	, const long double a_r, const long double a_i
 ) {
 	*c_r = MCK_KL(MCK_LOGE10);
 	*c_i = 0.0L;

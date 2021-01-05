@@ -13,17 +13,17 @@
 
 #pragma mark - mc_creal -
 
-MC_TARGET_PROC float mc_crealf(mc_complex_float_t c)
+MC_TARGET_PROC float mc_crealf(const mc_complex_float_t c)
 {
 	return mc_cmplxrf(c);
 }
 
-MC_TARGET_PROC double mc_creal(mc_complex_double_t c)
+MC_TARGET_PROC double mc_creal(const mc_complex_double_t c)
 {
 	return mc_cmplxr(c);
 }
 
-MC_TARGET_PROC long double mc_creall(mc_complex_long_double_t c)
+MC_TARGET_PROC long double mc_creall(const mc_complex_long_double_t c)
 {
 	return mc_cmplxrl(c);
 }

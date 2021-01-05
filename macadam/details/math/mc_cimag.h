@@ -13,17 +13,17 @@
 
 #pragma mark - mc_cimag -
 
-MC_TARGET_PROC float mc_cimagf(mc_complex_float_t c)
+MC_TARGET_PROC float mc_cimagf(const mc_complex_float_t c)
 {
 	return mc_cmplxif(c);
 }
 
-MC_TARGET_PROC double mc_cimag(mc_complex_double_t c)
+MC_TARGET_PROC double mc_cimag(const mc_complex_double_t c)
 {
 	return mc_cmplxi(c);
 }
 
-MC_TARGET_PROC long double mc_cimagl(mc_complex_long_double_t c)
+MC_TARGET_PROC long double mc_cimagl(const mc_complex_long_double_t c)
 {
 	return mc_cmplxil(c);
 }

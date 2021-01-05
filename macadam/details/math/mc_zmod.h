@@ -14,7 +14,7 @@
 
 #pragma mark - mc_zmod -
 
-MC_TARGET_PROC float mc_zmodf(float z_r, float z_i)
+MC_TARGET_PROC float mc_zmodf(const float z_r, const float z_i)
 {
 //!# \note: mc_zmod is similar to mc_zabs with additional boundary checks.
 	if (mc_isinf(z_r)) {
@@ -27,7 +27,7 @@ MC_TARGET_PROC float mc_zmodf(float z_r, float z_i)
 	return mc_sqrtf(n);
 }
 
-MC_TARGET_PROC double mc_zmod(double z_r, double z_i)
+MC_TARGET_PROC double mc_zmod(const double z_r, const double z_i)
 {
 //!# \note: mc_zmod is similar to mc_zabs with additional boundary checks.
 	if (mc_isinf(z_r)) {
@@ -40,7 +40,7 @@ MC_TARGET_PROC double mc_zmod(double z_r, double z_i)
 	return mc_sqrt(n);
 }
 
-MC_TARGET_PROC long double mc_zmodl(long double z_r, long double z_i)
+MC_TARGET_PROC long double mc_zmodl(const long double z_r, const long double z_i)
 {
 //!# \note: mc_zmod is similar to mc_zabs with additional boundary checks.
 	if (mc_isinf(z_r)) {

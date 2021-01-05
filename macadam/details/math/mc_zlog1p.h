@@ -19,7 +19,7 @@
 #pragma mark - mc_zlog1p -
 
 MC_TARGET_PROC void mc_zlog1pf(float * c_r, float * c_i
-	, float a_r, float a_i
+	, const float a_r, const float a_i
 ) {
 	if ((mc_fabsf(a_r) >= 1.0f) || (mc_fabsf(a_i) >= 1.0f)) {
 		mc_zaddf(c_r, c_i, 1.0f, 0.0f, a_r, a_i);
@@ -32,7 +32,7 @@ MC_TARGET_PROC void mc_zlog1pf(float * c_r, float * c_i
 }
 
 MC_TARGET_PROC void mc_zlog1p(double * c_r, double * c_i
-	, double a_r, double a_i
+	, const double a_r, const double a_i
 ) {
 	if ((mc_fabs(a_r) >= 1.0) || (mc_fabs(a_i) >= 1.0)) {
 		mc_zadd(c_r, c_i, 1.0, 0.0, a_r, a_i);
@@ -45,7 +45,7 @@ MC_TARGET_PROC void mc_zlog1p(double * c_r, double * c_i
 }
 
 MC_TARGET_PROC void mc_zlog1pl(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
+	, const long double a_r, const long double a_i
 ) {
 	if ((mc_fabsl(a_r) >= 1.0L) || (mc_fabsl(a_i) >= 1.0L)) {
 		mc_zaddl(c_r, c_i, 1.0L, 0.0L, a_r, a_i);

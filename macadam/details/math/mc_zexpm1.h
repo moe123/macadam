@@ -18,7 +18,7 @@
 #pragma mark - mc_zexpm1 -
 
 MC_TARGET_PROC void mc_zexpm1f(float * c_r, float * c_i
-	, float a_r, float a_i
+	, const float a_r, const float a_i
 ) {
 	if ((mc_fabsf(a_r) >= 1.0f) || (mc_fabsf(a_i) >= 1.0f)) {
 		mc_zexpf(c_r, c_i, a_r, a_i);
@@ -32,7 +32,7 @@ MC_TARGET_PROC void mc_zexpm1f(float * c_r, float * c_i
 }
 
 MC_TARGET_PROC void mc_zexpm1(double * c_r, double * c_i
-	, double a_r, double a_i
+	, const double a_r, const double a_i
 ) {
 	if ((mc_fabs(a_r) >= 1.0) || (mc_fabs(a_i) >= 1.0)) {
 		mc_zexp(c_r, c_i, a_r, a_i);
@@ -46,7 +46,7 @@ MC_TARGET_PROC void mc_zexpm1(double * c_r, double * c_i
 }
 
 MC_TARGET_PROC void mc_zexpm1l(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
+	, const long double a_r, const long double a_i
 ) {
 	if ((mc_fabsl(a_r) >= 1.0L) || (mc_fabsl(a_i) >= 1.0L)) {
 		mc_zexpl(c_r, c_i, a_r, a_i);

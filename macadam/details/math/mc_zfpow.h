@@ -14,22 +14,22 @@
 #pragma mark - mc_zfpow -
 
 MC_TARGET_PROC void mc_zfpowf(float * c_r, float * c_i
-	, float a_r, float a_i
-	, float b
+	, const float a_r, const float a_i
+	, const float b
 ) {
 	mc_zpowf(c_r, c_i, a_r, a_i, b, 0.0f);
 }
 
 MC_TARGET_PROC void mc_zfpow(double * c_r, double * c_i
-	, double a_r, double a_i
-	, double b
+	, const double a_r, const double a_i
+	, const double b
 ) {
 	mc_zpow(c_r, c_i, a_r, a_i, b, 0.0);
 }
 
 MC_TARGET_PROC void mc_zfpowl(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
-	, long double b
+	, const long double a_r, const long double a_i
+	, const long double b
 ) {
 	mc_zpowl(c_r, c_i, a_r, a_i, b, 0.0L);
 }

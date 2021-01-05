@@ -14,19 +14,19 @@
 #pragma mark - mc_zexp2 -
 
 MC_TARGET_PROC void mc_zexp2f(float * c_r, float * c_i
-	, float a_r, float a_i
+	, const float a_r, const float a_i
 ) {
 	mc_zpowf(c_r, c_i, 2.0f, 0.0f, a_r, a_i);
 }
 
 MC_TARGET_PROC void mc_zexp2(double * c_r, double * c_i
-	, double a_r, double a_i
+	, const double a_r, const double a_i
 ) {
 	mc_zpow(c_r, c_i, 2.0, 0.0, a_r, a_i);
 }
 
 MC_TARGET_PROC void mc_zexp2l(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
+	, const long double a_r, const long double a_i
 ) {
 	mc_zpowl(c_r, c_i, 2.0L, 0.0L, a_r, a_i);
 }

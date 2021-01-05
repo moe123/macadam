@@ -13,7 +13,7 @@
 
 #pragma mark - mc_cdiv -
 
-MC_TARGET_PROC mc_complex_float_t mc_cdivf(mc_complex_float_t a, mc_complex_float_t b)
+MC_TARGET_PROC mc_complex_float_t mc_cdivf(const mc_complex_float_t a, const mc_complex_float_t b)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return a / b;
@@ -27,7 +27,7 @@ MC_TARGET_PROC mc_complex_float_t mc_cdivf(mc_complex_float_t a, mc_complex_floa
 #	endif
 }
 
-MC_TARGET_PROC mc_complex_double_t mc_cdiv(mc_complex_double_t a, mc_complex_double_t b)
+MC_TARGET_PROC mc_complex_double_t mc_cdiv(const mc_complex_double_t a, const mc_complex_double_t b)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return a / b;
@@ -41,7 +41,7 @@ MC_TARGET_PROC mc_complex_double_t mc_cdiv(mc_complex_double_t a, mc_complex_dou
 #	endif
 }
 
-MC_TARGET_PROC mc_complex_long_double_t mc_cdivl(mc_complex_long_double_t a, mc_complex_long_double_t b)
+MC_TARGET_PROC mc_complex_long_double_t mc_cdivl(const mc_complex_long_double_t a, const mc_complex_long_double_t b)
 {
 #	if MC_TARGET_C99_COMPLEX
 		return a / b;
