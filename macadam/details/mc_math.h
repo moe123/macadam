@@ -50,7 +50,10 @@
 #	include <macadam/details/math/mc_chbevl.h>
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cimag.h>
+#	include <macadam/details/math/mc_ciseq.h>
+#	include <macadam/details/math/mc_ciszero.h>
 #	include <macadam/details/math/mc_cmul.h>
+#	include <macadam/details/math/mc_conj.h>
 #	include <macadam/details/math/mc_copysign.h>
 #	include <macadam/details/math/mc_cos.h>
 #	include <macadam/details/math/mc_cosh.h>
@@ -246,6 +249,8 @@
 #	include <macadam/details/math/mc_zfsub.h>
 #	include <macadam/details/math/mc_zgamma.h>
 #	include <macadam/details/math/mc_zinv.h>
+#	include <macadam/details/math/mc_ziseq.h>
+#	include <macadam/details/math/mc_ziszero.h>
 #	include <macadam/details/math/mc_zlgamma.h>
 #	include <macadam/details/math/mc_zlog.h>
 #	include <macadam/details/math/mc_zlog1p.h>
