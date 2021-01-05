@@ -470,6 +470,10 @@
 #	endif
 
 #	if MC_TARGET_BLAS_USE_NATIVE
+
+#	undef OPENBLAS_COMPLEX_C99
+#	undef OPENBLAS_COMPLEX_STRUCT
+
 #	if MC_TARGET_BLAS_USE_ACCELERATE
 #		include <Accelerate/Accelerate.h>
 		typedef __CLPK_complex                           mc_complex_float_t;
@@ -487,9 +491,7 @@
 #		define MC_TARGET_BUILTIN_COMPLEX 1
 #	elif MC_TARGET_BLAS_USE_OPENBLAS
 #		if defined __has_include
-#			if __has_include("openblas/cblas.h")
-#				include "openblas/cblas.h"
-#			elif __has_include("cblas_openblas.h")
+#			if __has_include("cblas_openblas.h")
 #				include "cblas_openblas.h"
 #			elif __has_include("cblas-openblas.h")
 #				include "cblas-openblas.h"
@@ -500,18 +502,22 @@
 #			include "cblas.h"
 #		endif
 #		if defined(OPENBLAS_COMPLEX_C99) || defined(OPENBLAS_COMPLEX_STRUCT)
-			typedef openblas_complex_float  mc_complex_float_t;
-			typedef openblas_complex_double mc_complex_double_t;
+			typedef openblas_complex_float                            mc_complex_float_t;
+			typedef openblas_complex_double                           mc_complex_double_t;
 #			if defined(OPENBLAS_COMPLEX_STRUCT)
 #				undef  MC_TARGET_BUILTIN_COMPLEX
 #				define MC_TARGET_BUILTIN_COMPLEX 1
 				typedef struct { long double real; long double imag; } mc_complex_long_double_t;
 #			else
-				typedef long double _Complex mc_complex_long_double_t;
+				typedef long double _Complex                           mc_complex_long_double_t;
 #			endif
 #		else
+#			undef MC_TARGET_BLAS_USE_NATIVE
 #			error "OpenBlas header not found."
 #		endif
+#	else
+#			undef MC_TARGET_BLAS_USE_NATIVE
+#		error "Blas native target not found."
 #	endif
 #	endif
 
@@ -556,7 +562,13 @@
 #	else
 #		define mc_complex(type) struct { type u_re; type u_im; }
 #	endif
-#	if !defined(OPENBLAS_COMPLEX_STRUCT) && !(MC_TARGET_BLAS_USE_ACCELERATE || MC_TARGET_BLAS_USE_VECLIB)
+#	if MC_TARGET_BLAS_USE_NATIVE
+#		if !defined(OPENBLAS_COMPLEX_STRUCT) && !(MC_TARGET_BLAS_USE_ACCELERATE || MC_TARGET_BLAS_USE_VECLIB)
+			typedef mc_complex(float)       mc_complex_float_t;
+			typedef mc_complex(double)      mc_complex_double_t;
+			typedef mc_complex(long double) mc_complex_long_double_t;
+#		endif
+#	else
 		typedef mc_complex(float)       mc_complex_float_t;
 		typedef mc_complex(double)      mc_complex_double_t;
 		typedef mc_complex(long double) mc_complex_long_double_t;
