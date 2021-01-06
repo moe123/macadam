@@ -668,6 +668,957 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, const in
 	}
 }
 
+#pragma mark - mc_blas_cgemm -
+
+MC_TARGET_FUNC void mc_blas_cgemm(const char transa, const char transb, const int m, const int n, const int k, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * b, const int ldb, const mc_complex_float_t beta, mc_complex_float_t * c, const int ldc)
+{
+	const mc_complex_float_t one = mc_cmplxf(1.0f, 0.0f), zero = mc_cmplxf(0.0f, 0.0f);
+
+	mc_complex_float_t temp;
+	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
+	int conja, conjb, nota, notb;
+
+	nota  = mc_blas_lsame(transa, 'N');
+	notb  = mc_blas_lsame(transb, 'N');
+	conja = mc_blas_lsame(transa, 'C');
+	conjb = mc_blas_lsame(transb, 'C');
+
+	if (nota) {
+		ka    = k;
+		nrowa = m;
+		ncola = k;
+		mc_unused(ka);
+		mc_unused(ncola);
+	} else {
+		ka    = m;
+		nrowa = k;
+		ncola = m;
+		mc_unused(ka);
+		mc_unused(ncola);
+	}
+	if (notb) {
+		kb    = n;
+		nrowb = k;
+		mc_unused(kb);
+	} else {
+		kb    = k;
+		nrowb = n;
+		mc_unused(kb);
+	}
+
+	info = 0;
+	if (!nota && !conja && !mc_blas_lsame(transa, 'T')) {
+		info = 1;
+	} else if (!notb && !conjb && !mc_blas_lsame(transb, 'T')) {
+		info = 2;
+	} else if (m < 0) {
+		info = 3;
+	} else if (n < 0) {
+		info = 4;
+	} else if (k < 0) {
+		info = 5;
+	} else if (lda < mc_maxmag(1, nrowa)) {
+		info = 8;
+	} else if (ldb < mc_maxmag(1, nrowb)) {
+		info = 10;
+	} else if (ldc < mc_maxmag(1, m)) {
+		info = 13;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("CGEMM ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || ((mc_ciseqf(alpha, zero) || k == 0) && mc_ciseqf(beta, one))) {
+		return;
+	}
+
+	if (mc_ciseqf(alpha, zero)) {
+		if (mc_ciseqf(beta, zero)) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+				}
+			}
+		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+				}
+			}
+		}
+		return;
+	}
+
+	if (notb) {
+		if (nota) {
+//!# c=alpha*a*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseqf(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseqf(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmulf(alpha, mc_blas_matrix_at(b, ldb, kb, l, j));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmulf(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		} else if (conja) {
+//!# c=alpha*a_*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddf(temp, mc_cmulf(mc_conjf(mc_blas_matrix_at(a, lda, ka, l, i)), mc_blas_matrix_at(b, ldb, kb, l, j)));
+					}
+					if (mc_ciseqf(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_cmulf(alpha, temp), mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a'*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddf(temp, mc_cmulf(mc_blas_matrix_at(a, lda, ka, l, i), mc_blas_matrix_at(b, ldb, kb, l, j)));
+					}
+					if (mc_ciseqf(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_cmulf(alpha, temp), mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	} else if (nota) {
+		if (conjb) {
+//!# c=alpha*a*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseqf(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseqf(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmulf(alpha, mc_conjf(mc_blas_matrix_at(b, ldb, kb, j, l)));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmulf(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseqf(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseqf(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmulf(alpha, mc_blas_matrix_at(b, ldb, kb, j, l));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmulf(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		}
+	} else if (conja) {
+		if (conjb) {
+//!# c=alpha*a_*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddf(temp, mc_cmulf(mc_conjf(mc_blas_matrix_at(a, lda, ka, l, i)), mc_conjf(mc_blas_matrix_at(b, ldb, kb, j, l))));
+					}
+					if (mc_ciseqf(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_cmulf(alpha, temp), mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a_*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddf(temp, mc_cmulf(mc_conjf(mc_blas_matrix_at(a, lda, ka, l, i)), mc_blas_matrix_at(b, ldb, kb, j, l)));
+					}
+					if (mc_ciseqf(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_cmulf(alpha, temp), mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	} else {
+		if (conjb) {
+//!# c=alpha*a'*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddf(temp, mc_cmulf(mc_blas_matrix_at(a, lda, ka, l, i), mc_conjf(mc_blas_matrix_at(b, ldb, kb, j, l))));
+					}
+					if (mc_ciseqf(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_cmulf(alpha, temp), mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a'*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddf(temp, mc_cmulf(mc_blas_matrix_at(a, lda, ka, l, i), mc_blas_matrix_at(b, ldb, kb, j, l)));
+					}
+					if (mc_ciseqf(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmulf(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddf(mc_cmulf(alpha, temp), mc_cmulf(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	}
+}
+
+#pragma mark - mc_blas_zgemm -
+
+MC_TARGET_FUNC void mc_blas_zgemm(const char transa, const char transb, const int m, const int n, const int k, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * b, const int ldb, const mc_complex_double_t beta, mc_complex_double_t * c, const int ldc)
+{
+	const mc_complex_double_t one = mc_cmplx(1.0, 0.0), zero = mc_cmplx(0.0, 0.0);
+
+	mc_complex_double_t temp;
+	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
+	int conja, conjb, nota, notb;
+
+	nota  = mc_blas_lsame(transa, 'N');
+	notb  = mc_blas_lsame(transb, 'N');
+	conja = mc_blas_lsame(transa, 'C');
+	conjb = mc_blas_lsame(transb, 'C');
+
+	if (nota) {
+		ka    = k;
+		nrowa = m;
+		ncola = k;
+		mc_unused(ka);
+		mc_unused(ncola);
+	} else {
+		ka    = m;
+		nrowa = k;
+		ncola = m;
+		mc_unused(ka);
+		mc_unused(ncola);
+	}
+	if (notb) {
+		kb    = n;
+		nrowb = k;
+		mc_unused(kb);
+	} else {
+		kb    = k;
+		nrowb = n;
+		mc_unused(kb);
+	}
+
+	info = 0;
+	if (!nota && !conja && !mc_blas_lsame(transa, 'T')) {
+		info = 1;
+	} else if (!notb && !conjb && !mc_blas_lsame(transb, 'T')) {
+		info = 2;
+	} else if (m < 0) {
+		info = 3;
+	} else if (n < 0) {
+		info = 4;
+	} else if (k < 0) {
+		info = 5;
+	} else if (lda < mc_maxmag(1, nrowa)) {
+		info = 8;
+	} else if (ldb < mc_maxmag(1, nrowb)) {
+		info = 10;
+	} else if (ldc < mc_maxmag(1, m)) {
+		info = 13;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("ZGEMM ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || ((mc_ciseq(alpha, zero) || k == 0) && mc_ciseq(beta, one))) {
+		return;
+	}
+
+	if (mc_ciseq(alpha, zero)) {
+		if (mc_ciseq(beta, zero)) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+				}
+			}
+		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+				}
+			}
+		}
+		return;
+	}
+
+	if (notb) {
+		if (nota) {
+//!# c=alpha*a*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseq(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseq(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmul(alpha, mc_blas_matrix_at(b, ldb, kb, l, j));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmul(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		} else if (conja) {
+//!# c=alpha*a_*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_cadd(temp, mc_cmul(mc_conj(mc_blas_matrix_at(a, lda, ka, l, i)), mc_blas_matrix_at(b, ldb, kb, l, j)));
+					}
+					if (mc_ciseq(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_cmul(alpha, temp), mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a'*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_cadd(temp, mc_cmul(mc_blas_matrix_at(a, lda, ka, l, i), mc_blas_matrix_at(b, ldb, kb, l, j)));
+					}
+					if (mc_ciseq(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_cmul(alpha, temp), mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	} else if (nota) {
+		if (conjb) {
+//!# c=alpha*a*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseq(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseq(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmul(alpha, mc_conj(mc_blas_matrix_at(b, ldb, kb, j, l)));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmul(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseq(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseq(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmul(alpha, mc_blas_matrix_at(b, ldb, kb, j, l));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmul(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		}
+	} else if (conja) {
+		if (conjb) {
+//!# c=alpha*a_*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_cadd(temp, mc_cmul(mc_conj(mc_blas_matrix_at(a, lda, ka, l, i)), mc_conj(mc_blas_matrix_at(b, ldb, kb, j, l))));
+					}
+					if (mc_ciseq(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_cmul(alpha, temp), mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a_*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_cadd(temp, mc_cmul(mc_conj(mc_blas_matrix_at(a, lda, ka, l, i)), mc_blas_matrix_at(b, ldb, kb, j, l)));
+					}
+					if (mc_ciseq(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_cmul(alpha, temp), mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	} else {
+		if (conjb) {
+//!# c=alpha*a'*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_cadd(temp, mc_cmul(mc_blas_matrix_at(a, lda, ka, l, i), mc_conj(mc_blas_matrix_at(b, ldb, kb, j, l))));
+					}
+					if (mc_ciseq(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_cmul(alpha, temp), mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a'*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_cadd(temp, mc_cmul(mc_blas_matrix_at(a, lda, ka, l, i), mc_blas_matrix_at(b, ldb, kb, j, l)));
+					}
+					if (mc_ciseq(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmul(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cadd(mc_cmul(alpha, temp), mc_cmul(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	}
+}
+
+#pragma mark - mc_blas_qgemm -
+
+MC_TARGET_FUNC void mc_blas_qgemm(const char transa, const char transb, const int m, const int n, const int k, const mc_complex_long_double_t alpha, const mc_complex_long_double_t * a, const int lda, const mc_complex_long_double_t * b, const int ldb, const mc_complex_long_double_t beta, mc_complex_long_double_t * c, const int ldc)
+{
+	const mc_complex_long_double_t one = mc_cmplxl(1.0L, 0.0L), zero = mc_cmplxl(0.0L, 0.0L);
+
+	mc_complex_long_double_t temp;
+	int i, info, j, l, ncola, nrowa, nrowb, ka, kb;
+	int conja, conjb, nota, notb;
+
+	nota  = mc_blas_lsame(transa, 'N');
+	notb  = mc_blas_lsame(transb, 'N');
+	conja = mc_blas_lsame(transa, 'C');
+	conjb = mc_blas_lsame(transb, 'C');
+
+	if (nota) {
+		ka    = k;
+		nrowa = m;
+		ncola = k;
+		mc_unused(ka);
+		mc_unused(ncola);
+	} else {
+		ka    = m;
+		nrowa = k;
+		ncola = m;
+		mc_unused(ka);
+		mc_unused(ncola);
+	}
+	if (notb) {
+		kb    = n;
+		nrowb = k;
+		mc_unused(kb);
+	} else {
+		kb    = k;
+		nrowb = n;
+		mc_unused(kb);
+	}
+
+	info = 0;
+	if (!nota && !conja && !mc_blas_lsame(transa, 'T')) {
+		info = 1;
+	} else if (!notb && !conjb && !mc_blas_lsame(transb, 'T')) {
+		info = 2;
+	} else if (m < 0) {
+		info = 3;
+	} else if (n < 0) {
+		info = 4;
+	} else if (k < 0) {
+		info = 5;
+	} else if (lda < mc_maxmag(1, nrowa)) {
+		info = 8;
+	} else if (ldb < mc_maxmag(1, nrowb)) {
+		info = 10;
+	} else if (ldc < mc_maxmag(1, m)) {
+		info = 13;
+	}
+	if (info != 0) {
+		mc_blas_xerbla("QGEMM ", info);
+		return;
+	}
+
+	if (m == 0 || n == 0 || ((mc_ciseql(alpha, zero) || k == 0) && mc_ciseql(beta, one))) {
+		return;
+	}
+
+	if (mc_ciseql(alpha, zero)) {
+		if (mc_ciseql(beta, zero)) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+				}
+			}
+		} else {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+				}
+			}
+		}
+		return;
+	}
+
+	if (notb) {
+		if (nota) {
+//!# c=alpha*a*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseql(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseql(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmull(alpha, mc_blas_matrix_at(b, ldb, kb, l, j));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmull(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		} else if (conja) {
+//!# c=alpha*a_*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddl(temp, mc_cmull(mc_conjl(mc_blas_matrix_at(a, lda, ka, l, i)), mc_blas_matrix_at(b, ldb, kb, l, j)));
+					}
+					if (mc_ciseql(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_cmull(alpha, temp), mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a'*b+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddl(temp, mc_cmull(mc_blas_matrix_at(a, lda, ka, l, i), mc_blas_matrix_at(b, ldb, kb, l, j)));
+					}
+					if (mc_ciseql(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_cmull(alpha, temp), mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	} else if (nota) {
+		if (conjb) {
+//!# c=alpha*a*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseql(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseql(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmull(alpha, mc_conjl(mc_blas_matrix_at(b, ldb, kb, j, l)));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmull(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				if (mc_ciseql(beta, zero)) {
+					for (i = 1; i <= m; ++i) {
+						 mc_blas_matrix_at(c, ldc, n, i, j) = zero;
+					}
+				} else if (!mc_ciseql(beta, one)) {
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j));
+					}
+				}
+				for (l = 1; l <= k; ++l) {
+					temp = mc_cmull(alpha, mc_blas_matrix_at(b, ldb, kb, j, l));
+					for (i = 1; i <= m; ++i) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_blas_matrix_at(c, ldc, n, i, j), mc_cmull(temp, mc_blas_matrix_at(a, lda, ka, i, l)));
+					}
+				}
+			}
+		}
+	} else if (conja) {
+		if (conjb) {
+//!# c=alpha*a_*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddl(temp, mc_cmull(mc_conjl(mc_blas_matrix_at(a, lda, ka, l, i)), mc_conjl(mc_blas_matrix_at(b, ldb, kb, j, l))));
+					}
+					if (mc_ciseql(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_cmull(alpha, temp), mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a_*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddl(temp, mc_cmull(mc_conjl(mc_blas_matrix_at(a, lda, ka, l, i)), mc_blas_matrix_at(b, ldb, kb, j, l)));
+					}
+					if (mc_ciseql(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_cmull(alpha, temp), mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	} else {
+		if (conjb) {
+//!# c=alpha*a'*b_+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddl(temp, mc_cmull(mc_blas_matrix_at(a, lda, ka, l, i), mc_conjl(mc_blas_matrix_at(b, ldb, kb, j, l))));
+					}
+					if (mc_ciseql(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_cmull(alpha, temp), mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		} else {
+//!# c=alpha*a'*b'+beta*c
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+			for (j = 1; j <= n; ++j) {
+				for (i = 1; i <= m; ++i) {
+					temp = zero;
+					for (l = 1; l <= k; ++l) {
+						temp = mc_caddl(temp, mc_cmull(mc_blas_matrix_at(a, lda, ka, l, i), mc_blas_matrix_at(b, ldb, kb, j, l)));
+					}
+					if (mc_ciseql(beta, zero)) {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_cmull(alpha, temp);
+					} else {
+						mc_blas_matrix_at(c, ldc, n, i, j) = mc_caddl(mc_cmull(alpha, temp), mc_cmull(beta, mc_blas_matrix_at(c, ldc, n, i, j)));
+					}
+				}
+			}
+		}
+	}
+}
+
 #endif /* !MC_BLAS_GEMM_H */
 
 /* EOF */

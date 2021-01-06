@@ -125,6 +125,46 @@ MC_TARGET_FUNC void mc_blas_native_dgemm(const char transa, const char transb, c
 #	endif
 }
 
+#pragma mark - mc_blas_native_cgemm -
+
+MC_TARGET_FUNC void mc_blas_native_cgemm(const char transa, const char transb, const int m, const int n, const int k, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * b, const int ldb, const mc_complex_float_t beta, mc_complex_float_t * c, const int ldc)
+{
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const enum CBLAS_ORDER order = CblasRowMajor;
+#	else
+	const enum CBLAS_ORDER order = CblasColMajor;
+#	endif
+
+	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(transa, 'N') ? CblasNoTrans : (mc_blas_lsame(transa, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_TRANSPOSE trans_b = mc_blas_lsame(transb, 'N') ? CblasNoTrans : (mc_blas_lsame(transb, 'T') ? CblasTrans : CblasConjTrans);
+
+# if MC_TARGET_CPP98
+	::cblas_cgemm(order, trans_a, trans_b, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+#	else
+	cblas_cgemm(order, trans_a, trans_b, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+#	endif
+}
+
+#pragma mark - mc_blas_native_zgemm -
+
+MC_TARGET_FUNC void mc_blas_native_zgemm(const char transa, const char transb, const int m, const int n, const int k, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * b, const int ldb, const mc_complex_double_t beta, mc_complex_double_t * c, const int ldc)
+{
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const enum CBLAS_ORDER order = CblasRowMajor;
+#	else
+	const enum CBLAS_ORDER order = CblasColMajor;
+#	endif
+
+	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(transa, 'N') ? CblasNoTrans : (mc_blas_lsame(transa, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_TRANSPOSE trans_b = mc_blas_lsame(transb, 'N') ? CblasNoTrans : (mc_blas_lsame(transb, 'T') ? CblasTrans : CblasConjTrans);
+
+# if MC_TARGET_CPP98
+	::cblas_zgemm(order, trans_a, trans_b, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+#	else
+	cblas_zgemm(order, trans_a, trans_b, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+#	endif
+}
+
 #endif /* !MC_BLAS_NATIVE_GEMM_H */
 
 /* EOF */
