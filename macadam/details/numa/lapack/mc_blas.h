@@ -59,10 +59,18 @@
 #	include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
 
 #	if MC_TARGET_BLAS_USE_NATIVE
+#	define mc_saxpy mc_blas_native_saxpy
+#	define mc_daxpy mc_blas_native_daxpy
+#	define mc_caxpy mc_blas_native_caxpy
+#	define mc_zaxpy mc_blas_native_zaxpy
 #	define mc_scopy mc_blas_native_scopy
 #	define mc_dcopy mc_blas_native_dcopy
+#	define mc_ccopy mc_blas_native_ccopy
+#	define mc_zcopy mc_blas_native_zcopy
 #	define mc_sgemm mc_blas_native_sgemm
 #	define mc_dgemm mc_blas_native_dgemm
+#	define mc_cgemm mc_blas_native_cgemm
+#	define mc_zgemm mc_blas_native_zgemm
 #	define mc_sger  mc_blas_native_sger
 #	define mc_dger  mc_blas_native_dger
 #	define mc_cgerc mc_blas_native_cgerc
@@ -70,10 +78,18 @@
 #	define mc_cgeru mc_blas_native_cgeru
 #	define mc_zgeru mc_blas_native_zgeru
 #	else
+#	define mc_saxpy mc_blas_saxpy
+#	define mc_daxpy mc_blas_daxpy
+#	define mc_caxpy mc_blas_caxpy
+#	define mc_zaxpy mc_blas_zaxpy
 #	define mc_scopy mc_blas_scopy
 #	define mc_dcopy mc_blas_dcopy
+#	define mc_ccopy mc_blas_ccopy
+#	define mc_zcopy mc_blas_zcopy
 #	define mc_sgemm mc_blas_sgemm
 #	define mc_dgemm mc_blas_dgemm
+#	define mc_cgemm mc_blas_cgemm
+#	define mc_zgemm mc_blas_zgemm
 #	define mc_sger  mc_blas_sger
 #	define mc_dger  mc_blas_dger
 #	define mc_cgerc mc_blas_cgerc
@@ -82,8 +98,12 @@
 #	define mc_zgeru mc_blas_zgeru
 #	endif
 
+#	define mc_laxpy mc_blas_laxpy
+#	define mc_qaxpy mc_blas_qaxpy
 #	define mc_lcopy mc_blas_lcopy
+#	define mc_qcopy mc_blas_qcopy
 #	define mc_lgemm mc_blas_lgemm
+#	define mc_qgemm mc_blas_qgemm
 #	define mc_lger  mc_blas_lger
 #	define mc_qgerc mc_blas_qgerc
 #	define mc_qgeru mc_blas_qgeru

@@ -83,6 +83,10 @@
 #include <macadam/details/numa/lapack/blas/mc_blas_access.h>
 #include <macadam/details/numa/lapack/blas/mc_blas_lsame.h>
 #include <macadam/details/numa/lapack/blas/mc_blas_xerbla.h>
+#include <macadam/details/math/mc_cadd.h>
+#include <macadam/details/math/mc_ciseq.h>
+#include <macadam/details/math/mc_conj.h>
+#include <macadam/details/math/mc_cmul.h>
 #include <macadam/details/math/mc_maxmag.h>
 
 #ifndef MC_BLAS_GEMM_H
