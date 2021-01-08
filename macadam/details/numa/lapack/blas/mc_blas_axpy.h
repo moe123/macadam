@@ -19,6 +19,7 @@
  *
  * \parameters
  *    [in]  n    - int. Specifies the number of elements in the input vectors x and y.
+ *    [in]  a    - real-floating int. specifies the scalar alpha.
  *    [in]  x    - real-floating array of size at least (1+(n-1)*abs(incx)).
  *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *    [out] y    - real-floating arrays of size at least (1+(n-1)*abs(incy)).
@@ -41,7 +42,7 @@
 
 #pragma mark - mc_blas_saxpy -
 
-MC_TARGET_FUNC void mc_blas_saxpy(const int n, float a, const float * x, const int incx, float * y, const int incy)
+MC_TARGET_FUNC void mc_blas_saxpy(const int n, const float a, const float * x, const int incx, float * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 
@@ -108,7 +109,7 @@ MC_TARGET_FUNC void mc_blas_saxpy(const int n, float a, const float * x, const i
 
 #pragma mark - mc_daxpy -
 
-MC_TARGET_FUNC void mc_blas_daxpy(const int n, double a, const double * x, const int incx, double * y, const int incy)
+MC_TARGET_FUNC void mc_blas_daxpy(const int n, const double a, const double * x, const int incx, double * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 
@@ -175,7 +176,7 @@ MC_TARGET_FUNC void mc_blas_daxpy(const int n, double a, const double * x, const
 
 #pragma mark - mc_blas_laxpy -
 
-MC_TARGET_FUNC void mc_blas_laxpy(const int n, long double a, const long double * x, const int incx, long double * y, const int incy)
+MC_TARGET_FUNC void mc_blas_laxpy(const int n, const long double a, const long double * x, const int incx, long double * y, const int incy)
 {
 	int i, m, ix, iy, mp1;
 

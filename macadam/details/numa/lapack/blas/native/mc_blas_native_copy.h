@@ -61,6 +61,57 @@ MC_TARGET_FUNC void mc_blas_native_dcopy(const int n, const double * x, const in
 #	endif
 }
 
+/* \name
+ *    ?copy copies a vector `x`, to a vector `y`.
+ *
+ * \synopsis
+ *    void ?copy(n, x, incx, y, incy)
+ *    int     incx, incy, n
+ *    complex x(*), y(*)
+ *
+ * \purpose
+ *    ?copy copies a vector `x`, to a vector `y`.
+ *
+ * \parameters
+ *    [in]  n     - int. Specifies the number of elements in input vector(s).
+ *
+ *    [in]  x     - complex array of dimension (at least) (1+(n-1)*abs(incx)).
+ *    [in]  incx  - int. Specifies the storage spacing between elements of `x`.
+ *
+ *    [out]  y    - complex array of dimension (at least) (1+(n-1)*abs(incy)).
+ *    [in]  incy  - int. Specifies the storage spacing between elements of `y`.
+ *
+ * \examples
+ *
+ * \level 2 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
+#pragma mark - mc_blas_native_ccopy -
+
+MC_TARGET_FUNC void mc_blas_native_ccopy(const int n, const mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy)
+{
+# if MC_TARGET_CPP98
+	::cblas_ccopy(n, x, incx, y, incy);
+#	else
+	cblas_ccopy(n, x, incx, y, incy);
+#	endif
+}
+
+#pragma mark - mc_blas_native_zcopy -
+
+MC_TARGET_FUNC void mc_blas_native_zcopy(const int n, const mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy)
+{
+# if MC_TARGET_CPP98
+	::cblas_ccopy(n, x, incx, y, incy);
+#	else
+	cblas_ccopy(n, x, incx, y, incy);
+#	endif
+}
+
 #endif /* !MC_BLAS_NATIVE_COPY_H */
 
 /* EOF */

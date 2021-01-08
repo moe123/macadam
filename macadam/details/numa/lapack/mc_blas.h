@@ -20,6 +20,7 @@
 #	include <macadam/details/numa/lapack/blas/native/mc_blas_native_ger.h>
 #	endif
 
+#	include <macadam/details/numa/lapack/blas/mc_blas_abs1.h>
 #	include <macadam/details/numa/lapack/blas/mc_blas_access.h>
 #	include <macadam/details/numa/lapack/blas/mc_blas_asum.h>
 #	include <macadam/details/numa/lapack/blas/mc_blas_axpy.h>
