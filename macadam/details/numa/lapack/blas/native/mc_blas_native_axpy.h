@@ -104,7 +104,7 @@ MC_TARGET_FUNC void mc_blas_native_caxpy(const int n, const mc_complex_float_t a
 
 #pragma mark - mc_blas_native_zaxpy -
 
-MC_TARGET_FUNC void mc_blas_native_caxpy(const int n, const mc_complex_double_t a, const mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy)
+MC_TARGET_FUNC void mc_blas_native_zaxpy(const int n, const mc_complex_double_t a, const mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy)
 {
 # if MC_TARGET_CPP98
 	::cblas_zaxpy(n, &a, x, incx, y, incy);

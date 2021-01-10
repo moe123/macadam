@@ -72,9 +72,9 @@ MC_TARGET_FUNC float mc_blas_snrm2(const int n, const float * x, const int incx)
 	return norm;
 }
 
-#pragma mark - mc_blas_sdnrm2 -
+#pragma mark - mc_blas_dsnrm2 -
 
-MC_TARGET_FUNC double mc_blas_sdnrm2(const int n, const float * x, const int incx)
+MC_TARGET_FUNC double mc_blas_dsnrm2(const int n, const float * x, const int incx)
 {
 	const double one = 1.0, zero = 0.0;
 
