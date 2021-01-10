@@ -18,6 +18,7 @@
 #	include <macadam/lapack/blas/native/mc_blas_native_axpy.h>
 #	include <macadam/lapack/blas/native/mc_blas_native_copy.h>
 #	include <macadam/lapack/blas/native/mc_blas_native_dot.h>
+#	include <macadam/lapack/blas/native/mc_blas_native_gbmv.h>
 #	include <macadam/lapack/blas/native/mc_blas_native_gemm.h>
 #	include <macadam/lapack/blas/native/mc_blas_native_ger.h>
 #	endif
@@ -75,6 +76,10 @@
 #	define mc_zdotc mc_blas_native_zdotc
 #	define mc_cdotu mc_blas_native_cdotu
 #	define mc_zdotu mc_blas_native_zdotu
+#	define mc_sgbmv mc_blas_native_sgbmv
+#	define mc_dgbmv mc_blas_native_dgbmv
+#	define mc_cgbmv mc_blas_native_cgbmv
+#	define mc_zgbmv mc_blas_native_zgbmv
 #	define mc_sgemm mc_blas_native_sgemm
 #	define mc_dgemm mc_blas_native_dgemm
 #	define mc_cgemm mc_blas_native_cgemm
@@ -100,6 +105,10 @@
 #	define mc_zdotc mc_blas_zdotc
 #	define mc_cdotu mc_blas_cdotu
 #	define mc_zdotu mc_blas_zdotu
+#	define mc_sgbmv mc_blas_sgbmv
+#	define mc_dgbmv mc_blas_dgbmv
+#	define mc_cgbmv mc_blas_cgbmv
+#	define mc_zgbmv mc_blas_zgbmv
 #	define mc_sgemm mc_blas_sgemm
 #	define mc_dgemm mc_blas_dgemm
 #	define mc_cgemm mc_blas_cgemm
@@ -119,6 +128,8 @@
 #	define mc_ldot  mc_blas_ldot
 #	define mc_qdotc mc_blas_qdotc
 #	define mc_qdotu mc_blas_qdotu
+#	define mc_lgbmv mc_blas_lgbmv
+#	define mc_qgbmv mc_blas_qgbmv
 #	define mc_lgemm mc_blas_lgemm
 #	define mc_qgemm mc_blas_qgemm
 #	define mc_lger  mc_blas_lger
