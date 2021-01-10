@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/numa/lapack/blas/mc_blas_gemv.h>
+#include <macadam/lapack/blas/mc_blas_gemv.h>
 
 #ifndef MC_MULAXMXN_H
 #define MC_MULAXMXN_H
