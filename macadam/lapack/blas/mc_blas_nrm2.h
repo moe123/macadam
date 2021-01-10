@@ -1,3 +1,4 @@
+//
 // # -*- coding: utf-8, tab-width: 3 -*-
 
 // mc_blas_nrm2.h
