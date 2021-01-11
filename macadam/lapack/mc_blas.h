@@ -14,15 +14,6 @@
 #	define MC_TARGET_BLAS_USE_CLAYOUT 1
 #	define MC_TARGET_BLAS_USE_FLAYOUT 0
 
-#	if MC_TARGET_BLAS_USE_NATIVE
-#	include <macadam/lapack/blas/native/mc_blas_native_axpy.h>
-#	include <macadam/lapack/blas/native/mc_blas_native_copy.h>
-#	include <macadam/lapack/blas/native/mc_blas_native_dot.h>
-#	include <macadam/lapack/blas/native/mc_blas_native_gbmv.h>
-#	include <macadam/lapack/blas/native/mc_blas_native_gemm.h>
-#	include <macadam/lapack/blas/native/mc_blas_native_ger.h>
-#	endif
-
 #	include <macadam/lapack/blas/mc_blas_abs1.h>
 #	include <macadam/lapack/blas/mc_blas_access.h>
 #	include <macadam/lapack/blas/mc_blas_asum.h>
@@ -62,63 +53,83 @@
 #	include <macadam/lapack/blas/mc_blas_xerbla.h>
 
 #	if MC_TARGET_BLAS_USE_NATIVE
-#	define mc_saxpy mc_blas_native_saxpy
-#	define mc_daxpy mc_blas_native_daxpy
-#	define mc_caxpy mc_blas_native_caxpy
-#	define mc_zaxpy mc_blas_native_zaxpy
-#	define mc_scopy mc_blas_native_scopy
-#	define mc_dcopy mc_blas_native_dcopy
-#	define mc_ccopy mc_blas_native_ccopy
-#	define mc_zcopy mc_blas_native_zcopy
-#	define mc_sdot  mc_blas_native_sdot
-#	define mc_ddot  mc_blas_native_ddot
-#	define mc_cdotc mc_blas_native_cdotc
-#	define mc_zdotc mc_blas_native_zdotc
-#	define mc_cdotu mc_blas_native_cdotu
-#	define mc_zdotu mc_blas_native_zdotu
-#	define mc_sgbmv mc_blas_native_sgbmv
-#	define mc_dgbmv mc_blas_native_dgbmv
-#	define mc_cgbmv mc_blas_native_cgbmv
-#	define mc_zgbmv mc_blas_native_zgbmv
-#	define mc_sgemm mc_blas_native_sgemm
-#	define mc_dgemm mc_blas_native_dgemm
-#	define mc_cgemm mc_blas_native_cgemm
-#	define mc_zgemm mc_blas_native_zgemm
-#	define mc_sger  mc_blas_native_sger
-#	define mc_dger  mc_blas_native_dger
-#	define mc_cgerc mc_blas_native_cgerc
-#	define mc_zgerc mc_blas_native_zgerc
-#	define mc_cgeru mc_blas_native_cgeru
-#	define mc_zgeru mc_blas_native_zgeru
+
+#		include <macadam/lapack/blas/native/mc_blas_native_axpy.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_copy.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_dot.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_gbmv.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_gemm.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_gemv.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_ger.h>
+
+#		define mc_saxpy mc_blas_native_saxpy
+#		define mc_daxpy mc_blas_native_daxpy
+#		define mc_caxpy mc_blas_native_caxpy
+#		define mc_zaxpy mc_blas_native_zaxpy
+#		define mc_scopy mc_blas_native_scopy
+#		define mc_dcopy mc_blas_native_dcopy
+#		define mc_ccopy mc_blas_native_ccopy
+#		define mc_zcopy mc_blas_native_zcopy
+#		define mc_sdot  mc_blas_native_sdot
+#		define mc_ddot  mc_blas_native_ddot
+#		define mc_cdotc mc_blas_native_cdotc
+#		define mc_zdotc mc_blas_native_zdotc
+#		define mc_cdotu mc_blas_native_cdotu
+#		define mc_zdotu mc_blas_native_zdotu
+#		define mc_sgbmv mc_blas_native_sgbmv
+#		define mc_dgbmv mc_blas_native_dgbmv
+#		define mc_cgbmv mc_blas_native_cgbmv
+#		define mc_zgbmv mc_blas_native_zgbmv
+#		define mc_sgemm mc_blas_native_sgemm
+#		define mc_dgemm mc_blas_native_dgemm
+#		define mc_cgemm mc_blas_native_cgemm
+#		define mc_zgemm mc_blas_native_zgemm
+#		define mc_sgemv mc_blas_native_sgemv
+#		define mc_dgemv mc_blas_native_dgemv
+#		define mc_cgemv mc_blas_native_cgemv
+#		define mc_zgemv mc_blas_native_zgemv
+#		define mc_sger  mc_blas_native_sger
+#		define mc_dger  mc_blas_native_dger
+#		define mc_cgerc mc_blas_native_cgerc
+#		define mc_zgerc mc_blas_native_zgerc
+#		define mc_cgeru mc_blas_native_cgeru
+#		define mc_zgeru mc_blas_native_zgeru
+
 #	else
-#	define mc_saxpy mc_blas_saxpy
-#	define mc_daxpy mc_blas_daxpy
-#	define mc_caxpy mc_blas_caxpy
-#	define mc_zaxpy mc_blas_zaxpy
-#	define mc_scopy mc_blas_scopy
-#	define mc_dcopy mc_blas_dcopy
-#	define mc_ccopy mc_blas_ccopy
-#	define mc_zcopy mc_blas_zcopy
-#	define mc_sdot  mc_blas_sdot
-#	define mc_ddot  mc_blas_ddot
-#	define mc_cdotc mc_blas_cdotc
-#	define mc_zdotc mc_blas_zdotc
-#	define mc_cdotu mc_blas_cdotu
-#	define mc_zdotu mc_blas_zdotu
-#	define mc_sgbmv mc_blas_sgbmv
-#	define mc_dgbmv mc_blas_dgbmv
-#	define mc_cgbmv mc_blas_cgbmv
-#	define mc_zgbmv mc_blas_zgbmv
-#	define mc_sgemm mc_blas_sgemm
-#	define mc_dgemm mc_blas_dgemm
-#	define mc_cgemm mc_blas_cgemm
-#	define mc_zgemm mc_blas_zgemm
-#	define mc_sger  mc_blas_sger
-#	define mc_dger  mc_blas_dger
-#	define mc_cgerc mc_blas_cgerc
-#	define mc_zgerc mc_blas_zgerc
-#	define mc_cgeru mc_blas_cgeru
-#	define mc_zgeru mc_blas_zgeru
+
+#		define mc_saxpy mc_blas_saxpy
+#		define mc_daxpy mc_blas_daxpy
+#		define mc_caxpy mc_blas_caxpy
+#		define mc_zaxpy mc_blas_zaxpy
+#		define mc_scopy mc_blas_scopy
+#		define mc_dcopy mc_blas_dcopy
+#		define mc_ccopy mc_blas_ccopy
+#		define mc_zcopy mc_blas_zcopy
+#		define mc_sdot  mc_blas_sdot
+#		define mc_ddot  mc_blas_ddot
+#		define mc_cdotc mc_blas_cdotc
+#		define mc_zdotc mc_blas_zdotc
+#		define mc_cdotu mc_blas_cdotu
+#		define mc_zdotu mc_blas_zdotu
+#		define mc_sgbmv mc_blas_sgbmv
+#		define mc_dgbmv mc_blas_dgbmv
+#		define mc_cgbmv mc_blas_cgbmv
+#		define mc_zgbmv mc_blas_zgbmv
+#		define mc_sgemm mc_blas_sgemm
+#		define mc_dgemm mc_blas_dgemm
+#		define mc_cgemm mc_blas_cgemm
+#		define mc_zgemm mc_blas_zgemm
+#		define mc_sgemv mc_blas_sgemv
+#		define mc_dgemv mc_blas_dgemv
+#		define mc_cgemv mc_blas_cgemv
+#		define mc_zgemv mc_blas_zgemv
+#		define mc_sger  mc_blas_sger
+#		define mc_dger  mc_blas_dger
+#		define mc_cgerc mc_blas_cgerc
+#		define mc_zgerc mc_blas_zgerc
+#		define mc_cgeru mc_blas_cgeru
+#		define mc_zgeru mc_blas_zgeru
+
 #	endif
 
 #	define mc_laxpy mc_blas_laxpy
@@ -132,6 +143,8 @@
 #	define mc_qgbmv mc_blas_qgbmv
 #	define mc_lgemm mc_blas_lgemm
 #	define mc_qgemm mc_blas_qgemm
+#	define mc_lgemv mc_blas_lgemv
+#	define mc_qgemv mc_blas_qgemv
 #	define mc_lger  mc_blas_lger
 #	define mc_qgerc mc_blas_qgerc
 #	define mc_qgeru mc_blas_qgeru

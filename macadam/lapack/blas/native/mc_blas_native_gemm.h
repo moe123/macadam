@@ -138,8 +138,8 @@ MC_TARGET_FUNC void mc_blas_native_dgemm(const char transa, const char transb, c
  *
  * \purpose
  *    ?gemm performs one of the matrix-matrix operations: c=alpha*op(a)*op(b) + beta*c where
- *    op(x)=x or op(x)=x' or op(x)=x_ alpha and beta are scalars, and a, b and c are matrices, with op(a)
- *    an m by k matrix, op(b) a k by n matrix and c an m by n matrix.
+ *    op(x)=x or op(x)=x' or op(x)=x_ alpha and beta are scalars, and a, b and c are matrices,
+ *    with op(a) an m by k matrix, op(b) a k by n matrix and c an m by n matrix.
  *
  * \parameters
  *    [in] transa - char. Specifies the form of op(a) to be used in the matrix multiplication as follows:
