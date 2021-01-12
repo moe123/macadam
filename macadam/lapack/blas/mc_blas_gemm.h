@@ -304,7 +304,6 @@ MC_TARGET_FUNC void mc_blas_dgemm(const char transa, const char transb, const in
 		ncola = k;
 		mc_unused(ka);
 		mc_unused(ncola);
-
 	} else {
 		ka    = m;
 		nrowa = k;

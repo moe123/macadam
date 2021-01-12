@@ -62,6 +62,7 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_gemv.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_ger.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_iamax.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_rot.h>
 
 #		define mc_saxpy  mc_blas_native_saxpy
 #		define mc_daxpy  mc_blas_native_daxpy
@@ -99,6 +100,16 @@
 #		define mc_idamax mc_blas_native_idamax
 #		define mc_icamax mc_blas_native_icamax
 #		define mc_izamax mc_blas_native_izamax
+#		define mc_srot   mc_blas_native_srot
+#		define mc_drot   mc_blas_native_drot
+
+#	if !MC_TARGET_BLAS_USE_OPENBLAS
+#		define mc_csrot  mc_blas_native_csrot
+#		define mc_zdrot  mc_blas_native_zdrot
+#	else
+#		define mc_csrot  mc_blas_csrot
+#		define mc_zdrot  mc_blas_zdrot
+#	endif
 
 #	else
 
@@ -138,7 +149,10 @@
 #		define mc_idamax mc_blas_idamax
 #		define mc_icamax mc_blas_icamax
 #		define mc_izamax mc_blas_izamax
-
+#		define mc_srot   mc_blas_srot
+#		define mc_drot   mc_blas_drot
+#		define mc_csrot  mc_blas_csrot
+#		define mc_zdrot  mc_blas_zdrot
 #	endif
 
 #	define mc_laxpy  mc_blas_laxpy
@@ -159,6 +173,8 @@
 #	define mc_qgeru  mc_blas_qgeru
 #	define mc_ilamax mc_blas_ilamax
 #	define mc_iqamax mc_blas_iqamax
+#	define mc_lrot   mc_blas_lrot
+#	define mc_qlrot  mc_blas_qlrot
 
 #endif /* !MC_BLAS_H */
 

@@ -78,7 +78,7 @@ MC_TARGET_FUNC void mc_blas_native_daxpy(const int n, const double a, const doub
  *    [in]  a    - complex. Specifies the scalar alpha.
  *    [in]  x    - complex array of size at least (1+(n-1)*abs(incx)).
  *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
- *    [out] y    - complex arrays of size at least (1+(n-1)*abs(incy)).
+ *    [out] y    - complex array of size at least (1+(n-1)*abs(incy)).
  *    [in]  incy - int. Specifies the increment for the elements of `y`. incy must not be zero.
  *
  * \examples

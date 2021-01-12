@@ -208,6 +208,8 @@ MC_TARGET_FUNC void mc_blas_native_dgbmv(const char trans, const int m, const in
  *
  *    [in] incy  - int. Specifies the increment for the elements of `y`. incy must not be zero.
  *
+ * \examples
+ *
  * \level 2 blas routine.
  *     \author Univ. of Tennessee.
  *     \author Univ. of California Berkeley.
