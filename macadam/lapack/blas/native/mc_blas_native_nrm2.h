@@ -48,19 +48,6 @@ MC_TARGET_FUNC float mc_blas_native_snrm2(const int n, const float * x, const in
 #	endif
 }
 
-#pragma mark - mc_blas_native_dsnrm2 -
-
-MC_TARGET_FUNC double mc_blas_native_dsnrm2(const int n, const float * x, const int incx)
-{
-	float nrm2 = 0.0f;
-#	if MC_TARGET_CPP98
-	nrm2 = ::cblas_snrm2(n, x, incx);
-#	else
-	nrm2 = cblas_snrm2(n, x, incx);
-#	endif
-	return mc_cast(double, nrm2);
-}
-
 #pragma mark - mc_blas_native_dnrm2 -
 
 MC_TARGET_FUNC double mc_blas_native_dnrm2(const int n, const double * x, const int incx)

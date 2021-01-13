@@ -70,16 +70,16 @@ MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx,
 }
 
 /* \name
- *    ??rot applies a plane rotation.
+ *    ?rot applies a plane rotation.
  *
  * \synopsis
- *    void ??rot(n, x, incx, y, incy, c, s)
+ *    void ?rot(n, x, incx, y, incy, c, s)
  *    real-floating c, s
  *    int           incx, incy, n
  *    complex       x(*), y(*)
  *
  * \purpose
- *    ??rot applies a plane rotation matrix to a real sequence of ordered pairs.
+ *    ?rot applies a plane rotation matrix to a real sequence of ordered pairs.
  *    If coefficients c and s satisfy c+s=1, the rotation matrix is orthogonal,
  *    and the transformation is called a Givens plane rotation.
  *

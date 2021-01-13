@@ -152,7 +152,8 @@ MC_TARGET_FUNC void mc_blas_lrotg(long double * a, long double * b, long double 
  *
  * \synopsis
  *    void ?rotg(a, b, c, s)
- *    real-floating a, b, c, s
+ *    complex       a, b, s
+ *    real-floating c
  *
  * \purpose
  *    ?rotg computes the parameters for a Givens rotation. Given the Cartesian coordinates (a, b)
