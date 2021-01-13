@@ -42,6 +42,7 @@
 #	include <macadam/details/math/mc_bisquare_rho.h>
 #	include <macadam/details/math/mc_bisquare.h>
 #	include <macadam/details/math/mc_biweight.h>
+#	include <macadam/details/math/mc_cabs.h>
 #	include <macadam/details/math/mc_cadd.h>
 #	include <macadam/details/math/mc_cbrt.h>
 #	include <macadam/details/math/mc_cbrtu32.h>
