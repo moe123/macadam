@@ -6,6 +6,31 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?asum returns the sum of the absolute values of a vector.
+ *
+ * \synopsis
+ *    real-floating ?asum(n, x, incx)
+ *    int           incx, n
+ *    real-floating x(*)
+ *
+ * \purpose
+ *    ?asum returns the sum of the absolute values of a vector.
+ *
+ * \parameters
+ *    [in] n     - int. Specifies the number of elements in the input vector `x`.
+ *    [in] x     - real-floating array of size at least (1+(n-1)*abs(incx)).
+ *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *
+ * \examples
+ *
+ * \level 1 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
 #include <macadam/lapack/blas/mc_blas_access.h>
 #include <macadam/details/math/mc_fabs.h>
 
@@ -243,6 +268,123 @@ MC_TARGET_FUNC long double mc_blas_lasum(const int n, const long double * x, con
 	return temp;
 }
 
+/* \name
+ *    ?asum returns the sum of the absolute values of a vector.
+ *
+ * \synopsis
+ *    real-floating ?asum(n, x, incx)
+ *    int     incx, n
+ *    complex x(*)
+ *
+ * \purpose
+ *    ?asum returns the sum of the absolute values of a vector.
+ *
+ * \parameters
+ *    [in] n     - int. Specifies the number of elements in the input vector `x`.
+ *    [in] x     - complex array of size at least (1+(n-1)*abs(incx)).
+ *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *
+ * \examples
+ *
+ * \level 1 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
+#pragma mark - mc_blas_scasum -
+
+MC_TARGET_FUNC float mc_blas_scasum(const int n, const mc_complex_float_t * x, const int incx)
+{
+	int i, nincx;
+	float temp;
+
+	temp = 0.0f;
+	if (n <= 0 || incx <= 0) {
+		return temp;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (i = 1; i <= n; ++i) {
+			temp = temp + mc_blas_scabs1(mc_blas_vector_at(x, i));
+		}
+	} else {
+		nincx = n * incx;
+		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
+			temp = temp + mc_blas_scabs1(mc_blas_vector_at(x, i));
+		}
+	}
+	return temp;
+}
+
+#pragma mark - mc_blas_dzasum -
+
+MC_TARGET_FUNC double mc_blas_dzasum(const int n, const mc_complex_double_t * x, const int incx)
+{
+	int i, nincx;
+	double temp;
+
+	temp = 0.0;
+	if (n <= 0 || incx <= 0) {
+		return temp;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (i = 1; i <= n; ++i) {
+			temp = temp + mc_blas_dzabs1(mc_blas_vector_at(x, i));
+		}
+	} else {
+		nincx = n * incx;
+		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
+			temp = temp + mc_blas_dzabs1(mc_blas_vector_at(x, i));
+		}
+	}
+	return temp;
+}
+
+#pragma mark - mc_blas_lqasum -
+
+MC_TARGET_FUNC long double mc_blas_lqasum(const int n, const mc_complex_long_double_t * x, const int incx)
+{
+	int i, nincx;
+	long double temp;
+
+	temp = 0.0L;
+	if (n <= 0 || incx <= 0) {
+		return temp;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (i = 1; i <= n; ++i) {
+			temp = temp + mc_blas_lqabs1(mc_blas_vector_at(x, i));
+		}
+	} else {
+		nincx = n * incx;
+		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
+			temp = temp + mc_blas_lqabs1(mc_blas_vector_at(x, i));
+		}
+	}
+	return temp;
+}
 #endif /* !MC_BLAS_ASUM_H */
 
 /* EOF */

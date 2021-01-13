@@ -54,6 +54,7 @@
 
 #	if MC_TARGET_BLAS_USE_NATIVE
 
+#		include <macadam/lapack/blas/native/mc_blas_native_asum.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_axpy.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_copy.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_dot.h>
@@ -66,6 +67,10 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_rot.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_rotg.h>
 
+#		define mc_sasum  mc_blas_native_sasum
+#		define mc_dasum  mc_blas_native_dasum
+#		define mc_scasum mc_blas_native_scasum
+#		define mc_dzasum mc_blas_native_dzasum
 #		define mc_saxpy  mc_blas_native_saxpy
 #		define mc_daxpy  mc_blas_native_daxpy
 #		define mc_caxpy  mc_blas_native_caxpy
@@ -103,7 +108,6 @@
 #		define mc_icamax mc_blas_native_icamax
 #		define mc_izamax mc_blas_native_izamax
 #		define mc_snrm2  mc_blas_native_snrm2
-#		define mc_dsnrm2 mc_blas_native_dsnrm2
 #		define mc_dnrm2  mc_blas_native_dnrm2
 #		define mc_scnrm2 mc_blas_native_scnrm2
 #		define mc_dznrm2 mc_blas_native_dznrm2
@@ -128,6 +132,10 @@
 
 #	else
 
+#		define mc_sasum  mc_blas_sasum
+#		define mc_dasum  mc_blas_dasum
+#		define mc_scasum mc_blas_scasum
+#		define mc_dzasum mc_blas_dzasum
 #		define mc_saxpy  mc_blas_saxpy
 #		define mc_daxpy  mc_blas_daxpy
 #		define mc_caxpy  mc_blas_caxpy
@@ -165,7 +173,6 @@
 #		define mc_icamax mc_blas_icamax
 #		define mc_izamax mc_blas_izamax
 #		define mc_snrm2  mc_blas_snrm2
-#		define mc_dsnrm2 mc_blas_dsnrm2
 #		define mc_dnrm2  mc_blas_dnrm2
 #		define mc_scnrm2 mc_blas_scnrm2
 #		define mc_dznrm2 mc_blas_dznrm2
@@ -180,30 +187,34 @@
 
 #	endif
 
-#	define mc_laxpy  mc_blas_laxpy
-#	define mc_qaxpy  mc_blas_qaxpy
-#	define mc_lcopy  mc_blas_lcopy
-#	define mc_qcopy  mc_blas_qcopy
-#	define mc_ldot   mc_blas_ldot
-#	define mc_qdotc  mc_blas_qdotc
-#	define mc_qdotu  mc_blas_qdotu
-#	define mc_lgbmv  mc_blas_lgbmv
-#	define mc_qgbmv  mc_blas_qgbmv
-#	define mc_lgemm  mc_blas_lgemm
-#	define mc_qgemm  mc_blas_qgemm
-#	define mc_lgemv  mc_blas_lgemv
-#	define mc_qgemv  mc_blas_qgemv
-#	define mc_lger   mc_blas_lger
-#	define mc_qgerc  mc_blas_qgerc
-#	define mc_qgeru  mc_blas_qgeru
-#	define mc_ilamax mc_blas_ilamax
-#	define mc_iqamax mc_blas_iqamax
-#	define mc_lnrm2  mc_blas_lnrm2
-#	define mc_lqnrm2 mc_blas_lqnrm2
-#	define mc_lrot   mc_blas_lrot
-#	define mc_qlrot  mc_blas_qlrot
-#	define mc_lrotg  mc_blas_lrotg
-#	define mc_qrotg  mc_blas_qrotg
+#	define mc_sdsasum mc_blas_sdsasum
+#	define mc_lasum   mc_blas_lasum
+#	define mc_lqasum  mc_blas_lqasum
+#	define mc_laxpy   mc_blas_laxpy
+#	define mc_qaxpy   mc_blas_qaxpy
+#	define mc_lcopy   mc_blas_lcopy
+#	define mc_qcopy   mc_blas_qcopy
+#	define mc_ldot    mc_blas_ldot
+#	define mc_qdotc   mc_blas_qdotc
+#	define mc_qdotu   mc_blas_qdotu
+#	define mc_lgbmv   mc_blas_lgbmv
+#	define mc_qgbmv   mc_blas_qgbmv
+#	define mc_lgemm   mc_blas_lgemm
+#	define mc_qgemm   mc_blas_qgemm
+#	define mc_lgemv   mc_blas_lgemv
+#	define mc_qgemv   mc_blas_qgemv
+#	define mc_lger    mc_blas_lger
+#	define mc_qgerc   mc_blas_qgerc
+#	define mc_qgeru   mc_blas_qgeru
+#	define mc_ilamax  mc_blas_ilamax
+#	define mc_iqamax  mc_blas_iqamax
+#	define mc_dsnrm2  mc_blas_dsnrm2
+#	define mc_lnrm2   mc_blas_lnrm2
+#	define mc_lqnrm2  mc_blas_lqnrm2
+#	define mc_lrot    mc_blas_lrot
+#	define mc_qlrot   mc_blas_qlrot
+#	define mc_lrotg   mc_blas_lrotg
+#	define mc_qrotg   mc_blas_qrotg
 
 #endif /* !MC_BLAS_H */
 
