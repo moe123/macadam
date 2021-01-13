@@ -21,7 +21,7 @@
  *    and the transformation is called a Givens plane rotation.
  *
  * \parameters
- *    [in]  n    - int. Specifies the number of elements in the input vector `x` and y.
+ *    [in]  n    - int. Specifies the number of elements in the input vector `x` and `y`.
  *
  *    [out] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
  *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
@@ -49,7 +49,7 @@
 
 #pragma mark - mc_blas_native_srot -
 
-MC_TARGET_FUNC void mc_blas_native_srot(const int n, float * x, const int incx, float * y, const int incy, float c, float s)
+MC_TARGET_FUNC void mc_blas_native_srot(const int n, float * x, const int incx, float * y, const int incy, const float c, const float s)
 {
 # if MC_TARGET_CPP98
 	::cblas_srot(n, x, incx, y, incy, c, s);
@@ -60,7 +60,7 @@ MC_TARGET_FUNC void mc_blas_native_srot(const int n, float * x, const int incx, 
 
 #pragma mark - mc_blas_native_drot -
 
-MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx, double * y, const int incy, double c, double s)
+MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx, double * y, const int incy, const double c, const double s)
 {
 # if MC_TARGET_CPP98
 	::cblas_drot(n, x, incx, y, incy, c, s);
@@ -84,7 +84,7 @@ MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx,
  *    and the transformation is called a Givens plane rotation.
  *
  * \parameters
- *    [in]  n    - int. Specifies the number of elements in the input vector `x` and y.
+ *    [in]  n    - int. Specifies the number of elements in the input vector `x` and `y`.
  *
  *    [out] x    - complex array of size at least (1+(n-1)*abs(incx)).
  *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
@@ -107,7 +107,7 @@ MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx,
 
 #pragma mark - mc_blas_native_csrot -
 
-MC_TARGET_FUNC void mc_blas_native_csrot(const int n, mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy, float c, float s)
+MC_TARGET_FUNC void mc_blas_native_csrot(const int n, mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy, const float c, const float s)
 {
 #	if !MC_TARGET_BLAS_USE_OPENBLAS
 #		if MC_TARGET_CPP98
@@ -130,7 +130,7 @@ MC_TARGET_FUNC void mc_blas_native_csrot(const int n, mc_complex_float_t * x, co
 
 #pragma mark - mc_blas_native_zdrot -
 
-MC_TARGET_FUNC void mc_blas_native_zdrot(const int n, mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy, double c, double s)
+MC_TARGET_FUNC void mc_blas_native_zdrot(const int n, mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy, const double c, const double s)
 {
 #	if !MC_TARGET_BLAS_USE_OPENBLAS
 #		if MC_TARGET_CPP98

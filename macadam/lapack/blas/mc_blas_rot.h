@@ -21,7 +21,7 @@
  *    and the transformation is called a Givens plane rotation.
  *
  * \parameters
- *    [in]  n    - int. Specifies the number of elements in the input vector `x` and y.
+ *    [in]  n    - int. Specifies the number of elements in the input vector `x` and `y`.
  *
  *    [out] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
  *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
@@ -52,7 +52,7 @@
 
 #pragma mark - mc_blas_srot -
 
-MC_TARGET_FUNC void mc_blas_srot(const int n, float * x, const int incx, float * y, const int incy, float c, float s)
+MC_TARGET_FUNC void mc_blas_srot(const int n, float * x, const int incx, float * y, const int incy, const float c, const float s)
 {
 	float temp;
 	int i, ix, iy;
@@ -101,7 +101,7 @@ MC_TARGET_FUNC void mc_blas_srot(const int n, float * x, const int incx, float *
 
 #pragma mark - mc_blas_drot -
 
-MC_TARGET_FUNC void mc_blas_drot(const int n, double * x, const int incx, double * y, const int incy, double c, double s)
+MC_TARGET_FUNC void mc_blas_drot(const int n, double * x, const int incx, double * y, const int incy, const double c, const double s)
 {
 	double temp;
 	int i, ix, iy;
@@ -150,7 +150,7 @@ MC_TARGET_FUNC void mc_blas_drot(const int n, double * x, const int incx, double
 
 #pragma mark - mc_blas_lrot -
 
-MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, long double * y, const int incy, long double c, long double s)
+MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, long double * y, const int incy, const long double c, const long double s)
 {
 	long double temp;
 	int i, ix, iy;
@@ -212,7 +212,7 @@ MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, l
  *    and the transformation is called a Givens plane rotation.
  *
  * \parameters
- *    [in]  n    - int. Specifies the number of elements in the input vector `x` and y.
+ *    [in]  n    - int. Specifies the number of elements in the input vector `x` and `y`.
  *
  *    [out] x    - complex array of size at least (1+(n-1)*abs(incx)).
  *    [in]  incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
@@ -235,7 +235,7 @@ MC_TARGET_FUNC void mc_blas_lrot(const int n, long double * x, const int incx, l
 
 #pragma mark - mc_blas_csrot -
 
-MC_TARGET_FUNC void mc_blas_csrot(const int n, mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy, float c, float s)
+MC_TARGET_FUNC void mc_blas_csrot(const int n, mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy, const float c, const float s)
 {
 	mc_complex_float_t temp, cc, cs;
 	int i, ix, iy;
@@ -288,7 +288,7 @@ MC_TARGET_FUNC void mc_blas_csrot(const int n, mc_complex_float_t * x, const int
 
 #pragma mark - mc_blas_zdrot -
 
-MC_TARGET_FUNC void mc_blas_zdrot(const int n, mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy, double c, double s)
+MC_TARGET_FUNC void mc_blas_zdrot(const int n, mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy, const double c, const double s)
 {
 	mc_complex_double_t temp, zc, zs;
 	int i, ix, iy;
@@ -341,7 +341,7 @@ MC_TARGET_FUNC void mc_blas_zdrot(const int n, mc_complex_double_t * x, const in
 
 #pragma mark - mc_blas_qlrot -
 
-MC_TARGET_FUNC void mc_blas_qlrot(const int n, mc_complex_long_double_t * x, const int incx, mc_complex_long_double_t * y, const int incy, long double c, long double s)
+MC_TARGET_FUNC void mc_blas_qlrot(const int n, mc_complex_long_double_t * x, const int incx, mc_complex_long_double_t * y, const int incy, const long double c, const long double s)
 {
 	mc_complex_long_double_t temp, qc, qs;
 	int i, ix, iy;
