@@ -44,7 +44,7 @@
  *    value of flag and are not required to be set in the param array.
  *
  * \parameters
- *    [in] n     - int. Specifies the number of elements in the input vector `x` and y.
+ *    [in] n     - int. Specifies the number of elements in the input vector `x` and `y`.
  *
  *    [out] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
  *    Each element x[i] is replaced by x[i]=h11*x[i] + h12*y[i].
