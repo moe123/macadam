@@ -33,9 +33,6 @@
  */
 
 #include <macadam/lapack/blas/mc_blas_access.h>
-#include <macadam/details/math/mc_fabs.h>
-#include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/math/mc_sqrt.h>
 
 #ifndef MC_BLAS_NATIVE_NRM2_H
 #define MC_BLAS_NATIVE_NRM2_H
@@ -44,7 +41,7 @@
 
 MC_TARGET_FUNC float mc_blas_native_snrm2(const int n, const float * x, const int incx)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	return ::cblas_snrm2(n, x, incx);
 #	else
 	return cblas_snrm2(n, x, incx);
@@ -56,7 +53,7 @@ MC_TARGET_FUNC float mc_blas_native_snrm2(const int n, const float * x, const in
 MC_TARGET_FUNC double mc_blas_native_dsnrm2(const int n, const float * x, const int incx)
 {
 	float nrm2 = 0.0f;
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	nrm2 = ::cblas_snrm2(n, x, incx);
 #	else
 	nrm2 = cblas_snrm2(n, x, incx);
@@ -68,7 +65,7 @@ MC_TARGET_FUNC double mc_blas_native_dsnrm2(const int n, const float * x, const 
 
 MC_TARGET_FUNC double mc_blas_native_dnrm2(const int n, const double * x, const int incx)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	return ::cblas_dnrm2(n, x, incx);
 #	else
 	return cblas_dnrm2(n, x, incx);
@@ -105,7 +102,7 @@ MC_TARGET_FUNC double mc_blas_native_dnrm2(const int n, const double * x, const 
 
 MC_TARGET_FUNC float mc_blas_native_scnrm2(const int n, const mc_complex_float_t * x, const int incx)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	return ::cblas_scnrm2(n, x, incx);
 #	else
 	return cblas_scnrm2(n, x, incx);
@@ -116,7 +113,7 @@ MC_TARGET_FUNC float mc_blas_native_scnrm2(const int n, const mc_complex_float_t
 
 MC_TARGET_FUNC double mc_blas_native_dznrm2(const int n, const mc_complex_double_t * x, const int incx)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	return ::cblas_dznrm2(n, x, incx);
 #	else
 	return cblas_dznrm2(n, x, incx);
