@@ -45,7 +45,7 @@ MC_TARGET_FUNC int mc_blas_native_isamax(const int n, const float * x, const int
 	if (n < 1 || incx <= 0) {
 		return iamax - 1;
 	}
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	iamax = ::cblas_isamax(n, x, incx);
 #	else
 	iamax = cblas_isamax(n, x, incx);
@@ -61,7 +61,7 @@ MC_TARGET_FUNC int mc_blas_native_idamax(const int n, const double * x, const in
 	if (n < 1 || incx <= 0) {
 		return iamax - 1;
 	}
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	iamax = ::cblas_idamax(n, x, incx);
 #	else
 	iamax = cblas_idamax(n, x, incx);
@@ -102,7 +102,7 @@ MC_TARGET_FUNC int mc_blas_native_icamax(const int n, const mc_complex_float_t *
 	if (n < 1 || incx <= 0) {
 		return iamax - 1;
 	}
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	iamax = ::cblas_icamax(n, x, incx);
 #	else
 	iamax = cblas_icamax(n, x, incx);
@@ -118,7 +118,7 @@ MC_TARGET_FUNC int mc_blas_native_izamax(const int n, const mc_complex_double_t 
 	if (n < 1 || incx <= 0) {
 		return iamax - 1;
 	}
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	iamax = ::cblas_izamax(n, x, incx);
 #	else
 	iamax = cblas_izamax(n, x, incx);

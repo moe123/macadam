@@ -44,7 +44,7 @@
 
 MC_TARGET_FUNC void mc_blas_native_scopy(const int n, const float * x, const int incx, float * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_scopy(n, x, incx, y, incy);
 #	else
 	cblas_scopy(n, x, incx, y, incy);
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_blas_native_scopy(const int n, const float * x, const int
 
 MC_TARGET_FUNC void mc_blas_native_dcopy(const int n, const double * x, const int incx, double * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_dcopy(n, x, incx, y, incy);
 #	else
 	cblas_dcopy(n, x, incx, y, incy);
@@ -95,7 +95,7 @@ MC_TARGET_FUNC void mc_blas_native_dcopy(const int n, const double * x, const in
 
 MC_TARGET_FUNC void mc_blas_native_ccopy(const int n, const mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_ccopy(n, x, incx, y, incy);
 #	else
 	cblas_ccopy(n, x, incx, y, incy);
@@ -106,7 +106,7 @@ MC_TARGET_FUNC void mc_blas_native_ccopy(const int n, const mc_complex_float_t *
 
 MC_TARGET_FUNC void mc_blas_native_zcopy(const int n, const mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_ccopy(n, x, incx, y, incy);
 #	else
 	cblas_ccopy(n, x, incx, y, incy);

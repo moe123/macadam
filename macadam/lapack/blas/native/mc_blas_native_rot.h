@@ -51,7 +51,7 @@
 
 MC_TARGET_FUNC void mc_blas_native_srot(const int n, float * x, const int incx, float * y, const int incy, const float c, const float s)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_srot(n, x, incx, y, incy, c, s);
 #	else
 	cblas_srot(n, x, incx, y, incy, c, s);
@@ -62,7 +62,7 @@ MC_TARGET_FUNC void mc_blas_native_srot(const int n, float * x, const int incx, 
 
 MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx, double * y, const int incy, const double c, const double s)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_drot(n, x, incx, y, incy, c, s);
 #	else
 	cblas_drot(n, x, incx, y, incy, c, s);

@@ -43,7 +43,7 @@
 
 MC_TARGET_FUNC float mc_blas_native_sdot(const int n, const float * x, const int incx, const float * y , const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	return ::cblas_sdot(n, x, incx, y, incy);
 #	else
 	return cblas_sdot(n, x, incx, y, incy);
@@ -54,7 +54,7 @@ MC_TARGET_FUNC float mc_blas_native_sdot(const int n, const float * x, const int
 
 MC_TARGET_FUNC double mc_blas_native_ddot(const int n, const double * x, const int incx, const double * y , const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	return ::cblas_ddot(n, x, incx, y, incy);
 #	else
 	return cblas_ddot(n, x, incx, y, incy);
@@ -94,7 +94,7 @@ MC_TARGET_FUNC double mc_blas_native_ddot(const int n, const double * x, const i
 MC_TARGET_FUNC mc_complex_float_t mc_blas_native_cdotc(const int n, const mc_complex_float_t * x, const int incx, const mc_complex_float_t * y , const int incy)
 {
 	mc_complex_float_t dotc = mc_cmplxf(0.0f, 0.0f);
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_cdotc_sub(n, x, incx, y, incy, &dotc);
 #	else
 	cblas_cdotc_sub(n, x, incx, y, incy, &dotc);
@@ -107,7 +107,7 @@ MC_TARGET_FUNC mc_complex_float_t mc_blas_native_cdotc(const int n, const mc_com
 MC_TARGET_FUNC mc_complex_double_t mc_blas_native_zdotc(const int n, const mc_complex_double_t * x, const int incx, const mc_complex_double_t * y , const int incy)
 {
 	mc_complex_double_t dotc = mc_cmplx(0.0, 0.0);
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_zdotc_sub(n, x, incx, y, incy, &dotc);
 #	else
 	cblas_zdotc_sub(n, x, incx, y, incy, &dotc);
@@ -148,7 +148,7 @@ MC_TARGET_FUNC mc_complex_double_t mc_blas_native_zdotc(const int n, const mc_co
 MC_TARGET_FUNC mc_complex_float_t mc_blas_native_cdotu(const int n, const mc_complex_float_t * x, const int incx, const mc_complex_float_t * y , const int incy)
 {
 	mc_complex_float_t dotu = mc_cmplxf(0.0f, 0.0f);
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_cdotu_sub(n, x, incx, y, incy, &dotu);
 #	else
 	cblas_cdotu_sub(n, x, incx, y, incy, &dotu);
@@ -161,7 +161,7 @@ MC_TARGET_FUNC mc_complex_float_t mc_blas_native_cdotu(const int n, const mc_com
 MC_TARGET_FUNC mc_complex_double_t mc_blas_native_zdotu(const int n, const mc_complex_double_t * x, const int incx, const mc_complex_double_t * y , const int incy)
 {
 	mc_complex_double_t dotu = mc_cmplx(0.0, 0.0);
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_zdotu_sub(n, x, incx, y, incy, &dotu);
 #	else
 	cblas_zdotu_sub(n, x, incx, y, incy, &dotu);

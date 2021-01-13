@@ -44,7 +44,7 @@
 
 MC_TARGET_FUNC void mc_blas_native_saxpy(const int n, const float a, const float * x, const int incx, float * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_saxpy(n, a, x, incx, y, incy);
 #	else
 	cblas_saxpy(n, a, x, incx, y, incy);
@@ -55,7 +55,7 @@ MC_TARGET_FUNC void mc_blas_native_saxpy(const int n, const float a, const float
 
 MC_TARGET_FUNC void mc_blas_native_daxpy(const int n, const double a, const double * x, const int incx, double * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_daxpy(n, a, x, incx, y, incy);
 #	else
 	cblas_daxpy(n, a, x, incx, y, incy);
@@ -95,7 +95,7 @@ MC_TARGET_FUNC void mc_blas_native_daxpy(const int n, const double a, const doub
 
 MC_TARGET_FUNC void mc_blas_native_caxpy(const int n, const mc_complex_float_t a, const mc_complex_float_t * x, const int incx, mc_complex_float_t * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_caxpy(n, &a, x, incx, y, incy);
 #	else
 	cblas_caxpy(n, &a, x, incx, y, incy);
@@ -106,7 +106,7 @@ MC_TARGET_FUNC void mc_blas_native_caxpy(const int n, const mc_complex_float_t a
 
 MC_TARGET_FUNC void mc_blas_native_zaxpy(const int n, const mc_complex_double_t a, const mc_complex_double_t * x, const int incx, mc_complex_double_t * y, const int incy)
 {
-# if MC_TARGET_CPP98
+#	if MC_TARGET_CPP98
 	::cblas_zaxpy(n, &a, x, incx, y, incy);
 #	else
 	cblas_zaxpy(n, &a, x, incx, y, incy);
