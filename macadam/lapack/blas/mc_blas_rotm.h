@@ -56,7 +56,7 @@
  *
  *    [in] incy  - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
- *    [in] param - real-floating array of size 5 such as param[flag, h11, h21, h12, h22].
+ *    [in] param - real-floating array of size 5.
  *
  * \examples
  *
@@ -92,6 +92,9 @@ MC_TARGET_FUNC void mc_blas_srotm(const int n, float * x, const int incx, float 
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
 			h22 = mc_blas_vector_at(param, 5);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
 				w                       = mc_blas_vector_at(x, i);
 				z                       = mc_blas_vector_at(y, i);
@@ -101,6 +104,9 @@ MC_TARGET_FUNC void mc_blas_srotm(const int n, float * x, const int incx, float 
 		} else if (flag == zero) {
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
 				w                       = mc_blas_vector_at(x, i);
 				z                       = mc_blas_vector_at(y, i);
@@ -132,6 +138,9 @@ MC_TARGET_FUNC void mc_blas_srotm(const int n, float * x, const int incx, float 
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
 			h22 = mc_blas_vector_at(param, 5);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; i <= n; ++i) {
 				w                        = mc_blas_vector_at(x, kx);
 				z                        = mc_blas_vector_at(y, ky);
@@ -143,6 +152,9 @@ MC_TARGET_FUNC void mc_blas_srotm(const int n, float * x, const int incx, float 
 		} else if (flag == zero) {
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; i <= n; ++i) {
 				w                        = mc_blas_vector_at(x, kx);
 				z                        = mc_blas_vector_at(y, ky);
@@ -186,6 +198,9 @@ MC_TARGET_FUNC void mc_blas_drotm(const int n, double * x, const int incx, doubl
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
 			h22 = mc_blas_vector_at(param, 5);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
 				w                 = mc_blas_vector_at(x, i);
 				z                 = mc_blas_vector_at(y, i);
@@ -195,6 +210,9 @@ MC_TARGET_FUNC void mc_blas_drotm(const int n, double * x, const int incx, doubl
 		} else if (flag == zero) {
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
 				w                 = mc_blas_vector_at(x, i);
 				z                 = mc_blas_vector_at(y, i);
@@ -226,6 +244,9 @@ MC_TARGET_FUNC void mc_blas_drotm(const int n, double * x, const int incx, doubl
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
 			h22 = mc_blas_vector_at(param, 5);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; i <= n; ++i) {
 				w                  = mc_blas_vector_at(x, kx);
 				z                  = mc_blas_vector_at(y, ky);
@@ -237,6 +258,9 @@ MC_TARGET_FUNC void mc_blas_drotm(const int n, double * x, const int incx, doubl
 		} else if (flag == zero) {
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; i <= n; ++i) {
 				w                  = mc_blas_vector_at(x, kx);
 				z                  = mc_blas_vector_at(y, ky);
@@ -280,6 +304,9 @@ MC_TARGET_FUNC void mc_blas_lrotm(const int n, long double * x, const int incx, 
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
 			h22 = mc_blas_vector_at(param, 5);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
 				w                 = mc_blas_vector_at(x, i);
 				z                 = mc_blas_vector_at(y, i);
@@ -289,6 +316,9 @@ MC_TARGET_FUNC void mc_blas_lrotm(const int n, long double * x, const int incx, 
 		} else if (flag == zero) {
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; incx < 0 ? i >= nsteps : i <= nsteps; i += incx) {
 				w                 = mc_blas_vector_at(x, i);
 				z                 = mc_blas_vector_at(y, i);
@@ -320,6 +350,9 @@ MC_TARGET_FUNC void mc_blas_lrotm(const int n, long double * x, const int incx, 
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
 			h22 = mc_blas_vector_at(param, 5);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; i <= n; ++i) {
 				w                  = mc_blas_vector_at(x, kx);
 				z                  = mc_blas_vector_at(y, ky);
@@ -331,6 +364,9 @@ MC_TARGET_FUNC void mc_blas_lrotm(const int n, long double * x, const int incx, 
 		} else if (flag == zero) {
 			h12 = mc_blas_vector_at(param, 4);
 			h21 = mc_blas_vector_at(param, 3);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+			mcswap_var(w, h12, h21);
+#	endif
 			for (i = 1; i <= n; ++i) {
 				w                  = mc_blas_vector_at(x, kx);
 				z                  = mc_blas_vector_at(y, ky);

@@ -76,10 +76,21 @@
 
 MC_TARGET_FUNC void mc_blas_native_srotm(const int n, float * x, const int incx, float * y, const int incy, const float param[5])
 {
-#	if MC_TARGET_CPP98
-	::cblas_srotm(n, x, incx, y, incy, param);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	float p[5];
+	mc_blas_vector_at(p, 1) = mc_blas_vector_at(param, 1);
+	mc_blas_vector_at(p, 2) = mc_blas_vector_at(param, 2);
+	mc_blas_vector_at(p, 3) = mc_blas_vector_at(param, 4);
+	mc_blas_vector_at(p, 4) = mc_blas_vector_at(param, 3);
+	mc_blas_vector_at(p, 5) = mc_blas_vector_at(param, 5);
 #	else
-	cblas_srotm(n, x, incx, y, incy, param);
+	const float * p = param;
+#	endif
+
+#	if MC_TARGET_CPP98
+	::cblas_srotm(n, x, incx, y, incy, p);
+#	else
+	cblas_srotm(n, x, incx, y, incy, p);
 #	endif
 }
 
@@ -87,10 +98,21 @@ MC_TARGET_FUNC void mc_blas_native_srotm(const int n, float * x, const int incx,
 
 MC_TARGET_FUNC void mc_blas_native_drotm(const int n, double * x, const int incx, double * y, const int incy, const double param[5])
 {
-#	if MC_TARGET_CPP98
-	::cblas_drotm(n, x, incx, y, incy, param);
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	double p[5];
+	mc_blas_vector_at(p, 1) = mc_blas_vector_at(param, 1);
+	mc_blas_vector_at(p, 2) = mc_blas_vector_at(param, 2);
+	mc_blas_vector_at(p, 3) = mc_blas_vector_at(param, 4);
+	mc_blas_vector_at(p, 4) = mc_blas_vector_at(param, 3);
+	mc_blas_vector_at(p, 5) = mc_blas_vector_at(param, 5);
 #	else
-	cblas_drotm(n, x, incx, y, incy, param);
+	const double * p = param;
+#	endif
+
+#	if MC_TARGET_CPP98
+	::cblas_drotm(n, x, incx, y, incy, p);
+#	else
+	cblas_drotm(n, x, incx, y, incy, p);
 #	endif
 }
 

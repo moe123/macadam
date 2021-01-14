@@ -63,10 +63,21 @@
 
 MC_TARGET_FUNC void mc_blas_native_srotmg(float * d1, float * d2, float * x1, const float y1, float param[5])
 {
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	float w;
+#	endif
+
 #	if MC_TARGET_CPP98
 	::cblas_srotmg(d1, d2, x1, y1, param);
 #	else
 	cblas_srotmg(d1, d2, x1, y1, param);
+#	endif
+
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	mcswap_var(w,
+		  mc_blas_vector_at(param, 3)
+		, mc_blas_vector_at(param, 4)
+	);
 #	endif
 }
 
@@ -74,10 +85,18 @@ MC_TARGET_FUNC void mc_blas_native_srotmg(float * d1, float * d2, float * x1, co
 
 MC_TARGET_FUNC void mc_blas_native_drotmg(double * d1, double * d2, double * x1, const double y1, double param[5])
 {
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	double w;
+#	endif
+
 #	if MC_TARGET_CPP98
 	::cblas_drotmg(d1, d2, x1, y1, param);
 #	else
 	cblas_drotmg(d1, d2, x1, y1, param);
+#	endif
+
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	mcswap_var(w, mc_blas_vector_at(param, 3), mc_blas_vector_at(param, 4));
 #	endif
 }
 

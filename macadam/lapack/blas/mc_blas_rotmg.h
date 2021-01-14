@@ -43,7 +43,7 @@
  *    [in] y1     - real-floating. The second element of the vector to which the H matrix is
  *    applied.
  *
- *    [out] param - real-floating array of size 5 such as param[flag, h11, h21, h12, h22].
+ *    [out] param - real-floating array of size 5.
  *
  * \examples
  *
@@ -73,16 +73,16 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const flo
 
 	float flag, h11, h12, h21, h22, p1, p2, q1, q2, temp, u;
 
-	if (*d1 < zero) {
-		 flag = -one;
-		 h11  = zero;
-		 h12  = zero;
-		 h21  = zero;
-		 h22  = zero;
+	if ((*d1)< zero) {
+		flag  = -one;
+		h11   = zero;
+		h12   = zero;
+		h21   = zero;
+		h22   = zero;
 
-		*d1   = zero;
-		*d2   = zero;
-		*x1   = zero;
+		(*d1) = zero;
+		(*d2) = zero;
+		(*x1) = zero;
 	} else {
 		p2 = *d2 * y1;
 		if (p2 == zero) {
@@ -98,35 +98,35 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const flo
 			h12 = p2 / p1;
 			u   = one - h12 * h21;
 			if (u > zero) {
-				 flag = zero;
-				*d1   = (*d1) / u;
-				*d2   = (*d2) / u;
-				*x1   = (*x1) * u;
+				flag  = zero;
+				(*d1) = (*d1) / u;
+				(*d2) = (*d2) / u;
+				(*x1) = (*x1) * u;
 			}
 		} else {
 			if (q2 < zero) {
-				 flag = -one;
-				 h11  = zero;
-				 h12  = zero;
-				 h21  = zero;
-				 h22  = zero;
+				flag  = -one;
+				h11   = zero;
+				h12   = zero;
+				h21   = zero;
+				h22   = zero;
 
-				*d1   = zero;
-				*d2   = zero;
-				*x1   = zero;
+				(*d1) = zero;
+				(*d2) = zero;
+				(*x1) = zero;
 			} else {
-				 flag = one;
-				 h11  = p1 / p2;
-				 h22  = (*x1) / y1;
-				 u    = one + h11 * h22;
-				 temp = (*d2) / u;
-				*d2   = (*d1) / u;
-				*d1   = temp;
-				*x1   = y1 * u;
+				flag  = one;
+				h11   = p1 / p2;
+				h22   = (*x1) / y1;
+				u     = one + h11 * h22;
+				temp  = (*d2) / u;
+				(*d2) = (*d1) / u;
+				(*d1) = temp;
+				(*x1) = y1 * u;
 			}
 		}
-		if (*d1 != zero) {
-			while (*d1 <= rgamsq || *d1 >= gamsq) {
+		if ((*d1) != zero) {
+			while ((*d1) <= rgamsq || (*d1) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -136,20 +136,20 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const flo
 					h12  = one;
 					flag = -one;
 				}
-				if (*d1 <= rgamsq) {
-					*d1  = (*d1) * mc_raise2f(gam);
-					*x1  = (*x1) / gam;
-					 h11 = h11 / gam;
-					 h12 = h12 / gam;
+				if ((*d1) <= rgamsq) {
+					(*d1) = (*d1) * mc_raise2f(gam);
+					(*x1) = (*x1) / gam;
+					h11   = h11 / gam;
+					h12   = h12 / gam;
 				} else {
-					*d1  = (*d1) / mc_raise2f(gam);
-					*x1  = (*x1) * gam;
-					 h11 = h11 * gam;
-					 h12 = h12 * gam;
+					(*d1) = (*d1) / mc_raise2f(gam);
+					(*x1) = (*x1) * gam;
+					h11   = h11 * gam;
+					h12   = h12 * gam;
 				}
 			}
 		}
-		if (*d2 != zero) {
+		if ((*d2) != zero) {
 			while (mc_fabsf(*d2) <= rgamsq || mc_fabsf(*d2) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
@@ -161,13 +161,13 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const flo
 					flag = -one;
 				}
 				if (mc_fabsf(*d2) <= rgamsq) {
-					*d2  = (*d2) * mc_raise2f(gam);
-					 h21 = h21 / gam;
-					 h22 = h22 /gam;
+					(*d2) = (*d2) * mc_raise2f(gam);
+					h21   = h21 / gam;
+					h22   = h22 / gam;
 				} else {
-					*d2  = (*d2) / mc_raise2f(gam);
-					 h21 = h21 * gam;
-					 h22 = h22 * gam;
+					(*d2) = (*d2) / mc_raise2f(gam);
+					h21   = h21 * gam;
+					h22   = h22 * gam;
 				}
 			}
 		}
@@ -185,6 +185,10 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const flo
 		mc_blas_vector_at(param, 5) = h22;
 	}
 	mc_blas_vector_at(param, 1) = flag;
+
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	mcswap_var(temp, mc_blas_vector_at(param, 3), mc_blas_vector_at(param, 4));
+#	endif
 }
 
 #pragma mark - mc_blas_drotmg -
@@ -199,16 +203,16 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const 
 
 	double flag, h11, h12, h21, h22, p1, p2, q1, q2, temp, u;
 
-	if (*d1 < zero) {
-		 flag = -one;
-		 h11  = zero;
-		 h12  = zero;
-		 h21  = zero;
-		 h22  = zero;
+	if ((*d1)< zero) {
+		flag  = -one;
+		h11   = zero;
+		h12   = zero;
+		h21   = zero;
+		h22   = zero;
 
-		*d1   = zero;
-		*d2   = zero;
-		*x1   = zero;
+		(*d1) = zero;
+		(*d2) = zero;
+		(*x1) = zero;
 	} else {
 		p2 = *d2 * y1;
 		if (p2 == zero) {
@@ -224,35 +228,35 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const 
 			h12 = p2 / p1;
 			u   = one - h12 * h21;
 			if (u > zero) {
-				 flag = zero;
-				*d1   = (*d1) / u;
-				*d2   = (*d2) / u;
-				*x1   = (*x1) * u;
+				flag  = zero;
+				(*d1) = (*d1) / u;
+				(*d2) = (*d2) / u;
+				(*x1) = (*x1) * u;
 			}
 		} else {
 			if (q2 < zero) {
-				 flag = -one;
-				 h11  = zero;
-				 h12  = zero;
-				 h21  = zero;
-				 h22  = zero;
+				flag  = -one;
+				h11   = zero;
+				h12   = zero;
+				h21   = zero;
+				h22   = zero;
 
-				*d1   = zero;
-				*d2   = zero;
-				*x1   = zero;
+				(*d1) = zero;
+				(*d2) = zero;
+				(*x1) = zero;
 			} else {
-				 flag = one;
-				 h11  = p1 / p2;
-				 h22  = (*x1) / y1;
-				 u    = one + h11 * h22;
-				 temp = (*d2) / u;
-				*d2   = (*d1) / u;
-				*d1   = temp;
-				*x1   = y1 * u;
+				flag  = one;
+				h11   = p1 / p2;
+				h22   = (*x1) / y1;
+				u     = one + h11 * h22;
+				temp  = (*d2) / u;
+				(*d2) = (*d1) / u;
+				(*d1) = temp;
+				(*x1) = y1 * u;
 			}
 		}
-		if (*d1 != zero) {
-			while (*d1 <= rgamsq || *d1 >= gamsq) {
+		if ((*d1) != zero) {
+			while ((*d1) <= rgamsq || (*d1) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -262,20 +266,20 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const 
 					h12  = one;
 					flag = -one;
 				}
-				if (*d1 <= rgamsq) {
-					*d1  = (*d1) * mc_raise2(gam);
-					*x1  = (*x1) / gam;
-					 h11 = h11 / gam;
-					 h12 = h12 / gam;
+				if ((*d1) <= rgamsq) {
+					(*d1) = (*d1) * mc_raise2(gam);
+					(*x1) = (*x1) / gam;
+					h11   = h11 / gam;
+					h12   = h12 / gam;
 				} else {
-					*d1  = (*d1) / mc_raise2(gam);
-					*x1  = (*x1) * gam;
-					 h11 = h11 * gam;
-					 h12 = h12 * gam;
+					(*d1) = (*d1) / mc_raise2(gam);
+					(*x1) = (*x1) * gam;
+					h11   = h11 * gam;
+					h12   = h12 * gam;
 				}
 			}
 		}
-		if (*d2 != zero) {
+		if ((*d2) != zero) {
 			while (mc_fabs(*d2) <= rgamsq || mc_fabs(*d2) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
@@ -287,13 +291,13 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const 
 					flag = -one;
 				}
 				if (mc_fabs(*d2) <= rgamsq) {
-					*d2  = (*d2) * mc_raise2(gam);
-					 h21 = h21 / gam;
-					 h22 = h22 /gam;
+					(*d2) = (*d2) * mc_raise2(gam);
+					h21   = h21 / gam;
+					h22   = h22 / gam;
 				} else {
-					*d2  = (*d2) / mc_raise2(gam);
-					 h21 = h21 * gam;
-					 h22 = h22 * gam;
+					(*d2) = (*d2) / mc_raise2(gam);
+					h21   = h21 * gam;
+					h22   = h22 * gam;
 				}
 			}
 		}
@@ -311,6 +315,10 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const 
 		mc_blas_vector_at(param, 5) = h22;
 	}
 	mc_blas_vector_at(param, 1) = flag;
+
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	mcswap_var(temp, mc_blas_vector_at(param, 3), mc_blas_vector_at(param, 4));
+#	endif
 }
 
 #pragma mark - mc_blas_lrotmg -
@@ -331,16 +339,16 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 
 	long double flag, h11, h12, h21, h22, p1, p2, q1, q2, temp, u;
 
-	if (*d1 < zero) {
-		 flag = -one;
-		 h11  = zero;
-		 h12  = zero;
-		 h21  = zero;
-		 h22  = zero;
+	if ((*d1)< zero) {
+		flag  = -one;
+		h11   = zero;
+		h12   = zero;
+		h21   = zero;
+		h22   = zero;
 
-		*d1   = zero;
-		*d2   = zero;
-		*x1   = zero;
+		(*d1) = zero;
+		(*d2) = zero;
+		(*x1) = zero;
 	} else {
 		p2 = *d2 * y1;
 		if (p2 == zero) {
@@ -356,35 +364,35 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 			h12 = p2 / p1;
 			u   = one - h12 * h21;
 			if (u > zero) {
-				 flag = zero;
-				*d1   = (*d1) / u;
-				*d2   = (*d2) / u;
-				*x1   = (*x1) * u;
+				flag  = zero;
+				(*d1) = (*d1) / u;
+				(*d2) = (*d2) / u;
+				(*x1) = (*x1) * u;
 			}
 		} else {
 			if (q2 < zero) {
-				 flag = -one;
-				 h11  = zero;
-				 h12  = zero;
-				 h21  = zero;
-				 h22  = zero;
+				flag  = -one;
+				h11   = zero;
+				h12   = zero;
+				h21   = zero;
+				h22   = zero;
 
-				*d1   = zero;
-				*d2   = zero;
-				*x1   = zero;
+				(*d1) = zero;
+				(*d2) = zero;
+				(*x1) = zero;
 			} else {
-				 flag = one;
-				 h11  = p1 / p2;
-				 h22  = (*x1) / y1;
-				 u    = one + h11 * h22;
-				 temp = (*d2) / u;
-				*d2   = (*d1) / u;
-				*d1   = temp;
-				*x1   = y1 * u;
+				flag  = one;
+				h11   = p1 / p2;
+				h22   = (*x1) / y1;
+				u     = one + h11 * h22;
+				temp  = (*d2) / u;
+				(*d2) = (*d1) / u;
+				(*d1) = temp;
+				(*x1) = y1 * u;
 			}
 		}
-		if (*d1 != zero) {
-			while (*d1 <= rgamsq || *d1 >= gamsq) {
+		if ((*d1) != zero) {
+			while ((*d1) <= rgamsq || (*d1) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
 					h22  = one;
@@ -394,20 +402,20 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 					h12  = one;
 					flag = -one;
 				}
-				if (*d1 <= rgamsq) {
-					*d1  = (*d1) * mc_raise2l(gam);
-					*x1  = (*x1) / gam;
-					 h11 = h11 / gam;
-					 h12 = h12 / gam;
+				if ((*d1) <= rgamsq) {
+					(*d1) = (*d1) * mc_raise2l(gam);
+					(*x1) = (*x1) / gam;
+					h11   = h11 / gam;
+					h12   = h12 / gam;
 				} else {
-					*d1  = (*d1) / mc_raise2l(gam);
-					*x1  = (*x1) * gam;
-					 h11 = h11 * gam;
-					 h12 = h12 * gam;
+					(*d1) = (*d1) / mc_raise2l(gam);
+					(*x1) = (*x1) * gam;
+					h11   = h11 * gam;
+					h12   = h12 * gam;
 				}
 			}
 		}
-		if (*d2 != zero) {
+		if ((*d2) != zero) {
 			while (mc_fabsl(*d2) <= rgamsq || mc_fabsl(*d2) >= gamsq) {
 				if (flag == zero) {
 					h11  = one;
@@ -419,13 +427,13 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 					flag = -one;
 				}
 				if (mc_fabsl(*d2) <= rgamsq) {
-					*d2  = (*d2) * mc_raise2l(gam);
-					 h21 = h21 / gam;
-					 h22 = h22 /gam;
+					(*d2) = (*d2) * mc_raise2l(gam);
+					h21   = h21 / gam;
+					h22   = h22 / gam;
 				} else {
-					*d2  = (*d2) / mc_raise2l(gam);
-					 h21 = h21 * gam;
-					 h22 = h22 * gam;
+					(*d2) = (*d2) / mc_raise2l(gam);
+					h21   = h21 * gam;
+					h22   = h22 * gam;
 				}
 			}
 		}
@@ -443,6 +451,10 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 		mc_blas_vector_at(param, 5) = h22;
 	}
 	mc_blas_vector_at(param, 1) = flag;
+
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	mcswap_var(temp, mc_blas_vector_at(param, 3), mc_blas_vector_at(param, 4));
+#	endif
 }
 
 #endif /* !MC_BLAS_ROTMG_H */
