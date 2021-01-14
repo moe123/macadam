@@ -6,6 +6,26 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?abs1 computes |real(z)| + |imag(z)| of a complex number.
+
+ *
+ * \synopsis
+ *    real-floating ?abs1(z)
+ *    complex z
+ *
+ * \purpose
+ *    ?abs1 computes |real(z)| + |imag(z)| of a complex number.
+ *
+ * \parameters
+ *    [in] z - complex. The complex argument.
+ *
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
 #include <macadam/details/math/mc_fabs.h>
 
 #ifndef MC_BLAS_ABS1_H

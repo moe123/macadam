@@ -54,6 +54,7 @@
 
 #	if MC_TARGET_BLAS_USE_NATIVE
 
+#		include <macadam/lapack/blas/native/mc_blas_native_abs1.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_asum.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_axpy.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_copy.h>
@@ -73,6 +74,19 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_spr.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_spr2.h>
 
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		define mc_scabs1 mc_blas_native_scabs1
+#		define mc_dcabs1 mc_blas_native_dcabs1
+#		define mc_szabs1 mc_blas_native_szabs1
+#		define mc_dzabs1 mc_blas_native_dzabs1
+#	else
+#		define mc_scabs1 mc_blas_scabs1
+#		define mc_dcabs1 mc_blas_dcabs1
+#		define mc_szabs1 mc_blas_szabs1
+#		define mc_dzabs1 mc_blas_dzabs1
+#	endif
 #		define mc_sasum  mc_blas_native_sasum
 #		define mc_dasum  mc_blas_native_dasum
 #		define mc_scasum mc_blas_native_scasum
@@ -152,6 +166,10 @@
 
 #	else
 
+#		define mc_scabs1 mc_blas_scabs1
+#		define mc_dcabs1 mc_blas_dcabs1
+#		define mc_szabs1 mc_blas_szabs1
+#		define mc_dzabs1 mc_blas_dzabs1
 #		define mc_sasum  mc_blas_sasum
 #		define mc_dasum  mc_blas_dasum
 #		define mc_scasum mc_blas_scasum
