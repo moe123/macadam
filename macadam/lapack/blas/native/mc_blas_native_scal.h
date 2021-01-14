@@ -6,6 +6,33 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+/* \name
+ *    ?scal scales a vector by a constant.
+ *
+ * \synopsis
+ *    void ?scal(n, a, x, incx)
+ *    int           incx, n
+ *    real-floating a
+ *    real-floating x(*)
+ *
+ * \purpose
+ *    ?scal scales a vector by a constant.
+ *
+ * \parameters
+ *    [in] n    - int. Specifies the number of elements in the input vector `x`.
+ *    [in] a    - real-floating. Specifies the scalar alpha.
+ *    [in] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
+ *    [in] incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *
+ * \examples
+ *
+ * \level 1 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
 #include <macadam/lapack/blas/mc_blas_access.h>
 
 #ifndef MC_BLAS_NATIVE_SCAL_H
@@ -32,6 +59,33 @@ MC_TARGET_FUNC void mc_blas_native_dscal(const int n, double a, double * x, cons
 	cblas_dscal(n, a, x, incx);
 #	endif
 }
+
+/* \name
+ *    ?scal scales a vector by a constant.
+ *
+ * \synopsis
+ *    void ?scal(n, a, x, incx)
+ *    int     incx, n
+ *    complex a
+ *    complex x(*)
+ *
+ * \purpose
+ *    ?scal scales a vector by a constant.
+ *
+ * \parameters
+ *    [in] n    - int. Specifies the number of elements in the input vector `x`.
+ *    [in] a    - complex. Specifies the scalar alpha.
+ *    [in] x    - complex array of size at least (1+(n-1)*abs(incx)).
+ *    [in] incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *
+ * \examples
+ *
+ * \level 1 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
 
 #pragma mark - mc_blas_native_cscal -
 

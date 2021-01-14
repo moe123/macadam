@@ -18,9 +18,9 @@
  *    ?asum returns the sum of the absolute values of a vector.
  *
  * \parameters
- *    [in] n     - int. Specifies the number of elements in the input vector `x`.
- *    [in] x     - real-floating array of size at least (1+(n-1)*abs(incx)).
- *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *    [in] n    - int. Specifies the number of elements in the input vector `x`.
+ *    [in] x    - real-floating array of size at least (1+(n-1)*abs(incx)).
+ *    [in] incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  * \examples
  *
@@ -70,9 +70,9 @@ MC_TARGET_FUNC double mc_blas_native_dasum(const int n, const double * x, const 
  *    ?asum returns the sum of the absolute values of a vector.
  *
  * \parameters
- *    [in] n     - int. Specifies the number of elements in the input vector `x`.
- *    [in] x     - complex array of size at least (1+(n-1)*abs(incx)).
- *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *    [in] n    - int. Specifies the number of elements in the input vector `x`.
+ *    [in] x    - complex array of size at least (1+(n-1)*abs(incx)).
+ *    [in] incx - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  * \examples
  *
