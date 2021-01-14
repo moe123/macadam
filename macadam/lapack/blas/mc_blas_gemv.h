@@ -314,7 +314,7 @@ MC_TARGET_FUNC void mc_blas_dgemv(const char trans, const int m, const int n, co
 	if (beta != one) {
 		if (incy == 1) {
 			if (beta == zero) {
-	#	if MC_TARGET_USE_OPENMP
+#	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
 #			pragma omp parallel for
 #		elif MC_TARGET_OPENMP_FOR_SIMD
