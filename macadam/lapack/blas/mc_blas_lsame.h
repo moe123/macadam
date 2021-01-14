@@ -6,6 +6,27 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+/* \name
+ *    lsame returns `one` if `ca` is the same character as `cb` regardless of case otherwise `zero`.
+
+ *
+ * \synopsis
+ *    int lsame(ca, cb)
+ *    char ca, cb
+ *
+ * \purpose
+ *    lsame returns `one` if `ca` is the same character as `cb` regardless of case otherwise `zero`.
+ *
+ * \parameters
+ *    [in] ca - char. The left single characters to be compared.
+ *    [in] cb - char. The right single characters to be compared.
+ *
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ */
+
 #include <macadam/details/mc_target.h>
 
 #ifndef MC_BLAS_LSAME_H
