@@ -68,6 +68,9 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_rotg.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_rotm.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_rotmg.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_sbmv.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_spr.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_spr2.h>
 
 #		define mc_sasum  mc_blas_native_sasum
 #		define mc_dasum  mc_blas_native_dasum
@@ -135,6 +138,12 @@
 #		define mc_drotm  mc_blas_native_drotm
 #		define mc_srotmg mc_blas_native_srotmg
 #		define mc_drotmg mc_blas_native_drotmg
+#		define mc_ssbmv  mc_blas_native_ssbmv
+#		define mc_dsbmv  mc_blas_native_dsbmv
+#		define mc_sspr   mc_blas_native_sspr
+#		define mc_dspr   mc_blas_native_dspr
+#		define mc_sspr2  mc_blas_native_sspr2
+#		define mc_dspr2  mc_blas_native_dspr2
 
 #	else
 
@@ -194,6 +203,12 @@
 #		define mc_drotm  mc_blas_drotm
 #		define mc_srotmg mc_blas_srotmg
 #		define mc_drotmg mc_blas_drotmg
+#		define mc_ssbmv  mc_blas_ssbmv
+#		define mc_dsbmv  mc_blas_dsbmv
+#		define mc_sspr   mc_blas_sspr
+#		define mc_dspr   mc_blas_dspr
+#		define mc_sspr2  mc_blas_sspr2
+#		define mc_dspr2  mc_blas_dspr2
 
 #	endif
 
@@ -227,6 +242,9 @@
 #	define mc_qrotg   mc_blas_qrotg
 #	define mc_lrotm   mc_blas_lrotm
 #	define mc_lrotmg  mc_blas_lrotmg
+#	define mc_lsbmv   mc_blas_lsbmv
+#	define mc_lspr    mc_blas_lspr
+#	define mc_lspr2   mc_blas_lspr2
 
 #endif /* !MC_BLAS_H */
 

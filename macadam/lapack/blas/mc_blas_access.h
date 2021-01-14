@@ -7,6 +7,8 @@
 //
 
 #include <macadam/details/mc_target.h>
+#include <macadam/mcconsts.h>
+#include <macadam/mclimits.h>
 #include <macadam/mcswap.h>
 
 #ifndef MC_BLAS_ACCESS_H
