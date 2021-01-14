@@ -7,6 +7,7 @@
 //
 
 #include <macadam/lapack/blas/mc_blas_access.h>
+#include <macadam/details/math/mc_cmul.h>
 
 #ifndef MC_BLAS_SCAL_H
 #define MC_BLAS_SCAL_H
@@ -154,6 +155,90 @@ MC_TARGET_FUNC void mc_blas_lscal(const int n, long double a, long double * x, c
 		nincx = n * incx;
 		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
 			mc_blas_vector_at(x, i) = a * mc_blas_vector_at(x, i);
+		}
+	}
+}
+
+#pragma mark - mc_blas_cscal -
+
+MC_TARGET_FUNC void mc_blas_cscal(const int n, mc_complex_float_t a, mc_complex_float_t * x, const int incx)
+{
+	int i, nincx;
+
+	if (n <= 0 || incx <= 0) {
+		return;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (i = 1; i <= n; ++i) {
+			mc_blas_vector_at(x, i) = mc_cmulf(a, mc_blas_vector_at(x, i));
+		}
+	} else {
+		nincx = n * incx;
+		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
+			mc_blas_vector_at(x, i) = mc_cmulf(a, mc_blas_vector_at(x, i));
+		}
+	}
+}
+
+#pragma mark - mc_blas_zscal -
+
+MC_TARGET_FUNC void mc_blas_zscal(const int n, mc_complex_double_t a, mc_complex_double_t * x, const int incx)
+{
+	int i, nincx;
+
+	if (n <= 0 || incx <= 0) {
+		return;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (i = 1; i <= n; ++i) {
+			mc_blas_vector_at(x, i) = mc_cmul(a, mc_blas_vector_at(x, i));
+		}
+	} else {
+		nincx = n * incx;
+		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
+			mc_blas_vector_at(x, i) = mc_cmul(a, mc_blas_vector_at(x, i));
+		}
+	}
+}
+
+#pragma mark - mc_blas_qscal -
+
+MC_TARGET_FUNC void mc_blas_qscal(const int n, mc_complex_long_double_t a, mc_complex_long_double_t * x, const int incx)
+{
+	int i, nincx;
+
+	if (n <= 0 || incx <= 0) {
+		return;
+	}
+	if (incx == 1) {
+#	if MC_TARGET_USE_OPENMP
+#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#			pragma omp parallel for
+#		elif MC_TARGET_OPENMP_FOR_SIMD
+#			pragma omp for simd
+#		endif
+#	endif
+		for (i = 1; i <= n; ++i) {
+			mc_blas_vector_at(x, i) = mc_cmull(a, mc_blas_vector_at(x, i));
+		}
+	} else {
+		nincx = n * incx;
+		for (i = 1; incx < 0 ? i >= nincx : i <= nincx; i += incx) {
+			mc_blas_vector_at(x, i) = mc_cmull(a, mc_blas_vector_at(x, i));
 		}
 	}
 }
