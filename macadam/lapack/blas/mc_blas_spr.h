@@ -23,14 +23,9 @@ MC_TARGET_FUNC void mc_blas_sspr(const char uplo, const int n, const float alpha
 	int i, info, ix, j, jx, k, kk, kx;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	char uplo_x = 'D';
-	if (mc_blas_lsame(uplo, 'U')) {
-		uplo_x = 'L';
-	} else if (mc_blas_lsame(uplo, 'L')) {
-		uplo_x = 'U';
-	}
+	const char uplo_x = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	char uplo_x = mc_cast(char, uplo);
+	const char uplo_x = uplo;
 #	endif
 
 	info = 0;
@@ -154,14 +149,9 @@ MC_TARGET_FUNC void mc_blas_dspr(const char uplo, const int n, const double alph
 	int i, info, ix, j, jx, k, kk, kx;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	char uplo_x = 'D';
-	if (mc_blas_lsame(uplo, 'U')) {
-		uplo_x = 'L';
-	} else if (mc_blas_lsame(uplo, 'L')) {
-		uplo_x = 'U';
-	}
+	const char uplo_x = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	char uplo_x = mc_cast(char, uplo);
+	const char uplo_x = uplo;
 #	endif
 
 	info = 0;
@@ -285,14 +275,9 @@ MC_TARGET_FUNC void mc_blas_lspr(const char uplo, const int n, const long double
 	int i, info, ix, j, jx, k, kk, kx;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	char uplo_x = 'D';
-	if (mc_blas_lsame(uplo, 'U')) {
-		uplo_x = 'L';
-	} else if (mc_blas_lsame(uplo, 'L')) {
-		uplo_x = 'U';
-	}
+	const char uplo_x = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	char uplo_x = mc_cast(char, uplo);
+	const char uplo_x = uplo;
 #	endif
 
 	info = 0;

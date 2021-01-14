@@ -11,10 +11,10 @@
  *    y=alpha*a*x + beta*y
  *
  * \synopsis
- *    void ?sbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy)
+ *    void ?sbmv(uplo_a, n, k, alpha, a, lda, x, incx, beta, y, incy)
  *    float-floating alpha, beta
  *    int            incx, incy, k, lda, n
- *    char           uplo
+ *    char           uplo_a
  *    float-floating a(lda, *), x(*), y(*)
  *
  * \purpose
@@ -25,7 +25,7 @@
  *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
  *
  * \parameters
- *    [in] uplo - char. Specifies whether the upper or lower triangular part of the band matrix `a`
+ *    [in] uplo_a - char. Specifies whether the upper or lower triangular part of the band matrix `a`
  *    is being supplied as follows:
  *    UPLO='U' or 'u', the upper triangular part of a is being supplied.
  *    UPLO='L' or 'l', the lower triangular part of a is being supplied.
@@ -112,8 +112,14 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, con
 	float temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+#	else
+	const char uplo_a = uplo;
+#	endif
+
 	info = 0;
-	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
+	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -205,7 +211,7 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo, 'U')) {
+	if (mc_blas_lsame(uplo_a, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -316,8 +322,14 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, con
 	double temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+#	else
+	const char uplo_a = uplo;
+#	endif
+
 	info = 0;
-	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
+	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -409,7 +421,7 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo, 'U')) {
+	if (mc_blas_lsame(uplo_a, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -520,8 +532,14 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
 	long double temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+#	else
+	const char uplo_a = uplo;
+#	endif
+
 	info = 0;
-	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
+	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -613,7 +631,7 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo, 'U')) {
+	if (mc_blas_lsame(uplo_a, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP

@@ -22,8 +22,14 @@ MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, const int n, const float alph
 	float temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+#	else
+	const char uplo_a = uplo;
+#	endif
+
 	info = 0;
-	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
+	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -111,7 +117,7 @@ MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, const int n, const float alph
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo, 'U')) {
+	if (mc_blas_lsame(uplo_a, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -221,8 +227,14 @@ MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, const int n, const double alp
 	double temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+#	else
+	const char uplo_a = uplo;
+#	endif
+
 	info = 0;
-	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
+	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -310,7 +322,7 @@ MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, const int n, const double alp
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo, 'U')) {
+	if (mc_blas_lsame(uplo_a, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -420,8 +432,14 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, const long doubl
 	long double temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
+#	if MC_TARGET_BLAS_USE_CLAYOUT
+	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+#	else
+	const char uplo_a = uplo;
+#	endif
+
 	info = 0;
-	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
+	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -509,7 +527,7 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, const long doubl
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo, 'U')) {
+	if (mc_blas_lsame(uplo_a, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
