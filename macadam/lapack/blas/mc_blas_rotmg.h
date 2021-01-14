@@ -63,7 +63,7 @@
 
 #pragma mark - mc_blas_srotmg -
 
-MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, float y1, float param[5])
+MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const float y1, float param[5])
 {
 	const float zero = 0.0f, one = 1.0f, two = 2.0f;
 
@@ -189,7 +189,7 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, float y1,
 
 #pragma mark - mc_blas_drotmg -
 
-MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, double y1, double param[5])
+MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const double y1, double param[5])
 {
 	const double zero = 0.0, one = 1.0, two = 2.0;
 
@@ -315,7 +315,7 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, double
 
 #pragma mark - mc_blas_lrotmg -
 
-MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long double * x1, long double y1, long double param[5])
+MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long double * x1, const long double y1, long double param[5])
 {
 	const long double zero = 0.0L, one = 1.0L, two = 2.0L;
 
