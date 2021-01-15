@@ -71,6 +71,7 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_rotmg.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_sbmv.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_scal.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_spmv.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_spr.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_spr2.h>
 
@@ -159,6 +160,8 @@
 #		define mc_dscal  mc_blas_native_dscal
 #		define mc_cscal  mc_blas_native_cscal
 #		define mc_zscal  mc_blas_native_zscal
+#		define mc_sspmv  mc_blas_native_sspmv
+#		define mc_dspmv  mc_blas_native_dspmv
 #		define mc_sspr   mc_blas_native_sspr
 #		define mc_dspr   mc_blas_native_dspr
 #		define mc_sspr2  mc_blas_native_sspr2
@@ -232,6 +235,8 @@
 #		define mc_dscal  mc_blas_dscal
 #		define mc_cscal  mc_blas_cscal
 #		define mc_zscal  mc_blas_zscal
+#		define mc_sspmv  mc_blas_sspmv
+#		define mc_dspmv  mc_blas_dspmv
 #		define mc_sspr   mc_blas_sspr
 #		define mc_dspr   mc_blas_dspr
 #		define mc_sspr2  mc_blas_sspr2
@@ -272,6 +277,7 @@
 #	define mc_lsbmv   mc_blas_lsbmv
 #	define mc_lscal   mc_blas_lscal
 #	define mc_qscal   mc_blas_qscal
+#	define mc_lspmv   mc_blas_lspmv
 #	define mc_lspr    mc_blas_lspr
 #	define mc_lspr2   mc_blas_lspr2
 

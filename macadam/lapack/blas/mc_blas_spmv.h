@@ -6,10 +6,6 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/lapack/blas/mc_blas_access.h>
-#include <macadam/lapack/blas/mc_blas_lsame.h>
-#include <macadam/lapack/blas/mc_blas_xerbla.h>
-
 /* \name
  *    ?spmv performs the matrix-vector operation:
  *    y=alpha*a*x + beta*y
@@ -69,6 +65,10 @@
  *     \author Sven Hammarling, Nag Central Office.
  *     \author Richard Hanson, Sandia National Labs.
  */
+
+#include <macadam/lapack/blas/mc_blas_access.h>
+#include <macadam/lapack/blas/mc_blas_lsame.h>
+#include <macadam/lapack/blas/mc_blas_xerbla.h>
 
 #ifndef MC_BLAS_SPMV_H
 #define MC_BLAS_SPMV_H
