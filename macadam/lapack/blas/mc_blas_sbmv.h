@@ -11,28 +11,28 @@
  *    y=alpha*a*x + beta*y
  *
  * \synopsis
- *    void ?sbmv(uplo_a, n, k, alpha, a, lda, x, incx, beta, y, incy)
+ *    void ?sbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy)
  *    float-floating alpha, beta
  *    int            incx, incy, k, lda, n
- *    char           uplo_a
+ *    char           uplo
  *    float-floating a(lda, *), x(*), y(*)
  *
  * \purpose
  *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, x and y are n element vectors and a is an n by n symmetric band matrix, with k
+ *    scalars, `x` and `y` aren element vectors and `a` is an n by n symmetric band matrix, with k
  *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
  *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
  *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
  *
  * \parameters
- *    [in] uplo_a - char. Specifies whether the upper or lower triangular part of the band matrix `a`
+ *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the band matrix `a`
  *    is being supplied as follows:
- *    UPLO='U' or 'u', the upper triangular part of a is being supplied.
- *    UPLO='L' or 'l', the lower triangular part of a is being supplied.
+ *    UPLO='U' or 'u', the upper triangular part of `a` is being supplied.
+ *    UPLO='L' or 'l', the lower triangular part of `a` is being supplied.
  *
- *    [in] n    - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
- *    [in] k    - int. Specifies the number of super-diagonals of the matrix symmetric a, k
- *    must satisfy  0 < k, i.e must be at least one.
+ *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
+ *    must satisfy 0 < k, i.e must be at least one.
  *
  *    [in] alpha - float-floating. Specifies the scalar alpha.
  *

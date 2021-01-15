@@ -19,7 +19,7 @@
  *
  * \purpose
  *    ?gemv performs one of the matrix-vector operations: y=alpha*a*x + beta*y or
- *    y=alpha*a'*x + beta*y where alpha and beta are scalars, x and y are vectors
+ *    y=alpha*a'*x + beta*y where alpha and beta are scalars, `x` and `y` arevectors
  *    and a is an m by n matrix.
  *
  * \parameters
@@ -122,7 +122,7 @@ MC_TARGET_FUNC void mc_blas_native_dgemv(const char trans, const int m, const in
  * \purpose
  *    ?gemv performs one of the matrix-vector operations: y=alpha*a*x + beta*y or
  *    y=alpha*a'*x + beta*y or y=alpha*a_*x + beta*y where alpha and beta are scalars,
- *    x and y are vectors and a is an m by n matrix.
+ *    `x` and `y` arevectors and a is an m by n matrix.
  *
  * \parameters
  *    [in]  trans - char. Specifies the operation to be performed as follows:

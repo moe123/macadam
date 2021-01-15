@@ -38,12 +38,12 @@
  *
  *    [in] ap    - float-floating array of dimension (at least) ((n*(n+1))/2).
  *    With UPLO='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
- *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
- *    and ap(3) contain a(1,2) and a(2,2) respectively, and so on, else row by row following the same logic.
+ *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(1,2)
+ *    and a(2,2) respectively, and so on.
  *
  *    With UPLO='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
- *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
- *    and ap(3) contain a(2,1)  and a(3,1) respectively, and so on, else row by row following the same logic.
+ *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(2,1)
+ *    and a(3,1) respectively, and so on.
  *
  *    [int] x    - real-floating array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
  *    contain the vector `x`.

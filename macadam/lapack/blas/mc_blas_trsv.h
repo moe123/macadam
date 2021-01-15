@@ -18,7 +18,7 @@
  *
  * \purpose
  *    ?trsv solves one of the systems of equations: x*x=b or a'*x=b where b and x are n element
- *    vectors and a is an n by n unit, or non-unit, upper or lower triangular matrix. However,
+ *    vectors and `a` is an n by n unit, or non-unit, upper or lower triangular matrix. However,
  *    no test for singularity or near-singularity is included in this routine. Such tests must
  *    be performed before calling this routine.
  *
@@ -44,9 +44,9 @@
  *
  *    [in] a     - real-floating array of dimension (lda, n). With uplo='U' or 'u', the leading n by n
  *    upper triangular part of the array A must contain the upper triangular matrix and the strictly
- *    lower triangular part of a is not referenced. With uplo='L' or 'l', the leading n by n lower
+ *    lower triangular part of `a` is not referenced. With uplo='L' or 'l', the leading n by n lower
  *    triangular part of the array A must contain the lower triangular matrix and the strictly upper
- *    triangular part of a is not referenced. Note that when  diag='U' or 'u', the diagonal elements
+ *    triangular part of `a` is not referenced. Note that when  diag='U' or 'u', the diagonal elements
  *    of a are not referenced either, but are assumed to be unity.
  *
  *    [in] lda   - int. Specifies the first dimension of `a`, lda must be at least max(1, n).
