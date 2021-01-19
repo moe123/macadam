@@ -361,27 +361,24 @@
 #	define mc_static_assert(COND, IDF) typedef char static_assertion_##IDF[(COND) ? 1 : -1]
 #	endif
 
-
 #	if MC_TARGET_CPP98
 #	define mc_cast(t, x)      static_cast<t>(x)
 #	define mc_cast_expr(t, x) static_cast<t>((x))
 #	if MC_TARGET_CPP11
 #		define MC_NULLPTR nullptr
-#		define mc_nonnullptr(p) ((p) != MC_NULLPTR)
 #	else
 #		define MC_NULLPTR NULL
-#		define mc_nonnullptr(p) ((p) != MC_NULLPTR)
 #	endif
 #	else
 #	define mc_cast(t, x) (t)x
 #	define mc_cast_expr(t, x) mc_cast(t, (x))
 #	define MC_NULLPTR NULL
-#	define mc_nonnullptr(p) ((p) != MC_NULLPTR)
 #	endif
 
-#	define mc_unused(x) (void)x
+#	define mc_nonnullptr(p) ((p) != MC_NULLPTR)
+#	define mc_unused(x)     (void)x
 
-#	define mc_scope_begin do {
+#	define mc_scope_begin do     {
 #	define mc_scope_end   break; } while (0)
 
 #	if MC_TARGET_CPP98
@@ -569,9 +566,9 @@
 			typedef mc_complex(long double) mc_complex_long_double_t;
 #		endif
 #	else
-		typedef mc_complex(float)       mc_complex_float_t;
-		typedef mc_complex(double)      mc_complex_double_t;
-		typedef mc_complex(long double) mc_complex_long_double_t;
+	typedef mc_complex(float)       mc_complex_float_t;
+	typedef mc_complex(double)      mc_complex_double_t;
+	typedef mc_complex(long double) mc_complex_long_double_t;
 #	endif
 #	if MC_TARGET_CPP11
 #		define mc_cmplxf(re, im) { (float)(re)      , (float)(im)       }
@@ -684,7 +681,7 @@
 
 	MC_TARGET_FUNC int __builtin_ctzl(unsigned long x)
 	{
-		return (sizeof(x) == 8 ?
+		return (sizeof(x) > sizeof(__int32) ?
 			  __builtin_ctzll(mc_cast(unsigned long long, x))
 			: __builtin_ctz(mc_cast(unsigned int, x))
 		);
@@ -709,7 +706,7 @@
 	MC_TARGET_FUNC int __builtin_clzl(unsigned long x)
 	{
 		unsigned long ret;
-		if (sizeof(x) >= 8) {
+		if (sizeof(x) > sizeof(__int32)) {
 			return __builtin_clzll(x);
 		}
 		unsigned __int32 m = mc_cast(unsigned __int32, x);

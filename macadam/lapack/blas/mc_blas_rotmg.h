@@ -73,7 +73,7 @@ MC_TARGET_FUNC void mc_blas_srotmg(float * d1, float * d2, float * x1, const flo
 
 	float flag, h11, h12, h21, h22, p1, p2, q1, q2, temp, u;
 
-	if ((*d1)< zero) {
+	if ((*d1) < zero) {
 		flag  = -one;
 		h11   = zero;
 		h12   = zero;
@@ -203,7 +203,7 @@ MC_TARGET_FUNC void mc_blas_drotmg(double * d1, double * d2, double * x1, const 
 
 	double flag, h11, h12, h21, h22, p1, p2, q1, q2, temp, u;
 
-	if ((*d1)< zero) {
+	if ((*d1) < zero) {
 		flag  = -one;
 		h11   = zero;
 		h12   = zero;
@@ -339,7 +339,7 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 
 	long double flag, h11, h12, h21, h22, p1, p2, q1, q2, temp, u;
 
-	if ((*d1)< zero) {
+	if ((*d1) < zero) {
 		flag  = -one;
 		h11   = zero;
 		h12   = zero;

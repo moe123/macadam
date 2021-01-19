@@ -111,7 +111,7 @@ MC_TARGET_FUNC void mc_blas_ssymm(const char side, const char uplo, const int m,
 					if (beta == zero) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha * temp2;
 					} else {
-						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j) + temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha *  temp2;
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j) + temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha * temp2;
 					}
 				}
 			}
@@ -279,7 +279,7 @@ MC_TARGET_FUNC void mc_blas_dsymm(const char side, const char uplo, const int m,
 					if (beta == zero) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha * temp2;
 					} else {
-						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j) + temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha *  temp2;
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j) + temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha * temp2;
 					}
 				}
 			}
@@ -447,7 +447,7 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
 					if (beta == zero) {
 						mc_blas_matrix_at(c, ldc, n, i, j) = temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha * temp2;
 					} else {
-						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j) + temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha *  temp2;
+						mc_blas_matrix_at(c, ldc, n, i, j) = beta * mc_blas_matrix_at(c, ldc, n, i, j) + temp1 * mc_blas_matrix_at(a, lda, ka, i, i) + alpha * temp2;
 					}
 				}
 			}

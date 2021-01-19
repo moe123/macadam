@@ -89,7 +89,7 @@ MC_TARGET_PROC float mc_igamma_cfracf_approx0(float a, float z)
 		c2 = mc_fabsf(c2) < e3 ? e3 : c2;
 		c3 = 1.0f / c3;
 		c4 = c3 * c2;
-		c5 = c5 *  c4;
+		c5 = c5 * c4;
 		k  = k + 1.0f;
 	} while (mc_fabsf(c4 - 1.0f) > e1);
 	return c5;
@@ -114,7 +114,7 @@ MC_TARGET_PROC double mc_igamma_cfrac_approx0(double a, double z)
 		c2 = mc_fabs(c2) < e3 ? e3 : c2;
 		c3 = 1.0 / c3;
 		c4 = c3 * c2;
-		c5 = c5 *  c4;
+		c5 = c5 * c4;
 		k   = k + 1.0;
 	} while (mc_fabs(c4 - 1.0) > e1);
 	return c5;
@@ -139,7 +139,7 @@ MC_TARGET_PROC long double mc_igamma_cfracl_approx0(long double a, long double z
 		c2 = mc_fabsl(c2) < e3 ? e3 : c2;
 		c3 = 1.0L / c3;
 		c4 = c3 * c2;
-		c5 = c5 *  c4;
+		c5 = c5 * c4;
 		k  = k + 1.0L;
 	} while (mc_fabsl(c4 - 1.0L) > e1);
 	return c5;
