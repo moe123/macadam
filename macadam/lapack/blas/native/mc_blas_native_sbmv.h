@@ -137,6 +137,142 @@ MC_TARGET_FUNC void mc_blas_native_dsbmv(const char uplo, const int n, const int
 #	endif
 }
 
+/* \name
+ *    ?sbmv performs the matrix-vector operation:
+ *    y=alpha*a*x + beta*y
+ *
+ * \synopsis
+ *    void ?sbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy)
+ *    complex alpha, beta
+ *    int     incx, incy, k, lda, n
+ *    char    uplo
+ *    complex a(lda, *), x(*), y(*)
+ *
+ * \purpose
+ *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
+ *    scalars, `x` and `y` aren element vectors and `a` is an n by n symmetric band matrix, with k
+ *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
+ *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
+ *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
+ *
+ * \parameters
+ *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the band matrix `a`
+ *    is being supplied as follows:
+ *    UPLO='U' or 'u', the upper triangular part of `a` is being supplied.
+ *    UPLO='L' or 'l', the lower triangular part of `a` is being supplied.
+ *
+ *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
+ *    must satisfy 0 < k, i.e must be at least one.
+ *
+ *    [in] alpha - complex. Specifies the scalar alpha.
+ *
+ *    [in] a     - complex array of dimension (lda, n).
+ *    With UPLO='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
+ *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
+ *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
+ *    top left k by k triangle of the array a is not referenced.
+ *
+ *    With UPLO='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
+ *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
+ *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
+ *    right k by k triangle of the array a is not referenced.
+ *
+ *    [in] lda   - int. Specifies the first dimension of `a`, a must be at least (k+1).
+ *
+ *    [int] x    - complex array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
+ *    contain the vector `x`.
+ *
+ *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
+ *
+ *    [in] beta  - complex. Specifies the scalar beta.
+ *
+ *    [out] y    - complex array of size at least (1+(n-1)*abs(incy)). The incremented array `y` must
+ *    contain the vector `y`, y is overwritten by the updated vector `y`.
+ *
+ *    [in] incy  - int. Specifies the increment for the elements of `y`, incy must not be zero.
+ *
+ * \examples
+ *
+ * \level 2 blas routine.
+ *     \author Univ. of Tennessee.
+ *     \author Univ. of California Berkeley.
+ *     \author Univ. of Colorado Denver.
+ *     \author NAG Ltd.
+ *     \author Jack Dongarra, Argonne National Lab.
+ *     \author Jeremy Du Croz, Nag Central Office.
+ *     \author Sven Hammarling, Nag Central Office.
+ *     \author Richard Hanson, Sandia National Labs.
+ */
+
+#pragma mark - mc_blas_native_csbmv -
+
+MC_TARGET_FUNC void mc_blas_native_csbmv(const char uplo, const int n, const int k, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * x, const int incx, const mc_complex_float_t beta, mc_complex_float_t * y, const int incy)
+{
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		if MC_TARGET_BLAS_USE_CLAYOUT
+			const enum CBLAS_ORDER order = CblasRowMajor;
+#		else
+			const enum CBLAS_ORDER order = CblasColMajor;
+#		endif
+			const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+
+#		if MC_TARGET_CPP98
+			::cblas_csbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+#		else
+			cblas_csbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+#		endif
+#	else
+	mc_unused(uplo);
+	mc_unused(n);
+	mc_unused(k);
+	mc_unused(alpha);
+	mc_unused(a);
+	mc_unused(lda);
+	mc_unused(x);
+	mc_unused(incx);
+	mc_unused(beta);
+	mc_unused(y);
+	mc_unused(incy);
+#	endif
+}
+
+#pragma mark - mc_blas_native_zsbmv -
+
+MC_TARGET_FUNC void mc_blas_native_zsbmv(const char uplo, const int n, const int k, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * x, const int incx, const mc_complex_double_t beta, mc_complex_double_t * y, const int incy)
+{
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		if MC_TARGET_BLAS_USE_CLAYOUT
+			const enum CBLAS_ORDER order = CblasRowMajor;
+#		else
+			const enum CBLAS_ORDER order = CblasColMajor;
+#		endif
+			const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+
+#		if MC_TARGET_CPP98
+			::cblas_zsbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+#		else
+			cblas_zsbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+#		endif
+#	else
+	mc_unused(uplo);
+	mc_unused(n);
+	mc_unused(k);
+	mc_unused(alpha);
+	mc_unused(a);
+	mc_unused(lda);
+	mc_unused(x);
+	mc_unused(incx);
+	mc_unused(beta);
+	mc_unused(y);
+	mc_unused(incy);
+#	endif
+}
+
 #endif /* !MC_BLAS_NATIVE_SBMV_H */
 
 /* EOF */

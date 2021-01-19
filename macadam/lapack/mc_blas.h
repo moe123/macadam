@@ -156,6 +156,15 @@
 #		define mc_drotmg mc_blas_native_drotmg
 #		define mc_ssbmv  mc_blas_native_ssbmv
 #		define mc_dsbmv  mc_blas_native_dsbmv
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		define mc_csbmv  mc_blas_native_csbmv
+#		define mc_zsbmv  mc_blas_native_zsbmv
+#	else
+#		define mc_csbmv  mc_blas_csbmv
+#		define mc_zsbmv  mc_blas_zsbmv
+#	endif
 #		define mc_sscal  mc_blas_native_sscal
 #		define mc_dscal  mc_blas_native_dscal
 #		define mc_cscal  mc_blas_native_cscal
@@ -231,6 +240,8 @@
 #		define mc_drotmg mc_blas_drotmg
 #		define mc_ssbmv  mc_blas_ssbmv
 #		define mc_dsbmv  mc_blas_dsbmv
+#		define mc_csbmv  mc_blas_csbmv
+#		define mc_zsbmv  mc_blas_zsbmv
 #		define mc_sscal  mc_blas_sscal
 #		define mc_dscal  mc_blas_dscal
 #		define mc_cscal  mc_blas_cscal
@@ -275,6 +286,7 @@
 #	define mc_lrotm   mc_blas_lrotm
 #	define mc_lrotmg  mc_blas_lrotmg
 #	define mc_lsbmv   mc_blas_lsbmv
+#	define mc_qsbmv   mc_blas_qsbmv
 #	define mc_lscal   mc_blas_lscal
 #	define mc_qscal   mc_blas_qscal
 #	define mc_lspmv   mc_blas_lspmv
