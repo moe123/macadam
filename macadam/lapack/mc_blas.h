@@ -171,6 +171,15 @@
 #		define mc_zscal  mc_blas_native_zscal
 #		define mc_sspmv  mc_blas_native_sspmv
 #		define mc_dspmv  mc_blas_native_dspmv
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		define mc_cspmv  mc_blas_native_cspmv
+#		define mc_zspmv  mc_blas_native_zspmv
+#	else
+#		define mc_cspmv  mc_blas_cspmv
+#		define mc_zspmv  mc_blas_zspmv
+#	endif
 #		define mc_sspr   mc_blas_native_sspr
 #		define mc_dspr   mc_blas_native_dspr
 #		define mc_sspr2  mc_blas_native_sspr2
@@ -248,6 +257,8 @@
 #		define mc_zscal  mc_blas_zscal
 #		define mc_sspmv  mc_blas_sspmv
 #		define mc_dspmv  mc_blas_dspmv
+#		define mc_cspmv  mc_blas_cspmv
+#		define mc_zspmv  mc_blas_zspmv
 #		define mc_sspr   mc_blas_sspr
 #		define mc_dspr   mc_blas_dspr
 #		define mc_sspr2  mc_blas_sspr2
@@ -290,6 +301,7 @@
 #	define mc_lscal   mc_blas_lscal
 #	define mc_qscal   mc_blas_qscal
 #	define mc_lspmv   mc_blas_lspmv
+#	define mc_qspmv   mc_blas_qspmv
 #	define mc_lspr    mc_blas_lspr
 #	define mc_lspr2   mc_blas_lspr2
 
