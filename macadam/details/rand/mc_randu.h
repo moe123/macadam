@@ -50,7 +50,7 @@ MC_TARGET_PROC long double mc_randul(void)
 	const long double b = +2.328306437080797000000000000000000000000000000000000000000000000E-10L;
 	return a * b;
 #	endif
-	return mc_cast(long double,  mc_randu());
+	return mc_cast(long double, mc_randu());
 #	endif
 }
 

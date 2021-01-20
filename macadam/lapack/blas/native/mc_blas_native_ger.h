@@ -11,9 +11,9 @@
  *
  * \synopsis
  *    void ?ger(m, n, alpha, x, incx, y, incy, a, lda)
- *    float-floating alpha
+ *    real-floating alpha
  *    int            incx, incy, lda, m, n
- *    float-floating a(lda, *), x(*), y(*)
+ *    real-floating a(lda, *), x(*), y(*)
  *
  * \purpose
  *    ?ger performs the rank 1 operation: a=alpha*x*y' + a where alpha is a scalar,
@@ -23,19 +23,19 @@
  *    [in]  m     - int. Specifies the number of rows of the matrix `a`, m must be at least zero.
  *    [in]  n     - int. Specifies the number of columns of the matrix `a`, n must be at least zero.
  *
- *    [in]  alpha - float-floating. Specifies the scalar alpha.
+ *    [in]  alpha - real-floating. Specifies the scalar alpha.
  *
- *    [in]  x     - float-floating array of dimension (at least) (1+(m-1)*abs(incx)). The incremented
+ *    [in]  x     - real-floating array of dimension (at least) (1+(m-1)*abs(incx)). The incremented
  *    array `x` must contain the m element vector `x`.
  *
  *    [in]  incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
- *    [in]  y     - float-floating array of dimension (at least) (1+(n-1)*abs(incy)). The incremented
+ *    [in]  y     - real-floating array of dimension (at least) (1+(n-1)*abs(incy)). The incremented
  *    array `y` must contain the n element vector `y`.
  *
  *    [in]  incy  - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
- *    [out] a     - float-floating array of dimension (lda, n), the leading m by n part of the
+ *    [out] a     - real-floating array of dimension (lda, n), the leading m by n part of the
  *    array a must contain the matrix of coefficients. a is overwritten by the updated matrix.
  *
  *    [in]  lda   - int. Specifies the first dimension of `a`, lda must be at least max(1, m).

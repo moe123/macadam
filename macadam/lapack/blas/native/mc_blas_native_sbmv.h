@@ -12,10 +12,10 @@
  *
  * \synopsis
  *    void ?sbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy)
- *    float-floating alpha, beta
+ *    real-floating alpha, beta
  *    int            incx, incy, k, lda, n
  *    char           uplo
- *    float-floating a(lda, *), x(*), y(*)
+ *    real-floating a(lda, *), x(*), y(*)
  *
  * \purpose
  *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
@@ -34,9 +34,9 @@
  *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
  *    must satisfy 0 < k, i.e must be at least one.
  *
- *    [in] alpha - float-floating. Specifies the scalar alpha.
+ *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
- *    [in] a     - float-floating array of dimension (lda, n).
+ *    [in] a     - real-floating array of dimension (lda, n).
  *    With UPLO='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
@@ -54,7 +54,7 @@
  *
  *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
- *    [in] beta  - float-floating. Specifies the scalar beta.
+ *    [in] beta  - real-floating. Specifies the scalar beta.
  *
  *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)). The incremented array `y` must
  *    contain the vector `y`, y is overwritten by the updated vector `y`.

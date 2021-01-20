@@ -539,9 +539,9 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 				t = a12 / u;
 			} else {
 				r = 0.5f * u / a12;
-				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f,  r)) : 1.0f / (r - mc_hypot2f(1.0f,  r)));
+				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f, r)) : 1.0f / (r - mc_hypot2f(1.0f, r)));
 			}
-			c   = 1.0f / mc_hypot2f(1.0f,  t);
+			c   = 1.0f / mc_hypot2f(1.0f, t);
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a12;
@@ -570,9 +570,9 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 				t = a13 / u;
 			} else {
 				r = 0.5f * u / a13;
-				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f,  r)) : 1.0f / (r - mc_hypot2f(1.0f,  r)));
+				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f, r)) : 1.0f / (r - mc_hypot2f(1.0f, r)));
 			}
-			c   = 1.0f / mc_hypot2f(1.0f,  t);
+			c   = 1.0f / mc_hypot2f(1.0f, t);
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a13;
@@ -601,9 +601,9 @@ MC_TARGET_FUNC int mc_eigsy3x3f(const float a[9], float e[3], float * v)
 				t = a23 / u;
 			} else {
 				r = 0.5f * u / a23;
-				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f,  r)) : 1.0f / (r - mc_hypot2f(1.0f,  r)));
+				t = ((r >= 0.0f) ? 1.0f / (r + mc_hypot2f(1.0f, r)) : 1.0f / (r - mc_hypot2f(1.0f, r)));
 			}
-			c   = 1.0f / mc_hypot2f(1.0f,  t);
+			c   = 1.0f / mc_hypot2f(1.0f, t);
 			s   = t * c;
 			u   = s / (1.0f + c);
 			r   = t * a23;
@@ -748,9 +748,9 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 				t = a12 / u;
 			} else {
 				r = 0.5 * u / a12;
-				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0,  r)) : 1.0 / (r - mc_hypot2(1.0,  r)));
+				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0, r)) : 1.0 / (r - mc_hypot2(1.0, r)));
 			}
-			c   = 1.0 / mc_hypot2(1.0,  t);
+			c   = 1.0 / mc_hypot2(1.0, t);
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a12;
@@ -779,9 +779,9 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 				t = a13 / u;
 			} else {
 				r = 0.5 * u / a13;
-				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0,  r)) : 1.0 / (r - mc_hypot2(1.0,  r)));
+				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0, r)) : 1.0 / (r - mc_hypot2(1.0, r)));
 			}
-			c   = 1.0 / mc_hypot2(1.0,  t);
+			c   = 1.0 / mc_hypot2(1.0, t);
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a13;
@@ -810,9 +810,9 @@ MC_TARGET_FUNC int mc_eigsy3x3(const double a[9], double e[3], double * v)
 				t = a23 / u;
 			} else {
 				r = 0.5 * u / a23;
-				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0,  r)) : 1.0 / (r - mc_hypot2(1.0,  r)));
+				t = ((r >= 0.0) ? 1.0 / (r + mc_hypot2(1.0, r)) : 1.0 / (r - mc_hypot2(1.0, r)));
 			}
-			c   = 1.0 / mc_hypot2(1.0,  t);
+			c   = 1.0 / mc_hypot2(1.0, t);
 			s   = t * c;
 			u   = s / (1.0 + c);
 			r   = t * a23;

@@ -12,10 +12,10 @@
  *
  * \synopsis
  *    void ?spmv(uplo, n, alpha, ap, x, incx, beta, y, incy)
- *    float-floating alpha, beta
+ *    real-floating alpha, beta
  *    int            incx, incy, n
  *    char           uplo
- *    float-floating ap(*), x(*), y(*)
+ *    real-floating ap(*), x(*), y(*)
  *
  * \purpose
  *    ?spmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
@@ -30,9 +30,9 @@
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *
- *    [in] alpha - float-floating. Specifies the scalar alpha.
+ *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
- *    [in] ap    - float-floating array of dimension (at least) ((n*(n+1))/2).
+ *    [in] ap    - real-floating array of dimension (at least) ((n*(n+1))/2).
  *    With UPLO='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
  *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
  *    and ap(3) contain a(1,2) and a(2,2) respectively, and so on, else row by row following the same logic.
@@ -46,7 +46,7 @@
  *
  *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
- *    [in] beta  - float-floating. Specifies the scalar beta.
+ *    [in] beta  - real-floating. Specifies the scalar beta.
  *
  *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)). The incremented array `y` must
  *    contain the vector `y`, y is overwritten by the updated vector `y`.

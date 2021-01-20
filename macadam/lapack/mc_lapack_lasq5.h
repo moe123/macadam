@@ -211,7 +211,7 @@ MC_TARGET_PROC void mc_lapack_slasq5(const int i0, const int n0, float * z, cons
 						d = zero;
 					}
 					*dmin = mc_fminf(*dmin,d);
-					 emin = mc_fminf(emin,  mc_blas_vector_at(z, j4 - 1));
+					 emin = mc_fminf(emin, mc_blas_vector_at(z, j4 - 1));
 				}
 			}
 
@@ -444,7 +444,7 @@ MC_TARGET_PROC void mc_lapack_dlasq5(const int i0, const int n0, double * z, con
 						d = zero;
 					}
 					*dmin = mc_fmin(*dmin,d);
-					 emin = mc_fmin(emin,  mc_blas_vector_at(z, j4 - 1));
+					 emin = mc_fmin(emin, mc_blas_vector_at(z, j4 - 1));
 				}
 			}
 
@@ -677,7 +677,7 @@ MC_TARGET_PROC void mc_lapack_llasq5(const int i0, const int n0, long double * z
 						d = zero;
 					}
 					*dmin = mc_fminl(*dmin,d);
-					 emin = mc_fminl(emin,  mc_blas_vector_at(z, j4 - 1));
+					 emin = mc_fminl(emin, mc_blas_vector_at(z, j4 - 1));
 				}
 			}
 

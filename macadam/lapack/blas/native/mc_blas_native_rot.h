@@ -29,8 +29,8 @@
  *    [out] y    - real-floating array of size at least (1+(n-1)*abs(incy)).
  *    [in]  incy - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
- *    [in]  c    - float-floating. Specifies the cosine of the angle of rotation (Givens rotation matrix).
- *    [in]  s    - float-floating. Specifies the sine of the angle of rotation (Givens rotation matrix).
+ *    [in]  c    - real-floating. Specifies the cosine of the angle of rotation (Givens rotation matrix).
+ *    [in]  s    - real-floating. Specifies the sine of the angle of rotation (Givens rotation matrix).
  *
  * \examples
  *
@@ -92,8 +92,8 @@ MC_TARGET_FUNC void mc_blas_native_drot(const int n, double * x, const int incx,
  *    [out] y    - complex array of size at least (1+(n-1)*abs(incy)).
  *    [in]  incy - int. Specifies the increment for the elements of `y`, incy must not be zero.
  *
- *    [in]  c    - float-floating. Specifies the cosine of the angle of rotation (Givens rotation matrix).
- *    [in]  s    - float-floating. Specifies the sine of the angle of rotation (Givens rotation matrix).
+ *    [in]  c    - real-floating. Specifies the cosine of the angle of rotation (Givens rotation matrix).
+ *    [in]  s    - real-floating. Specifies the sine of the angle of rotation (Givens rotation matrix).
  *
  * \examples
  *
