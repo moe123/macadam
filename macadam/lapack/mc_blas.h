@@ -182,6 +182,15 @@
 #	endif
 #		define mc_sspr   mc_blas_native_sspr
 #		define mc_dspr   mc_blas_native_dspr
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		define mc_cspr   mc_blas_native_cspr
+#		define mc_zspr   mc_blas_native_zspr
+#	else
+#		define mc_cspr   mc_blas_cspr
+#		define mc_zspr   mc_blas_zspr
+#	endif
 #		define mc_sspr2  mc_blas_native_sspr2
 #		define mc_dspr2  mc_blas_native_dspr2
 
@@ -261,6 +270,8 @@
 #		define mc_zspmv  mc_blas_zspmv
 #		define mc_sspr   mc_blas_sspr
 #		define mc_dspr   mc_blas_dspr
+#		define mc_cspr   mc_blas_cspr
+#		define mc_zspr   mc_blas_zspr
 #		define mc_sspr2  mc_blas_sspr2
 #		define mc_dspr2  mc_blas_dspr2
 
@@ -303,6 +314,7 @@
 #	define mc_lspmv   mc_blas_lspmv
 #	define mc_qspmv   mc_blas_qspmv
 #	define mc_lspr    mc_blas_lspr
+#	define mc_qspr    mc_blas_qspr
 #	define mc_lspr2   mc_blas_lspr2
 
 #endif /* !MC_BLAS_H */
