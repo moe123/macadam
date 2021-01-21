@@ -19,7 +19,7 @@
  *
  * \purpose
  *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `a` is an n by n symmetric band matrix, with k
+ *    scalars, `x` and `y` are n element vectors and `a` is an n by n symmetric band matrix, with k
  *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
  *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
  *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
@@ -150,7 +150,7 @@ MC_TARGET_FUNC void mc_blas_native_dsbmv(const char uplo, const int n, const int
  *
  * \purpose
  *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `a` is an n by n symmetric band matrix, with k
+ *    scalars, `x` and `y` are n element vectors and `a` is an n by n symmetric band matrix, with k
  *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
  *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
  *    the scalars alpha and beta, vectors x and y, and band matrix `a`.

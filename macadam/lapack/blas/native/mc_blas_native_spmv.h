@@ -19,7 +19,7 @@
  *
  * \purpose
  *    ?spmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `ap` is an n by n symmetric matrix, supplied in
+ *    scalars, `x` and `y` are n element vectors and `ap` is an n by n symmetric matrix, supplied in
  *    packed form of dimension (at least) ((n*(n+1))/2).
  *
  * \parameters
@@ -122,7 +122,7 @@ MC_TARGET_FUNC void mc_blas_native_dspmv(const char uplo, const int n, const dou
  *
  * \purpose
  *    ?spmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `ap` is an n by n symmetric matrix, supplied in
+ *    scalars, `x` and `y` are n element vectors and `ap` is an n by n symmetric matrix, supplied in
  *    packed form of dimension (at least) ((n*(n+1))/2).
  *
  * \parameters

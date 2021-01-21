@@ -19,7 +19,7 @@
  *
  * \purpose
  *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `a` is an n by n symmetric band matrix, with k
+ *    scalars, `x` and `y` are n element vectors and `a` is an n by n symmetric band matrix, with k
  *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
  *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
  *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
@@ -115,14 +115,8 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, con
 	float temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
-#	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
-#	else
-	const char uplo_a = uplo;
-#	endif
-
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -214,7 +208,7 @@ MC_TARGET_FUNC void mc_blas_ssbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -325,14 +319,8 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, con
 	double temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
-#	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
-#	else
-	const char uplo_a = uplo;
-#	endif
-
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -424,7 +412,7 @@ MC_TARGET_FUNC void mc_blas_dsbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -535,14 +523,8 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
 	long double temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
-#	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
-#	else
-	const char uplo_a = uplo;
-#	endif
-
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -634,7 +616,7 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -749,7 +731,7 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
  *
  * \purpose
  *    ?sbmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `a` is an n by n symmetric band matrix, with k
+ *    scalars, `x` and `y` are n element vectors and `a` is an n by n symmetric band matrix, with k
  *    super-diagonals. It computes the matrix-vector product for a real symmetric band matrix,
  *    The band matrix A is stored in either upper or lower-band-packed storage mode, it uses
  *    the scalars alpha and beta, vectors x and y, and band matrix `a`.
@@ -813,14 +795,8 @@ MC_TARGET_FUNC void mc_blas_csbmv(const char uplo, const int n, const int k, con
 	mc_complex_float_t temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
-#	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
-#	else
-	const char uplo_a = uplo;
-#	endif
-
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -912,7 +888,7 @@ MC_TARGET_FUNC void mc_blas_csbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -1023,14 +999,8 @@ MC_TARGET_FUNC void mc_blas_zsbmv(const char uplo, const int n, const int k, con
 	mc_complex_double_t temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
-#	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
-#	else
-	const char uplo_a = uplo;
-#	endif
-
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -1122,7 +1092,7 @@ MC_TARGET_FUNC void mc_blas_zsbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
@@ -1233,14 +1203,8 @@ MC_TARGET_FUNC void mc_blas_qsbmv(const char uplo, const int n, const int k, con
 	mc_complex_long_double_t temp1, temp2;
 	int i, info, ix, iy, j, jx, jy, kplus1, kx, ky, l;
 
-#	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
-#	else
-	const char uplo_a = uplo;
-#	endif
-
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo, 'U') && !mc_blas_lsame(uplo, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -1332,7 +1296,7 @@ MC_TARGET_FUNC void mc_blas_qsbmv(const char uplo, const int n, const int k, con
 		return;
 	}
 
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo, 'U')) {
 		kplus1 = k + 1;
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP

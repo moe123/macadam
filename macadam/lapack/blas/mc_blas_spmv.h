@@ -19,7 +19,7 @@
  *
  * \purpose
  *    ?spmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `ap` is an n by n symmetric matrix, supplied in
+ *    scalars, `x` and `y` are n element vectors and `ap` is an n by n symmetric matrix, supplied in
  *    packed form of dimension (at least) ((n*(n+1))/2).
  *
  * \parameters
@@ -86,13 +86,13 @@ MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, const int n, const float alph
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+	const char uplo_ap = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	const char uplo_a = uplo;
+	const char uplo_ap = uplo;
 #	endif
 
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo_ap, 'U') && !mc_blas_lsame(uplo_ap, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -180,7 +180,7 @@ MC_TARGET_FUNC void mc_blas_sspmv(const char uplo, const int n, const float alph
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo_ap, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -291,13 +291,13 @@ MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, const int n, const double alp
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+	const char uplo_ap = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	const char uplo_a = uplo;
+	const char uplo_ap = uplo;
 #	endif
 
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo_ap, 'U') && !mc_blas_lsame(uplo_ap, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -385,7 +385,7 @@ MC_TARGET_FUNC void mc_blas_dspmv(const char uplo, const int n, const double alp
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo_ap, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -496,13 +496,13 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, const long doubl
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+	const char uplo_ap = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	const char uplo_a = uplo;
+	const char uplo_ap = uplo;
 #	endif
 
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo_ap, 'U') && !mc_blas_lsame(uplo_ap, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -590,7 +590,7 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, const long doubl
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo_ap, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -704,7 +704,7 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, const long doubl
  *
  * \purpose
  *    ?spmv performs the matrix-vector operation: y=alpha*a*x + beta*y where alpha and beta are
- *    scalars, `x` and `y` aren element vectors and `ap` is an n by n symmetric matrix, supplied in
+ *    scalars, `x` and `y` are n element vectors and `ap` is an n by n symmetric matrix, supplied in
  *    packed form of dimension (at least) ((n*(n+1))/2).
  *
  * \parameters
@@ -761,13 +761,13 @@ MC_TARGET_FUNC void mc_blas_cspmv(const char uplo, const int n, const mc_complex
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+	const char uplo_ap = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	const char uplo_a = uplo;
+	const char uplo_ap = uplo;
 #	endif
 
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo_ap, 'U') && !mc_blas_lsame(uplo_ap, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -855,7 +855,7 @@ MC_TARGET_FUNC void mc_blas_cspmv(const char uplo, const int n, const mc_complex
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo_ap, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -966,13 +966,13 @@ MC_TARGET_FUNC void mc_blas_zspmv(const char uplo, const int n, const mc_complex
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+	const char uplo_ap = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	const char uplo_a = uplo;
+	const char uplo_ap = uplo;
 #	endif
 
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo_ap, 'U') && !mc_blas_lsame(uplo_ap, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -1060,7 +1060,7 @@ MC_TARGET_FUNC void mc_blas_zspmv(const char uplo, const int n, const mc_complex
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo_ap, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
@@ -1171,13 +1171,13 @@ MC_TARGET_FUNC void mc_blas_qspmv(const char uplo, const int n, const mc_complex
 	int i, info, ix, iy, j, jx, jy, k, kk, kx, ky;
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const char uplo_a = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
+	const char uplo_ap = mc_blas_lsame(uplo, 'U') ? 'L' : (mc_blas_lsame(uplo, 'L') ? 'U' : 'D');
 #	else
-	const char uplo_a = uplo;
+	const char uplo_ap = uplo;
 #	endif
 
 	info = 0;
-	if (!mc_blas_lsame(uplo_a, 'U') && !mc_blas_lsame(uplo_a, 'L')) {
+	if (!mc_blas_lsame(uplo_ap, 'U') && !mc_blas_lsame(uplo_ap, 'L')) {
 		info = 1;
 	} else if (n < 0) {
 		info = 2;
@@ -1265,7 +1265,7 @@ MC_TARGET_FUNC void mc_blas_qspmv(const char uplo, const int n, const mc_complex
 	}
 
 	kk = 1;
-	if (mc_blas_lsame(uplo_a, 'U')) {
+	if (mc_blas_lsame(uplo_ap, 'U')) {
 		if (incx == 1 && incy == 1) {
 #	if MC_TARGET_USE_OPENMP
 #		if MC_TARGET_OPENMP_PARALLEL_FOR
