@@ -74,6 +74,7 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_spmv.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_spr.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_spr2.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_swap.h>
 
 #	if !MC_TARGET_BLAS_USE_OPENBLAS   \
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
@@ -193,6 +194,10 @@
 #	endif
 #		define mc_sspr2  mc_blas_native_sspr2
 #		define mc_dspr2  mc_blas_native_dspr2
+#		define mc_sswap  mc_blas_native_sswap
+#		define mc_dswap  mc_blas_native_dswap
+#		define mc_cswap  mc_blas_native_cswap
+#		define mc_zswap  mc_blas_native_zswap
 
 #	else
 
@@ -274,6 +279,10 @@
 #		define mc_zspr   mc_blas_zspr
 #		define mc_sspr2  mc_blas_sspr2
 #		define mc_dspr2  mc_blas_dspr2
+#		define mc_sswap  mc_blas_sswap
+#		define mc_dswap  mc_blas_dswap
+#		define mc_cswap  mc_blas_cswap
+#		define mc_zswap  mc_blas_zswap
 
 #	endif
 
@@ -316,6 +325,8 @@
 #	define mc_lspr    mc_blas_lspr
 #	define mc_qspr    mc_blas_qspr
 #	define mc_lspr2   mc_blas_lspr2
+#	define mc_lswap   mc_blas_lswap
+#	define mc_qswap   mc_blas_qswap
 
 #endif /* !MC_BLAS_H */
 
