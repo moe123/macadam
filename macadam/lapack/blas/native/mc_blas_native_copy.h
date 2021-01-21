@@ -11,24 +11,24 @@
  *
  * \synopsis
  *    void ?copy(n, x, incx, y, incy)
- *    int            incx, incy, n
+ *    int           incx, incy, n
  *    real-floating x(*), y(*)
  *
  * \purpose
  *    ?copy copies a vector `x`, to a vector `y`.
  *
  * \parameters
- *    [in]  n     - int. Specifies the number of elements in input vector(s).
+ *    [in]  n    - int. Specifies the number of elements in input vector(s).
  *
- *    [in]  x     - real-floating array of dimension (at least) (1+(n-1)*abs(incx)).
- *    [in]  incx  - int. Specifies the storage spacing between elements of `x`.
+ *    [in]  x    - real-floating array of dimension (at least) (1+(n-1)*abs(incx)).
+ *    [in]  incx - int. Specifies the storage spacing between elements of `x`.
  *
- *    [out]  y    - real-floating array of dimension (at least) (1+(n-1)*abs(incy)).
- *    [in]  incy  - int. Specifies the storage spacing between elements of `y`.
+ *    [out]  y   - real-floating array of dimension (at least) (1+(n-1)*abs(incy)).
+ *    [in]  incy - int. Specifies the storage spacing between elements of `y`.
  *
  * \examples
  *
- * \level 2 blas routine.
+ * \level 1 blas routine.
  *     \author Univ. of Tennessee.
  *     \author Univ. of California Berkeley.
  *     \author Univ. of Colorado Denver.
@@ -74,17 +74,17 @@ MC_TARGET_FUNC void mc_blas_native_dcopy(const int n, const double * x, const in
  *    ?copy copies a vector `x`, to a vector `y`.
  *
  * \parameters
- *    [in]  n     - int. Specifies the number of elements in input vector(s).
+ *    [in]  n    - int. Specifies the number of elements in input vector(s).
  *
- *    [in]  x     - complex array of dimension (at least) (1+(n-1)*abs(incx)).
- *    [in]  incx  - int. Specifies the storage spacing between elements of `x`.
+ *    [in]  x    - complex array of dimension (at least) (1+(n-1)*abs(incx)).
+ *    [in]  incx - int. Specifies the storage spacing between elements of `x`.
  *
- *    [out]  y    - complex array of dimension (at least) (1+(n-1)*abs(incy)).
- *    [in]  incy  - int. Specifies the storage spacing between elements of `y`.
+ *    [out]  y   - complex array of dimension (at least) (1+(n-1)*abs(incy)).
+ *    [in]  incy - int. Specifies the storage spacing between elements of `y`.
  *
  * \examples
  *
- * \level 2 blas routine.
+ * \level 1 blas routine.
  *     \author Univ. of Tennessee.
  *     \author Univ. of California Berkeley.
  *     \author Univ. of Colorado Denver.

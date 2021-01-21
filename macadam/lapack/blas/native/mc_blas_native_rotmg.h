@@ -96,7 +96,10 @@ MC_TARGET_FUNC void mc_blas_native_drotmg(double * d1, double * d2, double * x1,
 #	endif
 
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	mcswap_var(w, mc_blas_vector_at(param, 3), mc_blas_vector_at(param, 4));
+	mcswap_var(w
+		, mc_blas_vector_at(param, 3)
+		, mc_blas_vector_at(param, 4)
+	);
 #	endif
 }
 

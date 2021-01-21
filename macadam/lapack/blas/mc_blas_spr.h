@@ -62,6 +62,9 @@
 #include <macadam/lapack/blas/mc_blas_access.h>
 #include <macadam/lapack/blas/mc_blas_lsame.h>
 #include <macadam/lapack/blas/mc_blas_xerbla.h>
+#include <macadam/details/math/mc_cadd.h>
+#include <macadam/details/math/mc_ciseq.h>
+#include <macadam/details/math/mc_cmul.h>
 
 #ifndef MC_BLAS_SPR_H
 #define MC_BLAS_SPR_H
@@ -555,10 +558,10 @@ MC_TARGET_FUNC void mc_blas_cspr(const char uplo, const int n, const mc_complex_
 						k                        = k + 1;
 					}
 					mc_blas_vector_at(ap, kk + j - 1) = mc_caddf(mc_blas_vector_at(ap, kk + j - 1), mc_cmulf(mc_blas_vector_at(x, j), temp));
-				} else {
-					/* mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1); */
-				}
-				kk = kk + j;
+				} /* else {
+					mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1);
+				} */
+				kk   = kk + j;
 			}
 		} else {
 			jx = kx;
@@ -579,11 +582,11 @@ MC_TARGET_FUNC void mc_blas_cspr(const char uplo, const int n, const mc_complex_
 						ix                       = ix + incx;
 					}
 					mc_blas_vector_at(ap, kk + j - 1) = mc_caddf(mc_blas_vector_at(ap, kk + j - 1), mc_cmulf(mc_blas_vector_at(x, jx), temp));
-				} else {
-					/* mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1); */
-				}
-				jx = jx + incx;
-				kk = kk + j;
+				} /* else {
+					mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1);
+				} */
+				jx   = jx + incx;
+				kk   = kk + j;
 			}
 		}
 	} else {
@@ -598,17 +601,17 @@ MC_TARGET_FUNC void mc_blas_cspr(const char uplo, const int n, const mc_complex_
 			for (j = 1; j <= n; ++j) {
 				temp = mc_blas_vector_at(x, j);
 				if (!mc_ciseqf(temp, zero)) {
-					temp = mc_cmulf(alpha, temp);
+					temp                      = mc_cmulf(alpha, temp);
 					mc_blas_vector_at(ap, kk) = mc_caddf(mc_blas_vector_at(ap, kk), mc_cmulf(temp, mc_blas_vector_at(x, j)));
-					k = kk + 1;
+					k                         = kk + 1;
 					for (i = j + 1; i <= n; ++i) {
 						mc_blas_vector_at(ap, k) = mc_caddf(mc_blas_vector_at(ap, k), mc_cmulf(mc_blas_vector_at(x, i), temp));
 						k                        = k + 1;
 					}
-				} else {
-					/* mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk); */
-				}
-				kk = kk + n - j + 1;
+				} /* else {
+					mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk);
+				} */
+				kk   = kk + n - j + 1;
 			}
 		} else {
 			jx = kx;
@@ -622,18 +625,18 @@ MC_TARGET_FUNC void mc_blas_cspr(const char uplo, const int n, const mc_complex_
 			for (j = 1; j <= n; ++j) {
 				temp = mc_blas_vector_at(x, jx);
 				if (!mc_ciseqf(temp, zero)) {
-					temp = mc_cmulf(alpha, temp);
+					temp                      = mc_cmulf(alpha, temp);
 					mc_blas_vector_at(ap, kk) = mc_caddf(mc_blas_vector_at(ap, kk), mc_cmulf(temp, mc_blas_vector_at(x, jx)));
-					ix   = jx;
+					ix                        = jx;
 					for (k = kk + 1; k <= (kk + n - j); ++k) {
 						ix                       = ix + incx;
 						mc_blas_vector_at(ap, k) = mc_caddf(mc_blas_vector_at(ap, k), mc_cmulf(mc_blas_vector_at(x, ix), temp));
 					}
-				} else {
-					/* mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk); */
-				}
-				jx = jx + incx;
-				kk = kk + n - j + 1;
+				} /* else {
+					mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk);
+				} */
+				jx   = jx + incx;
+				kk   = kk + n - j + 1;
 			}
 		}
 	}
@@ -697,10 +700,10 @@ MC_TARGET_FUNC void mc_blas_zspr(const char uplo, const int n, const mc_complex_
 						k                        = k + 1;
 					}
 					mc_blas_vector_at(ap, kk + j - 1) = mc_cadd(mc_blas_vector_at(ap, kk + j - 1), mc_cmul(mc_blas_vector_at(x, j), temp));
-				} else {
-					/* mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1); */
-				}
-				kk = kk + j;
+				} /* else {
+					mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1);
+				} */
+				kk   = kk + j;
 			}
 		} else {
 			jx = kx;
@@ -721,11 +724,11 @@ MC_TARGET_FUNC void mc_blas_zspr(const char uplo, const int n, const mc_complex_
 						ix                       = ix + incx;
 					}
 					mc_blas_vector_at(ap, kk + j - 1) = mc_cadd(mc_blas_vector_at(ap, kk + j - 1), mc_cmul(mc_blas_vector_at(x, jx), temp));
-				} else {
-					/* mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1); */
-				}
-				jx = jx + incx;
-				kk = kk + j;
+				} /* else {
+					mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1);
+				} */
+				jx   = jx + incx;
+				kk   = kk + j;
 			}
 		}
 	} else {
@@ -740,17 +743,17 @@ MC_TARGET_FUNC void mc_blas_zspr(const char uplo, const int n, const mc_complex_
 			for (j = 1; j <= n; ++j) {
 				temp = mc_blas_vector_at(x, j);
 				if (!mc_ciseq(temp, zero)) {
-					temp = mc_cmul(alpha, temp);
+					temp                      = mc_cmul(alpha, temp);
 					mc_blas_vector_at(ap, kk) = mc_cadd(mc_blas_vector_at(ap, kk), mc_cmul(temp, mc_blas_vector_at(x, j)));
-					k = kk + 1;
+					k                         = kk + 1;
 					for (i = j + 1; i <= n; ++i) {
 						mc_blas_vector_at(ap, k) = mc_cadd(mc_blas_vector_at(ap, k), mc_cmul(mc_blas_vector_at(x, i), temp));
 						k                        = k + 1;
 					}
-				} else {
-					/* mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk); */
-				}
-				kk = kk + n - j + 1;
+				} /* else {
+					mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk);
+				} */
+				kk   = kk + n - j + 1;
 			}
 		} else {
 			jx = kx;
@@ -764,18 +767,18 @@ MC_TARGET_FUNC void mc_blas_zspr(const char uplo, const int n, const mc_complex_
 			for (j = 1; j <= n; ++j) {
 				temp = mc_blas_vector_at(x, jx);
 				if (!mc_ciseq(temp, zero)) {
-					temp = mc_cmul(alpha, temp);
+					temp                      = mc_cmul(alpha, temp);
 					mc_blas_vector_at(ap, kk) = mc_cadd(mc_blas_vector_at(ap, kk), mc_cmul(temp, mc_blas_vector_at(x, jx)));
-					ix   = jx;
+					ix                        = jx;
 					for (k = kk + 1; k <= (kk + n - j); ++k) {
 						ix                       = ix + incx;
 						mc_blas_vector_at(ap, k) = mc_cadd(mc_blas_vector_at(ap, k), mc_cmul(mc_blas_vector_at(x, ix), temp));
 					}
-				} else {
-					/* mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk); */
-				}
-				jx = jx + incx;
-				kk = kk + n - j + 1;
+				} /* else {
+					mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk);
+				} */
+				jx   = jx + incx;
+				kk   = kk + n - j + 1;
 			}
 		}
 	}
@@ -839,10 +842,10 @@ MC_TARGET_FUNC void mc_blas_qspr(const char uplo, const int n, const mc_complex_
 						k                        = k + 1;
 					}
 					mc_blas_vector_at(ap, kk + j - 1) = mc_caddl(mc_blas_vector_at(ap, kk + j - 1), mc_cmull(mc_blas_vector_at(x, j), temp));
-				} else {
-					/* mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1); */
-				}
-				kk = kk + j;
+				} /* else {
+					mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1);
+				} */
+				kk   = kk + j;
 			}
 		} else {
 			jx = kx;
@@ -863,11 +866,11 @@ MC_TARGET_FUNC void mc_blas_qspr(const char uplo, const int n, const mc_complex_
 						ix                       = ix + incx;
 					}
 					mc_blas_vector_at(ap, kk + j - 1) = mc_caddl(mc_blas_vector_at(ap, kk + j - 1), mc_cmull(mc_blas_vector_at(x, jx), temp));
-				} else {
-					/* mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1); */
-				}
-				jx = jx + incx;
-				kk = kk + j;
+				} /* else {
+					mc_blas_vector_at(ap, kk + j - 1) = mc_blas_vector_at(ap, kk + j - 1);
+				} */
+				jx   = jx + incx;
+				kk   = kk + j;
 			}
 		}
 	} else {
@@ -882,17 +885,17 @@ MC_TARGET_FUNC void mc_blas_qspr(const char uplo, const int n, const mc_complex_
 			for (j = 1; j <= n; ++j) {
 				temp = mc_blas_vector_at(x, j);
 				if (!mc_ciseql(temp, zero)) {
-					temp = mc_cmull(alpha, temp);
+					temp                      = mc_cmull(alpha, temp);
 					mc_blas_vector_at(ap, kk) = mc_caddl(mc_blas_vector_at(ap, kk), mc_cmull(temp, mc_blas_vector_at(x, j)));
-					k = kk + 1;
+					k                         = kk + 1;
 					for (i = j + 1; i <= n; ++i) {
 						mc_blas_vector_at(ap, k) = mc_caddl(mc_blas_vector_at(ap, k), mc_cmull(mc_blas_vector_at(x, i), temp));
 						k                        = k + 1;
 					}
-				} else {
-					/* mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk); */
-				}
-				kk = kk + n - j + 1;
+				} /* else {
+					mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk);
+				} */
+				kk   = kk + n - j + 1;
 			}
 		} else {
 			jx = kx;
@@ -906,18 +909,18 @@ MC_TARGET_FUNC void mc_blas_qspr(const char uplo, const int n, const mc_complex_
 			for (j = 1; j <= n; ++j) {
 				temp = mc_blas_vector_at(x, jx);
 				if (!mc_ciseql(temp, zero)) {
-					temp = mc_cmull(alpha, temp);
+					temp                      = mc_cmull(alpha, temp);
 					mc_blas_vector_at(ap, kk) = mc_caddl(mc_blas_vector_at(ap, kk), mc_cmull(temp, mc_blas_vector_at(x, jx)));
-					ix   = jx;
+					ix                        = jx;
 					for (k = kk + 1; k <= (kk + n - j); ++k) {
 						ix                       = ix + incx;
 						mc_blas_vector_at(ap, k) = mc_caddl(mc_blas_vector_at(ap, k), mc_cmull(mc_blas_vector_at(x, ix), temp));
 					}
-				} else {
-					/* mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk); */
-				}
-				jx = jx + incx;
-				kk = kk + n - j + 1;
+				} /* else {
+					mc_blas_vector_at(ap, kk) = mc_blas_vector_at(ap, kk);
+				} */
+				jx   = jx + incx;
+				kk   = kk + n - j + 1;
 			}
 		}
 	}
