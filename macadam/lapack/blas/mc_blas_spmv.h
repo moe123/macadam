@@ -13,8 +13,8 @@
  * \synopsis
  *    void ?spmv(uplo, n, alpha, ap, x, incx, beta, y, incy)
  *    real-floating alpha, beta
- *    int            incx, incy, n
- *    char           uplo
+ *    int           incx, incy, n
+ *    char          uplo
  *    real-floating ap(*), x(*), y(*)
  *
  * \purpose
@@ -25,19 +25,19 @@
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the matrix `a` is
  *    supplied in the packed array `ap` as follows:
- *    UPLO='U' or 'u', the upper triangular part of `a` supplied in `ap`.
- *    UPLO='L' or 'l', the lower triangular part of `a` supplied in `ap`.
+ *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
+ *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
  *    [in] ap    - real-floating array of dimension (at least) ((n*(n+1))/2).
- *    With UPLO='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
+ *    With uplo='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
  *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
  *    and ap(3) contain a(1,2) and a(2,2) respectively, and so on, else row by row following the same logic.
  *
- *    With UPLO='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
+ *    With uplo='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
  *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
  *    and ap(3) contain a(2,1)  and a(3,1) respectively, and so on, else row by row following the same logic.
  *
@@ -710,19 +710,19 @@ MC_TARGET_FUNC void mc_blas_lspmv(const char uplo, const int n, const long doubl
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the matrix `a` is
  *    supplied in the packed array `ap` as follows:
- *    UPLO='U' or 'u', the upper triangular part of `a` supplied in `ap`.
- *    UPLO='L' or 'l', the lower triangular part of `a` supplied in `ap`.
+ *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
+ *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
  *    [in] ap    - complex array of dimension (at least) ((n*(n+1))/2).
- *    With UPLO='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
+ *    With uplo='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
  *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
  *    and ap(3) contain a(1,2) and a(2,2) respectively, and so on, else row by row following the same logic.
  *
- *    With UPLO='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
+ *    With uplo='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
  *    packed sequentially, if column-major layout: column by column, so that ap(1) contains a(1,1), ap(2)
  *    and ap(3) contain a(2,1)  and a(3,1) respectively, and so on, else row by row following the same logic.
  *

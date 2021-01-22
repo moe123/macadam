@@ -13,8 +13,8 @@
  * \synopsis
  *    void ?sbmv(uplo, n, k, alpha, a, lda, x, incx, beta, y, incy)
  *    real-floating alpha, beta
- *    int            incx, incy, k, lda, n
- *    char           uplo
+ *    int           incx, incy, k, lda, n
+ *    char          uplo
  *    real-floating a(lda, *), x(*), y(*)
  *
  * \purpose
@@ -27,8 +27,8 @@
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the band matrix `a`
  *    is being supplied as follows:
- *    UPLO='U' or 'u', the upper triangular part of `a` is being supplied.
- *    UPLO='L' or 'l', the lower triangular part of `a` is being supplied.
+ *    uplo='U' or 'u', the upper triangular part of `a` is being supplied.
+ *    uplo='L' or 'l', the lower triangular part of `a` is being supplied.
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
@@ -37,17 +37,17 @@
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
  *    [in] a     - real-floating array of dimension (lda, n).
- *    With UPLO='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
+ *    With uplo='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
  *    top left k by k triangle of the array a is not referenced.
  *
- *    With UPLO='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
+ *    With uplo='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
  *    right k by k triangle of the array a is not referenced.
  *
- *    [in] lda   - int. Specifies the first dimension of `a`, a must be at least (k+1).
+ *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k+1).
  *
  *    [int] x    - real-floating array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
  *    contain the vector `x`.
@@ -739,8 +739,8 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the band matrix `a`
  *    is being supplied as follows:
- *    UPLO='U' or 'u', the upper triangular part of `a` is being supplied.
- *    UPLO='L' or 'l', the lower triangular part of `a` is being supplied.
+ *    uplo='U' or 'u', the upper triangular part of `a` is being supplied.
+ *    uplo='L' or 'l', the lower triangular part of `a` is being supplied.
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
@@ -749,17 +749,17 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
  *    [in] a     - complex array of dimension (lda, n).
- *    With UPLO='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
+ *    With uplo='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
  *    top left k by k triangle of the array a is not referenced.
  *
- *    With UPLO='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
+ *    With uplo='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
  *    right k by k triangle of the array a is not referenced.
  *
- *    [in] lda   - int. Specifies the first dimension of `a`, a must be at least (k+1).
+ *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k+1).
  *
  *    [int] x    - complex array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
  *    contain the vector `x`.

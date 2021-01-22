@@ -25,8 +25,8 @@
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the matrix `a` is supplied
  *    in the packed array `ap` as follows:
- *    UPLO='U' or 'u', the upper triangular part of `a` supplied in `ap`.
- *    UPLO='L' or 'l', the lower triangular part of `a` supplied in `ap`.
+ *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
+ *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *
@@ -38,11 +38,11 @@
  *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  *    [in] ap    - real-floating array of dimension (at least) ((n*(n+1))/2).
- *    With UPLO='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
+ *    With uplo='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(1,2)
  *    and a(2,2) respectively, and so on.
  *
- *    With UPLO='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
+ *    With uplo='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(2,1)
  *    and a(3,1) respectively, and so on.
  *
@@ -121,8 +121,8 @@ MC_TARGET_FUNC void mc_blas_native_dspr(const char uplo, const int n, const doub
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the matrix `a` is supplied
  *    in the packed array `ap` as follows:
- *    UPLO='U' or 'u', the upper triangular part of `a` supplied in `ap`.
- *    UPLO='L' or 'l', the lower triangular part of `a` supplied in `ap`.
+ *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
+ *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
  *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
  *
@@ -134,11 +134,11 @@ MC_TARGET_FUNC void mc_blas_native_dspr(const char uplo, const int n, const doub
  *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
  *    [out] ap   - complex array of dimension (at least) ((n*(n+1))/2).
- *    With UPLO='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
+ *    With uplo='U' or 'u', the array `ap` must contain the upper triangular part of the symmetric matrix
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(1,2)
  *    and a(2,2) respectively, and so on.
  *
- *    With UPLO='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
+ *    With uplo='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(2,1)
  *    and a(3,1) respectively, and so on.
  *

@@ -198,6 +198,10 @@
 #		define mc_dswap  mc_blas_native_dswap
 #		define mc_cswap  mc_blas_native_cswap
 #		define mc_zswap  mc_blas_native_zswap
+#		define mc_ssymm  mc_blas_native_ssymm
+#		define mc_dsymm  mc_blas_native_dsymm
+#		define mc_csymm  mc_blas_native_csymm
+#		define mc_zsymm  mc_blas_native_zsymm
 
 #	else
 
@@ -283,6 +287,10 @@
 #		define mc_dswap  mc_blas_dswap
 #		define mc_cswap  mc_blas_cswap
 #		define mc_zswap  mc_blas_zswap
+#		define mc_ssymm  mc_blas_ssymm
+#		define mc_dsymm  mc_blas_dsymm
+#		define mc_csymm  mc_blas_csymm
+#		define mc_zsymm  mc_blas_zsymm
 
 #	endif
 
@@ -327,6 +335,8 @@
 #	define mc_lspr2   mc_blas_lspr2
 #	define mc_lswap   mc_blas_lswap
 #	define mc_qswap   mc_blas_qswap
+#	define mc_lsymm   mc_blas_lsymm
+#	define mc_qsymm   mc_blas_qsymm
 
 #endif /* !MC_BLAS_H */
 
