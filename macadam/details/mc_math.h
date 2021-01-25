@@ -183,9 +183,9 @@
 #	include <macadam/details/math/mc_raise5.h>
 #	include <macadam/details/math/mc_raise6.h>
 #	include <macadam/details/math/mc_remainder.h>
+#	include <macadam/details/math/mc_remint2.h>
 #	include <macadam/details/math/mc_rempio2_cw.h>
 #	include <macadam/details/math/mc_remquo.h>
-#	include <macadam/details/math/mc_remzpi.h>
 #	include <macadam/details/math/mc_rgamma.h>
 #	include <macadam/details/math/mc_rint.h>
 #	include <macadam/details/math/mc_rootn.h>

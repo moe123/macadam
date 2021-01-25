@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_remzpi.h
+// mc_remint2.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
@@ -16,9 +16,9 @@
 #ifndef MC_REMZPI_H
 #define MC_REMZPI_H
 
-#pragma mark - mc_remzpi -
+#pragma mark - mc_remint2 -
 
-MC_TARGET_PROC int64_t mc_remzpif(float x, float * z)
+MC_TARGET_PROC int64_t mc_remint2f(float x, float * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
 	int64_t r = 0;
@@ -58,7 +58,7 @@ MC_TARGET_PROC int64_t mc_remzpif(float x, float * z)
 	return r;
 }
 
-MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
+MC_TARGET_PROC int64_t mc_remint2(double x, double * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
 	int64_t r = 0;
@@ -98,7 +98,7 @@ MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
 	return r;
 }
 
-MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
+MC_TARGET_PROC int64_t mc_remint2l(long double x, long double * z)
 {
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
@@ -139,7 +139,7 @@ MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 	return r;
 #	else
 	double y  = mc_cast(double, x), w = 0.0;
-	int64_t r = mc_remzpi(y, &w);
+	int64_t r = mc_remint2(y, &w);
 	*z        = mc_cast(long double, w);
 	return r;
 #	endif

@@ -7,7 +7,7 @@
 //
 
 #include <macadam/details/math/mc_cos.h>
-#include <macadam/details/math/mc_remzpi.h>
+#include <macadam/details/math/mc_remint2.h>
 #include <macadam/details/math/mc_sin.h>
 
 #ifndef MC_SINPI_H
@@ -18,7 +18,7 @@
 MC_TARGET_FUNC float mc_sinpif(float x)
 {
 	float r   = 0.0f;
-	int64_t i = mc_remzpif(x, &r) & 3;
+	int64_t i = mc_remint2f(x, &r) & 3;
 	r         = MCK_KF(MCK_PI) * r;
 	switch (i) {
 		case 0:
@@ -39,7 +39,7 @@ MC_TARGET_FUNC float mc_sinpif(float x)
 MC_TARGET_FUNC double mc_sinpi(double x)
 {
 	double r  = 0.0;
-	int64_t i = mc_remzpi(x, &r) & 3;
+	int64_t i = mc_remint2(x, &r) & 3;
 	r         = MCK_K(MCK_PI) * r;
 	switch (i) {
 		case 0:
@@ -60,7 +60,7 @@ MC_TARGET_FUNC double mc_sinpi(double x)
 MC_TARGET_FUNC long double mc_sinpil(long double x)
 {
 	long double r = 0.0L;
-	int64_t i     = mc_remzpil(x, &r) & 3;
+	int64_t i     = mc_remint2l(x, &r) & 3;
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_PIl)
 	r             = M_PIl * r;
 #	else
