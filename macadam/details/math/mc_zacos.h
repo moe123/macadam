@@ -22,8 +22,9 @@
 #pragma mark - mc_zacos -
 
 MC_TARGET_PROC void mc_zacosf(float * c_r, float * c_i
-	, float a_r, float a_i
+	, const float a_r, const float a_i
 ) {
+	float w;
 	if (mc_isinf(a_r)) {
 		if (mc_isnan(a_i)) {
 			*c_r = a_i;
@@ -65,20 +66,21 @@ MC_TARGET_PROC void mc_zacosf(float * c_r, float * c_i
 		mc_zlogf(c_r, c_i, *c_r, *c_i);
 
 		if (mc_signbit(a_i)) {
-			 a_r = mc_fabsf(*c_r);
+			 w   = mc_fabsf(*c_r);
 			*c_r = mc_fabsf(*c_i);
-			*c_i = a_r;
+			*c_i = w;
 		} else {
-			 a_r =  mc_fabsf(*c_r);
+			 w   =  mc_fabsf(*c_r);
 			*c_r =  mc_fabsf(*c_i);
-			*c_i = -a_r;
+			*c_i = -w;
 		}
 	}
 }
 
 MC_TARGET_PROC void mc_zacos(double * c_r, double * c_i
-	, double a_r, double a_i
+	, const double a_r, const double a_i
 ) {
+	double w;
 	if (mc_isinf(a_r)) {
 		if (mc_isnan(a_i)) {
 			*c_r = a_i;
@@ -120,20 +122,21 @@ MC_TARGET_PROC void mc_zacos(double * c_r, double * c_i
 		mc_zlog(c_r, c_i, *c_r, *c_i);
 
 		if (mc_signbit(a_i)) {
-			 a_r = mc_fabs(*c_r);
+			 w   = mc_fabs(*c_r);
 			*c_r = mc_fabs(*c_i);
-			*c_i = a_r;
+			*c_i = w;
 		} else {
-			 a_r =  mc_fabs(*c_r);
+			 w   =  mc_fabs(*c_r);
 			*c_r =  mc_fabs(*c_i);
-			*c_i = -a_r;
+			*c_i = -w;
 		}
 	}
 }
 
 MC_TARGET_PROC void mc_zacosl(long double * c_r, long double * c_i
-	, long double a_r, long double a_i
+	, const long double a_r, const long double a_i
 ) {
+	long double w;
 	if (mc_isinf(a_r)) {
 		if (mc_isnan(a_i)) {
 			*c_r = a_i;
@@ -175,13 +178,13 @@ MC_TARGET_PROC void mc_zacosl(long double * c_r, long double * c_i
 		mc_zlogl(c_r, c_i, *c_r, *c_i);
 
 		if (mc_signbit(a_i)) {
-			 a_r = mc_fabsl(*c_r);
+			 w   = mc_fabsl(*c_r);
 			*c_r = mc_fabsl(*c_i);
-			*c_i = a_r;
+			*c_i = w;
 		} else {
-			 a_r =  mc_fabsl(*c_r);
+			 w   =  mc_fabsl(*c_r);
 			*c_r =  mc_fabsl(*c_i);
-			*c_i = -a_r;
+			*c_i = -w;
 		}
 	}
 }

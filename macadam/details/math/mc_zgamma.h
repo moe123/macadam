@@ -40,17 +40,17 @@ MC_TARGET_PROC void mc_zgammal_approx0(long double * r_r, long double * r_i, lon
 
 #pragma mark - mc_zgamma -
 
-MC_TARGET_PROC void mc_zgammaf(float * r_r, float * r_i, float x_r, float x_i)
+MC_TARGET_PROC void mc_zgammaf(float * r_r, float * r_i, const float x_r, const float x_i)
 {
 	mc_zgammaf_approx0(r_r, r_i, x_r, x_i);
 }
 
-MC_TARGET_PROC void mc_zgamma(double * r_r, double * r_i, double x_r, double x_i)
+MC_TARGET_PROC void mc_zgamma(double * r_r, double * r_i, const double x_r, const double x_i)
 {
 	mc_zgamma_approx0(r_r, r_i, x_r, x_i);
 }
 
-MC_TARGET_PROC void mc_zgammal(long double * r_r, long double * r_i, long double x_r, long double x_i)
+MC_TARGET_PROC void mc_zgammal(long double * r_r, long double * r_i, const long double x_r, const long double x_i)
 {
 	mc_zgammal_approx0(r_r, r_i, x_r, x_i);
 }

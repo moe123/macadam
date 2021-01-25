@@ -358,17 +358,17 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 
 #pragma mark - mc_zlgamma -
 
-MC_TARGET_PROC void mc_zlgammaf(float * r_r, float * r_i, float x_r, float x_i)
+MC_TARGET_PROC void mc_zlgammaf(float * r_r, float * r_i, const float x_r, const float x_i)
 {
 	mc_zlgammaf_approx0(r_r, r_i, x_r, x_i);
 }
 
-MC_TARGET_PROC void mc_zlgamma(double * r_r, double * r_i, double x_r, double x_i)
+MC_TARGET_PROC void mc_zlgamma(double * r_r, double * r_i, const double x_r, const double x_i)
 {
 	mc_zlgamma_approx0(r_r, r_i, x_r, x_i);
 }
 
-MC_TARGET_PROC void mc_zlgammal(long double * r_r, long double * r_i, long double x_r, long double x_i)
+MC_TARGET_PROC void mc_zlgammal(long double * r_r, long double * r_i, const long double x_r, const long double x_i)
 {
 	mc_zlgammal_approx0(r_r, r_i, x_r, x_i);
 }

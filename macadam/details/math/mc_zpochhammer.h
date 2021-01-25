@@ -14,11 +14,11 @@
 #pragma mark - mc_zpochhammer -
 
 MC_TARGET_PROC void zpochhammerf(
-	  float * r_r
-	, float * r_i
-	, float x_r
-	, float x_i
-	, int n
+	  float *     r_r
+	, float *     r_i
+	, const float x_r
+	, const float x_i
+	, const int   n
 ) {
 	int i = 1;
 	*r_r  = 1.0f;
@@ -31,11 +31,11 @@ MC_TARGET_PROC void zpochhammerf(
 }
 
 MC_TARGET_PROC void mc_zpochhammer(
-	  double * r_r
-	, double * r_i
-	, double x_r
-	, double x_i
-	, int n
+	  double *     r_r
+	, double *     r_i
+	, const double x_r
+	, const double x_i
+	, const int    n
 ) {
 	int i = 1;
 	*r_r  = 1.0;
@@ -48,11 +48,11 @@ MC_TARGET_PROC void mc_zpochhammer(
 }
 
 MC_TARGET_PROC void mc_zpochhammerl(
-	  long double * r_r
-	, long double * r_i
-	, long double x_r
-	, long double x_i
-	, int n
+	  long double *     r_r
+	, long double *     r_i
+	, const long double x_r
+	, const long double x_i
+	, const int         n
 ) {
 	int i = 1;
 	*r_r  = 1.0L;

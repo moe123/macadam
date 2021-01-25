@@ -19,11 +19,12 @@ MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 {
 	float r                          = MCLIMITS_MAXF;
 	const unsigned int max_factorial = 35;
-	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
+
+	if (n < 0x1000001U && k < 0x1000001U) {
 		if (k > n) {
 			return MCLIMITS_MAXF;
 		} else if ((k == 0) || (k == n)) {
-			return mc_cast(float, 1);
+			return 1.0f;
 		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(float, n);
 		}
@@ -56,7 +57,7 @@ MC_TARGET_FUNC double mc_choose(unsigned int n, unsigned int k)
 		if (k > n) {
 			return MCLIMITS_MAX;
 		} else if ((k == 0) || (k == n)) {
-			return mc_cast(double, 1);
+			return 1.0;
 		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(double, n);
 		}
@@ -93,7 +94,7 @@ MC_TARGET_FUNC long double mc_choosel(unsigned int n, unsigned int k)
 		if (k > n) {
 			return MCLIMITS_MAXL;
 		} else if ((k == 0) || (k == n)) {
-			return mc_cast(long double, 1);
+			return 1.0L;
 		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(long double, n);
 		}

@@ -26,7 +26,7 @@ MC_TARGET_PROC int64_t mc_remzpif(float x, float * z)
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	const int64_t max = INT64_MAX;
 #	else
-	const int64_t max = mc_cast(const int64_t, 9223372036854775807);
+	const int64_t max = mc_cast(const int64_t, 0x7FFFFFFFFFFFFFFF);
 #	endif
 	*z = 0.0f;
 	if (mc_fisvalf(x)) {
@@ -66,7 +66,7 @@ MC_TARGET_PROC int64_t mc_remzpi(double x, double * z)
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	const int64_t max = INT64_MAX;
 #	else
-	const int64_t max = mc_cast(const int64_t, 9223372036854775807);
+	const int64_t max = mc_cast(const int64_t, 0x7FFFFFFFFFFFFFFF);
 #	endif
 	*z = 0.0;
 	if (mc_fisval(x)) {
@@ -107,7 +107,7 @@ MC_TARGET_PROC int64_t mc_remzpil(long double x, long double * z)
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	const int64_t max = INT64_MAX;
 #	else
-	const int64_t max = mc_cast(const int64_t, 9223372036854775807);
+	const int64_t max = mc_cast(const int64_t, 0x7FFFFFFFFFFFFFFF);
 #	endif
 	*z = 0.0L;
 	if (mc_fisvall(x)) {

@@ -26,13 +26,13 @@
 #	if MC_TARGET_RAND_USE_PCG32
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 static MC_TARGET_THREAD_LOCAL uint64_t mc_randi_seeds_s[]  = {
-	  mc_cast_expr(const uint64_t, 0x853c49e6748fea9bULL)
-	, mc_cast_expr(const uint64_t, 0xda3e39cb94b95bdbULL)
+	  UINT64_C(0x853C49E6748FEA9B)
+	, UINT64_C(0xDA3E39CB94B95BDB)
 };
 #	else
 static MC_TARGET_THREAD_LOCAL uint64_t mc_randi_seeds_s[]  = {
-	  mc_cast_expr(const uint64_t, 0x853c49e6748fea9b   )
-	, mc_cast_expr(const uint64_t, 0xda3e39cb94b95bdb   )
+	  mc_cast_expr(const uint64_t, 0x853C49E6748FEA9B   )
+	, mc_cast_expr(const uint64_t, 0xDA3E39CB94B95BDB   )
 };
 #	endif
 #	elif MC_TARGET_RAND_USE_MARSAGLIAMWC
@@ -147,9 +147,9 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	uint64_t a;
 	a                   = mc_randi_seeds_s[0];
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-	mc_randi_seeds_s[0] = a * mc_cast_expr(const uint64_t, 6364136223846793005ULL) + mc_randi_seeds_s[1];
+	mc_randi_seeds_s[0] = a * UINT64_C(0x5851F42D4C957F2D)                     + mc_randi_seeds_s[1];
 #	else
-	mc_randi_seeds_s[0] = a * mc_cast_expr(const uint64_t, 6364136223846793005   ) + mc_randi_seeds_s[1];
+	mc_randi_seeds_s[0] = a * mc_cast_expr(const uint64_t, 0x5851F42D4C957F2D) + mc_randi_seeds_s[1];
 #	endif
 	x                   = mc_cast_expr(uint32_t, ((a >> 18U) ^ a) >> 27U);
 	r                   = a >> 59U;

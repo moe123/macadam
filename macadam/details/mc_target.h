@@ -580,7 +580,9 @@
 #			define mc_cmplx(re, im)  __extension__ (mc_complex_double_t)      { (double)(re)     , (double)(im)      }
 #			define mc_cmplxl(re, im) __extension__ (mc_complex_long_double_t) { (long double)(re), (long double)(im) }
 #		else
-#			error "C++98/03 compound literals extension needed."
+			MC_TARGET_FUNC mc_complex_float_t       mc_cmplxf (const float re, const float im)              { mc_complex_float_t       z = { re, im }; return z; }
+			MC_TARGET_FUNC mc_complex_double_t      mc_cmplx  (const double re, const double im)            { mc_complex_double_t      z = { re, im }; return z; }
+			MC_TARGET_FUNC mc_complex_long_double_t mc_cmplxl (const long double re, const long  double im) { mc_complex_long_double_t z = { re, im }; return z; }
 #		endif
 #	elif MC_TARGET_C99
 #		if MC_TARGET_BLAS_USE_NATIVE
