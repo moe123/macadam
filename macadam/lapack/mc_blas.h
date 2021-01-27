@@ -75,6 +75,8 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_spr.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_spr2.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_swap.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_symm.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_symv.h>
 
 #	if !MC_TARGET_BLAS_USE_OPENBLAS   \
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
@@ -202,7 +204,17 @@
 #		define mc_dsymm  mc_blas_native_dsymm
 #		define mc_csymm  mc_blas_native_csymm
 #		define mc_zsymm  mc_blas_native_zsymm
-
+#		define mc_ssymv  mc_blas_native_ssymv
+#		define mc_dsymv  mc_blas_native_dsymv
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		define mc_csymv  mc_blas_native_csymv
+#		define mc_zsymv  mc_blas_native_zsymv
+#	else
+#		define mc_csymv  mc_blas_csymv
+#		define mc_zsymv  mc_blas_zsymv
+#	endif
 #	else
 
 #		define mc_scabs1 mc_blas_scabs1
@@ -291,6 +303,10 @@
 #		define mc_dsymm  mc_blas_dsymm
 #		define mc_csymm  mc_blas_csymm
 #		define mc_zsymm  mc_blas_zsymm
+#		define mc_ssymv  mc_blas_ssymv
+#		define mc_dsymv  mc_blas_dsymv
+#		define mc_csymv  mc_blas_csymv
+#		define mc_zsymv  mc_blas_zsymv
 
 #	endif
 
@@ -337,6 +353,8 @@
 #	define mc_qswap   mc_blas_qswap
 #	define mc_lsymm   mc_blas_lsymm
 #	define mc_qsymm   mc_blas_qsymm
+#	define mc_lsymv   mc_blas_lsymv
+#	define mc_qsymv   mc_blas_qsymv
 
 #endif /* !MC_BLAS_H */
 
