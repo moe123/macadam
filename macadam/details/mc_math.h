@@ -44,6 +44,8 @@
 #	include <macadam/details/math/mc_biweight.h>
 #	include <macadam/details/math/mc_cabs.h>
 #	include <macadam/details/math/mc_cadd.h>
+#	include <macadam/details/math/mc_cbrti.h>
+#	include <macadam/details/math/mc_cbrtu.h>
 #	include <macadam/details/math/mc_cbrt.h>
 #	include <macadam/details/math/mc_cdiv.h>
 #	include <macadam/details/math/mc_ceil.h>
@@ -108,7 +110,6 @@
 #	include <macadam/details/math/mc_hypot2.h>
 #	include <macadam/details/math/mc_hzeta.h>
 #	include <macadam/details/math/mc_ibeta.h>
-#	include <macadam/details/math/mc_icbrt.h>
 #	include <macadam/details/math/mc_iexp2.h>
 #	include <macadam/details/math/mc_igamma.h>
 #	include <macadam/details/math/mc_ilog2.h>
@@ -116,7 +117,6 @@
 #	include <macadam/details/math/mc_inverf.h>
 #	include <macadam/details/math/mc_invlogit.h>
 #	include <macadam/details/math/mc_invprobit.h>
-#	include <macadam/details/math/mc_ipow2.h>
 #	include <macadam/details/math/mc_isfinite.h>
 #	include <macadam/details/math/mc_isinf.h>
 #	include <macadam/details/math/mc_isnan.h>
@@ -175,6 +175,8 @@
 #	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_pow2.h>
 #	include <macadam/details/math/mc_pow10.h>
+#	include <macadam/details/math/mc_powi.h>
+#	include <macadam/details/math/mc_powi2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
 #	include <macadam/details/math/mc_raise2.h>
@@ -217,7 +219,6 @@
 #	include <macadam/details/math/mc_trunc.h>
 #	include <macadam/details/math/mc_twoproduct.h>
 #	include <macadam/details/math/mc_twosum.h>
-#	include <macadam/details/math/mc_ucbrt.h>
 #	include <macadam/details/math/mc_xchebevaln.h>
 #	include <macadam/details/math/mc_xlog1px.h>
 #	include <macadam/details/math/mc_xlog1py.h>

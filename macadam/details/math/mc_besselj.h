@@ -15,16 +15,15 @@
 
 MC_TARGET_FUNC float mc_besselj0f(float x)
 {
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| !defined(__APPLE__)
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| !defined(__APPLE__)
 #	if MC_TARGET_CPP98
 	return ::j0f(x);
 #	else
@@ -52,16 +51,15 @@ MC_TARGET_FUNC double mc_besselj0(double x)
 
 MC_TARGET_FUNC long double mc_besselj0l(long double x)
 {
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| !defined(__APPLE__)
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| !defined(__APPLE__)
 #	if MC_TARGET_CPP98
 	return ::j0l(x);
 #	else
@@ -82,16 +80,15 @@ MC_TARGET_FUNC long double mc_besselj0l(long double x)
 
 MC_TARGET_FUNC float mc_besselj1f(float x)
 {
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| !defined(__APPLE__)
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| !defined(__APPLE__)
 #	if MC_TARGET_CPP98
 	return ::j1f(x);
 #	else
@@ -119,16 +116,15 @@ MC_TARGET_FUNC double mc_besselj1(double x)
 
 MC_TARGET_FUNC long double mc_besselj1l(long double x)
 {
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| !defined(__APPLE__)
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| !defined(__APPLE__)
 #	if MC_TARGET_CPP98
 	return ::j1l(x);
 #	else
@@ -149,16 +145,15 @@ MC_TARGET_FUNC long double mc_besselj1l(long double x)
 
 MC_TARGET_FUNC float mc_besseljnf(int n, float x)
 {
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| !defined(__APPLE__)
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| !defined(__APPLE__)
 #	if MC_TARGET_CPP98
 	return ::jnf(n, x);
 #	else
@@ -186,16 +181,15 @@ MC_TARGET_FUNC double mc_besseljn(int n, double x)
 
 MC_TARGET_FUNC long double mc_besseljnl(int n, long double x)
 {
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| !defined(__APPLE__)
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| !defined(__APPLE__)
 #	if MC_TARGET_CPP98
 	return ::jnl(n, x);
 #	else

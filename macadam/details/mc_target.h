@@ -30,16 +30,15 @@
 #		endif
 #	endif
 
-#	if     defined(__unix__)      \
-		||  defined(__linux__)     \
-		||  defined(__gnu_linux__) \
-		||  defined(__bsdi__)      \
-		||  defined(__FreeBSD__)   \
-		||  defined(__NetBSD__)    \
-		||  defined(__OpenBSD__)   \
-		||  defined(__bsdi__)      \
-		||  defined(__DragonFly__) \
-		|| (defined(__APPLE__) && defined(__MACH__))
+#	if  defined(__unix__)      \
+	||  defined(__linux__)     \
+	||  defined(__gnu_linux__) \
+	||  defined(__bsdi__)      \
+	||  defined(__FreeBSD__)   \
+	||  defined(__NetBSD__)    \
+	||  defined(__OpenBSD__)   \
+	||  defined(__DragonFly__) \
+	|| (defined(__APPLE__) && defined(__MACH__))
 #	include <unistd.h>
 #	endif
 
@@ -715,14 +714,98 @@
 		_BitScanReverse(&ret, m);
 		return mc_cast(int, ((CHAR_BIT * sizeof(unsigned __int32) - 1) ^ ret));
 	}
+
+	MC_TARGET_FUNC unsigned __int16 __builtin_bswap16(unsigned __int16 x)
+	{ return _byteswap_ushort(x); }
+
+	MC_TARGET_FUNC unsigned __int32 __builtin_bswap32(unsigned __int32 x)
+	{ return _byteswap_ulong(x); }
+
+	MC_TARGET_FUNC unsigned __int64 __builtin_bswap64(unsigned __int64 x)
+	{ return _byteswap_uint64(x); }
+
+#	undef __LITTLE_ENDIAN__
+#	undef __BIG_ENDIAN__
+#	undef __PDP_ENDIAN__
+#	undef __ORDER_BIG_ENDIAN__
+#	undef __ORDER_LITTLE_ENDIAN__
+#	undef __ORDER_PDP_ENDIAN__
+#	undef __BYTE_ORDER__
+
+#	if defined(_M_PPC) || defined(_M_ALPHA)
+#		define __BIG_ENDIAN__          1
+#		define __ORDER_BIG_ENDIAN__    4321
+#		define __ORDER_LITTLE_ENDIAN__ 1234
+#		define __ORDER_PDP_ENDIAN__    3412
+#		define __BYTE_ORDER__          __ORDER_BIG_ENDIAN__
+#	elif  defined(__ATOM__)       \
+		|| defined(__AVX__)        \
+		|| defined(__AVX2__)       \
+		|| defined(_M_IA64)        \
+		|| defined(_M_I86)         \
+		|| defined(_M_IX86)        \
+		|| defined(_M_X64)         \
+		|| defined(_M_AMD64)       \
+		|| defined(_M_ARM)         \
+		|| defined(_M_ARM_ARMV7VE) \
+		|| defined(_M_ARM64)
+#		define __LITTLE_ENDIAN__       1
+#		define __ORDER_BIG_ENDIAN__    4321
+#		define __ORDER_LITTLE_ENDIAN__ 1234
+#		define __ORDER_PDP_ENDIAN__    3412
+#		define __BYTE_ORDER__          __ORDER_LITTLE_ENDIAN__
+#	else
+#		error "Byteorder unknown."
+#	endif
 #	endif
 
-#	define MC_TARGET_CTZ(x)   __builtin_ctz(x)
-#	define MC_TARGET_CTZL(x)  __builtin_ctzl(x)
-#	define MC_TARGET_CTZLL(x) __builtin_ctzll(x)
-#	define MC_TARGET_CLZ(x)   __builtin_clz(x)
-#	define MC_TARGET_CLZL(x)  __builtin_clzl(x)
-#	define MC_TARGET_CLZLL(x) __builtin_clzll(x)
+#	if defined(__APPLE__) && defined(__MACH__)
+#		include <machine/endian.h>
+#	elif defined(__sun) || defined(sun) || defined(__SVR4)
+#		include <sys/byteorder.h>
+#	elif defined(__linux__)|| defined(__gnu_linux__)
+#		include <endian.h>
+#	elif defined(__unix__)      \
+	|| defined(__bsdi__)        \
+	|| defined(ANDROID)         \
+	|| defined(__ANDROID__)     \
+	|| defined(__ANDROID_API__) \
+	|| defined(__FreeBSD__)     \
+	|| defined(__NetBSD__)      \
+	|| defined(__OpenBSD__)     \
+	|| defined(__DragonFly__)
+#		include <sys/endian.h>
+#	else
+#		error "Endian header not found."
+#	endif
+
+#	if !defined(BYTE_ORDER) && defined(__BYTE_ORDER__)
+#		define BYTE_ORDER    __BYTE_ORDER__
+#	endif
+#	if !defined(BIG_ENDIAN) && defined(__ORDER_BIG_ENDIAN__)
+#		define BIG_ENDIAN    __ORDER_BIG_ENDIAN__
+#	endif
+#	if !defined(LITTLE_ENDIAN) && defined(__ORDER_LITTLE_ENDIAN__)
+#		define LITTLE_ENDIAN __ORDER_LITTLE_ENDIAN__
+#	endif
+#	if !defined(PDP_ENDIAN) && defined(__ORDER_PDP_ENDIAN__)
+#		define PDP_ENDIAN    __ORDER_PDP_ENDIAN__
+#	endif
+
+#	if !defined(BYTE_ORDER)
+#		error "Byteorder macro is not defined."
+#	endif
+
+#	define MC_TARGET_CTZ(x)     __builtin_ctz(x)
+#	define MC_TARGET_CTZL(x)    __builtin_ctzl(x)
+#	define MC_TARGET_CTZLL(x)   __builtin_ctzll(x)
+#	define MC_TARGET_CLZ(x)     __builtin_clz(x)
+#	define MC_TARGET_CLZL(x)    __builtin_clzl(x)
+#	define MC_TARGET_CLZLL(x)   __builtin_clzll(x)
+
+#	define MC_TARGET_BSWAP16(x) __builtin_bswap16(x)
+#	define MC_TARGET_BSWAP32(x) __builtin_bswap32(x)
+#	define MC_TARGET_BSWAP64(x) __builtin_bswap64(x)
 
 MC_TARGET_FUNC char               MC_TARGET_CHAR      (char x)               { return x; }
 MC_TARGET_FUNC short              MC_TARGET_SHORT     (short x)              { return x; }

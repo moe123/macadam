@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_icbrt.h>
+#include <macadam/details/math/mc_cbrti.h>
 #include <macadam/details/math/mc_ceil.h>
 #include <macadam/details/numa/mc_minmax1xn.h>
 #include <macadam/details/numa/mc_stdd1xn.h>
@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_histcb1xnf(const int n, const float * x, float min, float 
 			tol = 1E-04f;
 		}
 		if (stddev > tol) {
-			w = mc_ceilf((min - max) / (3.5f * stddev / mc_icbrtf(n)));
+			w = mc_ceilf((min - max) / (3.5f * stddev / mc_cbrtif(n)));
 			return mc_cast(int, w);
 		}
 	}
@@ -57,7 +57,7 @@ MC_TARGET_FUNC int mc_histcb1xn(const int n, const double * x, double min, doubl
 			tol = 1E-04;
 		}
 		if (stddev > tol) {
-			w = mc_ceil((min - max) / (3.5 * stddev / mc_icbrt(n)));
+			w = mc_ceil((min - max) / (3.5 * stddev / mc_cbrti(n)));
 			return mc_cast(int, w);
 		}
 	}
@@ -81,7 +81,7 @@ MC_TARGET_FUNC int mc_histcb1xnl(const int n, const long double * x, long double
 			tol = 1E-04L;
 		}
 		if (stddev > tol) {
-			w = mc_ceill((min - max) / (3.5L * stddev / mc_icbrtl(n)));
+			w = mc_ceill((min - max) / (3.5L * stddev / mc_cbrtil(n)));
 			return mc_cast(int, w);
 		}
 	}

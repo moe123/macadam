@@ -7,8 +7,8 @@
 //
 
 #include <macadam/details/math/mc_floor.h>
-#include <macadam/details/math/mc_ipow2.h>
 #include <macadam/details/math/mc_pow.h>
+#include <macadam/details/math/mc_powi2.h>
 
 #ifndef MC_POW2_H
 #define MC_POW2_H
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_pow2f(float x)
 		if (x > 1024.0f) {
 			return MCK_INFP;
 		}
-		return mc_ipow2f(mc_cast(int, x));
+		return mc_powi2f(mc_cast(int, x));
 	}
 	return mc_powf(2.0f, x);
 }
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_pow2(double x)
 		if (x > 1024.0) {
 			return MCK_INFP;
 		}
-		return mc_ipow2(mc_cast(int, x));
+		return mc_powi2(mc_cast(int, x));
 	}
 	return mc_pow(2.0, x);
 }
@@ -52,7 +52,7 @@ MC_TARGET_FUNC long double mc_pow2l(long double x)
 		if (x > 1024.0L) {
 			return MCK_INFP;
 		}
-		return mc_ipow2l(mc_cast(int, x));
+		return mc_powi2l(mc_cast(int, x));
 	}
 	return mc_powl(2.0L, x);
 }

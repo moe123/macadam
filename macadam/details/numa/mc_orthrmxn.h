@@ -63,7 +63,7 @@ MC_TARGET_FUNC int mc_orthrmxnf(const int m, const int n, const float * a, float
 			if (wantpvi) {
 				mc_minmax1xnf(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
-				if(k != l) {
+				if (k != l) {
 					for (i = 0; i < m; i++) {
 						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
 						if (i < k) {
@@ -176,7 +176,7 @@ MC_TARGET_FUNC int mc_orthrmxnff(const int m, const int n, const float * a, floa
 			if (wantpvi) {
 				mc_minmax1xn(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
-				if(k != l) {
+				if (k != l) {
 					for (i = 0; i < m; i++) {
 						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
 						if (i < k) {
@@ -289,7 +289,7 @@ MC_TARGET_FUNC int mc_orthrmxn(const int m, const int n, const double * a, doubl
 			if (wantpvi) {
 				mc_minmax1xn(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
-				if(k != l) {
+				if (k != l) {
 					for (i = 0; i < m; i++) {
 						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
 						if (i < k) {
@@ -402,7 +402,7 @@ MC_TARGET_FUNC int mc_orthrmxnl(const int m, const int n, const long double * a,
 			if (wantpvi) {
 				mc_minmax1xnl(n - k, w + k, MC_NULLPTR, &s, MC_NULLPTR, &l);
 				l = l + k;
-				if(k != l) {
+				if (k != l) {
 					for (i = 0; i < m; i++) {
 						mcswap_var(s, q[(n * i) + k], q[(n * i) + l]);
 						if (i < k) {
