@@ -20,13 +20,13 @@ MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 	float r                          = MCLIMITS_MAXF;
 	const unsigned int max_factorial = 35;
 
-	if (n < 0x1000001U && k < 0x1000001U) {
+	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
 			return MCLIMITS_MAXF;
 		} else if ((k == 0) || (k == n)) {
 			return 1.0f;
 		} else if ((k == 1) || (k == n - 1)) {
-			return mc_cast(float, n);
+			return n < 0x1000001U ? mc_cast(float, n) : MCLIMITS_MAXF;
 		}
 		if (n < max_factorial) {
 			r = mc_factorialf(n);
@@ -34,10 +34,17 @@ MC_TARGET_FUNC float mc_choosef(unsigned int n, unsigned int k)
 			r = r / mc_factorialf(k);
 			r = mc_ceilf(r - 0.5f);
 		} else {
-			r = (k < (n - k))
-				? mc_cast(float, (k - 0)) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
-				: mc_cast(float, (n - k)) * mc_betaf(mc_cast(float, (k + 1)), mc_cast(float, (n - k + 0)))
-			;
+			if (n < 0x1000001U && k < 0x1000001U) {
+				r = (k < (n - k))
+					? mc_cast(float, (k - 0)) * mc_betaf(mc_cast(float, (k + 0)), mc_cast(float, (n - k + 1)))
+					: mc_cast(float, (n - k)) * mc_betaf(mc_cast(float, (k + 1)), mc_cast(float, (n - k + 0)))
+				;
+			} else {
+				r = mc_cast_expr(float, (k < (n - k))
+					? mc_cast(double, (k - 0)) * mc_beta(mc_cast(double, (k + 0)), mc_cast(double, (n - k + 1)))
+					: mc_cast(double, (n - k)) * mc_beta(mc_cast(double, (k + 1)), mc_cast(double, (n - k + 0)))
+				);
+			}
 			if (r != 0) {
 				r = 1.0f / r;
 				r = mc_ceilf(r - 0.5f);
