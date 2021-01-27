@@ -116,7 +116,7 @@ MC_TARGET_FUNC void mc_blas_native_dsyr(const char uplo, const int n, const doub
  *    complex a(lda, *), x(*)
  *
  * \purpose
- *    ?syr performs the symmetric rank 1 operation: a=alpha*x*x' + a where alpha is a scalar,
+ *    ?syr performs the symmetric rank 1 operation: a=alpha*x*x_ + a where alpha is a scalar,
  *    `x` is an n element vector and `a` is an n by n symmetric matrix.
  *
  * \parameters
