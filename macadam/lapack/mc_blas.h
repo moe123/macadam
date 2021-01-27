@@ -227,6 +227,17 @@
 #		define mc_csyr   mc_blas_csyr
 #		define mc_zsyr   mc_blas_zsyr
 #	endif
+#		define mc_ssyr2  mc_blas_native_ssyr2
+#		define mc_dsyr2  mc_blas_native_dsyr2
+#	if !MC_TARGET_BLAS_USE_OPENBLAS   \
+	&& !MC_TARGET_BLAS_USE_ACCELERATE \
+	&& !MC_TARGET_BLAS_USE_VECLIB
+#		define mc_csyr2  mc_blas_native_csyr2
+#		define mc_zsyr2  mc_blas_native_zsyr2
+#	else
+#		define mc_csyr2  mc_blas_csyr2
+#		define mc_zsyr2  mc_blas_zsyr2
+#	endif
 
 #	else
 
@@ -324,6 +335,10 @@
 #		define mc_dsyr   mc_blas_dsyr
 #		define mc_csyr   mc_blas_csyr
 #		define mc_zsyr   mc_blas_zsyr
+#		define mc_ssyr2  mc_blas_ssyr2
+#		define mc_dsyr2  mc_blas_dsyr2
+#		define mc_csyr2  mc_blas_csyr2
+#		define mc_zsyr2  mc_blas_zsyr2
 
 #	endif
 
@@ -374,6 +389,8 @@
 #	define mc_qsymv   mc_blas_qsymv
 #	define mc_lsyr    mc_blas_lsyr
 #	define mc_qsyr    mc_blas_qsyr
+#	define mc_lsyr2   mc_blas_lsyr2
+#	define mc_qsyr2   mc_blas_qsyr2
 
 #endif /* !MC_BLAS_H */
 
