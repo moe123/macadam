@@ -18,7 +18,7 @@
  *    real-floating ap(*), x(*), y(*)
  *
  * \purpose
- *    ?spr2 performs the symmetric rank 2 operation: a=alpha*x*y' + alpha*y*x' + a where alpha is a real scalar,
+ *    ?spr2 performs the symmetric rank 2 operation: a=alpha*x*y' + alpha*y*x' + a where alpha is a scalar,
  *    `x` and `y` are n element vectors and `a` is an n by n symmetric matrix, supplied in packed form.
  *
  *

@@ -18,7 +18,7 @@
  *    real-floating ap(*), x(*)
  *
  * \purpose
- *    ?spr performs the symmetric rank 1 operation: a=alpha*x*x' + a where alpha is a real scalar,
+ *    ?spr performs the symmetric rank 1 operation: a=alpha*x*x' + a where alpha is a scalar,
  *    `x` is an n element vector and `a` is an n by n symmetric matrix, supplied in packed form.
  *
  *
@@ -459,7 +459,7 @@ MC_TARGET_FUNC void mc_blas_lspr(const char uplo, const int n, const long double
  *    complex ap(*), x(*)
  *
  * \purpose
- *    ?spr performs the symmetric rank 1 operation: a=alpha*x*x' + a where alpha is a real scalar,
+ *    ?spr performs the symmetric rank 1 operation: a=alpha*x*x' + a where alpha is a scalar,
  *    `x` is an n element vector and `a` is an n by n symmetric matrix, supplied in packed form.
  *
  *

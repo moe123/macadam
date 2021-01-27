@@ -18,8 +18,8 @@
  *    real-floating a(lda,*), x(*), y(*)
  *
  * \purpose
- *   ?gbmv performs one of the matrix-vector operations where alpha and beta are scalars, x and y
- *   are vectors and a is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
+ *   ?gbmv performs one of the matrix-vector operations: y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y where alpha and beta
+ *   are scalars, `x` and `y` are vectors and `a`is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
  *
  * \parameters
  *    [in] trans - char. Specifies the operation to be performed as follows:
@@ -736,8 +736,8 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, co
  *    complex a(lda,*), x(*), y(*)
  *
  * \purpose
- *   ?gbmv performs one of the matrix-vector operations where alpha and beta are scalars, x and y
- *   are vectors and a is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
+ *   ?gbmv performs one of the matrix-vector operations: y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y, or y=alpha*a_*x + beta*y where
+ *   alpha and beta are scalars, `x` and `y` are vectors and `a`is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
  *
  * \parameters
  *    [in] trans - char. Specifies the operation to be performed as follows:
