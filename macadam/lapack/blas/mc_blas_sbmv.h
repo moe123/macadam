@@ -82,7 +82,6 @@
  *     mc_blas_?sbmv('U', 7, 3, 2, a_band, 5, x, 1, 10, y, 2);
  *     on output -> y = { 30, 0 , 78, 0 , 148, 0 , 244, 0 , 288, 0 , 316, 0 , 322 }
  *
- *
  * \level 2 blas routine.
  *     \author Univ. of Tennessee.
  *     \author Univ. of California Berkeley.
