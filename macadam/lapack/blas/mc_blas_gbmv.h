@@ -48,7 +48,7 @@
  *
  *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
- *    [in] beta  - real-floating. Specifies the scalar beta. when beta is supplied as zero then y need not
+ *    [in] beta  - real-floating. Specifies the scalar beta. when beta is supplied as zero then `y` need not
  *    be set on input.
  *
  *    [out] y    - real-floating array of dimension (at least) (1+(m-1)*abs(incy)) when trans = 'N' or 'n'
@@ -766,7 +766,7 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, co
  *
  *    [in] incx  - int. Specifies the increment for the elements of `x`, incx must not be zero.
  *
- *    [in] beta  - complex. Specifies the scalar beta. when beta is supplied as zero then y need not
+ *    [in] beta  - complex. Specifies the scalar beta. when beta is supplied as zero then `y` need not
  *    be set on input.
  *
  *    [out] y    - complex array of dimension (at least) (1+(m-1)*abs(incy)) when trans = 'N' or 'n'
