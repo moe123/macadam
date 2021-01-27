@@ -18,8 +18,8 @@
  *    real-floating a(lda, *), b(ldb, *), c(ldc, *)
  *
  * \purpose
- *    ?symm performs the matrix-matrix operation: c=alpha*a*b + beta*c or c where alpha
- *    and beta are scalars, `a` is a symmetric matrix and `b` and `c` are m by n matrices.
+ *    ?symm performs the matrix-matrix operation: c=alpha*a*b + beta*c or or c=alpha*b*a + beta*c
+ *    where alpha and beta are scalars, `a` is a symmetric matrix and `b` and `c` are m by n matrices.
  *
  * \parameters
  *    [in] side  - char. Specifies whether  the symmetric matrix `a` appears on the left or right
@@ -37,7 +37,7 @@
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
- *    [in] a     - real-floating array of dimension (lda, ka). Where ka is m when side='L' or 'l' and is n otherwise.
+ *    [in] a     - real-floating array of dimension (lda, ka), where ka is m when side='L' or 'l' and is n otherwise.
  *    The m by m part of the array `a` must contain the symmetric matrix, such that when uplo='U' or 'u', the leading
  *    m by m upper triangular part of the array `a` must contain the upper triangular part of the symmetric matrix and
  *    the strictly lower triangular part of `a` is not referenced, and when uplo='L' or 'l', the leading m by m lower
@@ -53,7 +53,7 @@
  *    [in] lda   - int. Specifies the first dimension of `a`. When side='L' or 'l' then lda must be at least max(1, m),
  *    otherwise lda must be at least max(1, n).
  *
- *    [int] b    - real-floating array of dimension (lda, n).
+ *    [int] b    - real-floating array of dimension (ldb, n).
  *    The leading m by n part of the array `b` must contain the matrix `b`.
  *
  *    [in] ldb   - int. Specifies the first dimension of `b`. ldb must be at least max(1, m).
@@ -606,8 +606,8 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
  *    complex a(lda, *), b(ldb, *), c(ldc, *)
  *
  * \purpose
- *    ?symm performs the matrix-matrix operation: c=alpha*a*b + beta*c or c where alpha
- *    and beta are scalars, `a` is a symmetric matrix and `b` and `c` are m by n matrices.
+ *    ?symm performs the matrix-matrix operation: c=alpha*a*b + beta*c or c=alpha*b*a + beta*c where
+ *    alpha and beta are scalars, `a` is a symmetric matrix and `b` and `c` are m by n matrices.
  *
  * \parameters
  *    [in] side  - char. Specifies whether  the symmetric matrix `a` appears on the left or right
@@ -625,7 +625,7 @@ MC_TARGET_FUNC void mc_blas_lsymm(const char side, const char uplo, const int m,
  *
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
- *    [in] a     - complex array of dimension (lda, ka). Where ka is m when side='L' or 'l' and is n otherwise.
+ *    [in] a     - complex array of dimension (lda, ka), where ka is m when side='L' or 'l' and is n otherwise.
  *    The m by m part of the array `a` must contain the symmetric matrix, such that when uplo='U' or 'u', the leading
  *    m by m upper triangular part of the array `a` must contain the upper triangular part of the symmetric matrix and
  *    the strictly lower triangular part of `a` is not referenced, and when uplo='L' or 'l', the leading m by m lower
