@@ -18,7 +18,7 @@
  *    real-floating a(lda, *), c(ldc, *)
  *
  * \purpose
- *    ?syrk performs a rank k operation: c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c.
+ *    ?syrk performs a rank k operation: c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c
  *    where alpha and beta are scalars, `c` is an n by n symmetric matrix and `a` is n by k matrix
  *    in the first case and a k by n matrix in the second case.
  *
@@ -42,7 +42,7 @@
  *
  *    [in] a     - real-floating array of dimension (lda, ka), where ka is k when trans='N' or 'n', and is n otherwise.
  *    With trans='T' or 't', the leading n by k part of the array `a` must contain the matrix `a`, otherwise the leading
- *    k by n  part of the array `a` must contain the matrix `a`.
+ *    k by n part of the array `a` must contain the matrix `a`.
  *
  *    [in] lda   - int. Specifies the first dimension of `a`. When trans='N' or 'n' then lda must be at least max(1, n),
  *    otherwise lda must be at least max(1, k).
@@ -720,7 +720,7 @@ MC_TARGET_FUNC void mc_blas_lsyrk(const char uplo, const char trans, const int n
  *    complex a(lda, *), c(ldc, *)
  *
  * \purpose
- *    ?syrk performs a rank k operation: c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c.
+ *    ?syrk performs a rank k operation: c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c
  *    where alpha and beta are scalars, `c` is an n by n symmetric matrix and `a` is n by k matrix
  *    in the first case and a k by n matrix in the second case.
  *
@@ -743,7 +743,7 @@ MC_TARGET_FUNC void mc_blas_lsyrk(const char uplo, const char trans, const int n
  *
  *    [in] a     - complex array of dimension (lda, ka), where ka is k when trans='N' or 'n', and is n otherwise.
  *    With trans='T' or 't', the leading n by k part of the array `a` must contain the matrix `a`, otherwise the
- *    leading k by n  part of the array `a` must contain the matrix `a`.
+ *    leading k by n part of the array `a` must contain the matrix `a`.
  *
  *    [in] lda   - int. Specifies the first dimension of `a`. When trans='N' or 'n' then lda must be at least max(1, n),
  *    otherwise lda must be at least max(1, k).

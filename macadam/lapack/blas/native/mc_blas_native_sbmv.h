@@ -37,17 +37,17 @@
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
  *    [in] a     - real-floating array of dimension (lda, n).
- *    With uplo='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
+ *    With uplo='U' or 'u', the leading (k + 1) by n part of the array `a` must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
- *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
+ *    in row (k + 1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
  *    top left k by k triangle of the array a is not referenced.
  *
- *    With uplo='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
+ *    With uplo='L' or 'l', the leading (k + 1) by n part of the array `a` must contain the lower triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
  *    right k by k triangle of the array a is not referenced.
  *
- *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k+1).
+ *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k + 1).
  *
  *    [int] x    - real-floating array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
  *    contain the vector `x`.
@@ -167,17 +167,17 @@ MC_TARGET_FUNC void mc_blas_native_dsbmv(const char uplo, const int n, const int
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
  *    [in] a     - complex array of dimension (lda, n).
- *    With uplo='U' or 'u', the leading (k+1) by n part of the array A must contain the upper triangular
+ *    With uplo='U' or 'u', the leading (k + 1) by n part of the array `a` must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
- *    in row (k+1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
+ *    in row (k + 1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
  *    top left k by k triangle of the array a is not referenced.
  *
- *    With uplo='L' or 'l', the leading (k+1) by n part of the array A must contain the lower triangular
+ *    With uplo='L' or 'l', the leading (k + 1) by n part of the array `a` must contain the lower triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
  *    right k by k triangle of the array a is not referenced.
  *
- *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k+1).
+ *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k + 1).
  *
  *    [int] x    - complex array of size at least (1+(n-1)*abs(incx)). The incremented array `x` must
  *    contain the vector `x`.

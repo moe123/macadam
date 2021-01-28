@@ -36,16 +36,16 @@
  *    trans='T' or 't' a'*x = b.
  *    trans='C' or 'c' a'*x = b.
  *
- *    [in] diag  - char. Specifies whether or not a is unit triangular as follows:
- *    diag='U' or 'u' a is assumed to be unit triangular.
- *    diag='N' or 'n' a is not assumed to be unit triangular.
+ *    [in] diag  - char. Specifies whether or not `a` is unit triangular as follows:
+ *    diag='U' or 'u' `a` is assumed to be unit triangular.
+ *    diag='N' or 'n' `a` is not assumed to be unit triangular.
  *
  *    [in] n     - int. Specifies the order of the matrix `a`, n must be at least zero; n>=0 and n<=lda
  *
  *    [in] a     - real-floating array of dimension (lda, n). With uplo='U' or 'u', the leading n by n
- *    upper triangular part of the array A must contain the upper triangular matrix and the strictly
+ *    upper triangular part of the array `a` must contain the upper triangular matrix and the strictly
  *    lower triangular part of `a` is not referenced. With uplo='L' or 'l', the leading n by n lower
- *    triangular part of the array A must contain the lower triangular matrix and the strictly upper
+ *    triangular part of the array `a` must contain the lower triangular matrix and the strictly upper
  *    triangular part of `a` is not referenced. Note that when  diag='U' or 'u', the diagonal elements
  *    of a are not referenced either, but are assumed to be unity.
  *
