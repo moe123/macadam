@@ -1,26 +1,26 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_blas_native_syr2k.h
+// mc_blas_native_syrk.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
 /* \name
- *    ?syr2k performs a rank 2k operation:
- *    c=alpha*a*b' + alpha*b*a' + beta*c or c=alpha*a'*b + alpha*b'*a + beta*c.
+ *    ?syrk performs a rank k operation:
+ *    c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c.
  *
  * \synopsis
- *    void ?syr2k(uplo, trans, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
+ *    void ?syrk(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
  *    real-floating alpha, beta
- *    int           k, lda, ldb, ldc, n
+ *    int           k, lda, ldc, n
  *    char          trans, uplo
- *    real-floating a(lda, *), b(ldb, *), c(ldc, *)
+ *    real-floating a(lda, *), c(ldc, *)
  *
  * \purpose
- *    ?syr2k performs a rank 2k operation: c=alpha*a*b' + alpha*b*a' + beta*c or c=alpha*a'*b + alpha*b'*a + beta*c
- *    where alpha and beta are scalars, `c` is an n by n symmetric matrix and `a` and `b` are n by k matrices in the
- *    first case and k by n matrices in the second case.
+ *    ?syrk performs a rank k operation: c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c.
+ *    where alpha and beta are scalars, `c` is an n by n symmetric matrix and `a` is n by k matrix
+ *    in the first case and a k by n matrix in the second case.
  *
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the array `c`
@@ -29,13 +29,13 @@
  *    uplo='L' or 'l', only the lower triangular part of `c` is to be referenced.
  * 
  *    [in] trans - char. Specifies the operation to be performed as follows:
- *    trans='N' or 'n' c=alpha*a*b' + alpha*b*a' + beta*c.
- *    trans='T' or 't' c=alpha*a'*b + alpha*b'*a + beta*c.
- *    trans='C' or 'c' c=alpha*a'*b + alpha*b'*a + beta*c.
+ *    trans='N' or 'n' c=alpha*a*a' + beta*c + beta*c.
+ *    trans='T' or 't' c=alpha*a'*a + beta*c.
+ *    trans='C' or 'c' c=alpha*a'*a + beta*c.
  *
  *    [in] n     - int. Specifies the order of the matrix `c`, n must be at least zero.
- *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrices `a` and `b`,
- *    and with trans='T' or 't' or trans='C' or 'c', k specifies the number of rows of the matrices `a` and `b`.
+ *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrix `a`,
+ *    and with trans='T' or 't' or trans='C' or 'c', k specifies the number of rows of the matrix `a`.
  *    k must be at least zero.
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
@@ -46,13 +46,6 @@
  *
  *    [in] lda   - int. Specifies the first dimension of `a`. When trans='N' or 'n' then lda must be at least max(1, n),
  *    otherwise lda must be at least max(1, k).
- *
- *    [int] b    - real-floating array of dimension (ldb, kb), where kb is k when trans='N' or 'n', and is n otherwise.
- *    With trans='N' or 'n', the leading n by k part of the array `b` must contain the matrix `b`, otherwise the leading
- *    k by n part of the array `b` must contain the matrix `b`.
- *
- *    [in] ldb   - int. Specifies the first dimension of `b`. When trans='N' or 'n'
- *    then ldb must be at least max(1, n), otherwise ldb must be at least max(1, k).
  *
  *    [in] beta  - real-floating. Specifies the scalar beta. When beta is zero then `c` need not be set on input.
  *
@@ -82,13 +75,18 @@
 
 #include <macadam/lapack/blas/mc_blas_access.h>
 #include <macadam/lapack/blas/mc_blas_lsame.h>
+#include <macadam/lapack/blas/mc_blas_xerbla.h>
+#include <macadam/details/math/mc_cadd.h>
+#include <macadam/details/math/mc_ciseq.h>
+#include <macadam/details/math/mc_cmul.h>
+#include <macadam/details/math/mc_maxmag.h>
 
-#ifndef MC_BLAS_NATIVE_SYR2K_H
-#define MC_BLAS_NATIVE_SYR2K_H
+#ifndef MC_BLAS_native_SYRK_H
+#define MC_BLAS_native_SYRK_H
 
-#pragma mark - mc_blas_native_ssyr2k -
+#pragma mark - mc_blas_native_ssyrk -
 
-MC_TARGET_FUNC void mc_blas_native_ssyr2k(const char uplo, const char trans, const int n, const int k, const float alpha, const float * a, const int lda, const float * b, const int ldb, const float beta, float * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_native_ssyrk(const char uplo, const char trans, const int n, const int k, const float alpha, const float * a, const int lda, const float beta, float * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 	const enum CBLAS_ORDER order = CblasRowMajor;
@@ -100,15 +98,15 @@ MC_TARGET_FUNC void mc_blas_native_ssyr2k(const char uplo, const char trans, con
 	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_ssyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	::cblas_ssyrk(order, uplo_c, trans_c, n, k, alpha, a, lda, beta, c, ldc);
 #	else
-	cblas_ssyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	cblas_ssyrk(order, uplo_c, trans_c, n, k, alpha, a, lda, beta, c, ldc);
 #	endif
 }
 
-#pragma mark - mc_blas_native_dsyr2k -
+#pragma mark - mc_blas_native_dsyrk -
 
-MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, const int n, const int k, const double alpha, const double * a, const int lda, const double * b, const int ldb, const double beta, double * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_native_dsyrk(const char uplo, const char trans, const int n, const int k, const double alpha, const double * a, const int lda, const double beta, double * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 	const enum CBLAS_ORDER order = CblasRowMajor;
@@ -120,27 +118,27 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, con
 	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_dsyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	::cblas_dsyrk(order, uplo_c, trans_c, n, k, alpha, a, lda, beta, c, ldc);
 #	else
-	cblas_dsyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	cblas_dsyrk(order, uplo_c, trans_c, n, k, alpha, a, lda, beta, c, ldc);
 #	endif
 }
 
 /* \name
- *    ?syr2k performs a rank 2k operation:
- *    c=alpha*a*b' + alpha*b*a' + beta*c or c=alpha*a'*b + alpha*b'*a + beta*c.
+ *    ?syrk performs a rank k operation:
+ *    c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c.
  *
  * \synopsis
- *    void ?syr2k(uplo, trans, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
+ *    void ?syrk(uplo, trans, n, k, alpha, a, lda, beta, c, ldc)
  *    complex alpha, beta
- *    int     k, lda, ldb, ldc, n
+ *    int     k, lda, ldc, n
  *    char    trans, uplo
- *    complex a(lda, *), b(ldb, *), c(ldc, *)
+ *    complex a(lda, *), c(ldc, *)
  *
  * \purpose
- *    ?syr2k performs a rank 2k operation: c=alpha*a*b' + alpha*b*a' + beta*c or c=alpha*a'*b + alpha*b'*a + beta*c
- *    where alpha and beta are scalars, `c` is an n by n symmetric matrix and `a` and `b` are n by k matrices in the
- *    first case and k by n matrices in the second case.
+ *    ?syrk performs a rank k operation: c=alpha*a*a' + beta*c + beta*c or c=alpha*a'*a + beta*c.
+ *    where alpha and beta are scalars, `c` is an n by n symmetric matrix and `a` is n by k matrix
+ *    in the first case and a k by n matrix in the second case.
  *
  * \parameters
  *    [in] uplo  - char. Specifies whether the upper or lower triangular part of the array `c`
@@ -149,12 +147,12 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, con
  *    uplo='L' or 'l', only the lower triangular part of `c` is to be referenced.
  * 
  *    [in] trans - char. Specifies the operation to be performed as follows:
- *    trans='N' or 'n' c=alpha*a*b' + alpha*b*a' + beta*c.
- *    trans='T' or 't' c=alpha*a'*b + alpha*b'*a + beta*c.
+ *    trans='N' or 'n' c=alpha*a*a' + beta*c + beta*c.
+ *    trans='T' or 't' c=alpha*a'*a + beta*c.
  *
  *    [in] n     - int. Specifies the order of the matrix `c`, n must be at least zero.
- *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrices `a` and `b`,
- *    and with trans='T' or 't' or trans='C' or 'c', k specifies the number of rows of the matrices `a` and `b`.
+ *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrix `a`,
+ *    and with trans='T' or 't' or trans='C' or 'c', k specifies the number of rows of the matrix `a`.
  *    k must be at least zero.
  *
  *    [in] alpha - complex. Specifies the scalar alpha.
@@ -165,13 +163,6 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, con
  *
  *    [in] lda   - int. Specifies the first dimension of `a`. When trans='N' or 'n' then lda must be at least max(1, n),
  *    otherwise lda must be at least max(1, k).
- *
- *    [int] b    - complex array of dimension (ldb, kb), where kb is k when trans='N' or 'n', and is n otherwise.
- *    With trans='N' or 'n', the leading n by k part of the array `b` must contain the matrix `b`, otherwise the
- *    leading k by n part of the array `b` must contain the matrix `b`.
- *
- *    [in] ldb   - int. Specifies the first dimension of `b`. When trans='N' or 'n'
- *    then ldb must be at least max(1, n), otherwise ldb must be at least max(1, k).
  *
  *    [in] beta  - complex. Specifies the scalar beta. When beta is zero then `c` need not be set on input.
  *
@@ -199,9 +190,9 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, con
  *     \author Sven Hammarling, Numerical Algorithms Group Ltd.
  */
 
-#pragma mark - mc_blas_native_csyr2k -
+#pragma mark - mc_blas_native_csyrk -
 
-MC_TARGET_FUNC void mc_blas_native_csyr2k(const char uplo, const char trans, const int n, const int k, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * b, const int ldb, const mc_complex_float_t beta, mc_complex_float_t * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_native_csyrk(const char uplo, const char trans, const int n, const int k, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t beta, mc_complex_float_t * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 	const enum CBLAS_ORDER order = CblasRowMajor;
@@ -213,15 +204,15 @@ MC_TARGET_FUNC void mc_blas_native_csyr2k(const char uplo, const char trans, con
 	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_csyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	::cblas_csyrk(order, uplo_c, trans_c, n, k, &alpha, a, lda, &beta, c, ldc);
 #	else
-	cblas_csyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	cblas_csyrk(order, uplo_c, trans_c, n, k, &alpha, a, lda, &beta, c, ldc);
 #	endif
 }
 
-#pragma mark - mc_blas_native_zsyr2k -
+#pragma mark - mc_blas_native_zsyrk -
 
-MC_TARGET_FUNC void mc_blas_native_zsyr2k(const char uplo, const char trans, const int n, const int k, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * b, const int ldb, const mc_complex_double_t beta, mc_complex_double_t * c, const int ldc)
+MC_TARGET_FUNC void mc_blas_native_zsyrk(const char uplo, const char trans, const int n, const int k, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t beta, mc_complex_double_t * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
 	const enum CBLAS_ORDER order = CblasRowMajor;
@@ -233,12 +224,12 @@ MC_TARGET_FUNC void mc_blas_native_zsyr2k(const char uplo, const char trans, con
 	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_zsyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	::cblas_zsyrk(order, uplo_c, trans_c, n, k, &alpha, a, lda, &beta, c, ldc);
 #	else
-	cblas_zsyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	cblas_zsyrk(order, uplo_c, trans_c, n, k, &alpha, a, lda, &beta, c, ldc);
 #	endif
 }
 
-#endif /* !MC_BLAS_NATIVE_SYR2K_H */
+#endif /* !MC_BLAS_SYRK_H */
 
 /* EOF */

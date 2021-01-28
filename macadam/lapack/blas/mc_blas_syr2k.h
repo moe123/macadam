@@ -76,8 +76,8 @@
  *     \author NAG Ltd.
  *     \author Jack Dongarra, Argonne National Lab.
  *     \author Iain S. Duff, AERE Harwell.
- *     \author Jeremy Du Croz, Nag Central Office.
- *     \author Sven Hammarling, Nag Central Office.
+ *     \author Jeremy Du Croz, Numerical Algorithms Group Ltd.
+ *     \author Sven Hammarling, Numerical Algorithms Group Ltd.
  */
 
 #include <macadam/lapack/blas/mc_blas_access.h>
@@ -776,7 +776,6 @@ MC_TARGET_FUNC void mc_blas_lsyr2k(const char uplo, const char trans, const int 
  *    [in] trans - char. Specifies the operation to be performed as follows:
  *    trans='N' or 'n' c=alpha*a*b' + alpha*b*a' + beta*c.
  *    trans='T' or 't' c=alpha*a'*b + alpha*b'*a + beta*c.
- *    trans='C' or 'c' c=alpha*a'*b + alpha*b'*a + beta*c.
  *
  *    [in] n     - int. Specifies the order of the matrix `c`, n must be at least zero.
  *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrices `a` and `b`,

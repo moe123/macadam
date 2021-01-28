@@ -78,6 +78,9 @@
 #		include <macadam/lapack/blas/native/mc_blas_native_symm.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_symv.h>
 #		include <macadam/lapack/blas/native/mc_blas_native_syr.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_syr2.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_syr2k.h>
+#		include <macadam/lapack/blas/native/mc_blas_native_syrk.h>
 
 #	if !MC_TARGET_BLAS_USE_OPENBLAS   \
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
@@ -242,6 +245,10 @@
 #		define mc_dsyr2k mc_blas_native_dsyr2k
 #		define mc_csyr2k mc_blas_native_csyr2k
 #		define mc_zsyr2k mc_blas_native_zsyr2k
+#		define mc_ssyrk  mc_blas_native_ssyrk
+#		define mc_dsyrk  mc_blas_native_dsyrk
+#		define mc_csyrk  mc_blas_native_csyrk
+#		define mc_zsyrk  mc_blas_native_zsyrk
 
 #	else
 
@@ -347,6 +354,10 @@
 #		define mc_dsyr2k mc_blas_dsyr2k
 #		define mc_csyr2k mc_blas_csyr2k
 #		define mc_zsyr2k mc_blas_zsyr2k
+#		define mc_ssyrk  mc_blas_ssyrk
+#		define mc_dsyrk  mc_blas_dsyrk
+#		define mc_csyrk  mc_blas_csyrk
+#		define mc_zsyrk  mc_blas_zsyrk
 
 #	endif
 
@@ -401,6 +412,8 @@
 #	define mc_qsyr2   mc_blas_qsyr2
 #	define mc_lsyr2k  mc_blas_lsyr2k
 #	define mc_qsyr2k  mc_blas_qsyr2k
+#	define mc_lsyrk   mc_blas_lsyrk
+#	define mc_qsyrk   mc_blas_qsyrk
 
 #endif /* !MC_BLAS_H */
 
