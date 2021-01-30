@@ -45,8 +45,8 @@
  *    [in] alpha  - real-floating. Specifies the scalar alpha.
  *
  *    [in] a      - real-floating array of dimension (lda, ka), where ka is k when transa='N' or 'n' and
- *    is m otherwise. Prior entry with transa='N' or 'n', the leading m by k part of the array a must
- *    contain the matrix `a`, otherwise the leading k by m part of the array a must contain the matrix `a`.
+ *    is m otherwise. Prior entry with transa='N' or 'n', the leading m by k part of the array `a` must
+ *    contain the matrix `a`, otherwise the leading k by m part of the array `a` must contain the matrix `a`.
  *
  *    [in] lda    - int. Specifies the first dimension of `a`. When transa='N' or 'n' then
  *    lda must be at least max(1, m), otherwise lda must be at least max(1, k).
@@ -710,8 +710,8 @@ MC_TARGET_FUNC void mc_blas_lgemm(const char transa, const char transb, const in
  *    [in] alpha  - complex. Specifies the scalar alpha.
  *
  *    [in] a      - complex array of dimension (lda, ka), where ka is k when transa='N' or 'n' and
- *    is m otherwise. Prior entry with transa='N' or 'n', the leading m by k part of the array a must
- *    contain the matrix `a`, otherwise the leading k by m part of the array a must contain the matrix `a`.
+ *    is m otherwise. Prior entry with transa='N' or 'n', the leading m by k part of the array `a` must
+ *    contain the matrix `a`, otherwise the leading k by m part of the array `a` must contain the matrix `a`.
  *
  *    [in] lda    - int. Specifies the first dimension of `a`. When transa='N' or 'n' then
  *    lda must be at least max(1, m), otherwise lda must be at least max(1, k).

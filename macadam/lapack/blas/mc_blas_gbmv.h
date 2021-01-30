@@ -8,7 +8,7 @@
 
 /* \name
  *    ?gbmv - performs one of the matrix-vector operations:
- *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y.
+ *    y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y.
  *
  * \synopsis
  *    void ?gbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy)
@@ -18,7 +18,7 @@
  *    real-floating a(lda,*), x(*), y(*)
  *
  * \purpose
- *   ?gbmv performs one of the matrix-vector operations: y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y where alpha and beta
+ *   ?gbmv performs one of the matrix-vector operations: y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y where alpha and beta
  *   are scalars, `x` and `y` are vectors and `a`is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
  *
  * \parameters
@@ -35,11 +35,19 @@
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
  *    [in] a     - real-floating array of dimension (lda, n). The leading (kl + ku + 1) by n part of
- *    the array a must contain the matrix of coefficients, supplied column by column, with the leading
+ *    the array `a` must contain the matrix of coefficients, supplied column by column, with the leading
  *    diagonal of the matrix in row (ku + 1) of the array, the first super-diagonal starting at position
  *    1 in row ku, the first sub-diagonal starting at position 0 in row (ku + 1), and so on. Elements in
- *    the array a that do not correspond to elements in the band matrix (such as the top left ku by ku
+ *    the array `a` that do not correspond to elements in the band matrix (such as the top left ku by ku
  *    triangle) are not referenced.
+ *
+ *    @c-layout: the leading (kl + ku + 1) by m part of the array `a` must contain the matrix of coefficients.
+ *    This matrix must be supplied row-by-row, with the leading diagonal of the matrix in column (kl) of the
+ *    array, the first super-diagonal starting at position 0 in column (kl + 1), the first sub-diagonal starting
+ *    at position 1 in row (kl - 1), and so on. Elements in the array `a` that do not correspond to elements in
+ *    the band matrix (such as the top left kl by kl triangle) are not referenced.
+ *
+ *    @see: \examples section about Band Matrix storage.
  *
  *    [in] lda   - int. Specifies the first dimension of a band matrix, lda must be at least (kl + ku + 1).
  *
@@ -58,6 +66,48 @@
  *    [in] incy  - int. Specifies the increment for the elements of `y`. incy must not be zero.
  *
  * \examples
+ *     - A general band matrix `a` of m rows and n columns with kl sub-diagonals, ku super-diagonals, and leading dimension
+ *       lda. @note: using @c-layout, be aware that the true-memory leading or split dimension becomes the number of columns
+ *       (The leading row syntax is only kept for the understanding of the transposed applied operations in reference to
+ *       Fortran). For `a` a m by n matrix, the rational subscript operation should be as the following:
+ *
+ *       int row, col;
+ *       for (row = 0; row < m; row++) {
+ *          for (col = 0; col < n; col++) {
+ *             a[(n * row) + col] = ...;
+ *          }
+ *       }
+ *
+ *     - The following program segment transfers a band matrix from conventional full matrix storage b(ldb, *) to band
+ *       storage a(lda, *):
+ *
+ *       real-floating b[ldb * n] = { ... };
+ *       real-floating a[lda * n] = { 0 };
+ *
+ *       int i, j, ku, kl, m;
+ *
+ *       @c-fortan-layout: the following code is internal memory-storage independent.
+ *       for (j = 1; j <= n; ++j) {
+ *          k = ku + 1 - j;
+ *          for (i = mc_maxmag(1, j - ku); i <= mc_minmag(m, j + kl); ++i) {
+ *             mc_blas_matrix_at(a, lda, n, k + i, j) = mc_blas_matrix_at(b, ldb, n, i, j);
+ *          }
+ *       }
+ *       @fortan-layout: column-major + indexation starting at 0.
+ *       for (j = 0; j < n; j++) {
+ *          k = ku - j;
+ *          for (i = mc_maxmag(0, j - ku); i < mc_minmagin(m, j + kl + 1); i++) {
+ *             a[(k + i) + j * lda] = b[i + j * ldb];
+ *          }
+ *       }
+ *       @c-layout: row-major + indexation starting at 0.
+ *       for (i = 0; i < m; i++) {
+ *          k = kl - i;
+ *          for (j = mc_maxmag(0, i - kl); j < mc_minmagin(n, i + ku + 1); j++) {
+ *             a[(k + j) + i * lda] = b[j + i * ldb];
+ *          }
+ *       }
+ *
  *              | 1 1 1 0 |
  *              | 2 2 2 2 |
  *     a[5x4] = | 3 3 3 3 |
@@ -726,7 +776,7 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, co
 
 /* \name
  *    ?gbmv - performs one of the matrix-vector operations:
- *    y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y, or y=alpha*a_*x + beta*y.
+ *    y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y or y=alpha*a_*x + beta*y.
  *
  * \synopsis
  *    void ?gbmv(trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy)
@@ -736,7 +786,7 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, co
  *    complex a(lda,*), x(*), y(*)
  *
  * \purpose
- *   ?gbmv performs one of the matrix-vector operations: y=alpha*a*x + beta*y, or y=alpha*a'*x + beta*y, or y=alpha*a_*x + beta*y where
+ *   ?gbmv performs one of the matrix-vector operations: y=alpha*a*x + beta*y or y=alpha*a'*x + beta*y or y=alpha*a_*x + beta*y where
  *   alpha and beta are scalars, `x` and `y` are vectors and `a`is an m by n band matrix, with kl sub-diagonals and ku super-diagonals.
  *
  * \parameters
@@ -753,11 +803,19 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, co
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
  *    [in] a     - complex array of dimension (lda, n). The leading (kl + ku + 1) by n part of
- *    the array a must contain the matrix of coefficients, supplied column by column, with the leading
+ *    the array `a` must contain the matrix of coefficients, supplied column by column, with the leading
  *    diagonal of the matrix in row (ku + 1) of the array, the first super-diagonal starting at position
  *    1 in row ku, the first sub-diagonal starting at position 0 in row (ku + 1), and so on. Elements in
- *    the array a that do not correspond to elements in the band matrix (such as the top left ku by ku
+ *    the array `a` that do not correspond to elements in the band matrix (such as the top left ku by ku
  *    triangle) are not referenced.
+ *
+ *    @c-layout: the leading (kl + ku + 1) by m part of the array `a` must contain the matrix of coefficients.
+ *    This matrix must be supplied row-by-row, with the leading diagonal of the matrix in column (kl) of the
+ *    array, the first super-diagonal starting at position 0 in column (kl + 1), the first sub-diagonal starting
+ *    at position 1 in row (kl - 1), and so on. Elements in the array `a` that do not correspond to elements in
+ *    the band matrix (such as the top left kl by kl triangle) are not referenced.
+ *
+ *    @see: \examples section about Band Matrix storage.
  *
  *    [in] lda   - int. Specifies the first dimension of a band matrix, lda must be at least (kl + ku + 1).
  *
@@ -776,6 +834,92 @@ MC_TARGET_FUNC void mc_blas_lgbmv(const char trans, const int m, const int n, co
  *    [in] incy  - int. Specifies the increment for the elements of `y`. incy must not be zero.
  *
  * \examples
+ *     - A general band matrix `a` of m rows and n columns with kl sub-diagonals, ku super-diagonals, and leading dimension
+ *       lda. @note: using @c-layout, be aware that the true-memory leading or split dimension becomes the number of columns
+ *       (The leading row syntax is only kept for the understanding of the transposed applied operations in reference to
+ *       Fortran). For `a` a m by n matrix, the rational subscript operation should be as the following:
+ *
+ *       int row, col;
+ *       for (row = 0; row < m; row++) {
+ *          for (col = 0; col < n; col++) {
+ *             a[(n * row) + col] = ...;
+ *          }
+ *       }
+ *
+ *     - The following program segment transfers a band matrix from conventional full matrix storage b(ldb, *) to band
+ *       storage a(lda, *):
+ *
+ *       real-floating b[ldb * n] = { ... };
+ *       real-floating a[lda * n] = { 0 };
+ *
+ *       int i, j, ku, kl, m;
+ *
+ *       @c-fortan-layout: the following code is internal memory-storage independent.
+ *       for (j = 1; j <= n; ++j) {
+ *          k = ku + 1 - j;
+ *          for (i = mc_maxmag(1, j - ku); i <= mc_minmag(m, j + kl); ++i) {
+ *             mc_blas_matrix_at(a, lda, n, k + i, j) = mc_blas_matrix_at(b, ldb, n, i, j);
+ *          }
+ *       }
+ *       @fortan-layout: column-major + indexation starting at 0.
+ *       for (j = 0; j < n; j++) {
+ *          k = ku - j;
+ *          for (i = mc_maxmag(0, j - ku); i < mc_minmagin(m, j + kl + 1); i++) {
+ *             a[(k + i) + j * lda] = b[i + j * ldb];
+ *          }
+ *       }
+ *       @c-layout: row-major + indexation starting at 0.
+ *       for (i = 0; i < m; i++) {
+ *          k = kl - i;
+ *          for (j = mc_maxmag(0, i - kl); j < mc_minmagin(n, i + ku + 1); j++) {
+ *             a[(k + j) + i * lda] = b[j + i * ldb];
+ *          }
+ *       }
+ *
+ *              | 1 1 1 0 |
+ *              | 2 2 2 2 |
+ *     a[5x4] = | 3 3 3 3 |
+ *              | 4 4 4 4 |
+ *              | 0 5 5 5 |
+ *
+ *     const real-floating a_band[] = {
+ *          0, 0, 1, 2
+ *        , 0, 1, 2, 3
+ *        , 1, 2, 3, 4
+ *        , 2, 3, 4, 5
+ *        , 3, 4, 5, 0
+ *        , 4, 5, 0, 0
+ *        , 0, 0, 0, 0
+ *        , 0, 0, 0, 0
+ *     };
+ *     const real-floating x[] = { 1, 2, 3, 4 };
+ *           real-floating y[] = { 1, 0 , 2, 0 , 3, 0 , 4, 0 , 5, 0 };
+ *     mc_blas_?gbmv('N', 5, 4, 3, 2, 2, a, 8, x, 1, 10, y, 2);
+ *     on output -> y = { 22, 0, 60, 0, 90, 0, 120, 0, 140, 0 }
+ *
+ *              | 1 1 1 1 1 |
+ *     a[4x5] = | 2 2 2 2 2 |
+ *              | 3 3 3 3 3 |
+ *              | 4 4 4 4 4 |
+ *
+ *     const real-floating a_band[] = {
+ *          0, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 1
+ *        , 0, 0, 0, 1, 2
+ *        , 0, 0, 1, 2, 3
+ *        , 0, 1, 2, 3, 4
+ *        , 1, 2, 3, 4, 0
+ *        , 2, 3, 4, 0, 0
+ *        , 3, 4, 0, 0, 0
+ *        , 4, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 0
+ *        , 0, 0, 0, 0, 0
+ *     };
+ *     const real-floating x[] = { 1, 2, 3, 4, 5 };
+ *           real-floating y[] = { 1, 0, 2, 0, 3, 0, 4, 0 };
+ *     mc_blas_?gbmv('N', 4, 5, 6, 5, 2, a_band, 12, x, 1, 10, y, 2);
+ *     on output -> y = { 40, 0 , 80, 0 , 120, 0 , 160, 0 }
  *
  * \level 2 blas routine.
  *     \author Univ. of Tennessee.

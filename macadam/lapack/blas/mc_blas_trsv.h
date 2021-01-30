@@ -18,7 +18,7 @@
  *
  * \purpose
  *    ?trsv solves one of the systems of equations: x*x=b or a'*x=b where b and x are n element
- *    vectors and `a` is an n by n unit, or non-unit, upper or lower triangular matrix. However,
+ *    vectors and `a` is an n by n unit or non-unit, upper or lower triangular matrix. However,
  *    no test for singularity or near-singularity is included in this routine. Such tests must
  *    be performed before calling this routine.
  *

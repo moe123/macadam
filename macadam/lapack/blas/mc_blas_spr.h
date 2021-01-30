@@ -42,7 +42,7 @@
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(1,2)
  *    and a(2,2) respectively, and so on.
  *
- *    With uplo='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
+ *    With uplo='L' or 'l', the array `a`p must contain the lower triangular part of the symmetric matrix
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(2,1)
  *    and a(3,1) respectively, and so on.
  *
@@ -483,7 +483,7 @@ MC_TARGET_FUNC void mc_blas_lspr(const char uplo, const int n, const long double
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(1,2)
  *    and a(2,2) respectively, and so on.
  *
- *    With uplo='L' or 'l', the array ap must contain the lower triangular part of the symmetric matrix
+ *    With uplo='L' or 'l', the array `a`p must contain the lower triangular part of the symmetric matrix
  *    packed sequentially, column by column, so that ap(1) contains a(1,1), ap(2) and ap(3) contain a(2,1)
  *    and a(3,1) respectively, and so on.
  *

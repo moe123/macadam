@@ -18,7 +18,7 @@
  *
  * \purpose
  *    ?tbmv performs the matrix-vector operation: x=a*x or x=a'*x where `x` is an n element vector and
- *    `a` is an n by n unit, or non-unit, upper or lower triangular band matrix, with (k + 1) diagonals.
+ *    `a` is an n by n unit or non-unit, upper or lower triangular band matrix, with (k + 1) diagonals.
  *
  * \parameters
  *    [in] uplo  - char. Specifies whether the matrix is an upper or lower triangular matrix as follows:
@@ -75,7 +75,7 @@
  *       is only kept for the understanding of the transposed applied operations in reference to Fortran). For `a` a m by n matrix,
  *       the rational subscript operation should be as the following:
  *
- *       int row, col; 
+ *       int row, col;
  *       for (row = 0; row < m; row++) {
  *          for (col = 0; col < n; col++) {
  *             a[(n * row) + col] = ...;
@@ -88,7 +88,7 @@
  *       real-floating b[ldb * n] = { ... };
  *       real-floating a[lda * n] = { 0 };
  *
- *       int i, j, m, k = lda - 1; // must statisfy ldb >= lda >= n > k.
+ *       int i, j, m, k;
  *
  *       @c-fortan-layout: the following code is internal memory-storage independent.
  *       for (j = 1; j <= n; ++j) {
@@ -118,7 +118,7 @@
  *       real-floating b[ldb * n] = { ... };
  *       real-floating a[lda * n] = { 0 };
  *
- *       int i, j, m, k = lda - 1; // must statisfy ldb >= lda >= n > k.
+ *       int i, j, m, k;
  *
  *       @c-fortan-layout: the following code is internal memory-storage independent.
  *       for (j = 1; j <= n; ++j) {
@@ -897,7 +897,7 @@ MC_TARGET_FUNC void mc_blas_ltbmv(const char uplo, const char trans, const char 
  *
  * \purpose
  *    ?tbmv performs the matrix-vector operation: x=a*x or x=a'*x or x=a_*x where `x` is an n element vector
- *    and `a` is an n by n unit, or non-unit, upper or lower triangular band matrix, with (k + 1) diagonals.
+ *    and `a` is an n by n unit or non-unit, upper or lower triangular band matrix, with (k + 1) diagonals.
  *
  * \parameters
  *    [in] uplo  - char. Specifies whether the matrix is an upper or lower triangular matrix as follows:
@@ -954,7 +954,7 @@ MC_TARGET_FUNC void mc_blas_ltbmv(const char uplo, const char trans, const char 
  *       is only kept for the understanding of the transposed applied operations in reference to Fortran). For `a` a m by n matrix,
  *       the rational subscript operation should be as the following:
  *
- *       int row, col; 
+ *       int row, col;
  *       for (row = 0; row < m; row++) {
  *          for (col = 0; col < n; col++) {
  *             a[(n * row) + col] = ...;

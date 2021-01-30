@@ -40,12 +40,12 @@
  *    With uplo='U' or 'u', the leading (k + 1) by n part of the array `a` must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row (k + 1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
- *    top left k by k triangle of the array a is not referenced.
+ *    top left k by k triangle of the array `a` is not referenced.
  *
  *    With uplo='L' or 'l', the leading (k + 1) by n part of the array `a` must contain the lower triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
- *    right k by k triangle of the array a is not referenced.
+ *    right k by k triangle of the array `a` is not referenced.
  *
  *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k + 1).
  *
@@ -751,12 +751,12 @@ MC_TARGET_FUNC void mc_blas_lsbmv(const char uplo, const int n, const int k, con
  *    With uplo='U' or 'u', the leading (k + 1) by n part of the array `a` must contain the upper triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row (k + 1) of the array, the first super-diagonal starting at position 1 in row k, and so on. The
- *    top left k by k triangle of the array a is not referenced.
+ *    top left k by k triangle of the array `a` is not referenced.
  *
  *    With uplo='L' or 'l', the leading (k + 1) by n part of the array `a` must contain the lower triangular
  *    band part of the symmetric matrix, supplied column by column, with the leading diagonal of the matrix
  *    in row 0 of the array, the first sub-diagonal starting at position 0 in row 1, and so on. The bottom
- *    right k by k triangle of the array a is not referenced.
+ *    right k by k triangle of the array `a` is not referenced.
  *
  *    [in] lda   - int. Specifies the first dimension of `a`. `a` must be at least (k + 1).
  *
