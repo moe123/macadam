@@ -65,8 +65,8 @@ MC_TARGET_PROC void mc_srandi(
 		++mc_randi_init_s;
 	}
 #	if MC_TARGET_RAND_USE_PCG32
-	mc_randi_seeds_s[0] = mc_cast(uint64_t, s4) + mc_cast(uint64_t, s5);
-	mc_randi_seeds_s[1] = mc_cast(uint64_t, s1) + mc_cast(uint64_t, s2) + mc_cast(uint64_t, s3);
+	mc_randi_seeds_s[0] = mc_randi_seeds_s[0] * mc_cast(uint64_t, s4) + mc_cast(uint64_t, s5) | mc_cast(uint64_t, s1) + mc_cast(uint64_t, s2) * mc_cast(uint64_t, s3);
+	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] | mc_randi_seeds_s[0];
 #	else
 	s4                  = s4 + s5;
 	mc_randi_seeds_s[0] = s1 > 2   && s1 < MCLIMITS_USMAX ? s1 : 2;
@@ -121,7 +121,7 @@ MC_TARGET_PROC void mc_ssrandi()
 	s4    = s4 + mc_cast_expr(uint32_t, x >> 7 & 0xFF);
 	s3    = s3 + mc_cast_expr(uint32_t, x >> 5 & 0xFF);
 	s2    = s2 + s4;
-	s1    = s1 + s3;
+	s1    = (s1 ^ s5) + s3;
 //!# Assigning new seeds.
 	mc_srandi(s1, s2, s3, s4, s5);
 }
