@@ -8,7 +8,7 @@
 
 #include <macadam/details/numa/mc_meanmx1.h>
 #include <macadam/details/numa/mc_mstddmx1.h>
-#include <macadam/details/numa/mc_rmsmx1.h>
+#include <macadam/details/numa/mc_mrmsmx1.h>
 
 #ifndef MC_CENTERMXN_H
 #define MC_CENTERMXN_H
@@ -46,8 +46,7 @@ MC_TARGET_FUNC void mc_centermxnf(const int m, const int n, float * c, const flo
 		break;
 		case 2:
 			for (; j < n; j++) {
-				mj = mc_meanmx1f(m, n, j, a, 0, 5);
-				wj = mc_rmsmx1f(m, n, j, a);
+				mc_mrmsmx1f(m, n, j, a, &mj, &wj);
 				if (wj != 0.0f ) {
 					wj = 1.0f / wj;
 				}
@@ -90,8 +89,7 @@ MC_TARGET_FUNC void mc_centermxnff(const int m, const int n, double * c, const f
 		break;
 		case 2:
 			for (; j < n; j++) {
-				mj = mc_meanmx1ff(m, n, j, a, 0, 5);
-				wj = mc_rmsmx1ff(m, n, j, a);
+				mc_mrmsmx1ff(m, n, j, a, &mj, &wj);
 				if (wj != 0.0) {
 					wj = 1.0 / wj;
 				}
@@ -134,8 +132,7 @@ MC_TARGET_FUNC void mc_centermxn(const int m, const int n, double * c, const dou
 		break;
 		case 2:
 			for (; j < n; j++) {
-				mj = mc_meanmx1(m, n, j, a, 0, 5);
-				wj = mc_rmsmx1(m, n, j, a);
+				mc_mrmsmx1(m, n, j, a, &mj, &wj);
 				if (wj != 0.0) {
 					wj = 1.0 / wj;
 				}
@@ -178,8 +175,7 @@ MC_TARGET_FUNC void mc_centermxnl(const int m, const int n, long double * c, con
 		break;
 		case 2:
 			for (; j < n; j++) {
-				mj = mc_meanmx1l(m, n, j, a, 0, 5);
-				wj = mc_rmsmx1l(m, n, j, a);
+				mc_mrmsmx1l(m, n, j, a, &mj, &wj);
 				if (wj != 0.0) {
 					wj = 1.0 / wj;
 				}

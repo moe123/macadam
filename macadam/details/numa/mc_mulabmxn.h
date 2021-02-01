@@ -16,6 +16,7 @@
 MC_TARGET_FUNC void mc_mulabmxnf(const int m, const int n, const int p, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# c=a*b. Producing c[m x p]=a[m x n] * b[n x p].
+
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = m;

@@ -7,55 +7,59 @@
 //
 
 #include <macadam/details/math/mc_sqrt.h>
-#include <macadam/details/numa/mc_mssqrmx1.h>
+#include <macadam/details/numa/mc_ssqrmx1.h>
 
 #ifndef MC_STDDMX1_H
 #define MC_STDDMX1_H
 
 #pragma mark - mc_stddmx1 -
 
-MC_TARGET_FUNC void mc_stddmx1f(const int m, const int n, const int j,const float * a, int b, float * stddev)
+MC_TARGET_FUNC float mc_stddmx1f(const int m, const int n, const int j, const float * a, int b)
 {
-	float mean, sumsq, scale;
+	float stddev, sumsq, scale;
 
-	*stddev = 0.0f;
+	stddev = 0.0f;
 	if (n > 1) {
-		mc_mssqrmx1f(m, n, j, a, 0, &mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrtf(sumsq / mc_cast(float, (b ? (m - 1) : m)));
+		mc_ssqrmx1f(m, n, j, a, &sumsq, &scale);
+		stddev = scale * mc_sqrtf(sumsq / mc_cast(float, (b ? (m - 1) : m)));
 	}
+	return stddev;
 }
 
-MC_TARGET_FUNC void mc_stddmx1ff(const int m, const int n, const int j,const float * a, int b, double * stddev)
+MC_TARGET_FUNC double mc_stddmx1ff(const int m, const int n, const int j, const float * a, int b)
 {
-	double mean, sumsq, scale;
+	double stddev, sumsq, scale;
 
-	*stddev = 0.0;
+	stddev = 0.0;
 	if (n > 1) {
-		mc_mssqrmx1ff(m, n, j, a, 0, &mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrt(sumsq / mc_cast(double, (b ? (m - 1) : m)));
+		mc_ssqrmx1ff(m, n, j, a, &sumsq, &scale);
+		stddev = scale * mc_sqrt(sumsq / mc_cast(double, (b ? (m - 1) : m)));
 	}
+	return stddev;
 }
 
-MC_TARGET_FUNC void mc_stddmx1(const int m, const int n, const int j,const double * a, int b, double * stddev)
+MC_TARGET_FUNC double mc_stddmx1(const int m, const int n, const int j, const double * a, int b)
 {
-	double mean, sumsq, scale;
+	double stddev, sumsq, scale;
 
-	*stddev = 0.0;
+	stddev = 0.0;
 	if (n > 1) {
-		mc_mssqrmx1(m, n, j, a, 0, &mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrt(sumsq / mc_cast(double, (b ? (m - 1) : m)));
+		mc_ssqrmx1(m, n, j, a, &sumsq, &scale);
+		stddev = scale * mc_sqrt(sumsq / mc_cast(double, (b ? (m - 1) : m)));
 	}
+	return stddev;
 }
 
-MC_TARGET_FUNC void mc_stddmx1l(const int m, const int n, const int j,const long double * a, int b, long double * stddev)
+MC_TARGET_FUNC long double mc_stddmx1l(const int m, const int n, const int j, const long double * a, int b)
 {
-	long double mean, sumsq, scale;
+	long double stddev, sumsq, scale;
 
-	*stddev = 0.0L;
+	stddev = 0.0L;
 	if (n > 1) {
-		mc_mssqrmx1l(m, n, j, a, 0, &mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrtl(sumsq / mc_cast(long double, (b ? (m - 1) : m)));
+		mc_ssqrmx1l(m, n, j, a, &sumsq, &scale);
+		stddev = scale * mc_sqrtl(sumsq / mc_cast(long double, (b ? (m - 1) : m)));
 	}
+	return stddev;
 }
 
 #endif /* !MC_STDDMX1_H */

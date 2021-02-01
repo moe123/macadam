@@ -19,18 +19,15 @@ MC_TARGET_FUNC void mc_mulabtmxnf(const int m, const int n, const int p, float *
 #	if !MC_TARGET_EMBEDDED && MC_TARGET_BLAS_USE_CLAYOUT
 
 	const int mm      = m;
-	const int nn      = m;
-	const int kk0     = n;
-	const int kk1     = p;
+	const int nn      = p;
+	const int k       = n;
 	const int lda     = m;
-	const int ldb     = m;
+	const int ldb     = p;
 	const int ldc     = m;
 	const float alpha = 1.0f;
 	const float beta  = 0.0f;
 
-	mc_unused(kk1);
-
-	mc_sgemm('N', 'T', mm, nn, kk0, alpha, a, lda, b, ldb, beta, c, ldc);
+	mc_sgemm('N', 'T', mm, nn, k, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
 	int i, j = 0, k;
 	for (j = 0; j < m; j++) {
