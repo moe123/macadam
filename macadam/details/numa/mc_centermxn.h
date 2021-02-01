@@ -7,8 +7,8 @@
 //
 
 #include <macadam/details/numa/mc_meanmx1.h>
-#include <macadam/details/numa/mc_mstddmx1.h>
 #include <macadam/details/numa/mc_mrmsmx1.h>
+#include <macadam/details/numa/mc_mstddmx1.h>
 
 #ifndef MC_CENTERMXN_H
 #define MC_CENTERMXN_H
