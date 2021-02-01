@@ -30,7 +30,7 @@
  *    uplo='U' or 'u', the upper triangular part of `a` is being supplied.
  *    uplo='L' or 'l', the lower triangular part of `a` is being supplied.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
  *    must satisfy 0 < k, i.e must be at least one.
  *
@@ -103,17 +103,17 @@
 MC_TARGET_FUNC void mc_blas_native_ssbmv(const char uplo, const int n, const int k, const float alpha, const float * a, const int lda, const float * x, const int incx, const float beta, float * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_ssbmv(order, uplo_a, n, k, alpha, a, lda, x, incx, beta, y, incy);
+	::cblas_ssbmv(ord, ul, n, k, alpha, a, lda, x, incx, beta, y, incy);
 #	else
-	cblas_ssbmv(order, uplo_a, n, k, alpha, a, lda, x, incx, beta, y, incy);
+	cblas_ssbmv(ord, ul, n, k, alpha, a, lda, x, incx, beta, y, incy);
 #	endif
 }
 
@@ -122,17 +122,17 @@ MC_TARGET_FUNC void mc_blas_native_ssbmv(const char uplo, const int n, const int
 MC_TARGET_FUNC void mc_blas_native_dsbmv(const char uplo, const int n, const int k, const double alpha, const double * a, const int lda, const double * x, const int incx, const double beta, double * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_dsbmv(order, uplo_a, n, k, alpha, a, lda, x, incx, beta, y, incy);
+	::cblas_dsbmv(ord, ul, n, k, alpha, a, lda, x, incx, beta, y, incy);
 #	else
-	cblas_dsbmv(order, uplo_a, n, k, alpha, a, lda, x, incx, beta, y, incy);
+	cblas_dsbmv(ord, ul, n, k, alpha, a, lda, x, incx, beta, y, incy);
 #	endif
 }
 
@@ -160,7 +160,7 @@ MC_TARGET_FUNC void mc_blas_native_dsbmv(const char uplo, const int n, const int
  *    uplo='U' or 'u', the upper triangular part of `a` is being supplied.
  *    uplo='L' or 'l', the lower triangular part of `a` is being supplied.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *    [in] k     - int. Specifies the number of super-diagonals of the matrix symmetric `a`, k
  *    must satisfy 0 < k, i.e must be at least one.
  *
@@ -212,16 +212,16 @@ MC_TARGET_FUNC void mc_blas_native_csbmv(const char uplo, const int n, const int
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
-			const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+			const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_csbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+			::cblas_csbmv(ord, ul, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
 #		else
-			cblas_csbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+			cblas_csbmv(ord, ul, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
 #		endif
 #	else
 	mc_unused(uplo);
@@ -246,16 +246,16 @@ MC_TARGET_FUNC void mc_blas_native_zsbmv(const char uplo, const int n, const int
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
-			const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+			const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_zsbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+			::cblas_zsbmv(ord, ul, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
 #		else
-			cblas_zsbmv(order, uplo_a, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
+			cblas_zsbmv(ord, ul, n, k, &alpha, a, lda, x, incx, &beta, y, incy);
 #		endif
 #	else
 	mc_unused(uplo);

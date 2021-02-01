@@ -89,18 +89,18 @@
 MC_TARGET_FUNC void mc_blas_native_ssymm(const char side, const char uplo, const int m, const int n, const float alpha, const float * a, const int lda, const float * b, const int ldb, const float beta, float * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_SIDE side_a = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_SIDE sa = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_ssymm(order, side_a, uplo_a, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+	::cblas_ssymm(ord, sa, ul, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-	cblas_ssymm(order, side_a, uplo_a, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+	cblas_ssymm(ord, sa, ul, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
 #	endif
 }
 
@@ -109,18 +109,18 @@ MC_TARGET_FUNC void mc_blas_native_ssymm(const char side, const char uplo, const
 MC_TARGET_FUNC void mc_blas_native_dsymm(const char side, const char uplo, const int m, const int n, const double alpha, const double * a, const int lda, const double * b, const int ldb, const double beta, double * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_SIDE side_a = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_SIDE sa = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_dsymm(order, side_a, uplo_a, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+	::cblas_dsymm(ord, sa, ul, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-	cblas_dsymm(order, side_a, uplo_a, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+	cblas_dsymm(ord, sa, ul, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
 #	endif
 }
 
@@ -202,18 +202,18 @@ MC_TARGET_FUNC void mc_blas_native_dsymm(const char side, const char uplo, const
 MC_TARGET_FUNC void mc_blas_native_csymm(const char side, const char uplo, const int m, const int n, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * b, const int ldb, const mc_complex_float_t beta, mc_complex_float_t * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_SIDE side_a = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_SIDE sa = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_csymm(order, side_a, uplo_a, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	::cblas_csymm(ord, sa, ul, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	else
-	cblas_csymm(order, side_a, uplo_a, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	cblas_csymm(ord, sa, ul, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	endif
 }
 
@@ -222,18 +222,18 @@ MC_TARGET_FUNC void mc_blas_native_csymm(const char side, const char uplo, const
 MC_TARGET_FUNC void mc_blas_native_zsymm(const char side, const char uplo, const int m, const int n, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * b, const int ldb, const mc_complex_double_t beta, mc_complex_double_t * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_SIDE side_a = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_SIDE sa = mc_blas_lsame(side, 'L') ? CblasLeft  : CblasRight;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_zsymm(order, side_a, uplo_a, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	::cblas_zsymm(ord, sa, ul, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	else
-	cblas_zsymm(order, side_a, uplo_a, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	cblas_zsymm(ord, sa, ul, m, n, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	endif
 }
 

@@ -28,7 +28,7 @@
  *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
  *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
@@ -69,17 +69,17 @@
 MC_TARGET_FUNC void mc_blas_native_sspr(const char uplo, const int n, const float alpha, const float * x, const int incx, float * ap)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_x = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_sspr(order, uplo_x, n, alpha, x, incx, ap);
+	::cblas_sspr(ord, ul, n, alpha, x, incx, ap);
 #	else
-	cblas_sspr(order, uplo_x, n, alpha, x, incx, ap);
+	cblas_sspr(ord, ul, n, alpha, x, incx, ap);
 #	endif
 }
 
@@ -88,17 +88,17 @@ MC_TARGET_FUNC void mc_blas_native_sspr(const char uplo, const int n, const floa
 MC_TARGET_FUNC void mc_blas_native_dspr(const char uplo, const int n, const double alpha, const double * x, const int incx, double * ap)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_x = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_dspr(order, uplo_x, n, alpha, x, incx, ap);
+	::cblas_dspr(ord, ul, n, alpha, x, incx, ap);
 #	else
-	cblas_dspr(order, uplo_x, n, alpha, x, incx, ap);
+	cblas_dspr(ord, ul, n, alpha, x, incx, ap);
 #	endif
 }
 
@@ -124,7 +124,7 @@ MC_TARGET_FUNC void mc_blas_native_dspr(const char uplo, const int n, const doub
  *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
  *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
@@ -163,17 +163,17 @@ MC_TARGET_FUNC void mc_blas_native_cspr(const char uplo, const int n, const mc_c
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
 
-		const enum CBLAS_UPLO uplo_x = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+		const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_cspr(order, uplo_x, n, &alpha, x, incx, ap);
+			::cblas_cspr(ord, ul, n, &alpha, x, incx, ap);
 #		else
-			cblas_cspr(order, uplo_x, n, &alpha, x, incx, ap);
+			cblas_cspr(ord, ul, n, &alpha, x, incx, ap);
 #		endif
 #	else
 	mc_unused(uplo);
@@ -193,17 +193,17 @@ MC_TARGET_FUNC void mc_blas_native_zspr(const char uplo, const int n, const mc_c
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
 
-		const enum CBLAS_UPLO uplo_x = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+		const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_zspr(order, uplo_x, n, &alpha, x, incx, ap);
+			::cblas_zspr(ord, ul, n, &alpha, x, incx, ap);
 #		else
-			cblas_zspr(order, uplo_x, n, &alpha, x, incx, ap);
+			cblas_zspr(ord, ul, n, &alpha, x, incx, ap);
 #		endif
 #	else
 	mc_unused(uplo);

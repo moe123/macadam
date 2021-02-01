@@ -27,7 +27,7 @@
  *    uplo='U' or 'u', only the upper triangular part of `a` is to be referenced.
  *    uplo='L' or 'l', only the lower triangular part of `a` is to be referenced.
  *
- *    [in] n     - int. Specifies the order of the matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the matrix `a`, n must be at least zero.
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
@@ -76,17 +76,17 @@
 MC_TARGET_FUNC void mc_blas_native_ssyr2(const char uplo, const int n, const float alpha, const float * x, const int incx, const float * y, const int incy, float * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_ssyr2(order, uplo_a, n, alpha, x, incx, y, incy, a, lda);
+	::cblas_ssyr2(ord, ul, n, alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_ssyr2(order, uplo_a, n, alpha, x, incx, y, incy, a, lda);
+	cblas_ssyr2(ord, ul, n, alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -95,17 +95,17 @@ MC_TARGET_FUNC void mc_blas_native_ssyr2(const char uplo, const int n, const flo
 MC_TARGET_FUNC void mc_blas_native_dsyr2(const char uplo, const int n, const double alpha, const double * x, const int incx, const double * y, const int incy, double * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_dsyr2(order, uplo_a, n, alpha, x, incx, y, incy, a, lda);
+	::cblas_dsyr2(ord, ul, n, alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_dsyr2(order, uplo_a, n, alpha, x, incx, y, incy, a, lda);
+	cblas_dsyr2(ord, ul, n, alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -130,7 +130,7 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2(const char uplo, const int n, const dou
  *    uplo='U' or 'u', only the upper triangular part of `a` is to be referenced.
  *    uplo='L' or 'l', only the lower triangular part of `a` is to be referenced.
  *
- *    [in] n     - int. Specifies the order of the matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the matrix `a`, n must be at least zero.
  *
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
@@ -176,17 +176,17 @@ MC_TARGET_FUNC void mc_blas_native_csyr2(const char uplo, const int n, const mc_
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
 
-		const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+		const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_csyr2(order, uplo_a, n, &alpha, x, incx, y, incy, a, lda);
+			::cblas_csyr2(ord, ul, n, &alpha, x, incx, y, incy, a, lda);
 #		else
-			cblas_csyr2(order, uplo_a, n, &alpha, x, incx, y, incy, a, lda);
+			cblas_csyr2(ord, ul, n, &alpha, x, incx, y, incy, a, lda);
 #		endif
 #	else
 	mc_unused(uplo);
@@ -208,17 +208,17 @@ MC_TARGET_FUNC void mc_blas_native_zsyr2(const char uplo, const int n, const mc_
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
 
-		const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+		const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_zsyr2(order, uplo_a, n, &alpha, x, incx, y, incy, a, lda);
+			::cblas_zsyr2(ord, ul, n, &alpha, x, incx, y, incy, a, lda);
 #		else
-			cblas_zsyr2(order, uplo_a, n, &alpha, x, incx, y, incy, a, lda);
+			cblas_zsyr2(ord, ul, n, &alpha, x, incx, y, incy, a, lda);
 #		endif
 #	else
 	mc_unused(uplo);

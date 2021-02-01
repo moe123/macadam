@@ -63,15 +63,15 @@
 MC_TARGET_FUNC void mc_blas_native_sger(const int m, const int n, const float alpha, const float * x, const int incx, const float * y, const int incy, float * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
 #	if MC_TARGET_CPP98
-	::cblas_sger(order, m, n, alpha, x, incx, y, incy, a, lda);
+	::cblas_sger(ord, m, n, alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_sger(order, m, n, alpha, x, incx, y, incy, a, lda);
+	cblas_sger(ord, m, n, alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -80,15 +80,15 @@ MC_TARGET_FUNC void mc_blas_native_sger(const int m, const int n, const float al
 MC_TARGET_FUNC void mc_blas_native_dger(const int m, const int n, const double alpha, const double * x, const int incx, const double * y, const int incy, double * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
 #	if MC_TARGET_CPP98
-	::cblas_dger(order, m, n, alpha, x, incx, y, incy, a, lda);
+	::cblas_dger(ord, m, n, alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_dger(order, m, n, alpha, x, incx, y, incy, a, lda);
+	cblas_dger(ord, m, n, alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -144,15 +144,15 @@ MC_TARGET_FUNC void mc_blas_native_dger(const int m, const int n, const double a
 MC_TARGET_FUNC void mc_blas_native_cgerc(const int m, const int n, const mc_complex_float_t alpha, const mc_complex_float_t * x, const int incx, const mc_complex_float_t * y, const int incy, mc_complex_float_t * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
 #	if MC_TARGET_CPP98
-	::cblas_cgerc(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	::cblas_cgerc(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_cgerc(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	cblas_cgerc(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -161,15 +161,15 @@ MC_TARGET_FUNC void mc_blas_native_cgerc(const int m, const int n, const mc_comp
 MC_TARGET_FUNC void mc_blas_native_zgerc(const int m, const int n, const mc_complex_double_t alpha, const mc_complex_double_t * x, const int incx, const mc_complex_double_t * y, const int incy, mc_complex_double_t * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
 #	if MC_TARGET_CPP98
-	::cblas_zgerc(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	::cblas_zgerc(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_zgerc(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	cblas_zgerc(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -225,15 +225,15 @@ MC_TARGET_FUNC void mc_blas_native_zgerc(const int m, const int n, const mc_comp
 MC_TARGET_FUNC void mc_blas_native_cgeru(const int m, const int n, const mc_complex_float_t alpha, const mc_complex_float_t * x, const int incx, const mc_complex_float_t * y, const int incy, mc_complex_float_t * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
 #	if MC_TARGET_CPP98
-	::cblas_cgeru(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	::cblas_cgeru(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_cgeru(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	cblas_cgeru(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 
@@ -242,15 +242,15 @@ MC_TARGET_FUNC void mc_blas_native_cgeru(const int m, const int n, const mc_comp
 MC_TARGET_FUNC void mc_blas_native_zgeru(const int m, const int n, const mc_complex_double_t alpha, const mc_complex_double_t * x, const int incx, const mc_complex_double_t * y, const int incy, mc_complex_double_t * a, const int lda)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
 #	if MC_TARGET_CPP98
-	::cblas_zgeru(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	::cblas_zgeru(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	else
-	cblas_zgeru(order, m, n, &alpha, x, incx, y, incy, a, lda);
+	cblas_zgeru(ord, m, n, &alpha, x, incx, y, incy, a, lda);
 #	endif
 }
 

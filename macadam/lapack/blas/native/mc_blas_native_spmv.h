@@ -28,7 +28,7 @@
  *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
  *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
@@ -76,17 +76,17 @@
 MC_TARGET_FUNC void mc_blas_native_sspmv(const char uplo, const int n, const float alpha, const float * ap, const float * x, const int incx, const float beta, float * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_sspmv(order, uplo_a, n, alpha, ap, x, incx, beta, y, incy);
+	::cblas_sspmv(ord, ul, n, alpha, ap, x, incx, beta, y, incy);
 #	else
-	cblas_sspmv(order, uplo_a, n, alpha, ap, x, incx, beta, y, incy);
+	cblas_sspmv(ord, ul, n, alpha, ap, x, incx, beta, y, incy);
 #	endif
 }
 
@@ -95,17 +95,17 @@ MC_TARGET_FUNC void mc_blas_native_sspmv(const char uplo, const int n, const flo
 MC_TARGET_FUNC void mc_blas_native_dspmv(const char uplo, const int n, const double alpha, const double * ap, const double * x, const int incx, const double beta, double * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_dspmv(order, uplo_a, n, alpha, ap, x, incx, beta, y, incy);
+	::cblas_dspmv(ord, ul, n, alpha, ap, x, incx, beta, y, incy);
 #	else
-	cblas_dspmv(order, uplo_a, n, alpha, ap, x, incx, beta, y, incy);
+	cblas_dspmv(ord, ul, n, alpha, ap, x, incx, beta, y, incy);
 #	endif
 }
 
@@ -131,7 +131,7 @@ MC_TARGET_FUNC void mc_blas_native_dspmv(const char uplo, const int n, const dou
  *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
  *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - complex. Specifies the scalar alpha.
  *
@@ -177,17 +177,17 @@ MC_TARGET_FUNC void mc_blas_native_cspmv(const char uplo, const int n, const mc_
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
 
-		const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+		const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_cspmv(order, uplo_a, n, &alpha, ap, x, incx, &beta, y, incy);
+			::cblas_cspmv(ord, ul, n, &alpha, ap, x, incx, &beta, y, incy);
 #		else
-			cblas_cspmv(order, uplo_a, n, &alpha, ap, x, incx, &beta, y, incy);
+			cblas_cspmv(ord, ul, n, &alpha, ap, x, incx, &beta, y, incy);
 #		endif
 #	else
 	mc_unused(uplo);
@@ -210,17 +210,17 @@ MC_TARGET_FUNC void mc_blas_native_zspmv(const char uplo, const int n, const mc_
 	&& !MC_TARGET_BLAS_USE_ACCELERATE \
 	&& !MC_TARGET_BLAS_USE_VECLIB
 #		if MC_TARGET_BLAS_USE_CLAYOUT
-			const enum CBLAS_ORDER order = CblasRowMajor;
+			const enum CBLAS_ORDER ord = CblasRowMajor;
 #		else
-			const enum CBLAS_ORDER order = CblasColMajor;
+			const enum CBLAS_ORDER ord = CblasColMajor;
 #		endif
 
-		const enum CBLAS_UPLO uplo_a = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+		const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #		if MC_TARGET_CPP98
-			::cblas_zspmv(order, uplo_a, n, &alpha, ap, x, incx, &beta, y, incy);
+			::cblas_zspmv(ord, ul, n, &alpha, ap, x, incx, &beta, y, incy);
 #		else
-			cblas_zspmv(order, uplo_a, n, &alpha, ap, x, incx, &beta, y, incy);
+			cblas_zspmv(ord, ul, n, &alpha, ap, x, incx, &beta, y, incy);
 #		endif
 #	else
 	mc_unused(uplo);

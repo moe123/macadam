@@ -75,17 +75,17 @@
 MC_TARGET_FUNC void mc_blas_native_sgemv(const char trans, const int m, const int n, const float alpha, const float * a, const int lda, const float * x, const int incx, const float beta, float * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_TRANSPOSE ta = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_sgemv(order, trans_a, m, n, alpha, a, lda, x, incx, beta, y, incy);
+	::cblas_sgemv(ord, ta, m, n, alpha, a, lda, x, incx, beta, y, incy);
 #	else
-	cblas_sgemv(order, trans_a, m, n, alpha, a, lda, x, incx, beta, y, incy);
+	cblas_sgemv(ord, ta, m, n, alpha, a, lda, x, incx, beta, y, incy);
 #	endif
 }
 
@@ -94,17 +94,17 @@ MC_TARGET_FUNC void mc_blas_native_sgemv(const char trans, const int m, const in
 MC_TARGET_FUNC void mc_blas_native_dgemv(const char trans, const int m, const int n, const double alpha, const double * a, const int lda, const double * x, const int incx, const double beta, double * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_TRANSPOSE ta = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_dgemv(order, trans_a, m, n, alpha, a, lda, x, incx, beta, y, incy);
+	::cblas_dgemv(ord, ta, m, n, alpha, a, lda, x, incx, beta, y, incy);
 #	else
-	cblas_dgemv(order, trans_a, m, n, alpha, a, lda, x, incx, beta, y, incy);
+	cblas_dgemv(ord, ta, m, n, alpha, a, lda, x, incx, beta, y, incy);
 #	endif
 }
 
@@ -172,17 +172,17 @@ MC_TARGET_FUNC void mc_blas_native_dgemv(const char trans, const int m, const in
 MC_TARGET_FUNC void mc_blas_native_cgemv(const char trans, const int m, const int n, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * x, const int incx, const mc_complex_float_t beta, mc_complex_float_t * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_TRANSPOSE ta = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_cgemv(order, trans_a, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
+	::cblas_cgemv(ord, ta, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
 #	else
-	cblas_cgemv(order, trans_a, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
+	cblas_cgemv(ord, ta, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
 #	endif
 }
 
@@ -191,17 +191,17 @@ MC_TARGET_FUNC void mc_blas_native_cgemv(const char trans, const int m, const in
 MC_TARGET_FUNC void mc_blas_native_zgemv(const char trans, const int m, const int n, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * x, const int incx, const mc_complex_double_t beta, mc_complex_double_t * y, const int incy)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_TRANSPOSE trans_a = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_TRANSPOSE ta = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_zgemv(order, trans_a, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
+	::cblas_zgemv(ord, ta, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
 #	else
-	cblas_zgemv(order, trans_a, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
+	cblas_zgemv(ord, ta, m, n, &alpha, a, lda, x, incx, &beta, y, incy);
 #	endif
 }
 

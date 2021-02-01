@@ -28,7 +28,7 @@
  *    uplo='U' or 'u', the upper triangular part of `a` supplied in `ap`.
  *    uplo='L' or 'l', the lower triangular part of `a` supplied in `ap`.
  *
- *    [in] n     - int. Specifies the order of the symmetric matrix `a`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the symmetric matrix `a`, n must be at least zero.
  *
  *    [in] alpha - real-floating. Specifies the scalar alpha.
  *
@@ -74,17 +74,17 @@
 MC_TARGET_FUNC void mc_blas_native_sspr2(const char uplo, const int n, const float alpha, const float * x, const int incx, const float * y, const int incy, float * ap)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_x = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_sspr2(order, uplo_x, n, alpha, x, incx, y, incy, ap);
+	::cblas_sspr2(ord, ul, n, alpha, x, incx, y, incy, ap);
 #	else
-	cblas_sspr2(order, uplo_x, n, alpha, x, incx, y, incy, ap);
+	cblas_sspr2(ord, ul, n, alpha, x, incx, y, incy, ap);
 #	endif
 }
 
@@ -93,17 +93,17 @@ MC_TARGET_FUNC void mc_blas_native_sspr2(const char uplo, const int n, const flo
 MC_TARGET_FUNC void mc_blas_native_dspr2(const char uplo, const int n, const double alpha, const double * x, const int incx, const double * y, const int incy, double * ap)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_x = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
+	const enum CBLAS_UPLO ul = mc_blas_lsame(uplo, 'U') ? CblasUpper : CblasLower;
 
 #	if MC_TARGET_CPP98
-	::cblas_dspr2(order, uplo_x, n, alpha, x, incx, y, incy, ap);
+	::cblas_dspr2(ord, ul, n, alpha, x, incx, y, incy, ap);
 #	else
-	cblas_dspr2(order, uplo_x, n, alpha, x, incx, y, incy, ap);
+	cblas_dspr2(ord, ul, n, alpha, x, incx, y, incy, ap);
 #	endif
 }
 

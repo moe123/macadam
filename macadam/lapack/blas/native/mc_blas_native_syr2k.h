@@ -33,7 +33,7 @@
  *    trans='T' or 't' c=alpha*a'*b + alpha*b'*a + beta*c.
  *    trans='C' or 'c' c=alpha*a'*b + alpha*b'*a + beta*c.
  *
- *    [in] n     - int. Specifies the order of the matrix `c`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the matrix `c`, n must be at least zero.
  *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrices `a` and `b`,
  *    and with trans='T' or 't' or trans='C' or 'c', k specifies the number of rows of the matrices `a` and `b`.
  *    k must be at least zero.
@@ -91,18 +91,18 @@
 MC_TARGET_FUNC void mc_blas_native_ssyr2k(const char uplo, const char trans, const int n, const int k, const float alpha, const float * a, const int lda, const float * b, const int ldb, const float beta, float * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_c       = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
-	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_UPLO ul      = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
+	const enum CBLAS_TRANSPOSE tc = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_ssyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	::cblas_ssyr2k(ord, ul, tc, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-	cblas_ssyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	cblas_ssyr2k(ord, ul, tc, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
 #	endif
 }
 
@@ -111,18 +111,18 @@ MC_TARGET_FUNC void mc_blas_native_ssyr2k(const char uplo, const char trans, con
 MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, const int n, const int k, const double alpha, const double * a, const int lda, const double * b, const int ldb, const double beta, double * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_c       = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
-	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_UPLO ul      = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
+	const enum CBLAS_TRANSPOSE tc = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_dsyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	::cblas_dsyr2k(ord, ul, tc, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
 #	else
-	cblas_dsyr2k(order, uplo_c, trans_c, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+	cblas_dsyr2k(ord, ul, tc, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
 #	endif
 }
 
@@ -152,7 +152,7 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, con
  *    trans='N' or 'n' c=alpha*a*b' + alpha*b*a' + beta*c.
  *    trans='T' or 't' c=alpha*a'*b + alpha*b'*a + beta*c.
  *
- *    [in] n     - int. Specifies the order of the matrix `c`, n must be at least zero.
+ *    [in] n     - int. Specifies the ord of the matrix `c`, n must be at least zero.
  *    [in] k     - int. With trans='N' or 'n', k specifies the number of columns of the matrices `a` and `b`,
  *    and with trans='T' or 't' or trans='C' or 'c', k specifies the number of rows of the matrices `a` and `b`.
  *    k must be at least zero.
@@ -204,18 +204,18 @@ MC_TARGET_FUNC void mc_blas_native_dsyr2k(const char uplo, const char trans, con
 MC_TARGET_FUNC void mc_blas_native_csyr2k(const char uplo, const char trans, const int n, const int k, const mc_complex_float_t alpha, const mc_complex_float_t * a, const int lda, const mc_complex_float_t * b, const int ldb, const mc_complex_float_t beta, mc_complex_float_t * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_c       = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
-	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_UPLO ul      = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
+	const enum CBLAS_TRANSPOSE tc = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_csyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	::cblas_csyr2k(ord, ul, tc, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	else
-	cblas_csyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	cblas_csyr2k(ord, ul, tc, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	endif
 }
 
@@ -224,18 +224,18 @@ MC_TARGET_FUNC void mc_blas_native_csyr2k(const char uplo, const char trans, con
 MC_TARGET_FUNC void mc_blas_native_zsyr2k(const char uplo, const char trans, const int n, const int k, const mc_complex_double_t alpha, const mc_complex_double_t * a, const int lda, const mc_complex_double_t * b, const int ldb, const mc_complex_double_t beta, mc_complex_double_t * c, const int ldc)
 {
 #	if MC_TARGET_BLAS_USE_CLAYOUT
-	const enum CBLAS_ORDER order = CblasRowMajor;
+	const enum CBLAS_ORDER ord = CblasRowMajor;
 #	else
-	const enum CBLAS_ORDER order = CblasColMajor;
+	const enum CBLAS_ORDER ord = CblasColMajor;
 #	endif
 
-	const enum CBLAS_UPLO uplo_c       = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
-	const enum CBLAS_TRANSPOSE trans_c = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
+	const enum CBLAS_UPLO ul      = mc_blas_lsame(uplo, 'U')  ? CblasUpper   : CblasLower;
+	const enum CBLAS_TRANSPOSE tc = mc_blas_lsame(trans, 'N') ? CblasNoTrans : (mc_blas_lsame(trans, 'T') ? CblasTrans : CblasConjTrans);
 
 #	if MC_TARGET_CPP98
-	::cblas_zsyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	::cblas_zsyr2k(ord, ul, tc, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	else
-	cblas_zsyr2k(order, uplo_c, trans_c, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
+	cblas_zsyr2k(ord, ul, tc, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc);
 #	endif
 }
 
