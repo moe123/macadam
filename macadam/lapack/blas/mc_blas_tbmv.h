@@ -156,6 +156,9 @@
 #include <macadam/lapack/blas/mc_blas_access.h>
 #include <macadam/lapack/blas/mc_blas_lsame.h>
 #include <macadam/lapack/blas/mc_blas_xerbla.h>
+#include <macadam/details/math/mc_cadd.h>
+#include <macadam/details/math/mc_ciseq.h>
+#include <macadam/details/math/mc_cmul.h>
 #include <macadam/details/math/mc_maxmag.h>
 #include <macadam/details/math/mc_minmag.h>
 
