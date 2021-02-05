@@ -13,7 +13,7 @@
 
 #pragma mark - mc_eye3x3 -
 
-MC_TARGET_FUNC void mc_eye3x3f(float a[9], int f)
+MC_TARGET_FUNC void mc_eye3x3f(float a[9], const int f)
 {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.
@@ -25,7 +25,7 @@ MC_TARGET_FUNC void mc_eye3x3f(float a[9], int f)
 	a[0] = 1.0f; a[4] = 1.0f; a[8] = 1.0f;
 }
 
-MC_TARGET_FUNC void mc_eye3x3(double a[9], int f)
+MC_TARGET_FUNC void mc_eye3x3(double a[9], const int f)
 {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.
@@ -37,7 +37,7 @@ MC_TARGET_FUNC void mc_eye3x3(double a[9], int f)
 	a[0] = 1.0; a[4] = 1.0; a[8] = 1.0;
 }
 
-MC_TARGET_FUNC void mc_eye3x3l(long double a[9], int f)
+MC_TARGET_FUNC void mc_eye3x3l(long double a[9], const int f)
 {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.

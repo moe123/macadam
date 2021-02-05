@@ -31,7 +31,7 @@
 
 #pragma mark - mc_sort1xn -
 
-MC_TARGET_FUNC void mc_sort1xnf(const int n, float * y, const float * x, int f)
+MC_TARGET_FUNC void mc_sort1xnf(const int n, float * y, const float * x, const int f)
 {
 	if (x != y) {
 		mc_copy1xnf(n, y, x);
@@ -39,13 +39,13 @@ MC_TARGET_FUNC void mc_sort1xnf(const int n, float * y, const float * x, int f)
 	mc_sort1xn_type(float, n, y, f);
 }
 
-MC_TARGET_FUNC void mc_sort1xnff(const int n, double * y, const float * x, int f)
+MC_TARGET_FUNC void mc_sort1xnff(const int n, double * y, const float * x, const int f)
 {
 	mc_copy1xnff(n, y, x);
 	mc_sort1xn_type(double, n, y, f);
 }
 
-MC_TARGET_FUNC void mc_sort1xn(const int n, double * y, const double * x, int f)
+MC_TARGET_FUNC void mc_sort1xn(const int n, double * y, const double * x, const int f)
 {
 	if (x != y) {
 		mc_copy1xn(n, y, x);
@@ -53,7 +53,7 @@ MC_TARGET_FUNC void mc_sort1xn(const int n, double * y, const double * x, int f)
 	mc_sort1xn_type(double, n, y, f);
 }
 
-MC_TARGET_FUNC void mc_sort1xnl(const int n, long double * y, const long double * x, int f)
+MC_TARGET_FUNC void mc_sort1xnl(const int n, long double * y, const long double * x, const int f)
 {
 	if (x != y) {
 		mc_copy1xnl(n, y, x);

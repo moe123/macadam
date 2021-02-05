@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nextafter -
 
-MC_TARGET_FUNC float mc_nextafterf(float x, float y)
+MC_TARGET_FUNC float mc_nextafterf(const float x, const float y)
 {
 #	if MC_TARGET_CPP98
 	return ::nextafterf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_nextafterf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_nextafter(double x, double y)
+MC_TARGET_FUNC double mc_nextafter(const double x, const double y)
 {
 #	if MC_TARGET_CPP98
 	return ::nextafter(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_nextafter(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_nextafterl(long double x, long double y)
+MC_TARGET_FUNC long double mc_nextafterl(const long double x, const long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::nextafterl(x, y);

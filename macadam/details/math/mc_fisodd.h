@@ -14,7 +14,7 @@
 
 #pragma mark - mc_fisodd -
 
-MC_TARGET_FUNC int mc_fisoddf(float x, int frac)
+MC_TARGET_FUNC int mc_fisoddf(float x, const int frac)
 {
 	if (x == 0.0f) {
 		return 1;
@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_fisoddf(float x, int frac)
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_fisodd(double x, int frac)
+MC_TARGET_FUNC int mc_fisodd(double x, const int frac)
 {
 	if (x == 0.0) {
 		return 1;
@@ -46,7 +46,7 @@ MC_TARGET_FUNC int mc_fisodd(double x, int frac)
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_fisoddl(long double x, int frac)
+MC_TARGET_FUNC int mc_fisoddl(long double x, const int frac)
 {
 	if (x == 0.0L) {
 		return 1;

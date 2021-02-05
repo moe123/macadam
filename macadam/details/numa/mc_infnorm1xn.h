@@ -13,7 +13,7 @@
 
 #pragma mark - mc_infnorm1xn -
 
-MC_TARGET_FUNC float mc_infnorm1xnf(const int n, const float * x, int f)
+MC_TARGET_FUNC float mc_infnorm1xnf(const int n, const float * x, const int f)
 {
 //!# Requires x[1 x n]. Returning the infinity norm of x.
 //!# f=0: computing the maximum of the absolute values.
@@ -27,7 +27,7 @@ MC_TARGET_FUNC float mc_infnorm1xnf(const int n, const float * x, int f)
 	return nrm;
 }
 
-MC_TARGET_FUNC double mc_infnorm1xnff(const int n, const float * x, int f)
+MC_TARGET_FUNC double mc_infnorm1xnff(const int n, const float * x, const int f)
 {
 //!# Requires x[1 x n]. Returning the infinity norm of x.
 //!# f=0: computing the maximum of the absolute values.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC double mc_infnorm1xnff(const int n, const float * x, int f)
 	return nrm;
 }
 
-MC_TARGET_FUNC double mc_infnorm1xn(const int n, const double * x, int f)
+MC_TARGET_FUNC double mc_infnorm1xn(const int n, const double * x, const int f)
 {
 //!# Requires x[1 x n]. Returning the infinity norm of x.
 //!# f=0: computing the maximum of the absolute row sums.
@@ -55,7 +55,7 @@ MC_TARGET_FUNC double mc_infnorm1xn(const int n, const double * x, int f)
 	return nrm;
 }
 
-MC_TARGET_FUNC long double mc_infnorm1xnl(const int n, const long double * x, int f)
+MC_TARGET_FUNC long double mc_infnorm1xnl(const int n, const long double * x, const int f)
 {
 //!# Requires x[1 x n]. Returning the infinity norm of x.
 //!# f=0: computing the maximum of the absolute row sums.

@@ -14,7 +14,7 @@
 
 #pragma mark - mc_logaddexp -
 
-MC_TARGET_FUNC float mc_logaddexpf(float x, float y)
+MC_TARGET_FUNC float mc_logaddexpf(const float x, const float y)
 {
 	return ((x == y)
 		? (x + MCK_KF(MCK_LOGE2))
@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_logaddexpf(float x, float y)
 	);
 }
 
-MC_TARGET_FUNC double mc_logaddexp(double x, double y)
+MC_TARGET_FUNC double mc_logaddexp(const double x, const double y)
 {
 	return ((x == y)
 		? (x + MCK_K(MCK_LOGE2))
@@ -30,7 +30,7 @@ MC_TARGET_FUNC double mc_logaddexp(double x, double y)
 	);
 }
 
-MC_TARGET_FUNC long double mc_logaddexpl(long double x, long double y)
+MC_TARGET_FUNC long double mc_logaddexpl(const long double x, const long double y)
 {
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 		return ((x == y)

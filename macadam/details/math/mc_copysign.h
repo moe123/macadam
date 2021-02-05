@@ -15,7 +15,7 @@
 
 #pragma mark - mc_copysign -
 
-MC_TARGET_FUNC float mc_copysignf(float x, float y)
+MC_TARGET_FUNC float mc_copysignf(const float x, const float y)
 {
 #	if MC_TARGET_CPP98
 	return ::copysignf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_copysignf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_copysign(double x, double y)
+MC_TARGET_FUNC double mc_copysign(const double x, const double y)
 {
 #	if MC_TARGET_CPP98
 	return ::copysign(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_copysign(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_copysignl(long double x, long double y)
+MC_TARGET_FUNC long double mc_copysignl(const long double x, const long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::copysignl(x, y);

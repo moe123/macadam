@@ -13,7 +13,7 @@
 
 #pragma mark - mc_cumsum1xn -
 
-MC_TARGET_FUNC int mc_cumsum1xnf(const int n, float * u, const float * x, int f)
+MC_TARGET_FUNC int mc_cumsum1xnf(const int n, float * u, const float * x, const int f)
 {
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. U and X may be the
 //!# same. Returning the cumulative sum of the elements.
@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_cumsum1xnf(const int n, float * u, const float * x, int f)
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_cumsum1xnff(const int n, double * u, const float * x, int f)
+MC_TARGET_FUNC int mc_cumsum1xnff(const int n, double * u, const float * x, const int f)
 {
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. Returning
 //!# the cumulative sum of the elements.
@@ -53,7 +53,7 @@ MC_TARGET_FUNC int mc_cumsum1xnff(const int n, double * u, const float * x, int 
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_cumsum1xn(const int n, double * u, const double * x, int f)
+MC_TARGET_FUNC int mc_cumsum1xn(const int n, double * u, const double * x, const int f)
 {
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. U and X may be the
 //!# same. Returning the cumulative sum of the elements.
@@ -73,7 +73,7 @@ MC_TARGET_FUNC int mc_cumsum1xn(const int n, double * u, const double * x, int f
 	return -1;
 }
 
-MC_TARGET_FUNC int mc_cumsum1xnl(const int n, long double * u, const long double * x, int f)
+MC_TARGET_FUNC int mc_cumsum1xnl(const int n, long double * u, const long double * x, const int f)
 {
 //!# Requires u[1 x n] and x[1 x n] where 1 < n. U and X may be the
 //!# same. Returning the cumulative sum of the elements.

@@ -13,7 +13,7 @@
 
 #pragma mark - mc_dotp3x1 -
 
-MC_TARGET_FUNC float mc_dotp3x1f(const int n, int j, int k, const float * a, const float * b, int f)
+MC_TARGET_FUNC float mc_dotp3x1f(const int n, int j, int k, const float * a, const float * b, const int f)
 {
 	float s = 0.0f, e = 0.0f, x, y;
 
@@ -40,7 +40,7 @@ MC_TARGET_FUNC float mc_dotp3x1f(const int n, int j, int k, const float * a, con
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_dotp3x1ff(const int n, int j, int k, const float * a, const float * b, int f)
+MC_TARGET_FUNC double mc_dotp3x1ff(const int n, int j, int k, const float * a, const float * b, const int f)
 {
 	double s = 0.0, e = 0.0, x, y;
 
@@ -67,7 +67,7 @@ MC_TARGET_FUNC double mc_dotp3x1ff(const int n, int j, int k, const float * a, c
 	return s + e;
 }
 
-MC_TARGET_FUNC double mc_dotp3x1(const int n, int j, int k, const double * a, const double * b, int f)
+MC_TARGET_FUNC double mc_dotp3x1(const int n, int j, int k, const double * a, const double * b, const int f)
 {
 	double s = 0.0, e = 0.0, x, y;
 
@@ -94,7 +94,7 @@ MC_TARGET_FUNC double mc_dotp3x1(const int n, int j, int k, const double * a, co
 	return s + e;
 }
 
-MC_TARGET_FUNC long double mc_dotp3x1l(const int n, int j, int k, const long double * a, const long double * b, int f)
+MC_TARGET_FUNC long double mc_dotp3x1l(const int n, int j, int k, const long double * a, const long double * b, const int f)
 {
 	long double s = 0.0L, e = 0.0L, x, y;
 

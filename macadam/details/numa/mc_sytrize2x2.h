@@ -13,7 +13,7 @@
 
 #pragma mark - mc_sytrize2x2 -
 
-MC_TARGET_FUNC void mc_sytrize2x2f(float b[4], const float a[4], int f)
+MC_TARGET_FUNC void mc_sytrize2x2f(float b[4], const float a[4], const int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.
@@ -27,7 +27,7 @@ MC_TARGET_FUNC void mc_sytrize2x2f(float b[4], const float a[4], int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_sytrize2x2ff(double b[4], const float a[4], int f)
+MC_TARGET_FUNC void mc_sytrize2x2ff(double b[4], const float a[4], const int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.
@@ -39,7 +39,7 @@ MC_TARGET_FUNC void mc_sytrize2x2ff(double b[4], const float a[4], int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_sytrize2x2(double b[4], const double a[4], int f)
+MC_TARGET_FUNC void mc_sytrize2x2(double b[4], const double a[4], const int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.
@@ -53,7 +53,7 @@ MC_TARGET_FUNC void mc_sytrize2x2(double b[4], const double a[4], int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_sytrize2x2l(long double b[4], const long double a[4], int f)
+MC_TARGET_FUNC void mc_sytrize2x2l(long double b[4], const long double a[4], const int f)
 {
 //!# f=0: copy upper-triangle to lower-triangle.
 //!# f=1: copy lower-triangle to upper-triangle.

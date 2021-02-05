@@ -16,7 +16,7 @@
 MC_TARGET_PROC void mc_zeye2x2f(
 	  float * v0_r, float * v0_i, float * v1_r, float * v1_i
 	, float * v2_r, float * v2_i, float * v3_r, float * v3_i
-	, int f
+	, const int f
 ) {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.
@@ -30,7 +30,7 @@ MC_TARGET_PROC void mc_zeye2x2f(
 MC_TARGET_PROC void mc_zeye2x2(
 	  double * v0_r, double * v0_i, double * v1_r, double * v1_i
 	, double * v2_r, double * v2_i, double * v3_r, double * v3_i
-	, int f
+	, const int f
 ) {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.
@@ -44,7 +44,7 @@ MC_TARGET_PROC void mc_zeye2x2(
 MC_TARGET_PROC void mc_zeye2x2l(
 	  long double * v0_r, long double * v0_i, long double * v1_r, long double * v1_i
 	, long double * v2_r, long double * v2_i, long double * v3_r, long double * v3_i
-	, int f
+	, const int f
 ) {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.

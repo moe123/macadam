@@ -15,7 +15,7 @@
 
 #pragma mark - mc_fmax -
 
-MC_TARGET_FUNC float mc_fmaxf(float x, float y)
+MC_TARGET_FUNC float mc_fmaxf(const float x, const float y)
 {
 #	if MC_TARGET_CPP98
 	return ::fmaxf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_fmaxf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_fmax(double x, double y)
+MC_TARGET_FUNC double mc_fmax(const double x, const double y)
 {
 #	if MC_TARGET_CPP98
 	return ::fmax(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_fmax(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_fmaxl(long double x, long double y)
+MC_TARGET_FUNC long double mc_fmaxl(const long double x, const long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::fmaxl(x, y);

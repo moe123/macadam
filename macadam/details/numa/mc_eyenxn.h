@@ -13,7 +13,7 @@
 
 #pragma mark - mc_eyenxn -
 
-MC_TARGET_FUNC void mc_eyenxnf(const int n, float * a, int f)
+MC_TARGET_FUNC void mc_eyenxnf(const int n, float * a, const int f)
 {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.
@@ -26,7 +26,7 @@ MC_TARGET_FUNC void mc_eyenxnf(const int n, float * a, int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_eyenxn(const int n, double * a, int f)
+MC_TARGET_FUNC void mc_eyenxn(const int n, double * a, const int f)
 {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.
@@ -39,7 +39,7 @@ MC_TARGET_FUNC void mc_eyenxn(const int n, double * a, int f)
 	}
 }
 
-MC_TARGET_FUNC void mc_eyenxnl(const int n, long double * a, int f)
+MC_TARGET_FUNC void mc_eyenxnl(const int n, long double * a, const int f)
 {
 //!# f=0: set main diagonal to ones and zeroing other elements.
 //!# f=1: only set main diagonal to ones.

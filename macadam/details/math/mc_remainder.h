@@ -15,7 +15,7 @@
 
 #pragma mark - mc_remainder -
 
-MC_TARGET_FUNC float mc_remainderf(float x, float y)
+MC_TARGET_FUNC float mc_remainderf(const float x, const float y)
 {
 #	if MC_TARGET_CPP98
 	return ::remainderf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_remainderf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_remainder(double x, double y)
+MC_TARGET_FUNC double mc_remainder(const double x, const double y)
 {
 #	if MC_TARGET_CPP98
 	return ::remainder(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_remainder(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_remainderl(long double x, long double y)
+MC_TARGET_FUNC long double mc_remainderl(const long double x, const long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::remainderl(x, y);

@@ -14,7 +14,7 @@
 
 #pragma mark - mc_triussqrnxn -
 
-MC_TARGET_FUNC void mc_triussqrnxnf(const int n, const float * a, float * sumsq, float * scale, int f)
+MC_TARGET_FUNC void mc_triussqrnxnf(const int n, const float * a, float * sumsq, float * scale, const int f)
 {
 //!# Computing the scaled sum of squares of the upper-triangle of A.
 //!# f=0: including main diagonal.
@@ -41,7 +41,7 @@ MC_TARGET_FUNC void mc_triussqrnxnf(const int n, const float * a, float * sumsq,
 	}
 }
 
-MC_TARGET_FUNC void mc_triussqrnxnff(const int n, const float * a, double * sumsq, double * scale, int f)
+MC_TARGET_FUNC void mc_triussqrnxnff(const int n, const float * a, double * sumsq, double * scale, const int f)
 {
 //!# Computing the scaled sum of squares of the upper-triangle of A.
 //!# f=0: including main diagonal.
@@ -68,7 +68,7 @@ MC_TARGET_FUNC void mc_triussqrnxnff(const int n, const float * a, double * sums
 	}
 }
 
-MC_TARGET_FUNC void mc_triussqrnxn(const int n, const double * a, double * sumsq, double * scale, int f)
+MC_TARGET_FUNC void mc_triussqrnxn(const int n, const double * a, double * sumsq, double * scale, const int f)
 {
 //!# Computing the scaled sum of squares of the upper-triangle of A.
 //!# f=0: including main diagonal.
@@ -95,7 +95,7 @@ MC_TARGET_FUNC void mc_triussqrnxn(const int n, const double * a, double * sumsq
 	}
 }
 
-MC_TARGET_FUNC void mc_triussqrnxnl(const int n, const long double * a, long double * sumsq, long double * scale, int f)
+MC_TARGET_FUNC void mc_triussqrnxnl(const int n, const long double * a, long double * sumsq, long double * scale, const int f)
 {
 //!# Computing the scaled sum of squares of the upper-triangle of A.
 //!# f=0: including main diagonal.

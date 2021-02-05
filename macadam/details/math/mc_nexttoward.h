@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nexttoward -
 
-MC_TARGET_FUNC float mc_nexttowardf(float x, float y)
+MC_TARGET_FUNC float mc_nexttowardf(const float x, const float y)
 {
 #	if MC_TARGET_CPP98
 	return ::nexttowardf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_nexttowardf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_nexttoward(double x, double y)
+MC_TARGET_FUNC double mc_nexttoward(const double x, const double y)
 {
 #	if MC_TARGET_CPP98
 	return ::nexttoward(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_nexttoward(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_nexttowardl(long double x, long double y)
+MC_TARGET_FUNC long double mc_nexttowardl(const long double x, const long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::nexttowardl(x, y);

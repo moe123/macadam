@@ -14,7 +14,7 @@
 
 #pragma mark - mc_hypot2 -
 
-MC_TARGET_FUNC float mc_hypot2f(float x, float y)
+MC_TARGET_FUNC float mc_hypot2f(const float x, const float y)
 {
 	float a = mc_fabsf(x);
 	float b = mc_fabsf(y);
@@ -29,7 +29,7 @@ MC_TARGET_FUNC float mc_hypot2f(float x, float y)
 	return c;
 }
 
-MC_TARGET_FUNC double mc_hypot2(double x, double y)
+MC_TARGET_FUNC double mc_hypot2(const double x, const double y)
 {
 	double a = mc_fabs(x);
 	double b = mc_fabs(y);
@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_hypot2(double x, double y)
 	return c;
 }
 
-MC_TARGET_FUNC long double mc_hypot2l(long double x, long double y)
+MC_TARGET_FUNC long double mc_hypot2l(const long double x, const long double y)
 {
 	long double a = mc_fabsl(x);
 	long double b = mc_fabsl(y);

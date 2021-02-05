@@ -15,7 +15,7 @@
 
 #pragma mark - mc_fdim -
 
-MC_TARGET_FUNC float mc_fdimf(float x, float y)
+MC_TARGET_FUNC float mc_fdimf(const float x, const float y)
 {
 #	if MC_TARGET_CPP98
 	return ::fdimf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_fdimf(float x, float y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_fdim(double x, double y)
+MC_TARGET_FUNC double mc_fdim(const double x, const double y)
 {
 #	if MC_TARGET_CPP98
 	return ::fdim(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_fdim(double x, double y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_fdiml(long double x, long double y)
+MC_TARGET_FUNC long double mc_fdiml(const long double x, const long double y)
 {
 #	if MC_TARGET_CPP98
 	return ::fdiml(x, y);

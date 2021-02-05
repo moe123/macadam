@@ -13,17 +13,17 @@
 
 #pragma mark - mc_logdiffexp -
 
-MC_TARGET_FUNC float mc_logdiffexpf(float x, float y)
+MC_TARGET_FUNC float mc_logdiffexpf(const float x, const float y)
 {
 	return x + mc_log1mef(x - y);
 }
 
-MC_TARGET_FUNC double mc_logdiffexp(double x, double y)
+MC_TARGET_FUNC double mc_logdiffexp(const double x, const double y)
 {
 	return x + mc_log1me(x - y);
 }
 
-MC_TARGET_FUNC long double mc_logdiffexpl(long double x, long double y)
+MC_TARGET_FUNC long double mc_logdiffexpl(const long double x, const long double y)
 {
 	return x + mc_log1mel(x - y);
 }

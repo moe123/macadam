@@ -20,14 +20,14 @@
  *
  * \brief Computing the regularized incomplete beta function.
  *
- * float mc_ibetaf(float a, float b, float x);
+ * float mc_ibetaf(const float a, const float b, const float x);
  *
  * \param a Value strictly positive a>0.
  * \param b Value strictly positive b>0.
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNC float mc_ibetaf(float a, float b, float x)
+MC_TARGET_FUNC float mc_ibetaf(const float a, const float b, const float x)
 {
 	unsigned int i = 0, j;
 	float g, k, w, f = 1.0f, c = 1.0f, d = 0.0f;
@@ -81,14 +81,14 @@ MC_TARGET_FUNC float mc_ibetaf(float a, float b, float x)
  *
  * \brief Computing the regularized incomplete beta function.
  *
- * double mc_ibeta(double a, double b, double x);
+ * double mc_ibeta(const double a, const double b, const double x);
  *
  * \param a Value strictly positive a>0.
  * \param b Value strictly positive b>0.
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNC double mc_ibeta(double a, double b, double x)
+MC_TARGET_FUNC double mc_ibeta(const double a, const double b, const double x)
 {
 	unsigned int i = 0, j;
 	double g, k, w, f = 1.0, c = 1.0, d = 0.0;
@@ -142,14 +142,14 @@ MC_TARGET_FUNC double mc_ibeta(double a, double b, double x)
  *
  * \brief Computing the regularized incomplete beta function.
  *
- * long double mc_ibetal(long double a, long double b, long double x);
+ * long double mc_ibetal(const long double a, const long double b, const long double x);
  *
  * \param a Value strictly positive a>0.
  * \param b Value strictly positive b>0.
  * \param x Value in the range [0,1].
  * \result  The normalised incomplete beta function of a, b and x.
  */
-MC_TARGET_FUNC long double mc_ibetal(long double a, long double b, long double x)
+MC_TARGET_FUNC long double mc_ibetal(const long double a, const long double b, const long double x)
 {
 	unsigned int i = 0, j;
 	long double g, k, w, f = 1.0L, c = 1.0L, d = 0.0L;
