@@ -15,7 +15,7 @@
 
 #pragma mark - mc_lrint -
 
-MC_TARGET_FUNC long mc_lrintf(float x)
+MC_TARGET_FUNC long mc_lrintf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::lrintf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC long mc_lrintf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC long mc_lrint(double x)
+MC_TARGET_FUNC long mc_lrint(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::lrint(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC long mc_lrint(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long mc_lrintl(long double x)
+MC_TARGET_FUNC long mc_lrintl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::lrintl(x);

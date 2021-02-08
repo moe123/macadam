@@ -14,17 +14,17 @@
 
 #pragma mark - mc_fix -
 
-MC_TARGET_FUNC float mc_fixf(float x)
+MC_TARGET_FUNC float mc_fixf(const float x)
 {
 	return (x > 0.0f) ? mc_floorf(x) : ((x < 0.0f) ? mc_ceilf(x) : x);
 }
 
-MC_TARGET_FUNC double mc_fix(double x)
+MC_TARGET_FUNC double mc_fix(const double x)
 {
 	return (x > 0.0) ? mc_floor(x) : ((x < 0.0) ? mc_ceil(x) : x);
 }
 
-MC_TARGET_FUNC long double mc_fixl(long double x)
+MC_TARGET_FUNC long double mc_fixl(const long double x)
 {
 	return (x > 0.0L) ? mc_floorl(x) : ((x < 0.0L) ? mc_ceill(x) : x);
 }

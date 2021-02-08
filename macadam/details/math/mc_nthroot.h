@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nthroot -
 
-MC_TARGET_PROC float mc_nthrootf(unsigned int n, float x)
+MC_TARGET_PROC float mc_nthrootf(const unsigned int n, const float x)
 {
 	if (n > 0 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
@@ -33,13 +33,13 @@ MC_TARGET_PROC float mc_nthrootf(unsigned int n, float x)
 		if (x < 0.0f && ((n % 2) == 0)) {
 			return MCK_NAN;
 		}
-		const float r = 1.0f / mc_cast(float, n);
+		const float r = 1.0f / mc_cast(const float, n);
 		return mc_powf(x, r);
 	}
 	return MCK_NAN;
 }
 
-MC_TARGET_PROC double mc_nthroot(unsigned int n, double x)
+MC_TARGET_PROC double mc_nthroot(const unsigned int n, const double x)
 {
 	if (n > 0 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
@@ -57,13 +57,13 @@ MC_TARGET_PROC double mc_nthroot(unsigned int n, double x)
 		if (x < 0.0 && ((n % 2) == 0)) {
 			return MCK_NAN;
 		}
-		const double r = 1.0 / mc_cast(double, n);
+		const double r = 1.0 / mc_cast(const double, n);
 		return mc_pow(x, r);
 	}
 	return MCK_NAN;
 }
 
-MC_TARGET_PROC long double mc_nthrootl(unsigned int n, long double x)
+MC_TARGET_PROC long double mc_nthrootl(const unsigned int n, const long double x)
 {
 	if (n > 0 && n < MCLIMITS_IMAX) {
 		if (n == 1) {
@@ -81,7 +81,7 @@ MC_TARGET_PROC long double mc_nthrootl(unsigned int n, long double x)
 		if (x < 0.0L && ((n % 2) == 0)) {
 			return MCK_NAN;
 		}
-		const long double r = 1.0L / mc_cast(long double, n);
+		const long double r = 1.0L / mc_cast(const long double, n);
 		return mc_powl(x, r);
 	}
 	return MCK_NAN;

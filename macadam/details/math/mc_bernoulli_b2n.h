@@ -15,7 +15,7 @@
 
 #pragma mark - mc_bernoulli_b2n -
 
-MC_TARGET_FUNC float mc_bernoulli_b2nf(unsigned int n)
+MC_TARGET_FUNC float mc_bernoulli_b2nf(const unsigned int n)
 {
 	const unsigned int max_b2n = 33;
 	const float b2n[]          =
@@ -61,7 +61,7 @@ MC_TARGET_FUNC float mc_bernoulli_b2nf(unsigned int n)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_bernoulli_b2n(unsigned int n)
+MC_TARGET_FUNC double mc_bernoulli_b2n(const unsigned int n)
 {
 	const unsigned int max_b2n = 130;
 	const double b2n[]         =
@@ -204,7 +204,7 @@ MC_TARGET_FUNC double mc_bernoulli_b2n(unsigned int n)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_bernoulli_b2nl(unsigned int n)
+MC_TARGET_FUNC long double mc_bernoulli_b2nl(const unsigned int n)
 {
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
 	const unsigned int max_b2n = 1157;

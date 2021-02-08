@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nearbyint -
 
-MC_TARGET_FUNC float mc_nearbyintf(float x)
+MC_TARGET_FUNC float mc_nearbyintf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::nearbyintf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_nearbyintf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_nearbyint(double x)
+MC_TARGET_FUNC double mc_nearbyint(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::nearbyint(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_nearbyint(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_nearbyintl(long double x)
+MC_TARGET_FUNC long double mc_nearbyintl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::nearbyintl(x);

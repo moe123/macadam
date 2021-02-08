@@ -15,7 +15,7 @@
 
 #pragma mark - mc_fisval -
 
-MC_TARGET_FUNC int mc_fisvalf(float x)
+MC_TARGET_FUNC int mc_fisvalf(const float x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return 0;
@@ -34,7 +34,7 @@ MC_TARGET_FUNC int mc_fisvalf(float x)
 	return 1;
 }
 
-MC_TARGET_FUNC int mc_fisval(double x)
+MC_TARGET_FUNC int mc_fisval(const double x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return 0;
@@ -53,7 +53,7 @@ MC_TARGET_FUNC int mc_fisval(double x)
 	return 1;
 }
 
-MC_TARGET_FUNC int mc_fisvall(long double x)
+MC_TARGET_FUNC int mc_fisvall(const long double x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return 0;

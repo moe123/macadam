@@ -15,7 +15,7 @@
 
 #pragma mark - mc_ceil -
 
-MC_TARGET_FUNC float mc_ceilf(float x)
+MC_TARGET_FUNC float mc_ceilf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::ceilf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_ceilf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_ceil(double x)
+MC_TARGET_FUNC double mc_ceil(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::ceil(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_ceil(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_ceill(long double x)
+MC_TARGET_FUNC long double mc_ceill(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::ceill(x);

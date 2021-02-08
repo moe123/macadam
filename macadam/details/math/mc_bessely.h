@@ -19,7 +19,7 @@
 
 #pragma mark - mc_bessely0 -
 
-MC_TARGET_FUNC float mc_bessely0f(float x)
+MC_TARGET_FUNC float mc_bessely0f(const float x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::y0(mc_cast(double, x)));
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_bessely0f(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_bessely0(double x)
+MC_TARGET_FUNC double mc_bessely0(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::y0(x);
@@ -37,7 +37,7 @@ MC_TARGET_FUNC double mc_bessely0(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_bessely0l(long double x)
+MC_TARGET_FUNC long double mc_bessely0l(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::y0(mc_cast(double, x)));
@@ -48,7 +48,7 @@ MC_TARGET_FUNC long double mc_bessely0l(long double x)
 
 #pragma mark - mc_bessely1 -
 
-MC_TARGET_FUNC float mc_bessely1f(float x)
+MC_TARGET_FUNC float mc_bessely1f(const float x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::y1(mc_cast(double, x)));
@@ -57,7 +57,7 @@ MC_TARGET_FUNC float mc_bessely1f(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_bessely1(double x)
+MC_TARGET_FUNC double mc_bessely1(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::y1(x);
@@ -66,7 +66,7 @@ MC_TARGET_FUNC double mc_bessely1(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_bessely1l(long double x)
+MC_TARGET_FUNC long double mc_bessely1l(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::y1(mc_cast(double, x)));

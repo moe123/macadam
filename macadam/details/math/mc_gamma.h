@@ -18,7 +18,7 @@
 
 #pragma mark - mc_gamma_approx0 -
 
-MC_TARGET_PROC float mc_gammaf_approx0(float x)
+MC_TARGET_PROC float mc_gammaf_approx0(const float x)
 {
 //!# Stirling's formula formula for x >= 13.
 	if (mc_isnan(x) || mc_isinf(x)) {
@@ -35,7 +35,7 @@ MC_TARGET_PROC float mc_gammaf_approx0(float x)
 	return mc_sqrtf(a) * mc_powf(b, x);
 }
 
-MC_TARGET_PROC double mc_gamma_approx0(double x)
+MC_TARGET_PROC double mc_gamma_approx0(const double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	if (mc_isnan(x) || mc_isinf(x)) {
@@ -52,7 +52,7 @@ MC_TARGET_PROC double mc_gamma_approx0(double x)
 	return mc_sqrt(a) * mc_pow(b, x);
 }
 
-MC_TARGET_PROC long double mc_gammal_approx0(long double x)
+MC_TARGET_PROC long double mc_gammal_approx0(const long double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	if (mc_isnan(x) || mc_isinf(x)) {
@@ -71,7 +71,7 @@ MC_TARGET_PROC long double mc_gammal_approx0(long double x)
 
 #pragma mark - mc_gamma_approx1 -
 
-MC_TARGET_PROC float mc_gammaf_approx1(float x)
+MC_TARGET_PROC float mc_gammaf_approx1(const float x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -86,7 +86,7 @@ MC_TARGET_PROC float mc_gammaf_approx1(float x)
 	return mc_expf(r);
 }
 
-MC_TARGET_PROC double mc_gamma_approx1(double x)
+MC_TARGET_PROC double mc_gamma_approx1(const double x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -101,7 +101,7 @@ MC_TARGET_PROC double mc_gamma_approx1(double x)
 	return mc_exp(r);
 }
 
-MC_TARGET_PROC long double mc_gammal_approx1(long double x)
+MC_TARGET_PROC long double mc_gammal_approx1(const long double x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -118,7 +118,7 @@ MC_TARGET_PROC long double mc_gammal_approx1(long double x)
 
 #pragma mark - mc_gamma_approx2 -
 
-MC_TARGET_PROC float mc_gammaf_approx2(float x)
+MC_TARGET_PROC float mc_gammaf_approx2(const float x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -168,7 +168,7 @@ MC_TARGET_PROC float mc_gammaf_approx2(float x)
 	return mc_gammaf_approx1(x);
 }
 
-MC_TARGET_PROC double mc_gamma_approx2(double x)
+MC_TARGET_PROC double mc_gamma_approx2(const double x)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -218,7 +218,7 @@ MC_TARGET_PROC double mc_gamma_approx2(double x)
 	return mc_gamma_approx1(x);
 }
 
-MC_TARGET_PROC long double mc_gammal_approx2(long double x)
+MC_TARGET_PROC long double mc_gammal_approx2(const long double x)
 {
 	const long double Y[] =
 	{
@@ -270,7 +270,7 @@ MC_TARGET_PROC long double mc_gammal_approx2(long double x)
 
 #pragma mark - mc_gamma -
 
-MC_TARGET_FUNC float mc_gammaf(float x)
+MC_TARGET_FUNC float mc_gammaf(const float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_gammaf_approx2(x);
@@ -283,7 +283,7 @@ MC_TARGET_FUNC float mc_gammaf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_gamma(double x)
+MC_TARGET_FUNC double mc_gamma(const double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_gamma_approx2(x);
@@ -296,7 +296,7 @@ MC_TARGET_FUNC double mc_gamma(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_gammal(long double x)
+MC_TARGET_FUNC long double mc_gammal(const long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_gammal_approx2(x);

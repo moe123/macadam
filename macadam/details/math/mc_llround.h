@@ -14,7 +14,7 @@
 #pragma mark - mc_llround -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNC long long mc_llroundf(float x)
+MC_TARGET_FUNC long long mc_llroundf(const float x)
 {
 #	if MC_TARGET_CPP11
 	return ::llroundf(x);
@@ -23,7 +23,7 @@ MC_TARGET_FUNC long long mc_llroundf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC long long mc_llround(double x)
+MC_TARGET_FUNC long long mc_llround(const double x)
 {
 #	if MC_TARGET_CPP11
 	return ::llround(x);
@@ -32,7 +32,7 @@ MC_TARGET_FUNC long long mc_llround(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long long mc_llroundl(long double x)
+MC_TARGET_FUNC long long mc_llroundl(const long double x)
 {
 #	if MC_TARGET_CPP11
 	return ::llroundl(x);

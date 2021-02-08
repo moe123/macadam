@@ -34,7 +34,7 @@ MC_TARGET_FUNC void mc_sincosf(float x, float * sinp, float * cosp)
 #	elif (defined(__unix__) || defined(__bsdi__)) && !(defined(__linux__) || defined(__gnu_linux__))
 #	if MC_TARGET_CPP98
 	::sincosf(x, sinp, cosp);
-#		else
+#	else
 	sincosf(x, sinp, cosp);
 #	endif
 #	elif (defined(__GLIBC__) || defined(_GNU_SOURCE))
@@ -73,7 +73,7 @@ MC_TARGET_FUNC void mc_sincos(double x, double * sinp, double * cosp)
 #	elif (defined(__unix__) || defined(__bsdi__)) && !defined(__linux__)
 #		if MC_TARGET_CPP98
 	::sincos(x, sinp, cosp);
-#		else
+#	else
 	sincos(x, sinp, cosp);
 #		endif
 #	elif (defined(__GLIBC__) || defined(_GNU_SOURCE))

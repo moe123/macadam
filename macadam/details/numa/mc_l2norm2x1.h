@@ -13,7 +13,7 @@
 
 #pragma mark - mc_l2norm2x1 -
 
-MC_TARGET_PROC float mc_l2norm2x1f(const int n, int j, const float * a)
+MC_TARGET_PROC float mc_l2norm2x1f(const int n, const int j, const float * a)
 {
 	if (n < 1) {
 		return MCK_NAN;
@@ -21,7 +21,7 @@ MC_TARGET_PROC float mc_l2norm2x1f(const int n, int j, const float * a)
 	return mc_hypot2f(a[j], a[n + j]);
 }
 
-MC_TARGET_PROC double mc_l2norm2x1ff(const int n, int j, const float * a)
+MC_TARGET_PROC double mc_l2norm2x1ff(const int n, const int j, const float * a)
 {
 	if (n < 1) {
 		return MCK_NAN;
@@ -29,7 +29,7 @@ MC_TARGET_PROC double mc_l2norm2x1ff(const int n, int j, const float * a)
 	return mc_hypot2(mc_cast(double, a[j]), mc_cast(double, a[n + j]));
 }
 
-MC_TARGET_PROC double mc_l2norm2x1(const int n, int j, const double * a)
+MC_TARGET_PROC double mc_l2norm2x1(const int n, const int j, const double * a)
 {
 	if (n < 1) {
 		return MCK_NAN;
@@ -37,7 +37,7 @@ MC_TARGET_PROC double mc_l2norm2x1(const int n, int j, const double * a)
 	return mc_hypot2(a[j], a[n + j]);
 }
 
-MC_TARGET_PROC long double mc_l2norm2x1l(const int n, int j, const long double * a)
+MC_TARGET_PROC long double mc_l2norm2x1l(const int n, const int j, const long double * a)
 {
 	if (n < 1) {
 		return MCK_NAN;

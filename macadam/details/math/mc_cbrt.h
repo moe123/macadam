@@ -15,7 +15,7 @@
 
 #pragma mark - mc_cbrt -
 
-MC_TARGET_FUNC float mc_cbrtf(float x)
+MC_TARGET_FUNC float mc_cbrtf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::cbrtf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_cbrtf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_cbrt(double x)
+MC_TARGET_FUNC double mc_cbrt(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cbrt(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_cbrt(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_cbrtl(long double x)
+MC_TARGET_FUNC long double mc_cbrtl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cbrtl(x);

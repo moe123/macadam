@@ -14,7 +14,7 @@
 
 #pragma mark - mc_hermite_hen -
 
-MC_TARGET_FUNC float mc_hermite_henf(unsigned int n, float x)
+MC_TARGET_FUNC float mc_hermite_henf(const unsigned int n, const float x)
 {
 //!# NTH probabilists' Hermite polynomial.
 	float hi       = 0.0f;
@@ -36,7 +36,7 @@ MC_TARGET_FUNC float mc_hermite_henf(unsigned int n, float x)
 	return h1;
 }
 
-MC_TARGET_FUNC double mc_hermite_hen(unsigned int n, double x)
+MC_TARGET_FUNC double mc_hermite_hen(const unsigned int n, const double x)
 {
 //!# NTH probabilists' Hermite polynomial.
 	double hi      = 0.0;
@@ -58,7 +58,7 @@ MC_TARGET_FUNC double mc_hermite_hen(unsigned int n, double x)
 	return h1;
 }
 
-MC_TARGET_FUNC long double mc_hermite_henl(unsigned int n, long double x)
+MC_TARGET_FUNC long double mc_hermite_henl(const unsigned int n, const long double x)
 {
 //!# NTH probabilists' Hermite polynomial.
 	long double hi = 0.0L;

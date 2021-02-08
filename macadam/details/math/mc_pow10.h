@@ -13,17 +13,17 @@
 
 #pragma mark - mc_pow10 -
 
-MC_TARGET_FUNC float mc_pow10f(float x)
+MC_TARGET_FUNC float mc_pow10f(const float x)
 {
 	return mc_powf(10.0f, x);
 }
 
-MC_TARGET_FUNC double mc_pow10(double x)
+MC_TARGET_FUNC double mc_pow10(const double x)
 {
 	return mc_pow(10.0, x);
 }
 
-MC_TARGET_FUNC long double mc_pow10l(long double x)
+MC_TARGET_FUNC long double mc_pow10l(const long double x)
 {
 	return mc_powl(10.0L, x);
 }

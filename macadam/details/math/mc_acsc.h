@@ -13,17 +13,17 @@
 
 #pragma mark - mc_acsc -
 
-MC_TARGET_FUNC float mc_acscf(float x)
+MC_TARGET_FUNC float mc_acscf(const float x)
 {
 	return mc_asinf(1.0f / x);
 }
 
-MC_TARGET_FUNC double mc_acsc(double x)
+MC_TARGET_FUNC double mc_acsc(const double x)
 {
 	return mc_asin(1.0 / x);
 }
 
-MC_TARGET_FUNC long double mc_acscl(long double x)
+MC_TARGET_FUNC long double mc_acscl(const long double x)
 {
 	return mc_asinl(1.0L / x);
 }

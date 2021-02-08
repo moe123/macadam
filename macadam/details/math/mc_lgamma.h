@@ -22,7 +22,7 @@
 
 #pragma mark - mc_lgamma_approx0 -
 
-MC_TARGET_PROC float mc_lgammaf_approx0(float x)
+MC_TARGET_PROC float mc_lgammaf_approx0(const float x)
 {
 //!# Stirling's formula for x >= 13.
 	const float a = MCK_KF(MCK_2PI) / x;
@@ -30,7 +30,7 @@ MC_TARGET_PROC float mc_lgammaf_approx0(float x)
 	return mc_logf(mc_sqrtf(a) * mc_powf(b, x));
 }
 
-MC_TARGET_PROC double mc_lgamma_approx0(double x)
+MC_TARGET_PROC double mc_lgamma_approx0(const double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	const double a = MCK_K(MCK_2PI) / x;
@@ -38,7 +38,7 @@ MC_TARGET_PROC double mc_lgamma_approx0(double x)
 	return mc_log(mc_sqrt(a) * mc_pow(b, x));
 }
 
-MC_TARGET_PROC long double mc_lgammal_approx0(long double x)
+MC_TARGET_PROC long double mc_lgammal_approx0(const long double x)
 {
 //!# Stirling's formula formula for x >= 13.
 	const long double a = MCK_KL(MCK_2PI) / x;
@@ -48,45 +48,48 @@ MC_TARGET_PROC long double mc_lgammal_approx0(long double x)
 
 #pragma mark - mc_lgamma_approx1 -
 
-MC_TARGET_PROC float mc_lgammaf_approx1(float x)
+MC_TARGET_PROC float mc_lgammaf_approx1(const float x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
 //!# Leading term.
 	const float q = mc_raise2f(x);
 	float r       = MCK_KF(MCK_LOGESQRT2PI) - x + (x - 0.5f) * mc_logf(x);
-	r = r +  MCK_KF(MCK_1_12)   / x; x = x * q;
-	r = r + -MCK_KF(MCK_1_360)  / x; x = x * q;
-	r = r +  MCK_KF(MCK_1_1260) / x;
+	float y       = x;
+	r             = r +  MCK_KF(MCK_1_12)   / y; y = y * q;
+	r             = r + -MCK_KF(MCK_1_360)  / y; y = y * q;
+	r             = r +  MCK_KF(MCK_1_1260) / y;
 	return r;
 }
 
-MC_TARGET_PROC double mc_lgamma_approx1(double x)
+MC_TARGET_PROC double mc_lgamma_approx1(const double x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
 //!# Leading term.
 	const double q = mc_raise2(x);
 	double r       = MCK_K(MCK_LOGESQRT2PI) - x + (x - 0.5) * mc_log(x);
-	r = r +  MCK_K(MCK_1_12)   / x; x = x * q;
-	r = r + -MCK_K(MCK_1_360)  / x; x = x * q;
-	r = r +  MCK_K(MCK_1_1260) / x;
+	double y       = x;
+	r              = r +  MCK_K(MCK_1_12)   / y; y = y * q;
+	r              = r + -MCK_K(MCK_1_360)  / y; y = y * q;
+	r              = r +  MCK_K(MCK_1_1260) / y;
 	return r;
 }
 
-MC_TARGET_PROC long double mc_lgammal_approx1(long double x)
+MC_TARGET_PROC long double mc_lgammal_approx1(const long double x)
 {
 //!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
 //!# Leading term.
 	const long double q = mc_raise2l(x);
 	long double r       = MCK_KL(MCK_LOGESQRT2PI) - x + (x - 0.5L) * mc_logl(x);
-	r = r +  MCK_KL(MCK_1_12)   / x; x = x * q;
-	r = r + -MCK_KL(MCK_1_360)  / x; x = x * q;
-	r = r +  MCK_KL(MCK_1_1260) / x;
+	long double y       = x;
+	r                   = r +  MCK_KL(MCK_1_12)   / y; y = y * q;
+	r                   = r + -MCK_KL(MCK_1_360)  / y; y = y * q;
+	r                   = r +  MCK_KL(MCK_1_1260) / y;
 	return r;
 }
 
 #pragma mark - mc_lgamma_approx2 -
 
-MC_TARGET_PROC float mc_lgammaf_approx2(float x)
+MC_TARGET_PROC float mc_lgammaf_approx2(const float x)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
@@ -97,7 +100,7 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 	const float lanczos_c4 = -1.231739572450154973637381772277876734E+00f;
 	const float lanczos_c5 = +1.208650973866179020865807558493543183E-03f;
 	const float lanczos_c6 = -5.395239384953000327544564429516071868E-06f;
-	float s, b, r = MCK_NAN;
+	float s, a, b, r = MCK_NAN;
 
 	if (mc_isnan(x)) {
 		return x;
@@ -122,16 +125,16 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 		return MCK_INFP;
 	}
 	if (x >= 0.5f) {
-		x = x - 1.0f;
-		b = x + lanczos_g + 0.5f;
-		s = lanczos_c6 / (x + 6.0f);
-		s = s + (lanczos_c5 / (x + 5.0f));
-		s = s + (lanczos_c4 / (x + 4.0f));
-		s = s + (lanczos_c3 / (x + 3.0f));
-		s = s + (lanczos_c2 / (x + 2.0f));
-		s = s + (lanczos_c1 / (x + 1.0f));
+		a = x - 1.0f;
+		b = a + lanczos_g + 0.5f;
+		s = lanczos_c6 / (a + 6.0f);
+		s = s + (lanczos_c5 / (a + 5.0f));
+		s = s + (lanczos_c4 / (a + 4.0f));
+		s = s + (lanczos_c3 / (a + 3.0f));
+		s = s + (lanczos_c2 / (a + 2.0f));
+		s = s + (lanczos_c1 / (a + 1.0f));
 		s = s + lanczos_c0;
-		r  = ((MCK_KF(MCK_LOGESQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (x + 0.5f);
+		r  = ((MCK_KF(MCK_LOGESQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (a + 0.5f);
 	} else if (x < 0.0f) {
 		r = x * mc_sinpif(x);
 		r = mc_fabsf(MCK_KF(MCK_PI) / r);
@@ -144,7 +147,7 @@ MC_TARGET_PROC float mc_lgammaf_approx2(float x)
 	return r;
 }
 
-MC_TARGET_PROC double mc_lgamma_approx2(double x)
+MC_TARGET_PROC double mc_lgamma_approx2(const double x)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
@@ -155,7 +158,7 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 	const double lanczos_c4 = -1.2317395724501549736373817722778767347336E+00;
 	const double lanczos_c5 = +1.2086509738661790208658075584935431834310E-03;
 	const double lanczos_c6 = -5.3952393849530003275445644295160718684201E-06;
-	double s, b, r = MCK_NAN;
+	double s, a, b, r = MCK_NAN;
 
 	if (mc_isnan(x)) {
 		return x;
@@ -180,16 +183,16 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 		return MCK_INFP;
 	}
 	if (x >= 0.5) {
-		x = x - 1.0;
-		b = x + lanczos_g + 0.5;
-		s = lanczos_c6 / (x + 6.0);
-		s = s + (lanczos_c5 / (x + 5.0));
-		s = s + (lanczos_c4 / (x + 4.0));
-		s = s + (lanczos_c3 / (x + 3.0));
-		s = s + (lanczos_c2 / (x + 2.0));
-		s = s + (lanczos_c1 / (x + 1.0));
+		a = x - 1.0;
+		b = a + lanczos_g + 0.5;
+		s = lanczos_c6 / (a + 6.0);
+		s = s + (lanczos_c5 / (a + 5.0));
+		s = s + (lanczos_c4 / (a + 4.0));
+		s = s + (lanczos_c3 / (a + 3.0));
+		s = s + (lanczos_c2 / (a + 2.0));
+		s = s + (lanczos_c1 / (a + 1.0));
 		s = s + lanczos_c0;
-		r  = ((MCK_K(MCK_LOGESQRT2PI) + mc_log(s)) - b) + mc_log(b) * (x + 0.5);
+		r  = ((MCK_K(MCK_LOGESQRT2PI) + mc_log(s)) - b) + mc_log(b) * (a + 0.5);
 	} else if (x < 0.0) {
 		r = x * mc_sinpi(x);
 		r = mc_fabs(MCK_K(MCK_PI) / r);
@@ -202,7 +205,7 @@ MC_TARGET_PROC double mc_lgamma_approx2(double x)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
+MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
@@ -214,7 +217,7 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 	const long double lanczos_c4 = -1.231739572450154973637381772277876734733581542968750000000000000E+00L;
 	const long double lanczos_c5 = +1.208650973866179020865807558493543183431029319763183593750000000E-03L;
 	const long double lanczos_c6 = -5.395239384953000327544564429516071868420112878084182739257812500E-06L;
-	long double s, b, r = MCK_NAN;
+	long double s, a, b, r = MCK_NAN;
 
 	if (mc_isnan(x)) {
 		return x;
@@ -233,16 +236,16 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 		return MCK_INFP;
 	}
 	if (x >= 0.5L) {
-		x = x - 1.0L;
-		b = x + lanczos_g + 0.5L;
-		s = lanczos_c6 / (x + 6.0L);
-		s = s + (lanczos_c5 / (x + 5.0L));
-		s = s + (lanczos_c4 / (x + 4.0L));
-		s = s + (lanczos_c3 / (x + 3.0L));
-		s = s + (lanczos_c2 / (x + 2.0L));
-		s = s + (lanczos_c1 / (x + 1.0L));
+		a = x - 1.0L;
+		b = a + lanczos_g + 0.5L;
+		s = lanczos_c6 / (a + 6.0L);
+		s = s + (lanczos_c5 / (a + 5.0L));
+		s = s + (lanczos_c4 / (a + 4.0L));
+		s = s + (lanczos_c3 / (a + 3.0L));
+		s = s + (lanczos_c2 / (a + 2.0L));
+		s = s + (lanczos_c1 / (a + 1.0L));
 		s = s + lanczos_c0;
-		r  = ((MCK_KL(MCK_LOGESQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (x + 0.5L);
+		r  = ((MCK_KL(MCK_LOGESQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (a + 0.5L);
 	} else if (x < 0.0) {
 		r = x * mc_sinpil(x);
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
@@ -261,7 +264,7 @@ MC_TARGET_PROC long double mc_lgammal_approx2(long double x)
 
 #pragma mark - mc_lgamma -
 
-MC_TARGET_FUNC float mc_lgammaf(float x)
+MC_TARGET_FUNC float mc_lgammaf(const float x)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
@@ -275,7 +278,7 @@ MC_TARGET_FUNC float mc_lgammaf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_lgamma(double x)
+MC_TARGET_FUNC double mc_lgamma(const double x)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
@@ -289,7 +292,7 @@ MC_TARGET_FUNC double mc_lgamma(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_lgammal(long double x)
+MC_TARGET_FUNC long double mc_lgammal(const long double x)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED

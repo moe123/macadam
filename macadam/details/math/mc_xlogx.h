@@ -13,17 +13,17 @@
 
 #pragma mark - mc_xlogx -
 
-MC_TARGET_FUNC float mc_xlogxf(float x)
+MC_TARGET_FUNC float mc_xlogxf(const float x)
 {
 	return mc_xlogyf(x, x);
 }
 
-MC_TARGET_FUNC double mc_xlogx(double x)
+MC_TARGET_FUNC double mc_xlogx(const double x)
 {
 	return mc_xlogy(x, x);
 }
 
-MC_TARGET_FUNC long double mc_xlogxl(long double x)
+MC_TARGET_FUNC long double mc_xlogxl(const long double x)
 {
 	return mc_xlogyl(x, x);
 }

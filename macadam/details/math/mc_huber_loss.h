@@ -15,7 +15,7 @@
 
 #pragma mark - mc_huber_loss -
 
-MC_TARGET_FUNC float mc_huber_lossf(float r, float c, float s, int p)
+MC_TARGET_FUNC float mc_huber_lossf(const float r, const float c, const float s, const int p)
 {
 //!# Huber loss functions. Pass p=1 for pseudo.
 //!# Default settings c=1.345 and s=1 (scale)
@@ -32,7 +32,7 @@ MC_TARGET_FUNC float mc_huber_lossf(float r, float c, float s, int p)
 	return d;
 }
 
-MC_TARGET_FUNC double mc_huber_loss(double r, double c, double s, int p)
+MC_TARGET_FUNC double mc_huber_loss(const double r, const double c, const double s, const int p)
 {
 //!# Huber loss functions. Pass p=1 for pseudo.
 //!# Default settings c=1.345 and s=1 (scale)
@@ -49,7 +49,7 @@ MC_TARGET_FUNC double mc_huber_loss(double r, double c, double s, int p)
 	return d;
 }
 
-MC_TARGET_FUNC long double mc_huber_lossl(long double r, long double c, long double s, int p)
+MC_TARGET_FUNC long double mc_huber_lossl(const long double r, const long double c, const long double s, const int p)
 {
 //!# Huber loss functions. Pass p=1 for pseudo.
 //!# Default settings c=1.345 and s=1 (scale)

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_rint -
 
-MC_TARGET_FUNC float mc_rintf(float x)
+MC_TARGET_FUNC float mc_rintf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::rintf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_rintf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_rint(double x)
+MC_TARGET_FUNC double mc_rint(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::rint(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_rint(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_rintl(long double x)
+MC_TARGET_FUNC long double mc_rintl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::rintl(x);

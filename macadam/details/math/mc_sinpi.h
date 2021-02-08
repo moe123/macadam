@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sinpi -
 
-MC_TARGET_FUNC float mc_sinpif(float x)
+MC_TARGET_FUNC float mc_sinpif(const float x)
 {
 	float r   = 0.0f;
 	int64_t i = mc_remint2f(x, &r) & 3;
@@ -36,7 +36,7 @@ MC_TARGET_FUNC float mc_sinpif(float x)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_sinpi(double x)
+MC_TARGET_FUNC double mc_sinpi(const double x)
 {
 	double r  = 0.0;
 	int64_t i = mc_remint2(x, &r) & 3;
@@ -57,7 +57,7 @@ MC_TARGET_FUNC double mc_sinpi(double x)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_sinpil(long double x)
+MC_TARGET_FUNC long double mc_sinpil(const long double x)
 {
 	long double r = 0.0L;
 	int64_t i     = mc_remint2l(x, &r) & 3;

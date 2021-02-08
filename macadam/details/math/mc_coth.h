@@ -14,7 +14,7 @@
 
 #pragma mark - mc_coth -
 
-MC_TARGET_FUNC float mc_cothf(float x)
+MC_TARGET_FUNC float mc_cothf(const float x)
 {
 #	if MC_TARGET_EMBEDDED
 	const float x0 = mc_expf(-x);
@@ -25,7 +25,7 @@ MC_TARGET_FUNC float mc_cothf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_coth(double x)
+MC_TARGET_FUNC double mc_coth(const double x)
 {
 #	if MC_TARGET_EMBEDDED
 	const double x0 = mc_exp(-x);
@@ -36,7 +36,7 @@ MC_TARGET_FUNC double mc_coth(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_cothl(long double x)
+MC_TARGET_FUNC long double mc_cothl(const long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	const long double x0 = mc_expl(-x);

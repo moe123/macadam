@@ -13,17 +13,17 @@
 
 #pragma mark - mc_zetan -
 
-MC_TARGET_FUNC float mc_zetanf(float x)
+MC_TARGET_FUNC float mc_zetanf(const float x)
 {
 	return x + MCK_INFN;
 }
 
-MC_TARGET_FUNC double mc_zetan(double x)
+MC_TARGET_FUNC double mc_zetan(const double x)
 {
 	return x + MCK_INFN;
 }
 
-MC_TARGET_FUNC long double mc_zetanl(long double x)
+MC_TARGET_FUNC long double mc_zetanl(const long double x)
 {
 	return x + MCK_INFN;
 }

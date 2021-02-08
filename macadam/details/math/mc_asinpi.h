@@ -13,19 +13,19 @@
 
 #pragma mark - mc_asinpi -
 
-MC_TARGET_FUNC float mc_asinpif(float x)
+MC_TARGET_FUNC float mc_asinpif(const float x)
 {
 	const float y = mc_asinf(x);
 	return y * MCK_KF(MCK_1_PI);
 }
 
-MC_TARGET_FUNC double mc_asinpi(double x)
+MC_TARGET_FUNC double mc_asinpi(const double x)
 {
 	const double y = mc_asin(x);
 	return y * MCK_K(MCK_1_PI);
 }
 
-MC_TARGET_FUNC long double mc_asinpil(long double x)
+MC_TARGET_FUNC long double mc_asinpil(const long double x)
 {
 	const long double y = mc_asinl(x);
 	return y * MCK_KL(MCK_1_PI);

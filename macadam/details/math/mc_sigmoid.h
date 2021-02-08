@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sigmoid -
 
-MC_TARGET_FUNC float mc_sigmoidf(float x)
+MC_TARGET_FUNC float mc_sigmoidf(const float x)
 {
 	const float x0 = +46.0f;
 	const float x1 = -23.0f;
@@ -26,13 +26,13 @@ MC_TARGET_FUNC float mc_sigmoidf(float x)
 		return mc_expf(x);
 	}
 	if (x < x1) {
-		x = mc_expf(x);
-		return x - mc_raise2f(x);
+		const float y = mc_expf(x);
+		return y - mc_raise2f(y);
 	}
 	return 1.0f / (mc_expf(-x) + 1.0f);
 }
 
-MC_TARGET_FUNC double mc_sigmoid(double x)
+MC_TARGET_FUNC double mc_sigmoid(const double x)
 {
 	const double x0 = +46.0;
 	const double x1 = -23.0;
@@ -43,13 +43,13 @@ MC_TARGET_FUNC double mc_sigmoid(double x)
 		return mc_exp(x);
 	}
 	if (x < x1) {
-		x = mc_exp(x);
-		return x - mc_raise2(x);
+		const double y = mc_exp(x);
+		return y - mc_raise2(y);
 	}
 	return 1.0 / (mc_exp(-x) + 1.0);
 }
 
-MC_TARGET_FUNC long double mc_sigmoidl(long double x)
+MC_TARGET_FUNC long double mc_sigmoidl(const long double x)
 {
 	const long double x0 = +46.0;
 	const long double x1 = -23.0;
@@ -60,8 +60,8 @@ MC_TARGET_FUNC long double mc_sigmoidl(long double x)
 		return mc_expl(x);
 	}
 	if (x < x1) {
-		x = mc_expl(x);
-		return x - mc_raise2l(x);
+		const long double y = mc_expl(x);
+		return y - mc_raise2l(y);
 	}
 	return 1.0L / (mc_expl(-x) + 1.0L);
 }

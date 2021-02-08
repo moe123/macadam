@@ -13,7 +13,7 @@
 
 #pragma mark - mc_fisnear -
 
-MC_TARGET_FUNC int mc_fisnearf(float x, float y, int n)
+MC_TARGET_FUNC int mc_fisnearf(const float x, const float y, const int n)
 {
 //!# Returning if two numbers are near-equality by n epsilon steps.
 	if (n < 1) {
@@ -25,7 +25,7 @@ MC_TARGET_FUNC int mc_fisnearf(float x, float y, int n)
 	return mc_fabsf(y - x) < (mc_cast(float, n) * MCLIMITS_EPSILONF) ? 1 : 0;
 }
 
-MC_TARGET_FUNC int mc_fisnear(double x, double y, int n)
+MC_TARGET_FUNC int mc_fisnear(const double x, const double y, const int n)
 {
 //!# Returning if two numbers are near-equality by n epsilon steps.
 	if (n < 1) {
@@ -37,7 +37,7 @@ MC_TARGET_FUNC int mc_fisnear(double x, double y, int n)
 	return mc_fabs(y - x) < (mc_cast(double, n) * MCLIMITS_EPSILON) ? 1 : 0;
 }
 
-MC_TARGET_FUNC int mc_fisnearl(long double x, long double y, int n)
+MC_TARGET_FUNC int mc_fisnearl(const long double x, const long double y, const int n)
 {
 //!# Returning if two numbers are near-equality by n epsilon steps.
 	if (n < 1) {

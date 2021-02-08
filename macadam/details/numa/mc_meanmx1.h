@@ -13,7 +13,7 @@
 
 #pragma mark - mc_meanmx1 -
 
-MC_TARGET_FUNC float mc_meanmx1f(const int m, const int n, const int j, const float * a, int b, const int f)
+MC_TARGET_FUNC float mc_meanmx1f(const int m, const int n, const int j, const float * a, const int b, const int f)
 {
 	float s = 0.0f;
 	if (n > 0) {
@@ -23,7 +23,7 @@ MC_TARGET_FUNC float mc_meanmx1f(const int m, const int n, const int j, const fl
 	return s;
 }
 
-MC_TARGET_FUNC double mc_meanmx1ff(const int m, const int n, const int j, const float * a, int b, const int f)
+MC_TARGET_FUNC double mc_meanmx1ff(const int m, const int n, const int j, const float * a, const int b, const int f)
 {
 	double s = 0.0;
 	if (n > 0) {
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_meanmx1ff(const int m, const int n, const int j, const 
 	return s;
 }
 
-MC_TARGET_FUNC double mc_meanmx1(const int m, const int n, const int j, const double * a, int b, const int f)
+MC_TARGET_FUNC double mc_meanmx1(const int m, const int n, const int j, const double * a, const int b, const int f)
 {
 	double s = 0.0;
 	if (n > 0) {
@@ -43,7 +43,7 @@ MC_TARGET_FUNC double mc_meanmx1(const int m, const int n, const int j, const do
 	return s;
 }
 
-MC_TARGET_FUNC long double mc_meanmx1l(const int m, const int n, const int j, const long double * a, int b, const int f)
+MC_TARGET_FUNC long double mc_meanmx1l(const int m, const int n, const int j, const long double * a, const int b, const int f)
 {
 	long double s = 0.0L;
 	if (n > 0) {

@@ -16,7 +16,7 @@
 MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, const int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
-	const float cs = mc_cast_expr(float, 4096 + 1);
+	const float cs = mc_cast_expr(const float, 4096 + 1);
 
 	int i   = 0;
 	float w = 0.0f, s = 0.0f;
@@ -81,7 +81,7 @@ MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, 
 MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y, const int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
-	const double cs = mc_cast_expr(double, 134217728 + 1);
+	const double cs = mc_cast_expr(const double, 134217728 + 1);
 
 	int i    = 0;
 	double w = 0.0, s = 0.0;
@@ -146,7 +146,7 @@ MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y
 MC_TARGET_FUNC double mc_dotp1xn(const int n, const double * x, const double * y, const int f)
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
-	const double cs = mc_cast_expr(double, 134217728 + 1);
+	const double cs = mc_cast_expr(const double, 134217728 + 1);
 
 	int i    = 0;
 	double w = 0.0, s = 0.0;
@@ -212,9 +212,9 @@ MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const
 {
 //!# TwoProduct split factor @see `mc_twoproduct`.
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	const long double cs = mc_cast_expr(long double, 4294967296 + 1);
+	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
 #	else
-	const long double cs = mc_cast_expr(long double, 134217728 + 1);
+	const long double cs = mc_cast_expr(const long double, 134217728 + 1);
 #	endif
 
 	int i         = 0;

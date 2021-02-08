@@ -18,7 +18,7 @@
 
 #pragma mark - mc_inverf -
 
-MC_TARGET_FUNC float mc_inverff(float x)
+MC_TARGET_FUNC float mc_inverff(const float x)
 {
 	float w = 0.0f, z, n, d;
 	if (x < -1.0f || x > 1.0f) {
@@ -44,7 +44,7 @@ MC_TARGET_FUNC float mc_inverff(float x)
 	return w;
 }
 
-MC_TARGET_FUNC double mc_inverf(double x)
+MC_TARGET_FUNC double mc_inverf(const double x)
 {
 	double w = 0.0, z, n, d;
 	if (x < -1.0 || x > 1.0) {
@@ -70,7 +70,7 @@ MC_TARGET_FUNC double mc_inverf(double x)
 	return w;
 }
 
-MC_TARGET_FUNC long double mc_inverfl(long double x)
+MC_TARGET_FUNC long double mc_inverfl(const long double x)
 {
 	long double w = 0.0L, z, n, d;
 	if (x < -1.0L || x > 1.0L) {

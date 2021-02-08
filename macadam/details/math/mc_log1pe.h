@@ -14,17 +14,17 @@
 
 #pragma mark - mc_log1pe -
 
-MC_TARGET_FUNC float mc_log1pef(float x)
+MC_TARGET_FUNC float mc_log1pef(const float x)
 {
 	return mc_log1pf(mc_expf(x));
 }
 
-MC_TARGET_FUNC double mc_log1pe(double x)
+MC_TARGET_FUNC double mc_log1pe(const double x)
 {
 	return mc_log1p(mc_exp(x));
 }
 
-MC_TARGET_FUNC long double mc_log1pel(long double x)
+MC_TARGET_FUNC long double mc_log1pel(const long double x)
 {
 	return mc_log1pl(mc_expl(x));
 }

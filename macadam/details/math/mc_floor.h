@@ -15,7 +15,7 @@
 
 #pragma mark - mc_floor -
 
-MC_TARGET_FUNC float mc_floorf(float x)
+MC_TARGET_FUNC float mc_floorf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::floorf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_floorf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_floor(double x)
+MC_TARGET_FUNC double mc_floor(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::floor(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_floor(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_floorl(long double x)
+MC_TARGET_FUNC long double mc_floorl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::floorl(x);

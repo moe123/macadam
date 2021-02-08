@@ -15,7 +15,7 @@
 
 #pragma mark - mc_log10 -
 
-MC_TARGET_FUNC float mc_log10f(float x)
+MC_TARGET_FUNC float mc_log10f(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::log10f(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_log10f(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_log10(double x)
+MC_TARGET_FUNC double mc_log10(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::log10(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_log10(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_log10l(long double x)
+MC_TARGET_FUNC long double mc_log10l(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::log10l(x);

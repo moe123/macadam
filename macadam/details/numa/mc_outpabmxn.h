@@ -13,7 +13,7 @@
 
 #pragma mark - mc_outpabmxn -
 
-MC_TARGET_FUNC void mc_outpabmxnf(const int m, const int n, const int p, const int q, int j, int k, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_outpabmxnf(const int m, const int n, const int p, const int q, const int j, const int k, float * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
 //!# c=ai*bi' i.e outer product of two column-vectors.
@@ -28,7 +28,7 @@ MC_TARGET_FUNC void mc_outpabmxnf(const int m, const int n, const int p, const i
 	}
 }
 
-MC_TARGET_FUNC void mc_outpabmxnff(const int m, const int n, const int p, const int q, int j, int k, double * MC_TARGET_RESTRICT c, const float * a, const float * b)
+MC_TARGET_FUNC void mc_outpabmxnff(const int m, const int n, const int p, const int q, const int j, const int k, double * MC_TARGET_RESTRICT c, const float * a, const float * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
 //!# c=ai*bi' i.e outer product of two column-vectors.
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_outpabmxnff(const int m, const int n, const int p, const 
 	}
 }
 
-MC_TARGET_FUNC void mc_outpabmxnfd(const int m, const int n, const int p, const int q, int j, int k, double * MC_TARGET_RESTRICT c, const float * a, const double * b)
+MC_TARGET_FUNC void mc_outpabmxnfd(const int m, const int n, const int p, const int q, const int j, const int k, double * MC_TARGET_RESTRICT c, const float * a, const double * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
 //!# c=ai*bi' i.e outer product of two column-vectors.
@@ -58,7 +58,7 @@ MC_TARGET_FUNC void mc_outpabmxnfd(const int m, const int n, const int p, const 
 	}
 }
 
-MC_TARGET_FUNC void mc_outpabmxndf(const int m, const int n, const int p, const int q, int j, int k, double * MC_TARGET_RESTRICT c, const double * a, const float * b)
+MC_TARGET_FUNC void mc_outpabmxndf(const int m, const int n, const int p, const int q, const int j, const int k, double * MC_TARGET_RESTRICT c, const double * a, const float * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
 //!# c=ai*bi' i.e outer product of two column-vectors.
@@ -73,7 +73,7 @@ MC_TARGET_FUNC void mc_outpabmxndf(const int m, const int n, const int p, const 
 	}
 }
 
-MC_TARGET_FUNC void mc_outpabmxn(const int m, const int n, const int p, const int q, int j, int k, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
+MC_TARGET_FUNC void mc_outpabmxn(const int m, const int n, const int p, const int q, const int j, const int k, double * MC_TARGET_RESTRICT c, const double * a, const double * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
 //!# c=ai*bi' i.e outer product of two column-vectors.
@@ -88,7 +88,7 @@ MC_TARGET_FUNC void mc_outpabmxn(const int m, const int n, const int p, const in
 	}
 }
 
-MC_TARGET_FUNC void mc_outpabmxnl(const int m, const int n, const int p, const int q, int j, int k, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
+MC_TARGET_FUNC void mc_outpabmxnl(const int m, const int n, const int p, const int q, const int j, const int k, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b)
 {
 //!# Requires c[m x n], a[m x p] and b[n x q].
 //!# c=ai*bi' i.e outer product of two column-vectors.

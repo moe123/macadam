@@ -15,7 +15,7 @@
 
 #pragma mark - mc_logbase -
 
-MC_TARGET_FUNC float mc_logbasef(float x, int b)
+MC_TARGET_FUNC float mc_logbasef(const float x, const int b)
 {
 //!# Log base function. Computing log10(x) / log10(b=base)
 //!# where b > 0. If b is `zero` or `one` returning loge(x).
@@ -50,7 +50,7 @@ MC_TARGET_FUNC float mc_logbasef(float x, int b)
 	return l;
 }
 
-MC_TARGET_FUNC double mc_logbase(double x, int b)
+MC_TARGET_FUNC double mc_logbase(const double x, const int b)
 {
 //!# Log base function. Computing log10(x) / log10(b=base)
 //!# where b > 0. If b is `zero` or `one` returning loge(x).
@@ -85,7 +85,7 @@ MC_TARGET_FUNC double mc_logbase(double x, int b)
 	return l;
 }
 
-MC_TARGET_FUNC long double mc_logbasel(long double x, int b)
+MC_TARGET_FUNC long double mc_logbasel(const long double x, const int b)
 {
 //!# Log base function. Computing log10(x) / log10(b=base)
 //!# where b > 0. If b is `zero` or `one` returning loge(x).

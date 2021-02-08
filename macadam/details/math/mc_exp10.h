@@ -15,7 +15,7 @@
 
 #pragma mark - mc_exp10 -
 
-MC_TARGET_FUNC float mc_exp10f(float x)
+MC_TARGET_FUNC float mc_exp10f(const float x)
 {
 #	if MC_TARGET_CPP98
 #	if (defined(__GLIBC__) || defined(_GNU_SOURCE))
@@ -36,7 +36,7 @@ MC_TARGET_FUNC float mc_exp10f(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_exp10(double x)
+MC_TARGET_FUNC double mc_exp10(const double x)
 {
 #	if MC_TARGET_CPP98
 #	if (defined(__GLIBC__) || defined(_GNU_SOURCE))
@@ -53,7 +53,7 @@ MC_TARGET_FUNC double mc_exp10(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_exp10l(long double x)
+MC_TARGET_FUNC long double mc_exp10l(const long double x)
 {
 #	if MC_TARGET_CPP98
 #	if (defined(__GLIBC__) || defined(_GNU_SOURCE))

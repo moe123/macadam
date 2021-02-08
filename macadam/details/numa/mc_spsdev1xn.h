@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_spsdev1xnf(const int n, const float * x)
 		return 0.0f;
 	}
 	mc_mssqr1xnf(n, x, 0, &mean, &sumsq, &scale);
-	return scale * mc_sqrtf(sumsq / mc_cast_expr(float, n - 1));
+	return scale * mc_sqrtf(sumsq / mc_cast_expr(const float, n - 1));
 }
 
 MC_TARGET_FUNC double mc_spsdev1xnff(const int n, const float * x)
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_spsdev1xnff(const int n, const float * x)
 		return 0.0;
 	}
 	mc_mssqr1xnff(n, x, 0, &mean, &sumsq, &scale);
-	return scale * mc_sqrt(sumsq / mc_cast_expr(double, n - 1));
+	return scale * mc_sqrt(sumsq / mc_cast_expr(const double, n - 1));
 }
 
 MC_TARGET_FUNC double mc_spsdev1xn(const int n, const double * x)
@@ -44,7 +44,7 @@ MC_TARGET_FUNC double mc_spsdev1xn(const int n, const double * x)
 		return 0.0;
 	}
 	mc_mssqr1xn(n, x, 0, &mean, &sumsq, &scale);
-	return scale * mc_sqrt(sumsq / mc_cast_expr(double, n - 1));
+	return scale * mc_sqrt(sumsq / mc_cast_expr(const double, n - 1));
 }
 
 MC_TARGET_FUNC long double mc_spsdev1xnl(const int n, const long double * x)
@@ -55,7 +55,7 @@ MC_TARGET_FUNC long double mc_spsdev1xnl(const int n, const long double * x)
 		return 0.0L;
 	}
 	mc_mssqr1xnl(n, x, 0, &mean, &sumsq, &scale);
-	return scale * mc_sqrtl(sumsq / mc_cast_expr(long double, n - 1));
+	return scale * mc_sqrtl(sumsq / mc_cast_expr(const long double, n - 1));
 }
 
 #endif /* !MC_SPSDEV1XN_H */

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_fabs -
 
-MC_TARGET_FUNC float mc_fabsf(float x)
+MC_TARGET_FUNC float mc_fabsf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::fabsf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_fabsf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_fabs(double x)
+MC_TARGET_FUNC double mc_fabs(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::fabs(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_fabs(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_fabsl(long double x)
+MC_TARGET_FUNC long double mc_fabsl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::fabsl(x);

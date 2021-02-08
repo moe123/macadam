@@ -13,7 +13,7 @@
 
 #pragma mark - mc_rand_uniform_int -
 
-MC_TARGET_FUNC int mc_rand_uniform_int(int a, int b)
+MC_TARGET_FUNC int mc_rand_uniform_int(int a, const int b)
 {
 //!# Uniform int distribution generator.
 	int r;

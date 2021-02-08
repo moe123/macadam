@@ -15,34 +15,34 @@
 
 #pragma mark - mc_itrunc -
 
-MC_TARGET_PROC int mc_itruncf(float x)
+MC_TARGET_PROC int mc_itruncf(const float x)
 {
 	return mc_cast(int, x);
 }
 
-MC_TARGET_PROC int mc_itrunc(double x)
+MC_TARGET_PROC int mc_itrunc(const double x)
 {
 	return mc_cast(int, x);
 }
 
-MC_TARGET_PROC int mc_itruncl(long double x)
+MC_TARGET_PROC int mc_itruncl(const long double x)
 {
 	return mc_cast(int, x);
 }
 
 #pragma mark - mc_ltrunc -
 
-MC_TARGET_PROC long mc_ltruncf(float x)
+MC_TARGET_PROC long mc_ltruncf(const float x)
 {
 	return mc_cast(long, x);
 }
 
-MC_TARGET_PROC long mc_ltrunc(double x)
+MC_TARGET_PROC long mc_ltrunc(const double x)
 {
 	return mc_cast(long, x);
 }
 
-MC_TARGET_PROC long mc_ltruncl(long double x)
+MC_TARGET_PROC long mc_ltruncl(const long double x)
 {
 	return mc_cast(long, x);
 }
@@ -50,17 +50,17 @@ MC_TARGET_PROC long mc_ltruncl(long double x)
 #pragma mark - mc_lltrunc -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_PROC long long mc_lltruncf(float x)
+MC_TARGET_PROC long long mc_lltruncf(const float x)
 {
 	return mc_cast(long long, x);
 }
 
-MC_TARGET_PROC long long mc_lltrunc(double x)
+MC_TARGET_PROC long long mc_lltrunc(const double x)
 {
 	return mc_cast(long long, x);
 }
 
-MC_TARGET_PROC long long mc_lltruncl(long double x)
+MC_TARGET_PROC long long mc_lltruncl(const long double x)
 {
 	return mc_cast(long long, x);
 }

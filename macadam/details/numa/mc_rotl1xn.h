@@ -13,7 +13,7 @@
 
 #pragma mark - mc_rotl1xn -
 
-MC_TARGET_FUNC void mc_rotl1xnf(const int n, int k, float * y, const float * x)
+MC_TARGET_FUNC void mc_rotl1xnf(const int n, const int k, float * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Left rotate elements of vector X by k times and store the
@@ -35,7 +35,7 @@ MC_TARGET_FUNC void mc_rotl1xnf(const int n, int k, float * y, const float * x)
 	}
 }
 
-MC_TARGET_FUNC void mc_rotl1xnff(const int n, int k, double * y, const float * x)
+MC_TARGET_FUNC void mc_rotl1xnff(const int n, const int k, double * y, const float * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Left rotate elements of
 //!# vector X by k times and store the result into vector Y.
@@ -54,7 +54,7 @@ MC_TARGET_FUNC void mc_rotl1xnff(const int n, int k, double * y, const float * x
 	}
 }
 
-MC_TARGET_FUNC void mc_rotl1xn(const int n, int k, double * y, const double * x)
+MC_TARGET_FUNC void mc_rotl1xn(const int n, const int k, double * y, const double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Left rotate elements of vector X by k times and store the
@@ -76,7 +76,7 @@ MC_TARGET_FUNC void mc_rotl1xn(const int n, int k, double * y, const double * x)
 	}
 }
 
-MC_TARGET_FUNC void mc_rotl1xnl(const int n, int k, long double * y, const long double * x)
+MC_TARGET_FUNC void mc_rotl1xnl(const int n, const int k, long double * y, const long double * x)
 {
 //!# Requires y[n] and x[n] where 1 < n. Y and X may be the same.
 //!# Left rotate elements of vector X by k times and store the

@@ -13,17 +13,17 @@
 
 #pragma mark - mc_invlogit -
 
-MC_TARGET_FUNC float mc_invlogitf(float x)
+MC_TARGET_FUNC float mc_invlogitf(const float x)
 {
 	return mc_expitf(x);
 }
 
-MC_TARGET_FUNC double mc_invlogit(double x)
+MC_TARGET_FUNC double mc_invlogit(const double x)
 {
 	return mc_expit(x);
 }
 
-MC_TARGET_FUNC long double mc_invlogitl(long double x)
+MC_TARGET_FUNC long double mc_invlogitl(const long double x)
 {
 	return mc_expitl(x);
 }

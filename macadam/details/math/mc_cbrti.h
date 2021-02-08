@@ -16,9 +16,9 @@
 MC_TARGET_FUNC float mc_cbrtif(const int x)
 {
 #	if MC_TARGET_CPP98
-	return mc_iabs(x) < 0x1000001 ? (::cbrtf(mc_cast(float, x))) : mc_cast_expr(float, ::cbrt(mc_cast(double, x)));
+	return mc_iabs(x) < 0x1000001 ? (::cbrtf(mc_cast(float, x))) : mc_cast_expr(float, ::cbrt(mc_cast(const double, x)));
 #	else
-	return mc_iabs(x) < 0x1000001  ? (cbrtf(mc_cast(float, x)))  : mc_cast(float, cbrt(mc_cast(double, x)));
+	return mc_iabs(x) < 0x1000001  ? (cbrtf(mc_cast(float, x)))  : mc_cast(float, cbrt(mc_cast(const double, x)));
 #	endif
 }
 

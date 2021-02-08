@@ -15,7 +15,7 @@
 
 #pragma mark - mc_chbevl -
 
-MC_TARGET_PROC float mc_chbevlf(float x, const float * a, unsigned int n)
+MC_TARGET_PROC float mc_chbevlf(const float x, const float * a, const unsigned int n)
 {
 	int i;
 	float s = 0.0f, b0 = 0.0f, b1 = 0.0f, b2 = 0.0f;
@@ -34,7 +34,7 @@ MC_TARGET_PROC float mc_chbevlf(float x, const float * a, unsigned int n)
 	return s;
 }
 
-MC_TARGET_PROC double mc_chbevl(double x, const double * a, unsigned int n)
+MC_TARGET_PROC double mc_chbevl(const double x, const double * a, const unsigned int n)
 {
 	int i;
 	double s = 0.0, b0 = 0.0, b1 = 0.0, b2 = 0.0;
@@ -53,7 +53,7 @@ MC_TARGET_PROC double mc_chbevl(double x, const double * a, unsigned int n)
 	return s;
 }
 
-MC_TARGET_PROC long double mc_chbevll(long double x, const long double * a, unsigned int n)
+MC_TARGET_PROC long double mc_chbevll(const long double x, const long double * a, const unsigned int n)
 {
 	int i;
 	long double s = 0.0L, b0 = 0.0L, b1 = 0.0L, b2 = 0.0L;

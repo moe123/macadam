@@ -15,7 +15,7 @@
 
 #pragma mark - mc_acoth -
 
-MC_TARGET_FUNC float mc_acothf(float x)
+MC_TARGET_FUNC float mc_acothf(const float x)
 {
 //!# For real values x in the domain − inf < x < −1 and 1 < x < inf.
 #	if MC_TARGET_EMBEDDED
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_acothf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_acoth(double x)
+MC_TARGET_FUNC double mc_acoth(const double x)
 {
 //!# For real values x in the domain − inf < x < −1 and 1 < x < inf.
 #	if MC_TARGET_EMBEDDED
@@ -41,7 +41,7 @@ MC_TARGET_FUNC double mc_acoth(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_acothl(long double x)
+MC_TARGET_FUNC long double mc_acothl(const long double x)
 {
 //!# For real values x in the domain − inf < x < −1 and 1 < x < inf.
 #	if MC_TARGET_EMBEDDED

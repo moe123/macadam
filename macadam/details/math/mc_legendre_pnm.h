@@ -19,7 +19,7 @@
 
 #pragma mark - mc_legendre_pnm -
 
-MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
+MC_TARGET_FUNC float mc_legendre_pnmf(int n, const int m, const float x)
 {
 //!# Associated Legendre polynomials or functions of degree n and order m.
 	float p0                = 1.0f;
@@ -45,8 +45,8 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 			p1 = mc_legendre_pnmf(n, -m, x);
 			n  = n - m;
 			p0 = (n < max_factorial
-				? (mc_factorialf(mc_cast(unsigned int, k)) / mc_factorialf(mc_cast(unsigned int, n)))
-				: (mc_gammaf(mc_cast(float, (k + 1))) / mc_gammaf(mc_cast(float, (n + 1))))
+				? (mc_factorialf(mc_cast(const unsigned int, k)) / mc_factorialf(mc_cast(const unsigned int, n)))
+				: (mc_gammaf(mc_cast(const float, (k + 1))) / mc_gammaf(mc_cast(const float, (n + 1))))
 			);
 			p1 = ((!((m & 1) == 0) && mc_fabsf(x) <= 1.0f)
 				? (-p1 * p0)
@@ -57,7 +57,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 	} else if (m > n) {
 		return p1;
 	} else if (m == 0) {
-		return mc_legendre_pnf(mc_cast(unsigned int, n), x);
+		return mc_legendre_pnf(mc_cast(const unsigned int, n), x);
 	}
 	if (m > 0) {
 		z = mc_sqrtf(1.0f - x * x);
@@ -82,7 +82,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, int m, float x)
 	return p1;
 }
 
-MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
+MC_TARGET_FUNC double mc_legendre_pnm(int n, const int m, const double x)
 {
 //!# Associated Legendre polynomials or functions of degree n and order m.
 	double p0               = 1.0;
@@ -108,8 +108,8 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 			p1 = mc_legendre_pnm(n, -m, x);
 			n  = n - m;
 			p0 = (n < max_factorial
-				? (mc_factorial(mc_cast(unsigned int, k)) / mc_factorial(mc_cast(unsigned int, n)))
-				: (mc_gamma(mc_cast(double, (k + 1))) / mc_gamma(mc_cast(double, (n + 1))))
+				? (mc_factorial(mc_cast(const unsigned int, k)) / mc_factorial(mc_cast(const unsigned int, n)))
+				: (mc_gamma(mc_cast(const double, (k + 1))) / mc_gamma(mc_cast(const double, (n + 1))))
 			);
 			p1 = ((!((m & 1) == 0) && mc_fabs(x) <= 1.0)
 				? (-p1 * p0)
@@ -120,7 +120,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 	} else if (m > n) {
 		return p1;
 	} else if (m == 0) {
-		return mc_legendre_pn(mc_cast(unsigned int, n), x);
+		return mc_legendre_pn(mc_cast(const unsigned int, n), x);
 	}
 	if (m > 0) {
 		z = mc_sqrt(1.0 - x * x);
@@ -145,7 +145,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, int m, double x)
 	return p1;
 }
 
-MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
+MC_TARGET_FUNC long double mc_legendre_pnml(int n, const int m, const long double x)
 {
 //!# Associated Legendre polynomials or functions of degree n and order m.
 	long double p0          = 1.0L;
@@ -175,8 +175,8 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 			p1 = mc_legendre_pnml(n, -m, x);
 			n  = n - m;
 			p0 = (n < max_factorial
-				? (mc_factoriall(mc_cast(unsigned int, k)) / mc_factoriall(mc_cast(unsigned int, n)))
-				: (mc_gammal(mc_cast(long double, (k + 1))) / mc_gammal(mc_cast(long double, (n + 1))))
+				? (mc_factoriall(mc_cast(const unsigned int, k)) / mc_factoriall(mc_cast(const unsigned int, n)))
+				: (mc_gammal(mc_cast(const long double, (k + 1))) / mc_gammal(mc_cast(const long double, (n + 1))))
 			);
 			p1 = ((!((m & 1) == 0) && mc_fabsl(x) <= 1.0L)
 				? (-p1 * p0)
@@ -187,7 +187,7 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, int m, long double x)
 	} else if (m > n) {
 		return p1;
 	} else if (m == 0) {
-		return mc_legendre_pnl(mc_cast(unsigned int, n), x);
+		return mc_legendre_pnl(mc_cast(const unsigned int, n), x);
 	}
 	if (m > 0) {
 		z = mc_sqrtl(1.0L - x * x);

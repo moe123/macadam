@@ -15,7 +15,7 @@
 
 #pragma mark - mc_scalbn -
 
-MC_TARGET_FUNC float mc_scalbnf(float x, int y)
+MC_TARGET_FUNC float mc_scalbnf(const float x, const int y)
 {
 #	if MC_TARGET_CPP98
 	return ::scalbnf(x, y);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_scalbnf(float x, int y)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_scalbn(double x, int y)
+MC_TARGET_FUNC double mc_scalbn(const double x, const int y)
 {
 #	if MC_TARGET_CPP98
 	return ::scalbn(x, y);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_scalbn(double x, int y)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_scalbnl(long double x, int y)
+MC_TARGET_FUNC long double mc_scalbnl(const long double x, const int y)
 {
 #	if MC_TARGET_CPP98
 	return ::scalbnl(x, y);

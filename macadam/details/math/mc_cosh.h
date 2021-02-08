@@ -15,7 +15,7 @@
 
 #pragma mark - mc_cosh -
 
-MC_TARGET_FUNC float mc_coshf(float x)
+MC_TARGET_FUNC float mc_coshf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::coshf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_coshf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_cosh(double x)
+MC_TARGET_FUNC double mc_cosh(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::cosh(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_cosh(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_coshl(long double x)
+MC_TARGET_FUNC long double mc_coshl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::coshl(x);

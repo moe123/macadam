@@ -13,7 +13,7 @@
 
 #pragma mark - mc_diag1xn -
 
-MC_TARGET_FUNC void mc_diag1xnf(const int n, float * MC_TARGET_RESTRICT a, float * MC_TARGET_RESTRICT d, int k, const int f)
+MC_TARGET_FUNC void mc_diag1xnf(const int n, float * MC_TARGET_RESTRICT a, float * MC_TARGET_RESTRICT d, const int k, const int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
@@ -68,7 +68,7 @@ MC_TARGET_FUNC void mc_diag1xnf(const int n, float * MC_TARGET_RESTRICT a, float
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xnff(const int n, double * MC_TARGET_RESTRICT a, float * MC_TARGET_RESTRICT d, int k, const int f)
+MC_TARGET_FUNC void mc_diag1xnff(const int n, double * MC_TARGET_RESTRICT a, float * MC_TARGET_RESTRICT d, const int k, const int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
@@ -123,7 +123,7 @@ MC_TARGET_FUNC void mc_diag1xnff(const int n, double * MC_TARGET_RESTRICT a, flo
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xn(const int n, double * MC_TARGET_RESTRICT a, double * MC_TARGET_RESTRICT d, int k, const int f)
+MC_TARGET_FUNC void mc_diag1xn(const int n, double * MC_TARGET_RESTRICT a, double * MC_TARGET_RESTRICT d, const int k, const int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.
@@ -178,7 +178,7 @@ MC_TARGET_FUNC void mc_diag1xn(const int n, double * MC_TARGET_RESTRICT a, doubl
 	}
 }
 
-MC_TARGET_FUNC void mc_diag1xnl(const int n, long double * MC_TARGET_RESTRICT a, long double * MC_TARGET_RESTRICT d, int k, const int f)
+MC_TARGET_FUNC void mc_diag1xnl(const int n, long double * MC_TARGET_RESTRICT a, long double * MC_TARGET_RESTRICT d, const int k, const int f)
 {
 //!# Requires a[(n + |k|) x (n + |k|)] and d[1 x n].
 //!# k=0: d elements are placed on the main diagonal.

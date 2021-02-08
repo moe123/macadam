@@ -18,11 +18,11 @@
 	mc_scope_begin                                                                                                                                       \
 		int __mc_argsort1xn_type_i = 0, __mc_argsort1xn_type_j;                                                                                           \
 		integer_type __mc_argsort1xn_type_w;                                                                                                              \
-		for (; __mc_argsort1xn_type_i < mc_cast_expr(int, n); __mc_argsort1xn_type_i++) {                                                                 \
+		for (; __mc_argsort1xn_type_i < mc_cast_expr(const int, n); __mc_argsort1xn_type_i++) {                                                           \
 			k[__mc_argsort1xn_type_i] = mc_cast(integer_type, __mc_argsort1xn_type_i);                                                                     \
 		}                                                                                                                                                 \
-		for (__mc_argsort1xn_type_i = 0; __mc_argsort1xn_type_i < mc_cast_expr(int, n); __mc_argsort1xn_type_i++) {                                       \
-			for (__mc_argsort1xn_type_j = 1; __mc_argsort1xn_type_j < (mc_cast_expr(int, n) - __mc_argsort1xn_type_i); __mc_argsort1xn_type_j++) {         \
+		for (__mc_argsort1xn_type_i = 0; __mc_argsort1xn_type_i < mc_cast_expr(const int, n); __mc_argsort1xn_type_i++) {                                 \
+			for (__mc_argsort1xn_type_j = 1; __mc_argsort1xn_type_j < (mc_cast_expr(const int, n) - __mc_argsort1xn_type_i); __mc_argsort1xn_type_j++) {   \
 				if ((f == 1) ? (x[__mc_argsort1xn_type_j - 1] < x[__mc_argsort1xn_type_j]) : (x[__mc_argsort1xn_type_j - 1] > x[__mc_argsort1xn_type_j])) { \
 					mcswap_var(__mc_argsort1xn_type_w, k[__mc_argsort1xn_type_j - 1], k[__mc_argsort1xn_type_j]);                                            \
 				}                                                                                                                                           \

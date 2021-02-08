@@ -14,7 +14,7 @@
 
 #pragma mark - mc_stddmx1 -
 
-MC_TARGET_FUNC float mc_stddmx1f(const int m, const int n, const int j, const float * a, int b)
+MC_TARGET_FUNC float mc_stddmx1f(const int m, const int n, const int j, const float * a, const int b)
 {
 	float stddev, sumsq, scale;
 
@@ -26,7 +26,7 @@ MC_TARGET_FUNC float mc_stddmx1f(const int m, const int n, const int j, const fl
 	return stddev;
 }
 
-MC_TARGET_FUNC double mc_stddmx1ff(const int m, const int n, const int j, const float * a, int b)
+MC_TARGET_FUNC double mc_stddmx1ff(const int m, const int n, const int j, const float * a, const int b)
 {
 	double stddev, sumsq, scale;
 
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_stddmx1ff(const int m, const int n, const int j, const 
 	return stddev;
 }
 
-MC_TARGET_FUNC double mc_stddmx1(const int m, const int n, const int j, const double * a, int b)
+MC_TARGET_FUNC double mc_stddmx1(const int m, const int n, const int j, const double * a, const int b)
 {
 	double stddev, sumsq, scale;
 
@@ -50,7 +50,7 @@ MC_TARGET_FUNC double mc_stddmx1(const int m, const int n, const int j, const do
 	return stddev;
 }
 
-MC_TARGET_FUNC long double mc_stddmx1l(const int m, const int n, const int j, const long double * a, int b)
+MC_TARGET_FUNC long double mc_stddmx1l(const int m, const int n, const int j, const long double * a, const int b)
 {
 	long double stddev, sumsq, scale;
 

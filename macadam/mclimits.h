@@ -91,9 +91,9 @@ template <>        MC_TARGET_INLINE float       mclimits_epsilonof<float>       
 template <>        MC_TARGET_INLINE double      mclimits_epsilonof<double>      (const double& x)      { mc_unused(x); return MCLIMITS_EPSILON;  }
 template <>        MC_TARGET_INLINE long double mclimits_epsilonof<long double> (const long double& x) { mc_unused(x); return MCLIMITS_EPSILONL; }
 #	elif MC_TARGET_HAVE_OVERLOADABLE
-MC_TARGET_ALIAS float       mclimits_epsilonof (float x)       { mc_unused(x); return MCLIMITS_EPSILONF; }
-MC_TARGET_ALIAS double      mclimits_epsilonof (double x)      { mc_unused(x); return MCLIMITS_EPSILON;  }
-MC_TARGET_ALIAS long double mclimits_epsilonof (long double x) { mc_unused(x); return MCLIMITS_EPSILONL; }
+MC_TARGET_ALIAS float       mclimits_epsilonof (const float x)       { mc_unused(x); return MCLIMITS_EPSILONF; }
+MC_TARGET_ALIAS double      mclimits_epsilonof (const double x)      { mc_unused(x); return MCLIMITS_EPSILON;  }
+MC_TARGET_ALIAS long double mclimits_epsilonof (const long double x) { mc_unused(x); return MCLIMITS_EPSILONL; }
 #	elif MC_TARGET_C11
 #	define mclimits_epsilonof(x) _Generic(x  \
 	, float              : MCLIMITS_EPSILONF \

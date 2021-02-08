@@ -807,18 +807,18 @@
 #	define MC_TARGET_BSWAP32(x) __builtin_bswap32(x)
 #	define MC_TARGET_BSWAP64(x) __builtin_bswap64(x)
 
-MC_TARGET_FUNC char               MC_TARGET_CHAR      (char x)               { return x; }
-MC_TARGET_FUNC short              MC_TARGET_SHORT     (short x)              { return x; }
-MC_TARGET_FUNC int                MC_TARGET_INT       (int x)                { return x; }
-MC_TARGET_FUNC long               MC_TARGET_LONG      (long x)               { return x; }
-MC_TARGET_FUNC unsigned char      MC_TARGET_UCHAR     (unsigned char x)      { return x; }
-MC_TARGET_FUNC unsigned short     MC_TARGET_USHORT    (unsigned short x)     { return x; }
-MC_TARGET_FUNC unsigned int       MC_TARGET_UINT      (unsigned int x)       { return x; }
-MC_TARGET_FUNC unsigned long      MC_TARGET_ULONG     (unsigned long x)      { return x; }
+MC_TARGET_FUNC char               MC_TARGET_CHAR      (const char x)               { return x; }
+MC_TARGET_FUNC short              MC_TARGET_SHORT     (const short x)              { return x; }
+MC_TARGET_FUNC int                MC_TARGET_INT       (const int x)                { return x; }
+MC_TARGET_FUNC long               MC_TARGET_LONG      (const long x)               { return x; }
+MC_TARGET_FUNC unsigned char      MC_TARGET_UCHAR     (const unsigned char x)      { return x; }
+MC_TARGET_FUNC unsigned short     MC_TARGET_USHORT    (const unsigned short x)     { return x; }
+MC_TARGET_FUNC unsigned int       MC_TARGET_UINT      (const unsigned int x)       { return x; }
+MC_TARGET_FUNC unsigned long      MC_TARGET_ULONG     (const unsigned long x)      { return x; }
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNC long long          MC_TARGET_LONGLONG  (long long x)          { return x; }
-MC_TARGET_FUNC unsigned long long MC_TARGET_ULONGLONG (unsigned long long x) { return x; }
+MC_TARGET_FUNC long long          MC_TARGET_LONGLONG  (const long long x)          { return x; }
+MC_TARGET_FUNC unsigned long long MC_TARGET_ULONGLONG (const unsigned long long x) { return x; }
 #	else
 #	define MC_TARGET_LONGLONG  MC_TARGET_LONG
 #	define MC_TARGET_ULONGLONG MC_TARGET_ULONG

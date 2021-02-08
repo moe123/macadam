@@ -16,7 +16,7 @@
 
 #pragma mark - mc_log1pmx -
 
-MC_TARGET_FUNC float mc_log1pmxf(float x)
+MC_TARGET_FUNC float mc_log1pmxf(const float x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
 	const float tol = MCLIMITS_TINYF;
@@ -40,7 +40,7 @@ MC_TARGET_FUNC float mc_log1pmxf(float x)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_log1pmx(double x)
+MC_TARGET_FUNC double mc_log1pmx(const double x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
 	const double tol = MCLIMITS_TINY;
@@ -63,7 +63,7 @@ MC_TARGET_FUNC double mc_log1pmx(double x)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_log1pmxl(long double x)
+MC_TARGET_FUNC long double mc_log1pmxl(const long double x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
 #	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE

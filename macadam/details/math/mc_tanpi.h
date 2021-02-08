@@ -15,46 +15,49 @@
 
 #pragma mark - mc_tanpi -
 
-MC_TARGET_FUNC float mc_tanpif(float x)
+MC_TARGET_FUNC float mc_tanpif(const float x)
 {
-	x = mc_fmodf(x, 1.0f);
-	x = x <= -0.5f ? x + 1.0f : x > 0.5f ? x - 1.0f : x;
-	if (x == 1.0f) {
-		return mc_copysignf(0.0f, x);
+	float y = x;
+	y       = mc_fmodf(y, 1.0f);
+	y       = y <= -0.5f ? y + 1.0f : y > 0.5f ? y - 1.0f : y;
+	if (y == 1.0f) {
+		return mc_copysignf(0.0f, y);
 	}
-	if (x == 0.5f) {
-		return mc_copysignf(MCK_INF, x);
+	if (y == 0.5f) {
+		return mc_copysignf(MCK_INF, y);
 	}
-	const float pix = MCK_KF(MCK_PI) * x;
-	return mc_tanf(pix);
+	const float piy = MCK_KF(MCK_PI) * y;
+	return mc_tanf(piy);
 }
 
-MC_TARGET_FUNC double mc_tanpi(double x)
+MC_TARGET_FUNC double mc_tanpi(const double x)
 {
-	x = mc_fmod(x, 1.0);
-	x = x <= -0.5 ? x + 1.0 : x > 0.5 ? x - 1.0 : x;
-	if (x == 1.0) {
-		return mc_copysign(0.0, x);
+	double y = x;
+	y        = mc_fmod(y, 1.0);
+	y        = y <= -0.5 ? y + 1.0 : y > 0.5 ? y - 1.0 : y;
+	if (y == 1.0) {
+		return mc_copysign(0.0, y);
 	}
-	if (x == 0.5) {
-		return mc_copysign(MCK_INF, x);
+	if (y == 0.5) {
+		return mc_copysign(MCK_INF, y);
 	}
-	const double pix = MCK_K(MCK_PI) * x;
-	return mc_tan(pix);
+	const double piy = MCK_K(MCK_PI) * y;
+	return mc_tan(piy);
 }
 
-MC_TARGET_FUNC long double mc_tanpil(long double x)
+MC_TARGET_FUNC long double mc_tanpil(const long double x)
 {
-	x = mc_fmodl(x, 1.0L);
-	x = x <= -0.5L ? x + 1.0L : x > 0.5L ? x - 1.0L : x;
-	if (x == 1.0L) {
-		return mc_copysignl(0.0L, x);
+	long double y = x;
+	y             = mc_fmodl(y, 1.0L);
+	y             = y <= -0.5L ? y + 1.0L : y > 0.5L ? y - 1.0L : y;
+	if (y == 1.0L) {
+		return mc_copysignl(0.0L, y);
 	}
-	if (x == 0.5L) {
-		return mc_copysignl(MCK_INF, x);
+	if (y == 0.5L) {
+		return mc_copysignl(MCK_INF, y);
 	}
-	const long double pix = MCK_KL(MCK_PI) * x;
-	return mc_tanl(pix);
+	const long double piy = MCK_KL(MCK_PI) * y;
+	return mc_tanl(piy);
 }
 
 #endif /* !MC_TANPI_H */

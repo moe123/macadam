@@ -13,17 +13,17 @@
 
 #pragma mark - mc_dotpnxn -
 
-MC_TARGET_FUNC void mc_dotpnxnf(const int n, float * MC_TARGET_RESTRICT c, const float * a, const float * b, int d, const int f)
+MC_TARGET_FUNC void mc_dotpnxnf(const int n, float * MC_TARGET_RESTRICT c, const float * a, const float * b, const int d, const int f)
 {
 	mc_dotpmxnf(n, n, n, c, a, b, d, f);
 }
 
-MC_TARGET_FUNC void mc_dotpnxn(const int n, double * MC_TARGET_RESTRICT c, const double * a, const double * b, int d, const int f)
+MC_TARGET_FUNC void mc_dotpnxn(const int n, double * MC_TARGET_RESTRICT c, const double * a, const double * b, const int d, const int f)
 {
 	mc_dotpmxn(n, n, n, c, a, b, d, f);
 }
 
-MC_TARGET_FUNC void mc_dotpnxnl(const int n, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b, int d, const int f)
+MC_TARGET_FUNC void mc_dotpnxnl(const int n, long double * MC_TARGET_RESTRICT c, const long double * a, const long double * b, const int d, const int f)
 {
 	mc_dotpmxnl(n, n, n, c, a, b, d, f);
 }

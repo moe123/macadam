@@ -13,19 +13,19 @@
 
 #pragma mark - mc_exp2m1 -
 
-MC_TARGET_FUNC float mc_exp2m1f(float x)
+MC_TARGET_FUNC float mc_exp2m1f(const float x)
 {
 	const float y = x * MCK_KF(MCK_LOGE2);
 	return mc_expm1f(y);
 }
 
-MC_TARGET_FUNC double mc_exp2m1(double x)
+MC_TARGET_FUNC double mc_exp2m1(const double x)
 {
 	const double y = x * MCK_K(MCK_LOGE2);
 	return mc_expm1(y);
 }
 
-MC_TARGET_FUNC long double mc_exp2m1l(long double x)
+MC_TARGET_FUNC long double mc_exp2m1l(const long double x)
 {
 #	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
 	const long double y = x * M_LN2l;
@@ -37,14 +37,14 @@ MC_TARGET_FUNC long double mc_exp2m1l(long double x)
 
 #pragma mark - mc_uexp2m1 -
 
-MC_TARGET_PROC unsigned int mc_uexp2m1(unsigned int x)
+MC_TARGET_PROC unsigned int mc_uexp2m1(const unsigned int x)
 {
 	return (1 << x) - 1;
 }
 
 #pragma mark - mc_exp2m1ul -
 
-MC_TARGET_PROC unsigned long mc_exp2m1ul(unsigned long x)
+MC_TARGET_PROC unsigned long mc_exp2m1ul(const unsigned long x)
 {
 	return (1 << x) - 1;
 }
@@ -52,7 +52,7 @@ MC_TARGET_PROC unsigned long mc_exp2m1ul(unsigned long x)
 #pragma mark - mc_exp2m1ull -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_PROC unsigned long long mc_exp2m1ull(unsigned long long x)
+MC_TARGET_PROC unsigned long long mc_exp2m1ull(const unsigned long long x)
 {
 	return (1 << x) - 1;
 }

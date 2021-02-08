@@ -15,7 +15,7 @@
 
 #pragma mark - mc_acosh -
 
-MC_TARGET_FUNC float mc_acoshf(float x)
+MC_TARGET_FUNC float mc_acoshf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::acoshf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_acoshf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_acosh(double x)
+MC_TARGET_FUNC double mc_acosh(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::acosh(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_acosh(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_acoshl(long double x)
+MC_TARGET_FUNC long double mc_acoshl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::acoshl(x);

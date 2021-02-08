@@ -13,7 +13,7 @@
 
 #pragma mark - mc_xpolyevalne -
 
-MC_TARGET_PROC float mc_xpolyevalnef(float x, const float * p, unsigned int n, float * err)
+MC_TARGET_PROC float mc_xpolyevalnef(const float x, const float * p, const unsigned int n, float * err)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
@@ -40,7 +40,7 @@ MC_TARGET_PROC float mc_xpolyevalnef(float x, const float * p, unsigned int n, f
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyevalne(double x, const double * p, unsigned int n, double * err)
+MC_TARGET_PROC double mc_xpolyevalne(const double x, const double * p, const unsigned int n, double * err)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
@@ -67,7 +67,7 @@ MC_TARGET_PROC double mc_xpolyevalne(double x, const double * p, unsigned int n,
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyevalnel(long double x, const long double * p, unsigned int n, long double * err)
+MC_TARGET_PROC long double mc_xpolyevalnel(const long double x, const long double * p, const unsigned int n, long double * err)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at
 //!# the specified value of x + computes absolute error estimate.
@@ -96,9 +96,9 @@ MC_TARGET_PROC long double mc_xpolyevalnel(long double x, const long double * p,
 
 #pragma mark - mc_xpolyeval2 -
 
-MC_TARGET_PROC float mc_xpolyeval2f(float x
-	, float p1
-	, float p2
+MC_TARGET_PROC float mc_xpolyeval2f(const float x
+	, const float p1
+	, const float p2
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -107,9 +107,9 @@ MC_TARGET_PROC float mc_xpolyeval2f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval2(double x
-	, double p1
-	, double p2
+MC_TARGET_PROC double mc_xpolyeval2(const double x
+	, const double p1
+	, const double p2
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -118,9 +118,9 @@ MC_TARGET_PROC double mc_xpolyeval2(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval2l(long double x
-	, long double p1
-	, long double p2
+MC_TARGET_PROC long double mc_xpolyeval2l(const long double x
+	, const long double p1
+	, const long double p2
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -131,10 +131,10 @@ MC_TARGET_PROC long double mc_xpolyeval2l(long double x
 
 #pragma mark - mc_xpolyeval3 -
 
-MC_TARGET_PROC float mc_xpolyeval3f(float x
-	, float p1
-	, float p2
-	, float p3
+MC_TARGET_PROC float mc_xpolyeval3f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -144,10 +144,10 @@ MC_TARGET_PROC float mc_xpolyeval3f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval3(double x
-	, double p1
-	, double p2
-	, double p3
+MC_TARGET_PROC double mc_xpolyeval3(const double x
+	, const double p1
+	, const double p2
+	, const double p3
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -157,10 +157,10 @@ MC_TARGET_PROC double mc_xpolyeval3(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval3l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
+MC_TARGET_PROC long double mc_xpolyeval3l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -172,11 +172,11 @@ MC_TARGET_PROC long double mc_xpolyeval3l(long double x
 
 #pragma mark - mc_xpolyeval4 -
 
-MC_TARGET_PROC float mc_xpolyeval4f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
+MC_TARGET_PROC float mc_xpolyeval4f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -187,11 +187,11 @@ MC_TARGET_PROC float mc_xpolyeval4f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval4(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
+MC_TARGET_PROC double mc_xpolyeval4(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -202,11 +202,11 @@ MC_TARGET_PROC double mc_xpolyeval4(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval4l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
+MC_TARGET_PROC long double mc_xpolyeval4l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -219,12 +219,12 @@ MC_TARGET_PROC long double mc_xpolyeval4l(long double x
 
 #pragma mark - mc_xpolyeval5 -
 
-MC_TARGET_PROC float mc_xpolyeval5f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
+MC_TARGET_PROC float mc_xpolyeval5f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -236,12 +236,12 @@ MC_TARGET_PROC float mc_xpolyeval5f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval5(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
+MC_TARGET_PROC double mc_xpolyeval5(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -253,12 +253,12 @@ MC_TARGET_PROC double mc_xpolyeval5(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval5l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
+MC_TARGET_PROC long double mc_xpolyeval5l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -272,13 +272,13 @@ MC_TARGET_PROC long double mc_xpolyeval5l(long double x
 
 #pragma mark - mc_xpolyeval6 -
 
-MC_TARGET_PROC float mc_xpolyeval6f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
+MC_TARGET_PROC float mc_xpolyeval6f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -291,13 +291,13 @@ MC_TARGET_PROC float mc_xpolyeval6f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval6(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
+MC_TARGET_PROC double mc_xpolyeval6(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -310,13 +310,13 @@ MC_TARGET_PROC double mc_xpolyeval6(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval6l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
+MC_TARGET_PROC long double mc_xpolyeval6l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -331,14 +331,14 @@ MC_TARGET_PROC long double mc_xpolyeval6l(long double x
 
 #pragma mark - mc_xpolyeval7 -
 
-MC_TARGET_PROC float mc_xpolyeval7f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
+MC_TARGET_PROC float mc_xpolyeval7f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -352,14 +352,14 @@ MC_TARGET_PROC float mc_xpolyeval7f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval7(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
+MC_TARGET_PROC double mc_xpolyeval7(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -373,14 +373,14 @@ MC_TARGET_PROC double mc_xpolyeval7(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval7l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
+MC_TARGET_PROC long double mc_xpolyeval7l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -396,15 +396,15 @@ MC_TARGET_PROC long double mc_xpolyeval7l(long double x
 
 #pragma mark - mc_xpolyeval8 -
 
-MC_TARGET_PROC float mc_xpolyeval8f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
+MC_TARGET_PROC float mc_xpolyeval8f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -419,15 +419,15 @@ MC_TARGET_PROC float mc_xpolyeval8f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval8(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
+MC_TARGET_PROC double mc_xpolyeval8(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -442,15 +442,15 @@ MC_TARGET_PROC double mc_xpolyeval8(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval8l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
+MC_TARGET_PROC long double mc_xpolyeval8l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -467,16 +467,16 @@ MC_TARGET_PROC long double mc_xpolyeval8l(long double x
 
 #pragma mark - mc_xpolyeval9 -
 
-MC_TARGET_PROC float mc_xpolyeval9f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
+MC_TARGET_PROC float mc_xpolyeval9f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -492,16 +492,16 @@ MC_TARGET_PROC float mc_xpolyeval9f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval9(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
+MC_TARGET_PROC double mc_xpolyeval9(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -517,16 +517,16 @@ MC_TARGET_PROC double mc_xpolyeval9(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval9l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
+MC_TARGET_PROC long double mc_xpolyeval9l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -544,17 +544,17 @@ MC_TARGET_PROC long double mc_xpolyeval9l(long double x
 
 #pragma mark - mc_xpolyeval10 -
 
-MC_TARGET_PROC float mc_xpolyeval10f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
+MC_TARGET_PROC float mc_xpolyeval10f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -571,17 +571,17 @@ MC_TARGET_PROC float mc_xpolyeval10f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval10(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
+MC_TARGET_PROC double mc_xpolyeval10(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -598,17 +598,17 @@ MC_TARGET_PROC double mc_xpolyeval10(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval10l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
+MC_TARGET_PROC long double mc_xpolyeval10l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -627,18 +627,18 @@ MC_TARGET_PROC long double mc_xpolyeval10l(long double x
 
 #pragma mark - mc_xpolyeval11 -
 
-MC_TARGET_PROC float mc_xpolyeval11f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
+MC_TARGET_PROC float mc_xpolyeval11f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -656,18 +656,18 @@ MC_TARGET_PROC float mc_xpolyeval11f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval11(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
+MC_TARGET_PROC double mc_xpolyeval11(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -685,18 +685,18 @@ MC_TARGET_PROC double mc_xpolyeval11(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval11l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
+MC_TARGET_PROC long double mc_xpolyeval11l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -716,19 +716,19 @@ MC_TARGET_PROC long double mc_xpolyeval11l(long double x
 
 #pragma mark - mc_xpolyeval12 -
 
-MC_TARGET_PROC float mc_xpolyeval12f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
+MC_TARGET_PROC float mc_xpolyeval12f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -747,19 +747,19 @@ MC_TARGET_PROC float mc_xpolyeval12f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval12(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
+MC_TARGET_PROC double mc_xpolyeval12(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -778,19 +778,19 @@ MC_TARGET_PROC double mc_xpolyeval12(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval12l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
+MC_TARGET_PROC long double mc_xpolyeval12l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -811,20 +811,20 @@ MC_TARGET_PROC long double mc_xpolyeval12l(long double x
 
 #pragma mark - mc_xpolyeval13 -
 
-MC_TARGET_PROC float mc_xpolyeval13f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
+MC_TARGET_PROC float mc_xpolyeval13f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -844,20 +844,20 @@ MC_TARGET_PROC float mc_xpolyeval13f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval13(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
+MC_TARGET_PROC double mc_xpolyeval13(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -877,20 +877,20 @@ MC_TARGET_PROC double mc_xpolyeval13(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval13l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
+MC_TARGET_PROC long double mc_xpolyeval13l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -912,21 +912,21 @@ MC_TARGET_PROC long double mc_xpolyeval13l(long double x
 
 #pragma mark - mc_xpolyeval14 -
 
-MC_TARGET_PROC float mc_xpolyeval14f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
+MC_TARGET_PROC float mc_xpolyeval14f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -947,21 +947,21 @@ MC_TARGET_PROC float mc_xpolyeval14f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval14(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
+MC_TARGET_PROC double mc_xpolyeval14(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -982,21 +982,21 @@ MC_TARGET_PROC double mc_xpolyeval14(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval14l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
+MC_TARGET_PROC long double mc_xpolyeval14l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1019,22 +1019,22 @@ MC_TARGET_PROC long double mc_xpolyeval14l(long double x
 
 #pragma mark - mc_xpolyeval15 -
 
-MC_TARGET_PROC float mc_xpolyeval15f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
-	, float p15
+MC_TARGET_PROC float mc_xpolyeval15f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
+	, const float p15
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1056,22 +1056,22 @@ MC_TARGET_PROC float mc_xpolyeval15f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval15(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
-	, double p15
+MC_TARGET_PROC double mc_xpolyeval15(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
+	, const double p15
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1093,22 +1093,22 @@ MC_TARGET_PROC double mc_xpolyeval15(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval15l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
-	, long double p15
+MC_TARGET_PROC long double mc_xpolyeval15l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
+	, const long double p15
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1132,23 +1132,23 @@ MC_TARGET_PROC long double mc_xpolyeval15l(long double x
 
 #pragma mark - mc_xpolyeval16 -
 
-MC_TARGET_PROC float mc_xpolyeval16f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
-	, float p15
-	, float p16
+MC_TARGET_PROC float mc_xpolyeval16f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
+	, const float p15
+	, const float p16
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1171,23 +1171,23 @@ MC_TARGET_PROC float mc_xpolyeval16f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval16(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
-	, double p15
-	, double p16
+MC_TARGET_PROC double mc_xpolyeval16(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
+	, const double p15
+	, const double p16
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1210,23 +1210,23 @@ MC_TARGET_PROC double mc_xpolyeval16(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval16l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
-	, long double p15
-	, long double p16
+MC_TARGET_PROC long double mc_xpolyeval16l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
+	, const long double p15
+	, const long double p16
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1251,24 +1251,24 @@ MC_TARGET_PROC long double mc_xpolyeval16l(long double x
 
 #pragma mark - mc_xpolyeval17 -
 
-MC_TARGET_PROC float mc_xpolyeval17f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
-	, float p15
-	, float p16
-	, float p17
+MC_TARGET_PROC float mc_xpolyeval17f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
+	, const float p15
+	, const float p16
+	, const float p17
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1292,24 +1292,24 @@ MC_TARGET_PROC float mc_xpolyeval17f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval17(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
-	, double p15
-	, double p16
-	, double p17
+MC_TARGET_PROC double mc_xpolyeval17(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
+	, const double p15
+	, const double p16
+	, const double p17
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1333,24 +1333,24 @@ MC_TARGET_PROC double mc_xpolyeval17(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval17l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
-	, long double p15
-	, long double p16
-	, long double p17
+MC_TARGET_PROC long double mc_xpolyeval17l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
+	, const long double p15
+	, const long double p16
+	, const long double p17
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1376,25 +1376,25 @@ MC_TARGET_PROC long double mc_xpolyeval17l(long double x
 
 #pragma mark - mc_xpolyeval18 -
 
-MC_TARGET_PROC float mc_xpolyeval18f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
-	, float p15
-	, float p16
-	, float p17
-	, float p18
+MC_TARGET_PROC float mc_xpolyeval18f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
+	, const float p15
+	, const float p16
+	, const float p17
+	, const float p18
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1419,25 +1419,25 @@ MC_TARGET_PROC float mc_xpolyeval18f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval18(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
-	, double p15
-	, double p16
-	, double p17
-	, double p18
+MC_TARGET_PROC double mc_xpolyeval18(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
+	, const double p15
+	, const double p16
+	, const double p17
+	, const double p18
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1462,25 +1462,25 @@ MC_TARGET_PROC double mc_xpolyeval18(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval18l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
-	, long double p15
-	, long double p16
-	, long double p17
-	, long double p18
+MC_TARGET_PROC long double mc_xpolyeval18l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
+	, const long double p15
+	, const long double p16
+	, const long double p17
+	, const long double p18
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1507,26 +1507,26 @@ MC_TARGET_PROC long double mc_xpolyeval18l(long double x
 
 #pragma mark - mc_xpolyeval19 -
 
-MC_TARGET_PROC float mc_xpolyeval19f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
-	, float p15
-	, float p16
-	, float p17
-	, float p18
-	, float p19
+MC_TARGET_PROC float mc_xpolyeval19f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
+	, const float p15
+	, const float p16
+	, const float p17
+	, const float p18
+	, const float p19
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1552,26 +1552,26 @@ MC_TARGET_PROC float mc_xpolyeval19f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval19(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
-	, double p15
-	, double p16
-	, double p17
-	, double p18
-	, double p19
+MC_TARGET_PROC double mc_xpolyeval19(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
+	, const double p15
+	, const double p16
+	, const double p17
+	, const double p18
+	, const double p19
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1597,26 +1597,26 @@ MC_TARGET_PROC double mc_xpolyeval19(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval19l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
-	, long double p15
-	, long double p16
-	, long double p17
-	, long double p18
-	, long double p19
+MC_TARGET_PROC long double mc_xpolyeval19l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
+	, const long double p15
+	, const long double p16
+	, const long double p17
+	, const long double p18
+	, const long double p19
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1644,27 +1644,27 @@ MC_TARGET_PROC long double mc_xpolyeval19l(long double x
 
 #pragma mark - mc_xpolyeval20 -
 
-MC_TARGET_PROC float mc_xpolyeval20f(float x
-	, float p1
-	, float p2
-	, float p3
-	, float p4
-	, float p5
-	, float p6
-	, float p7
-	, float p8
-	, float p9
-	, float p10
-	, float p11
-	, float p12
-	, float p13
-	, float p14
-	, float p15
-	, float p16
-	, float p17
-	, float p18
-	, float p19
-	, float p20
+MC_TARGET_PROC float mc_xpolyeval20f(const float x
+	, const float p1
+	, const float p2
+	, const float p3
+	, const float p4
+	, const float p5
+	, const float p6
+	, const float p7
+	, const float p8
+	, const float p9
+	, const float p10
+	, const float p11
+	, const float p12
+	, const float p13
+	, const float p14
+	, const float p15
+	, const float p16
+	, const float p17
+	, const float p18
+	, const float p19
+	, const float p20
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1691,27 +1691,27 @@ MC_TARGET_PROC float mc_xpolyeval20f(float x
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyeval20(double x
-	, double p1
-	, double p2
-	, double p3
-	, double p4
-	, double p5
-	, double p6
-	, double p7
-	, double p8
-	, double p9
-	, double p10
-	, double p11
-	, double p12
-	, double p13
-	, double p14
-	, double p15
-	, double p16
-	, double p17
-	, double p18
-	, double p19
-	, double p20
+MC_TARGET_PROC double mc_xpolyeval20(const double x
+	, const double p1
+	, const double p2
+	, const double p3
+	, const double p4
+	, const double p5
+	, const double p6
+	, const double p7
+	, const double p8
+	, const double p9
+	, const double p10
+	, const double p11
+	, const double p12
+	, const double p13
+	, const double p14
+	, const double p15
+	, const double p16
+	, const double p17
+	, const double p18
+	, const double p19
+	, const double p20
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1738,27 +1738,27 @@ MC_TARGET_PROC double mc_xpolyeval20(double x
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyeval20l(long double x
-	, long double p1
-	, long double p2
-	, long double p3
-	, long double p4
-	, long double p5
-	, long double p6
-	, long double p7
-	, long double p8
-	, long double p9
-	, long double p10
-	, long double p11
-	, long double p12
-	, long double p13
-	, long double p14
-	, long double p15
-	, long double p16
-	, long double p17
-	, long double p18
-	, long double p19
-	, long double p20
+MC_TARGET_PROC long double mc_xpolyeval20l(const long double x
+	, const long double p1
+	, const long double p2
+	, const long double p3
+	, const long double p4
+	, const long double p5
+	, const long double p6
+	, const long double p7
+	, const long double p8
+	, const long double p9
+	, const long double p10
+	, const long double p11
+	, const long double p12
+	, const long double p13
+	, const long double p14
+	, const long double p15
+	, const long double p16
+	, const long double p17
+	, const long double p18
+	, const long double p19
+	, const long double p20
 ) {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;
@@ -1787,7 +1787,7 @@ MC_TARGET_PROC long double mc_xpolyeval20l(long double x
 
 #pragma mark - mc_xpolyevaln -
 
-MC_TARGET_PROC float mc_xpolyevalnf(float x, const float * p, unsigned int n)
+MC_TARGET_PROC float mc_xpolyevalnf(const float x, const float * p, const unsigned int n)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	float s;
@@ -1856,7 +1856,7 @@ MC_TARGET_PROC float mc_xpolyevalnf(float x, const float * p, unsigned int n)
 	return s;
 }
 
-MC_TARGET_PROC double mc_xpolyevaln(double x, const double * p, unsigned int n)
+MC_TARGET_PROC double mc_xpolyevaln(const double x, const double * p, const unsigned int n)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	double s;
@@ -1925,7 +1925,7 @@ MC_TARGET_PROC double mc_xpolyevaln(double x, const double * p, unsigned int n)
 	return s;
 }
 
-MC_TARGET_PROC long double mc_xpolyevalnl(long double x, const long double * p, unsigned int n)
+MC_TARGET_PROC long double mc_xpolyevalnl(const long double x, const long double * p, const unsigned int n)
 {
 //!# Evaluating the polynomial p (in ascending powers order) at the specified value of x.
 	long double s;

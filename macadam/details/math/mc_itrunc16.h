@@ -15,17 +15,17 @@
 
 #pragma mark - mc_itrunc16 -
 
-MC_TARGET_PROC int16_t mc_itrunc16f(float x)
+MC_TARGET_PROC int16_t mc_itrunc16f(const float x)
 {
 	return mc_cast(int16_t, x);
 }
 
-MC_TARGET_PROC int16_t mc_itrunc16(double x)
+MC_TARGET_PROC int16_t mc_itrunc16(const double x)
 {
 	return mc_cast(int16_t, x);
 }
 
-MC_TARGET_PROC int16_t mc_itrunc16l(long double x)
+MC_TARGET_PROC int16_t mc_itrunc16l(const long double x)
 {
 	return mc_cast(int16_t, x);
 }

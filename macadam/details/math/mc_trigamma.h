@@ -15,7 +15,7 @@
 
 #pragma mark - mc_trigamma_approx0 -
 
-MC_TARGET_PROC float mc_trigammaf_approx0(float x)
+MC_TARGET_PROC float mc_trigammaf_approx0(const float x)
 {
 	float g, y, z;
 	if ((x <= 0) && (mc_floorf(x) == x)) {
@@ -39,7 +39,7 @@ MC_TARGET_PROC float mc_trigammaf_approx0(float x)
 	return g;
 }
 
-MC_TARGET_PROC double mc_trigamma_approx0(double x)
+MC_TARGET_PROC double mc_trigamma_approx0(const double x)
 {
 	double g, y, z;
 	if ((x <= 0) && (mc_floor(x) == x)) {
@@ -63,7 +63,7 @@ MC_TARGET_PROC double mc_trigamma_approx0(double x)
 	return g;
 }
 
-MC_TARGET_PROC long double mc_trigammal_approx0(long double x)
+MC_TARGET_PROC long double mc_trigammal_approx0(const long double x)
 {
 	long double g, y, z;
 	if ((x <= 0) && (mc_floorl(x) == x)) {
@@ -89,7 +89,7 @@ MC_TARGET_PROC long double mc_trigammal_approx0(long double x)
 
 #pragma mark - mc_trigamma_approx1 -
 
-MC_TARGET_PROC float mc_trigammaf_approx1(float x)
+MC_TARGET_PROC float mc_trigammaf_approx1(const float x)
 {
 //!# Returns psi1(x) by Taylor series expansion.
 	const float c1 = +1.00000000000000000000000000000000000000E+00f;
@@ -100,16 +100,15 @@ MC_TARGET_PROC float mc_trigammaf_approx1(float x)
 	const float c6 = +7.57575757575757600000000000000000000000E-02f;
 	const float c7 = -2.53113553113553100000000000000000000000E-01f;
 
-	float r = 0.0f, y, w;
+	float r = 0.0f, y, w = x;
 
 	do {
-		r = r + (1.0f / mc_raise2f(x));
-		x = x + 1.0f;
-	} while (x < 10.0f);
+		r = r + (1.0f / mc_raise2f(w));
+		w = w + 1.0f;
+	} while (w < 10.0f);
 
-	y = mc_raise2f(x);
-	r = r + (5.0f / x);
-	w = x;
+	y = mc_raise2f(w);
+	r = r + (5.0f / w);
 
 	r = r + (c1 * (1.0f / w));
 	w = w * y;
@@ -128,7 +127,7 @@ MC_TARGET_PROC float mc_trigammaf_approx1(float x)
 	return r;
 }
 
-MC_TARGET_PROC double mc_trigamma_approx1(double x)
+MC_TARGET_PROC double mc_trigamma_approx1(const double x)
 {
 //!# Returns psi1(x) by Taylor series expansion.
 	const double c1 = +1.0000000000000000000000000000000000000000E+00;
@@ -139,16 +138,15 @@ MC_TARGET_PROC double mc_trigamma_approx1(double x)
 	const double c6 = +7.5757575757575760000000000000000000000000E-02;
 	const double c7 = -2.5311355311355310000000000000000000000000E-01;
 
-	double r = 0.0, y, w;
+	double r = 0.0, y, w = x;
 
 	do {
-		r = r + (1.0 / mc_raise2(x));
-		x = x + 1.0;
-	} while (x < 10.0);
+		r = r + (1.0 / mc_raise2(w));
+		w = w + 1.0;
+	} while (w < 10.0);
 
-	y = mc_raise2(x);
-	r = r + (5.0 / x);
-	w = x;
+	y = mc_raise2(w);
+	r = r + (5.0 / w);
 
 	r = r + (c1 * (1.0 / w));
 	w = w * y;
@@ -167,7 +165,7 @@ MC_TARGET_PROC double mc_trigamma_approx1(double x)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_trigammal_approx1(long double x)
+MC_TARGET_PROC long double mc_trigammal_approx1(const long double x)
 {
 //!# Returns psi1(x) by Taylor series expansion.
 	const long double c1 = +1.000000000000000000000000000000000000000000000000000000000000000E+00L;
@@ -178,16 +176,15 @@ MC_TARGET_PROC long double mc_trigammal_approx1(long double x)
 	const long double c6 = +7.575757575757576000000000000000000000000000000000000000000000000E-02L;
 	const long double c7 = -2.531135531135531000000000000000000000000000000000000000000000000E-01L;
 
-	long double r = 0.0L, y, w;
+	long double r = 0.0L, y, w = x;
 
 	do {
-		r = r + (1.0L / mc_raise2l(x));
-		x = x + 1.0L;
-	} while (x < 10.0L);
+		r = r + (1.0L / mc_raise2l(w));
+		w = w + 1.0L;
+	} while (w < 10.0L);
 
-	y = mc_raise2l(x);
-	r = r + (5.0L / x);
-	w = x;
+	y = mc_raise2l(w);
+	r = r + (5.0L / w);
 
 	r = r + (c1 * (1.0L / w));
 	w = w * y;
@@ -208,17 +205,17 @@ MC_TARGET_PROC long double mc_trigammal_approx1(long double x)
 
 #pragma mark - mc_trigamma -
 
-MC_TARGET_FUNC float mc_trigammaf(float x)
+MC_TARGET_FUNC float mc_trigammaf(const float x)
 {
 	return mc_trigammaf_approx1(x);
 }
 
-MC_TARGET_FUNC double mc_trigamma(double x)
+MC_TARGET_FUNC double mc_trigamma(const double x)
 {
 	return mc_trigamma_approx1(x);
 }
 
-MC_TARGET_FUNC long double mc_trigammal(long double x)
+MC_TARGET_FUNC long double mc_trigammal(const long double x)
 {
 	return mc_trigammal_approx1(x);
 }

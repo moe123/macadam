@@ -32,11 +32,11 @@ MC_TARGET_FUNC int mc_histcg1xnf(const int n, const float * x, float min, float 
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		const float c = mc_cast_expr(float, (max - min) / nbins);
+		const float c = mc_cast_expr(const float, (max - min) / nbins);
 		if (c != 0.0f) {
 			mc_izeros1xn(nbins, h);
 			for (; i < n; i++) {
-				const int j = mc_cast_expr(int, (x[i] - min) / c);
+				const int j = mc_cast_expr(const int, (x[i] - min) / c);
 				if (j >= 0 && j < nbins) {
 					h[j]++;
 				}
@@ -66,11 +66,11 @@ MC_TARGET_FUNC int mc_histcg1xn(const int n, const double * x, double min, doubl
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		const double c = mc_cast_expr(double, (max - min) / nbins);
+		const double c = mc_cast_expr(const double, (max - min) / nbins);
 		if (c != 0.0) {
 			mc_izeros1xn(nbins, h);
 			for (; i < n; i++) {
-				const int j = mc_cast_expr(int, (x[i] - min) / c);
+				const int j = mc_cast_expr(const int, (x[i] - min) / c);
 				if (j >= 0 && j < nbins) {
 					h[j]++;
 				}
@@ -100,11 +100,11 @@ MC_TARGET_FUNC  int mc_histcg1xnl(const int n, const long double * x, long doubl
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		const long double c = mc_cast_expr(long double, (max - min) / nbins);
+		const long double c = mc_cast_expr(const long double, (max - min) / nbins);
 		if (c != 0.0) {
 			mc_izeros1xn(nbins, h);
 			for (; i < n; i++) {
-				const int j = mc_cast_expr(int, (x[i] - min) / c);
+				const int j = mc_cast_expr(const int, (x[i] - min) / c);
 				if (j >= 0 && j < nbins) {
 					h[j]++;
 				}

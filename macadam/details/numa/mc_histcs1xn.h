@@ -43,7 +43,7 @@ MC_TARGET_FUNC int mc_histcs1xnf(const int n, const float * x, int adiff, float 
 		scale = mc_cast_expr(float, (adiff > 0 ? mc_fabsf(max - min) : (max - min)) / (nbins - 1));
 		scale = (scale != 0.0f) ? (1.0f / scale) : 1.0f;
 		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabsf(x[i] - min) : (x[i] - min)) * scale);
+			const int j = mc_cast_expr(const int, (adiff > 0 ? mc_fabsf(x[i] - min) : (x[i] - min)) * scale);
 			const int q = j % npts;
  			const int k = q < 0 ? (q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts)) : q;
 			h[k]++;
@@ -81,7 +81,7 @@ MC_TARGET_FUNC int mc_histcs1xn(const int n, const double * x, int adiff, double
 		scale = mc_cast_expr(double, (adiff > 0 ? mc_fabs(max - min) : (max - min)) / (nbins - 1));
 		scale = (scale != 0.0) ? (1.0 / scale) : 1.0;
 		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabs(x[i] - min) : (x[i] - min)) * scale);
+			const int j = mc_cast_expr(const int, (adiff > 0 ? mc_fabs(x[i] - min) : (x[i] - min)) * scale);
 			const int q = j % npts;
  			const int k = q < 0 ? (q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts)) : q;
 			h[k]++;
@@ -119,7 +119,7 @@ MC_TARGET_FUNC int mc_histcs1xnl(const int n, const long double * x, int adiff, 
 		scale = mc_cast_expr(long double, (adiff > 0 ? mc_fabsl(max - min) : (max - min)) / (nbins - 1));
 		scale = (scale != 0.0L) ? (1.0L / scale) : 1.0L;
 		for (; i < n; i++) {
-			const int j = mc_cast_expr(int, (adiff > 0 ? mc_fabsl(x[i] - min) : (x[i] - min)) * scale);
+			const int j = mc_cast_expr(const int, (adiff > 0 ? mc_fabsl(x[i] - min) : (x[i] - min)) * scale);
 			const int q = j % npts;
  			const int k = q < 0 ? (q + (q >> (MCLIMITS_CBITS * sizeof(int) - 1U) & npts)) : q;
 			h[k]++;

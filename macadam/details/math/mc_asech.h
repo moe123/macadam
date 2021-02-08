@@ -16,7 +16,7 @@
 
 #pragma mark - mc_asech -
 
-MC_TARGET_FUNC float mc_asechf(float x)
+MC_TARGET_FUNC float mc_asechf(const float x)
 {
 #	if MC_TARGET_EMBEDDED
 	if (x <= 0.0f || x > 1.0f) {
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_asechf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_asech(double x)
+MC_TARGET_FUNC double mc_asech(const double x)
 {
 #	if MC_TARGET_EMBEDDED
 	if (x <= 0.0 || x > 1.0) {
@@ -40,7 +40,7 @@ MC_TARGET_FUNC double mc_asech(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_asechl(long double x)
+MC_TARGET_FUNC long double mc_asechl(const long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	if (x <= 0.0L || x > 1.0L) {

@@ -45,13 +45,13 @@ MC_TARGET_PROC void mc_zatanhf(float * c_r, float * c_i
 		*c_r = mc_copysignf(MCK_INF, a_r);
 		*c_i = mc_copysignf(0.0f, a_i);
 	} else {
-		float z1p_a, z1p_i;
-		float z1m_a, z1m_i;
+		float z1p_r, z1p_i;
+		float z1m_r, z1m_i;
 
-		mc_zaddf(&z1p_a, &z1p_i, 1.0f, 0.0f, a_r, a_i);
-		mc_zsubf(&z1m_a, &z1m_i, 1.0f, 0.0f, a_r, a_i);
+		mc_zaddf(&z1p_r, &z1p_i, 1.0f, 0.0f, a_r, a_i);
+		mc_zsubf(&z1m_r, &z1m_i, 1.0f, 0.0f, a_r, a_i);
 
-		mc_zdivf(c_r, c_i, z1p_a, z1p_i, z1m_a, z1m_i);
+		mc_zdivf(c_r, c_i, z1p_r, z1p_i, z1m_r, z1m_i);
 		mc_zlogf(c_r, c_i, *c_r, *c_i);
 		mc_zmulf(c_r, c_i, *c_r, *c_i, 0.5f, 0.0f);
 
@@ -84,13 +84,13 @@ MC_TARGET_PROC void mc_zatanh(double * c_r, double * c_i
 		*c_r = mc_copysign(MCK_INF, a_r);
 		*c_i = mc_copysign(0.0, a_i);
 	} else {
-		double z1p_a, z1p_i;
-		double z1m_a, z1m_i;
+		double z1p_r, z1p_i;
+		double z1m_r, z1m_i;
 
-		mc_zadd(&z1p_a, &z1p_i, 1.0, 0.0, a_r, a_i);
-		mc_zsub(&z1m_a, &z1m_i, 1.0, 0.0, a_r, a_i);
+		mc_zadd(&z1p_r, &z1p_i, 1.0, 0.0, a_r, a_i);
+		mc_zsub(&z1m_r, &z1m_i, 1.0, 0.0, a_r, a_i);
 
-		mc_zdiv(c_r, c_i, z1p_a, z1p_i, z1m_a, z1m_i);
+		mc_zdiv(c_r, c_i, z1p_r, z1p_i, z1m_r, z1m_i);
 		mc_zlog(c_r, c_i, *c_r, *c_i);
 		mc_zmul(c_r, c_i, *c_r, *c_i, 0.5, 0.0);
 
@@ -123,13 +123,13 @@ MC_TARGET_PROC void mc_zatanhl(long double * c_r, long double * c_i
 		*c_r = mc_copysignl(MCK_INF, a_r);
 		*c_i = mc_copysignl(0.0L, a_i);
 	} else {
-		long double z1p_a, z1p_i;
-		long double z1m_a, z1m_i;
+		long double z1p_r, z1p_i;
+		long double z1m_r, z1m_i;
 
-		mc_zaddl(&z1p_a, &z1p_i, 1.0L, 0.0L, a_r, a_i);
-		mc_zsubl(&z1m_a, &z1m_i, 1.0L, 0.0L, a_r, a_i);
+		mc_zaddl(&z1p_r, &z1p_i, 1.0L, 0.0L, a_r, a_i);
+		mc_zsubl(&z1m_r, &z1m_i, 1.0L, 0.0L, a_r, a_i);
 
-		mc_zdivl(c_r, c_i, z1p_a, z1p_i, z1m_a, z1m_i);
+		mc_zdivl(c_r, c_i, z1p_r, z1p_i, z1m_r, z1m_i);
 		mc_zlogl(c_r, c_i, *c_r, *c_i);
 		mc_zmull(c_r, c_i, *c_r, *c_i, 0.5L, 0.0L);
 

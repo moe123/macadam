@@ -15,7 +15,7 @@
 
 #pragma mark - mc_ilogb -
 
-MC_TARGET_FUNC int mc_ilogbf(float x)
+MC_TARGET_FUNC int mc_ilogbf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::ilogbf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC int mc_ilogbf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC int mc_ilogb(double x)
+MC_TARGET_FUNC int mc_ilogb(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::ilogb(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC int mc_ilogb(double x)
 #	endif
 }
 
-MC_TARGET_FUNC int mc_ilogbl(long double x)
+MC_TARGET_FUNC int mc_ilogbl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::ilogbl(x);

@@ -15,7 +15,7 @@
 
 #pragma mark - mc_pow2 -
 
-MC_TARGET_FUNC float mc_pow2f(float x)
+MC_TARGET_FUNC float mc_pow2f(const float x)
 {
 	if (mc_floorf(x) == x) {
 		if (x < -1074.0f) {
@@ -29,7 +29,7 @@ MC_TARGET_FUNC float mc_pow2f(float x)
 	return mc_powf(2.0f, x);
 }
 
-MC_TARGET_FUNC double mc_pow2(double x)
+MC_TARGET_FUNC double mc_pow2(const double x)
 {
 	if (mc_floor(x) == x) {
 		if (x < -1074.0) {
@@ -43,7 +43,7 @@ MC_TARGET_FUNC double mc_pow2(double x)
 	return mc_pow(2.0, x);
 }
 
-MC_TARGET_FUNC long double mc_pow2l(long double x)
+MC_TARGET_FUNC long double mc_pow2l(const long double x)
 {
 	if (mc_floorl(x) == x) {
 		if (x < -1074.0L) {

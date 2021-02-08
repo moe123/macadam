@@ -15,7 +15,7 @@
 
 #pragma mark - mc_nchoosek -
 
-MC_TARGET_FUNC unsigned int mc_nchoosek(unsigned int n, unsigned int k)
+MC_TARGET_FUNC unsigned int mc_nchoosek(const unsigned int n, const unsigned int k)
 {
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
@@ -32,7 +32,7 @@ MC_TARGET_FUNC unsigned int mc_nchoosek(unsigned int n, unsigned int k)
 
 #pragma mark - mc_nchoosekul -
 
-MC_TARGET_PROC unsigned long mc_nchoosekul(unsigned long n, unsigned long k)
+MC_TARGET_PROC unsigned long mc_nchoosekul(const unsigned long n, const unsigned long k)
 {
 	if (n < MCLIMITS_ULMAX && k < MCLIMITS_ULMAX) {
 		if (k > n) {
@@ -50,7 +50,7 @@ MC_TARGET_PROC unsigned long mc_nchoosekul(unsigned long n, unsigned long k)
 #pragma mark - mc_nchoosekull -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_PROC unsigned long long mc_nchoosekull(unsigned long long n, unsigned long long k)
+MC_TARGET_PROC unsigned long long mc_nchoosekull(const unsigned long long n, const unsigned long long k)
 {
 	if (n < MCLIMITS_ULLMAX && k < MCLIMITS_ULLMAX) {
 		if (k > n) {

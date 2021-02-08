@@ -13,17 +13,17 @@
 
 #pragma mark - mc_logradix -
 
-MC_TARGET_FUNC float mc_logradixf(unsigned int n, float x)
+MC_TARGET_FUNC float mc_logradixf(const unsigned int n, const float x)
 {
 	return mc_logf(x) / mc_logf(mc_cast(float, n));
 }
 
-MC_TARGET_FUNC double mc_logradix(unsigned int n, double x)
+MC_TARGET_FUNC double mc_logradix(const unsigned int n, const double x)
 {
 	return mc_log(x) / mc_log(mc_cast(double, n));
 }
 
-MC_TARGET_FUNC long double mc_logradixl(unsigned int n, long double x)
+MC_TARGET_FUNC long double mc_logradixl(const unsigned int n, const long double x)
 {
 	return mc_logl(x) / mc_logl(mc_cast(long double, n));
 }

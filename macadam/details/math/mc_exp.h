@@ -15,7 +15,7 @@
 
 #pragma mark - mc_exp -
 
-MC_TARGET_FUNC float mc_expf(float x)
+MC_TARGET_FUNC float mc_expf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::expf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_expf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_exp(double x)
+MC_TARGET_FUNC double mc_exp(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::exp(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_exp(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_expl(long double x)
+MC_TARGET_FUNC long double mc_expl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::expl(x);

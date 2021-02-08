@@ -14,7 +14,7 @@
 
 #pragma mark - mc_digamma_approx0 -
 
-MC_TARGET_PROC float mc_digammaf_approx0(float x)
+MC_TARGET_PROC float mc_digammaf_approx0(const float x)
 {
 //!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
@@ -35,7 +35,7 @@ MC_TARGET_PROC float mc_digammaf_approx0(float x)
 	);
 }
 
-MC_TARGET_PROC double mc_digamma_approx0(double x)
+MC_TARGET_PROC double mc_digamma_approx0(const double x)
 {
 //!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
@@ -56,7 +56,7 @@ MC_TARGET_PROC double mc_digamma_approx0(double x)
 	);
 }
 
-MC_TARGET_PROC long double mc_digammal_approx0(long double x)
+MC_TARGET_PROC long double mc_digammal_approx0(const long double x)
 {
 //!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
@@ -79,7 +79,7 @@ MC_TARGET_PROC long double mc_digammal_approx0(long double x)
 
 #pragma mark - mc_digamma_approx1 -
 
-MC_TARGET_PROC float mc_digammaf_approx1(float x)
+MC_TARGET_PROC float mc_digammaf_approx1(const float x)
 {
 //!# Returns psi0(x) by Taylor series expansion.
 	const float c1 = -8.33333333333333290000000000000000000000E-02f;
@@ -90,15 +90,15 @@ MC_TARGET_PROC float mc_digammaf_approx1(float x)
 	const float c6 = +2.10927960927960940000000000000000000000E-02f;
 	const float c7 = -8.33333333333333290000000000000000000000E-02f;
 
-	float r = 0.0f, y, w;
+	float r = 0.0f, y, w = x;
 
 	do {
-		r = r - (1.0f / x);
-		x = x + 1.0f;
-	} while (x < 10.0f);
+		r = r - (1.0f / w);
+		w = w + 1.0f;
+	} while (w < 10.0f);
 
-	y = mc_raise2f(x);
-	r = r + (mc_logf(x) - 0.5f / x);
+	y = mc_raise2f(w);
+	r = r + (mc_logf(w) - 0.5f / w);
 	w = y;
 
 	r = r + (c1 * (1.0f / w));
@@ -118,7 +118,7 @@ MC_TARGET_PROC float mc_digammaf_approx1(float x)
 	return r;
 }
 
-MC_TARGET_PROC double mc_digamma_approx1(double x)
+MC_TARGET_PROC double mc_digamma_approx1(const double x)
 {
 //!# Returns psi0(x) by Taylor series expansion.
 	const double c1 = -8.3333333333333329000000000000000000000000E-02;
@@ -129,15 +129,15 @@ MC_TARGET_PROC double mc_digamma_approx1(double x)
 	const double c6 = +2.1092796092796094000000000000000000000000E-02;
 	const double c7 = -8.3333333333333329000000000000000000000000E-02;
 
-	double r = 0.0, y, w;
+	double r = 0.0, y, w = x;
 
 	do {
-		r = r - (1.0 / x);
-		x = x + 1.0;
-	} while (x < 10.0);
+		r = r - (1.0 / w);
+		w = w + 1.0;
+	} while (w < 10.0);
 
-	y = mc_raise2(x);
-	r = r + (mc_log(x) - 0.5 / x);
+	y = mc_raise2(w);
+	r = r + (mc_log(w) - 0.5 / w);
 	w = y;
 
 	r = r + (c1 * (1.0 / w));
@@ -157,7 +157,7 @@ MC_TARGET_PROC double mc_digamma_approx1(double x)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_digammal_approx1(long double x)
+MC_TARGET_PROC long double mc_digammal_approx1(const long double x)
 {
 //!# Returns psi0(x) by Taylor series expansion.
 	const long double c1 = -8.333333333333332900000000000000000000000000000000000000000000000E-02L;
@@ -168,15 +168,15 @@ MC_TARGET_PROC long double mc_digammal_approx1(long double x)
 	const long double c6 = +2.109279609279609400000000000000000000000000000000000000000000000E-02L;
 	const long double c7 = -8.333333333333332900000000000000000000000000000000000000000000000E-02L;
 
-	long double r = 0.0L, y, w;
+	long double r = 0.0L, y, w = x;
 
 	do {
-		r = r - (1.0L / x);
-		x = x + 1.0L;
-	} while (x < 10.0L);
+		r = r - (1.0L / w);
+		w = w + 1.0L;
+	} while (w < 10.0L);
 
-	y = mc_raise2l(x);
-	r = r + (mc_logl(x) - 0.5L / x);
+	y = mc_raise2l(w);
+	r = r + (mc_logl(w) - 0.5L / w);
 	w = y;
 
 	r = r + (c1 * (1.0L / w));
@@ -198,17 +198,17 @@ MC_TARGET_PROC long double mc_digammal_approx1(long double x)
 
 #pragma mark - mc_digamma -
 
-MC_TARGET_FUNC float mc_digammaf(float x)
+MC_TARGET_FUNC float mc_digammaf(const float x)
 {
 	return mc_digammaf_approx1(x);
 }
 
-MC_TARGET_FUNC double mc_digamma(double x)
+MC_TARGET_FUNC double mc_digamma(const double x)
 {
 	return mc_digamma_approx1(x);
 }
 
-MC_TARGET_FUNC long double mc_digammal(long double x)
+MC_TARGET_FUNC long double mc_digammal(const long double x)
 {
 	return mc_digammal_approx1(x);
 }

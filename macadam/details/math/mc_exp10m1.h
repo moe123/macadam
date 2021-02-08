@@ -15,7 +15,7 @@
 
 #pragma mark - mc_exp10m1 -
 
-MC_TARGET_FUNC float mc_exp10m1f(float x)
+MC_TARGET_FUNC float mc_exp10m1f(const float x)
 {
 	if (x == 0.0f) {
 		return x;
@@ -26,7 +26,7 @@ MC_TARGET_FUNC float mc_exp10m1f(float x)
 	return mc_exp2m1f(MCK_KF(MCK_LOG210Q) * x + MCK_KF(MCK_LOG210R) * x);
 }
 
-MC_TARGET_FUNC double mc_exp10m1(double x)
+MC_TARGET_FUNC double mc_exp10m1(const double x)
 {
 	if (x == 0.0) {
 		return x;
@@ -37,7 +37,7 @@ MC_TARGET_FUNC double mc_exp10m1(double x)
 	return mc_exp2m1(MCK_K(MCK_LOG210Q) * x + MCK_K(MCK_LOG210R) * x);
 }
 
-MC_TARGET_FUNC long double mc_exp10m1l(long double x)
+MC_TARGET_FUNC long double mc_exp10m1l(const long double x)
 {
 	if (x == 0.0L) {
 		return x;

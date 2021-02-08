@@ -44,9 +44,10 @@
 #	include <macadam/details/math/mc_biweight.h>
 #	include <macadam/details/math/mc_cabs.h>
 #	include <macadam/details/math/mc_cadd.h>
+#	include <macadam/details/math/mc_cbrt.h>
 #	include <macadam/details/math/mc_cbrti.h>
 #	include <macadam/details/math/mc_cbrtu.h>
-#	include <macadam/details/math/mc_cbrt.h>
+#	include <macadam/details/math/mc_ccot.h>
 #	include <macadam/details/math/mc_cdiv.h>
 #	include <macadam/details/math/mc_ceil.h>
 #	include <macadam/details/math/mc_chbevl.h>
@@ -239,6 +240,7 @@
 #	include <macadam/details/math/mc_zconj.h>
 #	include <macadam/details/math/mc_zcos.h>
 #	include <macadam/details/math/mc_zcosh.h>
+#	include <macadam/details/math/mc_zcot.h>
 #	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetan.h>

@@ -55,11 +55,11 @@ static MC_TARGET_THREAD_LOCAL uint32_t mc_randi_init_s = 0;
 #	endif
 
 MC_TARGET_PROC void mc_srandi(
-	  unsigned int s1
-	, unsigned int s2
-	, unsigned int s3
-	, unsigned int s4
-	, unsigned int s5
+	  const unsigned int s1
+	, const unsigned int s2
+	, const unsigned int s3
+	, const unsigned int s4
+	, const unsigned int s5
 ) {
 	if (mc_randi_init_s < 1) {
 		++mc_randi_init_s;

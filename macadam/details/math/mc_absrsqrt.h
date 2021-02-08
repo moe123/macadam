@@ -14,17 +14,17 @@
 
 #pragma mark - mc_absrsqrt -
 
-MC_TARGET_FUNC float mc_absrsqrtf(float x)
+MC_TARGET_FUNC float mc_absrsqrtf(const float x)
 {
 	return mc_rsqrtf(mc_fabsf(x));
 }
 
-MC_TARGET_FUNC double mc_absrsqrt(double x)
+MC_TARGET_FUNC double mc_absrsqrt(const double x)
 {
 	return mc_rsqrt(mc_fabs(x));
 }
 
-MC_TARGET_FUNC long double mc_absrsqrtl(long double x)
+MC_TARGET_FUNC long double mc_absrsqrtl(const long double x)
 {
 	return mc_rsqrtl(mc_fabsl(x));
 }

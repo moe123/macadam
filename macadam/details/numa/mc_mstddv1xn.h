@@ -15,7 +15,7 @@
 
 #pragma mark - mc_mstddv1xn -
 
-MC_TARGET_FUNC void mc_mstddv1xnf(const int n, const float * x, int b, float * mean, float * stddev, float * var)
+MC_TARGET_FUNC void mc_mstddv1xnf(const int n, const float * x, const int b, float * mean, float * stddev, float * var)
 {
 	float sumsq, scale;
 
@@ -29,7 +29,7 @@ MC_TARGET_FUNC void mc_mstddv1xnf(const int n, const float * x, int b, float * m
 	}
 }
 
-MC_TARGET_FUNC void mc_mstddv1xnff(const int n, const float * x, int b, double * mean, double * stddev, double * var)
+MC_TARGET_FUNC void mc_mstddv1xnff(const int n, const float * x, const int b, double * mean, double * stddev, double * var)
 {
 	double sumsq, scale;
 
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mstddv1xnff(const int n, const float * x, int b, double *
 	}
 }
 
-MC_TARGET_FUNC void mc_mstddv1xn(const int n, const double * x, int b, double * mean, double * stddev, double * var)
+MC_TARGET_FUNC void mc_mstddv1xn(const int n, const double * x, const int b, double * mean, double * stddev, double * var)
 {
 	double sumsq, scale;
 
@@ -57,7 +57,7 @@ MC_TARGET_FUNC void mc_mstddv1xn(const int n, const double * x, int b, double * 
 	}
 }
 
-MC_TARGET_FUNC void mc_mstddv1xnl(const int n, const long double * x, int b, long double * mean, long double * stddev, long double * var)
+MC_TARGET_FUNC void mc_mstddv1xnl(const int n, const long double * x, const int b, long double * mean, long double * stddev, long double * var)
 {
 	long double sumsq, scale;
 

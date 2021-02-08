@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sin -
 
-MC_TARGET_FUNC float mc_sinf(float x)
+MC_TARGET_FUNC float mc_sinf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::sinf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_sinf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_sin(double x)
+MC_TARGET_FUNC double mc_sin(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sin(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_sin(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_sinl(long double x)
+MC_TARGET_FUNC long double mc_sinl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sinl(x);

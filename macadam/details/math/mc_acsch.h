@@ -17,7 +17,7 @@
 
 #pragma mark - mc_acsch -
 
-MC_TARGET_FUNC float mc_acschf(float x)
+MC_TARGET_FUNC float mc_acschf(const float x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_logf(1.0f / x + mc_sqrtf(1.0f + mc_raise2f(x)) / mc_fabsf(x));
@@ -26,7 +26,7 @@ MC_TARGET_FUNC float mc_acschf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_acsch(double x)
+MC_TARGET_FUNC double mc_acsch(const double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_log(1.0 / x + mc_sqrt(1.0 + mc_raise2(x)) / mc_fabs(x));
@@ -35,7 +35,7 @@ MC_TARGET_FUNC double mc_acsch(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_acschl(long double x)
+MC_TARGET_FUNC long double mc_acschl(const long double x)
 {
 #	if MC_TARGET_EMBEDDED
 	return mc_logl(1.0L / x + mc_sqrtl(1.0L + mc_raise2l(x)) / mc_fabsl(x));

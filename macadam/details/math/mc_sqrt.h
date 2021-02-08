@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sqrt -
 
-MC_TARGET_FUNC float mc_sqrtf(float x)
+MC_TARGET_FUNC float mc_sqrtf(const float x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrtf(x);
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_sqrtf(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_sqrt(double x)
+MC_TARGET_FUNC double mc_sqrt(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrt(x);
@@ -33,7 +33,7 @@ MC_TARGET_FUNC double mc_sqrt(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_sqrtl(long double x)
+MC_TARGET_FUNC long double mc_sqrtl(const long double x)
 {
 #	if MC_TARGET_CPP98
 	return ::sqrtl(x);

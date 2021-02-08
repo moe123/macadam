@@ -13,21 +13,21 @@
 
 #pragma mark - mc_zeros3x1 -
 
-MC_TARGET_FUNC void mc_zeros3x1f(const int n, int j, float * a)
+MC_TARGET_FUNC void mc_zeros3x1f(const int n, const int j, float * a)
 {
 	a[j]           = 0.0f;
 	a[n + j]       = 0.0f;
 	a[(n * 2) + j] = 0.0f;
 }
 
-MC_TARGET_FUNC void mc_zeros3x1(const int n, int j, double * a)
+MC_TARGET_FUNC void mc_zeros3x1(const int n, const int j, double * a)
 {
 	a[j]           = 0.0;
 	a[n + j]       = 0.0;
 	a[(n * 2) + j] = 0.0;
 }
 
-MC_TARGET_FUNC void mc_zeros3x1l(const int n, int j, long double * a)
+MC_TARGET_FUNC void mc_zeros3x1l(const int n, const int j, long double * a)
 {
 	a[j]           = 0.0L;
 	a[n + j]       = 0.0L;

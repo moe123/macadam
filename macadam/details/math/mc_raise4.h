@@ -15,17 +15,17 @@
 
 #pragma mark - mc_raise4 -
 
-MC_TARGET_PROC float mc_raise4f(float x)
+MC_TARGET_PROC float mc_raise4f(const float x)
 {
 	return x * x * x * x;
 }
 
-MC_TARGET_PROC double mc_raise4(double x)
+MC_TARGET_PROC double mc_raise4(const double x)
 {
 	return x * x * x * x;
 }
 
-MC_TARGET_PROC long double mc_raise4l(long double x)
+MC_TARGET_PROC long double mc_raise4l(const long double x)
 {
 	return x * x * x * x;
 }

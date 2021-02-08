@@ -13,7 +13,7 @@
 
 #pragma mark - mc_polyfit1xn -
 
-MC_TARGET_FUNC int mc_polyfit1xnf(const int n, int d, const float * x, const float * y, float * MC_TARGET_RESTRICT w, float * MC_TARGET_RESTRICT c)
+MC_TARGET_FUNC int mc_polyfit1xnf(const int n, const int d, const float * x, const float * y, float * MC_TARGET_RESTRICT w, float * MC_TARGET_RESTRICT c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
@@ -114,7 +114,7 @@ MC_TARGET_FUNC int mc_polyfit1xnf(const int n, int d, const float * x, const flo
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_polyfit1xnff(const int n, int d, const float * x, const float * y, double * MC_TARGET_RESTRICT w, double * MC_TARGET_RESTRICT c)
+MC_TARGET_FUNC int mc_polyfit1xnff(const int n, const int d, const float * x, const float * y, double * MC_TARGET_RESTRICT w, double * MC_TARGET_RESTRICT c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
@@ -215,7 +215,7 @@ MC_TARGET_FUNC int mc_polyfit1xnff(const int n, int d, const float * x, const fl
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_polyfit1xn(const int n, int d, const double * x, const double * y, double * MC_TARGET_RESTRICT w, double * MC_TARGET_RESTRICT c)
+MC_TARGET_FUNC int mc_polyfit1xn(const int n, const int d, const double * x, const double * y, double * MC_TARGET_RESTRICT w, double * MC_TARGET_RESTRICT c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.
@@ -316,7 +316,7 @@ MC_TARGET_FUNC int mc_polyfit1xn(const int n, int d, const double * x, const dou
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_polyfit1xnl(const int n, int d, const long double * x, const long double * y, long double * MC_TARGET_RESTRICT w, long double * MC_TARGET_RESTRICT c)
+MC_TARGET_FUNC int mc_polyfit1xnl(const int n, const int d, const long double * x, const long double * y, long double * MC_TARGET_RESTRICT w, long double * MC_TARGET_RESTRICT c)
 {
 //!# Requires x[n], y[n], w[d x 6] and c[d + 1] where 0 < d < n.
 //!#     n - Number of query points and fitted values i.e x and y respectively.

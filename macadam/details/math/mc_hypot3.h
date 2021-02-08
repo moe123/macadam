@@ -14,7 +14,7 @@
 
 #pragma mark - mc_hypot3 -
 
-MC_TARGET_FUNC float mc_hypot3f(float x, float y, float z)
+MC_TARGET_FUNC float mc_hypot3f(const float x, const float y, const float z)
 {
 	float a = mc_fabsf(x);
 	float b = mc_fabsf(y);
@@ -26,7 +26,7 @@ MC_TARGET_FUNC float mc_hypot3f(float x, float y, float z)
 	);
 }
 
-MC_TARGET_FUNC double mc_hypot3(double x, double y, double z)
+MC_TARGET_FUNC double mc_hypot3(const double x, const double y, const double z)
 {
 	double a = mc_fabs(x);
 	double b = mc_fabs(y);
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_hypot3(double x, double y, double z)
 	);
 }
 
-MC_TARGET_FUNC long double mc_hypot3l(long double x, long double y, long double z)
+MC_TARGET_FUNC long double mc_hypot3l(const long double x, const long double y, const long double z)
 {
 	long double a = mc_fabsl(x);
 	long double b = mc_fabsl(y);

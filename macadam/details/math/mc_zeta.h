@@ -14,7 +14,7 @@
 
 #pragma mark - mc_zeta -
 
-MC_TARGET_FUNC float mc_zetaf(float x)
+MC_TARGET_FUNC float mc_zetaf(const float x)
 {
 	if (x >= 0.0f) {
 		return mc_zetapf(x);
@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_zetaf(float x)
 	return mc_zetanf(x);
 }
 
-MC_TARGET_FUNC double mc_zeta(double x)
+MC_TARGET_FUNC double mc_zeta(const double x)
 {
 	if (x >= 0.0) {
 		return mc_zetap(x);
@@ -30,7 +30,7 @@ MC_TARGET_FUNC double mc_zeta(double x)
 	return mc_zetan(x);
 }
 
-MC_TARGET_FUNC long double mc_zetal(long double x)
+MC_TARGET_FUNC long double mc_zetal(const long double x)
 {
 	if (x >= 0.0L) {
 		return mc_zetapl(x);

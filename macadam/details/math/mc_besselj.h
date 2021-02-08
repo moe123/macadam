@@ -13,7 +13,7 @@
 
 #pragma mark - mc_besselj0 -
 
-MC_TARGET_FUNC float mc_besselj0f(float x)
+MC_TARGET_FUNC float mc_besselj0f(const float x)
 {
 #	if  defined(__unix__)      \
 	||  defined(__linux__)     \
@@ -40,7 +40,7 @@ MC_TARGET_FUNC float mc_besselj0f(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_besselj0(double x)
+MC_TARGET_FUNC double mc_besselj0(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::j0(x);
@@ -49,7 +49,7 @@ MC_TARGET_FUNC double mc_besselj0(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_besselj0l(long double x)
+MC_TARGET_FUNC long double mc_besselj0l(const long double x)
 {
 #	if  defined(__unix__)      \
 	||  defined(__linux__)     \
@@ -78,7 +78,7 @@ MC_TARGET_FUNC long double mc_besselj0l(long double x)
 
 #pragma mark - mc_besselj1 -
 
-MC_TARGET_FUNC float mc_besselj1f(float x)
+MC_TARGET_FUNC float mc_besselj1f(const float x)
 {
 #	if  defined(__unix__)      \
 	||  defined(__linux__)     \
@@ -105,7 +105,7 @@ MC_TARGET_FUNC float mc_besselj1f(float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_besselj1(double x)
+MC_TARGET_FUNC double mc_besselj1(const double x)
 {
 #	if MC_TARGET_CPP98
 	return ::j1(x);
@@ -114,7 +114,7 @@ MC_TARGET_FUNC double mc_besselj1(double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_besselj1l(long double x)
+MC_TARGET_FUNC long double mc_besselj1l(const long double x)
 {
 #	if  defined(__unix__)      \
 	||  defined(__linux__)     \

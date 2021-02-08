@@ -15,7 +15,7 @@
 
 #pragma mark - mc_mssqr1xn -
 
-MC_TARGET_FUNC void mc_mssqr1xnf(const int n, const float * x, int b, float * mean, float * sumsq, float * scale)
+MC_TARGET_FUNC void mc_mssqr1xnf(const int n, const float * x, const int b, float * mean, float * sumsq, float * scale)
 {
 	int i;
 	float t;
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_mssqr1xnf(const int n, const float * x, int b, float * me
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqr1xnff(const int n, const float * x, int b, double * mean, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_mssqr1xnff(const int n, const float * x, const int b, double * mean, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -71,7 +71,7 @@ MC_TARGET_FUNC void mc_mssqr1xnff(const int n, const float * x, int b, double * 
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqr1xn(const int n, const double * x, int b, double * mean, double * sumsq, double * scale)
+MC_TARGET_FUNC void mc_mssqr1xn(const int n, const double * x, const int b, double * mean, double * sumsq, double * scale)
 {
 	int i;
 	double t;
@@ -99,7 +99,7 @@ MC_TARGET_FUNC void mc_mssqr1xn(const int n, const double * x, int b, double * m
 	}
 }
 
-MC_TARGET_FUNC void mc_mssqr1xnl(const int n, const long double * x, int b, long double * mean, long double * sumsq, long double * scale)
+MC_TARGET_FUNC void mc_mssqr1xnl(const int n, const long double * x, const int b, long double * mean, long double * sumsq, long double * scale)
 {
 	int i;
 	long double t;

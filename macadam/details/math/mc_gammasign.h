@@ -16,7 +16,7 @@
 
 #pragma mark - mc_gammasign -
 
-MC_TARGET_FUNC float mc_gammasignf(float x)
+MC_TARGET_FUNC float mc_gammasignf(const float x)
 {
 	if (mc_isnan(x) || mc_isinf(x) || x > 0.0f || mc_fisintf(0.5f * mc_floorf(x))) {
 		return +1.0f;
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_gammasignf(float x)
 	return -1.0f;
 }
 
-MC_TARGET_FUNC double mc_gammasign(double x)
+MC_TARGET_FUNC double mc_gammasign(const double x)
 {
 	if (mc_isnan(x) || mc_isinf(x) || x > 0.0 || mc_fisint(0.5 * mc_floor(x))) {
 		return +1.0;
@@ -32,7 +32,7 @@ MC_TARGET_FUNC double mc_gammasign(double x)
 	return -1.0;
 }
 
-MC_TARGET_FUNC long double mc_gammasignl(long double x)
+MC_TARGET_FUNC long double mc_gammasignl(const long double x)
 {
 	if (mc_isnan(x) || mc_isinf(x) || x > 0.0L || mc_fisintl(0.5L * mc_floorl(x))) {
 		return +1.0L;
