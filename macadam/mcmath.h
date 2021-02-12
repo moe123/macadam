@@ -3610,6 +3610,221 @@ MC_TARGET_ALIAS long double mcmath_lerp (const long double x, const long double 
 #	endif
 #	endif
 
+#pragma mark - mcmath_cmul -
+
+#	ifndef mcmath_cmul
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T                        mcmath_cmul                           (const T& a, const T& b)                                                 { mc_unused(a); mc_unused(b); return 0; }
+template <>        MC_TARGET_INLINE mc_complex_float_t       mcmath_cmul<mc_complex_float_t>       (const mc_complex_float_t & a, const mc_complex_float_t & b)             { return mc_cmulf (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_double_t      mcmath_cmul<mc_complex_double_t>      (const mc_complex_double_t & a, const mc_complex_double_t & b)           { return mc_cmul  (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_long_double_t mcmath_cmul<mc_complex_long_double_t> (const mc_complex_long_double_t & a, const mc_complex_long_double_t & b) { return mc_cmull (a, b);               }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS mc_complex_float_t       mcmath_cmul (const mc_complex_float_t a, const mc_complex_float_t b)             { return mc_cmulf (a, b); }
+MC_TARGET_ALIAS mc_complex_double_t      mcmath_cmul (const mc_complex_double_t a, const mc_complex_double_t b)           { return mc_cmul  (a, b); }
+MC_TARGET_ALIAS mc_complex_long_double_t mcmath_cmul (const mc_complex_long_double_t a, const mc_complex_long_double_t b) { return mc_cmull (a, b); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cmul(a, b) _Generic(a \
+	, mc_complex_float_t       : mc_cmulf \
+	, mc_complex_double_t      : mc_cmul  \
+	, mc_complex_long_double_t : mc_cmull \
+) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b))
+#	elif MC_TARGET_C11
+#	define mcmath_cmul(a, b) _Generic((a)+(b) \
+	, mc_complex_float_t       : mc_cmulf \
+	, mc_complex_double_t      : mc_cmul  \
+	, mc_complex_long_double_t : mc_cmull \
+) ((a), (b))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cmul(a, b) mc_cast(MC_TARGET_TYPEOF(a), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_float_t)       ? mc_cmulf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_double_t)      ? mc_cmul  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_long_double_t) ? mc_cmull (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_cmul(a, b) \
+	( \
+		  sizeof(x) == sizeof(mc_complex_float_t)       ? mc_cmulf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: sizeof(x) == sizeof(mc_complex_double_t)      ? mc_cmul  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: sizeof(x) == sizeof(mc_complex_long_double_t) ? mc_cmull (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_cdiv -
+
+#	ifndef mcmath_cdiv
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T                        mcmath_cdiv                           (const T& a, const T& b)                                                 { mc_unused(a); mc_unused(b); return 0; }
+template <>        MC_TARGET_INLINE mc_complex_float_t       mcmath_cdiv<mc_complex_float_t>       (const mc_complex_float_t & a, const mc_complex_float_t & b)             { return mc_cdivf (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_double_t      mcmath_cdiv<mc_complex_double_t>      (const mc_complex_double_t & a, const mc_complex_double_t & b)           { return mc_cdiv  (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_long_double_t mcmath_cdiv<mc_complex_long_double_t> (const mc_complex_long_double_t & a, const mc_complex_long_double_t & b) { return mc_cdivl (a, b);               }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS mc_complex_float_t       mcmath_cdiv (const mc_complex_float_t a, const mc_complex_float_t b)             { return mc_cdivf (a, b); }
+MC_TARGET_ALIAS mc_complex_double_t      mcmath_cdiv (const mc_complex_double_t a, const mc_complex_double_t b)           { return mc_cdiv  (a, b); }
+MC_TARGET_ALIAS mc_complex_long_double_t mcmath_cdiv (const mc_complex_long_double_t a, const mc_complex_long_double_t b) { return mc_cdivl (a, b); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cdiv(a, b) _Generic(a \
+	, mc_complex_float_t       : mc_cdivf \
+	, mc_complex_double_t      : mc_cdiv  \
+	, mc_complex_long_double_t : mc_cdivl \
+) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b))
+#	elif MC_TARGET_C11
+#	define mcmath_cdiv(a, b) _Generic((a)+(b) \
+	, mc_complex_float_t       : mc_cdivf \
+	, mc_complex_double_t      : mc_cdiv  \
+	, mc_complex_long_double_t : mc_cdivl \
+) ((a), (b))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cdiv(a, b) mc_cast(MC_TARGET_TYPEOF(a), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_float_t)       ? mc_cdivf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_double_t)      ? mc_cdiv  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_long_double_t) ? mc_cdivl (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_cdiv(a, b) \
+	( \
+		  sizeof(x) == sizeof(mc_complex_float_t)       ? mc_cdivf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: sizeof(x) == sizeof(mc_complex_double_t)      ? mc_cdiv  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: sizeof(x) == sizeof(mc_complex_long_double_t) ? mc_cdivl (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_cadd -
+
+#	ifndef mcmath_cadd
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T                        mcmath_cadd                           (const T& a, const T& b)                                                 { mc_unused(a); mc_unused(b); return 0; }
+template <>        MC_TARGET_INLINE mc_complex_float_t       mcmath_cadd<mc_complex_float_t>       (const mc_complex_float_t & a, const mc_complex_float_t & b)             { return mc_caddf (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_double_t      mcmath_cadd<mc_complex_double_t>      (const mc_complex_double_t & a, const mc_complex_double_t & b)           { return mc_cadd  (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_long_double_t mcmath_cadd<mc_complex_long_double_t> (const mc_complex_long_double_t & a, const mc_complex_long_double_t & b) { return mc_caddl (a, b);               }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS mc_complex_float_t       mcmath_cadd (const mc_complex_float_t a, const mc_complex_float_t b)             { return mc_caddf (a, b); }
+MC_TARGET_ALIAS mc_complex_double_t      mcmath_cadd (const mc_complex_double_t a, const mc_complex_double_t b)           { return mc_cadd  (a, b); }
+MC_TARGET_ALIAS mc_complex_long_double_t mcmath_cadd (const mc_complex_long_double_t a, const mc_complex_long_double_t b) { return mc_caddl (a, b); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cadd(a, b) _Generic(a \
+	, mc_complex_float_t       : mc_caddf \
+	, mc_complex_double_t      : mc_cadd  \
+	, mc_complex_long_double_t : mc_caddl \
+) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b))
+#	elif MC_TARGET_C11
+#	define mcmath_cadd(a, b) _Generic((a)+(b) \
+	, mc_complex_float_t       : mc_caddf \
+	, mc_complex_double_t      : mc_cadd  \
+	, mc_complex_long_double_t : mc_caddl \
+) ((a), (b))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_cadd(a, b) mc_cast(MC_TARGET_TYPEOF(a), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_float_t)       ? mc_caddf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_double_t)      ? mc_cadd  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_long_double_t) ? mc_caddl (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_cadd(a, b) \
+	( \
+		  sizeof(x) == sizeof(mc_complex_float_t)       ? mc_caddf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: sizeof(x) == sizeof(mc_complex_double_t)      ? mc_cadd  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: sizeof(x) == sizeof(mc_complex_long_double_t) ? mc_caddl (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_csub -
+
+#	ifndef mcmath_csub
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T                        mcmath_csub                           (const T& a, const T& b)                                                 { mc_unused(a); mc_unused(b); return 0; }
+template <>        MC_TARGET_INLINE mc_complex_float_t       mcmath_csub<mc_complex_float_t>       (const mc_complex_float_t & a, const mc_complex_float_t & b)             { return mc_csubf (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_double_t      mcmath_csub<mc_complex_double_t>      (const mc_complex_double_t & a, const mc_complex_double_t & b)           { return mc_csub  (a, b);               }
+template <>        MC_TARGET_INLINE mc_complex_long_double_t mcmath_csub<mc_complex_long_double_t> (const mc_complex_long_double_t & a, const mc_complex_long_double_t & b) { return mc_csubl (a, b);               }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS mc_complex_float_t       mcmath_csub (const mc_complex_float_t a, const mc_complex_float_t b)             { return mc_csubf (a, b); }
+MC_TARGET_ALIAS mc_complex_double_t      mcmath_csub (const mc_complex_double_t a, const mc_complex_double_t b)           { return mc_csub  (a, b); }
+MC_TARGET_ALIAS mc_complex_long_double_t mcmath_csub (const mc_complex_long_double_t a, const mc_complex_long_double_t b) { return mc_csubl (a, b); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_csub(a, b) _Generic(a \
+	, mc_complex_float_t       : mc_csubf \
+	, mc_complex_double_t      : mc_csub  \
+	, mc_complex_long_double_t : mc_csubl \
+) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b))
+#	elif MC_TARGET_C11
+#	define mcmath_csub(a, b) _Generic((a)+(b) \
+	, mc_complex_float_t       : mc_csubf \
+	, mc_complex_double_t      : mc_csub  \
+	, mc_complex_long_double_t : mc_csubl \
+) ((a), (b))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_csub(a, b) mc_cast(MC_TARGET_TYPEOF(a), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_float_t)       ? mc_csubf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_double_t)      ? mc_csub  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_long_double_t) ? mc_csubl (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_csub(a, b) \
+	( \
+		  sizeof(x) == sizeof(mc_complex_float_t)       ? mc_csubf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: sizeof(x) == sizeof(mc_complex_double_t)      ? mc_csub  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: sizeof(x) == sizeof(mc_complex_long_double_t) ? mc_csubl (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
+#pragma mark - mcmath_ciseq -
+
+#	ifndef mcmath_ciseq
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE int mcmath_ciseq                           (const T& a, const T& b)                                                 { mc_unused(a); mc_unused(b); return 0; }
+template <>        MC_TARGET_INLINE int mcmath_ciseq<mc_complex_float_t>       (const mc_complex_float_t & a, const mc_complex_float_t & b)             { return mc_ciseqf (a, b);              }
+template <>        MC_TARGET_INLINE int mcmath_ciseq<mc_complex_double_t>      (const mc_complex_double_t & a, const mc_complex_double_t & b)           { return mc_ciseq  (a, b);              }
+template <>        MC_TARGET_INLINE int mcmath_ciseq<mc_complex_long_double_t> (const mc_complex_long_double_t & a, const mc_complex_long_double_t & b) { return mc_ciseql (a, b);              }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS int mcmath_ciseq (const mc_complex_float_t a, const mc_complex_float_t b)             { return mc_ciseqf (a, b); }
+MC_TARGET_ALIAS int mcmath_ciseq (const mc_complex_double_t a, const mc_complex_double_t b)           { return mc_ciseq  (a, b); }
+MC_TARGET_ALIAS int mcmath_ciseq (const mc_complex_long_double_t a, const mc_complex_long_double_t b) { return mc_ciseql (a, b); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_ciseq(a, b) _Generic(a \
+	, mc_complex_float_t       : mc_ciseqf \
+	, mc_complex_double_t      : mc_ciseq  \
+	, mc_complex_long_double_t : mc_ciseql \
+) (a, mc_cast_expr(MC_TARGET_TYPEOF(a), b))
+#	elif MC_TARGET_C11
+#	define mcmath_ciseq(a, b) _Generic((a)+(b) \
+	, mc_complex_float_t       : mc_ciseqf \
+	, mc_complex_double_t      : mc_ciseq  \
+	, mc_complex_long_double_t : mc_ciseql \
+) ((a), (b))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_ciseq(a, b) \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_float_t)       ? mc_ciseqf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_double_t)      ? mc_ciseq  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(a), mc_complex_long_double_t) ? mc_ciseql (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	)
+#	else
+#	define mcmath_ciseq(a, b) \
+	( \
+		  sizeof(x) == sizeof(mc_complex_float_t)       ? mc_ciseqf (mc_cast_expr(const mc_complex_float_t, a), mc_cast_expr(const mc_complex_float_t, b))              \
+		: sizeof(x) == sizeof(mc_complex_double_t)      ? mc_ciseq  (mc_cast_expr(const mc_complex_double_t, a), mc_cast_expr(const mc_complex_double_t, b))            \
+		: sizeof(x) == sizeof(mc_complex_long_double_t) ? mc_ciseql (mc_cast_expr(const mc_complex_long_double_t, a), mc_cast_expr(const lmc_complex_long_double_t, b)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
 #endif /* !MCMATH_H */
 
 /* EOF */

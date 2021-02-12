@@ -115,6 +115,7 @@
 #	include <macadam/details/math/mc_igamma.h>
 #	include <macadam/details/math/mc_ilog2.h>
 #	include <macadam/details/math/mc_ilogb.h>
+#	include <macadam/details/math/mc_intge.h>
 #	include <macadam/details/math/mc_inverf.h>
 #	include <macadam/details/math/mc_invlogit.h>
 #	include <macadam/details/math/mc_invprobit.h>
