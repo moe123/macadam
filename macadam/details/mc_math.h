@@ -274,6 +274,7 @@
 #	include <macadam/details/math/mc_zpolyroot3.h>
 #	include <macadam/details/math/mc_zpow.h>
 #	include <macadam/details/math/mc_zpow10.h>
+#	include <macadam/details/math/mc_zproj.h>
 #	include <macadam/details/math/mc_zsin.h>
 #	include <macadam/details/math/mc_zsinh.h>
 #	include <macadam/details/math/mc_zsqr.h>
