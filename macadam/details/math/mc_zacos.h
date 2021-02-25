@@ -15,6 +15,7 @@
 #include <macadam/details/math/mc_zlog.h>
 #include <macadam/details/math/mc_zpow.h>
 #include <macadam/details/math/mc_zsqrt.h>
+#include <macadam/details/math/mc_zsub.h>
 
 #ifndef MC_ZACOS_H
 #define MC_ZACOS_H

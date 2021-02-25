@@ -16,9 +16,9 @@
 
 MC_TARGET_PROC void mc_zprojf(float * c_r, float * c_i
 	, const float a_r, const float a_i
-)
-	*c_r = *a_r;
-	*c_i = *a_i;
+) {
+	*c_r = a_r;
+	*c_i = a_i;
 	if (mc_isinf(*c_r) || mc_isinf(*c_i)) {
 		*c_r = MCK_INFP;
 		*c_i = mc_copysignf(0.0f, *c_i);
@@ -27,9 +27,9 @@ MC_TARGET_PROC void mc_zprojf(float * c_r, float * c_i
 
 MC_TARGET_PROC void mc_zproj(double * c_r, double * c_i
 	, const double a_r, const double a_i
-)
-	*c_r = *a_r;
-	*c_i = *a_i;
+) {
+	*c_r = a_r;
+	*c_i = a_i;
 	if (mc_isinf(*c_r) || mc_isinf(*c_i)) {
 		*c_r = MCK_INFP;
 		*c_i = mc_copysign(0.0, *c_i);
@@ -38,9 +38,9 @@ MC_TARGET_PROC void mc_zproj(double * c_r, double * c_i
 
 MC_TARGET_PROC void mc_zprojl(long double * c_r, long double * c_i
 	, const long double a_r, const long double a_i
-)
-	*c_r = *a_r;
-	*c_i = *a_i;
+) {
+	*c_r = a_r;
+	*c_i = a_i;
 	if (mc_isinf(*c_r) || mc_isinf(*c_i)) {
 		*c_r = MCK_INFP;
 		*c_i = mc_copysignl(0.0L, *c_i);
