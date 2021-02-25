@@ -143,7 +143,7 @@ MC_TARGET_FUNC long double mc_besselj1l(const long double x)
 
 #pragma mark - mc_besseljn -
 
-MC_TARGET_FUNC float mc_besseljnf(int n, float x)
+MC_TARGET_FUNC float mc_besseljnf(const int n, float x)
 {
 #	if  defined(__unix__)      \
 	||  defined(__linux__)     \
@@ -170,7 +170,7 @@ MC_TARGET_FUNC float mc_besseljnf(int n, float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_besseljn(int n, double x)
+MC_TARGET_FUNC double mc_besseljn(const int n, double x)
 {
 #	if MC_TARGET_CPP98
 	return ::jn(n, x);
@@ -179,7 +179,7 @@ MC_TARGET_FUNC double mc_besseljn(int n, double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_besseljnl(int n, long double x)
+MC_TARGET_FUNC long double mc_besseljnl(const int n, long double x)
 {
 #	if  defined(__unix__)      \
 	||  defined(__linux__)     \

@@ -112,20 +112,20 @@ MC_TARGET_PROC long long mc_llabs(long long x)
 #	if defined(__clang__)
 #	pragma clang diagnostic push
 #	pragma clang diagnostic ignored "-Wsign-compare"
-#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	define mc_absmag(x) ((x) == 0 ? 0 : ((x) < 0 ? (-(x)) : (x)))
 #	pragma clang diagnostic pop
 #	elif defined(__GNUC__)
 #	pragma GCC diagnostic push
 #	pragma GCC diagnostic ignored "-Wsign-compare"
-#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	define mc_absmag(x) ((x) == 0 ? 0 : ((x) < 0 ? (-(x)) : (x)))
 #	pragma GCC diagnostic pop
 #	elif defined(_MSC_VER)
 #	pragma warning(push)
 #	pragma warning(disable:4018)
-#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	define mc_absmag(x) ((x) == 0 ? 0 : ((x) < 0 ? (-(x)) : (x)))
 #	pragma warning(pop)
 #	else
-#	define mc_absmag(x) ((x) < 0 ? (-(x)) : (x))
+#	define mc_absmag(x) ((x) == 0 ? 0 : ((x) < 0 ? (-(x)) : (x)))
 #	endif
 
 #endif /* !MC_ABSMAG_H */

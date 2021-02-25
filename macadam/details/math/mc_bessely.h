@@ -77,7 +77,7 @@ MC_TARGET_FUNC long double mc_bessely1l(const long double x)
 
 #pragma mark - mc_besselyn -
 
-MC_TARGET_FUNC float mc_besselynf(int n, float x)
+MC_TARGET_FUNC float mc_besselynf(const int n, float x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(float, ::yn(n, mc_cast(double, x)));
@@ -86,7 +86,7 @@ MC_TARGET_FUNC float mc_besselynf(int n, float x)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_besselyn(int n, double x)
+MC_TARGET_FUNC double mc_besselyn(const int n, double x)
 {
 #	if MC_TARGET_CPP98
 	return ::yn(n, x);
@@ -95,7 +95,7 @@ MC_TARGET_FUNC double mc_besselyn(int n, double x)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_besselynl(int n, long double x)
+MC_TARGET_FUNC long double mc_besselynl(const int n, long double x)
 {
 #	if MC_TARGET_CPP98
 	return mc_cast(long double, ::yn(n, mc_cast(double, x)));
