@@ -60,12 +60,18 @@
 #	include <macadam/details/math/mc_cdiv.h>
 #	include <macadam/details/math/mc_ceil.h>
 #	include <macadam/details/math/mc_cexp.h>
+#	include <macadam/details/math/mc_cexp2.h>
+#	include <macadam/details/math/mc_cexpm1.h>
 #	include <macadam/details/math/mc_chbevl.h>
 #	include <macadam/details/math/mc_choose.h>
 #	include <macadam/details/math/mc_cimag.h>
 #	include <macadam/details/math/mc_ciseq.h>
 #	include <macadam/details/math/mc_ciszero.h>
+#	include <macadam/details/math/mc_clgamma.h>
 #	include <macadam/details/math/mc_clog.h>
+#	include <macadam/details/math/mc_clog10.h>
+#	include <macadam/details/math/mc_clog1p.h>
+#	include <macadam/details/math/mc_clog2.h>
 #	include <macadam/details/math/mc_cmul.h>
 #	include <macadam/details/math/mc_conj.h>
 #	include <macadam/details/math/mc_copysign.h>
@@ -75,6 +81,7 @@
 #	include <macadam/details/math/mc_cot.h>
 #	include <macadam/details/math/mc_coth.h>
 #	include <macadam/details/math/mc_cpow.h>
+#	include <macadam/details/math/mc_cpow10.h>
 #	include <macadam/details/math/mc_cproj.h>
 #	include <macadam/details/math/mc_creal.h>
 #	include <macadam/details/math/mc_csc.h>
@@ -85,6 +92,7 @@
 #	include <macadam/details/math/mc_csub.h>
 #	include <macadam/details/math/mc_ctan.h>
 #	include <macadam/details/math/mc_ctanh.h>
+#	include <macadam/details/math/mc_ctgamma.h>
 #	include <macadam/details/math/mc_digamma.h>
 #	include <macadam/details/math/mc_erf.h>
 #	include <macadam/details/math/mc_erfc.h>

@@ -8,8 +8,8 @@
 
 #include <macadam/details/math/mc_zsqrt.h>
 
-#ifndef MC_CTAN_H
-#define MC_CTAN_H
+#ifndef MC_CSQRT_H
+#define MC_CSQRT_H
 
 #pragma mark - mc_csqrt -
 
@@ -52,6 +52,6 @@ MC_TARGET_PROC mc_complex_long_double_t mc_csqrtl(const mc_complex_long_double_t
 #	endif
 }
 
-#endif /* !MC_CTAN_H */
+#endif /* !MC_CSQRT_H */
 
 /* EOF */

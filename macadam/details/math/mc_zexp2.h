@@ -16,6 +16,8 @@
 MC_TARGET_PROC void mc_zexp2f(float * c_r, float * c_i
 	, const float a_r, const float a_i
 ) {
+	*c_r = 0.0f;
+	*c_i = 0.0f;
 	mc_zpowf(c_r, c_i, 2.0f, 0.0f, a_r, a_i);
 }
 

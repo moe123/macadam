@@ -6,6 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_expm1.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/math/mc_sin.h>
