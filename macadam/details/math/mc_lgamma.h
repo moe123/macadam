@@ -102,28 +102,6 @@ MC_TARGET_PROC float mc_lgammaf_approx2(const float x)
 	const float lanczos_c6 = -5.395239384953000327544564429516071868E-06f;
 	float s, a, b, r = MCK_NAN;
 
-	if (mc_isnan(x)) {
-		return x;
-	}
-	if (mc_isinf(x)) {
-		return x;
-	}
-	if (x <= 0 && mc_fisintf(x)) {
-		return MCK_INFP;
-	}
-	if (x == 0.0f) {
-		return MCK_INFP;
-	}
-	if (x == 1.0f || x == 2.0f) {
-		return 0.0f;
-	}
-	const float y = mc_fabsf(x);
-	if (y <= FLT_MIN) {
-		return -mc_logf(y);
-	}
-	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
-		return MCK_INFP;
-	}
 	if (x >= 0.5f) {
 		a = x - 1.0f;
 		b = a + lanczos_g + 0.5f;
@@ -138,7 +116,7 @@ MC_TARGET_PROC float mc_lgammaf_approx2(const float x)
 	} else if (x < 0.0f) {
 		r = x * mc_sinpif(x);
 		r = mc_fabsf(MCK_KF(MCK_PI) / r);
-		r = mc_logf(r) - mc_lgammaf_approx2(y);
+		r = mc_logf(r) - mc_lgammaf_approx2(-x);
 	} else {
 		r = mc_sinpif(x);
 		r = MCK_KF(MCK_PI) / r;
@@ -160,28 +138,6 @@ MC_TARGET_PROC double mc_lgamma_approx2(const double x)
 	const double lanczos_c6 = -5.3952393849530003275445644295160718684201E-06;
 	double s, a, b, r = MCK_NAN;
 
-	if (mc_isnan(x)) {
-		return x;
-	}
-	if (mc_isinf(x)) {
-		return x;
-	}
-	if (x <= 0 && mc_fisint(x)) {
-		return MCK_INFP;
-	}
-	if (x == 0.0) {
-		return MCK_INFP;
-	}
-	if (x == 1.0 || x == 2.0) {
-		return 0.0;
-	}
-	const double y = mc_fabs(x);
-	if (y <= DBL_MIN) {
-		return -mc_log(y);
-	}
-	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
-		return MCK_INFP;
-	}
 	if (x >= 0.5) {
 		a = x - 1.0;
 		b = a + lanczos_g + 0.5;
@@ -196,7 +152,7 @@ MC_TARGET_PROC double mc_lgamma_approx2(const double x)
 	} else if (x < 0.0) {
 		r = x * mc_sinpi(x);
 		r = mc_fabs(MCK_K(MCK_PI) / r);
-		r = mc_log(r) - mc_lgamma_approx2(y);
+		r = mc_log(r) - mc_lgamma_approx2(-x);
 	} else {
 		r = mc_sinpi(x);
 		r = MCK_K(MCK_PI) / r;
@@ -219,22 +175,6 @@ MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
 	const long double lanczos_c6 = -5.395239384953000327544564429516071868420112878084182739257812500E-06L;
 	long double s, a, b, r = MCK_NAN;
 
-	if (mc_isnan(x)) {
-		return x;
-	}
-	if (mc_isinf(x)) {
-		return x;
-	}
-	if (x <= 0 && mc_fisintl(x)) {
-		return MCK_INFP;
-	}
-	const long double y = mc_fabsl(x);
-	if (y <= LDBL_MIN) {
-		return -mc_logl(y);
-	}
-	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {
-		return MCK_INFP;
-	}
 	if (x >= 0.5L) {
 		a = x - 1.0L;
 		b = a + lanczos_g + 0.5L;
@@ -249,7 +189,7 @@ MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
 	} else if (x < 0.0) {
 		r = x * mc_sinpil(x);
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
-		r = mc_logl(r) - mc_lgammal_approx2(y);
+		r = mc_logl(r) - mc_lgammal_approx2(-x);
 	} else {
 		r = mc_sinpil(x);
 		r = MCK_KL(MCK_PI) / r;
@@ -258,7 +198,7 @@ MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
 	return r;
 #	else
 	const double xx = mc_cast(double, x);
-	return mc_cast(long double, mc_lgamma(xx));
+	return mc_cast(long double, mc_lgamma_approx2(xx));
 #	endif
 }
 
@@ -268,6 +208,28 @@ MC_TARGET_FUNC float mc_lgammaf(const float x)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
+	if (mc_isnan(x)) {
+		return x;
+	}
+	if (mc_isinf(x)) {
+		return x;
+	}
+	if (x <= 0.0f && mc_fisintf(x)) {
+		return MCK_INFP;
+	}
+	if (x == 0.0f) {
+		return MCK_INFP;
+	}
+	if (x == 1.0f || x == 2.0f) {
+		return 0.0f;
+	}
+	const float y = mc_fabsf(x);
+	if (y <= FLT_MIN) {
+		return -mc_logf(y);
+	}
+	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
+		return MCK_INFP;
+	}
 	return mc_lgammaf_approx2(x);
 #	else
 #	if MC_TARGET_CPP98
@@ -282,6 +244,28 @@ MC_TARGET_FUNC double mc_lgamma(const double x)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
+	if (mc_isnan(x)) {
+		return x;
+	}
+	if (mc_isinf(x)) {
+		return x;
+	}
+	if (x <= 0.0 && mc_fisint(x)) {
+		return MCK_INFP;
+	}
+	if (x == 0.0) {
+		return MCK_INFP;
+	}
+	if (x == 1.0 || x == 2.0) {
+		return 0.0;
+	}
+	const double y = mc_fabs(x);
+	if (y <= DBL_MIN) {
+		return -mc_log(y);
+	}
+	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
+		return MCK_INFP;
+	}
 	return mc_lgamma_approx2(x);
 #	else
 #	if MC_TARGET_CPP98
@@ -296,6 +280,28 @@ MC_TARGET_FUNC long double mc_lgammal(const long double x)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED
+	if (mc_isnan(x)) {
+		return x;
+	}
+	if (mc_isinf(x)) {
+		return x;
+	}
+	if (x <= 0.0L && mc_fisintl(x)) {
+		return MCK_INFP;
+	}
+	if (x == 0.0L) {
+		return MCK_INFP;
+	}
+	if (x == 1.0L || x == 2.0L) {
+		return 0.0L;
+	}
+	const long double y = mc_fabsl(x);
+	if (y <= LDBL_MIN) {
+		return -mc_logl(y);
+	}
+	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {
+		return MCK_INFP;
+	}
 	return mc_lgammal_approx2(x);
 #	else
 #	if MC_TARGET_CPP98

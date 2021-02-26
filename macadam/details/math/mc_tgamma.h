@@ -13,9 +13,32 @@
 
 #pragma mark - mc_tgamma -
 
-#	define mc_tgammaf(x) mc_gammaf(x)
-#	define mc_tgamma(x)  mc_gamma(x)
-#	define mc_tgammal(x) mc_gammal(x)
+MC_TARGET_FUNC float mc_tgammaf(const float x)
+{
+#	if MC_TARGET_CPP98
+	return ::tgammaf(x);
+#	else
+	return tgammaf(x);
+#	endif
+}
+
+MC_TARGET_FUNC double mc_tgamma(const double x)
+{
+#	if MC_TARGET_CPP98
+	return ::tgamma(x);
+#	else
+	return tgamma(x);
+#	endif
+}
+
+MC_TARGET_FUNC long double mc_tgammal(const long double x)
+{
+#	if MC_TARGET_CPP98
+	return ::tgammal(x);
+#	else
+	return tgammal(x);
+#	endif
+}
 
 #endif /* !MC_TGAMMA_H */
 

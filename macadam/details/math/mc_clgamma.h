@@ -22,7 +22,7 @@ MC_TARGET_PROC mc_complex_float_t mc_clgammaf(const mc_complex_float_t c)
 			, mc_cmplxrf(c), mc_cmplxif(c)
 		);
 	} else {
-	//!# Computing absolute log-gamma (guess according to IEEE Std 1003.1-2001 actual).
+	//!# Computing |log-gamma| (guess according to IEEE Std 1003.1-2001 actual).
 		z_r = mc_lgammaf(mc_cmplxrf(c));
 		z_i = 0.0f;
 	}
@@ -37,7 +37,7 @@ MC_TARGET_PROC mc_complex_double_t mc_clgamma(const mc_complex_double_t c)
 			, mc_cmplxr(c), mc_cmplxi(c)
 		);
 	} else {
-	//!# Computing absolute log-gamma (guess according to IEEE Std 1003.1-2001 actual).
+	//!# Computing |log-gamma| (guess according to IEEE Std 1003.1-2001 actual).
 		z_r = mc_lgamma(mc_cmplxr(c));
 		z_i = 0.0;
 	}
@@ -52,7 +52,7 @@ MC_TARGET_PROC mc_complex_long_double_t mc_clgammal(const mc_complex_long_double
 			, mc_cmplxrl(c), mc_cmplxil(c)
 		);
 	} else {
-	//!# Computing absolute log-gamma (guess according to IEEE Std 1003.1-2001 actual).
+	//!# Computing |log-gamma| (guess according to IEEE Std 1003.1-2001 actual).
 		z_r = mc_lgammal(mc_cmplxrl(c));
 		z_i = 0.0L;
 	}

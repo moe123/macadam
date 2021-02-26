@@ -239,7 +239,7 @@ MC_TARGET_PROC float mc_igammapf_approx0(float a, float z)
 		}
 		const float y = a * mc_logf(z) - z;
 		if (y >= -FLT_MAX_10_EXP) {
-			const float w = y - mc_lgammaf(a);
+			const float w = y - mc_lgammaf_approx2(a);
 			if (z < a + 1.0f) {
 				p = mc_igamma_pseriesf_approx0(a, z) * mc_expf(w);
 			} else {
@@ -262,7 +262,7 @@ MC_TARGET_PROC double mc_igammap_approx0(double a, double z)
 		}
 		const double y = a * mc_log(z) - z;
 		if (y >= -DBL_MAX_10_EXP) {
-			const double w = y - mc_lgamma(a);
+			const double w = y - mc_lgamma_approx2(a);
 			if (z < a + 1.0) {
 				p = mc_igamma_pseries_approx0(a, z) * mc_exp(w);
 			} else {
@@ -285,7 +285,7 @@ MC_TARGET_PROC long double mc_igammapl_approx0(long double a, long double z)
 		}
 		const long double y = a * mc_logl(z) - z;
 		if (y >= -LDBL_MAX_10_EXP) {
-			const long double w = y - mc_lgammal(a);
+			const long double w = y - mc_lgammal_approx2(a);
 			if (z < a + 1.0L) {
 				p = mc_igamma_pseriesl_approx0(a, z) * mc_expl(w);
 			} else {
@@ -310,7 +310,7 @@ MC_TARGET_PROC float mc_igammaqf_approx0(float a, float z)
 		}
 		const float y = a * mc_logf(z) - z;
 		if (y >= -FLT_MAX_10_EXP) {
-			const float w = y - mc_lgammaf(a);
+			const float w = y - mc_lgammaf_approx2(a);
 			if (z >= a + 1.0f) {
 				q = mc_igamma_cfracf_approx0(a, z) * mc_expf(w);
 			} else {
@@ -333,7 +333,7 @@ MC_TARGET_PROC double mc_igammaq_approx0(double a, double z)
 		}
 		const double y = a * mc_log(z) - z;
 		if (y >= -DBL_MAX_10_EXP) {
-			const double w = y - mc_lgamma(a);
+			const double w = y - mc_lgamma_approx2(a);
 			if (z >= a + 1.0) {
 				q = mc_igamma_cfrac_approx0(a, z) * mc_exp(w);
 			} else {
@@ -356,7 +356,7 @@ MC_TARGET_PROC long double mc_igammaql_approx0(long double a, long double z)
 		}
 		const long double y = a * mc_logl(z) - z;
 		if (y >= -LDBL_MAX_10_EXP) {
-			const long double w = y - mc_lgammal(a);
+			const long double w = y - mc_lgammal_approx2(a);
 			if (z >= a + 1.0L) {
 				q = mc_igamma_cfracl_approx0(a, z) * mc_expl(w);
 			} else {
@@ -420,7 +420,7 @@ MC_TARGET_PROC float mc_igammaesf_approx0(float a, float z)
 		p = p * -z;
 		r = r + (p / mc_factorialf(20.0f)) / (20.0f + a);
 
-		r = mc_expf(a * mc_logf(z) + mc_logf(r) - mc_lgammaf(a));
+		r = mc_expf(a * mc_logf(z) + mc_logf(r) - mc_lgammaf_approx2(a));
 	}
 	return r;
 }
@@ -474,7 +474,7 @@ MC_TARGET_PROC double mc_igammaes_approx0(double a, double z)
 		p = p * -z;
 		r = r + (p / mc_factorial(20.0)) / (20.0 + a);
 
-		r = mc_exp(a * mc_log(z) + mc_log(r) - mc_lgamma(a));
+		r = mc_exp(a * mc_log(z) + mc_log(r) - mc_lgamma_approx2(a));
 	}
 	return r;
 }
@@ -528,7 +528,7 @@ MC_TARGET_PROC long double mc_igammaesl_approx0(long double a, long double z)
 		p = p * -z;
 		r = r + (p / mc_factoriall(20.0L)) / (20.0L + a);
 
-		r = mc_expl(a * mc_logl(z) + mc_logl(r) - mc_lgammal(a));
+		r = mc_expl(a * mc_logl(z) + mc_logl(r) - mc_lgammal_approx2(a));
 	}
 	return r;
 }
@@ -552,7 +552,7 @@ MC_TARGET_PROC float mc_igammaemf_approx0(float a, float z)
 		if (y < -FLT_MAX_10_EXP) {
 			return r;
 		}
-		r = mc_expf(y - mc_lgammaf(a));
+		r = mc_expf(y - mc_lgammaf_approx2(a));
 		if (r > 0.0f) {
 			e = 1.0E-10f / r;
 		}
@@ -601,7 +601,7 @@ MC_TARGET_PROC double mc_igammaem_approx0(double a, double z)
 		if (y < -DBL_MAX_10_EXP) {
 			return r;
 		}
-		r = mc_exp(y - mc_lgamma(a));
+		r = mc_exp(y - mc_lgamma_approx2(a));
 		if (r > 0.0) {
 			e = 1.0E-15 / r;
 		}
@@ -650,7 +650,7 @@ MC_TARGET_PROC long double mc_igammaeml_approx0(long double a, long double z)
 		if (y < -LDBL_MAX_10_EXP) {
 			return r;
 		}
-		r = mc_expl(y - mc_lgammal(a));
+		r = mc_expl(y - mc_lgammal_approx2(a));
 		if (r > 0.0L) {
 			e = 1.0E-15L / r;
 		}
@@ -694,7 +694,7 @@ MC_TARGET_PROC float mc_igammaebf_approx0(float a, float z)
 			p = p * (1.0f / (z + mc_cast(float, k)));
 			s = s + p;
 		}
-		r = mc_expf(mc_logf(s) + a * mc_logf(z) - z - mc_lgammaf(a)) + mc_igammaesf_approx0(a + mc_cast(float, n), z);
+		r = mc_expf(mc_logf(s) + a * mc_logf(z) - z - mc_lgammaf_approx2(a)) + mc_igammaesf_approx0(a + mc_cast(float, n), z);
 	}
 	return r;
 }
@@ -709,7 +709,7 @@ MC_TARGET_PROC double mc_igammaeb_approx0(double a, double z)
 			p = p * (1.0 / (z + mc_cast(double, k)));
 			s = s + p;
 		}
-		r = mc_exp(mc_log(s) + a * mc_log(z) - z - mc_lgamma(a)) + mc_igammaes_approx0(a + mc_cast(double, n), z);
+		r = mc_exp(mc_log(s) + a * mc_log(z) - z - mc_lgamma_approx2(a)) + mc_igammaes_approx0(a + mc_cast(double, n), z);
 	}
 	return r;
 }
@@ -724,7 +724,7 @@ MC_TARGET_PROC long double mc_igammaebl_approx0(long double a, long double z)
 			p = p * (1.0L / (z + mc_cast(long double, k)));
 			s = s + p;
 		}
-		r = mc_expl(mc_logl(s) + a * mc_logl(z) - z - mc_lgammal(a)) + mc_igammaesl_approx0(a + mc_cast(long double, n), z);
+		r = mc_expl(mc_logl(s) + a * mc_logl(z) - z - mc_lgammal_approx2(a)) + mc_igammaesl_approx0(a + mc_cast(long double, n), z);
 	}
 	return r;
 }
@@ -944,7 +944,7 @@ MC_TARGET_PROC float mc_igammapf_approx1(float a, float z)
 		if (y < -FLT_MAX_10_EXP) {
 			return 0.0f;
 		}
-		const float w = y - mc_lgammaf(a);
+		const float w = y - mc_lgammaf_approx2(a);
 		if (z < (a + 1.0f)) {
 			p = mc_igamma_pseriesf_approx1(a, z);
 			p = p * mc_expf(w);
@@ -965,7 +965,7 @@ MC_TARGET_PROC double mc_igammap_approx1(double a, double z)
 		if (y < -DBL_MAX_10_EXP) {
 			return 0.0;
 		}
-		const double w = y - mc_lgamma(a);
+		const double w = y - mc_lgamma_approx2(a);
 		if (z < (a + 1.0)) {
 			p = mc_igamma_pseries_approx1(a, z);
 			p = p * mc_exp(w);
@@ -986,7 +986,7 @@ MC_TARGET_PROC long double mc_igammapl_approx1(long double a, long double z)
 		if (y < -LDBL_MAX_10_EXP) {
 			return 0.0L;
 		}
-		const long double w = y - mc_lgammal(a);
+		const long double w = y - mc_lgammal_approx2(a);
 		if (z < (a + 1.0L)) {
 			p = mc_igamma_pseriesl_approx1(a, z);
 			p = p * mc_expl(w);
@@ -1009,7 +1009,7 @@ MC_TARGET_PROC float mc_igammaqf_approx1(float a, float z)
 		if (y < -FLT_MAX_10_EXP) {
 			return 0.0f;
 		}
-		const float w = y - mc_lgammaf(a);
+		const float w = y - mc_lgammaf_approx2(a);
 		if (z < (a + 1.0f)) {
 			q = mc_igamma_pseriesf_approx1(a, z);
 			q = 1.0f - (q * mc_expf(w));
@@ -1030,7 +1030,7 @@ MC_TARGET_PROC double mc_igammaq_approx1(double a, double z)
 		if (y < -DBL_MAX_10_EXP) {
 			return 0.0;
 		}
-		const double w = y - mc_lgamma(a);
+		const double w = y - mc_lgamma_approx2(a);
 		if (z < (a + 1.0)) {
 			q = mc_igamma_pseries_approx1(a, z);
 			q = 1.0 - (q * mc_exp(w));
@@ -1051,7 +1051,7 @@ MC_TARGET_PROC long double mc_igammaql_approx1(long double a, long double z)
 		if (y < -LDBL_MAX_10_EXP) {
 			return 0.0L;
 		}
-		const long double w = y - mc_lgammal(a);
+		const long double w = y - mc_lgammal_approx2(a);
 		if (z < (a + 1.0L)) {
 			q = mc_igamma_pseriesl_approx1(a, z);
 			q = 1.0L - (q * mc_expl(w));

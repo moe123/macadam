@@ -272,41 +272,17 @@ MC_TARGET_PROC long double mc_gammal_approx2(const long double x)
 
 MC_TARGET_FUNC float mc_gammaf(const float x)
 {
-#	if MC_TARGET_EMBEDDED
 	return mc_gammaf_approx2(x);
-#	else
-#	if MC_TARGET_CPP98
-	return ::tgammaf(x);
-#	else
-	return tgammaf(x);
-#	endif
-#	endif
 }
 
 MC_TARGET_FUNC double mc_gamma(const double x)
 {
-#	if MC_TARGET_EMBEDDED
 	return mc_gamma_approx2(x);
-#	else
-#	if MC_TARGET_CPP98
-	return ::tgamma(x);
-#	else
-	return tgamma(x);
-#	endif
-#	endif
 }
 
 MC_TARGET_FUNC long double mc_gammal(const long double x)
 {
-#	if MC_TARGET_EMBEDDED
 	return mc_gammal_approx2(x);
-#	else
-#	if MC_TARGET_CPP98
-	return ::tgammal(x);
-#	else
-	return tgammal(x);
-#	endif
-#	endif
 }
 
 #endif /* !MC_GAMMA_H */

@@ -16,7 +16,7 @@
 MC_TARGET_FUNC float mc_lchoosef(const float x, const float y)
 {
 	if (0 <= y && y <= x) {
-		return mc_lgammaf(x + 1.0f) - mc_lgammaf(y + 1.0f) - mc_lgammaf(x - y + 1.0f);
+		return mc_lgammaf_approx2(x + 1.0f) - mc_lgammaf_approx2(y + 1.0f) - mc_lgammaf_approx2(x - y + 1.0f);
 	}
 	return MCLIMITS_MAXF;
 }
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_lchoosef(const float x, const float y)
 MC_TARGET_FUNC double mc_lchoose(const double x, const double y)
 {
 	if (0 <= y && y <= x) {
-		return mc_lgamma(x + 1.0) - mc_lgamma(y + 1.0) - mc_lgamma(x - y + 1.0);
+		return mc_lgamma_approx2(x + 1.0) - mc_lgamma_approx2(y + 1.0) - mc_lgamma_approx2(x - y + 1.0);
 	}
 	return MCLIMITS_MAX;
 }
@@ -32,7 +32,7 @@ MC_TARGET_FUNC double mc_lchoose(const double x, const double y)
 MC_TARGET_FUNC long double mc_lchoosel(const long double x, const long double y)
 {
 	if (0 <= y && y <= x) {
-		return mc_lgammal(x + 1.0L) - mc_lgammal(y + 1.0L) - mc_lgammal(x - y + 1.0L);
+		return mc_lgammal_approx2(x + 1.0L) - mc_lgammal_approx2(y + 1.0L) - mc_lgammal_approx2(x - y + 1.0L);
 	}
 	return MCLIMITS_MAXL;
 }
