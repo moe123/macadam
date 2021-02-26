@@ -17,7 +17,7 @@
 MC_TARGET_PROC mc_complex_float_t mc_ctgammaf(const mc_complex_float_t c)
 {
 	float z_r, z_i;
-	if (mc_cmplxif(c) == 0.0f) {
+	if (mc_cmplxif(c) != 0.0f) {
 		mc_zgammaf(&z_r, &z_i
 			, mc_cmplxrf(c), mc_cmplxif(c)
 		);
@@ -32,7 +32,7 @@ MC_TARGET_PROC mc_complex_float_t mc_ctgammaf(const mc_complex_float_t c)
 MC_TARGET_PROC mc_complex_double_t mc_ctgamma(const mc_complex_double_t c)
 {
 	double z_r, z_i;
-	if (mc_cmplxi(c) == 0.0) {
+	if (mc_cmplxi(c) != 0.0) {
 		mc_zgamma(&z_r, &z_i
 			, mc_cmplxr(c), mc_cmplxi(c)
 		);
@@ -47,7 +47,7 @@ MC_TARGET_PROC mc_complex_double_t mc_ctgamma(const mc_complex_double_t c)
 MC_TARGET_PROC mc_complex_long_double_t mc_ctgammal(const mc_complex_long_double_t c)
 {
 	long double z_r, z_i;
-	if (mc_cmplxil(c) == 0.0L) {
+	if (mc_cmplxil(c) != 0.0L) {
 		mc_zgammal(&z_r, &z_i
 			, mc_cmplxrl(c), mc_cmplxil(c)
 		);
