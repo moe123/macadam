@@ -6,6 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_copysign.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fisint.h>
 #include <macadam/details/math/mc_isinf.h>
@@ -48,48 +49,7 @@ MC_TARGET_PROC long double mc_lgammal_approx0(const long double x)
 
 #pragma mark - mc_lgamma_approx1 -
 
-MC_TARGET_PROC float mc_lgammaf_approx1(const float x)
-{
-//!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
-//!# Leading term.
-	const float q = mc_raise2f(x);
-	float r       = MCK_KF(MCK_LOGESQRT2PI) - x + (x - 0.5f) * mc_logf(x);
-	float y       = x;
-	r             = r +  MCK_KF(MCK_1_12)   / y; y = y * q;
-	r             = r + -MCK_KF(MCK_1_360)  / y; y = y * q;
-	r             = r +  MCK_KF(MCK_1_1260) / y;
-	return r;
-}
-
-MC_TARGET_PROC double mc_lgamma_approx1(const double x)
-{
-//!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
-//!# Leading term.
-	const double q = mc_raise2(x);
-	double r       = MCK_K(MCK_LOGESQRT2PI) - x + (x - 0.5) * mc_log(x);
-	double y       = x;
-	r              = r +  MCK_K(MCK_1_12)   / y; y = y * q;
-	r              = r + -MCK_K(MCK_1_360)  / y; y = y * q;
-	r              = r +  MCK_K(MCK_1_1260) / y;
-	return r;
-}
-
-MC_TARGET_PROC long double mc_lgammal_approx1(const long double x)
-{
-//!# Bernoulli, de Moise, Poincaré asymptotic expansion formula.
-//!# Leading term.
-	const long double q = mc_raise2l(x);
-	long double r       = MCK_KL(MCK_LOGESQRT2PI) - x + (x - 0.5L) * mc_logl(x);
-	long double y       = x;
-	r                   = r +  MCK_KL(MCK_1_12)   / y; y = y * q;
-	r                   = r + -MCK_KL(MCK_1_360)  / y; y = y * q;
-	r                   = r +  MCK_KL(MCK_1_1260) / y;
-	return r;
-}
-
-#pragma mark - mc_lgamma_approx2 -
-
-MC_TARGET_PROC float mc_lgammaf_approx2(const float x)
+MC_TARGET_PROC float mc_lgammaf_approx1(const float x, int * sign)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
@@ -100,12 +60,17 @@ MC_TARGET_PROC float mc_lgammaf_approx2(const float x)
 	const float lanczos_c4 = -1.231739572450154973637381772277876734E+00f;
 	const float lanczos_c5 = +1.208650973866179020865807558493543183E-03f;
 	const float lanczos_c6 = -5.395239384953000327544564429516071868E-06f;
-	float s, a, b, r = MCK_NAN;
+
+	const int have_sign    = mc_nonnullptr(sign);
+	float s = 0.0f, a, b, r;
 
 	if (x >= 0.5f) {
+		if (have_sign) {
+			*sign = +1;
+		}
 		a = x - 1.0f;
 		b = a + lanczos_g + 0.5f;
-		s = lanczos_c6 / (a + 6.0f);
+		s = s + (lanczos_c6 / (a + 6.0f));
 		s = s + (lanczos_c5 / (a + 5.0f));
 		s = s + (lanczos_c4 / (a + 4.0f));
 		s = s + (lanczos_c3 / (a + 3.0f));
@@ -113,19 +78,30 @@ MC_TARGET_PROC float mc_lgammaf_approx2(const float x)
 		s = s + (lanczos_c1 / (a + 1.0f));
 		s = s + lanczos_c0;
 		r  = ((MCK_KF(MCK_LOGESQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (a + 0.5f);
+	} else if (x == 0.0f) {
+		if (have_sign) {
+			*sign = +1;
+		}
+		r = mc_copysignf(MCK_INF, x);
 	} else if (x < 0.0f) {
 		r = x * mc_sinpif(x);
+		if (have_sign) {
+			*sign = r < 0.0f ? +1 : -1;
+		}
 		r = mc_fabsf(MCK_KF(MCK_PI) / r);
-		r = mc_logf(r) - mc_lgammaf_approx2(-x);
+		r = mc_logf(r) - mc_lgammaf_approx1(-x, MC_NULLPTR);
 	} else {
+		if (have_sign) {
+			*sign = +1;
+		}
 		r = mc_sinpif(x);
 		r = MCK_KF(MCK_PI) / r;
-		r = mc_logf(r) - mc_lgammaf_approx2(1.0f - x);
+		r = mc_logf(r) - mc_lgammaf_approx1(1.0f - x, MC_NULLPTR);
 	}
 	return r;
 }
 
-MC_TARGET_PROC double mc_lgamma_approx2(const double x)
+MC_TARGET_PROC double mc_lgamma_approx1(const double x, int * sign)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
@@ -136,12 +112,17 @@ MC_TARGET_PROC double mc_lgamma_approx2(const double x)
 	const double lanczos_c4 = -1.2317395724501549736373817722778767347336E+00;
 	const double lanczos_c5 = +1.2086509738661790208658075584935431834310E-03;
 	const double lanczos_c6 = -5.3952393849530003275445644295160718684201E-06;
-	double s, a, b, r = MCK_NAN;
+
+	const int have_sign     = mc_nonnullptr(sign);
+	double s = 0.0, a, b, r;
 
 	if (x >= 0.5) {
+		if (have_sign) {
+			*sign = +1;
+		}
 		a = x - 1.0;
 		b = a + lanczos_g + 0.5;
-		s = lanczos_c6 / (a + 6.0);
+		s = s + (lanczos_c6 / (a + 6.0));
 		s = s + (lanczos_c5 / (a + 5.0));
 		s = s + (lanczos_c4 / (a + 4.0));
 		s = s + (lanczos_c3 / (a + 3.0));
@@ -149,19 +130,30 @@ MC_TARGET_PROC double mc_lgamma_approx2(const double x)
 		s = s + (lanczos_c1 / (a + 1.0));
 		s = s + lanczos_c0;
 		r  = ((MCK_K(MCK_LOGESQRT2PI) + mc_log(s)) - b) + mc_log(b) * (a + 0.5);
+	} else if (x == 0.0) {
+		if (have_sign) {
+			*sign = +1;
+		}
+		r = mc_copysign(MCK_INF, x);
 	} else if (x < 0.0) {
 		r = x * mc_sinpi(x);
+		if (have_sign) {
+			*sign = r < 0.0 ? +1 : -1;
+		}
 		r = mc_fabs(MCK_K(MCK_PI) / r);
-		r = mc_log(r) - mc_lgamma_approx2(-x);
+		r = mc_log(r) - mc_lgamma_approx1(-x, MC_NULLPTR);
 	} else {
+		if (have_sign) {
+			*sign = +1;
+		}
 		r = mc_sinpi(x);
 		r = MCK_K(MCK_PI) / r;
-		r = mc_log(r) - mc_lgamma_approx2(1.0 - x);
+		r = mc_log(r) - mc_lgamma_approx1(1.0 - x, MC_NULLPTR);
 	}
 	return r;
 }
 
-MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
+MC_TARGET_PROC long double mc_lgammal_approx1(const long double x, int * sign)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
@@ -173,12 +165,17 @@ MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
 	const long double lanczos_c4 = -1.231739572450154973637381772277876734733581542968750000000000000E+00L;
 	const long double lanczos_c5 = +1.208650973866179020865807558493543183431029319763183593750000000E-03L;
 	const long double lanczos_c6 = -5.395239384953000327544564429516071868420112878084182739257812500E-06L;
-	long double s, a, b, r = MCK_NAN;
+
+	const int have_sign          = mc_nonnullptr(sign);
+	long double s = 0.0L, a, b, r;
 
 	if (x >= 0.5L) {
+		if (have_sign) {
+			*sign = +1;
+		}
 		a = x - 1.0L;
 		b = a + lanczos_g + 0.5L;
-		s = lanczos_c6 / (a + 6.0L);
+		s = s + (lanczos_c6 / (a + 6.0L));
 		s = s + (lanczos_c5 / (a + 5.0L));
 		s = s + (lanczos_c4 / (a + 4.0L));
 		s = s + (lanczos_c3 / (a + 3.0L));
@@ -186,19 +183,30 @@ MC_TARGET_PROC long double mc_lgammal_approx2(const long double x)
 		s = s + (lanczos_c1 / (a + 1.0L));
 		s = s + lanczos_c0;
 		r  = ((MCK_KL(MCK_LOGESQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (a + 0.5L);
+	} else if (x == 0.0L) {
+		if (have_sign) {
+			*sign = +1;
+		}
+		r = mc_copysignl(MCK_INF, x);
 	} else if (x < 0.0) {
 		r = x * mc_sinpil(x);
+		if (have_sign) {
+			*sign = r < 0.0L ? +1 : -1;
+		}
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
-		r = mc_logl(r) - mc_lgammal_approx2(-x);
+		r = mc_logl(r) - mc_lgammal_approx1(-x, MC_NULLPTR);
 	} else {
+		if (have_sign) {
+			*sign = +1;
+		}
 		r = mc_sinpil(x);
 		r = MCK_KL(MCK_PI) / r;
-		r = mc_logl(r) - mc_lgammal_approx2(1.0 - x);
+		r = mc_logl(r) - mc_lgammal_approx1(1.0 - x, MC_NULLPTR);
 	}
 	return r;
 #	else
 	const double xx = mc_cast(double, x);
-	return mc_cast(long double, mc_lgamma_approx2(xx));
+	return mc_cast(long double, mc_lgamma_approx1(xx, sign));
 #	endif
 }
 
@@ -230,7 +238,7 @@ MC_TARGET_FUNC float mc_lgammaf(const float x)
 	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
 		return MCK_INFP;
 	}
-	return mc_lgammaf_approx2(x);
+	return mc_lgammaf_approx1(x, MC_NULLPTR);
 #	else
 #	if MC_TARGET_CPP98
 	return ::lgammaf(x);
@@ -266,7 +274,7 @@ MC_TARGET_FUNC double mc_lgamma(const double x)
 	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
 		return MCK_INFP;
 	}
-	return mc_lgamma_approx2(x);
+	return mc_lgamma_approx1(x, MC_NULLPTR);
 #	else
 #	if MC_TARGET_CPP98
 	return ::lgamma(x);
@@ -302,7 +310,7 @@ MC_TARGET_FUNC long double mc_lgammal(const long double x)
 	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {
 		return MCK_INFP;
 	}
-	return mc_lgammal_approx2(x);
+	return mc_lgammal_approx1(x, MC_NULLPTR);
 #	else
 #	if MC_TARGET_CPP98
 	return ::lgammal(x);

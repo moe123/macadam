@@ -38,21 +38,21 @@ MC_TARGET_FUNC long double mc_sincl(const long double x)
 	return x == 0 ? 1.0L : mc_sinl(pix) / pix;
 }
 
-#pragma mark - mc_unnmc_sinc -
+#pragma mark - mc_unnsinc -
 
-MC_TARGET_PROC float mc_unnmc_sincf(const float x)
+MC_TARGET_PROC float mc_unnsincf(const float x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0f : mc_sinf(x) / x;
 }
 
-MC_TARGET_PROC double mc_unnmc_sinc(const double x)
+MC_TARGET_PROC double mc_unnsinc(const double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0 : mc_sin(x) / x;
 }
 
-MC_TARGET_PROC long double mc_unnmc_sincl(const long double x)
+MC_TARGET_PROC long double mc_unnsincl(const long double x)
 {
 //!# \note: f(0)=1, i.e removable singularity.
 	return x == 0 ? 1.0L : mc_sinl(x) / x;

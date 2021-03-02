@@ -48,9 +48,9 @@ MC_TARGET_FUNC float mc_lbetaf(float x, float y)
 		b = mc_gammaf(y);
 		return mc_logf(a / (c / b));
 	}
-	a = mc_lgammaf_approx2(x);
-	b = mc_lgammaf_approx2(y);
-	c = mc_lgammaf_approx2(d);
+	a = mc_lgammaf_approx1(x, MC_NULLPTR);
+	b = mc_lgammaf_approx1(y, MC_NULLPTR);
+	c = mc_lgammaf_approx1(d, MC_NULLPTR);
 	return a + b - c;
 }
 
@@ -84,9 +84,9 @@ MC_TARGET_FUNC double mc_lbeta(double x, double y)
 		b = mc_gamma(y);
 		return mc_log(a / (c / b));
 	}
-	a = mc_lgamma_approx2(x);
-	b = mc_lgamma_approx2(y);
-	c = mc_lgamma_approx2(d);
+	a = mc_lgamma_approx1(x, MC_NULLPTR);
+	b = mc_lgamma_approx1(y, MC_NULLPTR);
+	c = mc_lgamma_approx1(d, MC_NULLPTR);
 	return a + b - c;
 }
 
@@ -120,9 +120,9 @@ MC_TARGET_FUNC long double mc_lbetal(long double x, long double y)
 		b = mc_gammal(y);
 		return mc_logl(a / (c / b));
 	}
-	a = mc_lgammal_approx2(x);
-	b = mc_lgammal_approx2(y);
-	c = mc_lgammal_approx2(d);
+	a = mc_lgammal_approx1(x, MC_NULLPTR);
+	b = mc_lgammal_approx1(y, MC_NULLPTR);
+	c = mc_lgammal_approx1(d, MC_NULLPTR);
 	return a + b - c;
 }
 
