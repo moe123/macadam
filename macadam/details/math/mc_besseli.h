@@ -24,7 +24,7 @@
 MC_TARGET_PROC float mc_besseli0f_approx0(const float x)
 {
 	float r  = 1.0f;
-	int   t  = 0.0f;
+	int   t  = 0;
 	float i0 = 0.0f;
 	do {
 		i0 = i0 + r; ++t; r = r * (mc_raise2f(x) / (4.0f * t * t));
@@ -46,7 +46,7 @@ MC_TARGET_PROC double mc_besseli0_approx0(const double x)
 MC_TARGET_PROC long double mc_besseli0l_approx0(const long double x)
 {
 	long double r  = 1.0L;
-	int         t  = 0.0L;
+	int         t  = 0;
 	long double i0 = 0.0L;
 	do {
 		i0 = i0 + r; ++t; r = r * (mc_raise2l(x) / (4.0L * t * t));
@@ -59,7 +59,7 @@ MC_TARGET_PROC long double mc_besseli0l_approx0(const long double x)
 MC_TARGET_PROC float mc_besseli1f_approx0(const float x)
 {
 	float r  = 0.5f * x;
-	int   t  = 0.0f;
+	int   t  = 0;
 	float i1 = 0.0f;
 	do {
 		i1 = i1  + r; ++t; r = r * (mc_raise2f(x) / (4.0f * t * (t + 1.0f)));
@@ -70,7 +70,7 @@ MC_TARGET_PROC float mc_besseli1f_approx0(const float x)
 MC_TARGET_PROC double mc_besseli1_approx0(const double x)
 {
 	double r  = 0.5 * x;
-	int    t  = 0.0;
+	int    t  = 0;
 	double i1 = 0.0;
 	do {
 		i1 = i1  + r; ++t; r = r * (mc_raise2(x) / (4.0 * t * (t + 1.0)));
@@ -81,7 +81,7 @@ MC_TARGET_PROC double mc_besseli1_approx0(const double x)
 MC_TARGET_PROC long double mc_besseli1l_approx0(const long double x)
 {
 	long double r  = 0.5L * x;
-	int         t  = 0.0L;
+	int         t  = 0;
 	long double i1 = 0.0L;
 	do {
 		i1 = i1  + r; ++t; r = r * (mc_raise2l(x) / (4.0L * t * (t + 1.0L)));
