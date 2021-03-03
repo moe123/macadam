@@ -7,10 +7,10 @@
 //
 
 #include <macadam/details/math/mc_fabs.h>
+#include <macadam/details/math/mc_gamma.h>
+#include <macadam/details/math/mc_gammaln.h>
 #include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_isnan.h>
-#include <macadam/details/math/mc_gamma.h>
-#include <macadam/details/math/mc_lgamma.h>
 #include <macadam/details/math/mc_log.h>
 
 #ifndef MC_LBETA_H
@@ -48,9 +48,9 @@ MC_TARGET_FUNC float mc_lbetaf(float x, float y)
 		b = mc_gammaf(y);
 		return mc_logf(a / (c / b));
 	}
-	a = mc_lgammaf_approx1(x, MC_NULLPTR);
-	b = mc_lgammaf_approx1(y, MC_NULLPTR);
-	c = mc_lgammaf_approx1(d, MC_NULLPTR);
+	a = mc_gammalnf(x);
+	b = mc_gammalnf(y);
+	c = mc_gammalnf(d);
 	return a + b - c;
 }
 
@@ -84,9 +84,9 @@ MC_TARGET_FUNC double mc_lbeta(double x, double y)
 		b = mc_gamma(y);
 		return mc_log(a / (c / b));
 	}
-	a = mc_lgamma_approx1(x, MC_NULLPTR);
-	b = mc_lgamma_approx1(y, MC_NULLPTR);
-	c = mc_lgamma_approx1(d, MC_NULLPTR);
+	a = mc_gammaln(x);
+	b = mc_gammaln(y);
+	c = mc_gammaln(d);
 	return a + b - c;
 }
 
@@ -120,9 +120,9 @@ MC_TARGET_FUNC long double mc_lbetal(long double x, long double y)
 		b = mc_gammal(y);
 		return mc_logl(a / (c / b));
 	}
-	a = mc_lgammal_approx1(x, MC_NULLPTR);
-	b = mc_lgammal_approx1(y, MC_NULLPTR);
-	c = mc_lgammal_approx1(d, MC_NULLPTR);
+	a = mc_gammalnl(x);
+	b = mc_gammalnl(y);
+	c = mc_gammalnl(d);
 	return a + b - c;
 }
 

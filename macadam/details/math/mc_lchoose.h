@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_lgamma.h>
+#include <macadam/details/math/mc_gammaln.h>
 
 #ifndef MC_LCHOOSE_H
 #define MC_LCHOOSE_H
@@ -16,7 +16,7 @@
 MC_TARGET_FUNC float mc_lchoosef(const float x, const float y)
 {
 	if (0 <= y && y <= x) {
-		return mc_lgammaf_approx1(x + 1.0f, MC_NULLPTR) - mc_lgammaf_approx1(y + 1.0f, MC_NULLPTR) - mc_lgammaf_approx1(x - y + 1.0f, MC_NULLPTR);
+		return mc_gammalnf(x + 1.0f) - mc_gammalnf(y + 1.0f) - mc_gammalnf(x - y + 1.0f);
 	}
 	return MCLIMITS_MAXF;
 }
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_lchoosef(const float x, const float y)
 MC_TARGET_FUNC double mc_lchoose(const double x, const double y)
 {
 	if (0 <= y && y <= x) {
-		return mc_lgamma_approx1(x + 1.0, MC_NULLPTR) - mc_lgamma_approx1(y + 1.0, MC_NULLPTR) - mc_lgamma_approx1(x - y + 1.0, MC_NULLPTR);
+		return mc_gammaln(x + 1.0) - mc_gammaln(y + 1.0) - mc_gammaln(x - y + 1.0);
 	}
 	return MCLIMITS_MAX;
 }
@@ -32,7 +32,7 @@ MC_TARGET_FUNC double mc_lchoose(const double x, const double y)
 MC_TARGET_FUNC long double mc_lchoosel(const long double x, const long double y)
 {
 	if (0 <= y && y <= x) {
-		return mc_lgammal_approx1(x + 1.0L, MC_NULLPTR) - mc_lgammal_approx1(y + 1.0L, MC_NULLPTR) - mc_lgammal_approx1(x - y + 1.0L, MC_NULLPTR);
+		return mc_gammalnl(x + 1.0L) - mc_gammalnl(y + 1.0L) - mc_gammalnl(x - y + 1.0L);
 	}
 	return MCLIMITS_MAXL;
 }

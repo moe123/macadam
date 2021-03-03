@@ -8,8 +8,8 @@
 
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_floor.h>
+#include <macadam/details/math/mc_gammaln.h>
 #include <macadam/details/math/mc_itrunc32.h>
-#include <macadam/details/math/mc_lgamma.h>
 #include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/math/mc_tan.h>
@@ -41,7 +41,7 @@ MC_TARGET_FUNC int rand_poissonf(float l)
 			}
 			p = w / (MCK_KF(MCK_PI) * ((x - l) * (x - l) + l));
 			m = mc_floorf(x);
-			f = mc_expf(m * g - l - mc_lgammaf_approx1(m + 1, MC_NULLPTR));
+			f = mc_expf(m * g - l - mc_gammalnf(m + 1));
 			r = f / p / 2.4f;
 		} while (mc_randuf() > r);
 	}
@@ -69,7 +69,7 @@ MC_TARGET_FUNC int rand_poisson(double l)
 			}
 			p = w / (MCK_K(MCK_PI) * ((x - l) * (x - l) + l));
 			m = mc_floor(x);
-			f = mc_exp(m * g - l - mc_lgamma_approx1(m + 1, MC_NULLPTR));
+			f = mc_exp(m * g - l - mc_gammaln(m + 1));
 			r = f / p / 2.4;
 		} while (mc_randu() > r);
 	}
@@ -97,7 +97,7 @@ MC_TARGET_FUNC int rand_poissonl(long double l)
 			}
 			p = w / (MCK_KL(MCK_PI) * ((x - l) * (x - l) + l));
 			m = mc_floorl(x);
-			f = mc_expl(m * g - l - mc_lgammal_approx1(m + 1, MC_NULLPTR));
+			f = mc_expl(m * g - l - mc_gammalnl(m + 1));
 			r = f / p / 2.4L;
 		} while (mc_randul() > r);
 	}

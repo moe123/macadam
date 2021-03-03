@@ -7,9 +7,9 @@
 //
 
 #include <macadam/details/math/mc_exp.h>
+#include <macadam/details/math/mc_gammaln.h>
 #include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_isnan.h>
-#include <macadam/details/math/mc_lgamma.h>
 #include <macadam/details/math/mc_pow.h>
 #include <macadam/details/math/mc_sqrt.h>
 
@@ -82,53 +82,6 @@ MC_TARGET_PROC float mc_gammaf_approx1(const float x, int * sign)
 	if (x == 1.0f) {
 		return 1.0f;
 	}
-	const float r = mc_lgammaf_approx1(x, sign);
-	return mc_expf(r);
-}
-
-MC_TARGET_PROC double mc_gamma_approx1(const double x, int * sign)
-{
-	if (mc_isnan(x) || mc_isinf(x)) {
-		return x;
-	}
-	if (x == 0.0) {
-		return MCK_INFP;
-	}
-	if (x == 1.0) {
-		return 1.0;
-	}
-	const double r = mc_lgamma_approx1(x, sign);
-	return mc_exp(r);
-}
-
-MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * sign)
-{
-	if (mc_isnan(x) || mc_isinf(x)) {
-		return x;
-	}
-	if (x == 0.0L) {
-		return MCK_INFP;
-	}
-	if (x == 1.0L) {
-		return 1.0L;
-	}
-	const long double r = mc_lgammal_approx1(x, sign);
-	return mc_expl(r);
-}
-
-#pragma mark - mc_gamma_approx2 -
-
-MC_TARGET_PROC float mc_gammaf_approx2(const float x, int * sign)
-{
-	if (mc_isnan(x) || mc_isinf(x)) {
-		return x;
-	}
-	if (x == 0.0f) {
-		return MCK_INFP;
-	}
-	if (x == 1.0f) {
-		return 1.0f;
-	}
 	if (x > 0.0f && x < 1.0f) {
 		const float Y[] =
 		{
@@ -165,10 +118,14 @@ MC_TARGET_PROC float mc_gammaf_approx2(const float x, int * sign)
 		};
 		return 1.0f / mc_xpolyevalnf(x - 1.0f, Y, 30);
 	}
-	return mc_gammaf_approx1(x, sign);
+	const float w = mc_gammalnf_approx1(x, sign);
+	if (!(mc_isnan(w) || mc_isinf(w))) {
+		return mc_expf(w);
+	}
+	return w;
 }
 
-MC_TARGET_PROC double mc_gamma_approx2(const double x, int * sign)
+MC_TARGET_PROC double mc_gamma_approx1(const double x, int * sign)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -215,10 +172,14 @@ MC_TARGET_PROC double mc_gamma_approx2(const double x, int * sign)
 		};
 		return 1.0 / mc_xpolyevaln(x - 1.0, Y, 30);
 	}
-	return mc_gamma_approx1(x, sign);
+	const double w = mc_gammaln_approx1(x, sign);
+	if (!(mc_isnan(w) || mc_isinf(w))) {
+		return mc_exp(w);
+	}
+	return w;
 }
 
-MC_TARGET_PROC long double mc_gammal_approx2(const long double x, int * sign)
+MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * sign)
 {
 	const long double Y[] =
 	{
@@ -265,24 +226,28 @@ MC_TARGET_PROC long double mc_gammal_approx2(const long double x, int * sign)
 	if (x > 0.0L && x < 1.0L) {
 		return 1.0L / mc_xpolyevalnl(x - 1.0L, Y, 30);
 	}
-	return mc_gammal_approx1(x, sign);
+	const long double w = mc_gammalnl_approx1(x, sign);
+	if (!(mc_isnan(w) || mc_isinf(w))) {
+		return mc_expl(w);
+	}
+	return w;
 }
 
 #pragma mark - mc_gamma -
 
 MC_TARGET_FUNC float mc_gammaf(const float x)
 {
-	return mc_gammaf_approx2(x, MC_NULLPTR);
+	return mc_gammaf_approx1(x, MC_NULLPTR);
 }
 
 MC_TARGET_FUNC double mc_gamma(const double x)
 {
-	return mc_gamma_approx2(x, MC_NULLPTR);
+	return mc_gamma_approx1(x, MC_NULLPTR);
 }
 
 MC_TARGET_FUNC long double mc_gammal(const long double x)
 {
-	return mc_gammal_approx2(x, MC_NULLPTR);
+	return mc_gammal_approx1(x, MC_NULLPTR);
 }
 
 #endif /* !MC_GAMMA_H */
