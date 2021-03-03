@@ -71,7 +71,7 @@ MC_TARGET_PROC long double mc_gammal_approx0(const long double x)
 
 #pragma mark - mc_gamma_approx1 -
 
-MC_TARGET_PROC float mc_gammaf_approx1(const float x, int * sign)
+MC_TARGET_PROC float mc_gammaf_approx1(const float x, int * psigngam)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -118,14 +118,14 @@ MC_TARGET_PROC float mc_gammaf_approx1(const float x, int * sign)
 		};
 		return 1.0f / mc_xpolyevalnf(x - 1.0f, Y, 30);
 	}
-	const float w = mc_gammalnf_approx1(x, sign);
+	const float w = mc_gammalnf_approx1(x, psigngam);
 	if (!(mc_isnan(w) || mc_isinf(w))) {
 		return mc_expf(w);
 	}
 	return w;
 }
 
-MC_TARGET_PROC double mc_gamma_approx1(const double x, int * sign)
+MC_TARGET_PROC double mc_gamma_approx1(const double x, int * psigngam)
 {
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
@@ -172,14 +172,14 @@ MC_TARGET_PROC double mc_gamma_approx1(const double x, int * sign)
 		};
 		return 1.0 / mc_xpolyevaln(x - 1.0, Y, 30);
 	}
-	const double w = mc_gammaln_approx1(x, sign);
+	const double w = mc_gammaln_approx1(x, psigngam);
 	if (!(mc_isnan(w) || mc_isinf(w))) {
 		return mc_exp(w);
 	}
 	return w;
 }
 
-MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * sign)
+MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * psigngam)
 {
 	const long double Y[] =
 	{
@@ -226,7 +226,7 @@ MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * sign)
 	if (x > 0.0L && x < 1.0L) {
 		return 1.0L / mc_xpolyevalnl(x - 1.0L, Y, 30);
 	}
-	const long double w = mc_gammalnl_approx1(x, sign);
+	const long double w = mc_gammalnl_approx1(x, psigngam);
 	if (!(mc_isnan(w) || mc_isinf(w))) {
 		return mc_expl(w);
 	}
@@ -237,17 +237,20 @@ MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * sign)
 
 MC_TARGET_FUNC float mc_gammaf(const float x)
 {
-	return mc_gammaf_approx1(x, MC_NULLPTR);
+//!# Computes exp(log(|gamma(x)|)).
+	return mc_gammaf_approx1(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC double mc_gamma(const double x)
 {
-	return mc_gamma_approx1(x, MC_NULLPTR);
+//!# Computes exp(log(|gamma(x)|)).
+	return mc_gamma_approx1(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC long double mc_gammal(const long double x)
 {
-	return mc_gammal_approx1(x, MC_NULLPTR);
+//!# Computes exp(log(|gamma(x)|)).
+	return mc_gammal_approx1(x, &mc_gammasign_s);
 }
 
 #endif /* !MC_GAMMA_H */

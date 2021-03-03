@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_zlgamma.h
+// mc_zgammaln.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
@@ -21,9 +21,9 @@
 #ifndef MC_ZLGAMMA_H
 #define MC_ZLGAMMA_H
 
-#pragma mark - mc_zlgamma_approx0 -
+#pragma mark - mc_zgammaln_approx0 -
 
-MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, float x_i)
+MC_TARGET_PROC void mc_zgammalnf_approx0(float * r_r, float * r_i, float x_r, float x_i)
 {
 //!# Computes the log of gamma function for complex argument.
 //!#
@@ -134,7 +134,7 @@ MC_TARGET_PROC void mc_zlgammaf_approx0(float * r_r, float * r_i, float x_r, flo
 	}
 }
 
-MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, double x_i)
+MC_TARGET_PROC void mc_zgammaln_approx0(double * r_r, double * r_i, double x_r, double x_i)
 {
 //!# Computes the log of gamma function for complex argument.
 //!#
@@ -245,7 +245,7 @@ MC_TARGET_PROC void mc_zlgamma_approx0(double * r_r, double * r_i, double x_r, d
 	}
 }
 
-MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, long double x_r, long double x_i)
+MC_TARGET_PROC void mc_zgammalnl_approx0(long double * r_r, long double * r_i, long double x_r, long double x_i)
 {
 //!# Computes the log of gamma function for complex argument.
 //!#
@@ -356,21 +356,21 @@ MC_TARGET_PROC void mc_zlgammal_approx0(long double * r_r, long double * r_i, lo
 	}
 }
 
-#pragma mark - mc_zlgamma -
+#pragma mark - mc_zgammaln -
 
-MC_TARGET_PROC void mc_zlgammaf(float * r_r, float * r_i, const float x_r, const float x_i)
+MC_TARGET_PROC void mc_zgammalnf(float * r_r, float * r_i, const float x_r, const float x_i)
 {
-	mc_zlgammaf_approx0(r_r, r_i, x_r, x_i);
+	mc_zgammalnf_approx0(r_r, r_i, x_r, x_i);
 }
 
-MC_TARGET_PROC void mc_zlgamma(double * r_r, double * r_i, const double x_r, const double x_i)
+MC_TARGET_PROC void mc_zgammaln(double * r_r, double * r_i, const double x_r, const double x_i)
 {
-	mc_zlgamma_approx0(r_r, r_i, x_r, x_i);
+	mc_zgammaln_approx0(r_r, r_i, x_r, x_i);
 }
 
-MC_TARGET_PROC void mc_zlgammal(long double * r_r, long double * r_i, const long double x_r, const long double x_i)
+MC_TARGET_PROC void mc_zgammalnl(long double * r_r, long double * r_i, const long double x_r, const long double x_i)
 {
-	mc_zlgammal_approx0(r_r, r_i, x_r, x_i);
+	mc_zgammalnl_approx0(r_r, r_i, x_r, x_i);
 }
 
 #endif /* !MC_ZLGAMMA_H */

@@ -21,6 +21,12 @@
 #ifndef MC_GAMMALN_H
 #define MC_GAMMALN_H
 
+static MC_TARGET_THREAD_LOCAL int mc_gammasign_s = 1;
+
+#	if !MC_TARGET_EMBEDDED && !MC_TARGET_MSVC_CPP
+extern int signgam;
+#	endif
+
 #pragma mark - mc_gammaln_approx0 -
 
 MC_TARGET_PROC float mc_gammalnf_approx0(const float x)
@@ -49,7 +55,7 @@ MC_TARGET_PROC long double mc_gammalnl_approx0(const long double x)
 
 #pragma mark - mc_gammaln_approx1 -
 
-MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * sign)
+MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
@@ -61,12 +67,12 @@ MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * sign)
 	const float lanczos_c5 = +1.208650973866179020865807558493543183E-03f;
 	const float lanczos_c6 = -5.395239384953000327544564429516071868E-06f;
 
-	const int have_sign    = mc_nonnullptr(sign);
+	const int have_sign    = mc_nonnullptr(psigngam);
 	float s = 0.0f, a, b, r;
 
 	if (x >= 0.5f) {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		a = x - 1.0f;
 		b = a + lanczos_g + 0.5f;
@@ -80,19 +86,19 @@ MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * sign)
 		r  = ((MCK_KF(MCK_LOGESQRT2PI) + mc_logf(s)) - b) + mc_logf(b) * (a + 0.5f);
 	} else if (x == 0.0f) {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		r = mc_copysignf(MCK_INF, x);
 	} else if (x < 0.0f) {
 		r = x * mc_sinpif(x);
 		if (have_sign) {
-			*sign = r < 0.0f ? +1 : -1;
+			*psigngam = r < 0.0f ? +1 : -1;
 		}
 		r = mc_fabsf(MCK_KF(MCK_PI) / r);
 		r = mc_logf(r) - mc_gammalnf_approx1(-x, MC_NULLPTR);
 	} else {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		r = mc_sinpif(x);
 		r = MCK_KF(MCK_PI) / r;
@@ -101,7 +107,7 @@ MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * sign)
 	return r;
 }
 
-MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * sign)
+MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
@@ -113,12 +119,12 @@ MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * sign)
 	const double lanczos_c5 = +1.2086509738661790208658075584935431834310E-03;
 	const double lanczos_c6 = -5.3952393849530003275445644295160718684201E-06;
 
-	const int have_sign     = mc_nonnullptr(sign);
+	const int have_sign     = mc_nonnullptr(psigngam);
 	double s = 0.0, a, b, r;
 
 	if (x >= 0.5) {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		a = x - 1.0;
 		b = a + lanczos_g + 0.5;
@@ -132,19 +138,19 @@ MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * sign)
 		r  = ((MCK_K(MCK_LOGESQRT2PI) + mc_log(s)) - b) + mc_log(b) * (a + 0.5);
 	} else if (x == 0.0) {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		r = mc_copysign(MCK_INF, x);
 	} else if (x < 0.0) {
 		r = x * mc_sinpi(x);
 		if (have_sign) {
-			*sign = r < 0.0 ? +1 : -1;
+			*psigngam = r < 0.0 ? +1 : -1;
 		}
 		r = mc_fabs(MCK_K(MCK_PI) / r);
 		r = mc_log(r) - mc_gammaln_approx1(-x, MC_NULLPTR);
 	} else {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		r = mc_sinpi(x);
 		r = MCK_K(MCK_PI) / r;
@@ -153,7 +159,7 @@ MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * sign)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * sign)
+MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
@@ -166,12 +172,12 @@ MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * sign)
 	const long double lanczos_c5 = +1.208650973866179020865807558493543183431029319763183593750000000E-03L;
 	const long double lanczos_c6 = -5.395239384953000327544564429516071868420112878084182739257812500E-06L;
 
-	const int have_sign          = mc_nonnullptr(sign);
+	const int have_sign          = mc_nonnullptr(psigngam);
 	long double s = 0.0L, a, b, r;
 
 	if (x >= 0.5L) {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		a = x - 1.0L;
 		b = a + lanczos_g + 0.5L;
@@ -185,19 +191,19 @@ MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * sign)
 		r  = ((MCK_KL(MCK_LOGESQRT2PI) + mc_logl(s)) - b) + mc_logl(b) * (a + 0.5L);
 	} else if (x == 0.0L) {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		r = mc_copysignl(MCK_INF, x);
 	} else if (x < 0.0) {
 		r = x * mc_sinpil(x);
 		if (have_sign) {
-			*sign = r < 0.0L ? +1 : -1;
+			*psigngam = r < 0.0L ? +1 : -1;
 		}
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
 		r = mc_logl(r) - mc_gammalnl_approx1(-x, MC_NULLPTR);
 	} else {
 		if (have_sign) {
-			*sign = +1;
+			*psigngam = +1;
 		}
 		r = mc_sinpil(x);
 		r = MCK_KL(MCK_PI) / r;
@@ -206,7 +212,7 @@ MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * sign)
 	return r;
 #	else
 	const double xx = mc_cast(double, x);
-	return mc_cast(long double, mc_gammaln_approx1(xx, sign));
+	return mc_cast(long double, mc_gammaln_approx1(xx, psigngam));
 #	endif
 }
 
@@ -237,7 +243,7 @@ MC_TARGET_FUNC float mc_gammalnf(const float x)
 	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
 		return MCK_INFP;
 	}
-	return mc_gammalnf_approx1(x, MC_NULLPTR);
+	return mc_gammalnf_approx1(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC double mc_gammaln(const double x)
@@ -265,7 +271,7 @@ MC_TARGET_FUNC double mc_gammaln(const double x)
 	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
 		return MCK_INFP;
 	}
-	return mc_gammaln_approx1(x, MC_NULLPTR);
+	return mc_gammaln_approx1(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC long double mc_gammalnl(const long double x)
@@ -293,7 +299,7 @@ MC_TARGET_FUNC long double mc_gammalnl(const long double x)
 	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {
 		return MCK_INFP;
 	}
-	return mc_gammalnl_approx1(x, MC_NULLPTR);
+	return mc_gammalnl_approx1(x, &mc_gammasign_s);
 }
 
 #endif /* !MC_GAMMALN_H */
