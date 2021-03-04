@@ -48,6 +48,8 @@
 #	include <macadam/details/math/mc_cacosh.h>
 #	include <macadam/details/math/mc_cacot.h>
 #	include <macadam/details/math/mc_cacoth.h>
+#	include <macadam/details/math/mc_cacsc.h>
+#	include <macadam/details/math/mc_cacsch.h>
 #	include <macadam/details/math/mc_cadd.h>
 #	include <macadam/details/math/mc_carg.h>
 #	include <macadam/details/math/mc_casin.h>
@@ -61,6 +63,8 @@
 #	include <macadam/details/math/mc_ccosh.h>
 #	include <macadam/details/math/mc_ccot.h>
 #	include <macadam/details/math/mc_ccoth.h>
+#	include <macadam/details/math/mc_ccsc.h>
+#	include <macadam/details/math/mc_ccsch.h>
 #	include <macadam/details/math/mc_cdiv.h>
 #	include <macadam/details/math/mc_ceil.h>
 #	include <macadam/details/math/mc_cexp.h>
@@ -271,6 +275,8 @@
 #	include <macadam/details/math/mc_zacosh.h>
 #	include <macadam/details/math/mc_zacot.h>
 #	include <macadam/details/math/mc_zacoth.h>
+#	include <macadam/details/math/mc_zacsc.h>
+#	include <macadam/details/math/mc_zacsch.h>
 #	include <macadam/details/math/mc_zatan.h>
 #	include <macadam/details/math/mc_zatanh.h>
 #	include <macadam/details/math/mc_zarg.h>
@@ -281,6 +287,8 @@
 #	include <macadam/details/math/mc_zcosh.h>
 #	include <macadam/details/math/mc_zcot.h>
 #	include <macadam/details/math/mc_zcoth.h>
+#	include <macadam/details/math/mc_zcsc.h>
+#	include <macadam/details/math/mc_zcsch.h>
 #	include <macadam/details/math/mc_zdiv.h>
 #	include <macadam/details/math/mc_zeta.h>
 #	include <macadam/details/math/mc_zetan.h>
