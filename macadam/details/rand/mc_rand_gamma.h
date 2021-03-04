@@ -14,21 +14,28 @@
 
 #pragma mark - mc_rand_gamma -
 
-MC_TARGET_FUNC float mc_rand_gammaf(float a, float l)
+MC_TARGET_FUNC float mc_rand_gammaf(const float a, const float l)
 {
 //!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
 //!# Gamma RNG a=alpha=shape, l=lambda=scale.
 	return mc_expf(mc_rand_lgammaf(a, l));
 }
 
-MC_TARGET_FUNC double mc_rand_gamma(double a, double l)
+MC_TARGET_FUNC double mc_rand_gammaff(const float a, const float l)
+{
+//!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
+//!# Gamma RNG a=alpha=shape, l=lambda=scale.
+	return mc_exp(mc_rand_lgammaff(a, l));
+}
+
+MC_TARGET_FUNC double mc_rand_gamma(const double a, const double l)
 {
 //!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
 //!# Gamma RNG a=alpha=shape, l=lambda=scale.
 	return mc_exp(mc_rand_lgamma(a, l));
 }
 
-MC_TARGET_FUNC long double mc_rand_gammal(long double a, long double l)
+MC_TARGET_FUNC long double mc_rand_gammal(const long double a, const long double l)
 {
 //!# Gamma(alpha,lambda) generator using Marsaglia and Tsang method.
 //!# Gamma RNG a=alpha=shape, l=lambda=scale.

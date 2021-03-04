@@ -19,20 +19,21 @@
 
 #pragma mark - mc_rand_lgamma -
 
-MC_TARGET_FUNC float mc_rand_lgammaf(float a, float l)
+MC_TARGET_FUNC float mc_rand_lgammaf(const float a, const float l)
 {
 //!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
 //!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
-	float r = 0.0f, d, c, v, u;
+	float r = 0.0f, b, d, c, v, u;
 	unsigned int j = 0;
 	if (a <= 0.0f || l <= 0.0f) {
 		return r;
 	}
-	if ( a < 1.0f) {
+	b = a;
+	if (b < 1.0f) {
 		j = 1;
-		a = a + 1.0f;
+		b = b + 1.0f;
 	}
-	d = a - 1.0f / 3.0f;
+	d = b - 1.0f / 3.0f;
 	c = 1.0f / 3.0f / mc_sqrtf(d);
 	do {
 		do {
@@ -49,25 +50,26 @@ MC_TARGET_FUNC float mc_rand_lgammaf(float a, float l)
 	} while (!(u <= 0.5f * r + d * (1.0f - v + mc_logf(v))));
 	r = d * v;
 	if (j) {
-		r = r * mc_powf(1.0f -  mc_randuf(), 1.0f / (a - 1.0f));
+		r = r * mc_powf(1.0f -  mc_randuf(), 1.0f / (b - 1.0f));
 	}
 	return mc_logf(r / l);
 }
 
-MC_TARGET_FUNC double mc_rand_lgamma(double a, double l)
+MC_TARGET_FUNC double mc_rand_lgammaff(const float a, const float l)
 {
 //!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
 //!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
-	double r = 0.0, d, c, v, u;
+	double r = 0.0, b, d, c, v, u;
 	unsigned int j = 0;
-	if (a <= 0.0 || l <= 0.0) {
+	if (a <= 0.0f || l <= 0.0f) {
 		return r;
 	}
-	if ( a < 1.0) {
+	b = mc_cast(double, a);
+	if (b < 1.0) {
 		j = 1;
-		a = a + 1.0;
+		b = b + 1.0;
 	}
-	d = a - 1.0 / 3.0;
+	d = b - 1.0 / 3.0;
 	c = 1.0 / 3.0 / mc_sqrt(d);
 	do {
 		do {
@@ -84,25 +86,62 @@ MC_TARGET_FUNC double mc_rand_lgamma(double a, double l)
 	} while (!(u <= 0.5 * r + d * (1.0 - v + mc_log(v))));
 	r = d * v;
 	if (j) {
-		r = r * mc_pow(1.0 -  mc_randu(), 1.0 / (a - 1.0));
+		r = r * mc_pow(1.0 -  mc_randu(), 1.0 / (b - 1.0));
+	}
+	return mc_log(r / mc_cast(double, l));
+}
+
+MC_TARGET_FUNC double mc_rand_lgamma(const double a, const double l)
+{
+//!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
+//!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
+	double r = 0.0, b, d, c, v, u;
+	unsigned int j = 0;
+	if (a <= 0.0 || l <= 0.0) {
+		return r;
+	}
+	b = a;
+	if (b < 1.0) {
+		j = 1;
+		b = b + 1.0;
+	}
+	d = b - 1.0 / 3.0;
+	c = 1.0 / 3.0 / mc_sqrt(d);
+	do {
+		do {
+			r = mc_randg();
+			v = 1.0 + c * r;
+		} while ( v <= 0 );
+		v = mc_raise3(v);
+		r = mc_raise2(r);
+		u = mc_randu();
+		if (u <= 1.0 - 0.331 * mc_raise2(r)) {
+			break;
+		}
+		u = mc_log(u);
+	} while (!(u <= 0.5 * r + d * (1.0 - v + mc_log(v))));
+	r = d * v;
+	if (j) {
+		r = r * mc_pow(1.0 -  mc_randu(), 1.0 / (b - 1.0));
 	}
 	return mc_log(r / l);
 }
 
-MC_TARGET_FUNC long double mc_rand_lgammal(long double a, long double l)
+MC_TARGET_FUNC long double mc_rand_lgammal(const long double a, const long double l)
 {
 //!# Log(Gamma(alpha,lambda)) generator using Marsaglia and Tsang method.
 //!# Log Gamma RNG a=alpha=shape, l=lambda=scale.
-	long double r = 0.0L, d, c, v, u;
+	long double r = 0.0L, b, d, c, v, u;
 	unsigned int j = 0;
 	if (a <= 0.0L || l <= 0.0L) {
 		return r;
 	}
-	if (a < 1.0L) {
+	b = a;
+	if (b < 1.0L) {
 		j = 1;
-		a = a + 1.0L;
+		b = b + 1.0L;
 	}
-	d = a - 1.0L / 3.0L;
+	d = b - 1.0L / 3.0L;
 	c = 1.0L / 3.0L / mc_sqrtl(d);
 	do {
 		do {
@@ -119,7 +158,7 @@ MC_TARGET_FUNC long double mc_rand_lgammal(long double a, long double l)
 	} while (!(u <= 0.5L * r + d * (1.0L - v + mc_logl(v))));
 	r = d * v;
 	if (j) {
-		r = r * mc_powl(1.0L -  mc_randul(), 1.0L / (a - 1.0L));
+		r = r * mc_powl(1.0L -  mc_randul(), 1.0L / (b - 1.0L));
 	}
 	return mc_logl(r / l);
 }

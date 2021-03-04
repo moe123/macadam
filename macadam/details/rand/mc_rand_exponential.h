@@ -14,7 +14,7 @@
 
 #pragma mark - mc_rand_exponential -
 
-MC_TARGET_FUNC float mc_rand_exponentialf(float l)
+MC_TARGET_FUNC float mc_rand_exponentialf(const float l)
 {
 //!# Exponential distribution generator.
 	const float u = mc_randuf();
@@ -22,7 +22,15 @@ MC_TARGET_FUNC float mc_rand_exponentialf(float l)
 	return -mc_log1mf(u) * s;
 }
 
-MC_TARGET_FUNC double mc_rand_exponential(double l)
+MC_TARGET_FUNC double mc_rand_exponentialff(const float l)
+{
+//!# Exponential distribution generator.
+	const double u = mc_randu();
+	const double s = 1.0 / (mc_cast(double, l) > 0.0 ? mc_cast(double, l) : 1.0);
+	return -mc_log1m(u) * s;
+}
+
+MC_TARGET_FUNC double mc_rand_exponential(const double l)
 {
 //!# Exponential distribution generator.
 	const double u = mc_randu();
@@ -30,7 +38,7 @@ MC_TARGET_FUNC double mc_rand_exponential(double l)
 	return -mc_log1m(u) * s;
 }
 
-MC_TARGET_FUNC long double mc_rand_exponentiall(long double l)
+MC_TARGET_FUNC long double mc_rand_exponentiall(const long double l)
 {
 //!# Exponential distribution generator.
 	const long double u = mc_randul();

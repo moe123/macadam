@@ -14,7 +14,7 @@
 
 #pragma mark - mc_rand_pareto -
 
-MC_TARGET_FUNC float mc_rand_paretof(float a)
+MC_TARGET_FUNC float mc_rand_paretof(const float a)
 {
 //!# Pareto distribution generator.
 	float r = 0.0f;
@@ -25,7 +25,18 @@ MC_TARGET_FUNC float mc_rand_paretof(float a)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_rand_pareto(double a)
+MC_TARGET_FUNC double mc_rand_paretoff(const float a)
+{
+//!# Pareto distribution generator.
+	double r = 0.0;
+	if (mc_cast(double, a) != r) {
+		const double x = mc_rand_exponential(1.0) / mc_cast(double, a);
+		r              = mc_exp(x) - 1.0;
+	}
+	return r;
+}
+
+MC_TARGET_FUNC double mc_rand_pareto(const double a)
 {
 //!# Pareto distribution generator.
 	double r = 0.0;
@@ -36,7 +47,7 @@ MC_TARGET_FUNC double mc_rand_pareto(double a)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_rand_paretol(long double a)
+MC_TARGET_FUNC long double mc_rand_paretol(const long double a)
 {
 //!# Pareto distribution generator.
 	long double r = 0.0L;

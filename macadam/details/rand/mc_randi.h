@@ -88,7 +88,7 @@ MC_TARGET_PROC void mc_srandi(
 #	endif
 }
 
-MC_TARGET_PROC void mc_ssrandi()
+MC_TARGET_PROC void mc_ssrandi(void)
 {
 //!# Auto-generating seeds based on an approximation of
 //!# processor time used. Not perfect but fast and portable.

@@ -20,7 +20,7 @@
 
 #pragma mark - mc_rand_poisson -
 
-MC_TARGET_FUNC int rand_poissonf(float l)
+MC_TARGET_FUNC int rand_poissonf(const float l)
 {
 	float r, m = 0.0f, p = 1.0f;
 
@@ -48,7 +48,7 @@ MC_TARGET_FUNC int rand_poissonf(float l)
 	return mc_itrunc32f(m);
 }
 
-MC_TARGET_FUNC int rand_poisson(double l)
+MC_TARGET_FUNC int rand_poisson(const double l)
 {
 	double r, m = 0.0, p = 1.0;
 
@@ -76,7 +76,7 @@ MC_TARGET_FUNC int rand_poisson(double l)
 	return mc_itrunc32(m);
 }
 
-MC_TARGET_FUNC int rand_poissonl(long double l)
+MC_TARGET_FUNC int rand_poissonl(const long double l)
 {
 	long double r, m = 0.0L, p = 1.0L;
 
