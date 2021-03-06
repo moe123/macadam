@@ -6,9 +6,8 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_fisneg.h>
 #include <macadam/details/math/mc_pow.h>
-#include <macadam/mcconsts.h>
-#include <macadam/mclimits.h>
 
 #ifndef MC_FHRT_H
 #define MC_FHRT_H
@@ -17,7 +16,7 @@
 
 MC_TARGET_FUNC float mc_fhrtf(const float x)
 {
-	if (x < 0.0f || x == -0.0f) {
+	if (mc_fisnegf(x)) {
 		return -mc_powf(-x, 0.25f);
 	}
 	return mc_powf(x, 0.25f);
@@ -25,7 +24,7 @@ MC_TARGET_FUNC float mc_fhrtf(const float x)
 
 MC_TARGET_FUNC double mc_fhrt(const double x)
 {
-	if (x < 0.0 || x == -0.0) {
+	if (mc_fisneg(x)) {
 		return -mc_pow(-x, 0.25);
 	}
 	return mc_pow(x, 0.25);
@@ -33,7 +32,7 @@ MC_TARGET_FUNC double mc_fhrt(const double x)
 
 MC_TARGET_FUNC long double mc_fhrtl(const long double x)
 {
-	if (x < 0.0L || x == -0.0L) {
+	if (mc_fisnegl(x)) {
 		return -mc_powl(-x, 0.25L);
 	}
 	return mc_powl(x, 0.25L);

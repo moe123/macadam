@@ -17,7 +17,6 @@ MC_TARGET_FUNC int mc_rand_uniform_int(const int a, const int b)
 {
 //!# Uniform int distribution generator.
 	int r;
-
 	if (mc_iabs(a) < 0x1000001 && mc_iabs(b) < 0x1000001) {
 		if (!(a >= b)) {
 			const float u = mc_randuf();

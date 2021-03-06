@@ -8,6 +8,7 @@
 
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_fisint.h>
+#include <macadam/details/math/mc_fisneg.h>
 #include <macadam/details/math/mc_gammaln.h>
 #include <macadam/details/math/mc_gammasign.h>
 #include <macadam/details/math/mc_isinf.h>
@@ -29,7 +30,7 @@ MC_TARGET_FUNC float mc_rgammaf(const float x)
 		return MCK_NAN;
 	}
 	if (x == 0.0f) {
-		if (x == -0.0f) {
+		if (mc_fisnegf(x)) {
 			return MCK_INFN;
 		}
 		return MCK_INFP;
@@ -80,7 +81,7 @@ MC_TARGET_FUNC double mc_rgamma(const double x)
 		return MCK_NAN;
 	}
 	if (x == 0.0) {
-		if (x == -0.0) {
+		if (mc_fisneg(x)) {
 			return MCK_INFN;
 		}
 		return MCK_INFP;
@@ -132,7 +133,7 @@ MC_TARGET_FUNC long double mc_rgammal(const long double x)
 		return MCK_NAN;
 	}
 	if (x == 0.0L) {
-		if (x == -0.0L) {
+		if (mc_fisnegl(x)) {
 			return MCK_INFN;
 		}
 		return MCK_INFP;

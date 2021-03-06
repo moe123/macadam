@@ -46,7 +46,7 @@ float mc_betaf(float x, float y)
 	}
 	r = x + y;
 	if (r <= 0.0f && mc_fisintf(r)) {
-		if (mc_ffracf(x) != 0.0f && mc_ffracf(y)!= 0.0f) {
+		if (mc_ffracf(x) != 0.0f && mc_ffracf(y) != 0.0f) {
 			return 0.0f;
 		}
 	}
@@ -93,7 +93,7 @@ double mc_beta(double x, double y)
 	}
 	r = x + y;
 	if (r <= 0.0 && mc_fisint(r)) {
-		if (mc_ffrac(x) != 0.0 && mc_ffrac(y)!= 0.0) {
+		if (mc_ffrac(x) != 0.0 && mc_ffrac(y) != 0.0) {
 			return 0.0;
 		}
 	}
@@ -140,7 +140,7 @@ long double mc_betal(long double x, long double y)
 	}
 	r = x + y;
 if (r <= 0.0L && mc_fisintl(r)) {
-		if (mc_ffracl(x) != 0.0L && mc_ffracl(y)!= 0.0L) {
+		if (mc_ffracl(x) != 0.0L && mc_ffracl(y) != 0.0L) {
 			return 0.0L;
 		}
 	}

@@ -14,49 +14,52 @@
 
 #pragma mark - mc_fisodd -
 
-MC_TARGET_FUNC int mc_fisoddf(float x, const int frac)
+MC_TARGET_FUNC int mc_fisoddf(const float x, const int frac)
 {
 	if (x == 0.0f) {
 		return 1;
 	}
-//!# Checking integral-part.
+	float y = x;
+//!# Checking and extracting integral-part.
 	if (frac == 1) {
-		mc_modff(x, &x);
+		mc_modff(y, &y);
 	}
-//!# Returns if x is odd-integral.
-	if (mc_fmodf(x, 1.0f) == 0.0f && mc_fmodf(x, 2.0f) != 0.0f) {
+//!# Returns if y is odd-integral.
+	if (mc_fmodf(y, 1.0f) == 0.0f && mc_fmodf(y, 2.0f) != 0.0f) {
 		return 1;
 	}
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_fisodd(double x, const int frac)
+MC_TARGET_FUNC int mc_fisodd(const double x, const int frac)
 {
 	if (x == 0.0) {
 		return 1;
 	}
-//!# Checking integral-part.
+	double y = x;
+//!# Checking and extracting integral-part.
 	if (frac == 1) {
-		mc_modf(x, &x);
+		mc_modf(y, &y);
 	}
-//!# Returns if x is odd-integral.
-	if (mc_fmod(x, 1.0) == 0.0 && mc_fmod(x, 2.0) != 0.0) {
+//!# Returns if y is odd-integral.
+	if (mc_fmod(y, 1.0) == 0.0 && mc_fmod(y, 2.0) != 0.0) {
 		return 1;
 	}
 	return 0;
 }
 
-MC_TARGET_FUNC int mc_fisoddl(long double x, const int frac)
+MC_TARGET_FUNC int mc_fisoddl(const long double x, const int frac)
 {
 	if (x == 0.0L) {
 		return 1;
 	}
-//!# Checking integral-part.
+	long double y = x;
+//!# Checking and extracting integral-part.
 	if (frac == 1) {
-		mc_modfl(x, &x);
+		mc_modfl(y, &y);
 	}
-//!# Returns if x is odd-integral.
-	if (mc_fmodl(x, 1.0L) == 0.0 && mc_fmodl(x, 2.0L) != 0.0) {
+//!# Returns if y is odd-integral.
+	if (mc_fmodl(y, 1.0L) == 0.0 && mc_fmodl(y, 2.0L) != 0.0) {
 		return 1;
 	}
 	return 0;
