@@ -33,6 +33,7 @@ MC_TARGET_FUNC float mc_gammalnf_r(const float x, int * psigngam)
 	}
 	const float y = mc_fabsf(x);
 	if (y <= FLT_MIN) {
+		//!# @todo gamma sign.
 		return -mc_logf(y);
 	}
 	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
@@ -61,6 +62,7 @@ MC_TARGET_FUNC double mc_gammaln_r(const double x, int * psigngam)
 	}
 	const double y = mc_fabs(x);
 	if (y <= DBL_MIN) {
+		//!# @todo gamma sign.
 		return -mc_log(y);
 	}
 	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
@@ -89,6 +91,7 @@ MC_TARGET_FUNC long double mc_gammalnl_r(const long double x, int * psigngam)
 	}
 	const long double y = mc_fabsl(x);
 	if (y <= LDBL_MIN) {
+		//!# @todo gamma sign.
 		return -mc_logl(y);
 	}
 	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {

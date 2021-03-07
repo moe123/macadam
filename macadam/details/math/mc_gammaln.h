@@ -547,6 +547,7 @@ MC_TARGET_FUNC double mc_gammaln(const double x)
 	}
 	const double y = mc_fabs(x);
 	if (y <= DBL_MIN) {
+		//!# @todo gamma sign.
 		return -mc_log(y);
 	}
 	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {

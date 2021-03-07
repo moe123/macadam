@@ -15,11 +15,9 @@
 
 #pragma mark - mc_signbit -
 
-#	if MC_TARGET_CPP98
-#	define mc_signbit(x) ::signbit(x)
-#	else
-#	define mc_signbit(x) signbit(x)
-#	endif
+#	define mc_signbitf(x) MC_TARGET_SIGNBITF(x)
+#	define mc_signbit(x)  MC_TARGET_SIGNBIT(x)
+#	define mc_signbitl(x) MC_TARGET_SIGNBITL(x)
 
 #endif /* !MC_SIGNBIT_H */
 

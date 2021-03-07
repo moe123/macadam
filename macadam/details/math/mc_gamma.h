@@ -7,7 +7,7 @@
 //
 
 #include <macadam/details/math/mc_exp.h>
-#include <macadam/details/math/mc_gammaln.h>
+#include <macadam/details/math/mc_gammaln_r.h>
 #include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_pow.h>
@@ -24,7 +24,7 @@ MC_TARGET_PROC float mc_gammaf_approx0(const float x)
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
-	if (x == 0.0f) {
+	if (x <= 0.0f) {
 		return MCK_INFP;
 	}
 	if (x == 1.0f) {
@@ -41,7 +41,7 @@ MC_TARGET_PROC double mc_gamma_approx0(const double x)
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
-	if (x == 0.0) {
+	if (x <= 0.0) {
 		return MCK_INFP;
 	}
 	if (x == 1.0) {
@@ -58,7 +58,7 @@ MC_TARGET_PROC long double mc_gammal_approx0(const long double x)
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return x;
 	}
-	if (x == 0.0L) {
+	if (x <= 0.0L) {
 		return MCK_INFP;
 	}
 	if (x == 1.0L) {
@@ -122,13 +122,14 @@ MC_TARGET_PROC float mc_gammaf_approx1(const float x, int * psigngam)
 	if (x > 0.0f && x < 1.0f) {
 		return 1.0f / mc_xpolyevalnf(x - 1.0f, Y, 30);
 	}
+//!# Computes sign * exp(log(|gamma(x)|)).
 	int gamsign   = 1;
-	const float w = mc_gammalnf_approx1(x, &gamsign);
+	const float w = mc_gammalnf_r(x, &gamsign);
+	if (mc_nonnullptr(psigngam)) {
+		*psigngam = gamsign;
+	}
 	if (!(mc_isnan(w) || mc_isinf(w))) {
-		if (mc_nonnullptr(psigngam)) {
-			*psigngam = gamsign;
-		}
-		return gamsign * mc_expf(w);
+		return mc_cast(const float, gamsign) * mc_expf(w);
 	}
 	return w;
 }
@@ -184,13 +185,14 @@ MC_TARGET_PROC double mc_gamma_approx1(const double x, int * psigngam)
 	if (x > 0.0 && x < 1.0) {
 		return 1.0 / mc_xpolyevaln(x - 1.0, Y, 30);
 	}
+//!# Computes sign * exp(log(|gamma(x)|)).
 	int gamsign    = 1;
-	const double w = mc_gammaln_approx1(x, &gamsign);
+	const double w = mc_gammaln_r(x, &gamsign);
+	if (mc_nonnullptr(psigngam)) {
+		*psigngam = gamsign;
+	}
 	if (!(mc_isnan(w) || mc_isinf(w))) {
-		if (mc_nonnullptr(psigngam)) {
-			*psigngam = gamsign;
-		}
-		return gamsign * mc_exp(w);
+		return mc_cast(const double, gamsign) * mc_exp(w);
 	}
 	return w;
 }
@@ -246,13 +248,14 @@ MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * psigngam
 	if (x > 0.0L && x < 1.0L) {
 		return 1.0L / mc_xpolyevalnl(x - 1.0L, Y, 30);
 	}
+//!# Computes sign * exp(log(|gamma(x)|)).
 	int gamsign         = 1;
-	const long double w = mc_gammalnl_approx1(x, &gamsign);
+	const long double w = mc_gammalnl_r(x, &gamsign);
+	if (mc_nonnullptr(psigngam)) {
+		*psigngam = gamsign;
+	}
 	if (!(mc_isnan(w) || mc_isinf(w))) {
-		if (mc_nonnullptr(psigngam)) {
-			*psigngam = gamsign;
-		}
-		return gamsign * mc_expl(w);
+		return mc_cast(const long double, gamsign) * mc_expl(w);
 	}
 	return w;
 }
@@ -261,19 +264,19 @@ MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * psigngam
 
 MC_TARGET_FUNC float mc_gammaf(const float x)
 {
-//!# Computes exp(log(|gamma(x)|)).
+//!# Computes gamma(x).
 	return mc_gammaf_approx1(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC double mc_gamma(const double x)
 {
-//!# Computes exp(log(|gamma(x)|)).
+//!# Computes gamma(x).
 	return mc_gamma_approx1(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC long double mc_gammal(const long double x)
 {
-//!# Computes exp(log(|gamma(x)|)).
+//!# Computes gamma(x).
 	return mc_gammal_approx1(x, &mc_gammasign_s);
 }
 

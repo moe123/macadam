@@ -9,12 +9,14 @@
 #ifndef MC_TARGET_H
 #define MC_TARGET_H
 
-#	if    (defined(__INTEL_COMPILER) && defined(_WIN32))         \
-		|| (defined(__ICC)    && defined(_WIN32))                 \
-		|| (defined(__ICL)    && defined(_WIN32))                 \
-		|| (defined(_MSC_VER) && (defined(__STDC__) && __STDC__)) \
-		|| (defined(_MSC_VER) && _MSC_VER < 1916)
-#		error "C99 or CPP11 compiler and Posix 1-2001 CRT required. ICC is banned."
+#	if    (defined(__INTEL_COMPILER))                                    \
+		|| (defined(__ICL))                                               \
+		|| (defined(__ibmxl__))                                           \
+		|| (defined(__xlc__))                                             \
+		|| (defined(__xlC__))                                             \
+		|| (defined(_MSC_VER)         && (defined(__STDC__) && __STDC__)) \
+		|| (defined(_MSC_VER)         && _MSC_VER < 1916)
+#		error "C99 or CPP11 compiler and Posix 1-2001 CRT required."
 #	else
 #		undef  MC_DISABLE_TYPEOF
 #		undef  MC_DISABLE_TGMATH
@@ -186,31 +188,6 @@
 #	else
 #		define MC_TARGET_INLINE
 #	endif
-#	endif
-
-#	if (defined(__GNUC__) || defined(__clang__))
-#	if ((__GNUC__ + 0 >= 4) || (__clang_major__ >= 4))
-#		undef  MC_TARGET_SIGNBITF
-#		undef  MC_TARGET_SIGNBIT
-#		undef  MC_TARGET_SIGNBITL
-#		undef  MC_TARGET_HAVE_SIGNBIT
-#		define MC_TARGET_SIGNBITF(x) __builtin_signbitf(x)
-#		define MC_TARGET_SIGNBIT(x)  __builtin_signbit(x)
-#		define MC_TARGET_SIGNBITL(x) __builtin_signbitl(x)
-#		define MC_TARGET_HAVE_SIGNBIT 1
-#	else
-#		undef  MC_TARGET_SIGNBITF
-#		undef  MC_TARGET_SIGNBIT
-#		undef  MC_TARGET_SIGNBITL
-#		undef  MC_TARGET_HAVE_SIGNBIT
-#		define MC_TARGET_HAVE_SIGNBIT 0
-#	endif
-#	else
-#		undef  MC_TARGET_SIGNBITF
-#		undef  MC_TARGET_SIGNBIT
-#		undef  MC_TARGET_SIGNBITL
-#		undef  MC_TARGET_HAVE_SIGNBIT
-#		define MC_TARGET_HAVE_SIGNBIT 0
 #	endif
 
 #	if !defined(MC_TARGET_PROC)
@@ -421,6 +398,9 @@
 #		include <float.h>
 #		include <math.h>
 #	endif
+
+#	undef  MC_TARGET_HAVE_FMA
+#	define MC_TARGET_HAVE_FMA 1
 
 #	if DBL_MANT_DIG < LDBL_MANT_DIG
 #		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 0
@@ -802,6 +782,53 @@
 #	define MC_TARGET_CLZ(x)     __builtin_clz(x)
 #	define MC_TARGET_CLZL(x)    __builtin_clzl(x)
 #	define MC_TARGET_CLZLL(x)   __builtin_clzll(x)
+
+#	if (defined(__GNUC__) || defined(__clang__))
+#		if ((__GNUC__ + 0 >= 4) || (__clang_major__ >= 4))
+#			undef  MC_TARGET_SIGNBITF
+#			undef  MC_TARGET_SIGNBIT
+#			undef  MC_TARGET_SIGNBITL
+#			undef  MC_TARGET_HAVE_SIGNBIT
+#			define MC_TARGET_SIGNBITF(x) __builtin_signbitf(x)
+#			define MC_TARGET_SIGNBIT(x)  __builtin_signbit(x)
+#			define MC_TARGET_SIGNBITL(x) __builtin_signbitl(x)
+#			define MC_TARGET_HAVE_SIGNBIT 1
+#		else
+#			if MC_TARGET_CCP98
+#				if MC_TARGET_CCP11
+#					define MC_TARGET_SIGNBITF(x) ::std::signbit(x)
+#					define MC_TARGET_SIGNBIT(x)  ::std::signbit(x)
+#					define MC_TARGET_SIGNBITL(x) ::std::signbit(x)
+#				else
+#					define MC_TARGET_SIGNBITF(x) ::signbit(x)
+#					define MC_TARGET_SIGNBIT(x)  ::signbit(x)
+#					define MC_TARGET_SIGNBITL(x) ::signbit(x)
+#				endif
+#			else
+#				define MC_TARGET_SIGNBITF(x) signbit(x)
+#				define MC_TARGET_SIGNBIT(x)  signbit(x)
+#				define MC_TARGET_SIGNBITL(x) signbit(x)
+#			endif
+#			define MC_TARGET_HAVE_SIGNBIT 1
+#		endif
+#	else
+#		if MC_TARGET_CCP98
+#			if MC_TARGET_CCP11
+#				define MC_TARGET_SIGNBITF(x) ::std::signbit(x)
+#				define MC_TARGET_SIGNBIT(x)  ::std::signbit(x)
+#				define MC_TARGET_SIGNBITL(x) ::std::signbit(x)
+#			else
+#				define MC_TARGET_SIGNBITF(x) ::signbit(x)
+#				define MC_TARGET_SIGNBIT(x)  ::signbit(x)
+#				define MC_TARGET_SIGNBITL(x) ::signbit(x)
+#			endif
+#		else
+#			define MC_TARGET_SIGNBITF(x) signbit(x)
+#			define MC_TARGET_SIGNBIT(x)  signbit(x)
+#			define MC_TARGET_SIGNBITL(x) signbit(x)
+#		endif
+#		define MC_TARGET_HAVE_SIGNBIT 1
+#	endif
 
 #	define MC_TARGET_BSWAP16(x) __builtin_bswap16(x)
 #	define MC_TARGET_BSWAP32(x) __builtin_bswap32(x)

@@ -40,10 +40,10 @@ MC_TARGET_PROC void mc_zacosf(float * c_r, float * c_i
 			}
 		} else if (a_r < 0.0f) {
 			*c_r = MCK_KF(MCK_PI);
-			*c_i = mc_signbit(a_i) ? -a_r : a_r;
+			*c_i = mc_signbitf(a_i) ? -a_r : a_r;
 		} else {
 			*c_r = 0.0f;
-			*c_i = mc_signbit(a_i) ? a_r : -a_r;
+			*c_i = mc_signbitf(a_i) ? a_r : -a_r;
 		}
 	} else if (mc_isnan(a_r)) {
 		if (mc_isinf(a_i)) {
@@ -66,7 +66,7 @@ MC_TARGET_PROC void mc_zacosf(float * c_r, float * c_i
 		mc_zsubf(c_r, c_i, *c_r, *c_i, 1.0f, 0.0f);
 		mc_zlogf(c_r, c_i, *c_r, *c_i);
 
-		if (mc_signbit(a_i)) {
+		if (mc_signbitf(a_i)) {
 			 w   = mc_fabsf(*c_r);
 			*c_r = mc_fabsf(*c_i);
 			*c_i = w;
@@ -152,10 +152,10 @@ MC_TARGET_PROC void mc_zacosl(long double * c_r, long double * c_i
 			}
 		} else if (a_r < 0.0L) {
 			*c_r = MCK_KL(MCK_PI);
-			*c_i = mc_signbit(a_i) ? -a_r : a_r;
+			*c_i = mc_signbitl(a_i) ? -a_r : a_r;
 		} else {
 			*c_r = 0.0L;
-			*c_i = mc_signbit(a_i) ? a_r : -a_r;
+			*c_i = mc_signbitl(a_i) ? a_r : -a_r;
 		}
 	} else if (mc_isnan(a_r)) {
 		if (mc_isinf(a_i)) {
@@ -178,7 +178,7 @@ MC_TARGET_PROC void mc_zacosl(long double * c_r, long double * c_i
 		mc_zsubl(c_r, c_i, *c_r, *c_i, 1.0L, 0.0L);
 		mc_zlogl(c_r, c_i, *c_r, *c_i);
 
-		if (mc_signbit(a_i)) {
+		if (mc_signbitl(a_i)) {
 			 w   = mc_fabsl(*c_r);
 			*c_r = mc_fabsl(*c_i);
 			*c_i = w;

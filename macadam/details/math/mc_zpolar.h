@@ -21,7 +21,7 @@ MC_TARGET_PROC void mc_zpolarf(float * z_r, float * z_i
 	, float rho
 	, float theta
 ) {
-	if (mc_isnan(rho) || mc_signbit(rho) != 0) {
+	if (mc_isnan(rho) || mc_signbitf(rho) != 0) {
 		*z_r = MCK_NAN;
 		*z_i = MCK_NAN;
 	} else if (mc_isnan(theta)) {
@@ -91,7 +91,7 @@ MC_TARGET_PROC void mc_zpolarl(long double * z_r, long double * z_i
 	, long double rho
 	, long double theta
 ) {
-	if (mc_isnan(rho) || mc_signbit(rho) != 0) {
+	if (mc_isnan(rho) || mc_signbitl(rho) != 0) {
 		*z_r = MCK_NAN;
 		*z_i = MCK_NAN;
 	} else if (mc_isnan(theta)) {
