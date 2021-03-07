@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_fma.h>
 
 #ifndef MC_TWOPRODUCT_H
 #define MC_TWOPRODUCT_H
@@ -15,6 +15,10 @@
 
 MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 {
+#	if MC_TARGET_HAVE_FMA
+	*x = a * b;
+	*y = mc_fmaf(a, b, -(*x));
+#	else
 //!#
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
@@ -36,10 +40,15 @@ MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 	b2 = b - b1;
 
 	*y = a2 * b2 - (*x - a1 * b1 - a2 * b1 - a1 * b2);
+#	endif
 }
 
 MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 {
+#	if MC_TARGET_HAVE_FMA
+	*x = a * b;
+	*y = mc_fma(a, b, -(*x));
+#	else
 //!#
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
@@ -61,6 +70,7 @@ MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 	b2 = b - b1;
 
 	*y = a2 * b2 - (*x - a1 * b1 - a2 * b1 - a1 * b2);
+#	endif
 }
 
 MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x, long double * y)
@@ -69,12 +79,14 @@ MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
 #	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-//!# 2^32 + 1.
-	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
+	*x = a * b;
+	*y = mc_fmal(a, b, -(*x));
+#	elif MC_TARGET_HAVE_FMA
+	*x = a * b;
+	*y = mc_fmal(a, b, -(*x));
 #	else
 //!# 2^27 + 1.
 	const long double cs = mc_cast_expr(const long double, 134217728 + 1);
-#	endif
 	long double a1, a2, b1, b2, c;
 
 	*x = a * b;
@@ -89,6 +101,7 @@ MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x
 	b2 = b - b1;
 
 	*y = a2 * b2 - (*x - a1 * b1 - a2 * b1 - a1 * b2);
+#	endif
 }
 
 #endif /* !MC_TWOPRODUCT_H */

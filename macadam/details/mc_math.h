@@ -124,6 +124,7 @@
 #	include <macadam/details/math/mc_fisval.h>
 #	include <macadam/details/math/mc_fix.h>
 #	include <macadam/details/math/mc_floor.h>
+#	include <macadam/details/math/mc_fma.h>
 #	include <macadam/details/math/mc_fmax.h>
 #	include <macadam/details/math/mc_fmin.h>
 #	include <macadam/details/math/mc_fmod.h>
