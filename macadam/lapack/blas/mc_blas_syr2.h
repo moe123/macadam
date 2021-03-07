@@ -123,10 +123,10 @@ MC_TARGET_FUNC void mc_blas_ssyr2(const char uplo, const int n, const float alph
 
 	if (mc_blas_lsame(uplo, 'U')) {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -140,10 +140,10 @@ MC_TARGET_FUNC void mc_blas_ssyr2(const char uplo, const int n, const float alph
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -165,10 +165,10 @@ MC_TARGET_FUNC void mc_blas_ssyr2(const char uplo, const int n, const float alph
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -182,10 +182,10 @@ MC_TARGET_FUNC void mc_blas_ssyr2(const char uplo, const int n, const float alph
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -255,10 +255,10 @@ MC_TARGET_FUNC void mc_blas_dsyr2(const char uplo, const int n, const double alp
 
 	if (mc_blas_lsame(uplo, 'U')) {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -272,10 +272,10 @@ MC_TARGET_FUNC void mc_blas_dsyr2(const char uplo, const int n, const double alp
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -297,10 +297,10 @@ MC_TARGET_FUNC void mc_blas_dsyr2(const char uplo, const int n, const double alp
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -314,10 +314,10 @@ MC_TARGET_FUNC void mc_blas_dsyr2(const char uplo, const int n, const double alp
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -387,10 +387,10 @@ MC_TARGET_FUNC void mc_blas_lsyr2(const char uplo, const int n, const long doubl
 
 	if (mc_blas_lsame(uplo, 'U')) {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -404,10 +404,10 @@ MC_TARGET_FUNC void mc_blas_lsyr2(const char uplo, const int n, const long doubl
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -429,10 +429,10 @@ MC_TARGET_FUNC void mc_blas_lsyr2(const char uplo, const int n, const long doubl
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -446,10 +446,10 @@ MC_TARGET_FUNC void mc_blas_lsyr2(const char uplo, const int n, const long doubl
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -578,10 +578,10 @@ MC_TARGET_FUNC void mc_blas_csyr2(const char uplo, const int n, const mc_complex
 
 	if (mc_blas_lsame(uplo, 'U')) {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -597,10 +597,10 @@ MC_TARGET_FUNC void mc_blas_csyr2(const char uplo, const int n, const mc_complex
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -624,10 +624,10 @@ MC_TARGET_FUNC void mc_blas_csyr2(const char uplo, const int n, const mc_complex
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -643,10 +643,10 @@ MC_TARGET_FUNC void mc_blas_csyr2(const char uplo, const int n, const mc_complex
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -718,10 +718,10 @@ MC_TARGET_FUNC void mc_blas_zsyr2(const char uplo, const int n, const mc_complex
 
 	if (mc_blas_lsame(uplo, 'U')) {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -737,10 +737,10 @@ MC_TARGET_FUNC void mc_blas_zsyr2(const char uplo, const int n, const mc_complex
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -764,10 +764,10 @@ MC_TARGET_FUNC void mc_blas_zsyr2(const char uplo, const int n, const mc_complex
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -783,10 +783,10 @@ MC_TARGET_FUNC void mc_blas_zsyr2(const char uplo, const int n, const mc_complex
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -858,10 +858,10 @@ MC_TARGET_FUNC void mc_blas_qsyr2(const char uplo, const int n, const mc_complex
 
 	if (mc_blas_lsame(uplo, 'U')) {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -877,10 +877,10 @@ MC_TARGET_FUNC void mc_blas_qsyr2(const char uplo, const int n, const mc_complex
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -904,10 +904,10 @@ MC_TARGET_FUNC void mc_blas_qsyr2(const char uplo, const int n, const mc_complex
 		}
 	} else {
 		if (incx == 1 && incy == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -923,10 +923,10 @@ MC_TARGET_FUNC void mc_blas_qsyr2(const char uplo, const int n, const mc_complex
 				}
 			}
 		} else {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif

@@ -101,10 +101,10 @@ MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, const float alpha, co
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -123,10 +123,10 @@ MC_TARGET_FUNC void mc_blas_sger(const int m, const int n, const float alpha, co
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -180,10 +180,10 @@ MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, const double alpha, c
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -202,10 +202,10 @@ MC_TARGET_FUNC void mc_blas_dger(const int m, const int n, const double alpha, c
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -259,10 +259,10 @@ MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, const long double alp
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -281,10 +281,10 @@ MC_TARGET_FUNC void mc_blas_lger(const int m, const int n, const long double alp
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -385,10 +385,10 @@ MC_TARGET_FUNC void mc_blas_cgerc(const int m, const int n, const mc_complex_flo
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -407,10 +407,10 @@ MC_TARGET_FUNC void mc_blas_cgerc(const int m, const int n, const mc_complex_flo
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -464,10 +464,10 @@ MC_TARGET_FUNC void mc_blas_zgerc(const int m, const int n, const mc_complex_dou
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -486,10 +486,10 @@ MC_TARGET_FUNC void mc_blas_zgerc(const int m, const int n, const mc_complex_dou
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -543,10 +543,10 @@ MC_TARGET_FUNC void mc_blas_qgerc(const int m, const int n, const mc_complex_lon
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -565,10 +565,10 @@ MC_TARGET_FUNC void mc_blas_qgerc(const int m, const int n, const mc_complex_lon
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -669,10 +669,10 @@ MC_TARGET_FUNC void mc_blas_cgeru(const int m, const int n, const mc_complex_flo
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -691,10 +691,10 @@ MC_TARGET_FUNC void mc_blas_cgeru(const int m, const int n, const mc_complex_flo
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -748,10 +748,10 @@ MC_TARGET_FUNC void mc_blas_zgeru(const int m, const int n, const mc_complex_dou
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -770,10 +770,10 @@ MC_TARGET_FUNC void mc_blas_zgeru(const int m, const int n, const mc_complex_dou
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -827,10 +827,10 @@ MC_TARGET_FUNC void mc_blas_qgeru(const int m, const int n, const mc_complex_lon
 		jy = 1 - (n - 1) * incy;
 	}
 	if (incx == 1) {
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -849,10 +849,10 @@ MC_TARGET_FUNC void mc_blas_qgeru(const int m, const int n, const mc_complex_lon
 		} else {
 			kx = 1 - (m - 1) * incx;
 		}
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif

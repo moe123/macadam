@@ -55,10 +55,10 @@ MC_TARGET_FUNC int mc_blas_isamax(const int n, const float * x, const int incx)
 	}
 	if (incx == 1) {
 		max = mc_fabsf(mc_blas_vector_at(x, 1));
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -72,10 +72,10 @@ MC_TARGET_FUNC int mc_blas_isamax(const int n, const float * x, const int incx)
 		ix  = 1;
 		max = mc_fabsf(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -107,10 +107,10 @@ MC_TARGET_FUNC int mc_blas_idamax(const int n, const double * x, const int incx)
 	}
 	if (incx == 1) {
 		max = mc_fabs(mc_blas_vector_at(x, 1));
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -124,10 +124,10 @@ MC_TARGET_FUNC int mc_blas_idamax(const int n, const double * x, const int incx)
 		ix  = 1;
 		max = mc_fabs(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -159,10 +159,10 @@ MC_TARGET_FUNC int mc_blas_ilamax(const int n, const long double * x, const int 
 	}
 	if (incx == 1) {
 		max = mc_fabsl(mc_blas_vector_at(x, 1));
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -176,10 +176,10 @@ MC_TARGET_FUNC int mc_blas_ilamax(const int n, const long double * x, const int 
 		ix  = 1;
 		max = mc_fabsl(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -236,10 +236,10 @@ MC_TARGET_FUNC int mc_blas_icamax(const int n, const mc_complex_float_t * x, con
 	}
 	if (incx == 1) {
 		max = mc_blas_scabs1(mc_blas_vector_at(x, 1));
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -253,10 +253,10 @@ MC_TARGET_FUNC int mc_blas_icamax(const int n, const mc_complex_float_t * x, con
 		ix  = 1;
 		max = mc_blas_scabs1(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -288,10 +288,10 @@ MC_TARGET_FUNC int mc_blas_izamax(const int n, const mc_complex_double_t * x, co
 	}
 	if (incx == 1) {
 		max = mc_blas_dzabs1(mc_blas_vector_at(x, 1));
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -305,10 +305,10 @@ MC_TARGET_FUNC int mc_blas_izamax(const int n, const mc_complex_double_t * x, co
 		ix  = 1;
 		max = mc_blas_dzabs1(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -340,10 +340,10 @@ MC_TARGET_FUNC int mc_blas_iqamax(const int n, const mc_complex_long_double_t * 
 	}
 	if (incx == 1) {
 		max = mc_blas_lqabs1(mc_blas_vector_at(x, 1));
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
@@ -357,10 +357,10 @@ MC_TARGET_FUNC int mc_blas_iqamax(const int n, const mc_complex_long_double_t * 
 		ix  = 1;
 		max = mc_blas_lqabs1(mc_blas_vector_at(x, 1));
 		ix  = ix + incx;
-#	if MC_TARGET_USE_OPENMP
-#		if MC_TARGET_OPENMP_PARALLEL_FOR
+#	if MC_TARGET_OPENMP
+#		if MC_TARGET_OPENMP_LOOP_USE_PARALLEL_FOR
 #			pragma omp parallel for
-#		elif MC_TARGET_OPENMP_FOR_SIMD
+#		elif MC_TARGET_OPENMP_LOOP_USE_FOR_SIMD
 #			pragma omp for simd
 #		endif
 #	endif
