@@ -23,7 +23,7 @@ MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
 
-//!# 2^12 + 1.
+//!# 2^12 + 1. ceil(FLT_MANT_DIG / 2.0) + 1.0.
 	const float cs = mc_cast_expr(const float, 4096 + 1);
 
 	float a1, a2, b1, b2, c;
@@ -75,18 +75,23 @@ MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 
 MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x, long double * y)
 {
-//!#
-//!# @note: Dekker's two-product is not a robust `fma` implementation.
-//!#
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	*x = a * b;
-	*y = mc_fmal(a, b, -(*x));
-#	elif MC_TARGET_HAVE_FMA
+#	if MC_TARGET_HAVE_FMA
 	*x = a * b;
 	*y = mc_fmal(a, b, -(*x));
 #	else
-//!# 2^27 + 1.
+//!#
+//!# @note: Dekker's two-product is not a robust `fma` implementation.
+//!#
+#	if MC_TARGET_HAVE_LONG_DOUBLE && LDBL_MANT_DIG == 64
+//!# 2^32 + 1 -> ceil(LDBL_MANT_DIG / 2.0) + 1.0. (float-80)
+	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
+#	elif MC_TARGET_HAVE_LONG_DOUBLE
+#		error "Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1."
+#	else
+//!# 2^27 + 1 -> ceil(DBL_MANT_DIG / 2.0) + 1.0.
 	const long double cs = mc_cast_expr(const long double, 134217728 + 1);
+#	endif
+
 	long double a1, a2, b1, b2, c;
 
 	*x = a * b;

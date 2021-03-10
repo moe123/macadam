@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
+#include <macadam/details/math/mc_fma.h>
 
 #ifndef MC_DOTP1XN_H
 #define MC_DOTP1XN_H
@@ -15,12 +15,17 @@
 
 MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, const int f)
 {
+#	if !MC_TARGET_HAVE_FMA
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const float cs = mc_cast_expr(const float, 4096 + 1);
+#	endif
 
 	int i   = 0;
-	float w = 0.0f, s = 0.0f;
-	float h, q, r, x1, x2, y1, y2;
+	float s = 0.0f;
+
+#	if !MC_TARGET_HAVE_FMA
+	float w = 0.0f, h, q, r, x1, x2, y1, y2;
+#	endif
 
 	if (n > 0) {
 		switch (f) {
@@ -31,6 +36,9 @@ MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, 
 			break;
 			case 1:
 				for (; i < n; i++) {
+#	if MC_TARGET_HAVE_FMA
+					s = mc_fmaf(x[i], y[i], s);
+#	else
 //!# Accurate dot product sum(x[i] * y[i], i=0...n-1) of two vectors.
 //!# Accurate Sum and Dot Product, Takeshi Ogita, Siegfried M. Rump
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
@@ -71,21 +79,31 @@ MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, 
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
+#	endif
 				}
 			break;
 		}
 	}
+#	if MC_TARGET_HAVE_FMA
+	return s;
+#	else
 	return w + s;
+#	endif
 }
 
 MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y, const int f)
 {
+#	if !MC_TARGET_HAVE_FMA
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(const double, 134217728 + 1);
+#	endif
 
 	int i    = 0;
-	double w = 0.0, s = 0.0;
-	double h, q, r, x1, x2, y1, y2;
+	double s = 0.0;
+
+#	if !MC_TARGET_HAVE_FMA
+	double w = 0.0, h, q, r, x1, x2, y1, y2;
+#	endif
 
 	if (n > 0) {
 		switch (f) {
@@ -96,6 +114,9 @@ MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y
 			break;
 			case 1:
 				for (; i < n; i++) {
+#	if MC_TARGET_HAVE_FMA
+					s = mc_fma(mc_cast(double, x[i]), mc_cast(double, y[i]), s);
+#	else
 //!# Accurate dot product sum(x[i] * y[i], i=0...n-1) of two vectors.
 //!# Accurate Sum and Dot Product, Takeshi Ogita, Siegfried M. Rump
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
@@ -136,21 +157,31 @@ MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
+#	endif
 				}
 			break;
 		}
 	}
+#	if MC_TARGET_HAVE_FMA
+	return s;
+#	else
 	return w + s;
+#	endif
 }
 
 MC_TARGET_FUNC double mc_dotp1xn(const int n, const double * x, const double * y, const int f)
 {
+#	if !MC_TARGET_HAVE_FMA
 //!# TwoProduct split factor @see `mc_twoproduct`.
 	const double cs = mc_cast_expr(const double, 134217728 + 1);
+#	endif
 
 	int i    = 0;
-	double w = 0.0, s = 0.0;
-	double h, q, r, x1, x2, y1, y2;
+	double s = 0.0;
+
+#	if !MC_TARGET_HAVE_FMA
+	double w = 0.0, h, q, r, x1, x2, y1, y2;
+#	endif
 
 	if (n > 0) {
 		switch (f) {
@@ -161,6 +192,9 @@ MC_TARGET_FUNC double mc_dotp1xn(const int n, const double * x, const double * y
 			break;
 			case 1:
 				for (; i < n; i++) {
+#	if MC_TARGET_HAVE_FMA
+					s = mc_fma(x[i], y[i], s);
+#	else
 //!# Accurate dot product sum(x[i] * y[i], i=0...n-1) of two vectors.
 //!# Accurate Sum and Dot Product, Takeshi Ogita, Siegfried M. Rump
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
@@ -201,25 +235,37 @@ MC_TARGET_FUNC double mc_dotp1xn(const int n, const double * x, const double * y
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
+#	endif
 				}
 			break;
 		}
 	}
+#	if MC_TARGET_HAVE_FMA
+	return s;
+#	else
 	return w + s;
+#	endif
 }
 
 MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const long double * y, const int f)
 {
+#	if !MC_TARGET_HAVE_FMA
 //!# TwoProduct split factor @see `mc_twoproduct`.
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE && LDBL_MANT_DIG == 64
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
+#	elif MC_TARGET_HAVE_LONG_DOUBLE
+#		error "Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1."
 #	else
 	const long double cs = mc_cast_expr(const long double, 134217728 + 1);
 #	endif
+#	endif
 
 	int i         = 0;
-	long double w = 0.0L, s = 0.0L;
-	long double h, q, r, x1, x2, y1, y2;
+	long double s = 0.0L;
+
+#	if !MC_TARGET_HAVE_FMA
+	long double  w = 0.0L, h, q, r, x1, x2, y1, y2;
+#	endif
 
 	if (n > 0) {
 		switch (f) {
@@ -230,6 +276,9 @@ MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const
 			break;
 			case 1:
 				for (; i < n; i++) {
+#	if MC_TARGET_HAVE_FMA
+					s = mc_fmal(x[i], y[i], s);
+#	else
 //!# Accurate dot product sum(x[i] * y[i], i=0...n-1) of two vectors.
 //!# Accurate Sum and Dot Product, Takeshi Ogita, Siegfried M. Rump
 //!# and Shin'ichi Oishi 2005, published in SIAM Journal on Scientific
@@ -270,11 +319,16 @@ MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const
 //!# s=s+(q+r).
 					q = q + r;
 					s = s + q;
+#	endif
 				}
 			break;
 		}
 	}
+#	if MC_TARGET_HAVE_FMA
+	return s;
+#	else
 	return w + s;
+#	endif
 }
 
 #endif /* !MC_DOTP1XN_H */
