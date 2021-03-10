@@ -247,6 +247,7 @@ MC_TARGET_PROC double mc_besseli0_approx1(const double x)
 
 MC_TARGET_PROC long double mc_besseli0l_approx1(const long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1, a2, a3, a4;
 	long double b1, b2, b3, b4;
@@ -288,6 +289,9 @@ MC_TARGET_PROC long double mc_besseli0l_approx1(const long double x)
 		b4 = +9.459999799728393554687500000000000000000000000000000000000000000E-01L;
 	}
 	return (a1 * mc_expl(x * b1) + a2 * mc_expl(x * b2) + a3 * mc_expl(x * b3) + a4 * mc_expl(x * b4));
+#	else
+	return mc_cast(long double, mc_besseli0_approx1(mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_besseli1_approx1 -
@@ -384,7 +388,7 @@ MC_TARGET_PROC double mc_besseli1_approx1(const double x)
 
 MC_TARGET_PROC long double mc_besseli1l_approx1(const long double x)
 {
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# DOI: 10.1109/IEEEGCC.2013.6705802
 	long double a1, a2, a3, a4;
 	long double b1, b2, b3, b4;
@@ -427,7 +431,7 @@ MC_TARGET_PROC long double mc_besseli1l_approx1(const long double x)
 	}
 	return (a1 * b1 * mc_expl(x * b1) + a2 * b2 * mc_expl(x * b2) + a3 * b3 + mc_expl(x * b3) + a4 * b4 * mc_expl(x * b4));
 #	else
-	return mc_cast(long double, mc_besseli1_approx1(mc_cast(double, x)));
+	return mc_cast(long double, mc_besseli1_approx1(mc_cast(const double, x)));
 #	endif
 }
 
@@ -611,7 +615,7 @@ MC_TARGET_PROC double mc_besseli0_approx2(const double x)
 
 MC_TARGET_PROC long double mc_besseli0l_approx2(const long double x)
 {
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double A[] =
 	{
 		  -4.415341646479339379500000000000000000000000000000000000000000000E-18L
@@ -681,7 +685,7 @@ MC_TARGET_PROC long double mc_besseli0l_approx2(const long double x)
 	);
 	return r;
 #	else
-	return mc_cast(long double, mc_besseli0_approx2(mc_cast(double, x)));
+	return mc_cast(long double, mc_besseli0_approx2(mc_cast(const double, x)));
 #	endif
 }
 
@@ -801,7 +805,7 @@ MC_TARGET_PROC double mc_besseli1_approx2(const double x)
 
 MC_TARGET_PROC long double mc_besseli1l_approx2(const long double x)
 {
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double A[] =
 	{
 		  +2.777914112761046399590000000000000000000000000000000000000000000E-18L
@@ -870,7 +874,7 @@ MC_TARGET_PROC long double mc_besseli1l_approx2(const long double x)
 	);
 	return x < 0.0L ? -r : r;
 #	else
-	return mc_cast(long double, mc_besseli1_approx2(mc_cast(double, x)));
+	return mc_cast(long double, mc_besseli1_approx2(mc_cast(const double, x)));
 #	endif
 }
 
@@ -1016,6 +1020,7 @@ MC_TARGET_PROC double mc_besseli0_approx3(const double x)
 
 MC_TARGET_PROC long double mc_besseli0l_approx3(const long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Abramowitz, Stegun.
 	long double r, y, w;
 
@@ -1050,6 +1055,9 @@ MC_TARGET_PROC long double mc_besseli0l_approx3(const long double x)
 		r = r * mc_expl(y) / mc_sqrtl(y);
 	}
 	return r;
+#	else
+	return mc_cast(long double, mc_besseli0_approx3(mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_besseli1_approx3 -
@@ -1140,6 +1148,7 @@ MC_TARGET_PROC double mc_besseli1_approx3(const double x)
 
 MC_TARGET_PROC long double mc_besseli1l_approx3(const long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Abramowitz, Stegun.
 	long double r, w, y;
 
@@ -1178,6 +1187,9 @@ MC_TARGET_PROC long double mc_besseli1l_approx3(const long double x)
 		}
 	}
 	return r;
+#	else
+	return mc_cast(long double, mc_besseli1_approx3(mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_besselin_approx3 -
@@ -1286,6 +1298,7 @@ MC_TARGET_PROC double mc_besselin_approx3(const int n, double x)
 
 MC_TARGET_PROC long double mc_besselinl_approx3(const int n, long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Abramowitz, Stegun.
 	long double r, w;
 	long double p0, p1, p2, p3;
@@ -1333,6 +1346,9 @@ MC_TARGET_PROC long double mc_besselinl_approx3(const int n, long double x)
 		r = mc_besselinl_approx2(n, x);
 	}
 	return r;
+#	else
+	return mc_cast(long double, mc_besselin_approx3(n, mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_besseli0 -

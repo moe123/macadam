@@ -155,10 +155,10 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, const int m, const long doubl
 	long double w           = 1.0L;
 	int i                   = 1;
 	int k                   = 0;
-#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	const int max_factorial = 171;
-#	else
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const int max_factorial = 1755;
+#	else
+	const int max_factorial = 171;
 #	endif
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;

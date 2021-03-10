@@ -66,10 +66,10 @@ MC_TARGET_FUNC double mc_log1pmx(const double x)
 MC_TARGET_FUNC long double mc_log1pmxl(const long double x)
 {
 //!# Computing log(1 + x) - x after Ian Smith's log1 function.
-#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	const long double tol = MCK_KL(MCLIMITS_TINY);
-#	else
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double tol = MCLIMITS_TINYL;
+#	else
+	const long double tol = MCK_KL(MCLIMITS_TINY);
 #	endif
 
 	long double y , z, r = MCK_INFN;

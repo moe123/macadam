@@ -1714,16 +1714,24 @@ MC_TARGET_ALIAS double      mcmath_hypot3 (const double x, const double y, const
 MC_TARGET_ALIAS long double mcmath_hypot3 (const long double x, const long double y, const long double z) { return mc_hypot3l (x, y, z); }
 #	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
 #	define mcmath_hypot3(x, y, z) _Generic(x \
-	, float       : mc_hypot3f \
-	, double      : mc_hypot3  \
-	, long double : mc_hypot3l \
+	, float       : mc_hypot3f               \
+	, double      : mc_hypot3                \
+	, long double : mc_hypot3l               \
 ) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
 #	elif MC_TARGET_C11
 #	define mcmath_hypot3(x, y, z) _Generic((x)+(y)+(z) \
-	, float       : mc_hypot3f \
-	, double      : mc_hypot3  \
-	, long double : mc_hypot3l \
+	, float       : mc_hypot3f                         \
+	, double      : mc_hypot3                          \
+	, long double : mc_hypot3l                         \
 ) ((x), (y), (z))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_hypot3(x, y, z) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_hypot3f (mc_cast_expr(const float, x), mc_cast_expr(const float, y), mc_cast_expr(const float, z))                   \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_hypot3  (mc_cast_expr(const double, x), mc_cast_expr(const double, y), mc_cast_expr(const double, z))                \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_hypot3l (mc_cast_expr(const long double, x), mc_cast_expr(const long double, y), mc_cast_expr(const long double, z)) \
+		: 0 \
+	))
 #	else
 #	define mcmath_hypot3(x, y, z) \
 	( \
@@ -2605,6 +2613,49 @@ MC_TARGET_ALIAS long double mcmath_trunc (const long double x) { return mc_trunc
 	)
 #	endif
 
+#pragma mark - mcmath_fma -
+
+#	ifndef mcmath_fma
+#	if MC_TARGET_CPP98
+template <class T> MC_TARGET_INLINE T           mcmath_fma              (const T& x, const T& y, const T& z)                               { mc_unused(x); mc_unused(y); mc_unused(z); return 0; }
+template <>        MC_TARGET_INLINE float       mcmath_fma<float>       (const float& x, const float& y, const float& z)                   { return mc_fmaf (x, y, z);                           }
+template <>        MC_TARGET_INLINE double      mcmath_fma<double>      (const double& x, const double& y, const double& z)                { return mc_fma  (x, y, z);                           }
+template <>        MC_TARGET_INLINE long double mcmath_fma<long double> (const long double& x, const long double& y, const long double& z) { return mc_fmal (x, y, z);                           }
+#	elif MC_TARGET_HAVE_OVERLOADABLE
+MC_TARGET_ALIAS float       mcmath_fma (const float x, const float y, const float z)                   { return mc_fmaf (x, y, z); }
+MC_TARGET_ALIAS double      mcmath_fma (const double x, const double y, const double z)                { return mc_fma  (x, y, z); }
+MC_TARGET_ALIAS long double mcmath_fma (const long double x, const long double y, const long double z) { return mc_fmal (x, y, z); }
+#	elif MC_TARGET_C11 && MC_TARGET_HAVE_TYPEOF
+#	define mcmath_fma(x, y, z) _Generic(x \
+	, float       : mc_fmaf               \
+	, double      : mc_fma                \
+	, long double : mc_fmal               \
+) (x, mc_cast_expr(MC_TARGET_TYPEOF(x), y), mc_cast_expr(MC_TARGET_TYPEOF(x), z))
+#	elif MC_TARGET_C11
+#	define mcmath_fma(x, y, z) _Generic((x)+(y)+(z) \
+	, float       : mc_fmaf                         \
+	, double      : mc_fma                          \
+	, long double : mc_fmal                         \
+) ((x), (y), (z))
+#	elif MC_TARGET_HAVE_TYPEOF
+#	define mcmath_fma(x, y, z) mc_cast(MC_TARGET_TYPEOF(x), \
+	( \
+		  MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), float)       ? mc_fmaf (mc_cast_expr(const float, x), mc_cast_expr(const float, y), mc_cast_expr(const float, z))                   \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), double)      ? mc_fma  (mc_cast_expr(const double, x), mc_cast_expr(const double, y), mc_cast_expr(const double, z))                \
+		: MC_TARGET_TYPEISOF(MC_TARGET_TYPEOF(x), long double) ? mc_fmal (mc_cast_expr(const long double, x), mc_cast_expr(const long double, y), mc_cast_expr(const long double, z)) \
+		: 0 \
+	))
+#	else
+#	define mcmath_fma(x, y, z) \
+	( \
+		  sizeof(x) == sizeof(float)       ? mc_fmaf (mc_cast_expr(const float, x), mc_cast_expr(const float, y), mc_cast_expr(const float, z))                   \
+		: sizeof(x) == sizeof(double)      ? mc_fma  (mc_cast_expr(const double, x), mc_cast_expr(const double, y), mc_cast_expr(const double, z))                \
+		: sizeof(x) == sizeof(long double) ? mc_fmal (mc_cast_expr(const long double, x), mc_cast_expr(const long double, y), mc_cast_expr(const long double, z)) \
+		: 0 \
+	)
+#	endif
+#	endif
+
 #pragma mark - mcmath_fmax -
 
 #	ifndef mcmath_fmax
@@ -2625,18 +2676,6 @@ MC_TARGET_ALIAS long double mcmath_trunc (const long double x) { return mc_trunc
 		  sizeof(x) == sizeof(float)       ? mc_fminf (mc_cast_expr(const float, x), mc_cast_expr(const float, y))             \
 		: sizeof(x) == sizeof(double)      ? mc_fmin  (mc_cast_expr(const double, x), mc_cast_expr(const double, y))           \
 		: sizeof(x) == sizeof(long double) ? mc_fminl (mc_cast_expr(const long double, x), mc_cast_expr(const long double, y)) \
-		: 0 \
-	)
-#	endif
-
-#pragma mark - mcmath_fma -
-
-#	ifndef mcmath_fma
-#	define mcmath_fma(x, y, z) \
-	( \
-		  sizeof(x) == sizeof(float)       ? mc_fmaf (mc_cast_expr(const float, x), mc_cast_expr(const float, y), mc_cast_expr(const float, z))                   \
-		: sizeof(x) == sizeof(double)      ? mc_fma  (mc_cast_expr(const double, x), mc_cast_expr(const double, y), mc_cast_expr(const double, z))                \
-		: sizeof(x) == sizeof(long double) ? mc_fmal (mc_cast_expr(const long double, x), mc_cast_expr(const long double, y), mc_cast_expr(const long double, z)) \
 		: 0 \
 	)
 #	endif

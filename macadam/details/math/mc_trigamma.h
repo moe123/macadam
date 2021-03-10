@@ -167,6 +167,7 @@ MC_TARGET_PROC double mc_trigamma_approx1(const double x)
 
 MC_TARGET_PROC long double mc_trigammal_approx1(const long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Returns psi1(x) by Taylor series expansion.
 	const long double c1 = +1.000000000000000000000000000000000000000000000000000000000000000E+00L;
 	const long double c2 = +1.666666666666666600000000000000000000000000000000000000000000000E-01L;
@@ -201,6 +202,9 @@ MC_TARGET_PROC long double mc_trigammal_approx1(const long double x)
 	r = r + (c7 * (1.0L / w));
 
 	return r;
+#	else
+	return mc_cast(long double, mc_trigamma_approx1(mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_trigamma -

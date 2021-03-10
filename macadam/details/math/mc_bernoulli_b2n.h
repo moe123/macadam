@@ -206,7 +206,7 @@ MC_TARGET_FUNC double mc_bernoulli_b2n(const unsigned int n)
 
 MC_TARGET_FUNC long double mc_bernoulli_b2nl(const unsigned int n)
 {
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const unsigned int max_b2n = 1157;
 	const long double b2n[]    =
 	{

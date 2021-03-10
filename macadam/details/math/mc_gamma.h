@@ -199,6 +199,7 @@ MC_TARGET_PROC double mc_gamma_approx1(const double x, int * psigngam)
 
 MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * psigngam)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double Y[] =
 	{
 		  +1.000000000000000000000000000000000000000000000000000000000000000E+00L
@@ -258,6 +259,9 @@ MC_TARGET_PROC long double mc_gammal_approx1(const long double x, int * psigngam
 		return mc_cast(const long double, gamsign) * mc_expl(w);
 	}
 	return w;
+#	else
+	return mc_cast(long double, mc_gamma_approx1(mc_cast(const double, x), psigngam));
+#	endif
 }
 
 #pragma mark - mc_gamma -

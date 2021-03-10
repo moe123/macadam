@@ -327,7 +327,7 @@ MC_TARGET_FUNC void mc_blas_lrotmg(long double * d1, long double * d2, long doub
 {
 	const long double zero = 0.0L, one = 1.0L, two = 2.0L;
 
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double gam    = +4096.000000000000000000000000000000000000000000000000000000000000E+00L;
 	const long double gamsq  = +16777200.00000000000000000000000000000000000000000000000000000000E+00L;
 	const long double rgamsq = 1.0L / gamsq;

@@ -403,9 +403,9 @@
 #	define MC_TARGET_HAVE_FMA 1
 
 #	if DBL_MANT_DIG < LDBL_MANT_DIG
-#		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 0
+#		define MC_TARGET_HAVE_LONG_DOUBLE 1
 #	else
-#		define MC_TARGET_LONG_DOUBLE_UNAVAILABLE 1
+#		define MC_TARGET_HAVE_LONG_DOUBLE 0
 #	endif
 
 #	ifndef FLT_DECIMAL_DIG
@@ -426,10 +426,10 @@
 #		ifdef __LDBL_DECIMAL_DIG__
 #			define LDBL_DECIMAL_DIG  __LDBL_DECIMAL_DIG__
 #		else
-#			if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-#				define LDBL_DECIMAL_DIG (LDBL_DIG + 2)
-#			else
+#			if MC_TARGET_HAVE_LONG_DOUBLE
 #				define LDBL_DECIMAL_DIG (LDBL_DIG + 3)
+#			else
+#				define LDBL_DECIMAL_DIG (LDBL_DIG + 2)
 #			endif
 #		endif
 #	endif

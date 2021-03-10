@@ -100,7 +100,7 @@ MC_TARGET_PROC int64_t mc_remint2(double x, double * z)
 
 MC_TARGET_PROC int64_t mc_remint2l(long double x, long double * z)
 {
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
 	int64_t r = 0;
 	long double w;

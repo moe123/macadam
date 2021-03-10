@@ -92,10 +92,10 @@ MC_TARGET_FUNC double mc_choose(const unsigned int n, const unsigned int k)
 MC_TARGET_FUNC long double mc_choosel(const unsigned int n, const unsigned int k)
 {
 	long double r                    = MCLIMITS_MAXL;
-#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	const unsigned int max_factorial = 171;
-#	else
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const unsigned int max_factorial = 1755;
+#	else
+	const unsigned int max_factorial = 171;
 #	endif
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {

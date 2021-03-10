@@ -266,7 +266,7 @@ MC_TARGET_FUNC double mc_factorial(const unsigned int x)
 
 MC_TARGET_FUNC long double mc_factoriall(const unsigned int x)
 {
-#	if !MC_TARGET_LONG_DOUBLE_UNAVAILABLE
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
 //!# Hence you should consider -1! to be infinity.
 	const long double factorial_table[] =

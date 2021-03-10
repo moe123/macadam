@@ -38,10 +38,10 @@ MC_TARGET_FUNC double mc_lognn(const unsigned int n)
 MC_TARGET_FUNC long double mc_lognnl(const unsigned int n)
 {
 //!# Returns log(n!).
-#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	const unsigned int max_factorial = 171;
-#	else
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const unsigned int max_factorial = 1755;
+#	else
+	const unsigned int max_factorial = 171;
 #	endif
 	if (n < max_factorial) {
 		return mc_logl(mc_factoriall(n));

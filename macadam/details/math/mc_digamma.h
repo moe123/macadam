@@ -58,6 +58,7 @@ MC_TARGET_PROC double mc_digamma_approx0(const double x)
 
 MC_TARGET_PROC long double mc_digammal_approx0(const long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Returns psi0(x) by generalized power series expansion.
 	if (x <= 1E-5) {
 		return -MCK_KL(MCK_G) - (1.0L / x);
@@ -75,6 +76,9 @@ MC_TARGET_PROC long double mc_digammal_approx0(const long double x)
 		+ MCK_KL(MCK_ZETA_N9)  * mc_powl(p, 5)
 		+ MCK_KL(MCK_ZETA_N11) * mc_powl(p, 6)
 	);
+#	else
+	return mc_cast(long double, mc_digamma_approx0(mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_digamma_approx1 -
@@ -159,6 +163,7 @@ MC_TARGET_PROC double mc_digamma_approx1(const double x)
 
 MC_TARGET_PROC long double mc_digammal_approx1(const long double x)
 {
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Returns psi0(x) by Taylor series expansion.
 	const long double c1 = -8.333333333333332900000000000000000000000000000000000000000000000E-02L;
 	const long double c2 = +8.333333333333333200000000000000000000000000000000000000000000000E-03L;
@@ -194,6 +199,9 @@ MC_TARGET_PROC long double mc_digammal_approx1(const long double x)
 	r = r + (c7 * (1.0L / w));
 
 	return r;
+#	else
+	return mc_cast(long double, mc_digamma_approx1(mc_cast(const double, x)));
+#	endif
 }
 
 #pragma mark - mc_digamma -

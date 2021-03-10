@@ -817,7 +817,7 @@ MC_TARGET_PROC double mc_igamma_pseries_approx1(double a, double z)
 MC_TARGET_PROC long double mc_igamma_pseriesl_approx1(long double a, long double z)
 {
 //!# Power series.
-	const long double e = MCLIMITS_EPSILON;
+	const long double e = MCLIMITS_EPSILONL;
 	long double term    = 1.0 / a;
 	long double sum     = term;
 	long double w       = a;
@@ -869,7 +869,7 @@ MC_TARGET_PROC float mc_igamma_cfracf_approx1(float a, float z)
 
 MC_TARGET_PROC double mc_igamma_cfrac_approx1(double a, double z)
 {
-	const double e1 = MCLIMITS_EPSILONF;
+	const double e1 = MCLIMITS_EPSILON;
 	const double e2 = e1 * 2.0;
 	double fa       = 1.0 - a + z;
 	if (fa == 0.0) {
@@ -902,7 +902,7 @@ MC_TARGET_PROC double mc_igamma_cfrac_approx1(double a, double z)
 
 MC_TARGET_PROC long double mc_igamma_cfracl_approx1(long double a, long double z)
 {
-	const long double e1 = MCLIMITS_EPSILONF;
+	const long double e1 = MCLIMITS_EPSILONL;
 	const long double e2 = e1 * 2.0L;
 	long double fa       = 1.0L - a + z;
 	if (fa == 0.0L) {

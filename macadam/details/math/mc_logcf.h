@@ -116,12 +116,12 @@ MC_TARGET_FUNC long double mc_logcfl(long double x, long double i, long double d
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).
 //!# Scale factor: huge = 2^1024, tiny = 1/2^1024.
-#	if MC_TARGET_LONG_DOUBLE_UNAVAILABLE
-	const long double huge = +1.1579208923731619542357098500868790785327E+77L;
-	const long double tiny = +8.6361685550944446253863518628003995711160E-78L;
-#	else
+#	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double huge = +1.797693134862315907729305190789024733617976978942306572734301E+308L;
 	const long double tiny = +5.562684646268003457725581793331010160548039951155829576383319E-309L;
+#	else
+	const long double huge = +1.1579208923731619542357098500868790785327E+77L;
+	const long double tiny = +8.6361685550944446253863518628003995711160E-78L;
 #	endif
 
 	long double r = 0.0L, a1, a2, b1, b2, c1, c2, c3, c4;
