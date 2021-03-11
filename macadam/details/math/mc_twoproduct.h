@@ -86,7 +86,8 @@ MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x
 //!# 2^32 + 1 -> ceil(LDBL_MANT_DIG / 2.0) + 1.0. (float-80)
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
 #	elif MC_TARGET_HAVE_LONG_DOUBLE
-#		error "Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1."
+#	pragma message("Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1.")
+	const long double cs = MCK_NAN;
 #	else
 //!# 2^27 + 1 -> ceil(DBL_MANT_DIG / 2.0) + 1.0.
 	const long double cs = mc_cast_expr(const long double, 134217728 + 1);

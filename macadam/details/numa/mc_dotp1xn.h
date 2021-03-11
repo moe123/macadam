@@ -115,7 +115,7 @@ MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y
 			case 1:
 				for (; i < n; i++) {
 #	if MC_TARGET_HAVE_FMA
-					s = mc_fma(mc_cast(double, x[i]), mc_cast(double, y[i]), s);
+					s = mc_fma(mc_cast(const double, x[i]), mc_cast(const double, y[i]), s);
 #	else
 //!# Accurate dot product sum(x[i] * y[i], i=0...n-1) of two vectors.
 //!# Accurate Sum and Dot Product, Takeshi Ogita, Siegfried M. Rump
@@ -254,7 +254,8 @@ MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const
 #	if MC_TARGET_HAVE_LONG_DOUBLE && LDBL_MANT_DIG == 64
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
 #	elif MC_TARGET_HAVE_LONG_DOUBLE
-#		error "Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1."
+#	pragma message("Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1.")
+	const long double cs = MCK_NAN;
 #	else
 	const long double cs = mc_cast_expr(const long double, 134217728 + 1);
 #	endif
