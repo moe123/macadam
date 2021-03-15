@@ -91,9 +91,15 @@ MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Cody-Waite reduction of x such as z=x - n*pi/2 where |z|<=pi/4, result = n mod 8.
+#	if (LDBL_MANT_DIG + 0) == 64
 	const long double dp1 = +7.853981554508209228515625000000000000000000000000000000000000000E-01L;
 	const long double dp2 = +7.946627356147928367136046290000000000000000000000000000000000000E-09L;
 	const long double dp3 = +3.061616997868382943065164830000000000000000000000000000000000000E-17L;
+#	else
+	const long double dp1 = +7.853981633974483067550664827649598009884357452392578125000000000E-1L;
+	const long double dp2 = +2.860594363054915898381331279295066080751126082968574179665700000E-18L;
+	const long double dp3 = +2.167952532530945256199261006510837992190580800000000000000000000E-35L;
+#	endif
 
 	int64_t r = 0;
 	long double w;
@@ -125,7 +131,7 @@ MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
 	return r;
 #	else
 	double y  = mc_cast(double, x), w = 0.0;
-	int64_t r = mc_rempio2l_cw(y, &w);
+	int64_t r = mc_rempio2_cw(y, &w);
 	*z        = mc_cast(long double, w);
 	return r;
 #	endif
