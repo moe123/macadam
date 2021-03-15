@@ -24,6 +24,33 @@ MC_TARGET_FUNC float mc_fmaf(const float x, const float y, const float z)
 #	endif
 }
 
+MC_TARGET_FUNC double mc_fmaff(const float x, const float y, const float z)
+{
+#	if MC_TARGET_CPP98
+	return ::fma(mc_cast(const double, x), mc_cast(const double, y), mc_cast(const double, z));
+#	else
+	return fma(mc_cast(const double, x), mc_cast(const double, y), mc_cast(const double, z));
+#	endif
+}
+
+MC_TARGET_FUNC double mc_fmafd(const float x, const float y, const double z)
+{
+#	if MC_TARGET_CPP98
+	return ::fma(mc_cast(const double, x), mc_cast(const double, y), z);
+#	else
+	return fma(mc_cast(const double, x), mc_cast(const double, y), z);
+#	endif
+}
+
+MC_TARGET_FUNC double mc_fmadf(const double x, const double y, const float z)
+{
+#	if MC_TARGET_CPP98
+	return ::fma(x, y, mc_cast(const double, z));
+#	else
+	return fma(x, y, mc_cast(const double, z));
+#	endif
+}
+
 MC_TARGET_FUNC double mc_fma(const double x, const double y, const double z)
 {
 #	if MC_TARGET_CPP98
