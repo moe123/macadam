@@ -7,8 +7,8 @@
 //
 
 #include <macadam/details/math/mc_floor.h>
-#include <macadam/details/math/mc_pow.h>
-#include <macadam/details/math/mc_powi2.h>
+#include <macadam/details/math/mc_exp2.h>
+#include <macadam/details/math/mc_exp2i.h>
 
 #ifndef MC_POW2_H
 #define MC_POW2_H
@@ -18,43 +18,25 @@
 MC_TARGET_FUNC float mc_pow2f(const float x)
 {
 	if (mc_floorf(x) == x) {
-		if (x < -1074.0f) {
-			return 0.0f;
-		}
-		if (x > 1024.0f) {
-			return MCK_INFP;
-		}
-		return mc_powi2f(mc_cast(int, x));
+		return mc_exp2if(mc_cast(const int, x));
 	}
-	return mc_powf(2.0f, x);
+	return mc_exp2f(x);
 }
 
 MC_TARGET_FUNC double mc_pow2(const double x)
 {
 	if (mc_floor(x) == x) {
-		if (x < -1074.0) {
-			return 0.0;
-		}
-		if (x > 1024.0) {
-			return MCK_INFP;
-		}
-		return mc_powi2(mc_cast(int, x));
+		return mc_exp2i(mc_cast(const int, x));
 	}
-	return mc_pow(2.0, x);
+	return mc_exp2(x);
 }
 
 MC_TARGET_FUNC long double mc_pow2l(const long double x)
 {
 	if (mc_floorl(x) == x) {
-		if (x < -1074.0L) {
-			return 0.0L;
-		}
-		if (x > 1024.0L) {
-			return MCK_INFP;
-		}
-		return mc_powi2l(mc_cast(int, x));
+		return mc_exp2il(mc_cast(const int, x));
 	}
-	return mc_powl(2.0L, x);
+	return mc_exp2l(x);
 }
 
 #endif /* !MC_POW2_H */

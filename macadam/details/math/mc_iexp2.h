@@ -6,45 +6,43 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_absmag.h>
+#include <macadam/details/mc_target.h>
+#include <macadam/mcconsts.h>
+#include <macadam/mclimits.h>
 
 #ifndef MC_IEXP2_H
 #define MC_IEXP2_H
 
 #pragma mark - mc_iexp2 -
 
-MC_TARGET_FUNC float mc_iexp2f(int e)
+MC_TARGET_FUNC int mc_iexp2(const int e)
 {
-	float r       = 1.0f;
-	int i         = 0;
-	const float s = e >= 0 ? 2.0f : 0.5f;
-	for (; i < mc_iabs(e); i++) {
-		r = r * s;
-	}
-	return r;
+	const int argmax = sizeof(int);
+	const int retmax = MCLIMITS_IMAX;
+	return !(e < 0 || e >= argmax) ? 1 << e : retmax;
 }
 
-MC_TARGET_FUNC double mc_iexp2(int e)
+#pragma mark - mc_lexp2 -
+
+MC_TARGET_FUNC long mc_lexp2(const long e)
 {
-	double r       = 1.0;
-	int i          = 0;
-	const double s = e >= 0 ? 2.0 : 0.5;
-	for (; i < mc_iabs(e); i++) {
-		r = r * s;
-	}
-	return r;
+	const long argmax = sizeof(long);
+	const long retmax = MCLIMITS_LMAX;
+	return !(e < 0 || e >= argmax) ? 1 << e : retmax;
 }
 
-MC_TARGET_FUNC long double mc_iexp2l(int e)
+#pragma mark - mc_llexp2 -
+
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+MC_TARGET_FUNC long long mc_llexp2(const long long e)
 {
-	long double r       = 1.0L;
-	int i               = 0;
-	const long double s = e >= 0 ? 2.0L : 0.5L;
-	for (; i < mc_iabs(e); i++) {
-		r = r * s;
-	}
-	return r;
+	const long long argmax = sizeof(long long);
+	const long long retmax = MCLIMITS_LLMAX;
+	return !(e < 0 || e >= argmax) ? 1 << e : retmax;
 }
+#	else
+#	define mc_llexp2 mc_lexp2
+#	endif
 
 #endif /* !MC_IEXP2_H */
 

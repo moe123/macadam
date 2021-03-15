@@ -6,7 +6,7 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/math/mc_pow.h>
+#include <macadam/details/math/mc_exp10.h>
 
 #ifndef MC_POW10_H
 #define MC_POW10_H
@@ -15,17 +15,17 @@
 
 MC_TARGET_FUNC float mc_pow10f(const float x)
 {
-	return mc_powf(10.0f, x);
+	return mc_exp10f(x);
 }
 
 MC_TARGET_FUNC double mc_pow10(const double x)
 {
-	return mc_pow(10.0, x);
+	return mc_exp10(x);
 }
 
 MC_TARGET_FUNC long double mc_pow10l(const long double x)
 {
-	return mc_powl(10.0L, x);
+	return mc_exp10l(x);
 }
 
 #endif /* !MC_POW10_H */
