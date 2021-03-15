@@ -17,6 +17,22 @@
 #	define MCLIMITS_EPSILON  MCK_K(DBL_EPSILON)
 #	define MCLIMITS_EPSILONL MCK_KL(LDBL_EPSILON)
 
+#	define MCLIMITS_EXP_ARGMAXF    mc_cast_expr(const float   , mc_cast_expr(const int, FLT_MAX_EXP * M_LN2))
+#	define MCLIMITS_EXP_ARGMAX     mc_cast_expr(const double  , mc_cast_expr(const int, DBL_MAX_EXP * M_LN2))
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
+#	define MCLIMITS_EXP_ARGMAXL mc_cast_expr(const long double, mc_cast_expr(const int, LDBL_MAX_EXP * M_LN2l))
+#	else
+#	define MCLIMITS_EXP_ARGMAXL mc_cast_expr(const long double, mc_cast_expr(const int, LDBL_MAX_EXP * M_LN2))
+#	endif
+
+#	define MCLIMITS_EXP_ARGMINF    mc_cast_expr(const float   , mc_cast_expr(const int, FLT_MIN_EXP * M_LN2))
+#	define MCLIMITS_EXP_ARGMIN     mc_cast_expr(const double  , mc_cast_expr(const int, DBL_MIN_EXP * M_LN2))
+#	if (MC_TARGET_C99 || MC_TARGET_CPP17) && defined(M_LN2l)
+#	define MCLIMITS_EXP_ARGMINL mc_cast_expr(const long double, mc_cast_expr(const int, LDBL_MIN_EXP * M_LN2l))
+#	else
+#	define MCLIMITS_EXP_ARGMINL mc_cast_expr(const long double, mc_cast_expr(const int, LDBL_MIN_EXP * M_LN2))
+#	endif
+
 #	if MC_TARGET_CPP98
 #	if MC_TARGET_CPP11
 		static const float       MCLIMITS_LOWF  = ::std::sqrt(MCLIMITS_EPSILONF);
@@ -53,10 +69,6 @@
 #	define MCLIMITS_MIN      DBL_MIN
 #	define MCLIMITS_MINL     LDBL_MIN
 
-#	define MCLIMITS_DIGIT10F FLT_DECIMAL_DIG
-#	define MCLIMITS_DIGIT10  DBL_DECIMAL_DIG
-#	define MCLIMITS_DIGIT10L LDBL_DECIMAL_DIG
-
 #	define MCLIMITS_BMAX     SCHAR_MAX
 #	define MCLIMITS_SMAX     SHRT_MAX
 #	define MCLIMITS_IMAX     INT_MAX
@@ -81,7 +93,7 @@
 #	define MCLIMITS_ULMIN    (0)
 #	define MCLIMITS_ULLMIN   (0)
 
-#	define MCLIMITS_CBITS       CHAR_BIT
+#	define MCLIMITS_CBITS    CHAR_BIT
 
 #pragma mark - mclimits_epsilonof -
 
