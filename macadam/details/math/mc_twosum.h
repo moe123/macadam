@@ -13,7 +13,7 @@
 
 #pragma mark - mc_twosum -
 
-MC_TARGET_FUNC void mc_twosumf(float a, float b, float * x, float * y)
+MC_TARGET_FUNC void mc_twosumf(const float a, const float b, float * x, float * y)
 {
 //!# Knuth algorithm, 6 floating point operations. Result x is a+b, y is the error
 //!# such that x+y exactly equals a+b.
@@ -22,7 +22,7 @@ MC_TARGET_FUNC void mc_twosumf(float a, float b, float * x, float * y)
 	*y            =  a - (*x - z) + (b - z);
 }
 
-MC_TARGET_FUNC void mc_twosum(double a, double b, double * x, double * y)
+MC_TARGET_FUNC void mc_twosum(const double a, const double b, double * x, double * y)
 {
 //!# Knuth algorithm, 6 floating point operations. Result x is a+b, y is the error
 //!# such that x+y exactly equals a+b.
@@ -31,7 +31,7 @@ MC_TARGET_FUNC void mc_twosum(double a, double b, double * x, double * y)
 	*y             =  a - (*x - z) + (b - z);
 }
 
-MC_TARGET_FUNC void mc_twosuml(long double a, long double b, long double * x, long double * y)
+MC_TARGET_FUNC void mc_twosuml(const long double a, const long double b, long double * x, long double * y)
 {
 //!# Knuth algorithm, 6 floating point operations. Result x is a+b, y is the error
 //!# such that x+y exactly equals a+b.

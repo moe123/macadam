@@ -13,7 +13,7 @@
 
 #pragma mark - mc_polyroot3 -
 
-MC_TARGET_PROC int mc_polyroot3f(float a, float b, float c, float d
+MC_TARGET_PROC int mc_polyroot3f(const float a, const float b, const float c, const float d
 	, float * r1
 	, float * r2
 	, float * r3
@@ -30,7 +30,7 @@ MC_TARGET_PROC int mc_polyroot3f(float a, float b, float c, float d
 	return r;
 }
 
-MC_TARGET_PROC int mc_polyroot3(double a, double b, double c, double d
+MC_TARGET_PROC int mc_polyroot3(const double a, const double b, const double c, const double d
 	, double * r1
 	, double * r2
 	, double * r3
@@ -47,7 +47,7 @@ MC_TARGET_PROC int mc_polyroot3(double a, double b, double c, double d
 	return r;
 }
 
-MC_TARGET_PROC int mc_polyroot3l(long double a, long double b, long double c, long double d
+MC_TARGET_PROC int mc_polyroot3l(const long double a, const long double b, const long double c, const long double d
 	, long double * r1
 	, long double * r2
 	, long double * r3

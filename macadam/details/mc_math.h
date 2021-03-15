@@ -109,6 +109,7 @@
 #	include <macadam/details/math/mc_exp10.h>
 #	include <macadam/details/math/mc_exp10m1.h>
 #	include <macadam/details/math/mc_exp2.h>
+#	include <macadam/details/math/mc_exp2i.h>
 #	include <macadam/details/math/mc_exp2m1.h>
 #	include <macadam/details/math/mc_expit.h>
 #	include <macadam/details/math/mc_expm1.h>
@@ -216,9 +217,9 @@
 #	include <macadam/details/math/mc_polyroot3.h>
 #	include <macadam/details/math/mc_pow.h>
 #	include <macadam/details/math/mc_pow2.h>
+#	include <macadam/details/math/mc_pow2i.h>
 #	include <macadam/details/math/mc_pow10.h>
 #	include <macadam/details/math/mc_powi.h>
-#	include <macadam/details/math/mc_powi2.h>
 #	include <macadam/details/math/mc_powm1.h>
 #	include <macadam/details/math/mc_probit.h>
 #	include <macadam/details/math/mc_raise2.h>

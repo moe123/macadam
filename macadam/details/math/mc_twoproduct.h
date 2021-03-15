@@ -13,7 +13,7 @@
 
 #pragma mark - mc_twoproduct -
 
-MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
+MC_TARGET_FUNC void mc_twoproductf(const float a, const float b, float * x, float * y)
 {
 #	if MC_TARGET_HAVE_FMA
 	*x = a * b;
@@ -43,7 +43,7 @@ MC_TARGET_FUNC void mc_twoproductf(float a, float b, float * x, float * y)
 #	endif
 }
 
-MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
+MC_TARGET_FUNC void mc_twoproduct(const double a, const double b, double * x, double * y)
 {
 #	if MC_TARGET_HAVE_FMA
 	*x = a * b;
@@ -73,7 +73,7 @@ MC_TARGET_FUNC void mc_twoproduct(double a, double b, double * x, double * y)
 #	endif
 }
 
-MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x, long double * y)
+MC_TARGET_FUNC void mc_twoproductl(const long double a, const long double b, long double * x, long double * y)
 {
 #	if MC_TARGET_HAVE_FMA
 	*x = a * b;
@@ -82,7 +82,7 @@ MC_TARGET_FUNC void mc_twoproductl(long double a, long double b, long double * x
 //!#
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
-#	if MC_TARGET_HAVE_LONG_DOUBLE && LDBL_MANT_DIG == 64
+#	if MC_TARGET_HAVE_LONG_DOUBLE && (LDBL_MANT_DIG + 0) == 64
 //!# 2^32 + 1 -> ceil(LDBL_MANT_DIG / 2.0) + 1.0. (float-80)
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
 #	elif MC_TARGET_HAVE_LONG_DOUBLE

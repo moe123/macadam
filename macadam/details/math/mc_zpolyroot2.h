@@ -19,7 +19,7 @@
 
 #pragma mark - mc_zpolyroot2 -
 
-MC_TARGET_PROC int mc_zpolyroot2f(float a, float b, float c
+MC_TARGET_PROC int mc_zpolyroot2f(const float a, const float b, const float c
 	, float * r1
 	, float * i1
 	, float * r2
