@@ -26,6 +26,19 @@
 MC_TARGET_PROC float mc_legendre_q0f(const float x)
 {
 //!# Legendre functions of the second kind, degree 0.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	if (mc_fabsf(x) < 1.0f) {
 		return mc_atanhf(x);
 	}
@@ -35,6 +48,19 @@ MC_TARGET_PROC float mc_legendre_q0f(const float x)
 MC_TARGET_PROC double mc_legendre_q0(const double x)
 {
 //!# Legendre functions of the second kind, degree 0.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	if (mc_fabs(x) < 1.0) {
 		return mc_atanh(x);
 	}
@@ -44,6 +70,19 @@ MC_TARGET_PROC double mc_legendre_q0(const double x)
 MC_TARGET_PROC long double mc_legendre_q0l(const long double x)
 {
 //!# Legendre functions of the second kind, degree 0.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	if (mc_fabsl(x) < 1.0L) {
 		return mc_atanhl(x);
 	}
@@ -55,6 +94,19 @@ MC_TARGET_PROC long double mc_legendre_q0l(const long double x)
 MC_TARGET_PROC float mc_legendre_q1f(const float x)
 {
 //!# Legendre functions of the second kind, degree 1.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	float q1 = 0.0f;
 	float w, y, f, s, k;
 
@@ -82,6 +134,19 @@ MC_TARGET_PROC float mc_legendre_q1f(const float x)
 MC_TARGET_PROC double mc_legendre_q1(const double x)
 {
 //!# Legendre functions of the second kind, degree 1.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	double q1 = 0.0;
 	double w, y, f, s, k;
 
@@ -109,6 +174,19 @@ MC_TARGET_PROC double mc_legendre_q1(const double x)
 MC_TARGET_PROC long double mc_legendre_q1l(const long double x)
 {
 //!# Legendre functions of the second kind, degree 1.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	long double q1 = 0.0L;
 	long double w, y, f, s, k;
 
@@ -138,6 +216,19 @@ MC_TARGET_PROC long double mc_legendre_q1l(const long double x)
 MC_TARGET_PROC float mc_legendre_q2f(const float x)
 {
 //!# Legendre functions of the second kind, degree 2.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const float p2 = mc_legendre_p2f(x);
 	const float q0 = mc_legendre_q0f(x);
 	return p2 * q0 - (MCK_KF(MCK_3_2) * x);
@@ -146,6 +237,19 @@ MC_TARGET_PROC float mc_legendre_q2f(const float x)
 MC_TARGET_PROC double mc_legendre_q2(const double x)
 {
 //!# Legendre functions of the second kind, degree 2.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const double p2 = mc_legendre_p2(x);
 	const double q0 = mc_legendre_q0(x);
 	return p2 * q0 - (MCK_K(MCK_3_2) * x);
@@ -154,6 +258,19 @@ MC_TARGET_PROC double mc_legendre_q2(const double x)
 MC_TARGET_PROC long double mc_legendre_q2l(const long double x)
 {
 //!# Legendre functions of the second kind, degree 2.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const long double p2 = mc_legendre_p2l(x);
 	const long double q0 = mc_legendre_q0l(x);
 	return p2 * q0 - (MCK_KL(MCK_3_2) * x);
@@ -164,6 +281,19 @@ MC_TARGET_PROC long double mc_legendre_q2l(const long double x)
 MC_TARGET_PROC float mc_legendre_q3f(const float x)
 {
 //!# Legendre functions of the second kind, degree 3.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const float p3 = mc_legendre_p3f(x);
 	const float q0 = mc_legendre_q0f(x);
 	return p3 * q0 - (MCK_KF(MCK_5_2) * mc_raise2f(x)) + MCK_KF(MCK_2_3);
@@ -172,6 +302,19 @@ MC_TARGET_PROC float mc_legendre_q3f(const float x)
 MC_TARGET_PROC double mc_legendre_q3(const double x)
 {
 //!# Legendre functions of the second kind, degree 3.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const double p3 = mc_legendre_p3(x);
 	const double q0 = mc_legendre_q0(x);
 	return p3 * q0 - (MCK_K(MCK_5_2) * mc_raise2(x)) + MCK_K(MCK_2_3);
@@ -180,6 +323,19 @@ MC_TARGET_PROC double mc_legendre_q3(const double x)
 MC_TARGET_PROC long double mc_legendre_q3l(const long double x)
 {
 //!# Legendre functions of the second kind, degree 3.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const long double p3 = mc_legendre_p3l(x);
 	const long double q0 = mc_legendre_q0l(x);
 	return p3 * q0 - (MCK_KL(MCK_5_2) * mc_raise2l(x)) + MCK_KL(MCK_2_3);
@@ -190,6 +346,19 @@ MC_TARGET_PROC long double mc_legendre_q3l(const long double x)
 MC_TARGET_PROC float mc_legendre_q4f(const float x)
 {
 //!# Legendre functions of the second kind, degree 4.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const float p4 = mc_legendre_p4f(x);
 	const float q0 = mc_legendre_q0f(x);
 	return p4 * q0 - (MCK_KF(MCK_35_8) * mc_raise3f(x)) + (MCK_KF(MCK_55_24) * x);
@@ -198,6 +367,19 @@ MC_TARGET_PROC float mc_legendre_q4f(const float x)
 MC_TARGET_PROC double mc_legendre_q4(const double x)
 {
 //!# Legendre functions of the second kind, degree 4.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const double p4 = mc_legendre_p4(x);
 	const double q0 = mc_legendre_q0(x);
 	return p4 * q0 - (MCK_K(MCK_35_8) * mc_raise3(x)) + (MCK_K(MCK_55_24) * x);
@@ -206,6 +388,19 @@ MC_TARGET_PROC double mc_legendre_q4(const double x)
 MC_TARGET_PROC long double mc_legendre_q4l(const long double x)
 {
 //!# Legendre functions of the second kind, degree 4.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const long double p4 = mc_legendre_p4l(x);
 	const long double q0 = mc_legendre_q0l(x);
 	return p4 * q0 - (MCK_KL(MCK_35_8) * mc_raise3l(x)) + (MCK_KL(MCK_55_24) * x);
@@ -216,6 +411,19 @@ MC_TARGET_PROC long double mc_legendre_q4l(const long double x)
 MC_TARGET_PROC float mc_legendre_q5f(const float x)
 {
 //!# Legendre functions of the second kind, degree 5.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const float p5 = mc_legendre_p5f(x);
 	const float q0 = mc_legendre_q0f(x);
 	return p5 * q0 - (MCK_KF(MCK_63_8) * mc_raise4f(x)) + (MCK_KF(MCK_49_8) * mc_raise2f(x)) - MCK_KF(MCK_8_15);
@@ -224,6 +432,19 @@ MC_TARGET_PROC float mc_legendre_q5f(const float x)
 MC_TARGET_PROC double mc_legendre_q5(const double x)
 {
 //!# Legendre functions of the second kind, degree 5.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const double p5 = mc_legendre_p5(x);
 	const double q0 = mc_legendre_q0(x);
 	return p5 * q0 - (MCK_K(MCK_63_8) * mc_raise4(x)) + (MCK_K(MCK_49_8) * mc_raise2(x)) - MCK_K(MCK_8_15);
@@ -232,6 +453,19 @@ MC_TARGET_PROC double mc_legendre_q5(const double x)
 MC_TARGET_PROC long double mc_legendre_q5l(const long double x)
 {
 //!# Legendre functions of the second kind, degree 5.
+//!#
+//!#    - Abramowitz, M. and Stegun, C. A. (Eds.). Legendre Functions. Ch. 8 in Handbook of Mathematical Functions with
+//!#      Formulas, Graphs, and Mathematical Tables, 9th printing. New York: Dover, pp. 331-339, 1972.
+//!#    - Arfken, G. Legendre Functions of the Second Kind, Qn(x). Mathematical Methods for Physicists, 3rd ed.
+//!#      Orlando, FL: Academic Press, pp. 701-707, 1985.
+//!#    - Binney, J. and Tremaine, S. Associated Legendre Functions. Appendix 5 in Galactic Dynamics. Princeton, NJ:
+//!#      Princeton University Press, pp. 654-655, 1987.
+//!#    - Morse, P. M. and Feshbach, H. Methods of Theoretical Physics, Part I. New York: McGraw-Hill, pp. 597-600, 1953.
+//!#    - Snow, C. Hypergeometric and Legendre Functions with Applications to Integral Equations of Potential Theory.
+//!#      Washington,  DC: U. S. Government Printing Office, 1952.
+//!#    - Spanier, J. and Oldham, K. B. The Legendre Functions Pnu(x) and Qnu(x). Ch. 59 in An Atlas of Functions.
+//!#      Washington, DC: Hemisphere, pp. 581-597, 1987.
+//!#
 	const long double p5 = mc_legendre_p5l(x);
 	const long double q0 = mc_legendre_q0l(x);
 	return p5 * q0 - (MCK_KL(MCK_63_8) * mc_raise4l(x)) + (MCK_KL(MCK_49_8) * mc_raise2l(x)) - MCK_KL(MCK_8_15);
