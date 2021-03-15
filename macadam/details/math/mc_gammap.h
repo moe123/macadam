@@ -13,12 +13,12 @@
 
 #pragma mark - mc_gammap -
 
-MC_TARGET_FUNC float mc_gammapf(float a, float z)
+MC_TARGET_FUNC float mc_gammapf(const float a, const float z)
 {
 	return mc_igammapf_approx2(a, z);
 }
 
-MC_TARGET_FUNC double mc_gammap(double a, double z)
+MC_TARGET_FUNC double mc_gammap(const double a, const double z)
 {
 	return mc_igammap_approx2(a, z);
 }

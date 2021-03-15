@@ -18,17 +18,17 @@
 
 #pragma mark - mc_gammaq -
 
-MC_TARGET_FUNC float mc_gammaqf(float a, float z)
+MC_TARGET_FUNC float mc_gammaqf(const float a, const float z)
 {
 	return mc_igammaqf_approx2(a, z);
 }
 
-MC_TARGET_FUNC double mc_gammaq(double a, double z)
+MC_TARGET_FUNC double mc_gammaq(const double a, const double z)
 {
 	return mc_igammaq_approx2(a, z);
 }
 
-MC_TARGET_FUNC long double mc_gammaql(long double a, long double z)
+MC_TARGET_FUNC long double mc_gammaql(const long double a, const long double z)
 {
 	return mc_igammaql_approx2(a, z);
 }
