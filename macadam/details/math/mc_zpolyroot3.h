@@ -20,7 +20,7 @@
 
 #pragma mark - mc_zpolyroot3 -
 
-MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
+MC_TARGET_PROC int mc_zpolyroot3f(const float a, const float b, const float c, const float d
 	, float * r1
 	, float * i1
 	, float * r2
@@ -28,28 +28,32 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 	, float * r3
 	, float * i3
 ) {
-//!# Three roots of the cubic equation: ax^3+bx^2+cx+d=0.
+//!# Three roots of the cubic equation: ax^3+bx^2+cx+cd=0.
 //!# Returns 2 if roots are real and at least two are equal.
 //!# Returns 3 if roots are real and distinct.
 //!# Returns 5 if first root is real, the two others are conjugate.
 	int r         = -1;
+	float ca      = a;
+	float cb      = b;
+	float cc      = c;
+	float cd      = d;
 	const float e = 1E-05f;
-	if (!(a == 0.0f || d == 0.0f)) {
-		if (a != 1.0f) {
-			a = 1.0f / a;
-			b = b * a;
-			c = c * a;
-			d = d * a;
+	if (!(ca == 0.0f || cd == 0.0f)) {
+		if (ca != 1.0f) {
+			ca = 1.0f / ca;
+			cb = cb * ca;
+			cc = cc * ca;
+			cd = cd * ca;
 		}
-		const float q = (3.0f * c - mc_raise2f(b)) / 9.0f;
-		const float t = (9.0f * b * c - 27.0f * d - 2.0f * mc_raise2f(b) * b) / 54.0f;
+		const float q = (3.0f * cc - mc_raise2f(cb)) / 9.0f;
+		const float t = (9.0f * cb * cc - 27.0f * cd - 2.0f * mc_raise2f(cb) * cb) / 54.0f;
 		const float s = mc_raise3f(q) + mc_raise2f(t);
 
 		if (mc_fabsf(s) < e) {
 			const float m = t > 0.0f ? mc_cbrtf(t) : -mc_cbrtf(-t);
-			*r1           = 2.0f * m - b / 3.0f;
+			*r1           = 2.0f * m - cb / 3.0f;
 			*i1           = 0.0f;
-			*r2           = -m - b / 3.0f;
+			*r2           = -m - cb / 3.0f;
 			*i2           = 0.0f;
 			*r3           = *r2;
 			*i3           = *i2;
@@ -63,7 +67,7 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 			}
 			const float m = *i1;
 			const float h = 2.0f * m;
-			const float g = b / 3.0f;
+			const float g = cb / 3.0f;
 			const float w = mc_acosf(t / (m * mc_fabsf(q)));
 			*r1           = h * mc_cosf(w / 3.0f) - g;
 			*i1           = 0.0f;
@@ -81,7 +85,7 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 			 v            = (v > 0.0f) ? mc_cbrtf(v) : -mc_cbrtf(-v);
 			 w            = u + v;
 			 h            = MCK_KF(MCK_SQRT3) / 2.0f * (u - v);
-			 g            = b / 3.0f;
+			 g            = cb / 3.0f;
 			*r1           = w - g;
 			*i1           = 0.0f;
 			*r2           = -0.5f * w - g;
@@ -94,7 +98,7 @@ MC_TARGET_PROC int mc_zpolyroot3f(float a, float b, float c, float d
 	return r;
 }
 
-MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
+MC_TARGET_PROC int mc_zpolyroot3(const double a, const double b, const double c, const double d
 	, double * r1
 	, double * i1
 	, double * r2
@@ -102,28 +106,32 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 	, double * r3
 	, double * i3
 ) {
-//!# Three roots of the cubic equation: ax^3+bx^2+cx+d=0.
+//!# Three roots of the cubic equation: ax^3+bx^2+cx+cd=0.
 //!# Returns 2 if roots are real and at least two are equal.
 //!# Returns 3 if roots are real and distinct.
 //!# Returns 5 if first root is real, the two others are conjugate.
 	int r          = -1;
+	double ca      = a;
+	double cb      = b;
+	double cc      = c;
+	double cd      = d;
 	const double e = 1E-09;
-	if (!(a == 0.0 || d == 0.0)) {
-		if (a != 1.0) {
-			a = 1.0 / a;
-			b = b * a;
-			c = c * a;
-			d = d * a;
+	if (!(ca == 0.0 || cd == 0.0)) {
+		if (ca != 1.0) {
+			ca = 1.0 / ca;
+			cb = cb * ca;
+			cc = cc * ca;
+			cd = cd * ca;
 		}
-		const double q = (3.0 * c - mc_raise2(b)) / 9.0;
-		const double t = (9.0 * b * c - 27.0 * d - 2.0 * mc_raise2(b) * b) / 54.0;
+		const double q = (3.0 * cc - mc_raise2(cb)) / 9.0;
+		const double t = (9.0 * cb * cc - 27.0 * cd - 2.0 * mc_raise2(cb) * cb) / 54.0;
 		const double s = mc_raise3(q) + mc_raise2(t);
 
 		if (mc_fabs(s) < e) {
 			const double m = t > 0.0 ? mc_cbrt(t) : -mc_cbrt(-t);
-			*r1            = 2.0 * m - b / 3.0;
+			*r1            = 2.0 * m - cb / 3.0;
 			*i1            = 0.0;
-			*r2            = -m - b / 3.0;
+			*r2            = -m - cb / 3.0;
 			*i2            = 0.0;
 			*r3            = *r2;
 			*i3            = *i2;
@@ -137,7 +145,7 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 			}
 			const double m = *i1;
 			const double h = 2.0 * m;
-			const double g = b / 3.0;
+			const double g = cb / 3.0;
 			const double w = mc_acos(t / (m * mc_fabs(q)));
 			*r1            = h * mc_cos(w / 3.0) - g;
 			*i1            = 0.0;
@@ -155,7 +163,7 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 			 v             = (v > 0.0) ? mc_cbrt(v) : -mc_cbrt(-v);
 			 w             = u + v;
 			 h             = MCK_K(MCK_SQRT3) / 2.0 * (u - v);
-			 g             = b / 3.0;
+			 g             = cb / 3.0;
 			*r1            = w - g;
 			*i1            = 0.0;
 			*r2            = -0.5 * w - g;
@@ -168,7 +176,7 @@ MC_TARGET_PROC int mc_zpolyroot3(double a, double b, double c, double d
 	return r;
 }
 
-MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, long double d
+MC_TARGET_PROC int mc_zpolyroot3l(const long double a, const long double b, const long double c, const long double d
 	, long double * r1
 	, long double * i1
 	, long double * r2
@@ -176,28 +184,32 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 	, long double * r3
 	, long double * i3
 ) {
-//!# Three roots of the cubic equation: ax^3+bx^2+cx+d=0.
+//!# Three roots of the cubic equation: ax^3+bx^2+cx+cd=0.
 //!# Returns 2 if roots are real and at least two are equal.
 //!# Returns 3 if roots are real and distinct.
 //!# Returns 5 if first root is real, the two others are conjugate.
 	int r               = -1;
+	long double ca      = a;
+	long double cb      = b;
+	long double cc      = c;
+	long double cd      = d;
 	const long double e = 1E-12L;
-	if (!(a == 0.0L || d == 0.0L)) {
-		if (a != 1.0L) {
-			a = 1.0L / a;
-			b = b * a;
-			c = c * a;
-			d = d * a;
+	if (!(ca == 0.0L || cd == 0.0L)) {
+		if (ca != 1.0L) {
+			ca = 1.0L / ca;
+			cb = cb * ca;
+			cc = cc * ca;
+			cd = cd * ca;
 		}
-		const long double q = (3.0L * c - mc_raise2l(b)) / 9.0L;
-		const long double t = (9.0L * b * c - 27.0L * d - 2.0L * mc_raise2l(b) * b) / 54.0L;
+		const long double q = (3.0L * cc - mc_raise2l(cb)) / 9.0L;
+		const long double t = (9.0L * cb * cc - 27.0L * cd - 2.0L * mc_raise2l(cb) * cb) / 54.0L;
 		const long double s = mc_raise3l(q) + mc_raise2l(t);
 
 		if (mc_fabsl(s) < e) {
 			const long double m = t > 0.0L ? mc_cbrtl(t) : -mc_cbrtl(-t);
-			*r1                 = 2.0L * m - b / 3.0L;
+			*r1                 = 2.0L * m - cb / 3.0L;
 			*i1                 = 0.0L;
-			*r2                 = -m - b / 3.0L;
+			*r2                 = -m - cb / 3.0L;
 			*i2                 = 0.0L;
 			*r3                 = *r2;
 			*i3                 = *i2;
@@ -211,7 +223,7 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 			}
 			const long double m = *i1;
 			const long double h = 2.0L * m;
-			const long double g = b / 3.0L;
+			const long double g = cb / 3.0L;
 			const long double w = mc_acosl(t / (m * mc_fabsl(q)));
 			*r1                 = h * mc_cosl(w / 3.0L) - g;
 			*i1                 = 0.0L;
@@ -229,7 +241,7 @@ MC_TARGET_PROC int mc_zpolyroot3l(long double a, long double b, long double c, l
 			 v                  = (v > 0.0L) ? mc_cbrtl(v) : -mc_cbrtl(-v);
 			 w                  = u + v;
 			 h                  = MCK_KL(MCK_SQRT3) / 2.0L * (u - v);
-			 g                  = b / 3.0L;
+			 g                  = cb / 3.0L;
 			*r1                 = w - g;
 			*i1                 = 0.0L;
 			*r2                 = -0.5L * w - g;

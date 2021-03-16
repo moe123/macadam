@@ -107,6 +107,7 @@
 #	include <macadam/details/math/mc_eta.h>
 #	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_exp10.h>
+#	include <macadam/details/math/mc_exp10i.h>
 #	include <macadam/details/math/mc_exp10m1.h>
 #	include <macadam/details/math/mc_exp2.h>
 #	include <macadam/details/math/mc_exp2i.h>
