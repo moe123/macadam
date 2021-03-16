@@ -109,10 +109,11 @@
 #	include <macadam/details/math/mc_exp10.h>
 #	include <macadam/details/math/mc_exp10i.h>
 #	include <macadam/details/math/mc_exp10m1.h>
+#	include <macadam/details/math/mc_expi.h>
+#	include <macadam/details/math/mc_expit.h>
 #	include <macadam/details/math/mc_exp2.h>
 #	include <macadam/details/math/mc_exp2i.h>
 #	include <macadam/details/math/mc_exp2m1.h>
-#	include <macadam/details/math/mc_expit.h>
 #	include <macadam/details/math/mc_expm1.h>
 #	include <macadam/details/math/mc_fabs.h>
 #	include <macadam/details/math/mc_factorial.h>
