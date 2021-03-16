@@ -134,12 +134,12 @@
 #	include <macadam/details/math/mc_fmod2pi.h>
 #	include <macadam/details/math/mc_fmodpi.h>
 #	include <macadam/details/math/mc_frexp.h>
+#	include <macadam/details/math/mc_gamma_p.h>
+#	include <macadam/details/math/mc_gamma_q.h>
 #	include <macadam/details/math/mc_gamma_r.h>
 #	include <macadam/details/math/mc_gamma.h>
 #	include <macadam/details/math/mc_gammaln_r.h>
 #	include <macadam/details/math/mc_gammaln.h>
-#	include <macadam/details/math/mc_gammap.h>
-#	include <macadam/details/math/mc_gammaq.h>
 #	include <macadam/details/math/mc_gammaquo.h>
 #	include <macadam/details/math/mc_gammasign.h>
 #	include <macadam/details/math/mc_gcd.h>

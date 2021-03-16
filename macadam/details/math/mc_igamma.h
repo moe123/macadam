@@ -145,9 +145,9 @@ MC_TARGET_PROC long double mc_igamma_cfracl_approx0(const long double a, const l
 	return c5;
 }
 
-#pragma mark - mc_igamma_lower -
+#pragma mark - mc_igamma_lo -
 
-MC_TARGET_PROC float mc_igamma_lowerf_approx0(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_lof_approx0(const float a, const float z)
 {
 //!# Lower incomplete gamma function of a and z.
 	if (a > 0.0f && z > 0.0f) {
@@ -160,7 +160,7 @@ MC_TARGET_PROC float mc_igamma_lowerf_approx0(const float a, const float z)
 	return MCK_NAN;
 }
 
-MC_TARGET_PROC double mc_igamma_lower_approx0(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_lo_approx0(const double a, const double z)
 {
 //!# Lower incomplete gamma function of a and z.
 	if (a > 0.0 && z > 0.0) {
@@ -173,7 +173,7 @@ MC_TARGET_PROC double mc_igamma_lower_approx0(const double a, const double z)
 	return MCK_NAN;
 }
 
-MC_TARGET_PROC long double mc_igamma_lowerl_approx0(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_lol_approx0(const long double a, const long double z)
 {
 //!# Lower incomplete gamma function of a and z.
 	if (a > 0.0L && z > 0.0L) {
@@ -186,9 +186,9 @@ MC_TARGET_PROC long double mc_igamma_lowerl_approx0(const long double a, const l
 	return MCK_NAN;
 }
 
-#pragma mark - mc_igamma_upper_approx0 -
+#pragma mark - mc_igamma_up_approx0 -
 
-MC_TARGET_PROC float mc_igamma_upperf_approx0(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_upf_approx0(const float a, const float z)
 {
 //!# Upper incomplete gamma function of a and z.
 	if (a > 0.0f && z > 0.0f) {
@@ -201,7 +201,7 @@ MC_TARGET_PROC float mc_igamma_upperf_approx0(const float a, const float z)
 	return MCK_NAN;
 }
 
-MC_TARGET_PROC double mc_igamma_upper_approx0(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_up_approx0(const double a, const double z)
 {
 //!# Upper incomplete gamma function of a and z.
 	if (a > 0.0 && z > 0.0) {
@@ -214,7 +214,7 @@ MC_TARGET_PROC double mc_igamma_upper_approx0(const double a, const double z)
 	return MCK_NAN;
 }
 
-MC_TARGET_PROC long double mc_igamma_upperl_approx0(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_upl_approx0(const long double a, const long double z)
 {
 //!# Upper incomplete gamma function of a and z.
 	if (a > 0.0L && z > 0.0L) {
@@ -227,9 +227,9 @@ MC_TARGET_PROC long double mc_igamma_upperl_approx0(const long double a, const l
 	return MCK_NAN;
 }
 
-#pragma mark - mc_igammap_approx0 -
+#pragma mark - mc_igamma_p_approx0 -
 
-MC_TARGET_PROC float mc_igammapf_approx0(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_pf_approx0(const float a, const float z)
 {
 //!# Normalised lower incomplete gamma function of a and z.
 	float p = MCK_NAN;
@@ -252,7 +252,7 @@ MC_TARGET_PROC float mc_igammapf_approx0(const float a, const float z)
 	return p;
 }
 
-MC_TARGET_PROC double mc_igammap_approx0(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_p_approx0(const double a, const double z)
 {
 //!# Normalised lower incomplete gamma function of a and z.
 	double p = MCK_NAN;
@@ -275,7 +275,7 @@ MC_TARGET_PROC double mc_igammap_approx0(const double a, const double z)
 	return p;
 }
 
-MC_TARGET_PROC long double mc_igammapl_approx0(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_pl_approx0(const long double a, const long double z)
 {
 //!# Normalised lower incomplete gamma function of a and z.
 	long double p = MCK_NAN;
@@ -298,9 +298,9 @@ MC_TARGET_PROC long double mc_igammapl_approx0(const long double a, const long d
 	return p;
 }
 
-#pragma mark - mc_igammaq_approx0 -
+#pragma mark - mc_igamma_q_approx0 -
 
-MC_TARGET_PROC float mc_igammaqf_approx0(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_qf_approx0(const float a, const float z)
 {
 //!# Normalised upper incomplete gamma function of a and z.
 	float q = MCK_NAN;
@@ -323,7 +323,7 @@ MC_TARGET_PROC float mc_igammaqf_approx0(const float a, const float z)
 	return q;
 }
 
-MC_TARGET_PROC double mc_igammaq_approx0(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_q_approx0(const double a, const double z)
 {
 //!# Normalised upper incomplete gamma function of a and z.
 	double q = MCK_NAN;
@@ -346,7 +346,7 @@ MC_TARGET_PROC double mc_igammaq_approx0(const double a, const double z)
 	return q;
 }
 
-MC_TARGET_PROC long double mc_igammaql_approx0(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_ql_approx0(const long double a, const long double z)
 {
 //!# Normalised upper incomplete gamma function of a and z.
 	long double q = MCK_NAN;
@@ -533,9 +533,9 @@ MC_TARGET_PROC long double mc_igammaesl_approx0(const long double a, const long 
 	return r;
 }
 
-#pragma mark - mc_igammaem_approx0 -
+#pragma mark - mc_igamma_em_approx0 -
 
-MC_TARGET_PROC float mc_igammaemf_approx0(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_emf_approx0(const float a, const float z)
 {
 //!# Regularized incomplete gamma function; integral 0 to z with |z| < a + 1.
 	float r = 0.0f;
@@ -584,7 +584,7 @@ MC_TARGET_PROC float mc_igammaemf_approx0(const float a, const float z)
 	return r;
 }
 
-MC_TARGET_PROC double mc_igammaem_approx0(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_em_approx0(const double a, const double z)
 {
 //!# Regularized incomplete gamma function; integral 0 to z with |z| < a + 1.
 	double r = 0.0;
@@ -633,7 +633,7 @@ MC_TARGET_PROC double mc_igammaem_approx0(const double a, const double z)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_igammaeml_approx0(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_eml_approx0(const long double a, const long double z)
 {
 //!# Regularized incomplete gamma function; integral 0 to z with |z| < a + 1.
 	long double r = 0.0L;
@@ -682,9 +682,9 @@ MC_TARGET_PROC long double mc_igammaeml_approx0(const long double a, const long 
 	return r;
 }
 
-#pragma mark - mc_igammaeb_approx0 -
+#pragma mark - mc_igamma_eb_approx0 -
 
-MC_TARGET_PROC float mc_igammaebf_approx0(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_ebf_approx0(const float a, const float z)
 {
 //!# Regularized incomplete gamma function; integral 0 to z with |z| >= a + 1.
 	float r = 0.0f, p = 1.0f / a, s = p;
@@ -699,7 +699,7 @@ MC_TARGET_PROC float mc_igammaebf_approx0(const float a, const float z)
 	return r;
 }
 
-MC_TARGET_PROC double mc_igammaeb_approx0(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_eb_approx0(const double a, const double z)
 {
 //!# Regularized incomplete gamma function; integral 0 to z with |z| >= a + 1.
 	double r = 0.0, p = 1.0 / a, s = p;
@@ -714,7 +714,7 @@ MC_TARGET_PROC double mc_igammaeb_approx0(const double a, const double z)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_igammaebl_approx0(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_ebl_approx0(const long double a, const long double z)
 {
 //!# Regularized incomplete gamma function; integral 0 to z with |z| >= a + 1.
 	long double r = 0.0L, p = 1.0L / a, s = p;
@@ -741,9 +741,9 @@ MC_TARGET_PROC float mc_igammaef_approx0(const float z, const float a)
 		return mc_igammaesf_approx0(a, z);
 	}
 	if (mc_fabsf(z) <= (a + 1.0f)) {
-		return mc_igammaemf_approx0(a, z);
+		return mc_igamma_emf_approx0(a, z);
 	}
-	return mc_igammaebf_approx0(a, z);
+	return mc_igamma_ebf_approx0(a, z);
 }
 
 MC_TARGET_PROC double mc_igammae_approx0(const double z, const double a)
@@ -756,9 +756,9 @@ MC_TARGET_PROC double mc_igammae_approx0(const double z, const double a)
 		return mc_igammaes_approx0(a, z);
 	}
 	if (mc_fabs(z) <= (a + 1.0)) {
-		return mc_igammaem_approx0(a, z);
+		return mc_igamma_em_approx0(a, z);
 	}
-	return mc_igammaeb_approx0(a, z);
+	return mc_igamma_eb_approx0(a, z);
 }
 
 MC_TARGET_PROC long double mc_igammael_approx0(const long double z, const long double a)
@@ -771,9 +771,9 @@ MC_TARGET_PROC long double mc_igammael_approx0(const long double z, const long d
 		return mc_igammaesl_approx0(a, z);
 	}
 	if (mc_fabsl(z) <= (a + 1.0L)) {
-		return mc_igammaeml_approx0(a, z);
+		return mc_igamma_eml_approx0(a, z);
 	}
-	return mc_igammaebl_approx0(a, z);
+	return mc_igamma_ebl_approx0(a, z);
 }
 
 #pragma mark - mc_igamma_pseries -
@@ -933,9 +933,9 @@ MC_TARGET_PROC long double mc_igamma_cfracl_approx1(const long double a, const l
 	return fa;
 }
 
-#pragma mark - mc_igammap_approx1 -
+#pragma mark - mc_igamma_p_approx1 -
 
-MC_TARGET_PROC float mc_igammapf_approx1(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_pf_approx1(const float a, const float z)
 {
 //!# Normalised lower incomplete gamma function of a and z.
 	float p = MCK_NAN;
@@ -956,7 +956,7 @@ MC_TARGET_PROC float mc_igammapf_approx1(const float a, const float z)
 	return p;
 }
 
-MC_TARGET_PROC double mc_igammap_approx1(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_p_approx1(const double a, const double z)
 {
 //!# Normalised lower incomplete gamma function of a and z.
 	double p = MCK_NAN;
@@ -977,7 +977,7 @@ MC_TARGET_PROC double mc_igammap_approx1(const double a, const double z)
 	return p;
 }
 
-MC_TARGET_PROC long double mc_igammapl_approx1(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_pl_approx1(const long double a, const long double z)
 {
 //!# Normalised lower incomplete gamma function of a and z.
 	long double p = MCK_NAN;
@@ -998,9 +998,9 @@ MC_TARGET_PROC long double mc_igammapl_approx1(const long double a, const long d
 	return p;
 }
 
-#pragma mark - mc_igammaq_approx1 -
+#pragma mark - mc_igamma_q_approx1 -
 
-MC_TARGET_PROC float mc_igammaqf_approx1(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_qf_approx1(const float a, const float z)
 {
 //!# Normalised upper incomplete gamma function of a and z.
 	float q = MCK_NAN;
@@ -1021,7 +1021,7 @@ MC_TARGET_PROC float mc_igammaqf_approx1(const float a, const float z)
 	return q;
 }
 
-MC_TARGET_PROC double mc_igammaq_approx1(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_q_approx1(const double a, const double z)
 {
 //!# Normalised upper incomplete gamma function of a and z.
 	double q = MCK_NAN;
@@ -1042,7 +1042,7 @@ MC_TARGET_PROC double mc_igammaq_approx1(const double a, const double z)
 	return q;
 }
 
-MC_TARGET_PROC long double mc_igammaql_approx1(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_ql_approx1(const long double a, const long double z)
 {
 //!# Normalised upper incomplete gamma function of a and z.
 	long double q = MCK_NAN;
@@ -1063,9 +1063,9 @@ MC_TARGET_PROC long double mc_igammaql_approx1(const long double a, const long d
 	return q;
 }
 
-#pragma mark - mc_igamma_taylorp_approx2 -
+#pragma mark - mc_igamma_p_taylor_approx2 -
 
-MC_TARGET_PROC float mc_igamma_taylorpf_approx2(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_p_taylorf_approx2(const float a, const float z)
 {
 	const float x = a * mc_expf(-z) * (1.0f / mc_gammaf(a + 1.0f));
 	const float d = mc_powf(z, x);
@@ -1084,7 +1084,7 @@ MC_TARGET_PROC float mc_igamma_taylorpf_approx2(const float a, const float z)
 	return (p * d) * (1.0f / a);
 }
 
-MC_TARGET_PROC double mc_igamma_taylorp_approx2(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_p_taylor_approx2(const double a, const double z)
 {
 	const double x = a * mc_exp(-z) * (1.0 / mc_gamma(a + 1.0));
 	const double d = mc_pow(z, x);
@@ -1103,7 +1103,7 @@ MC_TARGET_PROC double mc_igamma_taylorp_approx2(const double a, const double z)
 	return (p * d) * (1.0 / a);
 }
 
-MC_TARGET_PROC long double mc_igamma_taylorpl_approx2(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_p_taylorl_approx2(const long double a, const long double z)
 {
 	const long double x = a * mc_expl(-z) * (1.0L / mc_gammal(a + 1.0L));
 	const long double d = mc_powl(z, x);
@@ -1122,26 +1122,26 @@ MC_TARGET_PROC long double mc_igamma_taylorpl_approx2(const long double a, const
 	return (p * d) * (1.0L / a);
 }
 
-#pragma mark - mc_igamma_taylorq_approx2 -
+#pragma mark - mc_igamma_q_taylor_approx2 -
 
-MC_TARGET_PROC float mc_igamma_taylorqf_approx2(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_q_taylorf_approx2(const float a, const float z)
 {
-	return 1.0f - mc_igamma_taylorpf_approx2(a, z);
+	return 1.0f - mc_igamma_p_taylorf_approx2(a, z);
 }
 
-MC_TARGET_PROC double mc_igamma_taylorq_approx2(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_q_taylor_approx2(const double a, const double z)
 {
-	return 1.0 - mc_igamma_taylorp_approx2(a, z);
+	return 1.0 - mc_igamma_p_taylor_approx2(a, z);
 }
 
-MC_TARGET_PROC long double mc_igamma_taylorql_approx2(const long double a, const long  double z)
+MC_TARGET_PROC long double mc_igamma_q_taylorl_approx2(const long double a, const long  double z)
 {
-	return 1.0L - mc_igamma_taylorpl_approx2(a, z);
+	return 1.0L - mc_igamma_p_taylorl_approx2(a, z);
 }
 
-#pragma mark - mc_igammaq_int_approx2 -
+#pragma mark - mc_igamma_qi_approx2 -
 
-MC_TARGET_PROC float mc_igammaq_intf_approx2 (const float a, const float z)
+MC_TARGET_PROC float mc_igamma_qif_approx2 (const float a, const float z)
 {
 //!# Normalised upper incomplete gamma function of a and z for a integral.
 	float q = mc_expf(-z), w, n;
@@ -1157,7 +1157,7 @@ MC_TARGET_PROC float mc_igammaq_intf_approx2 (const float a, const float z)
 	return q;
 }
 
-MC_TARGET_PROC double mc_igammaq_int_approx2(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_qi_approx2(const double a, const double z)
 {
 //!# Normalised upper incomplete gamma function of a and z for a integral.
 	double q = mc_exp(-z), w, n;
@@ -1173,7 +1173,7 @@ MC_TARGET_PROC double mc_igammaq_int_approx2(const double a, const double z)
 	return q;
 }
 
-MC_TARGET_PROC long double mc_igammaq_intl_approx2(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_qil_approx2(const long double a, const long double z)
 {
 //!# Normalised upper incomplete gamma function of a and z for a integral.
 	long double q = mc_expl(-z), w, n;
@@ -1189,9 +1189,9 @@ MC_TARGET_PROC long double mc_igammaq_intl_approx2(const long double a, const lo
 	return q;
 }
 
-#pragma mark - mc_igammaq_half_approx2 -
+#pragma mark - mc_igamma_qhf_approx2 -
 
-MC_TARGET_PROC float mc_igammaq_halff_approx2(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_qhff_approx2(const float a, const float z)
 {
 //!# Normalised upper incomplete gamma function of a and z for a half-integral.
 	float q = mc_erfcf(mc_sqrtf(z)), s, w, n;
@@ -1209,7 +1209,7 @@ MC_TARGET_PROC float mc_igammaq_halff_approx2(const float a, const float z)
 	return q;
 }
 
-MC_TARGET_PROC double mc_igammaq_half_approx2(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_qhf_approx2(const double a, const double z)
 {
 //!# Normalised upper incomplete gamma function of a and z for a half-integral.
 	double q = mc_erfc(mc_sqrt(z)), s, w, n;
@@ -1227,7 +1227,7 @@ MC_TARGET_PROC double mc_igammaq_half_approx2(const double a, const double z)
 	return q;
 }
 
-MC_TARGET_PROC long double mc_igammaq_halfl_approx2(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_qhfl_approx2(const long double a, const long double z)
 {
 //!# Normalised upper incomplete gamma function of a and z for a half-integral.
 	long double q = mc_erfcl(mc_sqrtl(z)), s, w, n;
@@ -1245,9 +1245,9 @@ MC_TARGET_PROC long double mc_igammaq_halfl_approx2(const long double a, const l
 	return q;
 }
 
-#pragma mark - mc_igammap_approx2 -
+#pragma mark - mc_igamma_p_approx2 -
 
-MC_TARGET_PROC float mc_igammapf_approx2(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_pf_approx2(const float a, const float z)
 {
 	float p = MCK_INFP;
 	if (z <= 0.0f || a < 0.0f) {
@@ -1267,18 +1267,18 @@ MC_TARGET_PROC float mc_igammapf_approx2(const float a, const float z)
 				return -mc_expm1f(-z);
 			} else if (a < 30.0f && a < (z + 1.0f)) {
 				if (mc_fisintf(a) && z > 0.6f) {
-					return 1.0f - mc_igammaq_intf_approx2(a, z);
+					return 1.0f - mc_igamma_qif_approx2(a, z);
 				} else if (z > 0.2f) {
-					return 1.0f - mc_igammaq_halff_approx2(a, z);
+					return 1.0f - mc_igamma_qhff_approx2(a, z);
 				}
 			}
 		}
-		p = mc_igammapf_approx1(a, z);
+		p = mc_igamma_pf_approx1(a, z);
 	}
 	return p;
 }
 
-MC_TARGET_PROC double mc_igammap_approx2(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_p_approx2(const double a, const double z)
 {
 	double p = MCK_INFP;
 	if (z <= 0.0 || a < 0.0) {
@@ -1298,18 +1298,18 @@ MC_TARGET_PROC double mc_igammap_approx2(const double a, const double z)
 				return -mc_expm1(-z);
 			} else if (a < 30.0 && a < (z + 1.0)) {
 				if (mc_fisint(a) && z > 0.6) {
-					return 1.0 - mc_igammaq_int_approx2(a, z);
+					return 1.0 - mc_igamma_qi_approx2(a, z);
 				} else if (z > 0.2) {
-					return 1.0 - mc_igammaq_half_approx2(a, z);
+					return 1.0 - mc_igamma_qhf_approx2(a, z);
 				}
 			}
 		}
-		p = mc_igammap_approx1(a, z);
+		p = mc_igamma_p_approx1(a, z);
 	}
 	return p;
 }
 
-MC_TARGET_PROC long double mc_igammapl_approx2(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_pl_approx2(const long double a, const long double z)
 {
 	long double p = MCK_INFP;
 	if (z <= 0.0L || a < 0.0L) {
@@ -1329,20 +1329,20 @@ MC_TARGET_PROC long double mc_igammapl_approx2(const long double a, const long d
 				return -mc_expm1l(-z);
 			} else if (a < 30.0L && a < (z + 1.0L)) {
 				if (mc_fisintl(a) && z > 0.6L) {
-					return 1.0L - mc_igammaq_intl_approx2(a, z);
+					return 1.0L - mc_igamma_qil_approx2(a, z);
 				} else if (z > 0.2L) {
-					return 1.0L - mc_igammaq_halfl_approx2(a, z);
+					return 1.0L - mc_igamma_qhfl_approx2(a, z);
 				}
 			}
 		}
-		p = mc_igammapl_approx1(a, z);
+		p = mc_igamma_pl_approx1(a, z);
 	}
 	return p;
 }
 
-#pragma mark - mc_gammaq_approx2 -
+#pragma mark - mc_gamma_q_approx2 -
 
-MC_TARGET_PROC float mc_igammaqf_approx2(const float a, const float z)
+MC_TARGET_PROC float mc_igamma_qf_approx2(const float a, const float z)
 {
 	float q = MCK_INFP;
 	if (z <= 0.0f || a < 0.0f) {
@@ -1362,18 +1362,18 @@ MC_TARGET_PROC float mc_igammaqf_approx2(const float a, const float z)
 				return mc_expf(-z);
 			} else if (a < 30.0f && a < (z + 1.0f)) {
 				if (mc_fisintf(a) && z > 0.6f) {
-					return mc_igammaq_intf_approx2(a, z);
+					return mc_igamma_qif_approx2(a, z);
 				} else if (z > 0.2f) {
-					return mc_igammaq_halff_approx2(a, z);
+					return mc_igamma_qhff_approx2(a, z);
 				}
 			}
 		}
-		q = mc_igammaqf_approx1(a, z);
+		q = mc_igamma_qf_approx1(a, z);
 	}
 	return q;
 }
 
-MC_TARGET_PROC double mc_igammaq_approx2(const double a, const double z)
+MC_TARGET_PROC double mc_igamma_q_approx2(const double a, const double z)
 {
 	double q = MCK_INFP;
 	if (z <= 0.0 || a < 0.0) {
@@ -1393,18 +1393,18 @@ MC_TARGET_PROC double mc_igammaq_approx2(const double a, const double z)
 				return mc_exp(-z);
 			} else if (a < 30.0 && a < (z + 1.0)) {
 				if (mc_fisint(a) && z > 0.6) {
-					return mc_igammaq_int_approx2(a, z);
+					return mc_igamma_qi_approx2(a, z);
 				} else if (z > 0.2) {
-					return mc_igammaq_half_approx2(a, z);
+					return mc_igamma_qhf_approx2(a, z);
 				}
 			}
 		}
-		q = mc_igammaq_approx1(a, z);
+		q = mc_igamma_q_approx1(a, z);
 	}
 	return q;
 }
 
-MC_TARGET_PROC long double mc_igammaql_approx2(const long double a, const long double z)
+MC_TARGET_PROC long double mc_igamma_ql_approx2(const long double a, const long double z)
 {
 	long double q = MCK_INFP;
 	if (z <= 0.0L || a < 0.0L) {
@@ -1424,13 +1424,13 @@ MC_TARGET_PROC long double mc_igammaql_approx2(const long double a, const long d
 				return mc_expl(-z);
 			} else if (a < 30.0L && a < (z + 1.0L)) {
 				if (mc_fisintl(a) && z > 0.6L) {
-					return mc_igammaq_intl_approx2(a, z);
+					return mc_igamma_qil_approx2(a, z);
 				} else if (z > 0.2L) {
-					return mc_igammaq_halfl_approx2(a, z);
+					return mc_igamma_qhfl_approx2(a, z);
 				}
 			}
 		}
-		q = mc_igammaql_approx1(a, z);
+		q = mc_igamma_ql_approx1(a, z);
 	}
 	return q;
 }
