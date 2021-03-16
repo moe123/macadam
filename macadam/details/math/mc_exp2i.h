@@ -8,6 +8,7 @@
 
 #include <macadam/details/math/mc_absmag.h>
 #include <macadam/details/math/mc_isfinite.h>
+#include <macadam/details/math/mc_isnormal.h>
 
 #ifndef MC_EXP2I_H
 #define MC_EXP2I_H
@@ -21,7 +22,8 @@ MC_TARGET_FUNC float mc_exp2if(const int e)
 	const float s = e >= 0 ? 2.0f : 0.5f;
 	for (; i < mc_iabs(e); i++) {
 		r = r * s;
-		if (!mc_isfinite(r)) {
+		if (!mc_isfinite(r) || !mc_isnormal(r)) {
+			r = e >= 0 ? MCK_INF : 0.0f;
 			break;
 		}
 	}
@@ -35,7 +37,8 @@ MC_TARGET_FUNC double mc_exp2i(const int e)
 	const double s = e >= 0 ? 2.0 : 0.5;
 	for (; i < mc_iabs(e); i++) {
 		r = r * s;
-		if (!mc_isfinite(r)) {
+		if (!mc_isfinite(r) || !mc_isnormal(r)) {
+			r = e >= 0 ? MCK_INF : 0.0;
 			break;
 		}
 	}
@@ -49,7 +52,8 @@ MC_TARGET_FUNC long double mc_exp2il(const int e)
 	const long double s = e >= 0 ? 2.0L : 0.5L;
 	for (; i < mc_iabs(e); i++) {
 		r = r * s;
-		if (!mc_isfinite(r)) {
+		if (!mc_isfinite(r) || !mc_isnormal(r)) {
+			r = e >= 0 ? MCK_INF : 0.0L;
 			break;
 		}
 	}
