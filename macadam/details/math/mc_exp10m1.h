@@ -21,7 +21,7 @@ MC_TARGET_FUNC float mc_exp10m1f(const float x)
 		return x;
 	}
 	if (mc_fabsf(x) > 0.3f) {
-		return mc_expf(x) - 1.0f;
+		return mc_exp10f(x) - 1.0f;
 	}
 	return mc_exp2m1f(MCK_KF(MCK_LOG210Q) * x + MCK_KF(MCK_LOG210R) * x);
 }
@@ -32,7 +32,7 @@ MC_TARGET_FUNC double mc_exp10m1(const double x)
 		return x;
 	}
 	if (mc_fabs(x) > 0.3) {
-		return mc_exp(x) - 1.0;
+		return mc_exp10(x) - 1.0;
 	}
 	return mc_exp2m1(MCK_K(MCK_LOG210Q) * x + MCK_K(MCK_LOG210R) * x);
 }
@@ -43,7 +43,7 @@ MC_TARGET_FUNC long double mc_exp10m1l(const long double x)
 		return x;
 	}
 	if (mc_fabsl(x) > 0.3L) {
-		return mc_expl(x) - 1.0L;
+		return mc_exp10l(x) - 1.0L;
 	}
 	return mc_exp2m1l(MCK_KL(MCK_LOG210Q) * x + MCK_KL(MCK_LOG210R) * x);
 }

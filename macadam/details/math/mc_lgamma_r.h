@@ -18,15 +18,15 @@ MC_TARGET_FUNC float mc_lgammaf_r(const float x, int * psigngam)
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED || MC_TARGET_MSVC_CPP
 	float g        = mc_gammalnf_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = *psigngam;
 	return g;
 #	else
 #	if MC_TARGET_CPP98
-	float g        = ::lgammaf_r(x);
+	float g        = ::lgammaf_r(x, psigngam);
 	mc_gammasign_s = signgam;
 	return g;
 #	else
-	float g        = lgammaf_r(x);
+	float g        = lgammaf_r(x, psigngam);
 	mc_gammasign_s = signgam;
 	return g;
 #	endif
@@ -38,36 +38,36 @@ MC_TARGET_FUNC double mc_lgamma_r(const double x, int * psigngam)
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED || MC_TARGET_MSVC_CPP
 	double g       = mc_gammaln_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = *psigngam;
 	return g;
 #	else
 #	if MC_TARGET_CPP98
 	double g       = ::lgamma_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = signgam;
 	return g;
 #	else
 	double g       = lgamma_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = signgam;
 	return g;
 #	endif
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_lgammal(const long double x, int * psigngam)
+MC_TARGET_FUNC long double mc_lgammal_r(const long double x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED || MC_TARGET_MSVC_CPP
 	long double g  = mc_gammalnl_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = *psigngam;
 	return g;
 #	else
 #	if MC_TARGET_CPP98
 	long double g  = ::lgammal_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = signgam;
 	return g;
 #	else
 	long double g  = lgammal_r(x, psigngam);
-	mc_gammasign_s = psigngam;
+	mc_gammasign_s = signgam;
 	return g;
 #	endif
 #	endif

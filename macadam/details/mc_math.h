@@ -179,6 +179,7 @@
 #	include <macadam/details/math/mc_legendre_qn.h>
 #	include <macadam/details/math/mc_lerp.h>
 #	include <macadam/details/math/mc_lgamma.h>
+#	include <macadam/details/math/mc_lgamma_r.h>
 #	include <macadam/details/math/mc_llrint.h>
 #	include <macadam/details/math/mc_llround.h>
 #	include <macadam/details/math/mc_lmgamma.h>
