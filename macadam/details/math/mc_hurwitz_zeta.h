@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_hzeta.h
+// mc_hurwitz_zeta.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
@@ -12,18 +12,17 @@
 #include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_lchoose.h>
 #include <macadam/details/math/mc_pow.h>
-#include <macadam/details/math/mc_zeta.h>
+#include <macadam/details/math/mc_riemann_zeta.h>
 
-#ifndef MC_HZETA_H
-#define MC_HZETA_H
+#ifndef MC_HURWITZ_ZETA_H
+#define MC_HURWITZ_ZETA_H
 
-#pragma mark - mc_hzeta -
+#pragma mark - mc_hurwitz_zeta -
 
-MC_TARGET_FUNC float mc_hzetaf(float s, float q)
+MC_TARGET_FUNC float mc_hurwitz_zetaf(float s, float q)
 {
-	const float w = MCK_KF(FLT_MAX_10_EXP) * MCK_KF(MCK_LOGE10);
-
-	float r = 0.0f, c, term, sign;
+	const float w  = MCK_KF(FLT_MAX_10_EXP) * MCK_KF(MCK_LOGE10);
+	float r        = 0.0f, c, term, sign;
 	unsigned int i = 0, j;
 
 	if ((mc_isnan(s) || mc_isinf(s)) || (mc_isnan(q) || mc_isinf(q)) || (s == 1.0f || q <= 0.0f)) {
@@ -33,10 +32,10 @@ MC_TARGET_FUNC float mc_hzetaf(float s, float q)
 		return 0.5f - q;
 	}
 	if (q == 0.5f && s < 16384.0f) {
-		return mc_exp2m1f(s) * mc_zetaf(s);
+		return mc_exp2m1f(s) * mc_riemann_zetaf(s);
 	}
 	if (q == 1.0f) {
-		return mc_zetaf(s);
+		return mc_riemann_zetaf(s);
 	}
 	for (; i < 10000; i++) {
 		sign = 1.0f;
@@ -60,11 +59,10 @@ hurwitz_end:
 	return r / (s - 1.0f);
 }
 
-MC_TARGET_FUNC double mc_hzeta(double s, double q)
+MC_TARGET_FUNC double mc_hurwitz_zeta(double s, double q)
 {
 	const double w = MCK_K(DBL_MAX_10_EXP) * MCK_K(MCK_LOGE10);
-
-	double r = 0.0, c, term, sign;
+	double r       = 0.0, c, term, sign;
 	unsigned int i = 0, j;
 
 	if ((mc_isnan(s) || mc_isinf(s)) || (mc_isnan(q) || mc_isinf(q)) || (s == 1.0 || q <= 0.0)) {
@@ -74,10 +72,10 @@ MC_TARGET_FUNC double mc_hzeta(double s, double q)
 		return 0.5 - q;
 	}
 	if (q == 0.5 && s < 16384.0) {
-		return mc_exp2m1(s) * mc_zeta(s);
+		return mc_exp2m1(s) * mc_riemann_zeta(s);
 	}
 	if (q == 1.0) {
-		return mc_zeta(s);
+		return mc_riemann_zeta(s);
 	}
 	for (; i < 10000; i++) {
 		sign = 1.0;
@@ -101,12 +99,11 @@ hurwitz_end:
 	return r / (s - 1.0);
 }
 
-MC_TARGET_FUNC long double mc_hzetal(long double s, long double q)
+MC_TARGET_FUNC long double mc_hurwitz_zetal(long double s, long double q)
 {
 	const long double w = MCK_KL(LDBL_MAX_10_EXP) * MCK_KL(MCK_LOGE10);
-
-	long double r = 0.0L, c, term, sign;
-	unsigned int i = 0, j;
+	long double r       = 0.0L, c, term, sign;
+	unsigned int i       = 0, j;
 
 	if ((mc_isnan(s) || mc_isinf(s)) || (mc_isnan(q) || mc_isinf(q)) || (s == 1.0L || q <= 0.0L)) {
 		return MCK_NAN;
@@ -115,10 +112,10 @@ MC_TARGET_FUNC long double mc_hzetal(long double s, long double q)
 		return 0.5L - q;
 	}
 	if (q == 0.5L && s < 16384.0L) {
-		return mc_exp2m1l(s) * mc_zetal(s);
+		return mc_exp2m1l(s) * mc_riemann_zetal(s);
 	}
 	if (q == 1.0L) {
-		return mc_zetal(s);
+		return mc_riemann_zetal(s);
 	}
 	for (; i < 10000; i++) {
 		sign = 1.0L;
@@ -142,6 +139,6 @@ hurwitz_end:
 	return r / (s - 1.0L);
 }
 
-#endif /* !MC_HZETA_H */
+#endif /* !MC_HURWITZ_ZETA_H */
 
 /* EOF */

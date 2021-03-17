@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_zetap.h
+// mc_riemann_zeta_p.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
@@ -20,12 +20,12 @@
 #include <macadam/details/math/mc_powm1.h>
 #include <macadam/details/math/mc_xpolyevaln.h>
 
-#ifndef MC_ZETAP_H
-#define MC_ZETAP_H
+#ifndef MC_RIEMANN_ZETA_P_H
+#define MC_RIEMANN_ZETA_P_H
 
-#pragma mark - mc_zetapsc -
+#pragma mark - mc_riemann_zeta_p_sc -
 
-MC_TARGET_PROC float mc_zetapscf(float s, float sc)
+MC_TARGET_PROC float mc_riemann_zeta_p_scf(float s, float sc)
 {
 	float r = 1.0f, y;
 	const float P1[] =
@@ -219,7 +219,7 @@ MC_TARGET_PROC float mc_zetapscf(float s, float sc)
 	return r;
 }
 
-MC_TARGET_PROC double mc_zetapsc(double s, double sc)
+MC_TARGET_PROC double mc_riemann_zeta_p_sc(double s, double sc)
 {
 	double r = 1.0, y;
 	const double P1[] =
@@ -413,7 +413,7 @@ MC_TARGET_PROC double mc_zetapsc(double s, double sc)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_zetapscl(long double s, long double sc)
+MC_TARGET_PROC long double mc_riemann_zeta_p_scl(long double s, long double sc)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 	long double sum = 0.0L, nn, sign = 1.0L, sumk = 1.0L, term = 1.0L, p;
@@ -446,13 +446,13 @@ MC_TARGET_PROC long double mc_zetapscl(long double s, long double sc)
 #	else
 	const double x = mc_cast(double, s);
 	const double y = mc_cast(double, sc);
-	return mc_cast(long double, mc_zetapsc(x, y));
+	return mc_cast(long double, mc_riemann_zeta_p_sc(x, y));
 #	endif
 }
 
-#pragma mark - mc_izetap -
+#pragma mark - mc_riemann_zeta_p_int -
 
-MC_TARGET_PROC float mc_izetapf(unsigned int s)
+MC_TARGET_PROC float mc_riemann_zeta_p_intf(unsigned int s)
 {
 	const float Z[] =
 	{
@@ -491,7 +491,7 @@ MC_TARGET_PROC float mc_izetapf(unsigned int s)
 	return 1.0;
 }
 
-MC_TARGET_PROC double mc_izetap(unsigned int s)
+MC_TARGET_PROC double mc_riemann_zeta_p_int(unsigned int s)
 {
 	const double Z[] =
 	{
@@ -566,7 +566,7 @@ MC_TARGET_PROC double mc_izetap(unsigned int s)
 	return 1.0;
 }
 
-MC_TARGET_PROC long double mc_izetapl(unsigned int s)
+MC_TARGET_PROC long double mc_riemann_zeta_p_intl(unsigned int s)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 	const long double Z[] =
@@ -652,13 +652,13 @@ MC_TARGET_PROC long double mc_izetapl(unsigned int s)
 	}
 	return 1.0;
 #	else
-	return mc_cast(long double, mc_izetap(s));
+	return mc_cast(long double, mc_riemann_zeta_p_int(s));
 #	endif
 }
 
-#pragma mark - mc_zetap -
+#pragma mark - mc_riemann_zeta_p -
 
-MC_TARGET_PROC float mc_zetapf(float s)
+MC_TARGET_PROC float mc_riemann_zeta_pf(float s)
 {
 	if (mc_isnan(s)) {
 		return MCK_NAN;
@@ -666,15 +666,15 @@ MC_TARGET_PROC float mc_zetapf(float s)
 		return MCK_INFP;
 	}
 	if (mc_fisintf(s) && (s >= 0.0f && s < 28.0f)) {
-		return mc_izetapf(mc_cast(unsigned int, s));
+		return mc_riemann_zeta_p_intf(mc_cast(unsigned int, s));
 	}
 	if (s > 0.0f && s <= 1.6E-10f) {
 		return -0.5f - MCK_KF(MCK_LOGESQRT2PI) * s;
 	}
-	return mc_zetapscf(s, 1.0f - s);
+	return mc_riemann_zeta_p_scf(s, 1.0f - s);
 }
 
-MC_TARGET_PROC double mc_zetap(double s)
+MC_TARGET_PROC double mc_riemann_zeta_p(double s)
 {
 	if (mc_isnan(s)) {
 		return MCK_NAN;
@@ -682,15 +682,15 @@ MC_TARGET_PROC double mc_zetap(double s)
 		return MCK_INFP;
 	}
 	if (mc_fisint(s) && (s >= 0.0 && s < 64.0)) {
-		return mc_izetap(mc_cast(unsigned int, s));
+		return mc_riemann_zeta_p_int(mc_cast(unsigned int, s));
 	}
 	if (s > 0.0 && s <= 1.6E-10) {
 		return -0.5 - MCK_K(MCK_LOGESQRT2PI) * s;
 	}
-	return mc_zetapsc(s, 1.0 - s);
+	return mc_riemann_zeta_p_sc(s, 1.0 - s);
 }
 
-MC_TARGET_PROC long double mc_zetapl(long double s)
+MC_TARGET_PROC long double mc_riemann_zeta_pl(long double s)
 {
 	if (mc_isnan(s)) {
 		return MCK_NAN;
@@ -699,19 +699,19 @@ MC_TARGET_PROC long double mc_zetapl(long double s)
 	}
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 	if (mc_fisintl(s) && (s >= 0.0L && s < 75.0L)) {
-		return mc_izetapl(mc_cast(unsigned int, s));
+		return mc_riemann_zeta_p_intl(mc_cast(unsigned int, s));
 	}
 #	else
 	if (mc_fisintl(s) && (s >= 0.0L && s < 64.0L)) {
-		return mc_izetapl(mc_cast(unsigned int, s));
+		return mc_riemann_zeta_p_intl(mc_cast(unsigned int, s));
 	}
 #	endif
 	if (s > 0.0L && s <= 1.6E-10L) {
 		return -0.5L - MCK_KL(MCK_LOGESQRT2PI) * s;
 	}
-	return mc_zetapscl(s, 1.0L - s);
+	return mc_riemann_zeta_p_scl(s, 1.0L - s);
 }
 
-#endif /* !MC_ZETAP_H */
+#endif /* !MC_RIEMANN_ZETA_P_H */
 
 /* EOF */

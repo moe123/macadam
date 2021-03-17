@@ -149,10 +149,10 @@
 #	include <macadam/details/math/mc_huber_psi.h>
 #	include <macadam/details/math/mc_huber_rho.h>
 #	include <macadam/details/math/mc_huber_weight.h>
+#	include <macadam/details/math/mc_hurwitz_zeta.h>
 #	include <macadam/details/math/mc_hypot.h>
 #	include <macadam/details/math/mc_hypot3.h>
 #	include <macadam/details/math/mc_hypot2.h>
-#	include <macadam/details/math/mc_hzeta.h>
 #	include <macadam/details/math/mc_ibeta.h>
 #	include <macadam/details/math/mc_iexp2.h>
 #	include <macadam/details/math/mc_igamma.h>
@@ -235,6 +235,9 @@
 #	include <macadam/details/math/mc_rempio2_cw.h>
 #	include <macadam/details/math/mc_remquo.h>
 #	include <macadam/details/math/mc_rgamma.h>
+#	include <macadam/details/math/mc_riemann_zeta_n.h>
+#	include <macadam/details/math/mc_riemann_zeta_p.h>
+#	include <macadam/details/math/mc_riemann_zeta.h>
 #	include <macadam/details/math/mc_rint.h>
 #	include <macadam/details/math/mc_rootn.h>
 #	include <macadam/details/math/mc_round.h>
@@ -295,9 +298,6 @@
 #	include <macadam/details/math/mc_zcsc.h>
 #	include <macadam/details/math/mc_zcsch.h>
 #	include <macadam/details/math/mc_zdiv.h>
-#	include <macadam/details/math/mc_zeta.h>
-#	include <macadam/details/math/mc_zetan.h>
-#	include <macadam/details/math/mc_zetap.h>
 #	include <macadam/details/math/mc_zexp.h>
 #	include <macadam/details/math/mc_zexp2.h>
 #	include <macadam/details/math/mc_zexp10.h>

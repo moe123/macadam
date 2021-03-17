@@ -10,7 +10,7 @@
 #include <macadam/details/math/mc_isinf.h>
 #include <macadam/details/math/mc_isnan.h>
 #include <macadam/details/math/mc_powm1.h>
-#include <macadam/details/math/mc_zeta.h>
+#include <macadam/details/math/mc_riemann_zeta.h>
 
 #ifndef MC_ETA_H
 #define MC_ETA_H
@@ -29,7 +29,7 @@ MC_TARGET_FUNC float mc_etaf(const float x)
 	if (mc_fabsf(y) <= 2.000000000000000E-06f) {
 		return MCK_KF(MCK_LOGE2) - (3.268629627000000E-02f * y + 1.598689037424310E-01f) * y;
 	}
-	const float zeta  = mc_zetaf(x);
+	const float zeta  = mc_riemann_zetaf(x);
 	if (zeta == 0.0f || zeta == 1.0f) {
 		return zeta;
 	}
@@ -61,7 +61,7 @@ MC_TARGET_FUNC double mc_eta(const double x)
 	if (mc_fabs(y) <= 2.000000000000000E-06) {
 		return MCK_K(MCK_LOGE2) - (3.268629627000000E-02 * y + 1.598689037424310E-01) * y;
 	}
-	const double zeta  = mc_zeta(x);
+	const double zeta  = mc_riemann_zeta(x);
 	if (zeta == 0.0 || zeta == 1.0) {
 		return zeta;
 	}
@@ -93,7 +93,7 @@ MC_TARGET_FUNC long double mc_etal(const long double x)
 	if (mc_fabsl(y) <= 2.000000000000000E-06L) {
 		return MCK_KL(MCK_LOGE2) - (3.268629627000000E-02L * y + 1.598689037424310E-01L) * y;
 	}
-	const long double zeta  = mc_zetal(x);
+	const long double zeta  = mc_riemann_zetal(x);
 	if (zeta == 0.0L || zeta == 1.0L) {
 		return zeta;
 	}
