@@ -27,11 +27,11 @@
 
 MC_TARGET_PROC int mc_zreig2x2f(
 	  const float a[4]
-	, float * e0_r
-	, float * e0_i
-	, float * e1_r
-	, float * e1_i
-	, int wantv
+	, float *     e0_r
+	, float *     e0_i
+	, float *     e1_r
+	, float *     e1_i
+	, int         wantv
 	, float * v0_r, float * v0_i, float * v1_r, float * v1_i
 	, float * v2_r, float * v2_i, float * v3_r, float * v3_i
 ) {
@@ -97,11 +97,11 @@ MC_TARGET_PROC int mc_zreig2x2f(
 
 MC_TARGET_PROC int mc_zreig2x2ff(
 	  const float a[4]
-	, double * e0_r
-	, double * e0_i
-	, double * e1_r
-	, double * e1_i
-	, int wantv
+	, double *    e0_r
+	, double *    e0_i
+	, double *    e1_r
+	, double *    e1_i
+	, int         wantv
 	, double * v0_r, double * v0_i, double * v1_r, double * v1_i
 	, double * v2_r, double * v2_i, double * v3_r, double * v3_i
 ) {
@@ -167,11 +167,11 @@ MC_TARGET_PROC int mc_zreig2x2ff(
 
 MC_TARGET_PROC int mc_zreig2x2(
 	  const double a[4]
-	, double * e0_r
-	, double * e0_i
-	, double * e1_r
-	, double * e1_i
-	, int wantv
+	, double *     e0_r
+	, double *     e0_i
+	, double *     e1_r
+	, double *     e1_i
+	, int          wantv
 	, double * v0_r, double * v0_i, double * v1_r, double * v1_i
 	, double * v2_r, double * v2_i, double * v3_r, double * v3_i
 ) {
@@ -237,11 +237,11 @@ MC_TARGET_PROC int mc_zreig2x2(
 
 MC_TARGET_PROC int mc_zreig2x2l(
 	  const long double a[4]
-	, long double * e0_r
-	, long double * e0_i
-	, long double * e1_r
-	, long double * e1_i
-	, int wantv
+	, long double *     e0_r
+	, long double *     e0_i
+	, long double *     e1_r
+	, long double *     e1_i
+	, int               wantv
 	, long double * v0_r, long double * v0_i, long double * v1_r, long double * v1_i
 	, long double * v2_r, long double * v2_i, long double * v3_r, long double * v3_i
 ) {
