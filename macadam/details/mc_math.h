@@ -121,6 +121,7 @@
 #	include <macadam/details/math/mc_fdim.h>
 #	include <macadam/details/math/mc_ffrac.h>
 #	include <macadam/details/math/mc_fhrt.h>
+#	include <macadam/details/math/mc_fiseq.h>
 #	include <macadam/details/math/mc_fisint.h>
 #	include <macadam/details/math/mc_fisnear.h>
 #	include <macadam/details/math/mc_fisodd.h>
@@ -230,6 +231,7 @@
 #	include <macadam/details/math/mc_raise4.h>
 #	include <macadam/details/math/mc_raise5.h>
 #	include <macadam/details/math/mc_raise6.h>
+#	include <macadam/details/math/mc_rem2pi_cw.h>
 #	include <macadam/details/math/mc_remainder.h>
 #	include <macadam/details/math/mc_remint2.h>
 #	include <macadam/details/math/mc_rempio2_cw.h>
@@ -254,6 +256,7 @@
 #	include <macadam/details/math/mc_sinc.h>
 #	include <macadam/details/math/mc_sincos.h>
 #	include <macadam/details/math/mc_sincospi.h>
+#	include <macadam/details/math/mc_sind.h>
 #	include <macadam/details/math/mc_sinh.h>
 #	include <macadam/details/math/mc_sinhcosh.h>
 #	include <macadam/details/math/mc_sinpi.h>

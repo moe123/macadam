@@ -30,8 +30,9 @@ MC_TARGET_FUNC float mc_cospif(const float x)
 		case 2:
 			r = -mc_cosf(r);
 		break;
-		default:
+		case 3:
 			r =  mc_sinf(r);
+		break;
 	}
 	return r;
 }
@@ -51,8 +52,9 @@ MC_TARGET_FUNC double mc_cospi(const double x)
 		case 2:
 			r = -mc_cos(r);
 		break;
-		default:
+		case 3:
 			r =  mc_sin(r);
+		break;
 	}
 	return r;
 }
@@ -76,8 +78,9 @@ MC_TARGET_FUNC long double mc_cospil(const long double x)
 		case 2:
 			r = -mc_cosl(r);
 		break;
-		default:
+		case 3:
 			r =  mc_sinl(r);
+		break;
 	}
 	return r;
 }

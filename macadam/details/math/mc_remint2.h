@@ -13,8 +13,8 @@
 #include <macadam/details/math/mc_floor.h>
 #include <macadam/details/math/mc_itrunc64.h>
 
-#ifndef MC_REMZPI_H
-#define MC_REMZPI_H
+#ifndef MC_REMINT2_H
+#define MC_REMINT2_H
 
 #pragma mark - mc_remint2 -
 
@@ -145,6 +145,6 @@ MC_TARGET_PROC int64_t mc_remint2l(long double x, long double * z)
 #	endif
 }
 
-#endif /* !MC_REMZPI_H */
+#endif /* !MC_REMINT2_H */
 
 /* EOF */

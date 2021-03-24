@@ -6,17 +6,18 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
+#include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_fisval.h>
 #include <macadam/details/math/mc_floor.h>
 #include <macadam/details/math/mc_itrunc64.h>
 
-#ifndef MC_MC_REMPIO2_CW_H
-#define MC_MC_REMPIO2_CW_H
+#ifndef MC_REMPIO2_CW_H
+#define MC_REMPIO2_CW_H
 
-MC_TARGET_PROC int64_t mc_rempio2f_cw(float x, float * z)
+MC_TARGET_PROC int64_t mc_rempio2_cwf(const float x, float * z)
 {
 //!# Cody-Waite reduction of x such as z=x - n*pi/2 where |z|<=pi/4, result = n mod 8.
-	const float dp1 = +0.78538513183593750000000000000000000000E-00f;
+	const float dp1 = +0.78538513183593750000000000000000000000E+00f;
 	const float dp2 = +1.30315311253070831298828125000000000000E-05f;
 	const float dp3 = +3.03855025325309630000000000000000000000E-11f;
 
@@ -29,9 +30,9 @@ MC_TARGET_PROC int64_t mc_rempio2f_cw(float x, float * z)
 #	endif
 
 	*z = 0.0;
-	if (mc_fisvalf(x)) {
+	if (mc_fisvalf(x) && mc_fabsf(x) <= 1048576.0f) {
 		if (x == 0.0f) {
-			return 0;
+			return 0.0f;
 		}
 		w = mc_floorf(x * MCK_KF(MCK_1_PI_4));
 		r = mc_itrunc64f(w - 16.0f * mc_floorf(w / 16.0f));
@@ -43,14 +44,14 @@ MC_TARGET_PROC int64_t mc_rempio2f_cw(float x, float * z)
 			 r = (mc_cast(uint64_t, r) >> 1) & 7;
 			*z = ((x - w * dp1) - w * dp2) - w * dp3;
 		} else {
-			 r = 0;
-			*z = x;
+			 r = max;
+			*z = MCK_NAN;
 		}
 	}
 	return r;
 }
 
-MC_TARGET_PROC int64_t mc_rempio2_cw(double x, double * z)
+MC_TARGET_PROC int64_t mc_rempio2_cw(const double x, double * z)
 {
 //!# Cody-Waite reduction of x such as z=x - n*pi/2 where |z|<=pi/4, result = n mod 8.
 	const double dp1 = +7.85398125648498535156000000000000000000000E-01;
@@ -66,9 +67,9 @@ MC_TARGET_PROC int64_t mc_rempio2_cw(double x, double * z)
 #	endif
 
 	*z = 0.0;
-	if (mc_fisval(x)) {
+	if (mc_fisval(x) && mc_fabs(x) <= 2147483648.0) {
 		if (x == 0.0) {
-			return 0;
+			return 0.0;
 		}
 		w = mc_floor(x * MCK_K(MCK_1_PI_4));
 		r = mc_itrunc64(w - 16.0 * mc_floor(w / 16.0));
@@ -80,14 +81,14 @@ MC_TARGET_PROC int64_t mc_rempio2_cw(double x, double * z)
 			 r = (mc_cast(uint64_t, r) >> 1) & 7;
 			*z = ((x - w * dp1) - w * dp2) - w * dp3;
 		} else {
-			 r = 0;
-			*z = x;
+			 r = max;
+			*z = MCK_NAN;
 		}
 	}
 	return r;
 }
 
-MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
+MC_TARGET_PROC int64_t mc_rempio2_cwl(const long double x, long double * z)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Cody-Waite reduction of x such as z=x - n*pi/2 where |z|<=pi/4, result = n mod 8.
@@ -110,9 +111,9 @@ MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
 #	endif
 
 	*z = 0.0L;
-	if (mc_fisvall(x)) {
+	if (mc_fisvall(x) && mc_fabsl(x) <= 549755813888.0L) {
 		if (x == 0.0L) {
-			return 0;
+			return 0.0L;
 		}
 		w = mc_floorl(x * MCK_KL(MCK_1_PI_4));
 		r = mc_itrunc64l(w - 16.0L * mc_floorl(w / 16.0L));
@@ -124,19 +125,20 @@ MC_TARGET_PROC int64_t mc_rempio2l_cw(long double x, long double * z)
 			 r = (mc_cast(uint64_t, r) >> 1) & 7;
 			*z = ((x - w * dp1) - w * dp2) - w * dp3;
 		} else {
-			 r = 0;
-			*z = x;
+			 r = max;
+			*z = MCK_NAN;
 		}
 	}
 	return r;
 #	else
-	double y  = mc_cast(double, x), w = 0.0;
-	int64_t r = mc_rempio2_cw(y, &w);
-	*z        = mc_cast(long double, w);
+	const double y = mc_cast(const double, x);
+	double w       = 0.0;
+	int64_t r      = mc_rempio2_cw(y, &w);
+	*z             = mc_cast(long double, w);
 	return r;
 #	endif
 }
 
-#endif /* !MC_MC_REMPIO2_CW_H */
+#endif /* !MC_REMPIO2_CW_H */
 
 /* EOF */
