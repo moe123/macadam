@@ -17,9 +17,9 @@ MC_TARGET_PROC float mc_rem2pi_cwf(const float x)
 {
 //!# [+0, +2pi]. x mod 2pi.
 
-	const float pi2h = +6.28318530717958600000000000000000000000E+00f;
-	const float pi2m = MCK_KF(MCK_2PI) - pi2h;
-	const float pi2l = +2.44929359829470640000000000000000000000E-16f;
+	// const float pi2h = +6.28318530717958600000000000000000000000E+00f;
+	// const float pi2m = MCK_KF(MCK_2PI) - pi2h;
+	// const float pi2l = +2.44929359829470640000000000000000000000E-16f;
 
 	float z;
 
