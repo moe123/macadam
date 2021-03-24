@@ -17,8 +17,8 @@
 
 MC_TARGET_FUNC float mc_bernoulli_b2nf(const unsigned int n)
 {
-	const unsigned int max_b2n = 33;
-	const float b2n[]          =
+	const unsigned int b2n_max = 33U;
+	const float B2N[]          =
 	{
 		  MCK_KF(MCK_BN0)
 		, MCK_KF(MCK_BN2)
@@ -55,16 +55,16 @@ MC_TARGET_FUNC float mc_bernoulli_b2nf(const unsigned int n)
 		, MCK_KF(MCK_BN64)
 	};
 	float r = ((n % 2) == 0) ? MCK_INFP : MCK_INFN;
-	if (n < max_b2n) {
-		r = (n == 1) ? MCK_KF(MCK_BN1) : b2n[n / 2];
+	if (n < b2n_max) {
+		r = (n == 1) ? MCK_KF(MCK_BN1) : B2N[n / 2];
 	}
 	return r;
 }
 
 MC_TARGET_FUNC double mc_bernoulli_b2n(const unsigned int n)
 {
-	const unsigned int max_b2n = 130;
-	const double b2n[]         =
+	const unsigned int b2n_max = 130U;
+	const double B2N[]         =
 	{
 		  MCK_K(MCK_BN0)
 		, MCK_K(MCK_BN2)
@@ -198,8 +198,8 @@ MC_TARGET_FUNC double mc_bernoulli_b2n(const unsigned int n)
 		, MCK_K(MCK_BN258)
 	};
 	double r = ((n % 2) == 0) ? MCK_INFP : MCK_INFN;
-	if (n < max_b2n) {
-		r = (n == 1) ? MCK_K(MCK_BN1) : b2n[n / 2];
+	if (n < b2n_max) {
+		r = (n == 1) ? MCK_K(MCK_BN1) : B2N[n / 2];
 	}
 	return r;
 }
@@ -207,8 +207,8 @@ MC_TARGET_FUNC double mc_bernoulli_b2n(const unsigned int n)
 MC_TARGET_FUNC long double mc_bernoulli_b2nl(const unsigned int n)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
-	const unsigned int max_b2n = 1157;
-	const long double b2n[]    =
+	const unsigned int b2n_max = 1157U;
+	const long double B2N[]    =
 	{
 		  +1.000000000000000000000000000000000000000000000000000000000000000E+00L
 		, +1.666666666666666666711841757186896018083643866702914237976074219E-01L
@@ -1369,8 +1369,8 @@ MC_TARGET_FUNC long double mc_bernoulli_b2nl(const unsigned int n)
 		, -2.762447751447012472724951337412606058231212129706257635803803745E+4930L
 	};
 	long double r = ((n % 2) == 0) ? MCK_INFP : MCK_INFN;
-	if (n < max_b2n) {
-		r = (n == 1) ? MCK_KL(MCK_BN1) : b2n[n / 2];
+	if (n < b2n_max) {
+		r = (n == 1) ? MCK_KL(MCK_BN1) : B2N[n / 2];
 	}
 	return r;
 #	else

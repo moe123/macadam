@@ -18,7 +18,7 @@
 MC_TARGET_FUNC float mc_choosef(const unsigned int n, const unsigned int k)
 {
 	float r                          = MCLIMITS_MAXF;
-	const unsigned int max_factorial = 35;
+	const unsigned int factorial_max = 35U;
 
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
@@ -28,7 +28,7 @@ MC_TARGET_FUNC float mc_choosef(const unsigned int n, const unsigned int k)
 		} else if ((k == 1) || (k == n - 1)) {
 			return n < 0x1000001U ? mc_cast(float, n) : MCLIMITS_MAXF;
 		}
-		if (n < max_factorial) {
+		if (n < factorial_max) {
 			r = mc_factorialf(n);
 			r = r / mc_factorialf(n - k);
 			r = r / mc_factorialf(k);
@@ -59,7 +59,7 @@ MC_TARGET_FUNC float mc_choosef(const unsigned int n, const unsigned int k)
 MC_TARGET_FUNC double mc_choose(const unsigned int n, const unsigned int k)
 {
 	double r                         = MCLIMITS_MAX;
-	const unsigned int max_factorial = 171;
+	const unsigned int factorial_max = 171U;
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
 			return MCLIMITS_MAX;
@@ -68,7 +68,7 @@ MC_TARGET_FUNC double mc_choose(const unsigned int n, const unsigned int k)
 		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(double, n);
 		}
-		if (n < max_factorial) {
+		if (n < factorial_max) {
 			r = mc_factorial(n);
 			r = r / mc_factorial(n - k);
 			r = r / mc_factorial(k);
@@ -93,9 +93,9 @@ MC_TARGET_FUNC long double mc_choosel(const unsigned int n, const unsigned int k
 {
 	long double r                    = MCLIMITS_MAXL;
 #	if MC_TARGET_HAVE_LONG_DOUBLE
-	const unsigned int max_factorial = 1755;
+	const unsigned int factorial_max = 1755U;
 #	else
-	const unsigned int max_factorial = 171;
+	const unsigned int factorial_max = 171U;
 #	endif
 	if (n < MCLIMITS_UIMAX && k < MCLIMITS_UIMAX) {
 		if (k > n) {
@@ -105,7 +105,7 @@ MC_TARGET_FUNC long double mc_choosel(const unsigned int n, const unsigned int k
 		} else if ((k == 1) || (k == n - 1)) {
 			return mc_cast(long double, n);
 		}
-		if (n < max_factorial) {
+		if (n < factorial_max) {
 			r = mc_cast(long double, mc_factoriall(n));
 			r = r / mc_cast(long double, mc_factoriall(n - k));
 			r = r / mc_cast(long double, mc_factoriall(k));

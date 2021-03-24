@@ -29,7 +29,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, const int m, const float x)
 	float w                 = 1.0f;
 	int i                   = 1;
 	int k                   = 0;
-	const int max_factorial = 35;
+	const int factorial_max = 35U;
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
@@ -44,7 +44,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, const int m, const float x)
 		if (!(k < 0)) {
 			p1 = mc_legendre_pnmf(n, -m, x);
 			n  = n - m;
-			p0 = (n < max_factorial
+			p0 = (n < factorial_max
 				? (mc_factorialf(mc_cast(const unsigned int, k)) / mc_factorialf(mc_cast(const unsigned int, n)))
 				: (mc_gammaf(mc_cast(const float, (k + 1))) / mc_gammaf(mc_cast(const float, (n + 1))))
 			);
@@ -92,7 +92,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, const int m, const double x)
 	double w                = 1.0;
 	int i                   = 1;
 	int k                   = 0;
-	const int max_factorial = 171;
+	const int factorial_max = 171U;
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
 	}
@@ -107,7 +107,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, const int m, const double x)
 		if (!(k < 0)) {
 			p1 = mc_legendre_pnm(n, -m, x);
 			n  = n - m;
-			p0 = (n < max_factorial
+			p0 = (n < factorial_max
 				? (mc_factorial(mc_cast(const unsigned int, k)) / mc_factorial(mc_cast(const unsigned int, n)))
 				: (mc_gamma(mc_cast(const double, (k + 1))) / mc_gamma(mc_cast(const double, (n + 1))))
 			);
@@ -156,9 +156,9 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, const int m, const long doubl
 	int i                   = 1;
 	int k                   = 0;
 #	if MC_TARGET_HAVE_LONG_DOUBLE
-	const int max_factorial = 1755;
+	const int factorial_max = 1755U;
 #	else
-	const int max_factorial = 171;
+	const int factorial_max = 171U;
 #	endif
 	if (mc_isnan(x) || mc_isinf(x)) {
 		return MCK_NAN;
@@ -174,7 +174,7 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, const int m, const long doubl
 		if (!(k < 0)) {
 			p1 = mc_legendre_pnml(n, -m, x);
 			n  = n - m;
-			p0 = (n < max_factorial
+			p0 = (n < factorial_max
 				? (mc_factoriall(mc_cast(const unsigned int, k)) / mc_factoriall(mc_cast(const unsigned int, n)))
 				: (mc_gammal(mc_cast(const long double, (k + 1))) / mc_gammal(mc_cast(const long double, (n + 1))))
 			);

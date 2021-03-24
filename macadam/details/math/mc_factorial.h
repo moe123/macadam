@@ -20,7 +20,7 @@ MC_TARGET_FUNC float mc_factorialf(const unsigned int x)
 {
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
 //!# Hence you should consider -1! to be infinity.
-	const float factorial_table[] =
+	const float P[] =
 	{
 		  +1.00000000000000000000000000000000000000E+00f
 		, +1.00000000000000000000000000000000000000E+00f
@@ -61,7 +61,7 @@ MC_TARGET_FUNC float mc_factorialf(const unsigned int x)
 	float y = MCLIMITS_MAXF;
 	if (x < MCLIMITS_UIMAX) {
 		if (x < 35) {
-			return factorial_table[x];
+			return P[x];
 		}
 		y = mc_gammaf(mc_cast(float, x) + 1.0f);
 		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXF) {
@@ -76,7 +76,7 @@ MC_TARGET_FUNC double mc_factorial(const unsigned int x)
 {
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
 //!# Hence you should consider -1! to be infinity.
-	const double factorial_table[] =
+	const double P[] =
 	{
 		  +1.0000000000000000000000000000000000000000E+00
 		, +1.0000000000000000000000000000000000000000E+00
@@ -253,7 +253,7 @@ MC_TARGET_FUNC double mc_factorial(const unsigned int x)
 	double y = MCLIMITS_MAX;
 	if (x < MCLIMITS_UIMAX) {
 		if (x < 171) {
-			return factorial_table[x];
+			return P[x];
 		}
 		y = mc_gamma(mc_cast(double, x) + 1.0);
 		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAX) {
@@ -269,7 +269,7 @@ MC_TARGET_FUNC long double mc_factoriall(const unsigned int x)
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# \note: for x=-1, x!=gamma(x + 1)=gamma(0)=~infinity.
 //!# Hence you should consider -1! to be infinity.
-	const long double factorial_table[] =
+	const long double P[] =
 	{
 		  +1.000000000000000000000000000000000000000000000000000000000000000E+00L
 		, +1.000000000000000000000000000000000000000000000000000000000000000E+00L
@@ -2030,7 +2030,7 @@ MC_TARGET_FUNC long double mc_factoriall(const unsigned int x)
 	long double y;
 	if (x < MCLIMITS_UIMAX) {
 		if (x < 1755) {
-			return factorial_table[x];
+			return P[x];
 		}
 		y = mc_gammal(mc_cast(long double, x) + 1.0L);
 		if (!mc_isnan(y) && mc_isfinite(y) && y < MCLIMITS_MAXL) {
