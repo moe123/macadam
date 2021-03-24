@@ -25,8 +25,8 @@ MC_TARGET_FUNC int mc_fiseqf(const float a, const float b, const float p, const 
 	} else {
 		const float eps = (
 			  mc_iabs(n) != 0 || mc_iabs(n) != 1
-			? mc_cast(float, mc_iabs(n)) * (p == 0.0f ? p = MCK_EPSILONF : p)
-			: (p == 0.0f ? p = MCK_EPSILONF : p);
+			? mc_cast(float, mc_iabs(n)) * (p == 0.0f ? MCLIMITS_EPSILONF : p)
+			: (p == 0.0f ? MCLIMITS_EPSILONF : p)
 		);
 		if (a == 0.0f) {
 			if (mc_fabsf(b) <= eps) {
@@ -61,8 +61,8 @@ MC_TARGET_FUNC int mc_fiseq(const double a, const double b, const float p, const
 	} else {
 		const double eps = (
 			  mc_iabs(n) != 0 || mc_iabs(n) != 1
-			? mc_cast(double, mc_iabs(n)) * (p == 0.0 ? p = MCK_EPSILON : p)
-			: (p == 0.0 ? p = MCK_EPSILON : p);
+			? mc_cast(double, mc_iabs(n)) * (p == 0.0 ? MCLIMITS_EPSILON : p)
+			: (p == 0.0 ? MCLIMITS_EPSILON : p)
 		);
 		if (a == 0.0) {
 			if (mc_fabs(b) <= eps) {
@@ -97,8 +97,8 @@ MC_TARGET_FUNC int mc_fiseql(const long double a, const long double b, const flo
 	} else {
 		const long double eps = (
 			  mc_iabs(n) != 0 || mc_iabs(n) != 1
-			? mc_cast(long double, mc_iabs(n)) * (p == 0.0L ? p = MCK_EPSILONL : p)
-			: (p == 0.0L ? p = MCK_EPSILONL : p);
+			? mc_cast(long double, mc_iabs(n)) * (p == 0.0L ? MCLIMITS_EPSILONL : p)
+			: (p == 0.0L ? MCLIMITS_EPSILONL : p)
 		);
 		if (a == 0.0L) {
 			if (mc_fabsl(b) <= eps) {
