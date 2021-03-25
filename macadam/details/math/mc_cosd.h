@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_sind.h
+// mc_cosd.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
@@ -10,12 +10,12 @@
 #include <macadam/details/math/mc_remquo.h>
 #include <macadam/details/math/mc_sin.h>
 
-#ifndef MC_SIND_H
-#define MC_SIND_H
+#ifndef MC_COSD_H
+#define MC_COSD_H
 
-#pragma mark - mc_sind -
+#pragma mark - mc_cosd -
 
-MC_TARGET_FUNC float mc_sindf(const float x)
+MC_TARGET_FUNC float mc_cosdf(const float x)
 {
 	int quo;
 	float r       = 0.0f;
@@ -26,22 +26,22 @@ MC_TARGET_FUNC float mc_sindf(const float x)
 	switch (quo % 4)
 	{
 		case 0:
-			r =  mc_sinf(a);
-		break;
-		case 1:
 			r =  mc_cosf(a);
 		break;
-		case 2:
+		case 1:
 			r =  mc_sinf(-a);
 		break;
-		case 3:
+		case 2:
 			r = -mc_cosf(a);
+		break;
+		case 3:
+			r =  mc_sinf(a);
 		break;
 	}
 	return s * r;
 }
 
-MC_TARGET_FUNC double mc_sind(const double x)
+MC_TARGET_FUNC double mc_cosd(const double x)
 {
 	int quo;
 	double r       = 0.0;
@@ -52,22 +52,22 @@ MC_TARGET_FUNC double mc_sind(const double x)
 	switch (quo % 4)
 	{
 		case 0:
-			r =  mc_sin(a);
-		break;
-		case 1:
 			r =  mc_cos(a);
 		break;
-		case 2:
+		case 1:
 			r =  mc_sin(-a);
 		break;
-		case 3:
+		case 2:
 			r = -mc_cos(a);
+		break;
+		case 3:
+			r =  mc_sin(a);
 		break;
 	}
 	return s * r;
 }
 
-MC_TARGET_FUNC long double mc_sindl(const long double x)
+MC_TARGET_FUNC long double mc_cosdl(const long double x)
 {
 	int quo;
 	long double r       = 0.0L;
@@ -78,21 +78,21 @@ MC_TARGET_FUNC long double mc_sindl(const long double x)
 	switch (quo % 4)
 	{
 		case 0:
-			r =  mc_sinl(a);
-		break;
-		case 1:
 			r =  mc_cosl(a);
 		break;
-		case 2:
+		case 1:
 			r =  mc_sinl(-a);
 		break;
-		case 3:
+		case 2:
 			r = -mc_cosl(a);
+		break;
+		case 3:
+			r =  mc_sinl(a);
 		break;
 	}
 	return s * r;
 }
 
-#endif /* !MC_SIND_H */
+#endif /* !MC_COSD_H */
 
 /* EOF */
