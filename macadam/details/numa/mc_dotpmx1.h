@@ -29,7 +29,8 @@ MC_TARGET_FUNC float mc_dotpmx1f(const int m, const int n, const int p, const in
 	float w = 0.0f, h, q, r, x1, x2, y1, y2;
 #	endif
 
-	if (m > 0) {
+	if (m > 0)
+	{
 		switch (f) {
 			case 0:
 				for (; i < m; i++) {
@@ -110,7 +111,8 @@ MC_TARGET_FUNC double mc_dotpmx1ff(const int m, const int n, const int p, const 
 #	endif
 
 	if (m > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < m; i++) {
 					s = s + (mc_cast(double, a[(n * i) + j]) * mc_cast(double, b[(p * i) + k]));
@@ -190,7 +192,8 @@ MC_TARGET_FUNC double mc_dotpmx1(const int m, const int n, const int p, const in
 #	endif
 
 	if (m > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < m; i++) {
 					s = s + (a[(n * i) + j] * b[(p * i) + k]);
@@ -275,7 +278,8 @@ MC_TARGET_FUNC long double mc_dotpmx1l(const int m, const int n, const int p, co
 #	endif
 
 	if (m > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < m; i++) {
 					s = s + (a[(n * i) + j] * b[(p * i) + k]);

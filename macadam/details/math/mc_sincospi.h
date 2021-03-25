@@ -20,7 +20,8 @@ MC_TARGET_FUNC void mc_sincospif(float x, float * sinp, float * cosp)
 	int64_t i = mc_remint2f(x, &z) & 3;
 	z         = MCK_KF(MCK_PI) * z;
 	mc_sincosf(z, &ss, &cc);
-	switch (i) {
+	switch (i)
+	{
 		case 0:
 			*sinp = ss;
 			*cosp = cc;
@@ -45,7 +46,8 @@ MC_TARGET_FUNC void mc_sincospi(double x, double * sinp, double * cosp)
 	int64_t i = mc_remint2(x, &z) & 3;
 	z         = MCK_K(MCK_PI) * z;
 	mc_sincos(z, &ss, &cc);
-	switch (i) {
+	switch (i)
+	{
 		case 0:
 			*sinp = ss;
 			*cosp = cc;
@@ -74,7 +76,8 @@ MC_TARGET_FUNC void mc_sincospil(long double x, long double * sinp, long double 
 	z             = MCK_KL(MCK_PI) * z;
 #	endif
 	mc_sincosl(z, &ss, &cc);
-	switch (i) {
+	switch (i)
+	{
 		case 0:
 			*sinp = ss;
 			*cosp = cc;

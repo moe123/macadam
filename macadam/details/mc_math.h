@@ -84,6 +84,7 @@
 #	include <macadam/details/math/mc_conj.h>
 #	include <macadam/details/math/mc_copysign.h>
 #	include <macadam/details/math/mc_cos.h>
+#	include <macadam/details/math/mc_cosd.h>
 #	include <macadam/details/math/mc_cosh.h>
 #	include <macadam/details/math/mc_cospi.h>
 #	include <macadam/details/math/mc_cot.h>
@@ -232,6 +233,7 @@
 #	include <macadam/details/math/mc_raise5.h>
 #	include <macadam/details/math/mc_raise6.h>
 #	include <macadam/details/math/mc_rem2pi_cw.h>
+#	include <macadam/details/math/mc_rem90d.h>
 #	include <macadam/details/math/mc_remainder.h>
 #	include <macadam/details/math/mc_remint2.h>
 #	include <macadam/details/math/mc_rempio2_cw.h>

@@ -21,14 +21,14 @@
 MC_TARGET_PROC int64_t mc_remint2f(float x, float * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
-	int64_t r = 0;
+	int64_t r         = 0;
 	float w;
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	const int64_t max = INT64_MAX;
 #	else
 	const int64_t max = mc_cast(const int64_t, 0x7FFFFFFFFFFFFFFF);
 #	endif
-	*z = 0.0f;
+	*z                = 0.0f;
 	if (mc_fisvalf(x)) {
 		if (mc_fabsf(x) <= 0.25f) {
 			 r = 0;
@@ -61,14 +61,14 @@ MC_TARGET_PROC int64_t mc_remint2f(float x, float * z)
 MC_TARGET_PROC int64_t mc_remint2(double x, double * z)
 {
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
-	int64_t r = 0;
+	int64_t r         = 0;
 	double w;
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	const int64_t max = INT64_MAX;
 #	else
 	const int64_t max = mc_cast(const int64_t, 0x7FFFFFFFFFFFFFFF);
 #	endif
-	*z = 0.0;
+	*z                = 0.0;
 	if (mc_fisval(x)) {
 		if (mc_fabs(x) <= 0.25) {
 			 r = 0;
@@ -102,14 +102,14 @@ MC_TARGET_PROC int64_t mc_remint2l(long double x, long double * z)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Reduction of x=z*PI=x*PI - n*PI/2 where |z|<=1/4, result = n mod 8.
-	int64_t r = 0;
+	int64_t r         = 0;
 	long double w;
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	const int64_t max = INT64_MAX;
 #	else
 	const int64_t max = mc_cast(const int64_t, 0x7FFFFFFFFFFFFFFF);
 #	endif
-	*z = 0.0L;
+	*z                = 0.0L;
 	if (mc_fisvall(x)) {
 		if (mc_fabsl(x) <= 0.25L) {
 			 r = 0;

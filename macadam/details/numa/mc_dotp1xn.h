@@ -28,7 +28,8 @@ MC_TARGET_FUNC float mc_dotp1xnf(const int n, const float * x, const float * y, 
 #	endif
 
 	if (n > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < n; i++) {
 					s = s + (x[i] * y[i]);
@@ -106,7 +107,8 @@ MC_TARGET_FUNC double mc_dotp1xnff(const int n, const float * x, const float * y
 #	endif
 
 	if (n > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < n; i++) {
 					s = s + (mc_cast(double, x[i]) * mc_cast(double, y[i]));
@@ -184,7 +186,8 @@ MC_TARGET_FUNC double mc_dotp1xn(const int n, const double * x, const double * y
 #	endif
 
 	if (n > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < n; i++) {
 					s = s + (x[i] * y[i]);
@@ -269,7 +272,8 @@ MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const
 #	endif
 
 	if (n > 0) {
-		switch (f) {
+		switch (f)
+		{
 			case 0:
 				for (; i < n; i++) {
 					s = s + (x[i] * y[i]);

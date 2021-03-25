@@ -16,7 +16,8 @@
 
 MC_TARGET_FUNC float mc_summx1f(const int m, const int n, const int j, const float * a, const int f)
 {
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 		{
 			int i   = 0;
@@ -93,7 +94,8 @@ MC_TARGET_FUNC float mc_summx1f(const int m, const int n, const int j, const flo
 
 MC_TARGET_FUNC double mc_summx1ff(const int m, const int n, const int j, const float * a, const int f)
 {
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 		{
 			int i    = 0;
@@ -170,7 +172,8 @@ MC_TARGET_FUNC double mc_summx1ff(const int m, const int n, const int j, const f
 
 MC_TARGET_FUNC double mc_summx1(const int m, const int n, const int j, const double * a, const int f)
 {
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 		{
 			int i    = 0;
@@ -247,7 +250,8 @@ MC_TARGET_FUNC double mc_summx1(const int m, const int n, const int j, const dou
 
 MC_TARGET_FUNC long double mc_summx1l(const int m, const int n, const int j, const long double * a, const int f)
 {
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 		{
 			int i         = 0;

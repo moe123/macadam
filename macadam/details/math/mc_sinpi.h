@@ -20,7 +20,8 @@ MC_TARGET_FUNC float mc_sinpif(const float x)
 	float r   = 0.0f;
 	int64_t i = mc_remint2f(x, &r) & 3;
 	r         = MCK_KF(MCK_PI) * r;
-	switch (i) {
+	switch (i)
+	{
 		case 0:
 			r =  mc_sinf(r);
 		break;
@@ -42,7 +43,8 @@ MC_TARGET_FUNC double mc_sinpi(const double x)
 	double r  = 0.0;
 	int64_t i = mc_remint2(x, &r) & 3;
 	r         = MCK_K(MCK_PI) * r;
-	switch (i) {
+	switch (i)
+	{
 		case 0:
 			r =  mc_sin(r);
 		break;
@@ -68,7 +70,8 @@ MC_TARGET_FUNC long double mc_sinpil(const long double x)
 #	else
 	r             = MCK_KL(MCK_PI) * r;
 #	endif
-	switch (i) {
+	switch (i)
+	{
 		case 0:
 			r =  mc_sinl(r);
 		break;

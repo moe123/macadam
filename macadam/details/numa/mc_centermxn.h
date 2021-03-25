@@ -24,7 +24,8 @@ MC_TARGET_FUNC void mc_centermxnf(const int m, const int n, float * c, const flo
 //!# f=2: root mean square scaling.
 	int i, j = 0;
 	float mj, wj;
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			for (; j < n; j++) {
 				mj = mc_meanmx1f(m, n, j, a, 0, 5);
@@ -67,7 +68,8 @@ MC_TARGET_FUNC void mc_centermxnff(const int m, const int n, double * c, const f
 //!# f=2: root mean square scaling.
 	int i, j = 0;
 	double mj, wj;
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			for (; j < n; j++) {
 				mj = mc_meanmx1ff(m, n, j, a, 0, 5);
@@ -110,7 +112,8 @@ MC_TARGET_FUNC void mc_centermxn(const int m, const int n, double * c, const dou
 //!# f=2: root mean square scaling.
 	int i, j = 0;
 	double mj, wj;
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			for (; j < n; j++) {
 				mj = mc_meanmx1(m, n, j, a, 0, 5);
@@ -153,7 +156,8 @@ MC_TARGET_FUNC void mc_centermxnl(const int m, const int n, long double * c, con
 //!# f=2: root mean square scaling.
 	int i, j = 0;
 	long double mj, wj;
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			for (; j < n; j++) {
 				mj = mc_meanmx1l(m, n, j, a, 0, 5);

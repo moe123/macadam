@@ -17,7 +17,8 @@ MC_TARGET_FUNC float mc_dotp3x1f(const int n, const int j, const int k, const fl
 {
 	float s = 0.0f, e = 0.0f, x, y;
 
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			s = s + (a[j] * b[k]);
 			s = s + (a[n + j] * b[n + k]);
@@ -44,7 +45,8 @@ MC_TARGET_FUNC double mc_dotp3x1ff(const int n, const int j, const int k, const 
 {
 	double s = 0.0, e = 0.0, x, y;
 
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			s = s + (mc_cast(double, a[j]) * mc_cast(double, b[k]));
 			s = s + (mc_cast(double, a[n + j]) * mc_cast(double, b[n + k]));
@@ -71,7 +73,8 @@ MC_TARGET_FUNC double mc_dotp3x1(const int n, const int j, const int k, const do
 {
 	double s = 0.0, e = 0.0, x, y;
 
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			s = s + (a[j] * b[k]);
 			s = s + (a[n + j] * b[n + k]);
@@ -98,7 +101,8 @@ MC_TARGET_FUNC long double mc_dotp3x1l(const int n, const int j, const int k, co
 {
 	long double s = 0.0L, e = 0.0L, x, y;
 
-	switch (f) {
+	switch (f)
+	{
 		case 0:
 			s = s + (a[j] * b[k]);
 			s = s + (a[n + j] * b[n + k]);
