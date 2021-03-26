@@ -226,6 +226,7 @@
 #	include <macadam/details/math/mc_pow10.h>
 #	include <macadam/details/math/mc_powi.h>
 #	include <macadam/details/math/mc_powm1.h>
+#	include <macadam/details/math/mc_pown.h>
 #	include <macadam/details/math/mc_probit.h>
 #	include <macadam/details/math/mc_raise2.h>
 #	include <macadam/details/math/mc_raise3.h>

@@ -357,6 +357,13 @@
 #	define mc_scope_begin do     {
 #	define mc_scope_end   break; } while (0)
 
+#	undef MC_TARGET_LONG_IS64
+#	if defined(INT_TYPE_SIZE) && defined(LONG_TYPE_SIZE) && defined(LONG_LONG_TYPE_SIZE)
+#		if (INT_TYPE_SIZE < LONG_TYPE_SIZE && !(LONG_TYPE_SIZE < LONG_LONG_TYPE_SIZE)
+#			define MC_TARGET_LONG_64BIT 1
+#		endif
+#	endif
+
 #	if MC_TARGET_CPP98
 #		include <cstdio>
 #		include <climits>
