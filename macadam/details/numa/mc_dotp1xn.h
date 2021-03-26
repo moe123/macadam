@@ -254,7 +254,7 @@ MC_TARGET_FUNC long double mc_dotp1xnl(const int n, const long double * x, const
 {
 #	if !MC_TARGET_HAVE_FMA
 //!# TwoProduct split factor @see `mc_twoproduct`.
-#	if MC_TARGET_HAVE_LONG_DOUBLE && (LDBL_MANT_DIG + 0) == 64
+#	if MC_TARGET_HAVE_LONG_DOUBLE && ((LDBL_MANT_DIG + 0) <= 64)
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
 #	elif MC_TARGET_HAVE_LONG_DOUBLE
 #	pragma message("Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1.")

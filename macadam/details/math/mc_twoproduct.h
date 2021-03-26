@@ -82,7 +82,7 @@ MC_TARGET_FUNC void mc_twoproductl(const long double a, const long double b, lon
 //!#
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
-#	if MC_TARGET_HAVE_LONG_DOUBLE && (LDBL_MANT_DIG + 0) == 64
+#	if MC_TARGET_HAVE_LONG_DOUBLE && ((LDBL_MANT_DIG + 0) <= 64)
 //!# 2^32 + 1 -> ceil(LDBL_MANT_DIG / 2.0) + 1.0. (float-80)
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
 #	elif MC_TARGET_HAVE_LONG_DOUBLE
