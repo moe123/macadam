@@ -18,55 +18,43 @@
 
 #pragma mark - mc_gamma_approx0 -
 
-MC_TARGET_PROC float mc_gammaf_approx0(const float x)
+MC_TARGET_PROC float mc_gammaf_approx0(const float x, int * psigngam)
 {
-//!# Stirling's formula formula for x >= 13.
-	if (mc_isnan(x) || mc_isinf(x)) {
-		return x;
+	int gamsign   = 1;
+	const float y = mc_gammalnf_approx0(x, &gamsign);
+	if (mc_isnan(y) || mc_isinf(y)) {
+		return y;
 	}
-	if (x <= 0.0f) {
-		return MCK_INFP;
+	if (mc_nonnullptr(psigngam)) {
+		*psigngam = gamsign;
 	}
-	if (x == 1.0f) {
-		return 1.0f;
-	}
-	const float a = MCK_KF(MCK_2PI) / x;
-	const float b = x * MCK_KF(MCK_1_E);
-	return mc_sqrtf(a) * mc_powf(b, x);
+	return mc_cast(const float, gamsign) * mc_expf(y);
 }
 
-MC_TARGET_PROC double mc_gamma_approx0(const double x)
+MC_TARGET_PROC double mc_gamma_approx0(const double x, int * psigngam)
 {
-//!# Stirling's formula formula for x >= 13.
-	if (mc_isnan(x) || mc_isinf(x)) {
-		return x;
+	int gamsign    = 1;
+	const double y = mc_gammaln_approx0(x, &gamsign);
+	if (mc_isnan(y) || mc_isinf(y)) {
+		return y;
 	}
-	if (x <= 0.0) {
-		return MCK_INFP;
+	if (mc_nonnullptr(psigngam)) {
+		*psigngam = gamsign;
 	}
-	if (x == 1.0) {
-		return 1.0;
-	}
-	const double a = MCK_K(MCK_2PI) / x;
-	const double b = x * MCK_K(MCK_1_E);
-	return mc_sqrt(a) * mc_pow(b, x);
+	return mc_cast(const double, gamsign) * mc_exp(y);
 }
 
-MC_TARGET_PROC long double mc_gammal_approx0(const long double x)
+MC_TARGET_PROC long double mc_gammal_approx0(const long double x, int * psigngam)
 {
-//!# Stirling's formula formula for x >= 13.
-	if (mc_isnan(x) || mc_isinf(x)) {
-		return x;
+	int gamsign         = 1;
+	const long double y = mc_gammalnl_approx0(x, &gamsign);
+	if (mc_isnan(y) || mc_isinf(y)) {
+		return y;
 	}
-	if (x <= 0.0L) {
-		return MCK_INFP;
+	if (mc_nonnullptr(psigngam)) {
+		*psigngam = gamsign;
 	}
-	if (x == 1.0L) {
-		return 1.0L;
-	}
-	const long double a = MCK_KL(MCK_2PI) / x;
-	const long double b = x * MCK_KL(MCK_1_E);
-	return mc_sqrtl(a) * mc_powl(b, x);
+	return mc_cast(const long double, gamsign) * mc_expl(y);
 }
 
 #pragma mark - mc_gamma_approx1 -

@@ -64,7 +64,7 @@ MC_TARGET_FUNC float mc_rgammaf(const float x)
 
 		return mc_xpolyeval9f(-x, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 	}
-	const float g = mc_gammalnf_approx1(x, MC_NULLPTR);
+	const float g = mc_gammalnf_approx0(x, MC_NULLPTR);
 	if (mc_isnan(g) || mc_isinf(g)) {
 		return g;
 	}
@@ -115,7 +115,7 @@ MC_TARGET_FUNC double mc_rgamma(const double x)
 
 		return mc_xpolyeval9(-x, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 	}
-	const double g = mc_gammaln_approx1(x, MC_NULLPTR);
+	const double g = mc_gammaln_approx0(x, MC_NULLPTR);
 	if (mc_isnan(g) || mc_isinf(g)) {
 		return g;
 	}
@@ -167,7 +167,7 @@ MC_TARGET_FUNC long double mc_rgammal(const long double x)
 
 		return mc_xpolyeval9l(-x, p1, p2, p3, p4, p5, p6, p7, p8, p9);
 	}
-	const long double g = mc_gammalnl_approx1(x, MC_NULLPTR);
+	const long double g = mc_gammalnl_approx0(x, MC_NULLPTR);
 	if (mc_isnan(g) || mc_isinf(g)) {
 		return g;
 	}

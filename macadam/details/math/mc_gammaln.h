@@ -29,33 +29,7 @@ extern int signgam;
 
 #pragma mark - mc_gammaln_approx0 -
 
-MC_TARGET_PROC float mc_gammalnf_approx0(const float x)
-{
-//!# Stirling's formula for x >= 13.
-	const float a = MCK_KF(MCK_2PI) / x;
-	const float b = x * MCK_KF(MCK_1_E);
-	return mc_logf(mc_sqrtf(a) * mc_powf(b, x));
-}
-
-MC_TARGET_PROC double mc_gammaln_approx0(const double x)
-{
-//!# Stirling's formula formula for x >= 13.
-	const double a = MCK_K(MCK_2PI) / x;
-	const double b = x * MCK_K(MCK_1_E);
-	return mc_log(mc_sqrt(a) * mc_pow(b, x));
-}
-
-MC_TARGET_PROC long double mc_gammalnl_approx0(const long double x)
-{
-//!# Stirling's formula formula for x >= 13.
-	const long double a = MCK_KL(MCK_2PI) / x;
-	const long double b = x * MCK_KL(MCK_1_E);
-	return mc_logl(mc_sqrtl(a) * mc_powl(b, x));
-}
-
-#pragma mark - mc_gammaln_approx1 -
-
-MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * psigngam)
+MC_TARGET_PROC float mc_gammalnf_approx0(const float x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
@@ -95,19 +69,19 @@ MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * psigngam)
 			*psigngam = r < 0.0f ? +1 : -1;
 		}
 		r = mc_fabsf(MCK_KF(MCK_PI) / r);
-		r = mc_logf(r) - mc_gammalnf_approx1(-x, MC_NULLPTR);
+		r = mc_logf(r) - mc_gammalnf_approx0(-x, MC_NULLPTR);
 	} else {
 		if (have_sign) {
 			*psigngam = +1;
 		}
 		r = mc_sinpif(x);
 		r = MCK_KF(MCK_PI) / r;
-		r = mc_logf(r) - mc_gammalnf_approx1(1.0f - x, MC_NULLPTR);
+		r = mc_logf(r) - mc_gammalnf_approx0(1.0f - x, MC_NULLPTR);
 	}
 	return r;
 }
 
-MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * psigngam)
+MC_TARGET_PROC double mc_gammaln_approx0(const double x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
@@ -147,19 +121,19 @@ MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * psigngam)
 			*psigngam = r < 0.0 ? +1 : -1;
 		}
 		r = mc_fabs(MCK_K(MCK_PI) / r);
-		r = mc_log(r) - mc_gammaln_approx1(-x, MC_NULLPTR);
+		r = mc_log(r) - mc_gammaln_approx0(-x, MC_NULLPTR);
 	} else {
 		if (have_sign) {
 			*psigngam = +1;
 		}
 		r = mc_sinpi(x);
 		r = MCK_K(MCK_PI) / r;
-		r = mc_log(r) - mc_gammaln_approx1(1.0 - x, MC_NULLPTR);
+		r = mc_log(r) - mc_gammaln_approx0(1.0 - x, MC_NULLPTR);
 	}
 	return r;
 }
 
-MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * psigngam)
+MC_TARGET_PROC long double mc_gammalnl_approx0(const long double x, int * psigngam)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
@@ -200,25 +174,25 @@ MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * psigng
 			*psigngam = r < 0.0L ? +1 : -1;
 		}
 		r = mc_fabsl(MCK_KL(MCK_PI) / r);
-		r = mc_logl(r) - mc_gammalnl_approx1(-x, MC_NULLPTR);
+		r = mc_logl(r) - mc_gammalnl_approx0(-x, MC_NULLPTR);
 	} else {
 		if (have_sign) {
 			*psigngam = +1;
 		}
 		r = mc_sinpil(x);
 		r = MCK_KL(MCK_PI) / r;
-		r = mc_logl(r) - mc_gammalnl_approx1(1.0 - x, MC_NULLPTR);
+		r = mc_logl(r) - mc_gammalnl_approx0(1.0 - x, MC_NULLPTR);
 	}
 	return r;
 #	else
 	const double xx = mc_cast(double, x);
-	return mc_cast(long double, mc_gammaln_approx1(xx, psigngam));
+	return mc_cast(long double, mc_gammaln_approx0(xx, psigngam));
 #	endif
 }
 
 #pragma mark - mc_gammaln_approx1 -
 
-MC_TARGET_PROC float mc_gammalnf_approx2(const float x, int * psigngam)
+MC_TARGET_PROC float mc_gammalnf_approx1(const float x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const float lanczos_g  = +5.000000000000000000000000000000000000E+00f;
@@ -309,7 +283,7 @@ MC_TARGET_PROC float mc_gammalnf_approx2(const float x, int * psigngam)
 	return r;
 }
 
-MC_TARGET_PROC double mc_gammaln_approx2(const double x, int * psigngam)
+MC_TARGET_PROC double mc_gammaln_approx1(const double x, int * psigngam)
 {
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
 	const double lanczos_g  = +5.0000000000000000000000000000000000000000E+00;
@@ -400,7 +374,7 @@ MC_TARGET_PROC double mc_gammaln_approx2(const double x, int * psigngam)
 	return r;
 }
 
-MC_TARGET_PROC long double mc_gammalnl_approx2(const long double x, int * psigngam)
+MC_TARGET_PROC long double mc_gammalnl_approx1(const long double x, int * psigngam)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
 //!# Hybrid Lanczos approximation, computes log(|gamma(x)|).
@@ -492,7 +466,7 @@ MC_TARGET_PROC long double mc_gammalnl_approx2(const long double x, int * psigng
 	return r;
 #	else
 	const double xx = mc_cast(double, x);
-	return mc_cast(long double, mc_gammaln_approx2(xx, psigngam));
+	return mc_cast(long double, mc_gammaln_approx1(xx, psigngam));
 #	endif
 }
 
@@ -507,11 +481,11 @@ MC_TARGET_FUNC float mc_gammalnf(const float x)
 	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0.0f && mc_fisintf(x)) {
-		return mc_copysignf(MCK_INF, x);
-	}
 	if (x == 0.0f) {
 		return mc_copysignf(MCK_INF, x);
+	}
+	if (x < 0.0f && mc_fisintf(x)) {
+		return MCK_INFP;
 	}
 	if (x == 1.0f || x == 2.0f) {
 		return 0.0f;
@@ -524,7 +498,7 @@ MC_TARGET_FUNC float mc_gammalnf(const float x)
 	if (y > (MCLIMITS_MAXF / mc_logf(MCLIMITS_MAXF))) {
 		return MCK_INFP;
 	}
-	return mc_gammalnf_approx1(x, &mc_gammasign_s);
+	return mc_gammalnf_approx0(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC double mc_gammaln(const double x)
@@ -536,11 +510,11 @@ MC_TARGET_FUNC double mc_gammaln(const double x)
 	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0.0 && mc_fisint(x)) {
-		return mc_copysign(MCK_INF, x);
-	}
 	if (x == 0.0) {
 		return mc_copysign(MCK_INF, x);
+	}
+	if (x < 0.0 && mc_fisint(x)) {
+		return MCK_INFP;
 	}
 	if (x == 1.0 || x == 2.0) {
 		return 0.0;
@@ -553,7 +527,7 @@ MC_TARGET_FUNC double mc_gammaln(const double x)
 	if (y > (MCLIMITS_MAX / mc_log(MCLIMITS_MAX))) {
 		return MCK_INFP;
 	}
-	return mc_gammaln_approx1(x, &mc_gammasign_s);
+	return mc_gammaln_approx0(x, &mc_gammasign_s);
 }
 
 MC_TARGET_FUNC long double mc_gammalnl(const long double x)
@@ -565,11 +539,11 @@ MC_TARGET_FUNC long double mc_gammalnl(const long double x)
 	if (mc_isinf(x)) {
 		return x;
 	}
-	if (x <= 0.0L && mc_fisintl(x)) {
-		return mc_copysignl(MCK_INF, x);
-	}
 	if (x == 0.0L) {
 		return mc_copysignl(MCK_INF, x);
+	}
+	if (x < 0.0L && mc_fisintl(x)) {
+		return MCK_INFP;
 	}
 	if (x == 1.0L || x == 2.0L) {
 		return 0.0L;
@@ -582,7 +556,7 @@ MC_TARGET_FUNC long double mc_gammalnl(const long double x)
 	if (y > (MCLIMITS_MAXL / mc_logl(MCLIMITS_MAXL))) {
 		return MCK_INFP;
 	}
-	return mc_gammalnl_approx1(x, &mc_gammasign_s);
+	return mc_gammalnl_approx0(x, &mc_gammasign_s);
 }
 
 #endif /* !MC_GAMMALN_H */
