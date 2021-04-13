@@ -7,6 +7,7 @@
 //
 
 #include <macadam/details/rand/mc_randi.h>
+#include <macadam/details/rand/mc_randk.h>
 
 #ifndef MC_RANDU_H
 #define MC_RANDU_H
@@ -20,12 +21,7 @@ MC_TARGET_PROC float mc_randuf(void)
 	const float a = mc_cast(float, mc_randi());
 	return a / (MCLIMITS_RANDMAX + 1);
 #	else
-	const unsigned int a = mc_randi();
-	const float  b       = +2.32830643708079700000000000000000000000E-10f;
-	if (a < 0x1000001U) {
-		return mc_cast(float, a) * b;
-	}
-	return mc_cast_expr(float,  mc_cast(double, a) * mc_cast(double, b));
+	return mc_randkf();
 #	endif
 }
 

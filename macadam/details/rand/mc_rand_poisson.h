@@ -12,7 +12,7 @@
 #include <macadam/details/math/mc_itrunc32.h>
 #include <macadam/details/math/mc_log.h>
 #include <macadam/details/math/mc_sqrt.h>
-#include <macadam/details/math/mc_tan.h>
+#include <macadam/details/math/mc_tanpi.h>
 #include <macadam/details/rand/mc_randu.h>
 
 #ifndef MC_RAND_POISSON_H
@@ -22,9 +22,9 @@
 
 MC_TARGET_FUNC int rand_poissonf(const float l)
 {
-	float r, m = 0.0f, p = 1.0f;
+	float r, m = 0.0f, p = 1.0f, x, f;
 
-	if (l < 60.0f) {
+	if (l < 90.0f) {
 		r = mc_expf(-l);
 		do {
 			m = m + 1.0f;
@@ -32,16 +32,19 @@ MC_TARGET_FUNC int rand_poissonf(const float l)
 		} while (p > r);
 		m = m - 1.0f;
 	} else {
+//!# rejection can be very slow.
 		const float w = mc_sqrtf(l);
 		const float g = mc_logf(l);
-		float x       = -1.0f, f;
+		x             = -1.0f;
 		do {
-			while (x < 0.0f) {
-				x = l + w * mc_tanf(MCK_KF(MCK_PI) * (mc_randuf() - 1.0f * 0.5f));
-			}
-			p = w / (MCK_KF(MCK_PI) * ((x - l) * (x - l) + l));
+			do {
+				p = mc_randuf();
+				x = l + w * mc_tanpif(p - 1.0f * 0.5f);
+			} while (x < 0.0f);
 			m = mc_floorf(x);
-			f = mc_expf(m * g - l - mc_gammalnf(m + 1));
+			p = w / (MCK_KF(MCK_PI) * ((x - l) * (x - l) + l));
+			f = m * g - l - mc_gammalnf(m + 1.0f);
+			f = mc_expf(f);
 			r = f / p / 2.4f;
 		} while (mc_randuf() > r);
 	}
@@ -50,9 +53,9 @@ MC_TARGET_FUNC int rand_poissonf(const float l)
 
 MC_TARGET_FUNC int rand_poisson(const double l)
 {
-	double r, m = 0.0, p = 1.0;
+	double r, m = 0.0, p = 1.0, x, f;
 
-	if (l < 60.0) {
+	if (l < 180.0) {
 		r = mc_exp(-l);
 		do {
 			m = m + 1.0;
@@ -60,16 +63,19 @@ MC_TARGET_FUNC int rand_poisson(const double l)
 		} while (p > r);
 		m = m - 1.0;
 	} else {
+//!# rejection can be very slow.
 		const double w = mc_sqrt(l);
 		const double g = mc_log(l);
-		double x       = -1.0, f;
+		x              = -1.0;
 		do {
-			while (x < 0.0) {
-				x = l + w * mc_tan(MCK_K(MCK_PI) * (mc_randu() - 1.0 * 0.5));
-			}
-			p = w / (MCK_K(MCK_PI) * ((x - l) * (x - l) + l));
+			do {
+				p = mc_randu();
+				x = l + w * mc_tanpi(p - 1.0 * 0.5);
+			} while (x < 0.0);
 			m = mc_floor(x);
-			f = mc_exp(m * g - l - mc_gammaln(m + 1));
+			p = w / (MCK_K(MCK_PI) * ((x - l) * (x - l) + l));
+			f = m * g - l - mc_gammaln(m + 1.0);
+			f = mc_exp(f);
 			r = f / p / 2.4;
 		} while (mc_randu() > r);
 	}
@@ -78,9 +84,9 @@ MC_TARGET_FUNC int rand_poisson(const double l)
 
 MC_TARGET_FUNC int rand_poissonl(const long double l)
 {
-	long double r, m = 0.0L, p = 1.0L;
+	long double r, m = 0.0L, p = 1.0L, x, f;
 
-	if (l < 60.0L) {
+	if (l < 720.0L) {
 		r = mc_expl(-l);
 		do {
 			m = m + 1.0L;
@@ -88,16 +94,19 @@ MC_TARGET_FUNC int rand_poissonl(const long double l)
 		} while (p > r);
 		m = m - 1.0;
 	} else {
+//!# rejection can be very slow.
 		const long double w = mc_sqrtl(l);
 		const long double g = mc_logl(l);
-		long double x       = -1.0L, f;
+		x                   = -1.0L;
 		do {
-			while (x < 0.0L) {
-				x = l + w * mc_tanl(MCK_KL(MCK_PI) * (mc_randul() - 1.0L * 0.5L));
-			}
-			p = w / (MCK_KL(MCK_PI) * ((x - l) * (x - l) + l));
+			do {
+				p = mc_randul();
+				x = l + w * mc_tanpil(p - 1.0L * 0.5L);
+			} while (x < 0.0L);
 			m = mc_floorl(x);
-			f = mc_expl(m * g - l - mc_gammalnl(m + 1));
+			p = w / (MCK_KL(MCK_PI) * ((x - l) * (x - l) + l));
+			f = m * g - l - mc_gammalnl(m + 1.0L);
+			f = mc_expl(f);
 			r = f / p / 2.4L;
 		} while (mc_randul() > r);
 	}

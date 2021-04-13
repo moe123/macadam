@@ -25,6 +25,7 @@
 #	include <macadam/details/rand/mc_rand_weibull.h>
 #	include <macadam/details/rand/mc_randg.h>
 #	include <macadam/details/rand/mc_randi.h>
+#	include <macadam/details/rand/mc_randk.h>
 #	include <macadam/details/rand/mc_randn.h>
 #	include <macadam/details/rand/mc_randu.h>
 

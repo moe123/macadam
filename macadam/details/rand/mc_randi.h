@@ -21,6 +21,7 @@
 #	undef  MC_TARGET_RAND_USE_MARSAGLIAXOR128
 #	undef  MC_TARGET_RAND_USE_BOXMULLER
 
+//!# definitly the best performer.
 #	define MC_TARGET_RAND_USE_PCG32 1
 
 #	if MC_TARGET_RAND_USE_PCG32
@@ -43,12 +44,15 @@ static MC_TARGET_THREAD_LOCAL uint32_t mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
 static MC_TARGET_THREAD_LOCAL uint32_t mc_randi_init_s = 0;
 
 #	if MC_TARGET_RAND_USE_LIBCRAND
-#		define MCLIMITS_RANDMAX mc_cast(const uint32_t, RAND_MAX)
+#		define MCLIMITS_RANDMAX mc_cast(const unsigned int, RAND_MAX)
 #	elif MC_TARGET_RAND_USE_PCG32
+//!# Melissa E. O’Neill PCG 32-bit PRNG.
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
 #	elif MC_TARGET_RAND_USE_MARSAGLIAMWC
+//!# Marsaglia multiply-with-carry 32-bit PRNG.
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
 #	elif MC_TARGET_RAND_USE_LFSR113
+//!# L'Ecuyer LFSR113 32-bit PRNG.
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
 #	else
 #		define MCLIMITS_RANDMAX MCLIMITS_UIMAX
@@ -65,7 +69,14 @@ MC_TARGET_PROC void mc_srandi(
 		++mc_randi_init_s;
 	}
 #	if MC_TARGET_RAND_USE_PCG32
-	mc_randi_seeds_s[0] = mc_randi_seeds_s[0] * mc_cast(uint64_t, s4) + mc_cast(uint64_t, s5) | mc_cast(uint64_t, s1) + mc_cast(uint64_t, s2) * mc_cast(uint64_t, s3);
+//!# A better permutation based approach for arming PCGs family safely.
+	mc_randi_seeds_s[0] = mc_randi_seeds_s[0]
+		* mc_cast(uint64_t, s4)
+		+ mc_cast(uint64_t, s5)
+		| mc_cast(uint64_t, s1)
+		+ mc_cast(uint64_t, s2)
+		* mc_cast(uint64_t, s3)
+	;
 	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] | mc_randi_seeds_s[0];
 #	else
 	s4                  = s4 + s5;
@@ -134,6 +145,8 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	}
 #	if MC_TARGET_RAND_USE_LIBCRAND
 	++mc_randi_init_s;
+//!# We arbitrary roll on every 600 samples as we don't know what's
+//!# there, so it will trigger seed renewal on the next period.
 	if (mc_randi_init_s > 600) {
 		mc_randi_init_s = 0;
 	}
@@ -154,6 +167,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	x                   = mc_cast_expr(uint32_t, ((a >> 18U) ^ a) >> 27U);
 	r                   = a >> 59U;
 	b                   = (x >> r) | (x << ((-r) & 31));
+//!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
@@ -166,6 +180,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	mc_randi_seeds_s[0] = 36969 * (mc_randi_seeds_s[0] & 0177777) + (mc_randi_seeds_s[0] >> 16);
 	mc_randi_seeds_s[1] = 18000 * (mc_randi_seeds_s[1] & 0177777) + (mc_randi_seeds_s[1] >> 16);
 	b                   = ((mc_randi_seeds_s[0] << 16) ^ (mc_randi_seeds_s[1] & 0177777));
+//!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
@@ -185,7 +200,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	b                   = ((mc_randi_seeds_s[3] << 3 ) ^ mc_randi_seeds_s[3]) >> 12;
 	mc_randi_seeds_s[3] = ((mc_randi_seeds_s[3] & 4294967168U) << 13) ^ b;
 	b                   = (mc_randi_seeds_s[0] ^ mc_randi_seeds_s[1] ^ mc_randi_seeds_s[2] ^ mc_randi_seeds_s[3]);
-
+//!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
@@ -203,7 +218,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 	b                   ^= b << 11;
 	b                   ^= b >> 8;
 	b                    = mc_randi_seeds_s[0] = b ^ s0 ^ (s0 >> 19);
-
+//!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
 		return MCLIMITS_RANDMAX;
