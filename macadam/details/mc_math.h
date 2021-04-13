@@ -106,6 +106,7 @@
 #	include <macadam/details/math/mc_erf.h>
 #	include <macadam/details/math/mc_erfc.h>
 #	include <macadam/details/math/mc_eta.h>
+#	include <macadam/details/math/mc_evalpoly.h>
 #	include <macadam/details/math/mc_exp.h>
 #	include <macadam/details/math/mc_exp10.h>
 #	include <macadam/details/math/mc_exp10i.h>
