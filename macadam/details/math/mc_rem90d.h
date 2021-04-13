@@ -19,13 +19,16 @@
 
 MC_TARGET_PROC int64_t mc_rem90df(const float x, float * z)
 {
-//!# z = x mod 90.
-
+//!# z = x mod 90 argument reduction similar to @remint2 for degree given
+//!# angles. Reducing x in degrees mod 90; z = x mod 90, |z| < 45. @todo
+//!# improving situation in @sind and @cosd respectively.
 	int64_t r  = 0;
 	float w, y = 0.0f;
 
 	if (mc_fisvalf(x) && x != 0.0f) {
 		w = x;
+		//!# argument is out of any computable range, accurency
+		//!# is already lost, reducing first over a 360 field.
 		if (mc_fabsf(x) >= 5826.0f) {
 			w = mc_fmodf(w, 360.0f);
 		}
@@ -44,13 +47,16 @@ MC_TARGET_PROC int64_t mc_rem90df(const float x, float * z)
 
 MC_TARGET_PROC int64_t mc_rem90d(const double x, double * z)
 {
-//!# z = x mod 90.
-
+//!# z = x mod 90 argument reduction similar to @remint2 for degree given
+//!# angles. Reducing x in degrees mod 90; z = x mod 90, |z| < 45. @todo
+//!# improving situation in @sind and @cosd respectively.
 	int64_t r   = 0;
 	double w, y = 0.0;
 
 	if (mc_fisval(x) && x != 0.0) {
 		w = x;
+		//!# argument is out of any computable range, accurency
+		//!# is already lost, reducing first over a 360 field.
 		if (mc_fabs(x) >= 23860928.0) {
 			w = mc_fmod(w, 360.0);
 		}
@@ -69,13 +75,16 @@ MC_TARGET_PROC int64_t mc_rem90d(const double x, double * z)
 
 MC_TARGET_PROC int64_t mc_rem90dl(const long double x, long double * z)
 {
-//!# z = x mod 90.
-
+//!# z = x mod 90 argument reduction similar to @remint2 for degree given
+//!# angles. Reducing x in degrees mod 90; z = x mod 90, |z| < 45. @todo
+//!# improving situation in @sind and @cosd respectively.
 	int64_t r        = 0;
 	long double w, y = 0.0L;
 
 	if (mc_fisvall(x) && x != 0.0L) {
 		w = x;
+		//!# argument is out of any computable range, accurency
+		//!# is already lost, reducing first over a 360 field.
 		if (mc_fabsl(x) >= 3054198966.0L) {
 			w = mc_fmodl(w, 360.0L);
 		}
