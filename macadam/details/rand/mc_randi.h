@@ -41,6 +41,7 @@ static MC_TARGET_THREAD_LOCAL uint32_t mc_randi_seeds_s[]  = { 1234, 0, 5678, 0 
 #	else
 static MC_TARGET_THREAD_LOCAL uint32_t mc_randi_seeds_s[]  = { 2, 8, 16, 128 };
 #	endif
+
 static MC_TARGET_THREAD_LOCAL uint32_t mc_randi_init_s = 0;
 
 #	if MC_TARGET_RAND_USE_LIBCRAND
@@ -170,7 +171,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 //!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
-		return MCLIMITS_RANDMAX;
+		return MCLIMITS_RANDMAX - 1;
 	}
 	return b;
 #	elif MC_TARGET_RAND_USE_MARSAGLIAMWC
@@ -183,7 +184,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 //!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
-		return MCLIMITS_RANDMAX;
+		return MCLIMITS_RANDMAX - 1;
 	}
 	return b;
 #	elif MC_TARGET_RAND_USE_LFSR113
@@ -203,7 +204,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 //!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
-		return MCLIMITS_RANDMAX;
+		return MCLIMITS_RANDMAX - 1;
 	}
 	return b;
 #	else
@@ -221,7 +222,7 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 //!# if saturation happens we renew seeds.
 	if (!(b < MCLIMITS_RANDMAX)) {
 		mc_ssrandi();
-		return MCLIMITS_RANDMAX;
+		return MCLIMITS_RANDMAX - 1;
 	}
 	return b;
 #	endif

@@ -13,8 +13,7 @@
 
 #pragma mark - mc_os_memset -
 
-static MC_TARGET_INLINE
-void * mc_os_memset(void * b, int c, size_t len)
+MC_TARGET_PROC void * mc_os_memset(void * b, int c, const  size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -36,16 +35,14 @@ void * mc_os_memset(void * b, int c, size_t len)
 
 #pragma mark - mc_os_memzero -
 
-static MC_TARGET_INLINE
-void * mc_os_memzero(void * b, size_t len)
+MC_TARGET_PROC void * mc_os_memzero(void * b, const  size_t len)
 {
 	return mc_os_memset(b, 0, len);
 }
 
 #pragma mark - mc_os_memcpy -
 
-static MC_TARGET_INLINE
-void * mc_os_memcpy(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, size_t len)
+MC_TARGET_PROC void * mc_os_memcpy(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, const  size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -65,10 +62,26 @@ void * mc_os_memcpy(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTR
 	return MC_NULLPTR;
 }
 
+#pragma mark - mc_os_mempcpy -
+
+MC_TARGET_PROC void * mc_os_mempcpy(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, const  size_t len)
+{
+#	if defined(__clang__)
+#	if __has_builtin(__builtin_mempcpy)
+	return __builtin_mempcpy(dest, src, len);
+#	else
+	return mc_cast_expr(uint8_t *, mc_os_mempcy(dest, src, len)) + len;
+#	endif
+#	elif defined(__GNUC__)
+	return __builtin_mempcpy(dest, src, len);
+#	else
+	return mc_cast_expr(uint8_t *, mc_os_mempcy(dest, src, len)) + len;
+#	endif
+}
+
 #pragma mark - mc_os_memmove -
 
-static MC_TARGET_INLINE
-void * mc_os_memmove(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, size_t len)
+MC_TARGET_PROC void * mc_os_memmove(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_RESTRICT src, const  size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -90,8 +103,7 @@ void * mc_os_memmove(void * MC_TARGET_RESTRICT dest, const void * MC_TARGET_REST
 
 #pragma mark - mc_os_memcmp -
 
-static MC_TARGET_INLINE
-int mc_os_memcmp(const void * MC_TARGET_RESTRICT left, const void * MC_TARGET_RESTRICT right, size_t len)
+MC_TARGET_PROC int mc_os_memcmp(const void * MC_TARGET_RESTRICT left, const void * MC_TARGET_RESTRICT right, const  size_t len)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	size_t max = sizeof(size_t) < sizeof(uint64_t) ?
@@ -113,8 +125,7 @@ int mc_os_memcmp(const void * MC_TARGET_RESTRICT left, const void * MC_TARGET_RE
 
 #pragma mark - mc_os_malloc -
 
-static MC_TARGET_INLINE
-void * mc_os_malloc(size_t size)
+MC_TARGET_PROC void * mc_os_malloc(size_t size)
 {
 #	if MC_TARGET_CPP98
 	return ::malloc(size);
@@ -125,16 +136,14 @@ void * mc_os_malloc(size_t size)
 
 #pragma mark - mc_os_cmalloc -
 
-static MC_TARGET_INLINE
-void * mc_os_cmalloc(size_t size)
+MC_TARGET_PROC void * mc_os_cmalloc(size_t size)
 {
 	return mc_os_memzero(mc_os_malloc(size), size);
 }
 
 #pragma mark - mc_os_calloc -
 
-static MC_TARGET_INLINE
-void * mc_os_calloc(size_t count, size_t size)
+MC_TARGET_PROC void * mc_os_calloc(size_t count, size_t size)
 {
 #	if MC_TARGET_CPP98
 	return ::calloc(count, size);
@@ -145,8 +154,7 @@ void * mc_os_calloc(size_t count, size_t size)
 
 #pragma mark - mc_os_realloc -
 
-static MC_TARGET_INLINE
-void * mc_os_realloc(void * ptr, size_t size)
+MC_TARGET_PROC void * mc_os_realloc(void * ptr, size_t size)
 {
 #	if MC_TARGET_CPP98
 	return ::realloc(ptr, size);
@@ -157,8 +165,7 @@ void * mc_os_realloc(void * ptr, size_t size)
 
 #pragma mark - mc_os_free -
 
-static MC_TARGET_INLINE
-void mc_os_free(void * ptr)
+MC_TARGET_PROC void mc_os_free(void * ptr)
 {
 #	if MC_TARGET_CPP98
 	::free(ptr);

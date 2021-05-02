@@ -23,6 +23,7 @@
 #	include <macadam/details/rand/mc_rand_uniform_int.h>
 #	include <macadam/details/rand/mc_rand_uniform.h>
 #	include <macadam/details/rand/mc_rand_weibull.h>
+#	include <macadam/details/rand/mc_randb.h>
 #	include <macadam/details/rand/mc_randg.h>
 #	include <macadam/details/rand/mc_randi.h>
 #	include <macadam/details/rand/mc_randk.h>
