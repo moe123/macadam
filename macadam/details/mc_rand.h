@@ -13,6 +13,7 @@
 
 #	include <macadam/details/rand/mc_rand_beta.h>
 #	include <macadam/details/rand/mc_rand_chisquare.h>
+#	include <macadam/details/rand/mc_rand_circular.h>
 #	include <macadam/details/rand/mc_rand_exponential.h>
 #	include <macadam/details/rand/mc_rand_gamma.h>
 #	include <macadam/details/rand/mc_rand_laplace.h>

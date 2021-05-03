@@ -13,7 +13,7 @@
 
 #pragma mark - mc_randb_xtea -
 
-void mc_randb_xtea(const int r, const uint32_t key[4], uint32_t v[2])
+MC_TARGET_PROC void mc_randb_xtea(const int r, const uint32_t key[4], uint32_t v[2])
 {
 //!# - r: number of rounds.
 //!# - k: 128-bit key to encipher with.
@@ -41,7 +41,7 @@ void mc_randb_xtea(const int r, const uint32_t key[4], uint32_t v[2])
 			, y ^= x                           \
 		)
 
-void mc_randb64_speck(const int r, const uint64_t key[2], uint64_t v[2])
+MC_TARGET_PROC void mc_randb64_speck(const int r, const uint64_t key[2], uint64_t v[2])
 {
 //!# - r: number of rounds.
 //!# - k: 128-bit key to encipher with.
@@ -64,7 +64,7 @@ void mc_randb64_speck(const int r, const uint64_t key[2], uint64_t v[2])
 
 #pragma mark - mc_randb_encipher -
 
-void mc_randb_encipher(const int n, const uint32_t key[4], uint32_t * v)
+MC_TARGET_PROC void mc_randb_encipher(const int n, const uint32_t key[4], uint32_t * v)
 {
 //!# By usage and in this very context, it renders described 64-bit
 //!# cipher attacks unrelated to the matter being considered here.
@@ -82,7 +82,7 @@ void mc_randb_encipher(const int n, const uint32_t key[4], uint32_t * v)
 
 #pragma mark - mc_randb64_encipher -
 
-void mc_randb64_encipher(const int n, const uint64_t key[2], uint64_t * v)
+MC_TARGET_PROC void mc_randb64_encipher(const int n, const uint64_t key[2], uint64_t * v)
 {
 //!# - n: v[n], `n` must be a multiple of 2 i.e `x` blocks of 2.
 //!# - k: 128-bit key to encipher with.
@@ -166,7 +166,7 @@ MC_TARGET_PROC uint64_t mc_randb64_randi(void)
 
 #pragma mark - mc_randb_randv -
 
-void mc_randb_randv(const int n, uint32_t * r)
+MC_TARGET_PROC void mc_randb_randv(const int n, uint32_t * r)
 {
 	int i = 0;
 	for (; i < n; i++) {
@@ -176,7 +176,7 @@ void mc_randb_randv(const int n, uint32_t * r)
 
 #pragma mark - mc_randb64_randv -
 
-void mc_randb64_randv(const int n, uint64_t * r)
+MC_TARGET_PROC void mc_randb64_randv(const int n, uint64_t * r)
 {
 	int i = 0;
 	for (; i < n; i++) {
@@ -186,7 +186,7 @@ void mc_randb64_randv(const int n, uint64_t * r)
 
 #pragma mark - mc_randb -
 
-int mc_randb(const int n, void * dst)
+MC_TARGET_FUNC int mc_randb(const int n, void * dst)
 {
 //!# Generating `n` random bytes using a 64-bit block cipher and stores them into `dst`. It can be used
 //!# as an entropy source for a CSPRNG (Cryptographically secure pseudorandom number generator).
@@ -254,7 +254,7 @@ int mc_randb(const int n, void * dst)
 
 #pragma mark - mc_randb64 -
 
-int mc_randb64(const int n, void * dst)
+MC_TARGET_FUNC int mc_randb64(const int n, void * dst)
 {
 //!# Generating `n` random bytes using a 128-bit block cipher and stores them into `dst`. It can be used
 //!# as an entropy source for a CSPRNG (Cryptographically secure pseudorandom number generator).
@@ -273,7 +273,6 @@ int mc_randb64(const int n, void * dst)
 		block_v = block_m + 2;
 
 		mc_randb64_randv(2, block_k);
-
 		while (offset > 64) {
 			mc_randb64_randv(8, block_v);
 			mc_randb64_encipher(8, block_k, block_v);
