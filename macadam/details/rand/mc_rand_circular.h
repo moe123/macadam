@@ -11,8 +11,9 @@
 #include <macadam/details/math/mc_exp.h>
 #include <macadam/details/math/mc_fabs.h>
 #include <macadam/details/math/mc_raise2.h>
-#include <macadam/details/rand/mc_rand_uniform.h>
+#include <macadam/details/math/mc_sqrt.h>
 #include <macadam/details/rand/mc_randg.h>
+#include <macadam/details/rand/mc_randu.h>
 
 #ifndef MC_RAND_CIRCULAR_H
 #define MC_RAND_CIRCULAR_H
