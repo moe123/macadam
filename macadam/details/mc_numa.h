@@ -6,8 +6,6 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-
 #ifndef MC_NUMA_H
 #define MC_NUMA_H
 

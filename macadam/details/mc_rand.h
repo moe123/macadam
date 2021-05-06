@@ -6,8 +6,6 @@
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
 
-#include <macadam/details/mc_target.h>
-
 #ifndef MC_RAND_H
 #define MC_RAND_H
 
@@ -16,6 +14,7 @@
 #	include <macadam/details/rand/mc_rand_circular.h>
 #	include <macadam/details/rand/mc_rand_exponential.h>
 #	include <macadam/details/rand/mc_rand_gamma.h>
+#	include <macadam/details/rand/mc_rand_geometric.h>
 #	include <macadam/details/rand/mc_rand_laplace.h>
 #	include <macadam/details/rand/mc_rand_lgamma.h>
 #	include <macadam/details/rand/mc_rand_lnormal.h>
