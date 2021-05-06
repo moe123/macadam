@@ -15,21 +15,21 @@
 
 #pragma mark - mc_babs -
 
-MC_TARGET_PROC signed char mc_babs(signed char x)
+MC_TARGET_PROC signed char mc_babs(const signed char x)
 {
 	return x < 0 ? -x : x;
 }
 
 #pragma mark - mc_sabs -
 
-MC_TARGET_PROC short mc_sabs(short x)
+MC_TARGET_PROC short mc_sabs(const short x)
 {
 	return x < 0 ? -x : x;
 }
 
 #pragma mark - mc_iabs -
 
-MC_TARGET_PROC int mc_iabs(int x)
+MC_TARGET_PROC int mc_iabs(const int x)
 {
 #	if MC_TARGET_CPP98
 	return ::abs(x);
@@ -40,7 +40,7 @@ MC_TARGET_PROC int mc_iabs(int x)
 
 #pragma mark - mc_iabs8 -
 
-MC_TARGET_PROC int8_t mc_iabs8(int8_t x)
+MC_TARGET_PROC int8_t mc_iabs8(const int8_t x)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	return x == INT8_MIN ? INT8_MAX : (x >= 0 ? x : -x);
@@ -51,7 +51,7 @@ MC_TARGET_PROC int8_t mc_iabs8(int8_t x)
 
 #pragma mark - mc_iabs16 -
 
-MC_TARGET_PROC int16_t mc_iabs16(int16_t x)
+MC_TARGET_PROC int16_t mc_iabs16(const int16_t x)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	return x == INT16_MIN ? INT16_MAX : (x >= 0 ? x : -x);
@@ -62,7 +62,7 @@ MC_TARGET_PROC int16_t mc_iabs16(int16_t x)
 
 #pragma mark - mc_iabs32 -
 
-MC_TARGET_PROC int32_t mc_iabs32(int32_t x)
+MC_TARGET_PROC int32_t mc_iabs32(const int32_t x)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	return x == INT32_MIN ? INT32_MAX : (x >= 0 ? x : -x);
@@ -73,7 +73,7 @@ MC_TARGET_PROC int32_t mc_iabs32(int32_t x)
 
 #pragma mark - mc_iabs64 -
 
-MC_TARGET_PROC int64_t mc_iabs64(int64_t x)
+MC_TARGET_PROC int64_t mc_iabs64(const int64_t x)
 {
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 	return x == INT64_MIN ? INT64_MIN : (x >= 0 ? x : -x);
@@ -84,7 +84,7 @@ MC_TARGET_PROC int64_t mc_iabs64(int64_t x)
 
 #pragma mark - mc_labs -
 
-MC_TARGET_PROC long mc_labs(long x)
+MC_TARGET_PROC long mc_labs(const long x)
 {
 #	if MC_TARGET_CPP98
 	return ::labs(x);
@@ -96,12 +96,12 @@ MC_TARGET_PROC long mc_labs(long x)
 #pragma mark - mc_llabs -
 
 #	if MC_TARGET_CPP11
-MC_TARGET_PROC long long mc_llabs(long long x)
+MC_TARGET_PROC long long mc_llabs(const long long x)
 {
 	return ::llabs(x);
 }
 #	elif MC_TARGET_C99
-MC_TARGET_PROC long long mc_llabs(long long x)
+MC_TARGET_PROC long long mc_llabs(const long long x)
 {
 	return llabs(x);
 }

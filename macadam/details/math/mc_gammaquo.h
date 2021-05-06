@@ -20,7 +20,7 @@
 
 #pragma mark - mc_gammaquo -
 
-MC_TARGET_FUNC float mc_gammaquof(float x, float d)
+MC_TARGET_FUNC float mc_gammaquof(const float x, const float d)
 {
 //!# Returns gamma(x) / gamma(x + d).
 	float r = MCK_NAN;
@@ -107,7 +107,7 @@ MC_TARGET_FUNC float mc_gammaquof(float x, float d)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_gammaquo(double x, double d)
+MC_TARGET_FUNC double mc_gammaquo(const double x, const double d)
 {
 //!# Returns gamma(x) / gamma(x + d).
 	double r = MCK_NAN;
@@ -194,7 +194,7 @@ MC_TARGET_FUNC double mc_gammaquo(double x, double d)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_gammaquol(long double x, long double d)
+MC_TARGET_FUNC long double mc_gammaquol(const long double x, const long double d)
 {
 //!# Returns gamma(x) / gamma(x + d).
 	long double r = MCK_NAN;

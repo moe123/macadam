@@ -13,7 +13,7 @@
 
 #pragma mark - mc_logcf -
 
-MC_TARGET_FUNC float mc_logcff(float x, float i, float d, float tol)
+MC_TARGET_FUNC float mc_logcff(const float x, const float i, const float d, const float tol)
 {
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).
@@ -62,7 +62,7 @@ MC_TARGET_FUNC float mc_logcff(float x, float i, float d, float tol)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_logcf(double x, double i, double d, double tol)
+MC_TARGET_FUNC double mc_logcf(const double x, const double i, const double d, const double tol)
 {
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).
@@ -111,7 +111,7 @@ MC_TARGET_FUNC double mc_logcf(double x, double i, double d, double tol)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_logcfl(long double x, long double i, long double d, long double tol)
+MC_TARGET_FUNC long double mc_logcfl(const long double x, const long double i, const long double d, const long double tol)
 {
 //!# Computing a continued fraction approximation to the series:
 //!# 1/i + x/(i+d) + x^2/(i+2*d) + x^3/(i+3*d) + ... + x^n/(i+n*d).

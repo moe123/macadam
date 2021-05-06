@@ -13,24 +13,24 @@
 
 #pragma mark - mc_logodds -
 
-MC_TARGET_FUNC float mc_logoddsf(float x, float l)
+MC_TARGET_FUNC float mc_logoddsf(const float x, const float l)
 {
 	const float a = 1.0f / x - 1.0f;
-	const float b = 1.0f / l;
+	const float b = l == 0.0f ? MCLIMITS_EPSILONF : 1.0f / l;
 	return -mc_logf(a) * b;
 }
 
 MC_TARGET_FUNC double mc_logodds(double x, double l)
 {
 	const double a = 1.0 / x - 1.0;
-	const double b = 1.0 / l;
+	const double b = l == 0.0 ? MCLIMITS_EPSILON : 1.0 / l;
 	return -mc_log(a) * b;
 }
 
-MC_TARGET_FUNC long double mc_logoddsl(long double x, long double l)
+MC_TARGET_FUNC long double mc_logoddsl(const long double x, const long double l)
 {
 	const long double a = 1.0L / x - 1.0L;
-	const long double b = 1.0L / l;
+	const long double b = l == 0.0L ? MCLIMITS_EPSILONL : 1.0L / l;
 	return -mc_logl(a) * b;
 }
 

@@ -16,17 +16,17 @@
 
 MC_TARGET_FUNC float mc_scalbf(const float x, const float y)
 {
-	return mc_scalblnf(x, mc_cast(long, mc_nearbyintf(y)));
+	return mc_scalblnf(x, mc_cast(const long, mc_nearbyintf(y)));
 }
 
 MC_TARGET_FUNC double mc_scalb(const double x, const double y)
 {
-	return mc_scalbln(x, mc_cast(long, mc_nearbyint(y)));
+	return mc_scalbln(x, mc_cast(const long, mc_nearbyint(y)));
 }
 
 MC_TARGET_FUNC long double mc_scalbl(const long double x, const long double y)
 {
-	return mc_scalblnl(x, mc_cast(long, mc_nearbyintl(y)));
+	return mc_scalblnl(x, mc_cast(const long, mc_nearbyintl(y)));
 }
 
 #endif /* !MC_SCALB_H */

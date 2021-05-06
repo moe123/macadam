@@ -15,7 +15,7 @@
 
 #pragma mark - mc_sincos -
 
-MC_TARGET_FUNC void mc_sincosf(float x, float * sinp, float * cosp)
+MC_TARGET_FUNC void mc_sincosf(const float x, float * sinp, float * cosp)
 {
 #	if MC_TARGET_EMBEDDED
 #	if MC_TARGET_CPP98
@@ -54,7 +54,7 @@ MC_TARGET_FUNC void mc_sincosf(float x, float * sinp, float * cosp)
 #	endif
 }
 
-MC_TARGET_FUNC void mc_sincos(double x, double * sinp, double * cosp)
+MC_TARGET_FUNC void mc_sincos(const double x, double * sinp, double * cosp)
 {
 #	if MC_TARGET_EMBEDDED
 #	if MC_TARGET_CPP98
@@ -93,7 +93,7 @@ MC_TARGET_FUNC void mc_sincos(double x, double * sinp, double * cosp)
 #	endif
 }
 
-MC_TARGET_FUNC void mc_sincosl(long double x, long double * sinp, long double * cosp)
+MC_TARGET_FUNC void mc_sincosl(const long double x, long double * sinp, long double * cosp)
 {
 #	if MC_TARGET_EMBEDDED
 #	if MC_TARGET_CPP98

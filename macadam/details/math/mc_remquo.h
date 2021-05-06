@@ -15,7 +15,7 @@
 
 #pragma mark - mc_remquo -
 
-MC_TARGET_PROC float mc_remquof(float x, float y, int * quo)
+MC_TARGET_PROC float mc_remquof(const float x, const float y, int * quo)
 {
 #	if MC_TARGET_CPP98
 	return ::remquof(x, y, quo);
@@ -24,7 +24,7 @@ MC_TARGET_PROC float mc_remquof(float x, float y, int * quo)
 #	endif
 }
 
-MC_TARGET_PROC double mc_remquo(double x, double y, int * quo)
+MC_TARGET_PROC double mc_remquo(const double x, const double y, int * quo)
 {
 #	if MC_TARGET_CPP98
 	return ::remquo(x, y, quo);
@@ -33,7 +33,7 @@ MC_TARGET_PROC double mc_remquo(double x, double y, int * quo)
 #	endif
 }
 
-MC_TARGET_PROC long double mc_remquol(long double x, long double y, int * quo)
+MC_TARGET_PROC long double mc_remquol(const long double x, const long double y, int * quo)
 {
 #	if MC_TARGET_CPP98
 	return ::remquol(x, y, quo);

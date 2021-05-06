@@ -14,7 +14,7 @@
 
 #pragma mark - mc_sincospi -
 
-MC_TARGET_FUNC void mc_sincospif(float x, float * sinp, float * cosp)
+MC_TARGET_FUNC void mc_sincospif(const float x, float * sinp, float * cosp)
 {
 	float z   = 0.0f, ss = 0.0f, cc = 0.0f;
 	int64_t i = mc_remint2f(x, &z) & 3;
@@ -40,7 +40,7 @@ MC_TARGET_FUNC void mc_sincospif(float x, float * sinp, float * cosp)
 	}
 }
 
-MC_TARGET_FUNC void mc_sincospi(double x, double * sinp, double * cosp)
+MC_TARGET_FUNC void mc_sincospi(const double x, double * sinp, double * cosp)
 {
 	double z  = 0.0, ss = 0.0, cc = 0.0;
 	int64_t i = mc_remint2(x, &z) & 3;
@@ -66,7 +66,7 @@ MC_TARGET_FUNC void mc_sincospi(double x, double * sinp, double * cosp)
 	}
 }
 
-MC_TARGET_FUNC void mc_sincospil(long double x, long double * sinp, long double * cosp)
+MC_TARGET_FUNC void mc_sincospil(const long double x, long double * sinp, long double * cosp)
 {
 	long double z = 0.0L, ss = 0.0L, cc = 0.0L;
 	int64_t i     = mc_remint2l(x, &z) & 3;

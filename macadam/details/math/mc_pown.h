@@ -50,9 +50,9 @@ MC_TARGET_FUNC float mc_pownf(const float x, const int y)
 			return mc_raise6f(x);
 	}
 	if (mc_iabs(y) < 0x1000001) {
-		r = mc_powf(x, mc_cast(float, y));
+		r = mc_powf(x, mc_cast(const float, y));
 	} else {
-		r = mc_cast(float, mc_pow(mc_cast(double, x), mc_cast(double, y)));
+		r = mc_cast(float, mc_pow(mc_cast(const double, x), mc_cast(const double, y)));
 	}
 	if (mc_isinf(r)) {
 		r = mc_copysignf(r, x);
@@ -62,6 +62,7 @@ MC_TARGET_FUNC float mc_pownf(const float x, const int y)
 
 MC_TARGET_FUNC double mc_pown(const double x, const int y)
 {
+	double r;
 	if (mc_isnan(x)) {
 		return x;
 	}
@@ -91,7 +92,7 @@ MC_TARGET_FUNC double mc_pown(const double x, const int y)
 		case 6:
 			return mc_raise6(x);
 	}
-	const double r = mc_pow(x, mc_cast(double, y));
+	r = mc_pow(x, mc_cast(const double, y));
 	if (mc_isinf(r)) {
 		return mc_copysign(r, x);
 	}
@@ -100,6 +101,7 @@ MC_TARGET_FUNC double mc_pown(const double x, const int y)
 
 MC_TARGET_FUNC long double mc_pownl(const long double x, const int y)
 {
+	long double r;
 	if (mc_isnan(x)) {
 		return x;
 	}
@@ -129,7 +131,7 @@ MC_TARGET_FUNC long double mc_pownl(const long double x, const int y)
 		case 6:
 			return mc_raise6l(x);
 	}
-	const long double r = mc_powl(x, mc_cast(long double, y));
+	r = mc_powl(x, mc_cast(const long double, y));
 	if (mc_isinf(r)) {
 		return mc_copysignl(r, x);
 	}
@@ -171,20 +173,20 @@ MC_TARGET_FUNC float mc_powlnf(const float x, const long y)
 			return mc_raise6f(x);
 	}
 	if (mc_labs(y) < 0x1000001) {
-		r = mc_powf(x, mc_cast(float, y));
+		r = mc_powf(x, mc_cast(const float, y));
 	} else {
 #	if MC_TARGET_LONG_64BIT
 		if (mc_labs(y) < 0x0020000000000000L) {
-			r = mc_cast(float, mc_pow(mc_cast(double, x), mc_cast(double, y)));
+			r = mc_cast(float, mc_pow(mc_cast(const double, x), mc_cast(const double, y)));
 		} else {
 #		if MC_TARGET_HAVE_LONG_DOUBLE
-			r = mc_cast(float, mc_powl(mc_cast(long double, x), mc_cast(long double, y)));
+			r = mc_cast(float, mc_powl(mc_cast(const long double, x), mc_cast(const long double, y)));
 #		else
 			r = MCK_INF;
 #		endif
 		}
 #	else
-		r = mc_cast(float, mc_pow(mc_cast(double, x), mc_cast(double, y)));
+		r = mc_cast(float, mc_pow(mc_cast(const double, x), mc_cast(const double, y)));
 #	endif
 	}
 	if (mc_isinf(r)) {
@@ -193,7 +195,7 @@ MC_TARGET_FUNC float mc_powlnf(const float x, const long y)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_powln(double x, long y)
+MC_TARGET_FUNC double mc_powln(const double x, const long y)
 {
 	double r;
 	if (mc_isnan(x)) {
@@ -227,16 +229,16 @@ MC_TARGET_FUNC double mc_powln(double x, long y)
 	}
 #	if MC_TARGET_LONG_64BIT
 	if (mc_labs(y) < 0x0020000000000000L) {
-		r = mc_pow(x, mc_cast(double, y));
+		r = mc_pow(x, mc_cast(const double, y));
 	} else {
 #		if MC_TARGET_HAVE_LONG_DOUBLE
-		r = mc_cast(double, mc_powl(mc_cast(long double, x), mc_cast(long double, y)));
+		r = mc_cast(double, mc_powl(mc_cast(const long double, x), mc_cast(const long double, y)));
 #		else
 		r = MCK_INF;
 #		endif
 	}
 #	else
-	r = mc_pow(x, mc_cast(double, y));
+	r = mc_pow(x, mc_cast(const double, y));
 #	endif
 	if (mc_isinf(r)) {
 		return mc_copysign(r, x);
@@ -244,7 +246,7 @@ MC_TARGET_FUNC double mc_powln(double x, long y)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_powlnl(long double x, long y)
+MC_TARGET_FUNC long double mc_powlnl(const long double x, const long y)
 {
 	long double r;
 	if (mc_isnan(x)) {
@@ -278,12 +280,12 @@ MC_TARGET_FUNC long double mc_powlnl(long double x, long y)
 	}
 #	if !MC_TARGET_HAVE_LONG_DOUBLE && MC_TARGET_LONG_64BIT
 		if (mc_labs(y) < 0x0020000000000000L) {
-			r = mc_powl(x, mc_cast(long double, y));
+			r = mc_powl(x, mc_cast(const long double, y));
 		} else {
 			r = MCK_INF;
 		}
 #	else
-	r = mc_powl(x, mc_cast(long double, y));
+	r = mc_powl(x, mc_cast(const long double, y));
 #	endif
 	if (mc_isinf(r)) {
 		return mc_copysignl(r, x);
@@ -294,7 +296,7 @@ MC_TARGET_FUNC long double mc_powlnl(long double x, long y)
 #pragma mark - mc_powlln -
 
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
-MC_TARGET_FUNC float mc_powllnf(float x, long long y)
+MC_TARGET_FUNC float mc_powllnf(const float x, const long long y)
 {
 	float r;
 	if (mc_isnan(x)) {
@@ -327,12 +329,12 @@ MC_TARGET_FUNC float mc_powllnf(float x, long long y)
 			return mc_raise6f(x);
 	}
 	if (mc_llabs(y) < 0x1000001) {
-		r = mc_powf(x, mc_cast(float, y));
+		r = mc_powf(x, mc_cast(const float, y));
 	} else if (mc_llabs(y) < 0x0020000000000000L) {
-		r = mc_cast(float, mc_pow(mc_cast(double, x), mc_cast(double, y)));
+		r = mc_cast(float, mc_pow(mc_cast(const double, x), mc_cast(const double, y)));
 	} else {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
-		r = mc_cast(float, mc_powl(mc_cast(long double, x), mc_cast(long double, y)));
+		r = mc_cast(float, mc_powl(mc_cast(const long double, x), mc_cast(const long double, y)));
 #	else
 		r = MCK_INF;
 #	endif
@@ -343,7 +345,7 @@ MC_TARGET_FUNC float mc_powllnf(float x, long long y)
 	return r;
 }
 
-MC_TARGET_FUNC double mc_powlln(double x, long long y)
+MC_TARGET_FUNC double mc_powlln(const double x, const long long y)
 {
 	double r;
 	if (mc_isnan(x)) {
@@ -390,9 +392,10 @@ MC_TARGET_FUNC double mc_powlln(double x, long long y)
 	return r;
 }
 
-MC_TARGET_FUNC long double mc_powllnl(long double x, long long y)
+MC_TARGET_FUNC long double mc_powllnl(const long double x, const long long y)
 {
 #	if MC_TARGET_HAVE_LONG_DOUBLE
+	long double r;
 	if (mc_isnan(x)) {
 		return x;
 	}
@@ -422,13 +425,13 @@ MC_TARGET_FUNC long double mc_powllnl(long double x, long long y)
 		case 6:
 			return mc_raise6l(x);
 	}
-	const long double r = mc_powl(x, mc_cast(long double, y));
+	r = mc_powl(x, mc_cast(const long double, y));
 	if (mc_isinf(r)) {
 		return mc_copysignl(r, x);
 	}
 	return r;
 #	else
-	return mc_cast(long double, mc_powlln(mc_cast(double, x), y));
+	return mc_cast(long double, mc_powlln(mc_cast(const double, x), y));
 #	endif
 }
 #	else
