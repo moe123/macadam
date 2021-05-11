@@ -23,6 +23,14 @@ MC_TARGET_FUNC float mc_rand_geometricf(const float p)
 	return u * v;
 }
 
+MC_TARGET_FUNC double mc_rand_geometricff(const float p)
+{
+	const double r =  mc_randu();
+	const double u = r > 0.0 ? mc_log(r) : 0.5;
+	const double v = 1.0 / mc_log1m(mc_cast(const double, p));
+	return u * v;
+}
+
 MC_TARGET_FUNC double mc_rand_geometric(const double p)
 {
 	const double r =  mc_randu();

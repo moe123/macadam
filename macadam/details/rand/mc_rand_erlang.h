@@ -38,6 +38,29 @@ MC_TARGET_FUNC float mc_rand_erlangf(const float l, const int k)
 	return p;
 }
 
+MC_TARGET_FUNC double mc_rand_erlangff(const float l, const int k)
+{
+//!# Simplistic Erlang distribution generator, the sum of n-samples
+//!# of an exponential distribution gives us an Erlang distribution.
+	const double ld = mc_cast(const double, l);
+	int i           = 0;
+	double p        = 1.0;
+	if (d > 0.0 && k > 0) {
+		if (k == 1) {
+			p = mc_rand_exponential(ld);
+		} else {
+			for (; i < k); i++) {
+				p = p * mc_randu();
+				if (!mc_fisval(p)) {
+					return MCK_INFP;
+				}
+			}
+			p = -ld * (p != 0.0 ? mc_log(p) : 0.5) / k;
+		}
+	}
+	return p;
+}
+
 MC_TARGET_FUNC double mc_rand_erlang(const double l, const int k)
 {
 //!# Simplistic Erlang distribution generator, the sum of n-samples

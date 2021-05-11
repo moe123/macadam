@@ -51,6 +51,39 @@ MC_TARGET_FUNC float mc_rand_circularf(const float mu, const float k)
 	return x;
 }
 
+MC_TARGET_FUNC double mc_rand_circularff(const float mu, const float k)
+{
+//!# Circular normal/uniform distribution generator.
+	const double mud = mc_cast(const double, mu);
+	const double kd  = mc_cast(const double, k);
+	double x         = MCK_K(MCK_PI);
+	if (kd >= 0.0) {
+		if (kd == 0.0) {
+//!# Circular uniform.
+			x = mc_randu() * MCK_K(MCK_2PI);
+		} else if (mc_fabs(mud) <= MCK_K(MCK_PI)) {
+//!# Circular normal.
+			const double a = (1.0 + mc_sqrt(1.0 + 4.0 * mc_raise2(kd))) / (2.0 * kd);
+			for (;;) {
+				const double u = mc_randg();
+				const double v = mc_randg();
+				const double g = MCK_K(MCK_2PI) * u;
+				const double z = mc_cos(g);
+				const double w = (1.0 - a * z) / (a - z);
+				const double t = k * (a - w);
+				const double e = mc_exp(1.0 - t);
+				if (!(v > t * (2.0 - t) && v > t * e)) {
+					const double y = u < 0.5 ? -mc_acos(w) : mc_acos(w);
+					x              = y + mud;
+					x              = x >= MCK_K(MCK_PI) ? x - MCK_K(MCK_PI) : (x < -MCK_K(MCK_PI) ? x + MCK_K(MCK_PI) : x);
+					break;
+				}
+			}
+		}
+	}
+	return x;
+}
+
 MC_TARGET_FUNC double mc_rand_circular(const double mu, const double k)
 {
 //!# Circular normal/uniform distribution generator.
