@@ -144,33 +144,13 @@ MC_TARGET_PROC void mc_randb64_encipher(const int n, const uint64_t key[2], uint
 	mc_scope_end
 #	endif
 
-#pragma mark - mc_randb_randi -
-
-MC_TARGET_PROC uint32_t mc_randb_randi(void)
-{
-	const uint32_t hi   = mc_cast(uint32_t, mc_randi()) << 16;
-	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] + 1U;
-	const uint32_t lo   = mc_cast_expr(uint32_t, mc_randi() & 0xFFFF);
-	return (hi | lo);
-}
-
-#pragma mark - mc_randb64_randi -
-
-MC_TARGET_PROC uint64_t mc_randb64_randi(void)
-{
-	const uint64_t hi   = mc_cast(uint64_t, mc_randi()) << 32;
-	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] + 1U;
-	const uint64_t lo   = mc_cast_expr(uint64_t, mc_randi() & 0xFFFFFFFF);
-	return (hi | lo);
-}
-
 #pragma mark - mc_randb_randv -
 
 MC_TARGET_PROC void mc_randb_randv(const int n, uint32_t * r)
 {
 	int i = 0;
 	for (; i < n; i++) {
-		r[i] = mc_randb_randi();
+		r[i] = mc_randi32();
 	}
 }
 
@@ -180,7 +160,7 @@ MC_TARGET_PROC void mc_randb64_randv(const int n, uint64_t * r)
 {
 	int i = 0;
 	for (; i < n; i++) {
-		r[i] = mc_randb64_randi();
+		r[i] = mc_randi64();
 	}
 }
 

@@ -28,6 +28,10 @@ MC_TARGET_PROC float mc_randuf(void)
 MC_TARGET_PROC double mc_randu(void)
 {
 //!# Uniform distribution range [0, 1] (theoretically may include low and high).
+#	if MC_TARGET_RAND_USE_XOSHIRO256
+	uint64_t a = mc_randi64();
+	return mc_cast(double, (a >> 11)) * +1.1102230246251565400000000000000000000000E-16;
+#	else
 	const double a = mc_cast(double, mc_randi());
 #	if MC_TARGET_RAND_USE_LIBCRAND
 	const double b = mc_cast(double, MCLIMITS_RANDMAX);
@@ -35,6 +39,7 @@ MC_TARGET_PROC double mc_randu(void)
 #	else
 	const double b = +2.3283064370807970000000000000000000000000E-10;
 	return a * b;
+#	endif
 #	endif
 }
 

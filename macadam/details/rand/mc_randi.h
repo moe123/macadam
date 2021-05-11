@@ -16,6 +16,7 @@
 
 #	undef  MC_TARGET_RAND_USE_LIBCRAND
 #	undef  MC_TARGET_RAND_USE_PCG32
+#	undef  MC_TARGET_RAND_USE_XOSHIRO256
 #	undef  MC_TARGET_RAND_USE_MARSAGLIAMWC
 #	undef  MC_TARGET_RAND_USE_LFSR113
 #	undef  MC_TARGET_RAND_USE_MARSAGLIAXOR128
@@ -23,17 +24,26 @@
 
 //!# definitly the best performer.
 #	define MC_TARGET_RAND_USE_PCG32 1
+#	define MC_TARGET_RAND_USE_XOSHIRO256 1
 
 #	if MC_TARGET_RAND_USE_PCG32
 #	if MC_TARGET_C99 || MC_TARGET_CPP11
 static MC_TARGET_THREAD_LOCAL uint64_t mc_randi_seeds_s[]  = {
 	  UINT64_C(0x853C49E6748FEA9B)
 	, UINT64_C(0xDA3E39CB94B95BDB)
+#	if MC_TARGET_RAND_USE_XOSHIRO256
+	, UINT64_C(0x0)
+	, UINT64_C(0x0)
+#	endif
 };
 #	else
 static MC_TARGET_THREAD_LOCAL uint64_t mc_randi_seeds_s[]  = {
-	  mc_cast_expr(const uint64_t, 0x853C49E6748FEA9B   )
-	, mc_cast_expr(const uint64_t, 0xDA3E39CB94B95BDB   )
+	  mc_cast_expr(const uint64_t, 0x853C49E6748FEA9B)
+	, mc_cast_expr(const uint64_t, 0xDA3E39CB94B95BDB)
+#	if MC_TARGET_RAND_USE_XOSHIRO256
+	, mc_cast_expr(const uint64_t, 0x0)
+	, mc_cast_expr(const uint64_t, 0x0)
+#	endif
 };
 #	endif
 #	elif MC_TARGET_RAND_USE_MARSAGLIAMWC
@@ -78,7 +88,19 @@ MC_TARGET_PROC void mc_srandi(
 		+ mc_cast(uint64_t, s2)
 		* mc_cast(uint64_t, s3)
 	;
-	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] | mc_randi_seeds_s[0];
+	mc_randi_seeds_s[1] = (mc_randi_seeds_s[1] | mc_randi_seeds_s[0]);
+#	if MC_TARGET_RAND_USE_XOSHIRO256
+#	if MC_TARGET_C99 || MC_TARGET_CPP11
+	mc_randi_seeds_s[2] = (mc_randi_seeds_s[0] + UINT64_C(0x9E3779B97F4A7C15));
+	mc_randi_seeds_s[2] = (mc_randi_seeds_s[2] ^ (mc_randi_seeds_s[2] >> 30)) * UINT64_C(0xBF58476D1CE4E5B9);
+	mc_randi_seeds_s[2] = (mc_randi_seeds_s[2] ^ (mc_randi_seeds_s[2] >> 27)) * UINT64_C(0x94D049BB133111EB);
+#	else
+	mc_randi_seeds_s[2] = (mc_randi_seeds_s[0] + mc_cast(uint64_t, 0x9E3779B97F4A7C15));
+	mc_randi_seeds_s[2] = (mc_randi_seeds_s[2] ^ (mc_randi_seeds_s[2] >> 30)) * mc_cast(uint64_t, 0xBF58476D1CE4E5B9);
+	mc_randi_seeds_s[2] = (mc_randi_seeds_s[2] ^ (mc_randi_seeds_s[2] >> 27)) * mc_cast(uint64_t, 0x94D049BB133111EB);
+#	endif
+	mc_randi_seeds_s[3] = (mc_randi_seeds_s[2] | mc_randi_seeds_s[1]);
+#	endif
 #	else
 	s4                  = s4 + s5;
 	mc_randi_seeds_s[0] = s1 > 2   && s1 < MCLIMITS_USMAX ? s1 : 2;
@@ -225,6 +247,42 @@ MC_TARGET_PROC unsigned int mc_randi(void)
 		return MCLIMITS_RANDMAX - 1;
 	}
 	return b;
+#	endif
+}
+
+MC_TARGET_PROC uint32_t mc_randi32(void)
+{
+	const uint32_t hi   = mc_cast(uint32_t, mc_randi()) << 16;
+	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] + 1U;
+	const uint32_t lo   = mc_cast_expr(uint32_t, mc_randi() & 0xFFFF);
+	return (hi | lo);
+}
+
+MC_TARGET_PROC uint64_t mc_randi64(void)
+{
+#	if MC_TARGET_RAND_USE_XOSHIRO256
+//!# xoshiro256+.
+	uint64_t r, w;
+
+	if (mc_randi_init_s < 1) {
+		++mc_randi_init_s;
+		mc_ssrandi();
+	}
+	r                    = mc_randi_seeds_s[0] + mc_randi_seeds_s[3];
+	w                    = mc_randi_seeds_s[1] << 17;
+	mc_randi_seeds_s[2] ^= mc_randi_seeds_s[0];
+	mc_randi_seeds_s[3] ^= mc_randi_seeds_s[1];
+	mc_randi_seeds_s[1] ^= mc_randi_seeds_s[2];
+	mc_randi_seeds_s[0] ^= mc_randi_seeds_s[3];
+	mc_randi_seeds_s[2] ^= w;
+	mc_randi_seeds_s[3]  = (mc_randi_seeds_s[3] << 45U) | (mc_randi_seeds_s[3] >> (64 - 45U));
+
+	return r;
+#	else
+	const uint64_t hi   = mc_cast(uint64_t, mc_randi()) << 32;
+	mc_randi_seeds_s[1] = mc_randi_seeds_s[1] + 1U;
+	const uint64_t lo   = mc_cast_expr(uint64_t, mc_randi() & 0xFFFFFFFF);
+	return (hi | lo);
 #	endif
 }
 
