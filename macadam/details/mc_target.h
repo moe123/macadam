@@ -499,7 +499,7 @@
 #			error "OpenBlas header not found."
 #		endif
 #	else
-#			undef MC_TARGET_BLAS_USE_NATIVE
+#		undef MC_TARGET_BLAS_USE_NATIVE
 #		error "Blas native target not found."
 #	endif
 #	endif
