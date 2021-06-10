@@ -20,7 +20,7 @@ MC_TARGET_PROC float mc_randkf(void)
 	const unsigned int k = 0x1000001U;
 	const unsigned int a = mc_randi() % k;
 	const unsigned int b = mc_randi() % k;
-	return mc_cast_expr(float, a & 1 ? b : (b & 1 ? a : b)) / k;
+	return mc_cast_expr(float, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(float, k);
 }
 
 MC_TARGET_PROC double mc_randk(void)

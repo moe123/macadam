@@ -31,8 +31,8 @@ MC_TARGET_PROC float mc_randgf(void)
 		r = x_s;
 	} else {
 		do {
-			const float r1 = mc_rand_uniformf(0.0f, 1.0f);
-			const float r2 = mc_rand_uniformf(0.0f, 1.0f);
+			const float r1 = mc_randuf();
+			const float r2 = mc_randuf();
 			u              = r1;
 			v              = r2;
 		}
@@ -51,8 +51,8 @@ MC_TARGET_PROC float mc_randgf(void)
 		r = x_s;
 	} else {
 		do {
-			const float r1 = mc_rand_uniformf(0.0f, 1.0f);
-			const float r2 = mc_rand_uniformf(0.0f, 1.0f);
+			const float r1 = mc_randuf();
+			const float r2 = mc_randuf();
 			u              = 2.0f * r1 - 1.0f;
 			v              = 2.0f * r2 - 1.0f;
 			s              = mc_raise2f(u) + mc_raise2f(v);
@@ -83,8 +83,8 @@ MC_TARGET_PROC double mc_randg(void)
 		r = x_s;
 	} else {
 		do {
-			const double r1 = mc_rand_uniform(0.0, 1.0);
-			const double r2 = mc_rand_uniform(0.0, 1.0);
+			const double r1 = mc_randu();
+			const double r2 = mc_randu();
 			u               = r1;
 			v               = r2;
 		}
@@ -103,8 +103,8 @@ MC_TARGET_PROC double mc_randg(void)
 		r = x_s;
 	} else {
 		do {
-			const double r1 = mc_rand_uniform(0.0, 1.0);
-			const double r2 = mc_rand_uniform(0.0, 1.0);
+			const double r1 = mc_randu();
+			const double r2 = mc_randu();
 			u               = 2.0 * r1 - 1.0;
 			v               = 2.0 * r2 - 1.0;
 			s               = mc_raise2(u) + mc_raise2(v);
@@ -130,13 +130,13 @@ MC_TARGET_PROC long double mc_randgl(void)
 	static volatile int phase_s     = 0;
 	static volatile long double x_s = 0.0L;
 	long double r = 0.0L, u, v;
-
+s
 	if (phase_s != 0) {
 		r = x_s;
 	} else {
 		do {
-			const long double r1 = mc_rand_uniforml(0.0L, 1.0L);
-			const long double r2 = mc_rand_uniforml(0.0L, 1.0L);
+			const long double r1 = mc_randul();
+			const long double r2 = mc_randul();
 			u                    = r1;
 			v                    = r2;
 		}
@@ -155,8 +155,8 @@ MC_TARGET_PROC long double mc_randgl(void)
 		r = x_s;
 	} else {
 		do {
-			const long double r1 = mc_rand_uniforml(0.0L, 1.0L);
-			const long double r2 = mc_rand_uniforml(0.0L, 1.0L);
+			const long double r1 = mc_randul();
+			const long double r2 = mc_randul();
 			u                    = 2.0L * r1 - 1.0L;
 			v                    = 2.0L * r2 - 1.0L;
 			s                    = mc_raise2l(u) + mc_raise2l(v);
