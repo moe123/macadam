@@ -29,17 +29,17 @@ MC_TARGET_FUNC void mc_momentmx1f(const int m, const int n, const int j, const f
 
 	if (m > 0 && n > 0) {
 		mc_mssqrmx1f(m, n, j, a, 0, m1, &sumsq, &scale);
-		*m2 = mc_raise2f(scale) * (sumsq / mc_cast(float, m));
+		*m2 = mc_raise2f(scale) * (sumsq / mc_cast(const float, m));
 		if (m > 1) {
-			q = scale * mc_sqrtf(sumsq / mc_cast(float, m));
+			q = scale * mc_sqrtf(sumsq / mc_cast(const float, m));
 			for (; k <= m; k++) {
 				 d  = a[(n * (k - 1)) + j] - *m1;
-				*m3 = *m3 + (mc_raise2f(d) * d - *m3) / mc_cast(float, k);
-				*m4 = *m4 + (mc_raise2f(d * d) - *m4) / mc_cast(float, k);
+				*m3 = *m3 + (mc_raise2f(d) * d - *m3) / mc_cast(const float, k);
+				*m4 = *m4 + (mc_raise2f(d * d) - *m4) / mc_cast(const float, k);
 				if (q != 0.0f) {
 					 d        = d / q;
-					*skewness = *skewness + (mc_raise2f(d) * d - *skewness) / mc_cast(float, k);
-					*kurtosis = *kurtosis + (mc_raise2f(d * d) - *kurtosis) / mc_cast(float, k);
+					*skewness = *skewness + (mc_raise2f(d) * d - *skewness) / mc_cast(const float, k);
+					*kurtosis = *kurtosis + (mc_raise2f(d * d) - *kurtosis) / mc_cast(const float, k);
 				}
 			}
 		}
@@ -60,17 +60,17 @@ MC_TARGET_FUNC void mc_momentmx1ff(const int m, const int n, const int j, const 
 
 	if (m > 0 && n > 0) {
 		mc_mssqrmx1ff(m, n, j, a, 0, m1, &sumsq, &scale);
-		*m2 = mc_raise2(scale) * (sumsq / mc_cast(double, m));
+		*m2 = mc_raise2(scale) * (sumsq / mc_cast(const double, m));
 		if (m > 1) {
-			q = scale * mc_sqrt(sumsq / mc_cast(double, m));
+			q = scale * mc_sqrt(sumsq / mc_cast(const double, m));
 			for (; k <= m; k++) {
 				 d  = mc_cast(double, a[(n * (k - 1)) + j]) - *m1;
-				*m3 = *m3 + (mc_raise2(d) * d - *m3) / mc_cast(double, k);
-				*m4 = *m4 + (mc_raise2(d * d) - *m4) / mc_cast(double, k);
+				*m3 = *m3 + (mc_raise2(d) * d - *m3) / mc_cast(const double, k);
+				*m4 = *m4 + (mc_raise2(d * d) - *m4) / mc_cast(const double, k);
 				if (q != 0.0f) {
 					 d        = d / q;
-					*skewness = *skewness + (mc_raise2(d) * d - *skewness) / mc_cast(double, k);
-					*kurtosis = *kurtosis + (mc_raise2(d * d) - *kurtosis) / mc_cast(double, k);
+					*skewness = *skewness + (mc_raise2(d) * d - *skewness) / mc_cast(const double, k);
+					*kurtosis = *kurtosis + (mc_raise2(d * d) - *kurtosis) / mc_cast(const double, k);
 				}
 			}
 		}
@@ -91,17 +91,17 @@ MC_TARGET_FUNC void mc_momentmx1(const int m, const int n, const int j, const do
 
 	if (m > 0 && n > 0) {
 		mc_mssqrmx1(m, n, j, a, 0, m1, &sumsq, &scale);
-		*m2 = mc_raise2(scale) * (sumsq / mc_cast(double, m));
+		*m2 = mc_raise2(scale) * (sumsq / mc_cast(const double, m));
 		if (m > 1) {
-			q = scale * mc_sqrt(sumsq / mc_cast(double, m));
+			q = scale * mc_sqrt(sumsq / mc_cast(const double, m));
 			for (; k <= m; k++) {
 				 d  = a[(n * (k - 1)) + j] - *m1;
-				*m3 = *m3 + (mc_raise2(d) * d - *m3) / mc_cast(double, k);
-				*m4 = *m4 + (mc_raise2(d * d) - *m4) / mc_cast(double, k);
+				*m3 = *m3 + (mc_raise2(d) * d - *m3) / mc_cast(const double, k);
+				*m4 = *m4 + (mc_raise2(d * d) - *m4) / mc_cast(const double, k);
 				if (q != 0.0f) {
 					 d        = d / q;
-					*skewness = *skewness + (mc_raise2(d) * d - *skewness) / mc_cast(double, k);
-					*kurtosis = *kurtosis + (mc_raise2(d * d) - *kurtosis) / mc_cast(double, k);
+					*skewness = *skewness + (mc_raise2(d) * d - *skewness) / mc_cast(const double, k);
+					*kurtosis = *kurtosis + (mc_raise2(d * d) - *kurtosis) / mc_cast(const double, k);
 				}
 			}
 		}
@@ -122,17 +122,17 @@ MC_TARGET_FUNC void mc_momentmx1l(const int m, const int n, const int j, const l
 
 	if (m > 0 && n > 0) {
 		mc_mssqrmx1l(m, n, j, a, 0, m1, &sumsq, &scale);
-		*m2 = mc_raise2l(scale) * (sumsq / mc_cast(long double, m));
+		*m2 = mc_raise2l(scale) * (sumsq / mc_cast(const long double, m));
 		if (m > 1) {
-			q = scale * mc_sqrtl(sumsq / mc_cast(long double, m));
+			q = scale * mc_sqrtl(sumsq / mc_cast(const long double, m));
 			for (; k <= m; k++) {
 				 d  = a[(n * (k - 1)) + j] - *m1;
-				*m3 = *m3 + (mc_raise2l(d) * d - *m3) / mc_cast(long double, k);
-				*m4 = *m4 + (mc_raise2l(d * d) - *m4) / mc_cast(long double, k);
+				*m3 = *m3 + (mc_raise2l(d) * d - *m3) / mc_cast(const long double, k);
+				*m4 = *m4 + (mc_raise2l(d * d) - *m4) / mc_cast(const long double, k);
 				if (q != 0.0f) {
 					 d        = d / q;
-					*skewness = *skewness + (mc_raise2l(d) * d - *skewness) / mc_cast(long double, k);
-					*kurtosis = *kurtosis + (mc_raise2l(d * d) - *kurtosis) / mc_cast(long double, k);
+					*skewness = *skewness + (mc_raise2l(d) * d - *skewness) / mc_cast(const long double, k);
+					*kurtosis = *kurtosis + (mc_raise2l(d * d) - *kurtosis) / mc_cast(const long double, k);
 				}
 			}
 		}

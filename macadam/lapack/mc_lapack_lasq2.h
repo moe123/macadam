@@ -372,7 +372,7 @@ F170:
 	mc_blas_vector_at(z, (2 * n) + 2) = e;
 	mc_blas_vector_at(z, (2 * n) + 3) = mc_cast(float, iter);
 	mc_blas_vector_at(z, (2 * n) + 4) = mc_cast(float, ndiv) / mc_raise2f(mc_cast(float, n));
-	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(float, iter);
+	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(const float, iter);
 }
 
 #pragma mark - mc_lapack_dlasq2 -
@@ -729,7 +729,7 @@ F170:
 	mc_blas_vector_at(z, (2 * n) + 2) = e;
 	mc_blas_vector_at(z, (2 * n) + 3) = mc_cast(double, iter);
 	mc_blas_vector_at(z, (2 * n) + 4) = mc_cast(double, ndiv) / mc_raise2(mc_cast(double, n));
-	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(double, iter);
+	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(const double, iter);
 }
 
 #pragma mark - mc_lapack_llasq2 -
@@ -1086,7 +1086,7 @@ F170:
 	mc_blas_vector_at(z, (2 * n) + 2) = e;
 	mc_blas_vector_at(z, (2 * n) + 3) = mc_cast(long double, iter);
 	mc_blas_vector_at(z, (2 * n) + 4) = mc_cast(long double, ndiv) / mc_raise2l(mc_cast(long double, n));
-	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(long double, iter);
+	mc_blas_vector_at(z, (2 * n) + 5) = nfail * hundrd / mc_cast(const long double, iter);
 }
 
 #endif /* !MC_LAPACKE_LASQ2_H */

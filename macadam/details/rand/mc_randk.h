@@ -20,7 +20,7 @@ MC_TARGET_PROC float mc_randkf(void)
 	const unsigned int k = 0x1000001U;
 	const unsigned int a = mc_randi() % k;
 	const unsigned int b = mc_randi() % k;
-	return mc_cast_expr(float, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(float, k);
+	return mc_cast_expr(float, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(const float, k);
 }
 
 MC_TARGET_PROC double mc_randk(void)
@@ -30,7 +30,7 @@ MC_TARGET_PROC double mc_randk(void)
 	const unsigned int k = MCLIMITS_RANDMAX;
 	const unsigned int a = mc_randi() % k;
 	const unsigned int b = mc_randi() % k;
-	return mc_cast_expr(double, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(double, k);
+	return mc_cast_expr(double, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(const double, k);
 }
 
 MC_TARGET_PROC long double mc_randkl(void)
@@ -40,7 +40,7 @@ MC_TARGET_PROC long double mc_randkl(void)
 	const unsigned int k = MCLIMITS_RANDMAX;
 	const unsigned int a = mc_randi() % k;
 	const unsigned int b = mc_randi() % k;
-	return mc_cast_expr(long double, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(long double, k);
+	return mc_cast_expr(long double, a & 1 ? b : (b & 1 ? a : b)) / mc_cast(const long double, k);
 }
 
 #endif /* !MC_RANDK_H */

@@ -19,13 +19,23 @@ MC_TARGET_FUNC float mc_intgef(float (*fx)(const float x), const float a, const 
 	int i   = 1;
 	float e = 0.0f, s = 0.0f, y;
 	if (n > 0) {
-		const float dt = (b - a) / mc_cast(float, n);
-		s              = fx(a + 0.5f * dt);
-		for (; i < n;  i++) {
-			mc_twosumf(s, fx(a + (i + 0.5f) * dt), &s, &y);
-			e  = e + y;
+		if (n < 0x1000001) {
+			const float dt = (b - a) / mc_cast(const float, n);
+			s              = fx(a + 0.5f * dt);
+			for (; i < n;  i++) {
+				mc_twosumf(s, fx(a + (i + 0.5f) * dt), &s, &y);
+				e  = e + y;
+			}
+			return (s + e) * dt;
+		} else {
+			const double dt = mc_cast_expr(const double, (b - a)) / mc_cast(const double, n);
+			s               = fx(a + 0.5f * mc_cast(const float, dt));
+			for (; i < n;  i++) {
+				mc_twosumf(s, fx(a + (i + 0.5f) * mc_cast(const float, dt)), &s, &y);
+				e  = e + y;
+			}
+			return (s + e) * mc_cast(const float, dt);
 		}
-		return (s + e) * dt;
 	}
 	return MCK_NAN;
 }
@@ -38,7 +48,7 @@ MC_TARGET_FUNC double mc_intgeff(float (*fx)(const float x), const float a, cons
 	int i             = 1;
 	double e = 0.0, s = 0.0, y;
 	if (n > 0) {
-		const double dt = (bd - ad) / mc_cast(double, n);
+		const double dt = (bd - ad) / mc_cast(const double, n);
 		s               = mc_cast_expr(double, fx(mc_cast_expr(float, ad + 0.5 * dt)));
 		for (; i < n; i++) {
 			mc_twosum(s, mc_cast_expr(double, fx(mc_cast_expr(float, ad + (i + 0.5) * dt))), &s, &y);
@@ -55,7 +65,7 @@ MC_TARGET_FUNC double mc_intge(double (*fx)(const double x), const double a, con
 	int i    = 1;
 	double e = 0.0, s = 0.0, y;
 	if (n > 0) {
-		const double dt = (b - a) / mc_cast(double, n);
+		const double dt = (b - a) / mc_cast(const double, n);
 		s               = fx(a + 0.5 * dt);
 		for (; i < n; i++) {
 			mc_twosum(s, fx(a + (i + 0.5) * dt), &s, &y);
@@ -72,7 +82,7 @@ MC_TARGET_FUNC long double mc_intgel(long double (*fx)(const long double x), con
 	int i         = 1;
 	long double e = 0.0L, s = 0.0L, y;
 	if (n > 0) {
-		const long double dt = (b - a) / mc_cast(long double, n);
+		const long double dt = (b - a) / mc_cast(const long double, n);
 		s                    = fx(a + 0.5L * dt);
 		for (; i < n; i++) {
 			mc_twosuml(s, fx(a + (i + 0.5L) * dt), &s, &y);

@@ -49,7 +49,7 @@ MC_TARGET_FUNC float mc_hurwitz_zetaf(float s, float q)
 			}
 			goto hurwitz_end;
 		}
-		term = term * (1.0f / mc_cast(float, (i + 1)));
+		term = term * (1.0f / mc_cast(const float, (i + 1)));
 		if (mc_fabsf(term * (1.0f / r)) < MCLIMITS_EPSILONF) {
 			goto hurwitz_end;
 		}
@@ -89,7 +89,7 @@ MC_TARGET_FUNC double mc_hurwitz_zeta(double s, double q)
 			}
 			goto hurwitz_end;
 		}
-		term = term * (1.0 / mc_cast(double, (i + 1)));
+		term = term * (1.0 / mc_cast(const double, (i + 1)));
 		if (mc_fabs(term * (1.0 / r)) < MCLIMITS_EPSILON) {
 			goto hurwitz_end;
 		}
@@ -129,7 +129,7 @@ MC_TARGET_FUNC long double mc_hurwitz_zetal(long double s, long double q)
 			}
 			goto hurwitz_end;
 		}
-		term = term * (1.0L / mc_cast(long double, (i + 1)));
+		term = term * (1.0L / mc_cast(const long double, (i + 1)));
 		if (mc_fabsl(term * (1.0L / r)) < MCLIMITS_EPSILONL) {
 			goto hurwitz_end;
 		}

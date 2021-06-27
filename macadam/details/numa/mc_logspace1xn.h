@@ -26,7 +26,7 @@ MC_TARGET_FUNC int mc_logspace1xnf(const int n, float * x, float x1, float x2)
 			x[0] = mc_pow10f(x1);
 			x[1] = mc_pow10f(x2);
 		} else {
-			step       = (x2 - x1) / mc_cast(float, (n - 1));
+			step       = (x2 - x1) / mc_cast(const float, (n - 1));
 			x[0]       = mc_pow10f(x1);
 			x[(n - 1)] = mc_pow10f(x2);
 			for (; i < (n - 1); i++) {
@@ -53,7 +53,7 @@ MC_TARGET_FUNC int mc_logspace1xnff(const int n, double * x, float x1, float x2)
 			x[0] = mc_pow10(x1d);
 			x[1] = mc_pow10(x2d);
 		} else {
-			step       = (x2d - x1d) / mc_cast(double, (n - 1));
+			step       = (x2d - x1d) / mc_cast(const double, (n - 1));
 			x[0]       = mc_pow10(x1d);
 			x[(n - 1)] = mc_pow10(x2d);
 			for (; i < (n - 1); i++) {
@@ -78,7 +78,7 @@ MC_TARGET_FUNC int mc_logspace1xn(const int n, double * x, double x1, double x2)
 			x[0] = mc_pow10(x1);
 			x[1] = mc_pow10(x2);
 		} else {
-			step       = (x2 - x1) / mc_cast(double, (n - 1));
+			step       = (x2 - x1) / mc_cast(const double, (n - 1));
 			x[0]       = mc_pow10(x1);
 			x[(n - 1)] = mc_pow10(x2);
 			for (; i < (n - 1); i++) {
@@ -103,7 +103,7 @@ MC_TARGET_FUNC int mc_logspace1xnl(const int n, long double * x, long double x1,
 			x[0] = mc_pow10l(x1);
 			x[1] = mc_pow10l(x2);
 		} else {
-			step       = (x2 - x1) / mc_cast(long double, (n - 1));
+			step       = (x2 - x1) / mc_cast(const long double, (n - 1));
 			x[0]       = mc_pow10l(x1);
 			x[(n - 1)] = mc_pow10l(x2);
 			for (; i < (n - 1); i++) {

@@ -82,15 +82,15 @@ MC_TARGET_FUNC void mc_twoproductl(const long double a, const long double b, lon
 //!#
 //!# @note: Dekker's two-product is not a robust `fma` implementation.
 //!#
-#	if MC_TARGET_HAVE_LONG_DOUBLE && ((LDBL_MANT_DIG + 0) <= 64)
-//!# 2^32 + 1 -> ceil(LDBL_MANT_DIG / 2.0) + 1.0. (float-80)
+#	if MC_TARGET_HAVE_LONG_DOUBLE && (MC_TARGET_LONG_DOUBLE_TYPE == MC_TARGET_LONG_DOUBLE_X87)
+//!# 2^32 + 1 -> ceil(LDBL_MANT_DIG / 2.0) + 1.0.
 	const long double cs = mc_cast_expr(const long double, 4294967296 + 1);
-#	elif MC_TARGET_HAVE_LONG_DOUBLE
-#	pragma message("Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1.")
-	const long double cs = MCK_NAN;
-#	else
+#	elif MC_TARGET_HAVE_LONG_DOUBLE && (MC_TARGET_LONG_DOUBLE_TYPE == MC_TARGET_LONG_DOUBLE_ALIAS)
 //!# 2^27 + 1 -> ceil(DBL_MANT_DIG / 2.0) + 1.0.
 	const long double cs = mc_cast_expr(const long double, 134217728 + 1);
+#	else
+#	pragma message("Mantissa is too large. set @MC_TARGET_HAVE_FMA to 1.")
+	const long double cs = MCK_NAN;
 #	endif
 
 	long double a1, a2, b1, b2, c;

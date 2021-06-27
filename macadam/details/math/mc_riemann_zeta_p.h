@@ -436,7 +436,7 @@ MC_TARGET_PROC long double mc_riemann_zeta_p_scl(long double s, long double sc)
 			sum  = sum + ((sign * (sumk - nn)) * p);
 			sign = sign * -1.0L;
 			term = term * (2.0L * mc_cast(long double, n) - mc_cast(long double, k));
-			term = term / mc_cast(long double, (k - n + 1));
+			term = term / mc_cast(const long double, (k - n + 1));
 			sumk = sumk + term;
 		}
 		p = 1.0L / (nn * (-mc_powm1l(2.0L, sc)));

@@ -88,7 +88,7 @@ MC_TARGET_FUNC double mc_rand_lgammaff(const float a, const float l)
 	if (j) {
 		r = r * mc_pow(1.0 -  mc_randu(), 1.0 / (b - 1.0));
 	}
-	return mc_log(r / mc_cast(double, l));
+	return mc_log(r / mc_cast(const double, l));
 }
 
 MC_TARGET_FUNC double mc_rand_lgamma(const double a, const double l)

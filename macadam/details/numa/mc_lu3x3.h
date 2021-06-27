@@ -90,8 +90,8 @@ MC_TARGET_FUNC int mc_lu3x3ff(const float a[9], double l[9], double u[9])
 
 	if (mc_cast(double, a[0]) != 0.0) {
 //!# Forming first elementary matrix e1.
-		e121 = -(mc_cast(double, a[3]) / mc_cast(double, a[0]));
-		e131 = -(mc_cast(double, a[6]) / mc_cast(double, a[0]));
+		e121 = -(mc_cast(double, a[3]) / mc_cast(const double, a[0]));
+		e131 = -(mc_cast(double, a[6]) / mc_cast(const double, a[0]));
 	}
 //!# Computing e1a=e1*a
 	e1a11 = (e111 * mc_cast(double, a[0])) + (e112 * mc_cast(double, a[3])) + (e113 * mc_cast(double, a[6]));

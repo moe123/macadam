@@ -26,9 +26,16 @@ MC_TARGET_FUNC float mc_histce1xnf(int npts, int nbins, int logbase, const int *
 	float e     = 0.0f;
 
 	if (npts > 1 && logbase > 0) {
-		for (; i < npts; i++) {
-			const float p  = mc_cast(float, h[i]) / c;
-			e             -= p > 0.0f ? p * mc_logbasef(p, logbase) : 0.0f;
+		if (c < 0x1000001) {
+			for (; i < npts; i++) {
+				const float p  = mc_cast(float, h[i]) / c;
+				e             -= p > 0.0f ? p * mc_logbasef(p, logbase) : 0.0f;
+			}
+		} else {
+			for (; i < npts; i++) {
+				const double p  = mc_cast(double, h[i]) / c;
+				e              -= mc_cast_expr(float, p > 0.0 ? p * mc_logbase(p, logbase) : 0.0);
+			}
 		}
 	}
 	return e;

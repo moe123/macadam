@@ -24,7 +24,7 @@ MC_TARGET_FUNC void mc_lapack_slasdt(const int n, int * lvl, int * nd, int * ino
 	float temp;
 
 	 maxn                       = mc_maxmag(1, n);
-	 temp                       = mc_logf(mc_cast(float, maxn) / mc_cast(float, (msub + 1))) / mc_logf(two);
+	 temp                       = mc_logf(mc_cast(float, maxn) / mc_cast(const float, (msub + 1))) / mc_logf(two);
 	*lvl                        = mc_itrunc32f(temp) + 1;
 
 	 i                          = n / 2;
@@ -61,7 +61,7 @@ MC_TARGET_FUNC void mc_lapack_dlasdt(const int n, int * lvl, int * nd, int * ino
 	double temp;
 
 	 maxn                       = mc_maxmag(1, n);
-	 temp                       = mc_log(mc_cast(double, maxn) / mc_cast(double, (msub + 1))) / mc_log(two);
+	 temp                       = mc_log(mc_cast(double, maxn) / mc_cast(const double, (msub + 1))) / mc_log(two);
 	*lvl                        = mc_itrunc32(temp) + 1;
 
 	 i                          = n / 2;
@@ -98,7 +98,7 @@ MC_TARGET_FUNC void mc_lapack_llasdt(const int n, int * lvl, int * nd, int * ino
 	long double temp;
 
 	 maxn                       = mc_maxmag(1, n);
-	 temp                       = mc_logl(mc_cast(long double, maxn) / mc_cast(long double, (msub + 1))) / mc_logl(two);
+	 temp                       = mc_logl(mc_cast(long double, maxn) / mc_cast(const long double, (msub + 1))) / mc_logl(two);
 	*lvl                        = mc_itrunc32l(temp) + 1;
 
 	 i                          = n / 2;

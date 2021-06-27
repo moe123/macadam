@@ -24,8 +24,8 @@ MC_TARGET_FUNC void mc_mstddv1xnf(const int n, const float * x, const int b, flo
 	*var    = 0.0f;
 	if (n > 1) {
 		mc_mssqr1xnf(n, x, 0, mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrtf(sumsq / mc_cast(float, (b ? (n - 1) : n)));
-		*var    = mc_raise2f(scale) * (sumsq / mc_cast(float, (b ? (n - 1) : n)));
+		*stddev = scale * mc_sqrtf(sumsq / mc_cast(const float, (b ? (n - 1) : n)));
+		*var    = mc_raise2f(scale) * (sumsq / mc_cast(const float, (b ? (n - 1) : n)));
 	}
 }
 
@@ -38,8 +38,8 @@ MC_TARGET_FUNC void mc_mstddv1xnff(const int n, const float * x, const int b, do
 	*var    = 0.0;
 	if (n > 1) {
 		mc_mssqr1xnff(n, x, 0, mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrt(sumsq / mc_cast(double, (b ? (n - 1) : n)));
-		*var    = mc_raise2(scale) * (sumsq / mc_cast(double, (b ? (n - 1) : n)));
+		*stddev = scale * mc_sqrt(sumsq / mc_cast(const double, (b ? (n - 1) : n)));
+		*var    = mc_raise2(scale) * (sumsq / mc_cast(const double, (b ? (n - 1) : n)));
 	}
 }
 
@@ -52,8 +52,8 @@ MC_TARGET_FUNC void mc_mstddv1xn(const int n, const double * x, const int b, dou
 	*var    = 0.0;
 	if (n > 1) {
 		mc_mssqr1xn(n, x, 0, mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrt(sumsq / mc_cast(double, (b ? (n - 1) : n)));
-		*var    = mc_raise2(scale) * (sumsq / mc_cast(double, (b ? (n - 1) : n)));
+		*stddev = scale * mc_sqrt(sumsq / mc_cast(const double, (b ? (n - 1) : n)));
+		*var    = mc_raise2(scale) * (sumsq / mc_cast(const double, (b ? (n - 1) : n)));
 	}
 }
 
@@ -66,8 +66,8 @@ MC_TARGET_FUNC void mc_mstddv1xnl(const int n, const long double * x, const int 
 	*var    = 0.0;
 	if (n > 1) {
 		mc_mssqr1xnl(n, x, b, mean, &sumsq, &scale);
-		*stddev = scale * mc_sqrtl(sumsq / mc_cast(long double, (b ? (n - 1) : n)));
-		*var    = mc_raise2l(scale) * (sumsq / mc_cast(long double, (b ? (n - 1) : n)));
+		*stddev = scale * mc_sqrtl(sumsq / mc_cast(const long double, (b ? (n - 1) : n)));
+		*var    = mc_raise2l(scale) * (sumsq / mc_cast(const long double, (b ? (n - 1) : n)));
 	}
 }
 

@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_rand_weibullf(const float a)
 MC_TARGET_FUNC double mc_rand_weibullff(const float a)
 {
 //!# Weibull distribution generator. a=alpha=shape.
-	return a != 0.0f ? (a == 1.0f ? mc_rand_exponential(1.0) : mc_pow(mc_rand_exponential(1.0), 1.0 / mc_cast(double, a))) : 0.0;
+	return a != 0.0f ? (a == 1.0f ? mc_rand_exponential(1.0) : mc_pow(mc_rand_exponential(1.0), 1.0 / mc_cast(const double, a))) : 0.0;
 }
 
 MC_TARGET_FUNC double mc_rand_weibull(const double a)

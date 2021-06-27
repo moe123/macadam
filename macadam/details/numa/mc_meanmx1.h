@@ -18,7 +18,7 @@ MC_TARGET_FUNC float mc_meanmx1f(const int m, const int n, const int j, const fl
 	float s = 0.0f;
 	if (n > 0) {
 		s = mc_summx1f(m, n, j, a, f);
-		s = s / mc_cast(float, (b ? m - 1 : m));
+		s = s / mc_cast(const float, (b ? m - 1 : m));
 	}
 	return s;
 }
@@ -28,7 +28,7 @@ MC_TARGET_FUNC double mc_meanmx1ff(const int m, const int n, const int j, const 
 	double s = 0.0;
 	if (n > 0) {
 		s = mc_summx1ff(m, n, j, a, f);
-		s = s / mc_cast(double, (b ? m - 1 : m));
+		s = s / mc_cast(const double, (b ? m - 1 : m));
 	}
 	return s;
 }
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_meanmx1(const int m, const int n, const int j, const do
 	double s = 0.0;
 	if (n > 0) {
 		s = mc_summx1(m, n, j, a, f);
-		s = s / mc_cast(double, (b ? m - 1 : m));
+		s = s / mc_cast(const double, (b ? m - 1 : m));
 	}
 	return s;
 }
@@ -48,7 +48,7 @@ MC_TARGET_FUNC long double mc_meanmx1l(const int m, const int n, const int j, co
 	long double s = 0.0L;
 	if (n > 0) {
 		s = mc_summx1l(m, n, j, a, f);
-		s = s / mc_cast(long double, (b ? m - 1 : m));
+		s = s / mc_cast(const long double, (b ? m - 1 : m));
 	}
 	return s;
 }

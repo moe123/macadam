@@ -30,7 +30,7 @@ MC_TARGET_FUNC double mc_rand_paretoff(const float a)
 //!# Pareto distribution generator.
 	double r = 0.0;
 	if (mc_cast(double, a) != r) {
-		const double x = mc_rand_exponential(1.0) / mc_cast(double, a);
+		const double x = mc_rand_exponential(1.0) / mc_cast(const double, a);
 		r              = mc_exp(x) - 1.0;
 	}
 	return r;

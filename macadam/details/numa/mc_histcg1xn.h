@@ -32,16 +32,30 @@ MC_TARGET_FUNC int mc_histcg1xnf(const int n, const float * x, float min, float 
 		} else if (min > max) {
 			mcswap_var(w, min, max);
 		}
-		const float c = mc_cast_expr(const float, (max - min) / nbins);
-		if (c != 0.0f) {
-			mc_izeros1xn(nbins, h);
-			for (; i < n; i++) {
-				const int j = mc_cast_expr(const int, (x[i] - min) / c);
-				if (j >= 0 && j < nbins) {
-					h[j]++;
+		if (nbins < 0x1000001) {
+			const float c = mc_cast_expr(const float, (max - min) / nbins);
+			if (c != 0.0f) {
+				mc_izeros1xn(nbins, h);
+				for (; i < n; i++) {
+					const int j = mc_cast_expr(const int, (x[i] - min) / c);
+					if (j >= 0 && j < nbins) {
+						h[j]++;
+					}
 				}
+				return 0;
 			}
-			return 0;
+		} else {
+			const double c = mc_cast_expr(const double, (max - min) / nbins);
+			if (c != 0.0) {
+				mc_izeros1xn(nbins, h);
+				for (; i < n; i++) {
+					const int j = mc_cast_expr(const int, mc_cast_expr(const double, (x[i] - min)) / c);
+					if (j >= 0 && j < nbins) {
+						h[j]++;
+					}
+				}
+				return 0;
+			}
 		}
 	}
 	return -1;

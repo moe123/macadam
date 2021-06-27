@@ -75,7 +75,7 @@ MC_TARGET_FUNC float mc_legendre_pnmf(int n, const int m, const float x)
 		return p1;
 	}
 	for (i = m + 2; i <= n; i++) {
-		pn = (x * (2.0f * mc_cast(float, i) - 1.0f) * p1 - (mc_cast(float, i) + mc_cast(float, m) - 1.0f) * p0) / mc_cast(float, (i - m));
+		pn = (x * (2.0f * mc_cast(const float, i) - 1.0f) * p1 - (mc_cast(const float, i) + mc_cast(const float, m) - 1.0f) * p0) / mc_cast(const float, (i - m));
 		p0 = p1;
 		p1 = pn;
 	}
@@ -138,7 +138,7 @@ MC_TARGET_FUNC double mc_legendre_pnm(int n, const int m, const double x)
 		return p1;
 	}
 	for (i = m + 2; i <= n; i++) {
-		pn = (x * (2.0 * mc_cast(double, i) - 1.0) * p1 - (mc_cast(double, i) + mc_cast(double, m) - 1.0) * p0) / mc_cast(double, (i - m));
+		pn = (x * (2.0 * mc_cast(const double, i) - 1.0) * p1 - (mc_cast(const double, i) + mc_cast(const double, m) - 1.0) * p0) / mc_cast(const double, (i - m));
 		p0 = p1;
 		p1 = pn;
 	}
@@ -205,7 +205,7 @@ MC_TARGET_FUNC long double mc_legendre_pnml(int n, const int m, const long doubl
 		return p1;
 	}
 	for (i = m + 2; i <= n; i++) {
-		pn = (x * (2.0L * mc_cast(long double, i) - 1.0L) * p1 - (mc_cast(long double, i) + mc_cast(long double, m) - 1.0L) * p0) / mc_cast(long double, (i - m));
+		pn = (x * (2.0L * mc_cast(const long double, i) - 1.0L) * p1 - (mc_cast(const long double, i) + mc_cast(const long double, m) - 1.0L) * p0) / mc_cast(const long double, (i - m));
 		p0 = p1;
 		p1 = pn;
 	}

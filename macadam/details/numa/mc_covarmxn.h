@@ -30,7 +30,7 @@ MC_TARGET_FUNC int mc_covarmxnf(const int m, const int n, float * MC_TARGET_REST
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((a[(n * i) + j] - mj) * (a[(n * i) + k] - mk));
 				}
-				c[(n * j) + k] = c[(n * j) + k] / mc_cast(float, (b ? m - 1 : m));
+				c[(n * j) + k] = c[(n * j) + k] / mc_cast(const float, (b ? m - 1 : m));
 			}
 		}
 		return 0;
@@ -55,7 +55,7 @@ MC_TARGET_FUNC int mc_covarmxnff(const int m, const int n, double * c, const flo
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((mc_cast(double, a[(n * i) + j]) - mj) * (mc_cast(double, a[(n * i) + k]) - mk));
 				}
-				c[(n * j) + k] = c[(n * j) + k] / mc_cast(double, (b ? m - 1 : m));
+				c[(n * j) + k] = c[(n * j) + k] / mc_cast(const double, (b ? m - 1 : m));
 			}
 		}
 		return 0;
@@ -80,7 +80,7 @@ MC_TARGET_FUNC int mc_covarmxn(const int m, const int n, double * MC_TARGET_REST
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((a[(n * i) + j] - mj) * (a[(n * i) + k] - mk));
 				}
-				c[(n * j) + k] = c[(n * j) + k] / mc_cast(double, (b ? m - 1 : m));
+				c[(n * j) + k] = c[(n * j) + k] / mc_cast(const double, (b ? m - 1 : m));
 			}
 		}
 		return 0;
@@ -105,7 +105,7 @@ MC_TARGET_FUNC int mc_covarmxnl(const int m, const int n, long double * MC_TARGE
 				for (i = 0; i < m; i++) {
 					c[(n * j) + k] = c[(n * j) + k] + ((a[(n * i) + j] - mj) * (a[(n * i) + k] - mk));
 				}
-				c[(n * j) + k] = c[(n * j) + k] / mc_cast(long double, (b ? m - 1 : m));
+				c[(n * j) + k] = c[(n * j) + k] / mc_cast(const long double, (b ? m - 1 : m));
 			}
 		}
 		return 0;

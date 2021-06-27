@@ -107,8 +107,8 @@ MC_TARGET_FUNC long double mc_choosel(const unsigned int n, const unsigned int k
 		}
 		if (n < factorial_max) {
 			r = mc_cast(long double, mc_factoriall(n));
-			r = r / mc_cast(long double, mc_factoriall(n - k));
-			r = r / mc_cast(long double, mc_factoriall(k));
+			r = r / mc_cast(const long double, mc_factoriall(n - k));
+			r = r / mc_cast(const long double, mc_factoriall(k));
 			r = mc_ceill(r - 0.5L);
 		} else {
 			r = (k < (n - k))
