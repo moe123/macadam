@@ -1,7 +1,7 @@
 //
 // # -*- coding: utf-8, tab-width: 3 -*-
 
-// mc_svdmxn.h
+// mc_svdgr1mxn.h
 //
 // Copyright (C) 2019-2021 Moe123. All rights reserved.
 //
@@ -15,9 +15,9 @@
 #ifndef MC_SVDGRMXN_H
 #define MC_SVDGRMXN_H
 
-#pragma mark - mc_svdgrmxn -
+#pragma mark - mc_svdgr1mxn -
 
-MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float * w, int withu, int withv, int sorted, float eps, float tol, float * u, float * MC_TARGET_RESTRICT s, float * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_svdgr1mxnf(const int m, const int n, const float * a, float * w, int withu, int withv, int sorted, float eps, float tol, float * u, float * MC_TARGET_RESTRICT s, float * MC_TARGET_RESTRICT v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -65,7 +65,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float
 			for (j = i; j < m; j++) {
 				e = e + (u[(n * j) + i] * u[(n * j) + i]);
 			}
-			if (mc_fabsf(e) < tol) {
+			if (e < tol) {
 				g = 0.0f;
 			} else {
 				f              =  u[(n * i) + i];
@@ -77,7 +77,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float
 					for (k = i; k < m; k++) {
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
-					if (mc_fabsf(h) == 0.0f) {
+					if (h == 0.0f) {
 						continue;
 					}
 					f = e / h;
@@ -91,13 +91,13 @@ MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float
 			for (j = l; j < n; j++) {
 				e = e + (u[(n * i) + j] * u[(n * i) + j]);
 			}
-			if (mc_fabsf(e) < tol) {
+			if (e < tol) {
 				g = 0.0f;
 			} else {
 				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysignf(1.0f, f) * mc_sqrtf(e);
 				h =  f * g - e;
-				if (mc_fabsf(h) == 0.0f) {
+				if (h == 0.0f) {
 					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
@@ -125,7 +125,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float
 			for (i = (n - 1); i >= 0; i--) {
 				if (g != 0.0f) {
 					h = u[(n * i) + (i + 1)] * g;
-					if (mc_fabsf(h) == 0.0f) {
+					if (h == 0.0f) {
 						continue;
 					}
 					for (j = l; j < n; j++) {
@@ -152,41 +152,33 @@ MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float
 
 //!# Step 3: Accumulation of left-hand transformations.
 		if (withu) {
-			for (i = n; i < m; i++) {
-				for (j = n; j < m; j++) {
-					u[(n * i) + j] = 0.0f;
-				}
-				u[(n * i) + i] = 1.0f;
-			}
-			for (i = (n - 1); i >= 0; i--) {
+			for (i = n - 1; i >= 0; --i) {
 				l = i + 1;
 				g = s[i];
-				if (mc_fabsf(g) == 0.0f) {
-					continue;
-				}
-				for (j = l; j < m; j++) {
-					u[(n * i) + j] = 0.0f;
+				if (i < (n - 1)) {
+					for (j = l; j < n; ++j) {
+						u[(n * i) + j] = 0.0f;
+					}
 				}
 				if (g != 0.0f) {
-					h = u[(n * i) + i] * g;
-					if (mc_fabsf(h) == 0.0f) {
-						continue;
-					}
-					for (j = l; j < m; j++) {
-						e = 0.0f;
-						for (k = l; k < m; k++) {
-							e = e + (u[(n * k) + i] * u[(n * k) + j]);
+					g = 1.0f / g;
+					if (i != (n - 1)) {
+						for (j = l; j < n; ++j) {
+							h = 0.0f;
+							for (k = l; k < m; ++k) {
+								h = h + u[(n * k) + i] * u[(n * k) + j];
+							}
+							f = (h / u[(n * i) + i]) * g;
+							for (k = i; k < m; ++k) {
+								u[(n * k) + j] = u[(n * k) + j] + f * u[(n * k) + i];
+							}
 						}
-						f = e / h;
-						for (k = i; k < m; k++) {
-							u[(n * k) + j] = u[(n * k) + j] + (f * u[(n * k) + i]);
-						}
 					}
-					for (j = i; j < m;j++) {
-						u[(n * j) + i] = u[(n * j) + i] / g;
+					for (j = i; j < m; ++j) {
+						u[(n * j) + i] = u[(n * j) + i] * g;
 					}
 				} else {
-					for (j = i; j < m;j++) {
+					for (j = i; j < m; ++j) {
 						u[(n * j) + i] = 0.0f;
 					}
 				}
@@ -255,7 +247,7 @@ MC_TARGET_FUNC int mc_svdgrmxnf(const int m, const int n, const float * a, float
 			y = s[k - 1];
 			g = w[k - 1];
 			h = w[k];
-			if (mc_fabsf(y) == 0.0f || mc_fabsf(h) == 0.0f) {
+			if (y == 0.0f || h == 0.0f) {
 				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0f * h * y);
@@ -348,7 +340,7 @@ l40:
 	return r;
 }
 
-MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * MC_TARGET_RESTRICT s, double * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_svdgr1mxnff(const int m, const int n, const float * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * MC_TARGET_RESTRICT s, double * MC_TARGET_RESTRICT v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -394,7 +386,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, doub
 			for (j = i; j < m; j++) {
 				e = e + (u[(n * j) + i] * u[(n * j) + i]);
 			}
-			if (mc_fabs(e) < tol) {
+			if (e < tol) {
 				g = 0.0;
 			} else {
 				f              =  u[(n * i) + i];
@@ -406,7 +398,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, doub
 					for (k = i; k < m; k++) {
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
-					if (mc_fabs(h) == 0.0) {
+					if (h == 0.0) {
 						continue;
 					}
 					f = e / h;
@@ -420,13 +412,13 @@ MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, doub
 			for (j = l; j < n; j++) {
 				e = e + (u[(n * i) + j] * u[(n * i) + j]);
 			}
-			if (mc_fabs(e) < tol) {
+			if (e < tol) {
 				g = 0.0;
 			} else {
 				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysign(1.0, f) * mc_sqrt(e);
 				h =  f * g - e;
-				if (mc_fabs(h) == 0.0) {
+				if (h == 0.0) {
 					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
@@ -454,7 +446,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, doub
 			for (i = (n - 1); i >= 0; i--) {
 				if (g != 0.0) {
 					h = u[(n * i) + (i + 1)] * g;
-					if (mc_fabs(h) == 0.0) {
+					if (h == 0.0) {
 						continue;
 					}
 					for (j = l; j < n; j++) {
@@ -481,41 +473,33 @@ MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, doub
 
 //!# Step 3: Accumulation of left-hand transformations.
 		if (withu) {
-			for (i = n; i < m; i++) {
-				for (j = n; j < m; j++) {
-					u[(n * i) + j] = 0.0;
-				}
-				u[(n * i) + i] = 1.0;
-			}
-			for (i = (n - 1); i >= 0; i--) {
+			for (i = n - 1; i >= 0; --i) {
 				l = i + 1;
 				g = s[i];
-				if (mc_fabs(g) == 0.0) {
-					continue;
-				}
-				for (j = l; j < m; j++) {
-					u[(n * i) + j] = 0.0;
+				if (i < (n - 1)) {
+					for (j = l; j < n; ++j) {
+						u[(n * i) + j] = 0.0;
+					}
 				}
 				if (g != 0.0) {
-					h = u[(n * i) + i] * g;
-					if (mc_fabs(h) == 0.0) {
-						continue;
-					}
-					for (j = l; j < m; j++) {
-						e = 0.0;
-						for (k = l; k < m; k++) {
-							e = e + (u[(n * k) + i] * u[(n * k) + j]);
+					g = 1.0 / g;
+					if (i != (n - 1)) {
+						for (j = l; j < n; ++j) {
+							h = 0.0;
+							for (k = l; k < m; ++k) {
+								h = h + u[(n * k) + i] * u[(n * k) + j];
+							}
+							f = (h / u[(n * i) + i]) * g;
+							for (k = i; k < m; ++k) {
+								u[(n * k) + j] = u[(n * k) + j] + f * u[(n * k) + i];
+							}
 						}
-						f = e / h;
-						for (k = i; k < m; k++) {
-							u[(n * k) + j] = u[(n * k) + j] + (f * u[(n * k) + i]);
-						}
 					}
-					for (j = i; j < m;j++) {
-						u[(n * j) + i] = u[(n * j) + i] / g;
+					for (j = i; j < m; ++j) {
+						u[(n * j) + i] = u[(n * j) + i] * g;
 					}
 				} else {
-					for (j = i; j < m;j++) {
+					for (j = i; j < m; ++j) {
 						u[(n * j) + i] = 0.0;
 					}
 				}
@@ -584,7 +568,7 @@ MC_TARGET_FUNC int mc_svdgrmxnff(const int m, const int n, const float * a, doub
 			y = s[k - 1];
 			g = w[k - 1];
 			h = w[k];
-			if (mc_fabs(y) == 0.0 || mc_fabs(h) == 0.0) {
+			if (y == 0.0 || h == 0.0) {
 				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0 * h * y);
@@ -677,7 +661,7 @@ l40:
 	return r;
 }
 
-MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * MC_TARGET_RESTRICT s, double * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_svdgr1mxn(const int m, const int n, const double * a, double * w, int withu, int withv, int sorted, double eps, double tol, double * u, double * MC_TARGET_RESTRICT s, double * MC_TARGET_RESTRICT v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -725,7 +709,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, doubl
 			for (j = i; j < m; j++) {
 				e = e + (u[(n * j) + i] * u[(n * j) + i]);
 			}
-			if (mc_fabs(e) < tol) {
+			if (e < tol) {
 				g = 0.0;
 			} else {
 				f              =  u[(n * i) + i];
@@ -737,7 +721,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, doubl
 					for (k = i; k < m; k++) {
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
-					if (mc_fabs(h) == 0.0) {
+					if (h == 0.0) {
 						continue;
 					}
 					f = e / h;
@@ -751,13 +735,13 @@ MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, doubl
 			for (j = l; j < n; j++) {
 				e = e + (u[(n * i) + j] * u[(n * i) + j]);
 			}
-			if (mc_fabs(e) < tol) {
+			if (e < tol) {
 				g = 0.0;
 			} else {
 				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysign(1.0, f) * mc_sqrt(e);
 				h =  f * g - e;
-				if (mc_fabs(h) == 0.0) {
+				if (h == 0.0) {
 					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
@@ -785,7 +769,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, doubl
 			for (i = (n - 1); i >= 0; i--) {
 				if (g != 0.0) {
 					h = u[(n * i) + (i + 1)] * g;
-					if (mc_fabs(h) == 0.0) {
+					if (h == 0.0) {
 						continue;
 					}
 					for (j = l; j < n; j++) {
@@ -812,41 +796,33 @@ MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, doubl
 
 //!# Step 3: Accumulation of left-hand transformations.
 		if (withu) {
-			for (i = n; i < m; i++) {
-				for (j = n; j < m; j++) {
-					u[(n * i) + j] = 0.0;
-				}
-				u[(n * i) + i] = 1.0;
-			}
-			for (i = (n - 1); i >= 0; i--) {
+			for (i = n - 1; i >= 0; --i) {
 				l = i + 1;
 				g = s[i];
-				if (mc_fabs(g) == 0.0) {
-					continue;
-				}
-				for (j = l; j < m; j++) {
-					u[(n * i) + j] = 0.0;
+				if (i < (n - 1)) {
+					for (j = l; j < n; ++j) {
+						u[(n * i) + j] = 0.0;
+					}
 				}
 				if (g != 0.0) {
-					h = u[(n * i) + i] * g;
-					if (mc_fabs(h) == 0.0) {
-						continue;
-					}
-					for (j = l; j < m; j++) {
-						e = 0.0;
-						for (k = l; k < m; k++) {
-							e = e + (u[(n * k) + i] * u[(n * k) + j]);
+					g = 1.0 / g;
+					if (i != (n - 1)) {
+						for (j = l; j < n; ++j) {
+							h = 0.0;
+							for (k = l; k < m; ++k) {
+								h = h + u[(n * k) + i] * u[(n * k) + j];
+							}
+							f = (h / u[(n * i) + i]) * g;
+							for (k = i; k < m; ++k) {
+								u[(n * k) + j] = u[(n * k) + j] + f * u[(n * k) + i];
+							}
 						}
-						f = e / h;
-						for (k = i; k < m; k++) {
-							u[(n * k) + j] = u[(n * k) + j] + (f * u[(n * k) + i]);
-						}
 					}
-					for (j = i; j < m;j++) {
-						u[(n * j) + i] = u[(n * j) + i] / g;
+					for (j = i; j < m; ++j) {
+						u[(n * j) + i] = u[(n * j) + i] * g;
 					}
 				} else {
-					for (j = i; j < m;j++) {
+					for (j = i; j < m; ++j) {
 						u[(n * j) + i] = 0.0;
 					}
 				}
@@ -915,7 +891,7 @@ MC_TARGET_FUNC int mc_svdgrmxn(const int m, const int n, const double * a, doubl
 			y = s[k - 1];
 			g = w[k - 1];
 			h = w[k];
-			if (mc_fabs(y) == 0.0 || mc_fabs(h) == 0.0) {
+			if (mc_fabs(y) == 0.0 || h == 0.0) {
 				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0 * h * y);
@@ -1008,7 +984,7 @@ l40:
 	return r;
 }
 
-MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a, long double * w, int withu, int withv, int sorted, long double eps, long double tol, long double * u, long double * MC_TARGET_RESTRICT s, long double * MC_TARGET_RESTRICT v)
+MC_TARGET_FUNC int mc_svdgr1mxnl(const int m, const int n, const long double * a, long double * w, int withu, int withv, int sorted, long double eps, long double tol, long double * u, long double * MC_TARGET_RESTRICT s, long double * MC_TARGET_RESTRICT v)
 {
 //!# A and U may be the same. Requires a[m x n], w[n], u[m x p], s[1 x p] and v[p x p] where 1 < n <= m hence p=n.
 //!# G. H. GOLUB and C. REINSCH SVD algorithm by bidiagonalization and modified QR steps. Handbook for Automatic
@@ -1056,7 +1032,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a,
 			for (j = i; j < m; j++) {
 				e = e + (u[(n * j) + i] * u[(n * j) + i]);
 			}
-			if (mc_fabsl(e) < tol) {
+			if (e < tol) {
 				g = 0.0L;
 			} else {
 				f              =  u[(n * i) + i];
@@ -1068,7 +1044,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a,
 					for (k = i; k < m; k++) {
 						e = e + (u[(n * k) + i] * u[(n * k) + j]);
 					}
-					if (mc_fabsl(h) == 0.0L) {
+					if (h == 0.0L) {
 						continue;
 					}
 					f = e / h;
@@ -1082,13 +1058,13 @@ MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a,
 			for (j = l; j < n; j++) {
 				e = e + (u[(n * i) + j] * u[(n * i) + j]);
 			}
-			if (mc_fabsl(e) < tol) {
+			if (e < tol) {
 				g = 0.0L;
 			} else {
 				f =  u[(n * i) + (i + 1)];
 				g = -mc_copysignl(1.0L, f) * mc_sqrtl(e);
 				h =  f * g - e;
-				if (mc_fabsl(h) == 0.0L) {
+				if (h == 0.0L) {
 					continue;
 				}
 				u[(n * i) + (i + 1)] = f - g;
@@ -1116,7 +1092,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a,
 			for (i = (n - 1); i >= 0; i--) {
 				if (g != 0.0L) {
 					h = u[(n * i) + (i + 1)] * g;
-					if (mc_fabsl(h) == 0.0L) {
+					if (h == 0.0L) {
 						continue;
 					}
 					for (j = l; j < n; j++) {
@@ -1143,41 +1119,33 @@ MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a,
 
 //!# Step 3: Accumulation of left-hand transformations.
 		if (withu) {
-			for (i = n; i < m; i++) {
-				for (j = n; j < m; j++) {
-					u[(n * i) + j] = 0.0L;
-				}
-				u[(n * i) + i] = 1.0L;
-			}
-			for (i = (n - 1); i >= 0; i--) {
+			for (i = n - 1; i >= 0; --i) {
 				l = i + 1;
 				g = s[i];
-				if (mc_fabsl(g) == 0.0L) {
-					continue;
-				}
-				for (j = l; j < m; j++) {
-					u[(n * i) + j] = 0.0L;
+				if (i < (n - 1)) {
+					for (j = l; j < n; ++j) {
+						u[(n * i) + j] = 0.0L;
+					}
 				}
 				if (g != 0.0L) {
-					h = u[(n * i) + i] * g;
-					if (mc_fabsl(h) == 0.0L) {
-						continue;
-					}
-					for (j = l; j < m; j++) {
-						e = 0.0L;
-						for (k = l; k < m; k++) {
-							e = e + (u[(n * k) + i] * u[(n * k) + j]);
+					g = 1.0L / g;
+					if (i != (n - 1)) {
+						for (j = l; j < n; ++j) {
+							h = 0.0L;
+							for (k = l; k < m; ++k) {
+								h = h + u[(n * k) + i] * u[(n * k) + j];
+							}
+							f = (h / u[(n * i) + i]) * g;
+							for (k = i; k < m; ++k) {
+								u[(n * k) + j] = u[(n * k) + j] + f * u[(n * k) + i];
+							}
 						}
-						f = e / h;
-						for (k = i; k < m; k++) {
-							u[(n * k) + j] = u[(n * k) + j] + (f * u[(n * k) + i]);
-						}
 					}
-					for (j = i; j < m;j++) {
-						u[(n * j) + i] = u[(n * j) + i] / g;
+					for (j = i; j < m; ++j) {
+						u[(n * j) + i] = u[(n * j) + i] * g;
 					}
 				} else {
-					for (j = i; j < m;j++) {
+					for (j = i; j < m; ++j) {
 						u[(n * j) + i] = 0.0L;
 					}
 				}
@@ -1246,7 +1214,7 @@ MC_TARGET_FUNC int mc_svdgrmxnl(const int m, const int n, const long double * a,
 			y = s[k - 1];
 			g = w[k - 1];
 			h = w[k];
-			if (mc_fabsl(y) == 0.0L || mc_fabsl(h) == 0.0L) {
+			if (y == 0.0L || h == 0.0L) {
 				continue;
 			}
 			f = ((y - z) * (y + z) + (g - h) * (g + h)) / (2.0L * h * y);
