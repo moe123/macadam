@@ -20,7 +20,7 @@ MC_TARGET_FUNC float mc_logoddsf(const float x, const float l)
 	return -mc_logf(a) * b;
 }
 
-MC_TARGET_FUNC double mc_logodds(double x, double l)
+MC_TARGET_FUNC double mc_logodds(const double x, const double l)
 {
 	const double a = 1.0 / x - 1.0;
 	const double b = l == 0.0 ? MCLIMITS_EPSILON : 1.0 / l;

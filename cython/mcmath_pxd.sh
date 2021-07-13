@@ -58,7 +58,7 @@ function main ()
 			echo ""                                                        >> "${path_self}/mcmath.pxd"
 		else
 			echo "cdef extern from \"<macadam/details/math/mc_${fn}.h>\":" >> "${path_self}/mcmath.pxd"
-			echo "\tint mc_${fn}(double x)"                                >> "${path_self}/mcmath.pxd"
+			echo "\tint mc_${fn}(const double x)"                          >> "${path_self}/mcmath.pxd"
 			echo ""                                                        >> "${path_self}/mcmath.pxd"
 		fi
 	done

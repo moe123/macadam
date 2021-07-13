@@ -13,7 +13,7 @@
 
 #pragma mark - mc_huber_psic -
 
-MC_TARGET_FUNC float mc_huber_psicf(float r, float c)
+MC_TARGET_FUNC float mc_huber_psicf(const float r, const float c)
 {
 	if (r > c) {
 		return r;
@@ -24,7 +24,7 @@ MC_TARGET_FUNC float mc_huber_psicf(float r, float c)
 	return -c;
 }
 
-MC_TARGET_FUNC double mc_huber_psic(double r, double c)
+MC_TARGET_FUNC double mc_huber_psic(const double r, const double c)
 {
 	if (r > c) {
 		return r;
@@ -35,7 +35,7 @@ MC_TARGET_FUNC double mc_huber_psic(double r, double c)
 	return -c;
 }
 
-MC_TARGET_FUNC long double mc_huber_psicl(long double r, long double c)
+MC_TARGET_FUNC long double mc_huber_psicl(const long double r, const long double c)
 {
 	if (r > c) {
 		return r;
@@ -48,19 +48,19 @@ MC_TARGET_FUNC long double mc_huber_psicl(long double r, long double c)
 
 #pragma mark - mc_huber_psi -
 
-MC_TARGET_FUNC float mc_huber_psif(float r)
+MC_TARGET_FUNC float mc_huber_psif(const float r)
 {
 	const float c = 1.345f;
 	return mc_huber_psicf(r, c);
 }
 
-MC_TARGET_FUNC double mc_huber_psi(double r)
+MC_TARGET_FUNC double mc_huber_psi(const double r)
 {
 	const double c = 1.345;
 	return mc_huber_psic(r, c);
 }
 
-MC_TARGET_FUNC long double mc_huber_psil(long double r)
+MC_TARGET_FUNC long double mc_huber_psil(const long double r)
 {
 	const long double c = 1.345L;
 	return mc_huber_psicl(r, c);

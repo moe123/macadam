@@ -301,7 +301,7 @@ MC_TARGET_PROC long double mc_evalpoly4l(const long double x
 
 #pragma mark - mc_evalpoly -
 
-MC_TARGET_FUNC float mc_evalpolyf(const float x, const float * p, const int n, const int f)
+MC_TARGET_PROC float mc_evalpolyf(const float x, const float * p, const int n, const int f)
 {
 //!# Horner's method with `fma` computation.
 //!# f=0: evaluating ascending power order.
@@ -324,7 +324,7 @@ MC_TARGET_FUNC float mc_evalpolyf(const float x, const float * p, const int n, c
 	return s;
 }
 
-MC_TARGET_FUNC double mc_evalpolyff(const float x, const float * p, const int n, const int f)
+MC_TARGET_PROC double mc_evalpolyff(const float x, const float * p, const int n, const int f)
 {
 //!# Horner's method with `fma` computation.
 //!# f=0: evaluating ascending power order.
@@ -347,7 +347,7 @@ MC_TARGET_FUNC double mc_evalpolyff(const float x, const float * p, const int n,
 	return s;
 }
 
-MC_TARGET_FUNC double mc_evalpoly(const double x, const double * p, const int n, const int f)
+MC_TARGET_PROC double mc_evalpoly(const double x, const double * p, const int n, const int f)
 {
 //!# Horner's method with `fma` computation.
 //!# f=0: evaluating ascending power order.
@@ -370,7 +370,7 @@ MC_TARGET_FUNC double mc_evalpoly(const double x, const double * p, const int n,
 	return s;
 }
 
-MC_TARGET_FUNC long double mc_evalpolyl(const long double x, const long double * p, const int n, const int f)
+MC_TARGET_PROC long double mc_evalpolyl(const long double x, const long double * p, const int n, const int f)
 {
 //!# Horner's method with `fma` computation.
 //!# f=0: evaluating ascending power order.

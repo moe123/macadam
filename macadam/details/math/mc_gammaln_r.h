@@ -13,7 +13,7 @@
 
 #pragma mark - mc_gammaln -
 
-MC_TARGET_FUNC float mc_gammalnf_r(const float x, int * psigngam)
+MC_TARGET_PROC float mc_gammalnf_r(const float x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 	if (mc_isnan(x)) {
@@ -42,7 +42,7 @@ MC_TARGET_FUNC float mc_gammalnf_r(const float x, int * psigngam)
 	return mc_gammalnf_approx0(x, psigngam);
 }
 
-MC_TARGET_FUNC double mc_gammaln_r(const double x, int * psigngam)
+MC_TARGET_PROC double mc_gammaln_r(const double x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 	if (mc_isnan(x)) {
@@ -71,7 +71,7 @@ MC_TARGET_FUNC double mc_gammaln_r(const double x, int * psigngam)
 	return mc_gammaln_approx0(x, psigngam);
 }
 
-MC_TARGET_FUNC long double mc_gammalnl_r(const long double x, int * psigngam)
+MC_TARGET_PROC long double mc_gammalnl_r(const long double x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 	if (mc_isnan(x)) {

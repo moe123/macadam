@@ -12,9 +12,10 @@
 #include <macadam/details/math/mc_raise2.h>
 #include <macadam/details/numa/mc_copymxn.h>
 #include <macadam/details/numa/mc_dotpmx1.h>
-#include <macadam/details/numa/mc_l2normmx1.h>
-#include <macadam/details/numa/mc_zerosmx1.h>
 #include <macadam/details/numa/mc_eyenxn.h>
+#include <macadam/details/numa/mc_l2normmx1.h>
+#include <macadam/details/numa/mc_minmax1xn.h>
+#include <macadam/details/numa/mc_zerosmx1.h>
 #include <macadam/mcswap.h>
 
 #ifndef MC_ORTHRMXN_H

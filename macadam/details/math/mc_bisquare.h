@@ -14,7 +14,7 @@
 
 #pragma mark - mc_bisquare -
 
-MC_TARGET_FUNC float mc_bisquaref(float r, float c, float s)
+MC_TARGET_FUNC float mc_bisquaref(const float r, const float c, const float s)
 {
 //!# Tukey's bisquare function.
 //!# Default settings c=4.685 and s=1 (scale)
@@ -26,7 +26,7 @@ MC_TARGET_FUNC float mc_bisquaref(float r, float c, float s)
 	return mc_raise2f(1.0f - mc_raise2f(h / c));
 }
 
-MC_TARGET_FUNC double mc_bisquare(double r, double c, double s)
+MC_TARGET_FUNC double mc_bisquare(const double r, const double c, const double s)
 {
 //!# Tukey's bisquare function.
 //!# Default settings c=4.685 and s=1 (scale)
@@ -38,7 +38,7 @@ MC_TARGET_FUNC double mc_bisquare(double r, double c, double s)
 	return mc_raise2(1.0 - mc_raise2(h / c));
 }
 
-MC_TARGET_FUNC long double mc_bisquarel(long double r, long double c, long double s)
+MC_TARGET_FUNC long double mc_bisquarel(const long double r, const long double c, const long double s)
 {
 //!# Tukey's bisquare function.
 //!# Default settings c=4.685 and s=1 (scale)

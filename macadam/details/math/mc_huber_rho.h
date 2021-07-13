@@ -14,7 +14,7 @@
 
 #pragma mark - mc_huber_rhoc -
 
-MC_TARGET_FUNC float mc_huber_rhocf(float r, float c)
+MC_TARGET_FUNC float mc_huber_rhocf(const float r, const float c)
 {
 	if (mc_fabsf(r) <= c) {
 		return 0.5f * mc_raise2f(r);
@@ -22,7 +22,7 @@ MC_TARGET_FUNC float mc_huber_rhocf(float r, float c)
 	return c * mc_fabsf(r) - 0.5f * mc_raise2f(c);
 }
 
-MC_TARGET_FUNC double mc_huber_rhoc(double r, double c)
+MC_TARGET_FUNC double mc_huber_rhoc(const double r, const double c)
 {
 	if (mc_fabs(r) <= c) {
 		return 0.5 * mc_raise2(r);
@@ -30,7 +30,7 @@ MC_TARGET_FUNC double mc_huber_rhoc(double r, double c)
 	return c * mc_fabs(r) - 0.5 * mc_raise2(c);
 }
 
-MC_TARGET_FUNC long double mc_huber_rhocl(long double r, long double c)
+MC_TARGET_FUNC long double mc_huber_rhocl(const long double r, const long double c)
 {
 	if (mc_fabsl(r) <= c) {
 		return 0.5L * mc_raise2l(r);
@@ -40,19 +40,19 @@ MC_TARGET_FUNC long double mc_huber_rhocl(long double r, long double c)
 
 #pragma mark - mc_huber_rho -
 
-MC_TARGET_FUNC float mc_huber_rhof(float r)
+MC_TARGET_FUNC float mc_huber_rhof(const float r)
 {
 	const float c = 1.345f;
 	return mc_huber_rhocf(r, c);
 }
 
-MC_TARGET_FUNC double mc_huber_rho(double r)
+MC_TARGET_FUNC double mc_huber_rho(const double r)
 {
 	const double c = 1.345;
 	return mc_huber_rhoc(r, c);
 }
 
-MC_TARGET_FUNC long double mc_huber_rhol(long double r)
+MC_TARGET_FUNC long double mc_huber_rhol(const long double r)
 {
 	const long double c = 1.345L;
 	return mc_huber_rhocl(r, c);

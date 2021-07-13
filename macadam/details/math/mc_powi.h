@@ -20,8 +20,8 @@
 MC_TARGET_FUNC float mc_powif(const float x, const int y)
 {
 
-	if(x == 0.0f) {
-		if(y == 0) {
+	if (x == 0.0f) {
+		if (y == 0) {
 			return 1.0f;
 		} else if (y < 0) {
 			return mc_copysignf(MCK_INF, x);
@@ -54,8 +54,8 @@ MC_TARGET_FUNC float mc_powif(const float x, const int y)
 
 MC_TARGET_FUNC double mc_powi(const double x, const int y)
 {
-	if(x == 0.0) {
-		if(y == 0) {
+	if (x == 0.0) {
+		if (y == 0) {
 			return 1.0;
 		} else if (y < 0) {
 			return mc_copysign(MCK_INF, x);
@@ -84,8 +84,8 @@ MC_TARGET_FUNC double mc_powi(const double x, const int y)
 
 MC_TARGET_FUNC long double mc_powil(const long double x, const int y)
 {
-	if(x == 0.0L) {
-		if(y == 0) {
+	if (x == 0.0L) {
+		if (y == 0) {
 			return 1.0L;
 		} else if (y < 0) {
 			return mc_copysignl(MCK_INF, x);

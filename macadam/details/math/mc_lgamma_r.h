@@ -13,7 +13,7 @@
 
 #pragma mark - mc_lgamma_r -
 
-MC_TARGET_FUNC float mc_lgammaf_r(const float x, int * psigngam)
+MC_TARGET_PROC float mc_lgammaf_r(const float x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED || MC_TARGET_MSVC_CPP
@@ -33,7 +33,7 @@ MC_TARGET_FUNC float mc_lgammaf_r(const float x, int * psigngam)
 #	endif
 }
 
-MC_TARGET_FUNC double mc_lgamma_r(const double x, int * psigngam)
+MC_TARGET_PROC double mc_lgamma_r(const double x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED || MC_TARGET_MSVC_CPP
@@ -53,7 +53,7 @@ MC_TARGET_FUNC double mc_lgamma_r(const double x, int * psigngam)
 #	endif
 }
 
-MC_TARGET_FUNC long double mc_lgammal_r(const long double x, int * psigngam)
+MC_TARGET_PROC long double mc_lgammal_r(const long double x, int * psigngam)
 {
 //!# Computes log(|gamma(x)|).
 #	if MC_TARGET_EMBEDDED || MC_TARGET_MSVC_CPP

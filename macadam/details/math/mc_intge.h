@@ -13,7 +13,7 @@
 
 #pragma mark - mc_intge -
 
-MC_TARGET_FUNC float mc_intgef(float (*fx)(const float x), const float a, const float b, const int n)
+MC_TARGET_PROC float mc_intgef(float (*fx)(const float x), const float a, const float b, const int n)
 {
 //!# Computing the integral of f(x) within the interval [a, b].
 	int i   = 1;
@@ -40,7 +40,7 @@ MC_TARGET_FUNC float mc_intgef(float (*fx)(const float x), const float a, const 
 	return MCK_NAN;
 }
 
-MC_TARGET_FUNC double mc_intgeff(float (*fx)(const float x), const float a, const float b, const int n)
+MC_TARGET_PROC double mc_intgeff(float (*fx)(const float x), const float a, const float b, const int n)
 {
 //!# Computing the integral of f(x) within the interval [a, b].
 	const double ad   = mc_cast(double, a);
@@ -59,7 +59,7 @@ MC_TARGET_FUNC double mc_intgeff(float (*fx)(const float x), const float a, cons
 	return MCK_NAN;
 }
 
-MC_TARGET_FUNC double mc_intge(double (*fx)(const double x), const double a, const double b, const int n)
+MC_TARGET_PROC double mc_intge(double (*fx)(const double x), const double a, const double b, const int n)
 {
 //!# Computing the integral of f(x) within the interval [a, b].
 	int i    = 1;
@@ -76,7 +76,7 @@ MC_TARGET_FUNC double mc_intge(double (*fx)(const double x), const double a, con
 	return MCK_NAN;
 }
 
-MC_TARGET_FUNC long double mc_intgel(long double (*fx)(const long double x), const long double a, const long double b, const int n)
+MC_TARGET_PROC long double mc_intgel(long double (*fx)(const long double x), const long double a, const long double b, const int n)
 {
 //!# Computing the integral of f(x) within the interval [a, b].
 	int i         = 1;

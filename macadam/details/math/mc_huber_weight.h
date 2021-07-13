@@ -13,21 +13,21 @@
 
 #pragma mark - mc_huber_weight -
 
-MC_TARGET_FUNC float mc_huber_weightf(float r)
+MC_TARGET_FUNC float mc_huber_weightf(const float r)
 {
 	const float c = 1.345f;
 	const float s = 1.0f;
 	return mc_huber_lossf(r, c, s, 0);
 }
 
-MC_TARGET_FUNC double mc_huber_weight(double r)
+MC_TARGET_FUNC double mc_huber_weight(const double r)
 {
 	const double c = 1.345;
 	const double s = 1.0;
 	return mc_huber_loss(r, c, s, 0);
 }
 
-MC_TARGET_FUNC long double mc_huber_weightl(long double r)
+MC_TARGET_FUNC long double mc_huber_weightl(const long double r)
 {
 	const long double c = 1.345L;
 	const long double s = 1.0L;

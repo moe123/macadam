@@ -13,19 +13,19 @@
 
 #pragma mark - mc_gamma -
 
-MC_TARGET_FUNC float mc_gammaf_r(const float x, int * psigngam)
+MC_TARGET_PROC float mc_gammaf_r(const float x, int * psigngam)
 {
 //!# Computes exp(log(|gamma(x)|)).
 	return mc_gammaf_approx1(x, psigngam);
 }
 
-MC_TARGET_FUNC double mc_gamma_r(const double x, int * psigngam)
+MC_TARGET_PROC double mc_gamma_r(const double x, int * psigngam)
 {
 //!# Computes exp(log(|gamma(x)|)).
 	return mc_gamma_approx1(x, psigngam);
 }
 
-MC_TARGET_FUNC long double mc_gammal_r(const long double x, int * psigngam)
+MC_TARGET_PROC long double mc_gammal_r(const long double x, int * psigngam)
 {
 //!# Computes exp(log(|gamma(x)|)).
 	return mc_gammal_approx1(x, psigngam);

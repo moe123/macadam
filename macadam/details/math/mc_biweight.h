@@ -13,21 +13,21 @@
 
 #pragma mark - mc_biweight -
 
-MC_TARGET_FUNC float mc_biweightf(float r)
+MC_TARGET_FUNC float mc_biweightf(const float r)
 {
 	const float c = 4.685f;
 	const float s = 1.0f;
 	return mc_bisquaref(r, c, s);
 }
 
-MC_TARGET_FUNC double mc_biweight(double r)
+MC_TARGET_FUNC double mc_biweight(const double r)
 {
 	const double c = 4.685;
 	const double s = 1.0;
 	return mc_bisquare(r, c, s);
 }
 
-MC_TARGET_FUNC long double mc_biweightl(long double r)
+MC_TARGET_FUNC long double mc_biweightl(const long double r)
 {
 	const long double c = 4.685L;
 	const long double s = 1.0L;

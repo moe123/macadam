@@ -37,12 +37,6 @@ MC_TARGET_FUNC void mc_sincosf(const float x, float * sinp, float * cosp)
 #	else
 	sincosf(x, sinp, cosp);
 #	endif
-#	elif (defined(__GLIBC__) || defined(_GNU_SOURCE))
-#	if MC_TARGET_CPP98
-	::sincosf(x, sinp, cosp);
-#	else
-	sincosf(x, sinp, cosp);
-#	endif
 #	else
 #	if MC_TARGET_CPP98
 	*sinp = ::sinf(x);
@@ -71,12 +65,6 @@ MC_TARGET_FUNC void mc_sincos(const double x, double * sinp, double * cosp)
 	__sincos(x, sinp, cosp);
 #	endif
 #	elif (defined(__unix__) || defined(__bsdi__)) && !defined(__linux__)
-#		if MC_TARGET_CPP98
-	::sincos(x, sinp, cosp);
-#	else
-	sincos(x, sinp, cosp);
-#		endif
-#	elif (defined(__GLIBC__) || defined(_GNU_SOURCE))
 #	if MC_TARGET_CPP98
 	::sincos(x, sinp, cosp);
 #	else
@@ -114,12 +102,6 @@ MC_TARGET_FUNC void mc_sincosl(const long double x, long double * sinp, long dou
 	*sinp = mc_cast(long double, ss);
 	*cosp = mc_cast(long double, cc);
 #	elif (defined(__unix__) || defined(__bsdi__)) && !defined(__linux__)
-#	if MC_TARGET_CPP98
-	::sincosl(x, sinp, cosp);
-#	else
-	sincosl(x, sinp, cosp);
-#	endif
-#	elif (defined(__GLIBC__) || defined(_GNU_SOURCE))
 #	if MC_TARGET_CPP98
 	::sincosl(x, sinp, cosp);
 #	else

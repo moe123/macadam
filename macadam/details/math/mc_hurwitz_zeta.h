@@ -19,7 +19,7 @@
 
 #pragma mark - mc_hurwitz_zeta -
 
-MC_TARGET_FUNC float mc_hurwitz_zetaf(float s, float q)
+MC_TARGET_FUNC float mc_hurwitz_zetaf(const float s, const float q)
 {
 	const float w  = MCK_KF(FLT_MAX_10_EXP) * MCK_KF(MCK_LOGE10);
 	float r        = 0.0f, c, term, sign;
@@ -41,10 +41,10 @@ MC_TARGET_FUNC float mc_hurwitz_zetaf(float s, float q)
 		sign = 1.0f;
 		term = 0.0f;
 		for (j = 0; j <= i; j++) {
-			if (w < (c = mc_lchoosef(mc_cast(float, i), mc_cast(float, j)))) {
+			if (w < (c = mc_lchoosef(mc_cast(const float, i), mc_cast(const float, j)))) {
 				c    = sign * mc_expf(c);
 				sign = sign * -1.0f;
-				term = term + (c * mc_powf(q + mc_cast(float, j), -s));
+				term = term + (c * mc_powf(q + mc_cast(const float, j), -s));
 				continue;
 			}
 			goto hurwitz_end;
@@ -59,7 +59,7 @@ hurwitz_end:
 	return r / (s - 1.0f);
 }
 
-MC_TARGET_FUNC double mc_hurwitz_zeta(double s, double q)
+MC_TARGET_FUNC double mc_hurwitz_zeta(const double s, const double q)
 {
 	const double w = MCK_K(DBL_MAX_10_EXP) * MCK_K(MCK_LOGE10);
 	double r       = 0.0, c, term, sign;
@@ -81,10 +81,10 @@ MC_TARGET_FUNC double mc_hurwitz_zeta(double s, double q)
 		sign = 1.0;
 		term = 0.0;
 		for (j = 0; j <= i; j++) {
-			if (w < (c = mc_lchoose(mc_cast(double, i), mc_cast(double, j)))) {
+			if (w < (c = mc_lchoose(mc_cast(const double, i), mc_cast(const double, j)))) {
 				c    = sign * mc_exp(c);
 				sign = sign * -1.0;
-				term = term + (c * mc_pow(q + mc_cast(double, j), -s));
+				term = term + (c * mc_pow(q + mc_cast(const double, j), -s));
 				continue;
 			}
 			goto hurwitz_end;
@@ -99,7 +99,7 @@ hurwitz_end:
 	return r / (s - 1.0);
 }
 
-MC_TARGET_FUNC long double mc_hurwitz_zetal(long double s, long double q)
+MC_TARGET_FUNC long double mc_hurwitz_zetal(const long double s, const long double q)
 {
 	const long double w = MCK_KL(LDBL_MAX_10_EXP) * MCK_KL(MCK_LOGE10);
 	long double r       = 0.0L, c, term, sign;
@@ -121,10 +121,10 @@ MC_TARGET_FUNC long double mc_hurwitz_zetal(long double s, long double q)
 		sign = 1.0L;
 		term = 0.0L;
 		for (j = 0; j <= i; j++) {
-			if (w < (c = mc_lchoosel(mc_cast(long double, i), mc_cast(long double, j)))) {
+			if (w < (c = mc_lchoosel(mc_cast(const long double, i), mc_cast(const long double, j)))) {
 				c    = sign * mc_expl(c);
 				sign = sign * -1.0L;
-				term = term + (c * mc_powl(q + mc_cast(long double, j), -s));
+				term = term + (c * mc_powl(q + mc_cast(const long double, j), -s));
 				continue;
 			}
 			goto hurwitz_end;
